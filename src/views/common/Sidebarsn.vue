@@ -1,4 +1,5 @@
 <template>
+  // 左侧边栏主页导航
   <div class="fo">
     <div class="fos">
       <!-- <vue-particles
@@ -26,7 +27,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="font-mono text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           @click="nav(1)"
         >
           短文
@@ -34,7 +35,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="font-mono text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           @click="nav(2)"
         >
           视频
@@ -42,7 +43,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="font-mono text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           @click="nav(4)"
         >
           收藏
@@ -50,16 +51,15 @@
       </div>
       <div class="fo-1">
         <p
-          class="font-mono text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           @click="nav(5)"
         >
           博客
         </p>
       </div>
-
       <div class="fo-1">
         <p
-          class="font-mono text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           @click="nav(6)"
         >
           书单
@@ -67,7 +67,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="font-mono text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           @click="nav(7)"
         >
           后台
@@ -89,7 +89,6 @@
 <script>
 export default {
   name: "Sidebarsn",
-
   methods: {
     nav (num) {
       switch (num) {
@@ -168,10 +167,9 @@ export default {
       cursor: default;
 
       p {
-        @apply py-1 px-4;
+        @apply py-1 px-4 font-sans  text-base;
       }
     }
-
     .fo-2 {
       position: absolute;
       bottom: 18%;
@@ -188,7 +186,6 @@ export default {
       }
     }
   }
-
   .fos::-webkit-scrollbar {
     display: none;
   }

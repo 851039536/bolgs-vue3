@@ -1,37 +1,30 @@
 <template>
   <div>
-    <nav
-      class="header-sn flex items-center justify-between flex-wrap bg-white p-2"
-    >
+    <nav class="header-sn flex flex-wrap">
       <div class="header-sn-1 flex items-center flex-shrink-0 text-black mr-6">
         <span class="text-xl tracking-tight">Junior</span>
       </div>
 
-      <!--    <div class="block sm:hidden">-->
-      <!--      <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">-->
-      <!--        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>-->
-      <!--      </button>-->
-
-      <!--    </div>-->
-
-      <div class="w-full block flex-grow sm:flex sm:items-center sm:w-auto">
-        <div class="text-sm sm:flex-grow">
+      <div
+        class="header-sn-2 w-full block flex-grow sm:flex sm:items-center sm:w-auto"
+      >
+        <div class="text-base sm:flex-grow">
           <a
             @click="onk(1)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-black-200 mr-4"
+            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
           >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-comments"></use>-->
-            <!--                        </svg>-->
+            <svg class="inline-block icon" aria-hidden="true">
+              <use xlink:href="#icon-icon-"></use>
+            </svg>
             主页
           </a>
           <a
             @click="onk(2)"
             class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
           >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-discounts"></use>-->
-            <!--                        </svg>-->
+            <svg class="inline-block icon" aria-hidden="true">
+              <use xlink:href="#icon-biaoqian"></use>
+            </svg>
             标签
           </a>
           <!--                    <a @click="onk(3)"-->
@@ -52,38 +45,43 @@
             @click="onk(5)"
             class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
           >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-VectorSmartObject2-->
+            <svg class="inline-block icon" aria-hidden="true">
+              <use
+                xlink:href="#icon-dianzan
 
-            <!--"></use>-->
-            <!--                        </svg>-->
+            "
+              ></use>
+            </svg>
             时间线
           </a>
           <a
             @click="onk(6)"
             class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
           >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-photo"></use>-->
-            <!--                        </svg>-->
+            <svg class="inline-block icon" aria-hidden="true">
+              <use xlink:href="#icon-tupian"></use>
+            </svg>
             图册
           </a>
           <a
             @click="onk(7)"
             class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
           >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-comments"></use>-->
-            <!--                        </svg>-->
+            <svg class="inline-block icon" aria-hidden="true">
+              <use xlink:href="#icon-daohang1"></use>
+            </svg>
             导航站
           </a>
           <a
             @click="onk(8)"
             class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
           >
-            <!--                    <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                        <use xlink:href="#icon-sannianjihua"></use>-->
-            <!--                    </svg>-->
+            <svg class="inline-block icon" aria-hidden="true">
+              <use
+                xlink:href="#icon-guanyuwomen
+"
+              ></use>
+            </svg>
             关于
           </a>
           <el-tooltip
@@ -96,9 +94,9 @@
               @click="onk(9)"
               class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
             >
-              <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-              <!--                            <use xlink:href="#icon-ziliao"></use>-->
-              <!--                        </svg>-->
+              <svg class="inline-block icon" aria-hidden="true">
+                <use xlink:href="#icon-24"></use>
+              </svg>
               日志
             </a>
           </el-tooltip>
@@ -221,11 +219,11 @@ export default {
   left: 0;
   width: 100%;
   z-index: 9999;
-
-  /*background-color: #795da3;*/
-  height: 52px;
+  // background-color: #795da3;
+  @apply p-2 bg-white;
+  height: 55px;
   @include boxshow2;
-  cursor: default;
+
   .heaa {
     float: right;
     /*background-color: #1b1e21;*/
@@ -234,7 +232,6 @@ export default {
 
 .box {
   width: 400px;
-
   .top {
     text-align: center;
   }

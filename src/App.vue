@@ -1,10 +1,6 @@
 <template>
-  <div id="nav">
-    <Headers></Headers>
-    <!-- <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> -->
-  </div>
-  <router-view />
+  <Headers></Headers>
+  <router-view></router-view>
 </template>
 <script>
 export default {
@@ -15,6 +11,4 @@ export default {
 }
 </script>
 <style lang="scss">
-#nav {
-}
 </style>

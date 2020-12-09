@@ -1,13 +1,17 @@
 import {
   createRouter,
-  createWebHashHistory
+  createWebHistory,
+  // createWebHashHistory
 } from 'vue-router'
 import Index from '../views/Index.vue'
 
 const routes = [{
     path: '/',
     name: 'Index',
-    component: Index
+    component: Index,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/About',
@@ -15,12 +19,18 @@ const routes = [{
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import( /* webpackChunkName: "about" */ '../views/About/About.vue')
+    component: () => import( /* webpackChunkName: "about" */ '../views/About/About.vue'),
+    meta: {
+      keepAlive: false // 需要被缓存
+    }
   },
   {
     path: '/Index1',
     name: 'Index1',
-    component: () => import('../views/Index.vue')
+    component: () => import('../views/Index.vue'),
+    meta: {
+      keepAlive: true
+    }
   },
   {
 
@@ -39,6 +49,11 @@ const routes = [{
     component: () => import('../views/index/Index-Text.vue')
   },
   {
+    path: '/IndexText2',
+    name: 'IndexText2',
+    component: () => import('../views/index/IndexText2.vue')
+  },
+  {
     path: '/Sidebarsn',
     name: 'Sidebarsn',
     component: () => import('../views/common/Sidebarsn.vue')
@@ -46,7 +61,7 @@ const routes = [{
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 

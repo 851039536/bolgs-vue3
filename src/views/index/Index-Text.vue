@@ -86,9 +86,7 @@
 
 
 <script>
-import api from 'axios';
-api.defaults.baseURL = 'http://129.204.92.64:8081/',
-  api.defaults.timeout = 12000;
+
 
 // 组件导入
 export default {
@@ -116,7 +114,7 @@ export default {
     //加载文章
     async AsyGetTest () {
 
-      api({
+      this.$api({
         url: "/api/SnArticle/GetfyTest?label=00" +
           "&pageIndex=" +
           this.page +
@@ -134,14 +132,14 @@ export default {
     async AsyGetTestID (id) {
       // .带参数跳转
       this.$router.push({
-        path: '/Indextext',
+        path: '/Indextext2',
         query: {
           id: id
         }
       })
     },
     getCount () {
-      api({
+      this.$api({
         url: '/api/SnArticle/GetArticleCount'
       }).then(res => {
         this.count = res.data;
@@ -168,8 +166,6 @@ export default {
 
       }
     }
-
-
   }
 }
 </script>
@@ -180,7 +176,6 @@ export default {
 .sn-text {
   width: 49%;
   background-color: #ffffff;
-  color: #888888;
   margin-left: 23%;
   @include boxshow3;
   p {
@@ -214,14 +209,15 @@ export default {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          /*background-color: #4eb687;*/
-          @apply px-3 pt-1 m-1 text-base cursor-pointer font-semibold;
+          // background-color: #4eb687;
+          @apply px-3 pt-1 m-1 text-lg cursor-pointer font-semibold;
         }
 
         .sn-text-1-1-1-2 {
+          color: #888888;
           height: 44%;
-          /*background-color: #9a6e3a;*/
-          @apply px-2 text-sm tracking-wide leading-relaxed;
+          // background-color: #9a6e3a;
+          @apply px-3 m-1 mt-2 text-sm tracking-wide leading-relaxed;
           display: -webkit-box;
           word-break: break-all;
           -webkit-box-orient: vertical;
@@ -244,12 +240,12 @@ export default {
     }
 
     .sn-text-1-2 {
-      /*background-color: #95999c;*/
+      // background-color: #95999c;
       height: 25%;
       width: 100%;
       border-bottom: 1px solid #edeef0;
       //   background-color: #795da3;
-
+      @apply pl-3;
       div {
         // background-color: #0086b3;
 

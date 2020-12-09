@@ -88,7 +88,7 @@
               <svg class="inline-block icon" aria-hidden="true">
                 -->
                 <use
-                  xlink:href="#icon-forum_help_feedback
+                  xlink:href="#icon-guanyuqunfeng
 "
                 ></use>
               </svg>
@@ -103,7 +103,7 @@
               <svg class="inline-block icon" aria-hidden="true">
                 -->
                 <use
-                  xlink:href="#icon-yurenjie
+                  xlink:href="#icon-shujuku1
 "
                 ></use>
               </svg>
@@ -121,7 +121,7 @@
               <svg class="inline-block icon" aria-hidden="true">
                 -->
                 <use
-                  xlink:href="#icon-computer
+                  xlink:href="#icon-shudan
 
 "
                 ></use>
@@ -138,9 +138,6 @@
 
 <script>
 
-import api from 'axios';
-api.defaults.baseURL = 'http://129.204.92.64:8081/',
-  api.defaults.timeout = 12000;
 
 export default {
   name: "About",
@@ -168,7 +165,7 @@ export default {
   methods: {
     getall () {
       //查询当前用户信息
-      api({
+      this.$api({
         url: '/api/SnUser/AsyGetUserId?UserId=4'
       }).then(res => {
         this.User = res.data[0];
@@ -176,30 +173,13 @@ export default {
       }).catch((e) => {
         console.log(e + '获取数据失败');
       });
-
-
-      // this.$api({
-      //     url: '/api/SnArticle/AsyGetTestID?id=' + 186
-      // }).then(res => {
-      //     this.newinfo = res.data;
-      // }).catch((e) => {
-      //     console.log(e + '获取数据失败');
-      // });
     }
-
-
   }
-
-
 }
-
-
 </script>
-
 
 <style lang="scss" scoped>
 @import "../../assets/sass/com";
-
 .abouts {
   /*position: fixed;*/
   width: 100%;
@@ -283,15 +263,18 @@ export default {
       }
 
       .about-2 {
-        background-color: #dddddd;
         width: 35%;
         margin: 10px auto 0 auto;
-        @apply text-base cursor-pointer;
+        @apply text-base cursor-pointer bg-gray-200;
         @include boxshow;
+
+        .about-2-1 {
+          @apply pl-5;
+        }
       }
 
       .about-3 {
-        width: 51%;
+        width: 55%;
         /*background-color: #6990f6;*/
         margin: 20px auto 0 auto;
       }
@@ -366,7 +349,7 @@ export default {
         /*background-color: #4eb687;*/
         .bg-2-1-1 {
           /*background-color: #0086b3;*/
-          @apply m-2;
+          @apply m-2 text-lg;
         }
 
         .bg-2-1-2 {
@@ -383,7 +366,7 @@ export default {
 
         .bg-2-2-1 {
           /*background-color: #0086b3;*/
-          @apply m-2;
+          @apply m-2 text-lg;
         }
 
         .bg-2-2-2 {
@@ -395,7 +378,7 @@ export default {
       .bg-2-3 {
         white-space: pre-wrap;
         word-wrap: break-word;
-        @apply m-2;
+        @apply m-2 text-lg;
         /*background-color: #4eb687;*/
 
         .bg-2-3-1 {

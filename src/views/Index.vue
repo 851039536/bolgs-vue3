@@ -3,6 +3,7 @@
     <!-- 左侧边栏 -->
     <Sidebarsn></Sidebarsn>
     <div class="sn-div flex">
+      <!-- 内容页面 -->
       <IndexText></IndexText>
       <!--侧边栏-->
       <IndexSidebar></IndexSidebar>
@@ -27,14 +28,7 @@ export default {
   data () {
     return {}
   },
-  created () {
-    /*这里写需要执行的操作，执行完后loading关闭*/
-    // this.ht.$emit('loading', true); // 关闭loading
 
-  },
-  methods: {
-
-  }
 }
 
 </script>
@@ -45,7 +39,7 @@ export default {
 .sn-div {
   /*background-color: #1e7e34;*/
   width: 100%;
-  margin-top: 60px;
+  margin-top: 42px;
 
   .sn-div1 {
     width: 99%;

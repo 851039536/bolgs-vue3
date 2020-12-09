@@ -80,7 +80,7 @@
         >
           公告
         </div>
-        <div class="sn-list7-1">
+        <div class="sn-list7-2">
           <p class="">专注c#,vue,并发编程,netCore,WinForm,CSS</p>
         </div>
       </div>
@@ -193,10 +193,7 @@
 
 
 <script>
-// 无法挂载在vue
-import ajax from 'axios';
-ajax.defaults.baseURL = 'http://129.204.92.64:8081/',
-  ajax.defaults.timeout = 12000;
+
 
 export default {
   name: 'Index-Sidebar',
@@ -224,26 +221,26 @@ export default {
   methods: {
     //加载文章
     async AsyGetTest () {
-      ajax.all([
+      this.$api.all([
         //查询标签
-        ajax.get('/api/SnLabels/GetLabels'),
+        this.$api.get('/api/SnLabels/GetLabels'),
         //查询分类
-        ajax.get('/api/SnSort/GetSort'),
+        this.$api.get('/api/SnSort/GetSort'),
         //查询最新发布前十文章
-        ajax.get('/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true'),
+        this.$api.get('/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true'),
         // 查询当前用户的说说
-        ajax.get('/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true'),
+        this.$api.get('/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true'),
         //查询当前用户信息
-        ajax.get('/api/SnUser/AsyGetUserId?UserId=4'),
+        this.$api.get('/api/SnUser/AsyGetUserId?UserId=4'),
         //查询文章总数
-        ajax.get('/api/SnArticle/GetArticleCount'),
+        this.$api.get('/api/SnArticle/GetArticleCount'),
         //查询标签
-        ajax.get('/api/SnSort/GetSortCount'),
+        this.$api.get('/api/SnSort/GetSortCount'),
         //查询分类
-        ajax.get('/api/SnLabels/GetLabelsCount'),
+        this.$api.get('/api/SnLabels/GetLabelsCount'),
 
 
-      ]).then(ajax.spread((res1, res2, res3, res4, res5, res6, res7, res8) => {
+      ]).then(this.$api.spread((res1, res2, res3, res4, res5, res6, res7, res8) => {
         this.Labels = res1.data;
         this.Sort = res2.data;
         this.article = res3.data;
@@ -290,26 +287,24 @@ export default {
 @import "../../assets/sass/com";
 .sn-list {
   position: fixed;
-  top: 9%;
+  top: 9.7%;
   right: 0;
   height: 90%;
   width: 28%;
   font-size: 17px;
-  color: #888888;
   // background-color: #4d4f91;
   @apply ml-3;
   .sn-list-s {
-    /*background-color: #55a532;*/
+    // background-color: #55a532;
     height: 100%;
     width: 100%;
     overflow: auto;
 
     .sn-list0 {
-      height: 240px;
+      height: 248px;
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
-      @apply mb-3;
+      @apply mb-3 bg-white;
       @include boxshow;
 
       .sn-list0-img {
@@ -324,18 +319,6 @@ export default {
         }
       }
 
-      .sn-list0-img2 {
-        height: 100%;
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 3%;
-        transition: all 2s;
-      }
-
-      .sn-list0-img2:hover {
-        transform: rotate(720deg);
-      }
-
       .sn-list0-name {
         height: 30px;
         margin: 20px auto;
@@ -343,6 +326,7 @@ export default {
 
       .sn-list0-name1 {
         text-align: center;
+        @apply text-xl;
       }
 
       .sn-list0-tag {
@@ -357,9 +341,9 @@ export default {
           margin: 0 auto;
 
           .sn-list0-tag1 {
-            /*background-color: #55a532;*/
+            //background-color: #55a532;
             width: 34%;
-            @apply text-sm;
+            @apply text-lg;
             .sn-list0-tag1-1-1 {
               /*background-color: #dddddd;*/
               text-align: center;
@@ -374,14 +358,14 @@ export default {
           .sn-list0-tag2 {
             /*background-color: #0086b3;*/
             width: 33%;
-            @apply text-sm;
+            @apply text-lg;
             div {
               text-align: center;
             }
           }
 
           .sn-list0-tag3 {
-            @apply text-sm;
+            @apply text-lg;
             /*background-color: #8146b4;*/
             width: 33%;
 
@@ -415,22 +399,20 @@ export default {
     .sn-list4 {
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
       text-align: center;
-      @apply mb-3;
+      @apply mb-3 bg-white;
       @include boxshow3;
-      //@include gradient-text;
 
       h4 {
         height: 2rem;
-        color: #1b1e21;
+        @apply text-gray-900;
         font-size: 15px;
         line-height: 2.5rem;
       }
 
       .sn-list4-1 {
         p {
-          @apply text-sm  px-2 py-4 m-1 cursor-pointer;
+          @apply text-sm  px-1 py-2 m-1 cursor-pointer;
         }
       }
     }
@@ -438,16 +420,15 @@ export default {
     .sn-list7 {
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
+      @apply p-1 mb-2 cursor-pointer bg-white;
       @include boxshow3;
 
-      //@include gradient-text;
-
       .sn-list7-1 {
-        color: #1b1e21;
+        @apply text-gray-900;
+      }
+      .sn-list7-2 {
         p {
-          @apply text-sm px-2 py-2 cursor-pointer;
+          @apply text-sm px-1 py-2 cursor-pointer;
         }
       }
     }
@@ -455,11 +436,10 @@ export default {
     .sn-list8 {
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
+      @apply p-1 mb-2 cursor-pointer bg-white;
       @include boxshow3;
       .sn-list8-1 {
-        color: #1b1e21;
+        @apply text-gray-900;
       }
       .sn-list8-2 {
         @apply text-sm m-2;
@@ -482,18 +462,15 @@ export default {
     .sn-list3 {
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
+      @apply p-1 mb-2 cursor-pointer bg-white;
       @include boxshow3;
 
       .sn-list3-1 {
-        @apply m-1 p-1 text-sm font-semibold bg-gray-200;
-        color: #1b1e21;
+        @apply m-1 p-1 text-sm font-semibold bg-gray-200 text-gray-900;
       }
 
       .sn-list3-2 {
         @apply inline-flex;
-
         .sn-list3-2-1 {
           @apply flex-1;
           @apply text-gray-700 text-xs text-center px-1 m-1;
@@ -504,33 +481,27 @@ export default {
     .sn-list5 {
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2;
+      @apply p-1 mb-2 bg-white;
 
       @include boxshow3;
 
       .sn-list5-1 {
-        color: #1b1e21;
+        @apply text-gray-900;
       }
     }
 
     .sn-list6 {
       width: 80%;
       margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
+      @apply p-1 mb-2 cursor-pointer bg-white;
       @include boxshow3;
 
       .sn-list6-1 {
-        color: #1b1e21;
+        @apply text-gray-900;
       }
-
       .sn-list6-2 {
         background-color: white;
         border-bottom: 1px dashed #f1f1f1;
-
-        .sn-list6-2-1 {
-        }
       }
     }
   }
