@@ -1,5 +1,4 @@
 <template>
-  // 左侧边栏主页导航
   <div class="fo">
     <div class="fos">
       <!-- <vue-particles

@@ -4,7 +4,7 @@
     <!--左侧边栏-->
     <div class="article-text">
       <div class="article-text-1">
-        <p class="text-base text-center py-1 text-gray-800 font-medium">
+        <p class="py-1 text-base font-medium text-center text-gray-800">
           最新随笔
         </p>
       </div>
@@ -23,8 +23,8 @@
 
     <!--标题-->
     <div class="article-title">
-      <a class="cursor-default text-lg" @click="houtui">&lt;</a>
-      <p class="text-center text-lg">
+      <a class="text-lg cursor-default" @click="houtui">&lt;</a>
+      <p class="text-lg text-center">
         {{ newinfo.title }}
       </p>
     </div>
@@ -53,7 +53,7 @@
           进行许可
         </div>
       </div>
-      <div class="article-3-2 flex">
+      <div class="flex article-3-2">
         <div class="">
           <a @click="UpGive(newinfo)">
             <svg class="inline-block icon" aria-hidden="true">
@@ -81,7 +81,7 @@
     <!--回到顶部-->
     <div
       id="backtop"
-      class="transition duration-500 ease-in-out hover:bg-blue-200 transform hover:-translate-y-1 hover:scale-110"
+      class="transition duration-500 ease-in-out transform hover:bg-blue-200 hover:-translate-y-1 hover:scale-110"
     >
       <p @click="backtop">
         <svg class="icons" aria-hidden="true">
@@ -339,23 +339,21 @@ export default {
   position: fixed;
   top: 60px;
   left: 1%;
-  background-color: #ffffff;
   width: 17%;
   @include boxshow;
-  @apply font-mono;
+  @apply font-sans bg-white;
 
   .article-text-1 {
-    background-color: #4eb687;
     @apply font-semibold bg-gray-200 cursor-pointer;
   }
 
   .article-text-2 {
-    /*background-color: #9a6e3a;*/
-    @apply m-1 cursor-pointer  text-base;
+    // background-color: #9a6e3a;
+    @apply m-1 cursor-pointer;
 
     div {
       /*background-color: #55a532;*/
-      @apply m-1 p-1 px-3 text-sm;
+      @apply m-1 p-1 px-3 text-base;
       border-bottom: 1px dashed #f1f1f1;
     }
   }

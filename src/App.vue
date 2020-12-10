@@ -1,6 +1,7 @@
 <template>
   <Headers></Headers>
-  <router-view></router-view>
+
+  <router-view class="home-router"></router-view>
 </template>
 <script>
 export default {
@@ -11,4 +12,7 @@ export default {
 }
 </script>
 <style lang="scss">
+.home-router {
+  transition: all 1.8s linear;
+}
 </style>

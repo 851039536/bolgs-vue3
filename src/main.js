@@ -17,6 +17,8 @@ import ajax from './api/index'
 // Vue.prototype.$api = ajax; // 将api挂载到vue的原型上复制代码
 
 import Headers from "./views/common/Headers.vue"
+import IndexSidebar from "./views/index/Index-Sidebar";
+import Sidebarsn from "./views/common/Sidebarsn";
 
 const app = createApp(App);
 app.use(store);
@@ -24,4 +26,6 @@ app.use(router)
 app.use(Antd)
 app.config.globalProperties.$api = ajax
 app.component("Headers", Headers)
+app.component("IndexSidebar", IndexSidebar)
+app.component("Sidebarsn", Sidebarsn)
 app.mount("#app");

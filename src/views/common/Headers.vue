@@ -151,13 +151,13 @@ export default {
     }
   },
   methods: {
-    onk (num) {
+     onk (num) {
       switch (num) {
         case 1:
           this.$router.push('/Index1')
           break;
         case 2:
-          this.$router.push('/about')
+          this.$router.push('/TagText')
           break;
         case 3:
           this.$router.push('./Resource')

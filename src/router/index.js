@@ -6,31 +6,29 @@ import {
 import Index from '../views/Index.vue'
 
 const routes = [{
+    //path是路由的路径
     path: '/',
+    //redirect代表重定向，因为当前路径'/'并没有对应的组件，所以需要重定向到其他路由页面
+    // redirect: '/Index1',
     name: 'Index',
     component: Index,
-    meta: {
-      keepAlive: true
-    }
   },
+
   {
     path: '/About',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import( /* webpackChunkName: "about" */ '../views/About/About.vue'),
-    meta: {
-      keepAlive: false // 需要被缓存
-    }
+
   },
   {
     path: '/Index1',
     name: 'Index1',
     component: () => import('../views/Index.vue'),
     meta: {
-      keepAlive: true
+      title: 'Index1',
+      keepAlive: true // 缓存
     }
+
   },
   {
 
@@ -58,11 +56,23 @@ const routes = [{
     name: 'Sidebarsn',
     component: () => import('../views/common/Sidebarsn.vue')
   },
+  {
+    path: '/TimeLine',
+    name: 'TimeLine',
+    component: () => import('../views/TimeLine/TimeLine.vue')
+  },
+  {
+    path: '/TagText',
+    name: 'TagText',
+    component: () => import('../views/Tag/TagText.vue')
+  }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+  history: createWebHistory(), //HTML5模式
+  routes,
+
+
 })
 
 export default router

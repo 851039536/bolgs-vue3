@@ -76,7 +76,7 @@
       </div>
       <div class="sn-list7">
         <div
-          class="sn-list7-1 m-1 p-1 text-sm font-semibold bg-gray-200 cursor-pointer"
+          class="sn-list7-1"
         >
           公告
         </div>
@@ -123,7 +123,7 @@
           :key="Sorts.sortId"
         >
           <div
-            class="flex-1 text-gray-700 text-xs text-center px-1 m-1 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+            class="sn-list5-2 flex-1 text-gray-700 text-sm text-center px-1 m-1 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Labeslss.labelId)"
           >
             {{ Sorts.sortName }}
@@ -131,7 +131,7 @@
         </div>
       </div>
       <div class="sn-list6">
-        <div class="sn-list6-1 m-1 p-1 text-sm font-semibold bg-gray-200">
+        <div class="sn-list6-1 m-1 p-1 text-base font-semibold bg-gray-200">
           最新内容
         </div>
 
@@ -156,7 +156,7 @@
 
       <div class="sn-list8">
         <div
-          class="sn-list8-1 m-1 p-1 text-sm font-semibold bg-gray-200 cursor-pointer"
+          class="sn-list8-1 m-1 p-1 text-base font-semibold bg-gray-200 cursor-pointer"
         >
           站点信息
         </div>
@@ -287,7 +287,7 @@ export default {
 @import "../../assets/sass/com";
 .sn-list {
   position: fixed;
-  top: 9.7%;
+  top: 61px;
   right: 0;
   height: 90%;
   width: 28%;
@@ -423,12 +423,13 @@ export default {
       @apply p-1 mb-2 cursor-pointer bg-white;
       @include boxshow3;
 
+    // 公告
       .sn-list7-1 {
-        @apply text-gray-900;
+        @apply text-gray-900 m-1 p-1 text-base font-semibold bg-gray-200;
       }
       .sn-list7-2 {
         p {
-          @apply text-sm px-1 py-2 cursor-pointer;
+          @apply text-sm px-1 py-2;
         }
       }
     }
@@ -465,29 +466,34 @@ export default {
       @apply p-1 mb-2 cursor-pointer bg-white;
       @include boxshow3;
 
+     // 标签
       .sn-list3-1 {
-        @apply m-1 p-1 text-sm font-semibold bg-gray-200 text-gray-900;
+        @apply m-1 p-1 text-base font-semibold bg-gray-200 text-gray-900;
       }
 
       .sn-list3-2 {
         @apply inline-flex;
         .sn-list3-2-1 {
           @apply flex-1;
-          @apply text-gray-700 text-xs text-center px-1 m-1;
+          @apply text-gray-700 text-sm text-center px-1 m-1 bg-blue-100 rounded-sm;
         }
       }
     }
 
+    // 分类
     .sn-list5 {
       width: 80%;
       margin: 0 auto;
       @apply p-1 mb-2 bg-white;
-
       @include boxshow3;
 
       .sn-list5-1 {
-        @apply text-gray-900;
+        @apply text-gray-900 text-base;
       }
+      .sn-list5-2 {
+         @apply bg-red-100 rounded-sm;
+      }
+       
     }
 
     .sn-list6 {
