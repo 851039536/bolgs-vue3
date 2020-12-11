@@ -1,7 +1,7 @@
 <template>
   <div class="sn-list" id="sn-list" :class="{ isFixed: barFixed }">
     <div class="sn-list-s">
-      <div class="sn-list0 font-mono">
+      <div class="font-mono sn-list0">
         <div class="sn-list0-img">
           <img class="sn-list0-img2" id="img1" :src="User.userPhoto" alt="" />
           <!--                    <el-image-->
@@ -14,7 +14,7 @@
         </div>
 
         <div class="sn-list0-tag">
-          <div class="sn-list0-tag-1 flex">
+          <div class="flex sn-list0-tag-1">
             <div class="sn-list0-tag1">
               <div class="sn-list0-tag1-1-2">
                 <a>{{ ArticleCount }}</a>
@@ -41,8 +41,8 @@
         </div>
       </div>
       <div class="sn-list2">
-        <div class="sn-list2-1 flex items-center">
-          <div class="sn-list2-1-1 flex-1">
+        <div class="flex items-center sn-list2-1">
+          <div class="flex-1 sn-list2-1-1">
             <a
               href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes"
             >
@@ -51,21 +51,21 @@
               </svg>
             </a>
           </div>
-          <div class="sn-list2-1-1 flex-1">
+          <div class="flex-1 sn-list2-1-1">
             <a target="_blank" href="https://gitee.com/kaiouyang-sn">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-github1"></use>
               </svg>
             </a>
           </div>
-          <div class="sn-list2-1-1 flex-1">
+          <div class="flex-1 sn-list2-1-1">
             <a>
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-weixin3"></use>
               </svg>
             </a>
           </div>
-          <div class="sn-list2-1-1 flex-1">
+          <div class="flex-1 sn-list2-1-1">
             <a>
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-zhihu"></use>
@@ -75,13 +75,9 @@
         </div>
       </div>
       <div class="sn-list7">
-        <div
-          class="sn-list7-1"
-        >
-          公告
-        </div>
+        <div class="sn-list7-1">公告</div>
         <div class="sn-list7-2">
-          <p class="">专注c#,vue,并发编程,netCore,WinForm,CSS</p>
+          <p class="">本站基于:TailWindcss,Vue,Axios,NetCoreWebApi 开发搭建</p>
         </div>
       </div>
       <div class="sn-list4">
@@ -100,7 +96,7 @@
           :key="Labeslss.labelId"
         >
           <div
-            class="sn-list3-2-1 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+            class="transition duration-500 ease-in-out transform sn-list3-2-1 hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Labeslss.labelId)"
           >
             <svg class="inline-block icon" aria-hidden="true">
@@ -112,7 +108,7 @@
       </div>
       <div class="sn-list5">
         <div
-          class="sn-list5-1 m-1 p-1 text-sm font-semibold bg-gray-200 cursor-pointer"
+          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
         >
           分类
         </div>
@@ -123,7 +119,7 @@
           :key="Sorts.sortId"
         >
           <div
-            class="sn-list5-2 flex-1 text-gray-700 text-sm text-center px-1 m-1 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+            class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform sn-list5-2 hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Labeslss.labelId)"
           >
             {{ Sorts.sortName }}
@@ -131,7 +127,7 @@
         </div>
       </div>
       <div class="sn-list6">
-        <div class="sn-list6-1 m-1 p-1 text-base font-semibold bg-gray-200">
+        <div class="p-1 m-1 text-base font-semibold bg-gray-200 sn-list6-1">
           最新内容
         </div>
 
@@ -140,7 +136,7 @@
           v-for="articles in article"
           :key="articles.articleId"
         >
-          <div class="sn-list6-2-1 p-1 m-1 text-sm">
+          <div class="p-1 m-1 text-sm sn-list6-2-1">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-liulan
@@ -156,32 +152,32 @@
 
       <div class="sn-list8">
         <div
-          class="sn-list8-1 m-1 p-1 text-base font-semibold bg-gray-200 cursor-pointer"
+          class="p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer sn-list8-1"
         >
           站点信息
         </div>
         <div class="sn-list8-2">
-          <div class="sn-list8-2-1 flex">
+          <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
             <div class="sn-list8-2-1-2">210篇</div>
           </div>
-          <div class="sn-list8-2-1 flex">
+          <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">运行时间:</div>
             <div class="sn-list8-2-1-2">333天</div>
           </div>
-          <div class="sn-list8-2-1 flex">
+          <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">总字数:</div>
             <div class="sn-list8-2-1-2">1111k字</div>
           </div>
-          <div class="sn-list8-2-1 flex">
+          <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">访客数:</div>
             <div class="sn-list8-2-1-2">1111人</div>
           </div>
-          <div class="sn-list8-2-1 flex">
+          <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">访问量:</div>
             <div class="sn-list8-2-1-2">12434次</div>
           </div>
-          <div class="sn-list8-2-1 flex">
+          <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">最后更新:</div>
             <div class="sn-list8-2-1-2">2012-12-12</div>
           </div>
@@ -284,251 +280,251 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-@import "../../assets/sass/com";
-.sn-list {
-  position: fixed;
-  top: 61px;
-  right: 0;
-  height: 90%;
-  width: 28%;
-  font-size: 17px;
-  // background-color: #4d4f91;
-  @apply ml-3;
-  .sn-list-s {
-    // background-color: #55a532;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+  @import "../../assets/sass/com";
+  .sn-list {
+    position: fixed;
+    top: 61px;
+    right: 0;
+    height: 90%;
+    width: 28%;
+    font-size: 17px;
+    // background-color: #4d4f91;
+    @apply ml-3;
+    .sn-list-s {
+      // background-color: #55a532;
+      height: 100%;
+      width: 100%;
+      overflow: auto;
 
-    .sn-list0 {
-      height: 248px;
-      width: 80%;
-      margin: 0 auto;
-      @apply mb-3 bg-white;
-      @include boxshow;
+      .sn-list0 {
+        height: 248px;
+        width: 80%;
+        margin: 0 auto;
+        @apply mb-3 bg-white;
+        @include boxshow;
 
-      .sn-list0-img {
-        /*background-color: #55a532;*/
-        height: 100px;
-        width: 140px;
-        margin: 15px auto 0 auto;
+        .sn-list0-img {
+          /*background-color: #55a532;*/
+          height: 100px;
+          width: 140px;
+          margin: 15px auto 0 auto;
 
-        img {
-          height: 100%;
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .sn-list0-name {
+          height: 30px;
+          margin: 20px auto;
+        }
+
+        .sn-list0-name1 {
+          text-align: center;
+          @apply text-xl;
+        }
+
+        .sn-list0-tag {
+          /*background-color: #9a6e3a;*/
           width: 100%;
+          height: 100%;
+          @apply cursor-pointer;
+
+          .sn-list0-tag-1 {
+            /*background-color: #4eb687;*/
+            width: 150px;
+            margin: 0 auto;
+
+            .sn-list0-tag1 {
+              //background-color: #55a532;
+              width: 34%;
+              @apply text-lg;
+              .sn-list0-tag1-1-1 {
+                /*background-color: #dddddd;*/
+                text-align: center;
+              }
+
+              .sn-list0-tag1-1-2 {
+                /*background-color: #795da3;*/
+                text-align: center;
+              }
+            }
+
+            .sn-list0-tag2 {
+              /*background-color: #0086b3;*/
+              width: 33%;
+              @apply text-lg;
+              div {
+                text-align: center;
+              }
+            }
+
+            .sn-list0-tag3 {
+              @apply text-lg;
+              /*background-color: #8146b4;*/
+              width: 33%;
+
+              div {
+                text-align: center;
+              }
+            }
+          }
         }
       }
 
-      .sn-list0-name {
-        height: 30px;
-        margin: 20px auto;
-      }
+      .sn-list2 {
+        height: 50px;
+        width: 80%;
+        margin: 0 auto;
+        @apply mb-3;
+        @include boxshow;
 
-      .sn-list0-name1 {
-        text-align: center;
-        @apply text-xl;
-      }
-
-      .sn-list0-tag {
-        /*background-color: #9a6e3a;*/
-        width: 100%;
-        height: 100%;
-        @apply cursor-pointer;
-
-        .sn-list0-tag-1 {
-          /*background-color: #4eb687;*/
-          width: 150px;
+        .sn-list2-1 {
+          /*background-color: #95999c;*/
+          height: 100%;
+          width: 60%;
           margin: 0 auto;
 
-          .sn-list0-tag1 {
-            //background-color: #55a532;
-            width: 34%;
-            @apply text-lg;
-            .sn-list0-tag1-1-1 {
-              /*background-color: #dddddd;*/
-              text-align: center;
-            }
-
-            .sn-list0-tag1-1-2 {
-              /*background-color: #795da3;*/
-              text-align: center;
-            }
-          }
-
-          .sn-list0-tag2 {
-            /*background-color: #0086b3;*/
-            width: 33%;
-            @apply text-lg;
-            div {
-              text-align: center;
-            }
-          }
-
-          .sn-list0-tag3 {
-            @apply text-lg;
-            /*background-color: #8146b4;*/
-            width: 33%;
-
-            div {
-              text-align: center;
-            }
+          .sn-list2-1-1 {
+            /*background-color: #4eb687;*/
+            @apply text-center py-2 m-1 cursor-pointer;
           }
         }
       }
-    }
-
-    .sn-list2 {
-      height: 50px;
-      width: 80%;
-      margin: 0 auto;
-      @apply mb-3;
-      @include boxshow;
-
-      .sn-list2-1 {
-        /*background-color: #95999c;*/
-        height: 100%;
-        width: 60%;
+      .sn-list4 {
+        width: 80%;
         margin: 0 auto;
+        text-align: center;
+        @apply mb-3 bg-white;
+        @include boxshow3;
 
-        .sn-list2-1-1 {
-          /*background-color: #4eb687;*/
-          @apply text-center py-2 m-1 cursor-pointer;
+        h4 {
+          height: 2rem;
+          @apply text-gray-900;
+          font-size: 15px;
+          line-height: 2.5rem;
         }
-      }
-    }
-    .sn-list4 {
-      width: 80%;
-      margin: 0 auto;
-      text-align: center;
-      @apply mb-3 bg-white;
-      @include boxshow3;
 
-      h4 {
-        height: 2rem;
-        @apply text-gray-900;
-        font-size: 15px;
-        line-height: 2.5rem;
-      }
-
-      .sn-list4-1 {
-        p {
-          @apply text-sm  px-1 py-2 m-1 cursor-pointer;
-        }
-      }
-    }
-
-    .sn-list7 {
-      width: 80%;
-      margin: 0 auto;
-      @apply p-1 mb-2 cursor-pointer bg-white;
-      @include boxshow3;
-
-    // 公告
-      .sn-list7-1 {
-        @apply text-gray-900 m-1 p-1 text-base font-semibold bg-gray-200;
-      }
-      .sn-list7-2 {
-        p {
-          @apply text-sm px-1 py-2;
-        }
-      }
-    }
-
-    .sn-list8 {
-      width: 80%;
-      margin: 0 auto;
-      @apply p-1 mb-2 cursor-pointer bg-white;
-      @include boxshow3;
-      .sn-list8-1 {
-        @apply text-gray-900;
-      }
-      .sn-list8-2 {
-        @apply text-sm m-2;
-        .sn-list8-2-1 {
-          /*background-color: #6990f6;*/
-          .sn-list8-2-1-1 {
-            /*background-color: #dddddd;*/
-            @apply p-1;
-            width: 35%;
-          }
-          .sn-list8-2-1-2 {
-            width: 40%;
-            @apply p-1;
-            /*background-color: #55a532;*/
+        .sn-list4-1 {
+          p {
+            @apply text-sm  px-1 py-2 m-1 cursor-pointer;
           }
         }
       }
-    }
 
-    .sn-list3 {
-      width: 80%;
-      margin: 0 auto;
-      @apply p-1 mb-2 cursor-pointer bg-white;
-      @include boxshow3;
+      .sn-list7 {
+        width: 80%;
+        height: 150px;
+        margin: 0 auto;
+        @apply p-1 mb-2 cursor-pointer bg-white;
+        @include boxshow3;
 
-     // 标签
-      .sn-list3-1 {
-        @apply m-1 p-1 text-base font-semibold bg-gray-200 text-gray-900;
+        // 公告
+        .sn-list7-1 {
+          @apply text-gray-900 m-1 p-1 text-base font-semibold bg-gray-200;
+        }
+        .sn-list7-2 {
+          p {
+            @apply text-sm px-2 py-2;
+          }
+        }
       }
 
-      .sn-list3-2 {
-        @apply inline-flex;
-        .sn-list3-2-1 {
-          @apply flex-1;
-          @apply text-gray-700 text-sm text-center px-1 m-1 bg-blue-100 rounded-sm;
+      .sn-list8 {
+        width: 80%;
+        margin: 0 auto;
+        @apply p-1 mb-2 cursor-pointer bg-white;
+        @include boxshow3;
+        .sn-list8-1 {
+          @apply text-gray-900;
+        }
+        .sn-list8-2 {
+          @apply text-sm m-2;
+          .sn-list8-2-1 {
+            /*background-color: #6990f6;*/
+            .sn-list8-2-1-1 {
+              /*background-color: #dddddd;*/
+              @apply p-1;
+              width: 35%;
+            }
+            .sn-list8-2-1-2 {
+              width: 40%;
+              @apply p-1;
+              /*background-color: #55a532;*/
+            }
+          }
+        }
+      }
+
+      .sn-list3 {
+        width: 80%;
+        margin: 0 auto;
+        @apply p-1 mb-2 cursor-pointer bg-white;
+        @include boxshow3;
+
+        // 标签
+        .sn-list3-1 {
+          @apply m-1 p-1 text-base font-semibold bg-gray-200 text-gray-900;
+        }
+
+        .sn-list3-2 {
+          @apply inline-flex;
+          .sn-list3-2-1 {
+            @apply flex-1;
+            @apply text-gray-700 text-sm text-center px-1 m-1 bg-blue-100 rounded-sm;
+          }
+        }
+      }
+
+      // 分类
+      .sn-list5 {
+        width: 80%;
+        margin: 0 auto;
+        @apply p-1 mb-2 bg-white;
+        @include boxshow3;
+
+        .sn-list5-1 {
+          @apply text-gray-900 text-base;
+        }
+        .sn-list5-2 {
+          @apply bg-red-100 rounded-sm;
+        }
+      }
+
+      .sn-list6 {
+        width: 80%;
+        margin: 0 auto;
+        @apply p-1 mb-2 cursor-pointer bg-white;
+        @include boxshow3;
+
+        .sn-list6-1 {
+          @apply text-gray-900;
+        }
+        .sn-list6-2 {
+          background-color: white;
+          border-bottom: 1px dashed #f1f1f1;
         }
       }
     }
 
-    // 分类
-    .sn-list5 {
-      width: 80%;
-      margin: 0 auto;
-      @apply p-1 mb-2 bg-white;
-      @include boxshow3;
-
-      .sn-list5-1 {
-        @apply text-gray-900 text-base;
-      }
-      .sn-list5-2 {
-         @apply bg-red-100 rounded-sm;
-      }
-       
-    }
-
-    .sn-list6 {
-      width: 80%;
-      margin: 0 auto;
-      @apply p-1 mb-2 cursor-pointer bg-white;
-      @include boxshow3;
-
-      .sn-list6-1 {
-        @apply text-gray-900;
-      }
-      .sn-list6-2 {
-        background-color: white;
-        border-bottom: 1px dashed #f1f1f1;
-      }
+    .sn-list-s::-webkit-scrollbar {
+      display: none;
     }
   }
 
-  .sn-list-s::-webkit-scrollbar {
-    display: none;
+  .isFixed {
+    position: fixed;
+    top: 0;
+    right: 7%;
+    z-index: 999;
   }
-}
 
-.isFixed {
-  position: fixed;
-  top: 0;
-  right: 7%;
-  z-index: 999;
-}
-
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.1em;
-  fill: currentColor;
-  overflow: hidden;
-}
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.1em;
+    fill: currentColor;
+    overflow: hidden;
+  }
 </style>

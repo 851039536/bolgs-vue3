@@ -13,23 +13,23 @@
           <div class="about-1-2">
             <a>{{ User.userBrief }}</a>
           </div>
-          <div class="about-1-3 flex items-center">
-            <div class="about-1-3-1 flex-1">
+          <div class="flex items-center about-1-3">
+            <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-QQ11"></use>
               </svg>
             </div>
-            <div class="about-1-3-1 flex-1">
+            <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-github1"></use>
               </svg>
             </div>
-            <div class="about-1-3-1 flex-1">
+            <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-weixin3"></use>
               </svg>
             </div>
-            <div class="about-1-3-1 flex-1">
+            <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-zhihu"></use>
               </svg>
@@ -37,14 +37,14 @@
           </div>
         </div>
 
-        <div class="about-2 flex flex-wrap">
-          <div class="about-2-1 w-1/5 p-2">
+        <div class="flex flex-wrap about-2">
+          <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-C"></use>
             </svg>
             <a>技术</a>
           </div>
-          <div class="about-2-1 w-1/5 p-2">
+          <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use
                 xlink:href="#icon-dianzan
@@ -53,7 +53,7 @@
             </svg>
             <a>生活</a>
           </div>
-          <div class="about-2-1 w-1/5 p-2">
+          <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use
                 xlink:href="#icon-wenzhang
@@ -62,13 +62,13 @@
             </svg>
             <a>文章</a>
           </div>
-          <div class="about-2-1 w-1/5 p-2">
+          <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-daohang"></use>
             </svg>
             <a>分享</a>
           </div>
-          <div class="about-2-1 w-1/5 p-2">
+          <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-chat"></use>
             </svg>
@@ -179,231 +179,231 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/sass/com";
-.abouts {
-  /*position: fixed;*/
-  width: 100%;
-  height: 100%;
-  /* 关于界面 */
-  .about {
-    width: 83%;
+  @import "../../assets/sass/com";
+  .abouts {
+    /*position: fixed;*/
+    width: 100%;
     height: 100%;
-    margin: 60px auto;
-    padding: 0 0 1.25rem 0;
-    background-color: #ffffff;
+    /* 关于界面 */
+    .about {
+      width: 83%;
+      height: 100%;
+      margin: 60px auto;
+      padding: 0 0 1.25rem 0;
+      background-color: #ffffff;
 
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    /*overflow: auto;*/
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      /*overflow: auto;*/
 
-    .bg {
-      height: 500px;
-      /* 背景图片 */
-      background: no-repeat center/100% url("../../assets/img/ab.jpg");
-      @include boxshow;
-
-      .about-1 {
-        /*background-color: #0086b3;*/
-        height: 61%;
-        width: 35%;
-        margin: 5% auto 0 auto;
+      .bg {
+        height: 500px;
+        /* 背景图片 */
+        background: no-repeat center/100% url("../../assets/img/ab.jpg");
         @include boxshow;
 
-        .about-1-1 {
-          /*background-color: #55ff00;*/
-          height: 50%;
+        .about-1 {
+          /*background-color: #0086b3;*/
+          height: 61%;
+          width: 35%;
+          margin: 5% auto 0 auto;
+          @include boxshow;
 
-          .about-1-1-1 {
-            height: 112px;
-            width: 150px;
-            margin: 3% auto 0 auto;
+          .about-1-1 {
+            /*background-color: #55ff00;*/
+            height: 50%;
 
-            @apply p-3;
-            img {
-              height: 100%;
-              width: 100%;
-              border-radius: 3%;
+            .about-1-1-1 {
+              height: 112px;
+              width: 150px;
+              margin: 3% auto 0 auto;
+
+              @apply p-3;
+              img {
+                height: 100%;
+                width: 100%;
+                border-radius: 3%;
+              }
+            }
+          }
+
+          .about-1-2 {
+            background-color: #4d4d4d;
+            height: 20%;
+            margin: 0 auto;
+            @apply p-1 pt-4 text-lg text-center;
+
+            a {
+              background-image: linear-gradient(90deg, #f66, #f90);
+              background-clip: text;
+              animation: hue 5s linear infinite;
+              -webkit-text-fill-color: transparent;
+              @keyframes hue {
+                from {
+                  filter: hue-rotate(0);
+                }
+                to {
+                  filter: hue-rotate(-1turn);
+                }
+              }
+            }
+          }
+
+          .about-1-3 {
+            /*background-color: #55a532;*/
+            height: 30%;
+            width: 50%;
+            margin: 0 auto;
+
+            .about-1-3-1 {
+              /*background-color: #4eb687;*/
+              @apply text-center py-2 m-1;
             }
           }
         }
 
-        .about-1-2 {
-          background-color: #4d4d4d;
-          height: 20%;
-          margin: 0 auto;
-          @apply p-1 pt-4 text-lg text-center;
+        .about-2 {
+          width: 35%;
+          margin: 10px auto 0 auto;
+          @apply text-base cursor-pointer bg-gray-200;
+          @include boxshow;
 
-          a {
-            background-image: linear-gradient(90deg, #f66, #f90);
-            background-clip: text;
-            animation: hue 5s linear infinite;
-            -webkit-text-fill-color: transparent;
-            @keyframes hue {
-              from {
-                filter: hue-rotate(0);
-              }
-              to {
-                filter: hue-rotate(-1turn);
-              }
-            }
+          .about-2-1 {
+            @apply pl-5;
           }
         }
 
-        .about-1-3 {
-          /*background-color: #55a532;*/
-          height: 30%;
-          width: 50%;
-          margin: 0 auto;
+        .about-3 {
+          width: 55%;
+          /*background-color: #6990f6;*/
+          margin: 20px auto 0 auto;
+        }
 
-          .about-1-3-1 {
-            /*background-color: #4eb687;*/
-            @apply text-center py-2 m-1;
+        .bg-1 {
+          position: relative;
+          height: 65%;
+          width: 35%;
+          margin: 20px auto 0 auto;
+          @include boxshow;
+
+          img {
+            height: 40%;
+            width: 32%;
+            position: absolute;
+            top: 3%;
+            left: 34%;
+            border-radius: 50%;
+          }
+
+          .bg-1-1 {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            height: 60px;
+            background-color: #4d4d4d;
+            color: #e5e0d6;
+            line-height: 60px;
+            text-align: center;
+
+            p {
+              background-image: linear-gradient(90deg, #f66, #f90);
+              background-clip: text;
+              animation: hue 5s linear infinite;
+              -webkit-text-fill-color: transparent;
+              @keyframes hue {
+                from {
+                  filter: hue-rotate(0);
+                }
+                to {
+                  filter: hue-rotate(-1turn);
+                }
+              }
+            }
+          }
+
+          .bg-1-2 {
+            position: absolute;
+            top: 75%;
+            /*background-color: white;*/
+            height: 35px;
+            left: 33%;
+
+            ul li {
+              display: inline-block;
+              margin-left: 12px;
+            }
           }
         }
       }
 
-      .about-2 {
-        width: 35%;
+      .bg-2 {
+        width: 100%;
+        /*background-color: #95999c;*/
+        @include boxshow;
         margin: 10px auto 0 auto;
-        @apply text-base cursor-pointer bg-gray-200;
-        @include boxshow;
 
-        .about-2-1 {
-          @apply pl-5;
-        }
-      }
-
-      .about-3 {
-        width: 55%;
-        /*background-color: #6990f6;*/
-        margin: 20px auto 0 auto;
-      }
-
-      .bg-1 {
-        position: relative;
-        height: 65%;
-        width: 35%;
-        margin: 20px auto 0 auto;
-        @include boxshow;
-
-        img {
-          height: 40%;
-          width: 32%;
-          position: absolute;
-          top: 3%;
-          left: 34%;
-          border-radius: 50%;
-        }
-
-        .bg-1-1 {
-          position: absolute;
-          top: 50%;
-          width: 100%;
-          height: 60px;
-          background-color: #4d4d4d;
-          color: #e5e0d6;
-          line-height: 60px;
-          text-align: center;
-
-          p {
-            background-image: linear-gradient(90deg, #f66, #f90);
-            background-clip: text;
-            animation: hue 5s linear infinite;
-            -webkit-text-fill-color: transparent;
-            @keyframes hue {
-              from {
-                filter: hue-rotate(0);
-              }
-              to {
-                filter: hue-rotate(-1turn);
-              }
-            }
-          }
-        }
-
-        .bg-1-2 {
-          position: absolute;
-          top: 75%;
-          /*background-color: white;*/
-          height: 35px;
-          left: 33%;
-
-          ul li {
-            display: inline-block;
-            margin-left: 12px;
-          }
-        }
-      }
-    }
-
-    .bg-2 {
-      width: 100%;
-      /*background-color: #95999c;*/
-      @include boxshow;
-      margin: 10px auto 0 auto;
-
-      .bg-2-1 {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        @apply m-2;
-        /*background-color: #4eb687;*/
-        .bg-2-1-1 {
-          /*background-color: #0086b3;*/
-          @apply m-2 text-lg;
-        }
-
-        .bg-2-1-2 {
-          /*background-color: #55ff00;*/
-          @apply m-2 text-base font-light;
-        }
-      }
-
-      .bg-2-2 {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        @apply m-2;
-        /*background-color: #4eb687;*/
-
-        .bg-2-2-1 {
-          /*background-color: #0086b3;*/
-          @apply m-2 text-lg;
-        }
-
-        .bg-2-2-2 {
-          /*background-color: #55ff00;*/
-          @apply m-2 text-base font-light;
-        }
-      }
-
-      .bg-2-3 {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        @apply m-2 text-lg;
-        /*background-color: #4eb687;*/
-
-        .bg-2-3-1 {
-          /*background-color: #0086b3;*/
+        .bg-2-1 {
+          white-space: pre-wrap;
+          word-wrap: break-word;
           @apply m-2;
+          /*background-color: #4eb687;*/
+          .bg-2-1-1 {
+            /*background-color: #0086b3;*/
+            @apply m-2 text-lg;
+          }
+
+          .bg-2-1-2 {
+            /*background-color: #55ff00;*/
+            @apply m-2 text-base font-light;
+          }
         }
 
-        .bg-2-3-2 {
-          /*background-color: #55ff00;*/
-          @apply m-2 text-base font-light;
+        .bg-2-2 {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          @apply m-2;
+          /*background-color: #4eb687;*/
+
+          .bg-2-2-1 {
+            /*background-color: #0086b3;*/
+            @apply m-2 text-lg;
+          }
+
+          .bg-2-2-2 {
+            /*background-color: #55ff00;*/
+            @apply m-2 text-base font-light;
+          }
+        }
+
+        .bg-2-3 {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          @apply m-2 text-lg;
+          /*background-color: #4eb687;*/
+
+          .bg-2-3-1 {
+            /*background-color: #0086b3;*/
+            @apply m-2;
+          }
+
+          .bg-2-3-2 {
+            /*background-color: #55ff00;*/
+            @apply m-2 text-base font-light;
+          }
         }
       }
     }
+
+    /*.about::-webkit-scrollbar{*/
+    /*    display: none;*/
+    /*}*/
   }
 
-  /*.about::-webkit-scrollbar{*/
-  /*    display: none;*/
-  /*}*/
-}
-
-.icon {
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: -0.5rem;
-  fill: currentColor;
-  overflow: hidden;
-}
+  .icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: -0.5rem;
+    fill: currentColor;
+    overflow: hidden;
+  }
 </style>

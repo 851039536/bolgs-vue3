@@ -89,6 +89,17 @@
         </svg>
       </p>
     </div>
+
+    <!-- 加载框 -->
+    <div class="lo">
+      >
+      <a-spin :spinning="spinning">
+        <div class="spin-content">
+          <!-- 可以点击‘切换’按钮，控制本区域的spin展示。 -->
+        </div>
+      </a-spin>
+      <!-- <a-switch v-model:checked="spinning" /> -->
+    </div>
   </div>
 </template>
 
@@ -114,7 +125,8 @@ export default {
       article: [],
       timebool: true,
       fullscreenLoading: false,
-      blog: ""
+      blog: "",
+      spinning: true
     }
 
   },
@@ -130,6 +142,10 @@ export default {
 
   methods: {
 
+    // 关闭加载框
+    changeSpinning () {
+      this.spinning = false;
+    },
     async highlighthandle () {
       await hljs;
       let highlight = document.querySelectorAll('code,pre');
@@ -154,6 +170,8 @@ export default {
         this.UpRead(this.newinfo);
 
         this.blog = marked(this.newinfo.text)
+        this.changeSpinning();
+        // alert(this.spinning);
       })
       ).catch(err => {
         console.log(err)
@@ -289,116 +307,122 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/sass/com";
+  @import "../../assets/sass/com";
 
-/* 回到顶部*/
-#backtop {
-  top: 92%;
-  right: 5%;
-  position: fixed;
-}
+  .lo {
+    position: fixed;
+    top: 50%;
+    width: 100%;
+  }
 
-/*底部*/
-.article-3 {
-  background-color: #ffffff;
-  width: 59%;
-  margin: 3px 0 0 20%;
-  @include boxshow;
-  @apply cursor-pointer;
-  .article-3-1 {
-    /*background-color: #55ff00;*/
-    @apply p-1;
-    div {
-      border-bottom: 1px dashed #f1f1f1;
-      /*background-color: #4eb687;*/
-      @apply p-1 m-1 text-sm font-light;
+  /* 回到顶部*/
+  #backtop {
+    top: 92%;
+    right: 5%;
+    position: fixed;
+  }
+
+  /*底部*/
+  .article-3 {
+    background-color: #ffffff;
+    width: 59%;
+    margin: 3px 0 0 20%;
+    @include boxshow;
+    @apply cursor-pointer;
+    .article-3-1 {
+      /*background-color: #55ff00;*/
+      @apply p-1;
+      div {
+        border-bottom: 1px dashed #f1f1f1;
+        /*background-color: #4eb687;*/
+        @apply p-1 m-1 text-sm font-light;
+      }
+    }
+
+    .article-3-2 {
+      div {
+        /*background-color: #795da3;*/
+        @apply text-center px-1 py-2 m-2 text-sm font-light;
+      }
     }
   }
 
-  .article-3-2 {
-    div {
-      /*background-color: #795da3;*/
-      @apply text-center px-1 py-2 m-2 text-sm font-light;
+  .icons {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  /*编译器组件*/
+  .editor-text {
+    width: 59%;
+    margin: 3px 0 0 20%;
+  }
+
+  /*左侧边栏*/
+  .article-text {
+    position: fixed;
+    top: 60px;
+    left: 1%;
+    width: 17%;
+    @include boxshow;
+    @apply font-sans bg-white;
+
+    .article-text-1 {
+      @apply font-semibold bg-gray-200 cursor-pointer;
+    }
+
+    .article-text-2 {
+      // background-color: #9a6e3a;
+      @apply m-1 cursor-pointer;
+
+      div {
+        /*background-color: #55a532;*/
+        @apply m-1 p-1 px-3 text-base;
+        border-bottom: 1px dashed #f1f1f1;
+      }
     }
   }
-}
 
-.icons {
-  width: 1.5em;
-  height: 1.5em;
-}
+  /*返回上一页*/
+  .article-title {
+    position: relative;
+    margin: 60px 0 0 20%;
+    height: 40px;
+    width: 59%;
+    background-color: #ffffff;
+    @include boxshow;
 
-/*编译器组件*/
-.editor-text {
-  width: 59%;
-  margin: 3px 0 0 20%;
-}
+    p {
+      line-height: 40px;
+      font-weight: 800;
+    }
 
-/*左侧边栏*/
-.article-text {
-  position: fixed;
-  top: 60px;
-  left: 1%;
-  width: 17%;
-  @include boxshow;
-  @apply font-sans bg-white;
-
-  .article-text-1 {
-    @apply font-semibold bg-gray-200 cursor-pointer;
-  }
-
-  .article-text-2 {
-    // background-color: #9a6e3a;
-    @apply m-1 cursor-pointer;
-
-    div {
-      /*background-color: #55a532;*/
-      @apply m-1 p-1 px-3 text-base;
-      border-bottom: 1px dashed #f1f1f1;
+    a {
+      position: absolute;
+      top: 7px;
+      left: 8px;
     }
   }
-}
 
-/*返回上一页*/
-.article-title {
-  position: relative;
-  margin: 60px 0 0 20%;
-  height: 40px;
-  width: 59%;
-  background-color: #ffffff;
-  @include boxshow;
+  .blog {
+    background: rgb(231, 231, 224);
+    @include boxshow3;
+    @apply antialiased m-1 p-1 rounded-sm font-mono;
+    h2 {
+      @apply text-xl  m-1 p-1 text-gray-700 bg-blue-200 rounded-sm shadow-sm;
+    }
 
-  p {
-    line-height: 40px;
-    font-weight: 800;
+    h3 {
+      @apply text-lg m-1 p-1  bg-blue-100 rounded-sm shadow-sm;
+    }
+    pre {
+      @apply text-base m-1 rounded-sm shadow-sm;
+    }
+    code {
+      color: #6390bb;
+    }
+    p {
+      @apply text-base pl-2  rounded-sm bg-white leading-relaxed;
+    }
   }
-
-  a {
-    position: absolute;
-    top: 7px;
-    left: 8px;
-  }
-}
-
-.blog {
-  background: rgb(231, 231, 224);
-  @include boxshow3;
-  @apply antialiased m-1 p-1 rounded-sm font-mono;
-  h2 {
-    @apply text-xl  m-1 p-1 text-gray-700 bg-blue-200 rounded-sm shadow-sm;
-  }
-
-  h3 {
-    @apply text-lg m-1 p-1  bg-blue-100 rounded-sm shadow-sm;
-  }
-  pre {
-    @apply text-base m-1 rounded-sm shadow-sm;
-  }
-  code {
-    color: #6390bb;
-  }
-  p {
-    @apply text-base pl-2  rounded-sm bg-white leading-relaxed;
-  }
-}
 </style>

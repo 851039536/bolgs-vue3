@@ -34,11 +34,20 @@
       </div>
 
       <IndexSidebar></IndexSidebar>
+
+      <!-- 回到顶部 -->
+      <a-back-top />
     </div>
+  </div>
+  <div>
+    <a-spin :spinning="spinning" :delay="200">
+      <div class=""></div>
+    </a-spin>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "TimeLine",
   components: {},
@@ -47,6 +56,7 @@ export default {
       items: [
       ],
       reverse: true,
+      spinning: true,
     }
   },
   created () {
@@ -64,6 +74,7 @@ export default {
           this.items[i].content = res.data[i].title
           this.items[i].tag = res.data[i].time
           // console.log(res.data[i].title);
+          this.spinning = false;
         }
 
       }).catch((e) => {
@@ -75,70 +86,71 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/sass/com";
-.timeline {
-  width: 49%;
-  margin: 0 auto;
-  margin-top: 60px;
-  margin-left: 23%;
-  @apply text-base bg-white;
-  .timeline-img {
-    position: relative;
-    height: 100px;
-    width: 100%;
-    background: no-repeat center/100% url("../../assets/img/timebg.jpg");
-    @include boxshow;
+  @import "../../assets/sass/com";
 
-    h4 {
-      position: absolute;
-      top: 16%;
-      left: 45%;
-      color: white;
-      font-weight: 300;
-    }
-
-    p {
-      position: absolute;
-      top: 53%;
-      left: 39%;
-      color: #7f828f;
-      font-weight: 300;
-      font-size: 15px;
-    }
-  }
-
-  .timeline-title {
-    margin-top: 10px;
-
-    .timeline-title-1 {
-      margin: 0 auto;
+  .timeline {
+    width: 49%;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-left: 23%;
+    @apply text-base bg-white;
+    .timeline-img {
+      position: relative;
+      height: 100px;
+      width: 100%;
+      background: no-repeat center/100% url("../../assets/img/timebg.jpg");
       @include boxshow;
 
-      ul li {
-        display: inline-block;
-        padding-left: 6.8%;
-        color: #666;
-        text-align: center;
-        height: 80px;
-        line-height: 90px;
+      h4 {
+        position: absolute;
+        top: 16%;
+        left: 45%;
+        color: white;
+        font-weight: 300;
+      }
+
+      p {
+        position: absolute;
+        top: 53%;
+        left: 39%;
+        color: #7f828f;
+        font-weight: 300;
+        font-size: 15px;
       }
     }
-  }
 
-  .timeline-time {
-    position: relative;
-    margin: 10px auto 0 auto;
-    @include boxshow;
-    .block {
-      @apply mx-4 mt-2;
+    .timeline-title {
+      margin-top: 10px;
 
-      .block-1 {
-        @apply m-2;
-        h4 {
-          @apply text-base;
+      .timeline-title-1 {
+        margin: 0 auto;
+        @include boxshow;
+
+        ul li {
+          display: inline-block;
+          padding-left: 6.8%;
+          color: #666;
+          text-align: center;
+          height: 80px;
+          line-height: 90px;
+        }
+      }
+    }
+
+    .timeline-time {
+      position: relative;
+      margin: 10px auto 0 auto;
+      @include boxshow;
+      .block {
+        @apply mx-4 mt-2;
+
+        .block-1 {
+          @apply m-2;
+          h4 {
+            @apply text-base;
+          }
         }
       }
     }
   }
-}
 </style>

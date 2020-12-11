@@ -7,6 +7,9 @@
       <IndexText></IndexText>
       <!--侧边栏-->
       <IndexSidebar></IndexSidebar>
+
+      <!-- 回到顶部 -->
+      <a-back-top />
     </div>
   </div>
 </template>

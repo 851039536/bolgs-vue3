@@ -4,7 +4,7 @@ import {
 import Antd from 'ant-design-vue';
 import App from './App.vue'
 import 'ant-design-vue/dist/antd.css';
-
+import animated from 'animate.css'
 //字体图标
 import './assets/icon/fonts/iconfont.js'
 import './assets/icon/icon.css'
@@ -24,6 +24,7 @@ const app = createApp(App);
 app.use(store);
 app.use(router)
 app.use(Antd)
+app.use(animated)
 app.config.globalProperties.$api = ajax
 app.component("Headers", Headers)
 app.component("IndexSidebar", IndexSidebar)

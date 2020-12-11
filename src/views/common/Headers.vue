@@ -1,17 +1,17 @@
 <template>
   <div>
-    <nav class="header-sn flex flex-wrap">
-      <div class="header-sn-1 flex items-center flex-shrink-0 text-black mr-6">
+    <nav class="flex flex-wrap header-sn">
+      <div class="flex items-center flex-shrink-0 mr-6 text-black header-sn-1">
         <span class="text-xl tracking-tight">Junior</span>
       </div>
 
       <div
-        class="header-sn-2 w-full block flex-grow sm:flex sm:items-center sm:w-auto"
+        class="flex-grow block w-full header-sn-2 sm:flex sm:items-center sm:w-auto"
       >
         <div class="text-base sm:flex-grow">
           <a
             @click="onk(1)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-icon-"></use>
@@ -20,7 +20,7 @@
           </a>
           <a
             @click="onk(2)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-biaoqian"></use>
@@ -28,14 +28,14 @@
             标签
           </a>
           <!--                    <a @click="onk(3)"-->
-          <!--                       class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4">-->
+          <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
           <!--                        <svg class="inline-block icon" aria-hidden="true">-->
           <!--                            <use xlink:href="#icon-computer"></use>-->
           <!--                        </svg>-->
           <!--                        分享-->
           <!--                    </a>-->
           <!--                    <a @click="onk(4)"-->
-          <!--                       class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4">-->
+          <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
           <!--                        <svg class="inline-block icon" aria-hidden="true">-->
           <!--                            <use xlink:href="#icon-exploit"></use>-->
           <!--                        </svg>-->
@@ -43,7 +43,7 @@
           <!--                    </a>-->
           <a
             @click="onk(5)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use
@@ -56,7 +56,7 @@
           </a>
           <a
             @click="onk(6)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-tupian"></use>
@@ -65,7 +65,7 @@
           </a>
           <a
             @click="onk(7)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-daohang1"></use>
@@ -74,7 +74,7 @@
           </a>
           <a
             @click="onk(8)"
-            class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use
@@ -92,7 +92,7 @@
           >
             <a
               @click="onk(9)"
-              class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+              class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
             >
               <svg class="inline-block icon" aria-hidden="true">
                 <use xlink:href="#icon-24"></use>
@@ -101,7 +101,7 @@
             </a>
           </el-tooltip>
           <!--                    <a @click="onk(10)"-->
-          <!--                       class="block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4">-->
+          <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
           <!--                        <svg class="inline-block icon" aria-hidden="true">-->
           <!--                            <use xlink:href="#icon-changyongziyuan-->
           <!--"></use>-->
@@ -110,7 +110,7 @@
           <!--                    </a>-->
           <a
             @click="onk(12)"
-            class="heaa block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 heaa sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <!--                        <svg class="inline-block icon" aria-hidden="true">-->
             <!--                            <use xlink:href="#icon-comments"></use>-->
@@ -119,7 +119,7 @@
           </a>
           <a
             @click="onk(13)"
-            class="heaa block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 heaa sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <!--                        <svg class="inline-block icon" aria-hidden="true">-->
             <!--                            <use xlink:href="#icon-bokeyuan-->
@@ -129,7 +129,7 @@
           </a>
           <a
             @click="onk(14)"
-            class="heaa block mt-4 sm:inline-block sm:mt-0 text-black-200 hidden hover:text-red-400 mr-4"
+            class="hidden block mt-4 mr-4 heaa sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
             <!--                    <svg class="inline-block icon" aria-hidden="true">-->
             <!--                        <use xlink:href="#icon-gitee-fill-round"></use>-->
@@ -151,10 +151,10 @@ export default {
     }
   },
   methods: {
-     onk (num) {
+    onk (num) {
       switch (num) {
         case 1:
-          this.$router.push('/Index1')
+          this.$router.push('/Indexs')
           break;
         case 2:
           this.$router.push('/TagText')
@@ -211,53 +211,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/sass/com";
+  @import "../../assets/sass/com";
 
-.header-sn {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  // background-color: #795da3;
-  @apply p-2 bg-white;
-  height: 55px;
-  @include boxshow2;
+  .header-sn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    // background-color: #795da3;
+    @apply p-2 bg-white;
+    height: 55px;
+    @include boxshow2;
 
-  .heaa {
-    float: right;
-    /*background-color: #1b1e21;*/
-  }
-}
-
-.box {
-  width: 400px;
-  .top {
-    text-align: center;
+    .heaa {
+      float: right;
+      /*background-color: #1b1e21;*/
+    }
   }
 
-  .left {
-    float: left;
-    width: 60px;
-  }
+  .box {
+    width: 400px;
+    .top {
+      text-align: center;
+    }
 
-  .right {
-    float: right;
-    width: 60px;
-  }
+    .left {
+      float: left;
+      width: 60px;
+    }
 
-  .bottom {
-    clear: both;
-    text-align: center;
-  }
+    .right {
+      float: right;
+      width: 60px;
+    }
 
-  .item {
-    margin: 4px;
-  }
+    .bottom {
+      clear: both;
+      text-align: center;
+    }
 
-  .left .el-tooltip__popper,
-  .right .el-tooltip__popper {
-    padding: 8px 10px;
+    .item {
+      margin: 4px;
+    }
+
+    .left .el-tooltip__popper,
+    .right .el-tooltip__popper {
+      padding: 8px 10px;
+    }
   }
-}
 </style>

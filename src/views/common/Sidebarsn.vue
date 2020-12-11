@@ -34,7 +34,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
           @click="nav(2)"
         >
           视频
@@ -42,7 +42,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
           @click="nav(4)"
         >
           收藏
@@ -50,7 +50,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
           @click="nav(5)"
         >
           博客
@@ -58,7 +58,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
           @click="nav(6)"
         >
           书单
@@ -66,7 +66,7 @@
       </div>
       <div class="fo-1">
         <p
-          class="text-xm text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
           @click="nav(7)"
         >
           后台
@@ -74,10 +74,10 @@
       </div>
 
       <div class="fo-2">
-        <a class="fo-2-p1 text-xs"> http://oykperson.xyz</a>
+        <a class="text-xs fo-2-p1"> http://oykperson.xyz</a>
       </div>
       <div class="fo-3">
-        <p class="fo-2-p2 text-xs">
+        <p class="text-xs fo-2-p2">
           SN © 2019. All Rights Reserved. 粤ICP备19130826号 2017 - 2020 Junior
         </p>
       </div>
@@ -121,72 +121,72 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../assets/sass/com";
+  @import "../../assets/sass/com";
 
-.fo {
-  position: relative;
-  height: 100%;
-  width: 20%;
+  .fo {
+    position: relative;
+    height: 100%;
+    width: 20%;
 
-  position: fixed;
-  top: 0%;
-  left: 0;
+    position: fixed;
+    top: 0%;
+    left: 0;
 
-  background-color: #ffffff;
-  @include boxshow1;
+    background-color: #ffffff;
+    @include boxshow1;
 
-  .fos {
-    height: 80%;
-    overflow: auto;
+    .fos {
+      height: 80%;
+      overflow: auto;
 
-    .bgys {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .fo-img1 {
-      img {
-        height: 120px;
+      .bgys {
+        position: absolute;
+        top: 0;
         width: 100%;
+        height: 100%;
       }
 
-      margin: 20% 0 40px 0;
-    }
+      .fo-img1 {
+        img {
+          height: 120px;
+          width: 100%;
+        }
 
-    .fo-1 {
-      /*background-color: #55a532;*/
-      width: 40%;
-      margin: 10px auto auto auto;
-      color: #aaaaaa;
-      height: 30px;
-      text-align: center;
-      font-size: 15px;
-      cursor: default;
-
-      p {
-        @apply py-1 px-4 font-sans  text-base;
+        margin: 20% 0 40px 0;
       }
-    }
-    .fo-2 {
-      position: absolute;
-      bottom: 18%;
-      margin-left: 25%;
-    }
 
-    .fo-3 {
-      position: absolute;
-      bottom: 12%;
-
-      .fo-2-p2 {
+      .fo-1 {
+        /*background-color: #55a532;*/
+        width: 40%;
+        margin: 10px auto auto auto;
+        color: #aaaaaa;
+        height: 30px;
         text-align: center;
-        color: #95999c;
+        font-size: 15px;
+        cursor: default;
+
+        p {
+          @apply py-1 px-4 font-sans  text-base;
+        }
+      }
+      .fo-2 {
+        position: absolute;
+        bottom: 18%;
+        margin-left: 25%;
+      }
+
+      .fo-3 {
+        position: absolute;
+        bottom: 12%;
+
+        .fo-2-p2 {
+          text-align: center;
+          color: #95999c;
+        }
       }
     }
+    .fos::-webkit-scrollbar {
+      display: none;
+    }
   }
-  .fos::-webkit-scrollbar {
-    display: none;
-  }
-}
 </style>
