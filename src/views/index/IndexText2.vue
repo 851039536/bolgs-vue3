@@ -314,21 +314,16 @@ export default {
     top: 50%;
     width: 100%;
   }
-
   /* 回到顶部*/
   #backtop {
-    top: 92%;
-    right: 5%;
     position: fixed;
+    @include excursion(92%, null, null, 5%);
   }
-
   /*底部*/
   .article-3 {
-    background-color: #ffffff;
-    width: 59%;
-    margin: 3px 0 0 20%;
+    @include initialize(59%, null, 3px, null, 20%, null, null);
     @include boxshow;
-    @apply cursor-pointer;
+    @apply cursor-pointer bg-white text-black;
     .article-3-1 {
       /*background-color: #55ff00;*/
       @apply p-1;
@@ -348,22 +343,20 @@ export default {
   }
 
   .icons {
-    width: 1.5em;
-    height: 1.5em;
+    @include w-h(1.5em, 1.5em);
   }
 
   /*编译器组件*/
   .editor-text {
-    width: 59%;
+    @include w-h(59%, null);
     margin: 3px 0 0 20%;
   }
 
   /*左侧边栏*/
   .article-text {
     position: fixed;
-    top: 60px;
-    left: 1%;
-    width: 17%;
+    @include excursion(61px, null, 1%, null);
+    @include w-h(17%, bull);
     @include boxshow;
     @apply font-sans bg-white;
 
@@ -386,10 +379,7 @@ export default {
   /*返回上一页*/
   .article-title {
     position: relative;
-    margin: 60px 0 0 20%;
-    height: 40px;
-    width: 59%;
-    background-color: #ffffff;
+    @include initialize(59%, 40px, 60px, null, 20%, null, #ffffff);
     @include boxshow;
 
     p {
@@ -399,8 +389,7 @@ export default {
 
     a {
       position: absolute;
-      top: 7px;
-      left: 8px;
+      @include excursion(7px, null, 8px, null);
     }
   }
 
@@ -416,7 +405,7 @@ export default {
       @apply text-lg m-1 p-1  bg-blue-100 rounded-sm shadow-sm;
     }
     pre {
-      @apply text-base m-1 rounded-sm shadow-sm;
+      @apply text-sm m-1 rounded-sm shadow-sm bg-gray-50;
     }
     code {
       color: #6390bb;

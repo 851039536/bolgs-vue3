@@ -231,91 +231,77 @@ export default {
   @import "../../assets/sass/com";
 
   .sn-text {
-    width: 49%;
-    background-color: #ffffff;
-    margin-left: 23%;
+    @include initialize(49%, null, null, null, 23%, null, #ffffff);
     @include boxshow3;
     p {
       @apply mb-4 text-xs;
     }
 
     .sn-test-2 {
-      height: 120px;
+      @include w-h(null, 120px);
       @apply mb-2;
       background: no-repeat center/100% url("../../assets/img/bg.jpg");
       @include boxshow3;
     }
     .sn-test-1 {
       /*background-color: #6990f6;*/
-      width: 100%;
-      height: 130px;
+      @include w-h(100%, 130px);
       @apply mb-2;
       //@include boxshow3;
 
       .sn-text-1-1 {
         /*background-color: #63a35c;*/
         height: 78%;
-
+        @include w-h(null, 78%);
         .sn-text-1-1-1 {
-          height: 100%;
           /*background-color: red;*/
-          width: 100%;
-
+          @include w-h(100%, 100%);
           .sn-text-1-1-1-1 {
             height: 35%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            // background-color: #4eb687;
+            //background-color: #4eb687;
             @apply px-3 pt-1 m-1 text-lg cursor-pointer font-semibold;
           }
 
           .sn-text-1-1-1-2 {
             color: #888888;
-            height: 44%;
+            @include w-h(null, 44%);
             // background-color: #9a6e3a;
             @apply px-3 m-1 mt-2 text-sm tracking-wide leading-relaxed;
-            display: -webkit-box;
-            word-break: break-all;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2; //需要显示的行数
-            overflow: hidden;
-            text-overflow: ellipsis;
+            @include line-number;
           }
         }
 
         .sn-text-1-1-2 {
-          height: 100%;
+          @include w-h(null, 100%);
           /*width: 28%;*/
           @apply p-1 cursor-default;
           /*background-color: #55ff00;*/
           img {
-            height: 100%;
-            width: 100%;
+            @include w-h(100%, 100%);
           }
         }
       }
 
       .sn-text-1-2 {
         // background-color: #95999c;
-        height: 25%;
-        width: 100%;
+
+        @include w-h(100%, 25%);
         border-bottom: 1px solid #edeef0;
         //   background-color: #795da3;
         @apply pl-3;
         div {
           // background-color: #0086b3;
-
-          height: 78%;
+          @include w-h(null, 78%);
           @apply m-1;
         }
       }
     }
 
     .sn-text1 {
-      background-color: #795da3;
-      width: 100%;
-      height: 132px;
+      @include w-h(100%, 132px);
       @apply mb-2 pt-3 pb-2 pl-3 bg-white cursor-default;
       @include boxshow3;
 
@@ -328,10 +314,8 @@ export default {
       h5 > a::before {
         content: "";
         position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: 0;
-        left: 0;
+        @include w-h(100%, 2px);
+        @include excursion(null, 0, 0, null);
         background-color: #7f828f;
         visibility: hidden;
         transform: scaleX(0);
@@ -343,27 +327,11 @@ export default {
         transform: scaleX(1);
       }
 
-      p {
-        /* 设置p标签内容不超过多少行 */
-        @apply p-1;
-        height: 44px;
-        line-height: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-      }
-
-      img {
-        height: 76%;
-      }
-
       .sn-text2 {
         /*background-color: red;*/
         /* 边框下划线 */
         border-top: 1px solid #edeef0;
         height: 32px;
-
         p {
           display: inline-block;
           height: 22px;

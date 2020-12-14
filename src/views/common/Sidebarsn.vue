@@ -125,12 +125,10 @@ export default {
 
   .fo {
     position: relative;
-    height: 100%;
-    width: 20%;
 
+    @include w-h(20%, 100%);
     position: fixed;
-    top: 0%;
-    left: 0;
+    @include excursion(0, null, 0, null);
 
     background-color: #ffffff;
     @include boxshow1;
@@ -142,14 +140,12 @@ export default {
       .bgys {
         position: absolute;
         top: 0;
-        width: 100%;
-        height: 100%;
+        @include w-h(100%, 100%);
       }
 
       .fo-img1 {
         img {
-          height: 120px;
-          width: 100%;
+          @include w-h(100%, 120px);
         }
 
         margin: 20% 0 40px 0;
@@ -157,10 +153,9 @@ export default {
 
       .fo-1 {
         /*background-color: #55a532;*/
-        width: 40%;
+        @include w-h(40%, 30px);
         margin: 10px auto auto auto;
         color: #aaaaaa;
-        height: 30px;
         text-align: center;
         font-size: 15px;
         cursor: default;

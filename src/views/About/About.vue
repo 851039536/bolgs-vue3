@@ -182,15 +182,11 @@ export default {
   @import "../../assets/sass/com";
   .abouts {
     /*position: fixed;*/
-    width: 100%;
-    height: 100%;
+    @include w-h(100%, 100%);
     /* 关于界面 */
     .about {
-      width: 83%;
-      height: 100%;
-      margin: 60px auto;
+      @include initialize(83%, 100%, 60px, auto, auto, auto, #ffffff);
       padding: 0 0 1.25rem 0;
-      background-color: #ffffff;
 
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
@@ -204,9 +200,7 @@ export default {
 
         .about-1 {
           /*background-color: #0086b3;*/
-          height: 61%;
-          width: 35%;
-          margin: 5% auto 0 auto;
+          @include initialize(35%, 61%, 5%, auto, auto, auto, null);
           @include boxshow;
 
           .about-1-1 {
@@ -214,25 +208,18 @@ export default {
             height: 50%;
 
             .about-1-1-1 {
-              height: 112px;
-              width: 150px;
-              margin: 3% auto 0 auto;
-
+              @include initialize(150px, 112px, 3%, auto, auto, auto, null);
               @apply p-3;
               img {
-                height: 100%;
-                width: 100%;
-                border-radius: 3%;
+                @include w-h(100%, 100%);
+                border-radius: 2%;
               }
             }
           }
 
           .about-1-2 {
-            background-color: #4d4d4d;
-            height: 20%;
-            margin: 0 auto;
+            @include initialize(null, 20%, 0, auto, auto, auto, #4d4d4d);
             @apply p-1 pt-4 text-lg text-center;
-
             a {
               background-image: linear-gradient(90deg, #f66, #f90);
               background-clip: text;
@@ -251,10 +238,7 @@ export default {
 
           .about-1-3 {
             /*background-color: #55a532;*/
-            height: 30%;
-            width: 50%;
-            margin: 0 auto;
-
+            @include initialize(50%, 30%, 0, auto, auto, auto, null);
             .about-1-3-1 {
               /*background-color: #4eb687;*/
               @apply text-center py-2 m-1;
@@ -263,35 +247,28 @@ export default {
         }
 
         .about-2 {
-          width: 35%;
-          margin: 10px auto 0 auto;
+          @include initialize(35%, null, 10px, auto, auto, auto, null);
           @apply text-base cursor-pointer bg-gray-200;
           @include boxshow;
-
           .about-2-1 {
             @apply pl-5;
           }
         }
 
         .about-3 {
-          width: 55%;
           /*background-color: #6990f6;*/
-          margin: 20px auto 0 auto;
+          @include initialize(55%, null, 20px, auto, auto, auto, null);
         }
 
         .bg-1 {
           position: relative;
-          height: 65%;
-          width: 35%;
-          margin: 20px auto 0 auto;
+          @include initialize(35%, 65%, 20px, auto, auto, auto, null);
           @include boxshow;
 
           img {
-            height: 40%;
-            width: 32%;
+            @include w-h(32%, 40%);
             position: absolute;
-            top: 3%;
-            left: 34%;
+            @include excursion(3%, null, 34%, null);
             border-radius: 50%;
           }
 

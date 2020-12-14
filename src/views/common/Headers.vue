@@ -84,22 +84,16 @@
             </svg>
             关于
           </a>
-          <el-tooltip
-            class="item"
-            effect="dark"
-            content="零零碎碎"
-            placement="bottom"
+
+          <a
+            @click="onk(9)"
+            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
           >
-            <a
-              @click="onk(9)"
-              class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-            >
-              <svg class="inline-block icon" aria-hidden="true">
-                <use xlink:href="#icon-24"></use>
-              </svg>
-              日志
-            </a>
-          </el-tooltip>
+            <svg class="inline-block icon" aria-hidden="true">
+              <use xlink:href="#icon-24"></use>
+            </svg>
+            日志
+          </a>
           <!--                    <a @click="onk(10)"-->
           <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
           <!--                        <svg class="inline-block icon" aria-hidden="true">-->
@@ -215,13 +209,11 @@ export default {
 
   .header-sn {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    @include excursion(0, null, 0, null);
     z-index: 9999;
+    @include w-h(100%, 55px);
     // background-color: #795da3;
     @apply p-2 bg-white;
-    height: 55px;
     @include boxshow2;
 
     .heaa {

@@ -77,7 +77,9 @@
       <div class="sn-list7">
         <div class="sn-list7-1">公告</div>
         <div class="sn-list7-2">
-          <p class="">本站基于:TailWindcss,Vue,Axios,NetCoreWebApi 开发搭建</p>
+          <p class="antialiased">
+            本站基于TailWindcss,Vue3,Axios, NetCoreWebApi 开发搭建
+          </p>
         </div>
       </div>
       <div class="sn-list4">
@@ -283,35 +285,29 @@ export default {
   @import "../../assets/sass/com";
   .sn-list {
     position: fixed;
-    top: 61px;
-    right: 0;
-    height: 90%;
-    width: 28%;
-    font-size: 17px;
+
+    @include excursion(61px, null, null, 0);
+    @include w-h(28%, 90%);
     // background-color: #4d4f91;
     @apply ml-3;
     .sn-list-s {
       // background-color: #55a532;
-      height: 100%;
-      width: 100%;
+      @include w-h(100%, 100%);
       overflow: auto;
 
       .sn-list0 {
-        height: 248px;
-        width: 80%;
+        @include w-h(80%, 248px);
         margin: 0 auto;
         @apply mb-3 bg-white;
         @include boxshow;
 
         .sn-list0-img {
           /*background-color: #55a532;*/
-          height: 100px;
-          width: 140px;
+          @include w-h(140px, 100px);
           margin: 15px auto 0 auto;
 
           img {
-            height: 100%;
-            width: 100%;
+            @include w-h(100%, 100%);
           }
         }
 
@@ -327,8 +323,7 @@ export default {
 
         .sn-list0-tag {
           /*background-color: #9a6e3a;*/
-          width: 100%;
-          height: 100%;
+          @include w-h(100%, 100%);
           @apply cursor-pointer;
 
           .sn-list0-tag-1 {
@@ -374,16 +369,14 @@ export default {
       }
 
       .sn-list2 {
-        height: 50px;
-        width: 80%;
+        @include w-h(80%, 50px);
         margin: 0 auto;
         @apply mb-3;
         @include boxshow;
 
         .sn-list2-1 {
           /*background-color: #95999c;*/
-          height: 100%;
-          width: 60%;
+          @include w-h(60%, 100%);
           margin: 0 auto;
 
           .sn-list2-1-1 {
@@ -415,7 +408,6 @@ export default {
 
       .sn-list7 {
         width: 80%;
-        height: 150px;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @include boxshow3;
@@ -426,7 +418,9 @@ export default {
         }
         .sn-list7-2 {
           p {
-            @apply text-sm px-2 py-2;
+            width: 100%;
+            @apply text-sm px-2 bg-gray-100;
+            @apply py-2;
           }
         }
       }
@@ -515,14 +509,12 @@ export default {
 
   .isFixed {
     position: fixed;
-    top: 0;
-    right: 7%;
+    @include excursion(0, null, null, 7%);
     z-index: 999;
   }
 
   .icon {
-    width: 1em;
-    height: 1em;
+    @include w-h(1em, 1em);
     vertical-align: -0.1em;
     fill: currentColor;
     overflow: hidden;

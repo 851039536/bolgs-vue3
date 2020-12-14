@@ -124,19 +124,15 @@ export default {
   @import "../../assets/sass/com";
   .SnTagText1 {
     position: fixed;
-    width: 100%;
-    height: 100%;
-
+    @include w-h(100%, 100%);
     .SnTagText {
       position: absolute;
       top: 21.5%;
-      width: 85%;
-      height: 75%;
-      margin-left: 7.5%;
+      @include w-h(null, 75%);
+      @include initialize(85%, 75%, null, null, 7.5%, null, #ffffff);
       border-radius: 2px;
-      @apply bg-white;
       .SnTagText-1 {
-        width: 32%;
+        @include w-h(32%, null);
         overflow: auto;
         .SnTagText-1-1 {
           @apply p-1 m-2 bg-gray-100 cursor-pointer;
@@ -152,7 +148,7 @@ export default {
         }
       }
       .SnTagText-2 {
-        width: 68%;
+        @include w-h(68%, null);
         @apply p-2  bg-gray-200;
         overflow: auto;
         /*background-color: #1e7e34;*/
@@ -184,12 +180,10 @@ export default {
     .SnTagText2 {
       position: absolute;
       top: 10%;
-      width: 85%;
-      height: 11%;
-      margin-left: 7.5%;
-      @apply bg-white rounded-sm;
+      @include initialize(85%, 11%, null, null, 7.5%, null, #ffffff);
+      @apply rounded-sm;
       .tag-text {
-        height: 100%;
+        @include w-h(null, 100%);
         .tag-text-1 {
           @include boxshow3;
           @apply m-1 bg-gray-200 text-base font-thin;

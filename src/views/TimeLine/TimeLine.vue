@@ -87,32 +87,24 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-
   .timeline {
-    width: 49%;
     margin: 0 auto;
-    margin-top: 60px;
-    margin-left: 23%;
-    @apply text-base bg-white;
+    @include initialize(49%, null, 60px, null, 23%, null, #ffffff);
+    @apply text-base;
     .timeline-img {
       position: relative;
-      height: 100px;
-      width: 100%;
-      background: no-repeat center/100% url("../../assets/img/timebg.jpg");
+      @include w-h(100%, 100px);
+      @include bg-img("../../assets/img/timebg.jpg");
       @include boxshow;
-
       h4 {
         position: absolute;
-        top: 16%;
-        left: 45%;
+        @include excursion(16%, null, 45%, null);
         color: white;
         font-weight: 300;
       }
-
       p {
         position: absolute;
-        top: 53%;
-        left: 39%;
+        @include excursion(53%, null, 39%, null);
         color: #7f828f;
         font-weight: 300;
         font-size: 15px;
@@ -121,11 +113,9 @@ export default {
 
     .timeline-title {
       margin-top: 10px;
-
       .timeline-title-1 {
         margin: 0 auto;
         @include boxshow;
-
         ul li {
           display: inline-block;
           padding-left: 6.8%;
@@ -143,7 +133,6 @@ export default {
       @include boxshow;
       .block {
         @apply mx-4 mt-2;
-
         .block-1 {
           @apply m-2;
           h4 {

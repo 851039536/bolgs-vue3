@@ -84,7 +84,24 @@ const routes = [{
       keepAlive: false // 缓存
     },
     component: () => import('../views/Tag/TagText.vue')
-  }
+  },
+
+  {
+    path: '/Photo',
+    name: 'Photo',
+    meta: {
+      keepAlive: false // 缓存
+    },
+    component: () => import('../views/Photo/Photo.vue')
+  },
+  {
+    path: '/Navigation',
+    name: 'Navigation',
+    meta: {
+      keepAlive: false // 缓存
+    },
+    component: () => import('../views/Navigation/Navigation.vue')
+  },
 ]
 
 const router = createRouter({
