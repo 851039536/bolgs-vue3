@@ -24,40 +24,74 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 export default {
   name: "Navigation",
-  components: {
-  },
-  data () {
-    return {
+  components: {},
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const state = reactive({
       text: [],
-    }
-  },
-  created () {
-    this.GetSnNavigation()
-  },
-  methods: {
-    GetSnNavigation () {
-      this.$api({
-        // url: '/api/SnNavigation/GetSnNavigation'
-        url: '/api/SnNavigation/AsyGetWhereTest?type=网站&fag=true'
-      }).then(res => {
-        this.text = res.data;
+    });
 
-      }).catch((e) => {
-        console.log(e + '获取数据失败');
-      });
+    const GetSnNavigation = async () => {
+      //查询当前用户信息
+      proxy
+        .$api({
+          url: "/api/SnNavigation/AsyGetWhereTest?type=网站&fag=true",
+        })
+        .then((res: any) => {
+          state.text = res.data;
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
 
-    },
-    urltest (url) {
+    const urltest = async (url: any) => {
       //当前窗口跳转
       // self.location.href=url
       //新窗口跳转
-      window.open(url)
-    }
-  }
-}
+      window.open(url);
+    };
+
+    onMounted(async () => {
+      await GetSnNavigation();
+    });
+    return { ...toRefs(state), GetSnNavigation, urltest };
+  },
+
+  // data () {
+  //   return {
+  //     text: [],
+  //   }
+  // },
+  // created () {
+  //   this.GetSnNavigation()
+  // },
+  // methods: {
+  //GetSnNavigation () {
+  //   this.$api({
+  //     // url: '/api/SnNavigation/GetSnNavigation'
+  //     url: '/api/SnNavigation/AsyGetWhereTest?type=网站&fag=true'
+  //   }).then(res => {
+  //     this.text = res.data;
+
+  //   }).catch((e) => {
+  //     console.log(e + '获取数据失败');
+  //   });
+
+  // },
+  // urltest (url) {
+  //   //当前窗口跳转
+  //   // self.location.href=url
+  //   //新窗口跳转
+  //   window.open(url)
+  // }
+  // }
+};
 </script>
 
 <style lang="scss" scoped>

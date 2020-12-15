@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import qs from 'qs'
 
 axios.defaults.baseURL = 'http://129.204.92.64:8081/',
   axios.defaults.timeout = 12000;

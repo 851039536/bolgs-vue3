@@ -85,40 +85,79 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 export default {
   name: "Sidebarsn",
-  methods: {
-    nav (num) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const router = useRouter();
+    const nav = async (num: number) => {
       switch (num) {
         case 1:
-          this.$router.push('/EverydayOne')
+          router.push("/EverydayOne");
           break;
         case 2:
-          this.$router.push('/SnVideo')
+          router.push("/SnVideo");
           break;
         case 3:
           // this.$router.push('/AfterLogin')
           break;
         case 4:
-          this.$router.push('./PersonalNavigation')
+          router.push("./PersonalNavigation");
           break;
         case 5:
-          this.$router.push('./BlogCircles')
+          router.push("./BlogCircles");
 
           break;
         case 6:
-          this.$router.push('./Books')
-
+          router.push("./Books");
           break;
         default:
-          this.$router.push('./Index')
+          router.push("./Indexs");
           break;
       }
+    };
+    onMounted(async () => {
+      await nav(100);
+    });
+    return {
+      nav,
+    };
+  },
 
-    },
-  }
-}
+  // methods: {
+  //   nav (num) {
+  //     switch (num) {
+  //       case 1:
+  //         this.$router.push('/EverydayOne')
+  //         break;
+  //       case 2:
+  //         this.$router.push('/SnVideo')
+  //         break;
+  //       case 3:
+  //         // this.$router.push('/AfterLogin')
+  //         break;
+  //       case 4:
+  //         this.$router.push('./PersonalNavigation')
+  //         break;
+  //       case 5:
+  //         this.$router.push('./BlogCircles')
+
+  //         break;
+  //       case 6:
+  //         this.$router.push('./Books')
+
+  //         break;
+  //       default:
+  //         this.$router.push('./Index')
+  //         break;
+  //     }
+
+  //   },
+  // }
+};
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";

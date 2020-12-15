@@ -78,17 +78,8 @@
       </div>
     </div>
 
-    <!--回到顶部-->
-    <div
-      id="backtop"
-      class="transition duration-500 ease-in-out transform hover:bg-blue-200 hover:-translate-y-1 hover:scale-110"
-    >
-      <p @click="backtop">
-        <svg class="icons" aria-hidden="true">
-          <use xlink:href="#icon-globaltop"></use>
-        </svg>
-      </p>
-    </div>
+    <!-- 回到顶部 -->
+    <a-back-top />
 
     <!-- 加载框 -->
     <div class="lo">
@@ -104,154 +95,145 @@
 </template>
 
 
-<script>
+<script lang="ts">
 // 组件导入
-import 'highlight.js/styles/googlecode.css'
-import hljs from 'highlight.js'//导入代码高亮文件
-import marked from 'marked'//解析器
+import "highlight.js/styles/googlecode.css";
+import hljs from "highlight.js"; //导入代码高亮文件
+import marked from "marked"; //解析器
 
-
+import {
+  getCurrentInstance,
+  reactive,
+  toRefs,
+  onMounted,
+  onUpdated,
+} from "vue";
+import { useRoute, useRouter } from "vue-router";
+// import { useRoute } from "vue-router";
 export default {
-  name: 'IndexText2',
+  name: "IndexText2",
   components: {},
-  data () {
-    return {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    //获取上下文实例，ctx=vue2的this
+    const { proxy }: any = getCurrentInstance();
+    // 加载路由
+    const route = useRoute();
+    const router = useRouter();
+    // 数据定义
+    const state = reactive({
       newinfo: [],
       // 获取index主页传过来的id值
-      id: this.$route.query.id,
-      markdownOption: {
-        bold: true, // 粗体
-      },
+      id: route.query.id,
       article: [],
       timebool: true,
       fullscreenLoading: false,
       blog: "",
-      spinning: true
-    }
+      spinning: true,
+    });
+    // 加载内容
+    const AsyGetTest = async () => {
+      console.log(state.id);
+      proxy.$api
+        .all([
+          // 读取详情页数据
+          proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + state.id),
+          //查询最新发布前十文章
+          proxy.$api.get(
+            "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
+          ),
+        ])
+        .then(
+          proxy.$api.spread((res1: any, res2: any) => {
+            state.newinfo = res1.data;
+            state.article = res2.data;
+            UpRead(state.newinfo);
 
-  },
-
-  created () {
-    this.AsyGetTest()
-  },
-  updated () {
-
-    this.highlighthandle()
-  },
-
-
-  methods: {
-
-    // 关闭加载框
-    changeSpinning () {
-      this.spinning = false;
-    },
-    async highlighthandle () {
-      await hljs;
-      let highlight = document.querySelectorAll('code,pre');
-      highlight.forEach((block) => {
-        hljs.highlightBlock(block);
-      })
-    },
-    houtui () {
-      this.$router.go(-1);
-    },
-    async AsyGetTest () {
-
-
-      this.$api.all([
-        // 读取详情页数据
-        this.$api.get('/api/SnArticle/AsyGetTestID?id=' + this.id),
-        //查询最新发布前十文章
-        this.$api.get('/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true'),
-      ]).then(this.$api.spread((res1, res2) => {
-        this.newinfo = res1.data;
-        this.article = res2.data;
-        this.UpRead(this.newinfo);
-
-        this.blog = marked(this.newinfo.text)
-        this.changeSpinning();
-        // alert(this.spinning);
-      })
-      ).catch(err => {
-        console.log(err)
-      });
-    },
-    //  更新操作
-    async UpRead (info) {
+            state.blog = marked(proxy.newinfo.text);
+            state.spinning = false;
+            // alert(this.spinning);
+          })
+        )
+        .catch((err: any) => {
+          console.log(err);
+        });
+    };
+    // 阅读数
+    const UpRead = async (info: any) => {
       if (info == null) {
-        console.log(info)
-        return
+        console.log(info);
+        return;
       } else {
-        info.read++
-        this.$api({
-          // 更新
-          url: "/api/SnArticle/AysUpArticle",
-          method: "put",
-          data: {
-            articleId: info.articleId,
-            userId: Number(info.userId),
-            title: info.title,
-            titleText: info.titleText,
-            text: info.text,
-            time: info.time,
-            labelId: info.labelId,
-            read: Number(info.read),
-            give: Number(info.give),
-            comment: info.comment,
-            sortId: info.sortId,
-            typeTitle: info.typeTitle,
-            urlImg: info.urlImg
-          }
-        })
-          .then(res => {
+        info.read++;
+        proxy
+          .$api({
+            // 更新
+            url: "/api/SnArticle/AysUpArticle",
+            method: "put",
+            data: {
+              articleId: info.articleId,
+              userId: Number(info.userId),
+              title: info.title,
+              titleText: info.titleText,
+              text: info.text,
+              time: info.time,
+              labelId: info.labelId,
+              read: Number(info.read),
+              give: Number(info.give),
+              comment: info.comment,
+              sortId: info.sortId,
+              typeTitle: info.typeTitle,
+              urlImg: info.urlImg,
+            },
+          })
+          .then((res: any) => {
             if (res.status === 200) {
-              console.log("1")
+              console.log("1");
             } else {
               alert("更新失败");
             }
           })
           .catch(console.error.bind(console)); // 异常
       }
-
-    },
-    UpGive (info) {
-      var timebools = this.timebool
+    };
+    // 点击数
+    const UpGive = async (info: any) => {
+      var timebools = state.timebool;
       if (info == null || timebools == false) {
-        console.log(info, this.timebool)
-        return
+        console.log(info, state.timebool);
+        return;
       } else {
-        info.give++
-        this.$api({
-          // 更新
-          url: "/api/SnArticle/AysUpArticle",
-          method: "put",
-          data: {
-            articleId: info.articleId,
-            userId: Number(info.userId),
-            title: info.title,
-            titleText: info.titleText,
-            text: info.text,
-            time: info.time,
-            labelId: info.labelId,
-            read: Number(info.read),
-            give: Number(info.give),
-            comment: info.comment,
-            sortId: info.sortId,
-            typeTitle: info.typeTitle,
-            urlImg: info.urlImg
-          }
-        })
-          .then(res => {
+        info.give++;
+        proxy
+          .$api({
+            // 更新
+            url: "/api/SnArticle/AysUpArticle",
+            method: "put",
+            data: {
+              articleId: info.articleId,
+              userId: Number(info.userId),
+              title: info.title,
+              titleText: info.titleText,
+              text: info.text,
+              time: info.time,
+              labelId: info.labelId,
+              read: Number(info.read),
+              give: Number(info.give),
+              comment: info.comment,
+              sortId: info.sortId,
+              typeTitle: info.typeTitle,
+              urlImg: info.urlImg,
+            },
+          })
+          .then((res: any) => {
             if (res.status === 200) {
-
-              this.timebool = false
+              state.timebool = false;
               var time = 10;
               var timer = setInterval(function () {
                 time--;
-                console.log(time)
+                console.log(time);
                 if (time == 0) {
-                  this.timebool = true
+                  state.timebool = true;
                   // alert(this.timebool)
                   clearInterval(timer);
                 }
@@ -262,48 +244,228 @@ export default {
           })
           .catch(console.error.bind(console)); // 异常
       }
-
-    },
-
-    /**
-     * 回到顶部功能实现过程：
-     * 1. 获取页面当前距离顶部的滚动距离（虽然IE不常用了，但还是需要考虑一下兼容性的）
-     * 2. 计算出每次向上移动的距离，用负的滚动距离除以5，因为滚动的距离是一个正数，想向上移动就是做一个减法
-     * 3. 用当前距离加上计算出的距离，然后赋值给当前距离，就可以达到向上移动的效果
-     * 4. 最后记得在移动到顶部时，清除定时器
-     */
-    backtop () {
-      {
-        var timer = setInterval(function () {
-          let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
-          this.isTop = true;
-          if (osTop === 0) {
-            clearInterval(timer);
-          }
-        }, 30)
-
-      }
-    },
-
-
+    };
     // 博客详情
-    AsyGetTestID (id) {
+    const AsyGetTestID = async (id: any) => {
       // .带参数跳转
-      this.$router.push({
-        path: '/Indextext',
+      router.push({
+        path: "/Indextext2",
         query: {
-          id: id
-        }
-      })
-      location.reload()
-    },
+          id: id,
+        },
+      });
 
-  }
+      location.reload();
+    };
 
-}
+    // 代码高亮
+    const highlighthandle = async () => {
+      await hljs;
+      let highlight = document.querySelectorAll("code,pre");
+      highlight.forEach((block: any) => {
+        hljs.highlightBlock(block);
+      });
+    };
+    const houtui = async () => {
+      router.go(-1);
+    };
+    onMounted(async () => {
+      await AsyGetTest();
+    });
+    onUpdated(async () => {
+      await highlighthandle();
+    });
+    return {
+      ...toRefs(state),
+      AsyGetTest,
+      highlighthandle,
+      houtui,
+      UpRead,
+      UpGive,
+      AsyGetTestID,
+    };
+  },
+  // data() {
+  //   return {
+  //     newinfo: [],
+  //     // 获取index主页传过来的id值
+  //     id: this.$route.query.id,
+  //     article: [],
+  //     timebool: true,
+  //     fullscreenLoading: false,
+  //     blog: "",
+  //     spinning: true,
+  //   };
+  // },
 
+  // created() {
+  //   this.AsyGetTest();
+  // },
+  // updated() {
+  //   this.highlighthandle();
+  // },
+
+  //   methods: {
+  //     // 关闭加载框
+  //     changeSpinning() {
+  //       this.spinning = false;
+  //     },
+  //     async highlighthandle() {
+  //       await hljs;
+  //       let highlight = document.querySelectorAll("code,pre");
+  //       highlight.forEach((block: any) => {
+  //         hljs.highlightBlock(block);
+  //       });
+  //     },
+  //     houtui() {
+  //       this.$router.go(-1);
+  //     },
+  //     async AsyGetTest() {
+  //       this.$api
+  //         .all([
+  //           // 读取详情页数据
+  //           this.$api.get("/api/SnArticle/AsyGetTestID?id=" + this.id),
+  //           //查询最新发布前十文章
+  //           this.$api.get(
+  //             "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
+  //           ),
+  //         ])
+  //         .then(
+  //           this.$api.spread((res1, res2) => {
+  //             this.newinfo = res1.data;
+  //             this.article = res2.data;
+  //             this.UpRead(this.newinfo);
+
+  //             this.blog = marked(this.newinfo.text);
+  //             this.changeSpinning();
+  //             // alert(this.spinning);
+  //           })
+  //         )
+  //         .catch((err) => {
+  //           console.log(err);
+  //         });
+  //     },
+  //     //  更新操作
+  //     async UpRead(info) {
+  //       if (info == null) {
+  //         console.log(info);
+  //         return;
+  //       } else {
+  //         info.read++;
+  //         this.$api({
+  //           // 更新
+  //           url: "/api/SnArticle/AysUpArticle",
+  //           method: "put",
+  //           data: {
+  //             articleId: info.articleId,
+  //             userId: Number(info.userId),
+  //             title: info.title,
+  //             titleText: info.titleText,
+  //             text: info.text,
+  //             time: info.time,
+  //             labelId: info.labelId,
+  //             read: Number(info.read),
+  //             give: Number(info.give),
+  //             comment: info.comment,
+  //             sortId: info.sortId,
+  //             typeTitle: info.typeTitle,
+  //             urlImg: info.urlImg,
+  //           },
+  //         })
+  //           .then((res) => {
+  //             if (res.status === 200) {
+  //               console.log("1");
+  //             } else {
+  //               alert("更新失败");
+  //             }
+  //           })
+  //           .catch(console.error.bind(console)); // 异常
+  //       }
+  //     },
+  //     UpGive(info) {
+  //       var timebools = this.timebool;
+  //       if (info == null || timebools == false) {
+  //         console.log(info, this.timebool);
+  //         return;
+  //       } else {
+  //         info.give++;
+  //         this.$api({
+  //           // 更新
+  //           url: "/api/SnArticle/AysUpArticle",
+  //           method: "put",
+  //           data: {
+  //             articleId: info.articleId,
+  //             userId: Number(info.userId),
+  //             title: info.title,
+  //             titleText: info.titleText,
+  //             text: info.text,
+  //             time: info.time,
+  //             labelId: info.labelId,
+  //             read: Number(info.read),
+  //             give: Number(info.give),
+  //             comment: info.comment,
+  //             sortId: info.sortId,
+  //             typeTitle: info.typeTitle,
+  //             urlImg: info.urlImg,
+  //           },
+  //         })
+  //           .then((res) => {
+  //             if (res.status === 200) {
+  //               this.timebool = false;
+  //               var time = 10;
+  //               var timer = setInterval(function () {
+  //                 time--;
+  //                 console.log(time);
+  //                 if (time == 0) {
+  //                   this.timebool = true;
+  //                   // alert(this.timebool)
+  //                   clearInterval(timer);
+  //                 }
+  //               }, 1000);
+  //             } else {
+  //               alert("更新失败");
+  //             }
+  //           })
+  //           .catch(console.error.bind(console)); // 异常
+  //       }
+  //     },
+
+  //     /**
+  //      * 回到顶部功能实现过程：
+  //      * 1. 获取页面当前距离顶部的滚动距离（虽然IE不常用了，但还是需要考虑一下兼容性的）
+  //      * 2. 计算出每次向上移动的距离，用负的滚动距离除以5，因为滚动的距离是一个正数，想向上移动就是做一个减法
+  //      * 3. 用当前距离加上计算出的距离，然后赋值给当前距离，就可以达到向上移动的效果
+  //      * 4. 最后记得在移动到顶部时，清除定时器
+  //      */
+  //     backtop() {
+  //       {
+  //         var timer = setInterval(function () {
+  //           let osTop =
+  //             document.documentElement.scrollTop || document.body.scrollTop;
+  //           let ispeed = Math.floor(-osTop / 5);
+  //           document.documentElement.scrollTop = document.body.scrollTop =
+  //             osTop + ispeed;
+  //           this.isTop = true;
+  //           if (osTop === 0) {
+  //             clearInterval(timer);
+  //           }
+  //         }, 30);
+  //       }
+  //     },
+
+  //     // 博客详情
+  //     AsyGetTestID(id) {
+  //       // .带参数跳转
+  //       this.$router.push({
+  //         path: "/Indextext",
+  //         query: {
+  //           id: id,
+  //         },
+  //       });
+  //       location.reload();
+  //     },
+  //   },
+};
 </script>
 
 <style lang="scss">

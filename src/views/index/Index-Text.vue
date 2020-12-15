@@ -73,7 +73,7 @@
       <div id="components-pagination-demo-mini">
         <a-pagination
           size="small"
-          @change="current_change"
+          @change="currentchange"
           :total="count"
           :pageSize="pagesize"
           show-size-changer
@@ -85,146 +85,128 @@
 </template>
 
 
-<script>
-
+<script lang="ts">
+import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
 // 组件导入
 export default {
-  name: 'Index-Text',
+  name: "Index-Text",
   components: {},
-
-  data () {
-    return {
-      pageSize: 7,// 每页显示的个数
-      dataShow: [],// 当前显示的数据
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const router = useRouter();
+    // 加载路由
+    // const route = useRoute();
+    const state = reactive({
+      pageSize: 7, // 每页显示的个数
+      dataShow: [], // 当前显示的数据
       page: 1, //当前页码
       pagesize: 8, //每页的数据条数
-      count: 0//默认数据总数
-    }
-  },
+      count: 0, //默认数据总数
+    });
 
-  created () {
-    this.getCount();
-    this.AsyGetTest();
-  },
-  setup () {
+    const getCount = async () => {
+      proxy
+        .$api({
+          url: "/api/SnArticle/GetArticleCount",
+        })
+        .then((res: any) => {
+          state.count = res.data;
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
+    const AsyGetTest = async () => {
+      proxy
+        .$api({
+          url:
+            "/api/SnArticle/GetfyTest?label=00" +
+            "&pageIndex=" +
+            state.page +
+            "&pageSize=" +
+            state.pagesize +
+            "&isDesc=true",
+        })
+        .then((res: any) => {
+          state.dataShow = res.data;
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
 
-    // // 3. 设定一个方法
-    // async function AsyGetTest () {
-    //   this.$api({
-    //     url: "/api/SnArticle/GetfyTest?label=00" +
-    //       "&pageIndex=" +
-    //       this.page +
-    //       "&pageSize=" +
-    //       this.pagesize +
-    //       "&isDesc=true"
-    //   }).then(res => {
-    //     this.dataShow = res.data;
-
-    //   }).catch((e) => {
-    //     console.log(e + '获取数据失败');
-    //   });
-    // }
-
-    // function getCount () {
-    //   this.$api({
-    //     url: '/api/SnArticle/GetArticleCount'
-    //   }).then(res => {
-    //     this.count = res.data;
-    //   }).catch((e) => {
-    //     console.log(e + '获取数据失败');
-    //   });
-    // }
-
-    // function backtop () {
-    //   {
-    //     var timer = setInterval(function () {
-    //       let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-    //       let ispeed = Math.floor(-osTop / 5);
-    //       document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
-    //       this.isTop = true;
-    //       if (osTop === 0) {
-    //         clearInterval(timer);
-    //       }
-    //     }, 30)
-
-    //   }
-    // }
-
-    // const { ctx } = getCurrentInstance();
-    // // 博客详情
-    // async function AsyGetTestID (id) {
-    //   // .带参数跳转
-    //   ctx.root.$router.push({
-    //     path: '/Indextext2',
-    //     query: {
-    //       id: id
-    //     }
-    //   })
-
-    // }
-    // // 4. 将 number 和 add 返回出去，供template中使用
-    // return { AsyGetTest, getCount, backtop, AsyGetTestID }
-
-
-  },
-  methods: {
-    //加载文章
-    async AsyGetTest () {
-
-      this.$api({
-        url: "/api/SnArticle/GetfyTest?label=00" +
-          "&pageIndex=" +
-          this.page +
-          "&pageSize=" +
-          this.pagesize +
-          "&isDesc=true"
-      }).then(res => {
-        this.dataShow = res.data;
-
-      }).catch((e) => {
-        console.log(e + '获取数据失败');
-      });
-    },
-    // 博客详情
-    async AsyGetTestID (id) {
+    const AsyGetTestID = async (id: any) => {
       // .带参数跳转
-      this.$router.push({
-        path: '/Indextext2',
+      await router.push({
+        path: "/Indextext2",
         query: {
-          id: id
-        }
-      })
-    },
-    getCount () {
-      this.$api({
-        url: '/api/SnArticle/GetArticleCount'
-      }).then(res => {
-        this.count = res.data;
-      }).catch((e) => {
-        console.log(e + '获取数据失败');
+          id: id,
+        },
       });
-    },
-    current_change (val) {
-      this.page = val;
-      this.AsyGetTest();
-      this.backtop(); //回到顶部
-    },
-    backtop () {
+    };
+
+    const currentchange = async (val: any) => {
+      state.page = val;
+      AsyGetTest();
+      backtop(); //回到顶部
+    };
+
+    const backtop = async () => {
       {
         var timer = setInterval(function () {
-          let osTop = document.documentElement.scrollTop || document.body.scrollTop;
+          let osTop =
+            document.documentElement.scrollTop || document.body.scrollTop;
           let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
-          this.isTop = true;
+          document.documentElement.scrollTop = document.body.scrollTop =
+            osTop + ispeed;
+          // this.isTop = true;
           if (osTop === 0) {
             clearInterval(timer);
           }
-        }, 30)
-
+        }, 30);
       }
-    }
-  }
-}
+    };
+    onMounted(async () => {
+      await getCount();
+      await AsyGetTest();
+    });
+
+    return {
+      ...toRefs(state),
+      getCount,
+      AsyGetTest,
+      AsyGetTestID,
+      currentchange,
+      backtop,
+    };
+  },
+
+  // methods: {
+
+  //   current_change(val) {
+  //     this.page = val;
+  //     this.AsyGetTest();
+  //     this.backtop(); //回到顶部
+  //   },
+  //   backtop() {
+  //     {
+  //       var timer = setInterval(function () {
+  //         let osTop =
+  //           document.documentElement.scrollTop || document.body.scrollTop;
+  //         let ispeed = Math.floor(-osTop / 5);
+  //         document.documentElement.scrollTop = document.body.scrollTop =
+  //           osTop + ispeed;
+  //         this.isTop = true;
+  //         if (osTop === 0) {
+  //           clearInterval(timer);
+  //         }
+  //       }, 30);
+  //     }
+  //   },
+  // },
+};
 </script>
 
 <style lang="scss" scoped>

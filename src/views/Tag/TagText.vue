@@ -42,82 +42,161 @@
   </div>
 </template>
 
-<script>
-import 'highlight.js/styles/googlecode.css'
-import hljs from 'highlight.js'//导入代码高亮文件
-import marked from 'marked'//解析器
-
+<script lang="ts">
+import "highlight.js/styles/googlecode.css";
+import hljs from "highlight.js"; //导入代码高亮文件
+import marked from "marked"; //解析器
+import {
+  getCurrentInstance,
+  reactive,
+  toRefs,
+  onMounted,
+  onUpdated,
+} from "vue";
+import { useRoute } from "vue-router";
 export default {
   name: "TagText",
-  data () {
-    return {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    // 加载路由
+    const route = useRoute();
+    const state = reactive({
       newinfo: [],
       newtext: [],
       labels: [],
       // 获取index主页传过来的id值
-      id: this.$route.query.id,
-      markdownOption: {
-        bold: true, // 粗体
-      },
+      id: route.query.id,
       blog: "",
-    }
-  },
-  created () {
-    this.AsyGetTag(this.id)
-    this.AsyGetTest(1);
-  },
-  updated () {
+    });
 
-    this.highlighthandle()
-  },
-
-  methods: {
-
-    async highlighthandle () {
-      await hljs;
-      let highlight = document.querySelectorAll('code,pre');
-      highlight.forEach((block) => {
-        hljs.highlightBlock(block);
-      })
-    },
-    async AsyGetTag (id) {
-
-
+    const AsyGetTag = async (id: any) => {
       if (id == null) {
-        id = 1
+        id = 1;
       }
-      this.$api({
-        url: '/api/SnArticle/AsyGetTestString?LabelId=' + id
-      }).then(res => {
-        this.newinfo = res.data;
+      proxy
+        .$api({
+          url: "/api/SnArticle/AsyGetTestString?LabelId=" + id,
+        })
+        .then((res: any) => {
+          state.newinfo = res.data;
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
 
-      }).catch((e) => {
-        console.log(e + '获取数据失败');
+    const AsyGetTest = async (id: any) => {
+      proxy.$api
+        .all([
+          //查询标签
+          proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + id),
+          //查询分类
+          proxy.$api.get("/api/SnLabels/GetLabels"),
+        ])
+        .then(
+          proxy.$api.spread((res1: any, res2: any) => {
+            state.labels = res2.data;
+            state.blog = marked(res1.data.text);
+          })
+        )
+        .catch((err: any) => {
+          console.log(err);
+        });
+    };
 
+    const GetlabelsID = async (id: any) => {
+      AsyGetTag(id);
+    };
+    const highlighthandle = async () => {
+      await hljs;
+      let highlight = document.querySelectorAll("code,pre");
+      highlight.forEach((block: any) => {
+        hljs.highlightBlock(block);
       });
+    };
+    onMounted(async () => {
+      await AsyGetTag(state.id);
+      await AsyGetTest(1);
+    });
+    onUpdated(async () => {
+      await highlighthandle();
+    });
 
-    },
-    async AsyGetTest (id) {
-      this.$api.all([
-        //查询标签
-        this.$api.get('/api/SnArticle/AsyGetTestID?id=' + id),
-        //查询分类
-        this.$api.get('/api/SnLabels/GetLabels'),
-      ]).then(this.$api.spread((res1, res2) => {
-        this.labels = res2.data;
-        this.blog = marked(res1.data.text)
-      })
-      ).catch(err => {
-        console.log(err)
-      });
+    return {
+      ...toRefs(state),
+      AsyGetTag,
+      AsyGetTest,
+      GetlabelsID,
+      highlighthandle,
+    };
+  },
+  // data() {
+  //   return {
+  //     newinfo: [],
+  //     newtext: [],
+  //     labels: [],
+  //     // 获取index主页传过来的id值
+  //     id: this.$route.query.id,
+  //     markdownOption: {
+  //       bold: true, // 粗体
+  //     },
+  //     blog: "",
+  //   };
+  // },
+  // created() {
+  //   this.AsyGetTag(this.id);
+  //   this.AsyGetTest(1);
+  // },
+  // updated() {
+  //   this.highlighthandle();
+  // },
 
-    },
-    GetlabelsID (id) {
-      this.AsyGetTag(id);
-    },
-
-  }
-}
+  //   methods: {
+  //     async highlighthandle() {
+  //       await hljs;
+  //       let highlight = document.querySelectorAll("code,pre");
+  //       highlight.forEach((block) => {
+  //         hljs.highlightBlock(block);
+  //       });
+  //     },
+  //     async AsyGetTag(id) {
+  //       if (id == null) {
+  //         id = 1;
+  //       }
+  //       this.$api({
+  //         url: "/api/SnArticle/AsyGetTestString?LabelId=" + id,
+  //       })
+  //         .then((res) => {
+  //           this.newinfo = res.data;
+  //         })
+  //         .catch((e) => {
+  //           console.log(e + "获取数据失败");
+  //         });
+  //     },
+  //     async AsyGetTest(id) {
+  //       this.$api
+  //         .all([
+  //           //查询标签
+  //           this.$api.get("/api/SnArticle/AsyGetTestID?id=" + id),
+  //           //查询分类
+  //           this.$api.get("/api/SnLabels/GetLabels"),
+  //         ])
+  //         .then(
+  //           this.$api.spread((res1, res2) => {
+  //             this.labels = res2.data;
+  //             this.blog = marked(res1.data.text);
+  //           })
+  //         )
+  //         .catch((err) => {
+  //           console.log(err);
+  //         });
+  //     },
+  //     GetlabelsID(id) {
+  //       this.AsyGetTag(id);
+  //     },
+  //   },
+};
 </script>
 
 <style lang="scss">

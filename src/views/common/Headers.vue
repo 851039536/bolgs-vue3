@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 <template>
   <div>
     <nav class="flex flex-wrap header-sn">
@@ -136,72 +137,131 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 export default {
-  name: 'Headers',
-  data () {
-    return {
-      num: ''
-    }
-  },
-  methods: {
-    onk (num) {
+  name: "Headers",
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const router = useRouter();
+    const onk = async (num: number) => {
       switch (num) {
         case 1:
-          this.$router.push('/Indexs')
+          router.push("/Indexs");
           break;
         case 2:
-          this.$router.push('/TagText')
+          router.push("/TagText");
           break;
         case 3:
-          this.$router.push('./Resource')
+          router.push("./Resource");
           break;
         case 4:
-          this.$router.push('./Classify')
+          router.push("./Classify");
           break;
         case 5:
-          this.$router.push('./Timeline')
+          router.push("./Timeline");
           break;
         case 6:
-          this.$router.push('./Photo')
+          router.push("./Photo");
           break;
         case 7:
-          this.$router.push('./Navigation')
+          router.push("./Navigation");
           break;
         case 8:
-          this.$router.push('./About')
+          router.push("./About");
           break;
         case 9:
-          this.$router.push('./Talk')
+          router.push("./Talk");
           break;
         case 10:
-          this.$router.push('./Books')
+          router.push("./Books");
           break;
         case 11:
-          this.$router.push('./PersonalNavigation')
+          router.push("./PersonalNavigation");
           break;
         case 12:
-          this.$router.push('./SnLeave')
+          router.push("./SnLeave");
           break;
         case 13:
-          window.open("https://www.cnblogs.com/ouyangkai/")
+          window.open("https://www.cnblogs.com/ouyangkai/");
           break;
         case 14:
-          window.open("https://gitee.com/kaiouyang-sn")
-          break; case 15:
-          this.$router.push('./SnVideo')
+          window.open("https://gitee.com/kaiouyang-sn");
+          break;
+        case 15:
+          router.push("./SnVideo");
           break;
         default:
-          this.$router.push('./Index')
+          router.push("./Indexs");
           break;
       }
-
-    },
-    afterform () {
-      this.$router.push('/Afterform')
-    }
+    };
+    onMounted(async () => {
+      await onk(100);
+    });
+    return {
+      onk,
+    };
   },
-}
+  // methods: {
+  // onk(num) {
+  //   switch (num) {
+  //     case 1:
+  //       this.$router.push("/Indexs");
+  //       break;
+  //     case 2:
+  //       this.$router.push("/TagText");
+  //       break;
+  //     case 3:
+  //       this.$router.push("./Resource");
+  //       break;
+  //     case 4:
+  //       this.$router.push("./Classify");
+  //       break;
+  //     case 5:
+  //       this.$router.push("./Timeline");
+  //       break;
+  //     case 6:
+  //       this.$router.push("./Photo");
+  //       break;
+  //     case 7:
+  //       this.$router.push("./Navigation");
+  //       break;
+  //     case 8:
+  //       this.$router.push("./About");
+  //       break;
+  //     case 9:
+  //       this.$router.push("./Talk");
+  //       break;
+  //     case 10:
+  //       this.$router.push("./Books");
+  //       break;
+  //     case 11:
+  //       this.$router.push("./PersonalNavigation");
+  //       break;
+  //     case 12:
+  //       this.$router.push("./SnLeave");
+  //       break;
+  //     case 13:
+  //       window.open("https://www.cnblogs.com/ouyangkai/");
+  //       break;
+  //     case 14:
+  //       window.open("https://gitee.com/kaiouyang-sn");
+  //       break;
+  //     case 15:
+  //       this.$router.push("./SnVideo");
+  //       break;
+  //     default:
+  //       this.$router.push("./Index");
+  //       break;
+  //   }
+  // },
+  // afterform() {
+  //   this.$router.push("/Afterform");
+  // },
+  // },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -136,46 +136,76 @@
   </div>
 </template>
 
-<script>
-
-
+<script lang="ts">
+import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 export default {
   name: "About",
-  data () {
-    return {
-      activeClass: 'animate__animated',
-      errorClass: 'animate__fadeInRightBig',
-      bounceIn: 'animate__bounceIn',
-      backInDown: 'animate__backInDown',
-      fadeInTopRight: 'animate__fadeInTopRight',
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const state = reactive({
+      activeClass: "animate__animated",
+      errorClass: "animate__fadeInRightBig",
+      bounceIn: "animate__bounceIn",
+      backInDown: "animate__backInDown",
+      fadeInTopRight: "animate__fadeInTopRight",
       User: [],
       newinfo: [],
-      markdownOption: {
-        bold: true, // 粗体
-      },
-    }
-  },
-  computed: {},
-  components: { //注册
-  },
-  created () {
-    this.getall()
-  },
+    });
 
-  methods: {
-    getall () {
+    const getall = () => {
       //查询当前用户信息
-      this.$api({
-        url: '/api/SnUser/AsyGetUserId?UserId=4'
-      }).then(res => {
-        this.User = res.data[0];
+      proxy
+        .$api({
+          url: "/api/SnUser/AsyGetUserId?UserId=4",
+        })
+        .then((res: any) => {
+          state.User = res.data[0];
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
+    onMounted(async () => {
+      await getall();
+    });
+    return { ...toRefs(state), getall };
+  },
 
-      }).catch((e) => {
-        console.log(e + '获取数据失败');
-      });
-    }
-  }
-}
+  // data() {
+  //   return {
+  //     activeClass: "animate__animated",
+  //     errorClass: "animate__fadeInRightBig",
+  //     bounceIn: "animate__bounceIn",
+  //     backInDown: "animate__backInDown",
+  //     fadeInTopRight: "animate__fadeInTopRight",
+  //     User: [],
+  //     newinfo: [],
+  //   };
+  // },
+  // computed: {},
+  // components: {
+  //   //注册
+  // },
+  // created() {
+  //   this.getall();
+  // },
+
+  // methods: {
+  //   getall() {
+  //     //查询当前用户信息
+  //     this.$api({
+  //       url: "/api/SnUser/AsyGetUserId?UserId=4",
+  //     })
+  //       .then((res) => {
+  //         this.User = res.data[0];
+  //       })
+  //       .catch((e) => {
+  //         console.log(e + "获取数据失败");
+  //       });
+  //   },
+  // },
+};
 </script>
 
 <style lang="scss" scoped>
