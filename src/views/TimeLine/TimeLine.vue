@@ -53,15 +53,21 @@ export default {
   components: {},
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
-    // 使用
+    // 定义一个静态类型
+    interface states {
+      reverse: boolean;
+      spinning: boolean;
+      items: (number | string)[]; //数组类型
+    }
+
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const state = reactive({
+    const state: states = reactive({
       items: [],
       reverse: true,
       spinning: true,
     });
 
-    const asyGetTest = () => {
+    const asyGetTest = (): void => {
       proxy
         .$api({
           url:

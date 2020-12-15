@@ -115,6 +115,16 @@ export default {
   components: {},
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
+    // 定义一个静态类型
+    // interface states {
+    //   newinfo: (number | string)[];
+    //   id: number;
+    //   article: (number | string)[];
+    //   timebool: boolean;
+    //   fullscreenLoading: boolean;
+    //   blog: string;
+    //   spinning: boolean;
+    // }
     //获取上下文实例，ctx=vue2的this
     const { proxy }: any = getCurrentInstance();
     // 加载路由
@@ -123,7 +133,6 @@ export default {
     // 数据定义
     const state = reactive({
       newinfo: [],
-      // 获取index主页传过来的id值
       id: route.query.id,
       article: [],
       timebool: true,

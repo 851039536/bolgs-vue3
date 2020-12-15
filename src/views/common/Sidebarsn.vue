@@ -86,7 +86,6 @@
 </template>
 
 <script lang="ts">
-import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 export default {
   name: "Sidebarsn",
@@ -119,9 +118,9 @@ export default {
           break;
       }
     };
-    onMounted(async () => {
-      await nav(100);
-    });
+    // onMounted(async () => {
+    //   await nav(1);
+    // });
     return {
       nav,
     };

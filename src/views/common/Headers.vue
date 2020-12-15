@@ -138,14 +138,13 @@
 </template>
 
 <script lang="ts">
-import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 export default {
   name: "Headers",
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const router = useRouter();
-    const onk = async (num: number) => {
+    const onk = async (num: any) => {
       switch (num) {
         case 1:
           router.push("/Indexs");
@@ -197,9 +196,9 @@ export default {
           break;
       }
     };
-    onMounted(async () => {
-      await onk(100);
-    });
+    // onMounted(async () => {
+    //   await onk(100);
+    // });
     return {
       onk,
     };
