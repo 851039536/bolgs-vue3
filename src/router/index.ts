@@ -71,11 +71,11 @@ const routes = [{
 {
   path: '/TimeLine',
   name: 'TimeLine',
-
-  component: () => import('../views/TimeLine/TimeLine.vue'),
   meta: {
     keepAlive: false // 缓存
   },
+  component: () => import('../views/TimeLine/TimeLine.vue'),
+
 },
 {
   path: '/TagText',
@@ -101,6 +101,15 @@ const routes = [{
     keepAlive: false // 缓存
   },
   component: () => import('../views/Navigation/Navigation.vue')
+},
+
+{
+  path: '/Talk',
+  name: 'Talk',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/Talk/Talk.vue')
 },
 ]
 

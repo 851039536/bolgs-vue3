@@ -43,6 +43,8 @@
       /> -->
       <div class="blog" v-html="blog"></div>
     </div>
+
+    <Comment></Comment>
     <!--底部信息-->
     <div class="article-3">
       <div class="article-3-1">
@@ -115,11 +117,12 @@ export default {
   components: {},
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
-    // 定义一个静态类型
+    // 简单的来说，它是类型约束的定义，当你使用这个定义接口时，它会一一匹对接口中定义的类型。
+    //只要不满足接口中的任何一个属性，都不会通过的。
     // interface states {
-    //   newinfo: (number | string)[];
+    //   // newinfo?: (number | string)[];
     //   id: number;
-    //   article: (number | string)[];
+    //   // article: (number | string)[];
     //   timebool: boolean;
     //   fullscreenLoading: boolean;
     //   blog: string;
@@ -131,7 +134,7 @@ export default {
     const route = useRoute();
     const router = useRouter();
     // 数据定义
-    const state = reactive({
+    const state: any = reactive({
       newinfo: [],
       id: route.query.id,
       article: [],
@@ -141,7 +144,7 @@ export default {
       spinning: true,
     });
     // 加载内容
-    const AsyGetTest = async () => {
+    const AsyGetTest = (): void => {
       console.log(state.id);
       proxy.$api
         .all([
@@ -158,17 +161,17 @@ export default {
             state.article = res2.data;
             UpRead(state.newinfo);
 
-            state.blog = marked(proxy.newinfo.text);
+            state.blog = marked(state.newinfo.text);
             state.spinning = false;
             // alert(this.spinning);
           })
         )
-        .catch((err: any) => {
+        .catch((err: never) => {
           console.log(err);
         });
     };
     // 阅读数
-    const UpRead = async (info: any) => {
+    const UpRead = (info: any): void => {
       if (info == null) {
         console.log(info);
         return;
@@ -206,7 +209,7 @@ export default {
       }
     };
     // 点击数
-    const UpGive = async (info: any) => {
+    const UpGive = (info: any): void => {
       var timebools = state.timebool;
       if (info == null || timebools == false) {
         console.log(info, state.timebool);
@@ -255,7 +258,7 @@ export default {
       }
     };
     // 博客详情
-    const AsyGetTestID = async (id: any) => {
+    const AsyGetTestID = (id: number): void => {
       // .带参数跳转
       router.push({
         path: "/Indextext2",
@@ -294,186 +297,6 @@ export default {
       AsyGetTestID,
     };
   },
-  // data() {
-  //   return {
-  //     newinfo: [],
-  //     // 获取index主页传过来的id值
-  //     id: this.$route.query.id,
-  //     article: [],
-  //     timebool: true,
-  //     fullscreenLoading: false,
-  //     blog: "",
-  //     spinning: true,
-  //   };
-  // },
-
-  // created() {
-  //   this.AsyGetTest();
-  // },
-  // updated() {
-  //   this.highlighthandle();
-  // },
-
-  //   methods: {
-  //     // 关闭加载框
-  //     changeSpinning() {
-  //       this.spinning = false;
-  //     },
-  //     async highlighthandle() {
-  //       await hljs;
-  //       let highlight = document.querySelectorAll("code,pre");
-  //       highlight.forEach((block: any) => {
-  //         hljs.highlightBlock(block);
-  //       });
-  //     },
-  //     houtui() {
-  //       this.$router.go(-1);
-  //     },
-  //     async AsyGetTest() {
-  //       this.$api
-  //         .all([
-  //           // 读取详情页数据
-  //           this.$api.get("/api/SnArticle/AsyGetTestID?id=" + this.id),
-  //           //查询最新发布前十文章
-  //           this.$api.get(
-  //             "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
-  //           ),
-  //         ])
-  //         .then(
-  //           this.$api.spread((res1, res2) => {
-  //             this.newinfo = res1.data;
-  //             this.article = res2.data;
-  //             this.UpRead(this.newinfo);
-
-  //             this.blog = marked(this.newinfo.text);
-  //             this.changeSpinning();
-  //             // alert(this.spinning);
-  //           })
-  //         )
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     },
-  //     //  更新操作
-  //     async UpRead(info) {
-  //       if (info == null) {
-  //         console.log(info);
-  //         return;
-  //       } else {
-  //         info.read++;
-  //         this.$api({
-  //           // 更新
-  //           url: "/api/SnArticle/AysUpArticle",
-  //           method: "put",
-  //           data: {
-  //             articleId: info.articleId,
-  //             userId: Number(info.userId),
-  //             title: info.title,
-  //             titleText: info.titleText,
-  //             text: info.text,
-  //             time: info.time,
-  //             labelId: info.labelId,
-  //             read: Number(info.read),
-  //             give: Number(info.give),
-  //             comment: info.comment,
-  //             sortId: info.sortId,
-  //             typeTitle: info.typeTitle,
-  //             urlImg: info.urlImg,
-  //           },
-  //         })
-  //           .then((res) => {
-  //             if (res.status === 200) {
-  //               console.log("1");
-  //             } else {
-  //               alert("更新失败");
-  //             }
-  //           })
-  //           .catch(console.error.bind(console)); // 异常
-  //       }
-  //     },
-  //     UpGive(info) {
-  //       var timebools = this.timebool;
-  //       if (info == null || timebools == false) {
-  //         console.log(info, this.timebool);
-  //         return;
-  //       } else {
-  //         info.give++;
-  //         this.$api({
-  //           // 更新
-  //           url: "/api/SnArticle/AysUpArticle",
-  //           method: "put",
-  //           data: {
-  //             articleId: info.articleId,
-  //             userId: Number(info.userId),
-  //             title: info.title,
-  //             titleText: info.titleText,
-  //             text: info.text,
-  //             time: info.time,
-  //             labelId: info.labelId,
-  //             read: Number(info.read),
-  //             give: Number(info.give),
-  //             comment: info.comment,
-  //             sortId: info.sortId,
-  //             typeTitle: info.typeTitle,
-  //             urlImg: info.urlImg,
-  //           },
-  //         })
-  //           .then((res) => {
-  //             if (res.status === 200) {
-  //               this.timebool = false;
-  //               var time = 10;
-  //               var timer = setInterval(function () {
-  //                 time--;
-  //                 console.log(time);
-  //                 if (time == 0) {
-  //                   this.timebool = true;
-  //                   // alert(this.timebool)
-  //                   clearInterval(timer);
-  //                 }
-  //               }, 1000);
-  //             } else {
-  //               alert("更新失败");
-  //             }
-  //           })
-  //           .catch(console.error.bind(console)); // 异常
-  //       }
-  //     },
-
-  //     /**
-  //      * 回到顶部功能实现过程：
-  //      * 1. 获取页面当前距离顶部的滚动距离（虽然IE不常用了，但还是需要考虑一下兼容性的）
-  //      * 2. 计算出每次向上移动的距离，用负的滚动距离除以5，因为滚动的距离是一个正数，想向上移动就是做一个减法
-  //      * 3. 用当前距离加上计算出的距离，然后赋值给当前距离，就可以达到向上移动的效果
-  //      * 4. 最后记得在移动到顶部时，清除定时器
-  //      */
-  //     backtop() {
-  //       {
-  //         var timer = setInterval(function () {
-  //           let osTop =
-  //             document.documentElement.scrollTop || document.body.scrollTop;
-  //           let ispeed = Math.floor(-osTop / 5);
-  //           document.documentElement.scrollTop = document.body.scrollTop =
-  //             osTop + ispeed;
-  //           this.isTop = true;
-  //           if (osTop === 0) {
-  //             clearInterval(timer);
-  //           }
-  //         }, 30);
-  //       }
-  //     },
-
-  //     // 博客详情
-  //     AsyGetTestID(id) {
-  //       // .带参数跳转
-  //       this.$router.push({
-  //         path: "/Indextext",
-  //         query: {
-  //           id: id,
-  //         },
-  //       });
-  //       location.reload();
-  //     },
-  //   },
 };
 </script>
 
@@ -493,7 +316,7 @@ export default {
   /*底部*/
   .article-3 {
     @include initialize(59%, null, 3px, null, 20%, null, null);
-    @include boxshow;
+    @apply shadow rounded;
     @apply cursor-pointer bg-white text-black;
     .article-3-1 {
       /*background-color: #55ff00;*/
@@ -528,7 +351,7 @@ export default {
     position: fixed;
     @include excursion(61px, null, 1%, null);
     @include w-h(17%, bull);
-    @include boxshow;
+    @apply shadow rounded-sm;
     @apply font-sans bg-white;
 
     .article-text-1 {
@@ -551,7 +374,7 @@ export default {
   .article-title {
     position: relative;
     @include initialize(59%, 40px, 60px, null, 20%, null, #ffffff);
-    @include boxshow;
+    @apply shadow rounded;
 
     p {
       line-height: 40px;
@@ -565,18 +388,17 @@ export default {
   }
 
   .blog {
-    background: rgb(231, 231, 224);
-    @include boxshow3;
-    @apply antialiased m-1 p-1 rounded-sm font-mono;
+    @apply shadow rounded;
+    @apply antialiased rounded-sm font-mono bg-white;
     h2 {
-      @apply text-xl  m-1 p-1 text-gray-700 bg-blue-200 rounded-sm shadow-sm;
+      @apply text-xl p-1 text-gray-700 bg-white rounded-sm shadow-sm;
     }
 
     h3 {
-      @apply text-lg m-1 p-1  bg-blue-100 rounded-sm shadow-sm;
+      @apply text-lg p-1  bg-white rounded-sm shadow-sm;
     }
     pre {
-      @apply text-sm m-1 rounded-sm shadow-sm bg-gray-50;
+      @apply text-sm  rounded-sm shadow-sm bg-gray-50;
     }
     code {
       color: #6390bb;

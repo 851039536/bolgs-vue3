@@ -144,7 +144,7 @@ export default {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const router = useRouter();
-    const onk = async (num: any) => {
+    let onk = async (num: any) => {
       switch (num) {
         case 1:
           router.push("/Indexs");
@@ -272,8 +272,7 @@ export default {
     z-index: 9999;
     @include w-h(100%, 55px);
     // background-color: #795da3;
-    @apply p-2 bg-white;
-    @include boxshow2;
+    @apply p-2 bg-white shadow-sm;
 
     .heaa {
       float: right;

@@ -53,20 +53,22 @@ export default {
   components: {},
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
-    // 定义一个静态类型
-    interface states {
+    // 简单的来说，它是类型约束的定义，当你使用这个定义接口时，它会一一匹对接口中定义的类型。
+    //只要不满足接口中的任何一个属性，都不会通过的。
+    interface States {
       reverse: boolean;
       spinning: boolean;
       items: (number | string)[]; //数组类型
     }
 
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const state: states = reactive({
+    const state: States = reactive({
       items: [],
       reverse: true,
       spinning: true,
     });
 
+    //void 为 函数没有类型，一般用在没有返回值的函数 如果方法类型为any，则可以返回任意类型
     const asyGetTest = (): void => {
       proxy
         .$api({
@@ -75,16 +77,11 @@ export default {
         })
         .then((res: any) => {
           state.items = res.data;
-          // alert(state.items[1].time);
-          // for (var i = 0; i < res.data.length; i++) {
-          //   state.items[i].content = res.data[i].title;
-          //   state.items[i].tag = res.data[i].time;
-          //   // console.log(res.data[i].title);
 
-          // }
           state.spinning = false;
         })
-        .catch((e: any) => {
+        .catch((e: never) => {
+          //never 代表不存在的值类型，常用作为 抛出异常或者 无限循环的函数返回类型
           console.log(e + "获取数据失败");
         });
     };
@@ -93,37 +90,6 @@ export default {
     });
     return { ...toRefs(state), asyGetTest };
   },
-  // data() {
-  //   return {
-  //     items: [],
-  //     reverse: true,
-  //     spinning: true,
-  //   };
-  // },
-  // created() {
-  //   this.AsyGetTest();
-  // },
-  //   methods: {
-  //     //加载文章
-  //     AsyGetTest() {
-  //       this.$api({
-  //         url:
-  //           "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=500&isDesc=true",
-  //       })
-  //         .then((res) => {
-  //           this.items = res.data;
-  //           for (var i = 0; i < res.data.length; i++) {
-  //             this.items[i].content = res.data[i].title;
-  //             this.items[i].tag = res.data[i].time;
-  //             // console.log(res.data[i].title);
-  //             this.spinning = false;
-  //           }
-  //         })
-  //         .catch((e) => {
-  //           console.log(e + "获取数据失败");
-  //         });
-  //     },
-  //   },
 };
 </script>
 
@@ -133,11 +99,12 @@ export default {
     margin: 0 auto;
     @include initialize(49%, null, 60px, null, 23%, null, #ffffff);
     @apply text-base;
+    @apply shadow;
     .timeline-img {
       position: relative;
       @include w-h(100%, 100px);
       @include bg-img("../../assets/img/timebg.jpg");
-      @include boxshow;
+      // @apply shadow;
       h4 {
         position: absolute;
         @include excursion(16%, null, 45%, null);
@@ -157,7 +124,7 @@ export default {
       margin-top: 10px;
       .timeline-title-1 {
         margin: 0 auto;
-        @include boxshow;
+        @apply shadow;
         ul li {
           display: inline-block;
           padding-left: 6.8%;
@@ -171,8 +138,8 @@ export default {
 
     .timeline-time {
       position: relative;
-      margin: 10px auto 0 auto;
-      @include boxshow;
+      margin: 20px auto 0 auto;
+      // @apply shadow;
       .block {
         @apply mx-4 mt-2;
         .block-1 {

@@ -92,7 +92,7 @@ export default {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const router = useRouter();
-    const nav = async (num: number) => {
+    let nav = async (num: number) => {
       switch (num) {
         case 1:
           router.push("/EverydayOne");
@@ -167,9 +167,8 @@ export default {
     @include w-h(20%, 100%);
     position: fixed;
     @include excursion(0, null, 0, null);
-
     background-color: #ffffff;
-    @include boxshow1;
+    @apply shadow;
 
     .fos {
       height: 80%;

@@ -14,16 +14,39 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // 组件导入
-import IndexText from "./index/Index-Text";
+import IndexText from "./index/Index-Text.vue";
+import { notification } from "ant-design-vue";
+import { onMounted } from "vue";
 export default {
-  name: 'Index',
+  name: "Index",
   components: {
-    IndexText
-  }
-}
+    IndexText,
+  },
 
+  setup() {
+    const openNotification = () => {
+      notification.open({
+        message: "哈喽!!!",
+        description:
+          "项目基于TailWindcss Vue3 NetCoreWebApi TypeScript AntDesignVue 开发搭建 项目地址: https://gitee.com/kaiouyang-sn",
+        placement: "bottomRight",
+        duration: 10,
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+    };
+
+    onMounted(async () => {
+      await openNotification();
+    });
+    return {
+      openNotification,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
   @import "../assets/sass/com";

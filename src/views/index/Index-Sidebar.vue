@@ -298,97 +298,13 @@ export default {
       AsyGetTestID,
     };
   },
-
-  // data() {
-  //   return {
-  //     newinfo: [],
-  //     Labels: [],
-  //     Sort: [],
-  //     article: [],
-  //     //当前默认页
-  //     barFixed: false,
-  //     UserTalk: "",
-  //     User: [],
-  //     ArticleCount: 0,
-  //     SortCount: 0,
-  //     LabelsCount: 0,
-  //     zhihu: [],
-  //   };
-  // },
-  // created() {
-  //   this.AsyGetTest();
-  // },
-  // methods: {
-  //加载文章
-  // async AsyGetTest() {
-  //   this.$api
-  //     .all([
-  //       //查询标签
-  //       this.$api.get("/api/SnLabels/GetLabels"),
-  //       //查询分类
-  //       this.$api.get("/api/SnSort/GetSort"),
-  //       //查询最新发布前十文章
-  //       this.$api.get(
-  //         "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
-  //       ),
-  //       // 查询当前用户的说说
-  //       this.$api.get(
-  //         "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-  //       ),
-  //       //查询当前用户信息
-  //       this.$api.get("/api/SnUser/AsyGetUserId?UserId=4"),
-  //       //查询文章总数
-  //       this.$api.get("/api/SnArticle/GetArticleCount"),
-  //       //查询标签
-  //       this.$api.get("/api/SnSort/GetSortCount"),
-  //       //查询分类
-  //       this.$api.get("/api/SnLabels/GetLabelsCount"),
-  //     ])
-  //     .then(
-  //       this.$api.spread((res1, res2, res3, res4, res5, res6, res7, res8) => {
-  //         this.Labels = res1.data;
-  //         this.Sort = res2.data;
-  //         this.article = res3.data;
-  //         this.UserTalk = res4.data;
-  //         this.User = res5.data[0];
-  //         this.ArticleCount = res6.data;
-  //         this.SortCount = res7.data;
-  //         this.LabelsCount = res8.data;
-  //       })
-  //     )
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // },
-  // tagtest(tagid) {
-  //   // .带参数跳转
-  //   this.$router.push({
-  //     path: "/SnTagText",
-  //     query: {
-  //       id: tagid,
-  //     },
-  //   });
-  // },
-
-  // // 博客详情
-  // AsyGetTestID(id) {
-  //   // .带参数跳转
-  //   this.$router.push({
-  //     path: "/Indextext",
-  //     query: {
-  //       id: id,
-  //     },
-  //   });
-  // },
-  // },
 };
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   .sn-list {
     position: fixed;
-
-    @include excursion(61px, null, null, 0);
+    @include excursion(60px, null, null, 0);
     @include w-h(28%, 90%);
     // background-color: #4d4f91;
     @apply ml-3;
@@ -398,18 +314,13 @@ export default {
       overflow: auto;
 
       .sn-list0 {
-        @include w-h(80%, 248px);
-        margin: 0 auto;
-        @apply mb-3 bg-white;
-        @include boxshow;
-
+        @include initialize(80%, 250px, 0, 0, auto, auto, #ffffff);
+        @apply mb-3 shadow rounded;
         .sn-list0-img {
-          /*background-color: #55a532;*/
-          @include w-h(140px, 100px);
-          margin: 15px auto 0 auto;
-
+          @include initialize(140px, 100px, auto, auto, auto, auto, null);
           img {
             @include w-h(100%, 100%);
+            @apply p-3;
           }
         }
 
@@ -473,8 +384,8 @@ export default {
       .sn-list2 {
         @include w-h(80%, 50px);
         margin: 0 auto;
-        @apply mb-3;
-        @include boxshow;
+        @apply mb-3 shadow rounded bg-white;
+        // @include boxshow;
 
         .sn-list2-1 {
           /*background-color: #95999c;*/
@@ -491,8 +402,7 @@ export default {
         width: 80%;
         margin: 0 auto;
         text-align: center;
-        @apply mb-3 bg-white;
-        @include boxshow3;
+        @apply mb-3 shadow rounded bg-white;
 
         h4 {
           height: 2rem;
@@ -512,7 +422,7 @@ export default {
         width: 80%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
-        @include boxshow3;
+        @apply shadow rounded;
 
         // 公告
         .sn-list7-1 {
@@ -531,7 +441,7 @@ export default {
         width: 80%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
-        @include boxshow3;
+        @apply shadow rounded;
         .sn-list8-1 {
           @apply text-gray-900;
         }
@@ -557,7 +467,7 @@ export default {
         width: 80%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
-        @include boxshow3;
+        @apply shadow rounded;
 
         // 标签
         .sn-list3-1 {
@@ -578,7 +488,7 @@ export default {
         width: 80%;
         margin: 0 auto;
         @apply p-1 mb-2 bg-white;
-        @include boxshow3;
+        @apply shadow rounded;
 
         .sn-list5-1 {
           @apply text-gray-900 text-base;
@@ -592,7 +502,7 @@ export default {
         width: 80%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
-        @include boxshow3;
+        @apply shadow rounded;
 
         .sn-list6-1 {
           @apply text-gray-900;

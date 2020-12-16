@@ -171,40 +171,6 @@ export default {
     });
     return { ...toRefs(state), getall };
   },
-
-  // data() {
-  //   return {
-  //     activeClass: "animate__animated",
-  //     errorClass: "animate__fadeInRightBig",
-  //     bounceIn: "animate__bounceIn",
-  //     backInDown: "animate__backInDown",
-  //     fadeInTopRight: "animate__fadeInTopRight",
-  //     User: [],
-  //     newinfo: [],
-  //   };
-  // },
-  // computed: {},
-  // components: {
-  //   //注册
-  // },
-  // created() {
-  //   this.getall();
-  // },
-
-  // methods: {
-  //   getall() {
-  //     //查询当前用户信息
-  //     this.$api({
-  //       url: "/api/SnUser/AsyGetUserId?UserId=4",
-  //     })
-  //       .then((res) => {
-  //         this.User = res.data[0];
-  //       })
-  //       .catch((e) => {
-  //         console.log(e + "获取数据失败");
-  //       });
-  //   },
-  // },
 };
 </script>
 
@@ -279,7 +245,7 @@ export default {
         .about-2 {
           @include initialize(35%, null, 10px, auto, auto, auto, null);
           @apply text-base cursor-pointer bg-gray-200;
-          @include boxshow;
+          @apply shadow rounded-sm;
           .about-2-1 {
             @apply pl-5;
           }
@@ -289,64 +255,12 @@ export default {
           /*background-color: #6990f6;*/
           @include initialize(55%, null, 20px, auto, auto, auto, null);
         }
-
-        .bg-1 {
-          position: relative;
-          @include initialize(35%, 65%, 20px, auto, auto, auto, null);
-          @include boxshow;
-
-          img {
-            @include w-h(32%, 40%);
-            position: absolute;
-            @include excursion(3%, null, 34%, null);
-            border-radius: 50%;
-          }
-
-          .bg-1-1 {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            height: 60px;
-            background-color: #4d4d4d;
-            color: #e5e0d6;
-            line-height: 60px;
-            text-align: center;
-
-            p {
-              background-image: linear-gradient(90deg, #f66, #f90);
-              background-clip: text;
-              animation: hue 5s linear infinite;
-              -webkit-text-fill-color: transparent;
-              @keyframes hue {
-                from {
-                  filter: hue-rotate(0);
-                }
-                to {
-                  filter: hue-rotate(-1turn);
-                }
-              }
-            }
-          }
-
-          .bg-1-2 {
-            position: absolute;
-            top: 75%;
-            /*background-color: white;*/
-            height: 35px;
-            left: 33%;
-
-            ul li {
-              display: inline-block;
-              margin-left: 12px;
-            }
-          }
-        }
       }
 
       .bg-2 {
         width: 100%;
         /*background-color: #95999c;*/
-        @include boxshow;
+
         margin: 10px auto 0 auto;
 
         .bg-2-1 {

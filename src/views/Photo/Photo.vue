@@ -45,7 +45,7 @@ export default {
   @import "../../assets/sass/com";
   .photo {
     @include initialize(75%, null, 60px, null, 22%, null, #ffffff);
-    @include boxshow;
+    @apply shadow rounded-sm;
     .photo-1 {
       @include underline;
       margin-bottom: 20px;
@@ -56,7 +56,7 @@ export default {
       img {
         @include w-h(100%, 200px);
         margin: 3px auto;
-        border-radius: 3px;
+        @apply shadow rounded-sm;
         transition: 0.3s linear;
       }
       /*图片模糊*/

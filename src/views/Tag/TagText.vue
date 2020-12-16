@@ -131,71 +131,6 @@ export default {
       highlighthandle,
     };
   },
-  // data() {
-  //   return {
-  //     newinfo: [],
-  //     newtext: [],
-  //     labels: [],
-  //     // 获取index主页传过来的id值
-  //     id: this.$route.query.id,
-  //     markdownOption: {
-  //       bold: true, // 粗体
-  //     },
-  //     blog: "",
-  //   };
-  // },
-  // created() {
-  //   this.AsyGetTag(this.id);
-  //   this.AsyGetTest(1);
-  // },
-  // updated() {
-  //   this.highlighthandle();
-  // },
-
-  //   methods: {
-  //     async highlighthandle() {
-  //       await hljs;
-  //       let highlight = document.querySelectorAll("code,pre");
-  //       highlight.forEach((block) => {
-  //         hljs.highlightBlock(block);
-  //       });
-  //     },
-  //     async AsyGetTag(id) {
-  //       if (id == null) {
-  //         id = 1;
-  //       }
-  //       this.$api({
-  //         url: "/api/SnArticle/AsyGetTestString?LabelId=" + id,
-  //       })
-  //         .then((res) => {
-  //           this.newinfo = res.data;
-  //         })
-  //         .catch((e) => {
-  //           console.log(e + "获取数据失败");
-  //         });
-  //     },
-  //     async AsyGetTest(id) {
-  //       this.$api
-  //         .all([
-  //           //查询标签
-  //           this.$api.get("/api/SnArticle/AsyGetTestID?id=" + id),
-  //           //查询分类
-  //           this.$api.get("/api/SnLabels/GetLabels"),
-  //         ])
-  //         .then(
-  //           this.$api.spread((res1, res2) => {
-  //             this.labels = res2.data;
-  //             this.blog = marked(res1.data.text);
-  //           })
-  //         )
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     },
-  //     GetlabelsID(id) {
-  //       this.AsyGetTag(id);
-  //     },
-  //   },
 };
 </script>
 
@@ -209,13 +144,13 @@ export default {
       top: 21.5%;
       @include w-h(null, 75%);
       @include initialize(85%, 75%, null, null, 7.5%, null, #ffffff);
-      border-radius: 2px;
+
+      // 侧边框
       .SnTagText-1 {
         @include w-h(32%, null);
         overflow: auto;
         .SnTagText-1-1 {
-          @apply p-1 m-2 bg-gray-100 cursor-pointer;
-          @include boxshow3;
+          @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
           /*background-color: #95999c;*/
           .SnTagText-1-1-1 {
             /*background-color: #795da3;*/
@@ -226,36 +161,37 @@ export default {
           }
         }
       }
+
+      // 内容
       .SnTagText-2 {
         @include w-h(68%, null);
-        @apply p-2  bg-gray-200;
+        @apply p-1  bg-gray-200;
         overflow: auto;
         /*background-color: #1e7e34;*/
-
         .blog {
-          background: rgb(231, 231, 224);
-          @include boxshow3;
-          @apply antialiased m-1 p-1 rounded-sm font-mono;
+          @apply shadow rounded;
+          @apply antialiased rounded-sm font-mono bg-white;
           h2 {
-            @apply text-xl  m-1 p-1 text-gray-700 bg-blue-200 rounded-sm shadow-sm;
+            @apply text-xl p-1 text-gray-700 bg-white rounded-sm shadow-sm;
           }
 
           h3 {
-            @apply text-lg m-1 p-1  bg-blue-100 rounded-sm shadow-sm;
+            @apply text-lg p-1  bg-white rounded-sm shadow-sm;
           }
           pre {
-            @apply text-base m-1 rounded-sm shadow-sm;
+            @apply text-sm  rounded-sm shadow-sm bg-gray-50;
           }
           code {
             color: #6390bb;
           }
           p {
-            @apply text-base pl-1 m-1 rounded-sm bg-white leading-relaxed;
+            @apply text-base pl-2  rounded-sm bg-white leading-relaxed;
           }
         }
       }
     }
 
+    // 按钮
     .SnTagText2 {
       position: absolute;
       top: 10%;
@@ -264,9 +200,7 @@ export default {
       .tag-text {
         @include w-h(null, 100%);
         .tag-text-1 {
-          @include boxshow3;
-          @apply m-1 bg-gray-200 text-base font-thin;
-          border-radius: 3px;
+          @apply m-1 bg-gray-200 text-base font-thin shadow-sm  rounded-sm;
           a {
             margin: 0 10px 0 10px;
           }

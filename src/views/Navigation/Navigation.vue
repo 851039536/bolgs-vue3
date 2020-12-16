@@ -62,35 +62,6 @@ export default {
     });
     return { ...toRefs(state), GetSnNavigation, urltest };
   },
-
-  // data () {
-  //   return {
-  //     text: [],
-  //   }
-  // },
-  // created () {
-  //   this.GetSnNavigation()
-  // },
-  // methods: {
-  //GetSnNavigation () {
-  //   this.$api({
-  //     // url: '/api/SnNavigation/GetSnNavigation'
-  //     url: '/api/SnNavigation/AsyGetWhereTest?type=网站&fag=true'
-  //   }).then(res => {
-  //     this.text = res.data;
-
-  //   }).catch((e) => {
-  //     console.log(e + '获取数据失败');
-  //   });
-
-  // },
-  // urltest (url) {
-  //   //当前窗口跳转
-  //   // self.location.href=url
-  //   //新窗口跳转
-  //   window.open(url)
-  // }
-  // }
 };
 </script>
 
@@ -99,10 +70,10 @@ export default {
 
   .n-nav {
     @include initialize(75%, null, 62px, null, 22%, null, #ffffff);
-    @include boxshow;
+    @apply shadow rounded-sm;
     .n-nav-1 {
       @include w-h(null, 225px);
-      @include boxshow3;
+      @apply shadow-sm rounded-sm;
       margin: 10px;
       .n-nav-1-1 {
         img {

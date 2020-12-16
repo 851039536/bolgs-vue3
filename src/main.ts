@@ -18,6 +18,8 @@ import ajax from './api/index'
 import Headers from "./views/common/Headers.vue"
 import IndexSidebar from "./views/index/Index-Sidebar.vue";
 import Sidebarsn from "./views/common/Sidebarsn.vue";
+import Comment from "./views/common/Comment.vue";
+
 
 const app = createApp(App);
 app.use(store);
@@ -29,4 +31,5 @@ app.config.globalProperties.$api = ajax
 app.component("Headers", Headers)
 app.component("IndexSidebar", IndexSidebar)
 app.component("Sidebarsn", Sidebarsn)
+app.component("Comment", Comment)
 app.mount("#app");
