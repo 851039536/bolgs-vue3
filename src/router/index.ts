@@ -104,12 +104,58 @@ const routes = [{
 },
 
 {
+  path: '/BlogCircles',
+  name: 'BlogCircles',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/Navigation/BlogCircles.vue')
+},
+
+{
+  path: '/favorite',
+  name: 'favorite',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/Navigation/favorite.vue')
+},
+
+{
   path: '/Talk',
   name: 'Talk',
   meta: {
     keepAlive: false // 缓存
   },
   component: () => import('../views/Talk/Talk.vue')
+},
+
+{
+  path: '/SnVideo',
+  name: 'SnVideo',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/SnVideo/SnVideo.vue')
+},
+
+{
+  path: '/SnVideoText',
+  name: 'SnVideoText',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/SnVideo/SnVideoText.vue')
+},
+
+
+{
+  path: '/Leave',
+  name: 'Leave',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/Leave/Leave.vue')
 },
 ]
 

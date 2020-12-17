@@ -141,12 +141,15 @@ $boxshow33: 0 1px 3px 0 rgba(0, 0, 0, .12);
 
 // 行数
 @mixin line-number {
-  display: -webkit-box;
-  word-break: break-all;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; //需要显示的行数
-  overflow: hidden;
   text-overflow: ellipsis;
+  /*有些示例里需要定义该属性，实际可省略*/
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /*规定超过两行的部分截断*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  /*在任何地方换行*/
 }
 
 @mixin scroll {

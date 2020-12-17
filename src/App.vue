@@ -10,6 +10,7 @@
 </template>
 <script>
 export default {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   mounted () {
     document.querySelector('body').setAttribute('style', 'background-color:#f7f7f7')
   }

@@ -33,6 +33,7 @@
 import moment from "moment";
 import { toRefs } from "vue";
 export default {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const state = {
       data: [

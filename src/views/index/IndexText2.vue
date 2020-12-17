@@ -1,8 +1,10 @@
 <template>
   <div class="animate__animated animate__fadeIn">
-    <!--        <sidebarsn></sidebarsn>-->
+    <Sidebarsn></Sidebarsn>
+    <!--侧边栏-->
+    <IndexSidebar></IndexSidebar>
     <!--左侧边栏-->
-    <div class="article-text">
+    <!-- <div class="article-text">
       <div class="article-text-1">
         <p class="py-1 text-base font-medium text-center text-gray-800">
           最新随笔
@@ -19,32 +21,21 @@
           <a @click="AsyGetTestID(articles.articleId)">{{ articles.title }}</a>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!--标题-->
     <div class="article-title">
-      <a class="text-lg cursor-default" @click="houtui">&lt;</a>
+      <a class="text-lg" @click="houtui">&lt;</a>
       <p class="text-lg text-center">
         {{ newinfo.title }}
       </p>
     </div>
     <!--内容-->
     <div class="editor-text">
-      <!-- <mavon-editor
-        :toolbars="markdownOption"
-        :subfield="false"
-        :boxShadow="true"
-        :ishljs="true"
-        boxShadowStyle="1px 2px 3px 1px rgba(0, 0, 0, 0.2)"
-        defaultOpen="preview"
-        :toolbarsFlag="false"
-        :navigation="true"
-        v-model="newinfo.text"
-      /> -->
       <div class="blog" v-html="blog"></div>
     </div>
 
-    <Comment></Comment>
+    <!-- <Comment></Comment> -->
     <!--底部信息-->
     <div class="article-3">
       <div class="article-3-1">
@@ -85,7 +76,6 @@
 
     <!-- 加载框 -->
     <div class="lo">
-      >
       <a-spin :spinning="spinning">
         <div class="spin-content">
           <!-- 可以点击‘切换’按钮，控制本区域的spin展示。 -->
@@ -281,8 +271,26 @@ export default {
     const houtui = async () => {
       router.go(-1);
     };
+
+    const backtop = async () => {
+      {
+        var timer = setInterval(function () {
+          let osTop =
+            document.documentElement.scrollTop || document.body.scrollTop;
+          let ispeed = Math.floor(-osTop / 5);
+          document.documentElement.scrollTop = document.body.scrollTop =
+            osTop + ispeed;
+          // this.isTop = true;
+          if (osTop === 0) {
+            clearInterval(timer);
+          }
+        }, 30);
+      }
+    };
+
     onMounted(async () => {
       await AsyGetTest();
+      await backtop();
     });
     onUpdated(async () => {
       await highlighthandle();
@@ -295,6 +303,7 @@ export default {
       UpRead,
       UpGive,
       AsyGetTestID,
+      backtop,
     };
   },
 };
@@ -302,20 +311,15 @@ export default {
 
 <style lang="scss">
   @import "../../assets/sass/com";
-
   .lo {
     position: fixed;
     top: 50%;
     width: 100%;
   }
-  /* 回到顶部*/
-  #backtop {
-    position: fixed;
-    @include excursion(92%, null, null, 5%);
-  }
+
   /*底部*/
   .article-3 {
-    @include initialize(59%, null, 3px, null, 20%, null, null);
+    @include initialize(49%, null, 1px, null, 23%, null, null);
     @apply shadow rounded;
     @apply cursor-pointer bg-white text-black;
     .article-3-1 {
@@ -342,8 +346,8 @@ export default {
 
   /*编译器组件*/
   .editor-text {
-    @include w-h(59%, null);
-    margin: 3px 0 0 20%;
+    @include w-h(49%, null);
+    margin: 3px 0 0 23%;
   }
 
   /*左侧边栏*/
@@ -373,8 +377,8 @@ export default {
   /*返回上一页*/
   .article-title {
     position: relative;
-    @include initialize(59%, 40px, 60px, null, 20%, null, #ffffff);
-    @apply shadow rounded;
+    @include initialize(49%, 40px, 60px, null, 23%, null, #ffffff);
+    @apply shadow rounded cursor-pointer;
 
     p {
       line-height: 40px;
@@ -388,23 +392,54 @@ export default {
   }
 
   .blog {
-    @apply shadow rounded;
+    @apply shadow rounded p-4;
     @apply antialiased rounded-sm font-mono bg-white;
+
+    h1 {
+      @apply text-2xl py-1 text-gray-700 bg-white;
+    }
     h2 {
-      @apply text-xl p-1 text-gray-700 bg-white rounded-sm shadow-sm;
+      @apply text-xl  py-1 text-gray-700 bg-white;
     }
 
     h3 {
-      @apply text-lg p-1  bg-white rounded-sm shadow-sm;
+      @apply text-lg  py-1 bg-white;
+    }
+    h4 {
+      @apply text-base  py-1 bg-white;
+    }
+    h5 {
+      @apply text-sm  py-1 bg-white;
     }
     pre {
-      @apply text-sm  rounded-sm shadow-sm bg-gray-50;
+      width: 100%;
+      @apply text-xs px-1 bg-gray-100;
     }
     code {
       color: #6390bb;
     }
     p {
-      @apply text-base pl-2  rounded-sm bg-white leading-relaxed;
+      @apply text-sm  py-1 bg-white  leading-relaxed mb-1 antialiased text-gray-500;
+    }
+
+    li {
+      @apply text-xs py-1 bg-white  mb-1 antialiased text-gray-500;
+    }
+
+    table {
+      // background: gray;
+    }
+    th {
+      border: solid #f1f1f1 1px;
+      @apply p-1 text-sm;
+    }
+    td {
+      border: solid #f1f1f1 1px;
+      @apply p-1 text-sm;
+    }
+
+    a {
+      @apply text-red-800;
     }
   }
 </style>

@@ -104,7 +104,7 @@ export default {
           // this.$router.push('/AfterLogin')
           break;
         case 4:
-          router.push("./PersonalNavigation");
+          router.push("./favorite");
           break;
         case 5:
           router.push("./BlogCircles");
@@ -118,44 +118,11 @@ export default {
           break;
       }
     };
-    // onMounted(async () => {
-    //   await nav(1);
-    // });
+
     return {
       nav,
     };
   },
-
-  // methods: {
-  //   nav (num) {
-  //     switch (num) {
-  //       case 1:
-  //         this.$router.push('/EverydayOne')
-  //         break;
-  //       case 2:
-  //         this.$router.push('/SnVideo')
-  //         break;
-  //       case 3:
-  //         // this.$router.push('/AfterLogin')
-  //         break;
-  //       case 4:
-  //         this.$router.push('./PersonalNavigation')
-  //         break;
-  //       case 5:
-  //         this.$router.push('./BlogCircles')
-
-  //         break;
-  //       case 6:
-  //         this.$router.push('./Books')
-
-  //         break;
-  //       default:
-  //         this.$router.push('./Index')
-  //         break;
-  //     }
-
-  //   },
-  // }
 };
 </script>
 <style lang="scss" scoped>

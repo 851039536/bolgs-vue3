@@ -180,7 +180,7 @@ export default {
           router.push("./PersonalNavigation");
           break;
         case 12:
-          router.push("./SnLeave");
+          router.push("./Leave");
           break;
         case 13:
           window.open("https://www.cnblogs.com/ouyangkai/");
@@ -196,70 +196,11 @@ export default {
           break;
       }
     };
-    // onMounted(async () => {
-    //   await onk(100);
-    // });
+
     return {
       onk,
     };
   },
-  // methods: {
-  // onk(num) {
-  //   switch (num) {
-  //     case 1:
-  //       this.$router.push("/Indexs");
-  //       break;
-  //     case 2:
-  //       this.$router.push("/TagText");
-  //       break;
-  //     case 3:
-  //       this.$router.push("./Resource");
-  //       break;
-  //     case 4:
-  //       this.$router.push("./Classify");
-  //       break;
-  //     case 5:
-  //       this.$router.push("./Timeline");
-  //       break;
-  //     case 6:
-  //       this.$router.push("./Photo");
-  //       break;
-  //     case 7:
-  //       this.$router.push("./Navigation");
-  //       break;
-  //     case 8:
-  //       this.$router.push("./About");
-  //       break;
-  //     case 9:
-  //       this.$router.push("./Talk");
-  //       break;
-  //     case 10:
-  //       this.$router.push("./Books");
-  //       break;
-  //     case 11:
-  //       this.$router.push("./PersonalNavigation");
-  //       break;
-  //     case 12:
-  //       this.$router.push("./SnLeave");
-  //       break;
-  //     case 13:
-  //       window.open("https://www.cnblogs.com/ouyangkai/");
-  //       break;
-  //     case 14:
-  //       window.open("https://gitee.com/kaiouyang-sn");
-  //       break;
-  //     case 15:
-  //       this.$router.push("./SnVideo");
-  //       break;
-  //     default:
-  //       this.$router.push("./Index");
-  //       break;
-  //   }
-  // },
-  // afterform() {
-  //   this.$router.push("/Afterform");
-  // },
-  // },
 };
 </script>
 

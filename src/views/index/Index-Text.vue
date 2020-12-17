@@ -166,30 +166,6 @@ export default {
       backtop,
     };
   },
-
-  // methods: {
-
-  //   current_change(val) {
-  //     this.page = val;
-  //     this.AsyGetTest();
-  //     this.backtop(); //回到顶部
-  //   },
-  //   backtop() {
-  //     {
-  //       var timer = setInterval(function () {
-  //         let osTop =
-  //           document.documentElement.scrollTop || document.body.scrollTop;
-  //         let ispeed = Math.floor(-osTop / 5);
-  //         document.documentElement.scrollTop = document.body.scrollTop =
-  //           osTop + ispeed;
-  //         this.isTop = true;
-  //         if (osTop === 0) {
-  //           clearInterval(timer);
-  //         }
-  //       }, 30);
-  //     }
-  //   },
-  // },
 };
 </script>
 
