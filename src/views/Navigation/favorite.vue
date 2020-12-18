@@ -19,7 +19,7 @@
         </div>
       </div>
       <div
-        class="inline-grid col-gap-4 PersonalNavigation-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="inline-grid col-gap-3 PersonalNavigation-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div
           class="PersonalNavigation-text"
@@ -35,6 +35,7 @@
     </div>
     <!--        侧边栏-->
     <Sidebarsn></Sidebarsn>
+    <IndexSidebar></IndexSidebar>
   </div>
 </template>
 
@@ -84,7 +85,7 @@ export default {
     position: fixed;
     @include w-h(100%, 100%);
     .PersonalNavigation {
-      @include initialize(75%, 100%, 60px, null, 22%, null, #ffffff);
+      @include initialize(50%, 100%, 60px, null, 22%, null, #ffffff);
       @apply shadow-sm;
       .PersonalNavigation-2 {
         /*background-color: #FFFFFF;*/
@@ -99,7 +100,7 @@ export default {
         /*background-color: #004085;*/
         overflow: auto;
         .PersonalNavigation-text {
-          @include w-h(85%, 102px);
+          @include w-h(85%, 100px);
           @apply m-2;
           @apply ml-5 shadow rounded-sm;
 

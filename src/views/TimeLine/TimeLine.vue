@@ -19,6 +19,8 @@
 
     <div class="timeline-time">
       <div class="block">
+        <!-- 骨架 -->
+        <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
         <a-timeline v-for="activity in items" :key="activity.articleId">
           <div class="block-1">
             <a-timeline-item>
@@ -39,9 +41,9 @@
     </div>
   </div>
   <div>
-    <a-spin :spinning="spinning" :delay="200">
+    <!-- <a-spin :spinning="spinning" :delay="200">
       <div class=""></div>
-    </a-spin>
+    </a-spin> -->
   </div>
 </template>
 

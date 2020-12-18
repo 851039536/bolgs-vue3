@@ -1,15 +1,20 @@
 <template>
   <div class="BlogCircless">
     <Sidebarsn></Sidebarsn>
-
+    <IndexSidebar></IndexSidebar>
     <div class="BlogCircles animate__animated animate__fadeIn">
       <div class="font-extrabold BlogCircles-2">博客圈</div>
       <div
-        class="inline-grid col-gap-4 BlogCircles-1s xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="inline-grid col-gap-3 BlogCircles-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1"
       >
         <div class="BlogCircles-1" v-for="info in text" :key="info.navId">
           <div class="BlogCircles-1-1">
-            <img :src="info.navImg" alt="" />
+            <!-- <img src="图片的url地址" alt="图片XX" onerror="this.src='默认图片的url地址;this.οnerrοr=null'"/>   -->
+            <img
+              :src="info.navImg"
+              alt=""
+              onerror="this.style.display='none '"
+            />
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
@@ -25,8 +30,8 @@
 
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-
 export default {
+  components: {},
   name: "BlogCircles",
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -71,32 +76,32 @@ export default {
     position: fixed;
     @include w-h(100%, 100%);
     .BlogCircles {
-      @include initialize(75%, 94%, 60px, null, 22%, null, #ffffff);
+      @include initialize(50%, 94%, 60px, null, 22%, null, #ffffff);
       @apply shadow-sm rounded-sm;
       .BlogCircles-1 {
-        @include w-h(230px, 100px);
+        @include w-h(200px, 80px);
         @apply m-1 ml-3 shadow rounded;
         .BlogCircles-1-1 {
-          @include w-h(36%, 100%);
+          @include w-h(35%, 99%);
           @apply pt-1;
           /*background-color: red;*/
           float: left;
 
           img {
             @include w-h(100%, 100%);
-            @apply rounded-sm;
+            @apply rounded-full;
           }
         }
 
         .BlogCircles-1-2 {
           float: right;
-          width: 63%;
+          width: 65%;
           height: 100%;
           /*background-color: #95999c;*/
 
           .BlogCircles-1-2-1 {
-            /*background-color: #4eb687;*/
-            @apply text-base p-2 m-1;
+            // background-color: #4eb687;
+            @apply text-base p-1 pt-2;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -131,7 +136,7 @@ export default {
           .BlogCircles-1-2-2 {
             /*background-color: #00FFFF;*/
 
-            @apply p-1 px-1 m-2;
+            @apply px-1 pt-3;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;

@@ -111,7 +111,7 @@ export default {
 
           break;
         case 6:
-          router.push("./Books");
+          router.push("./Indexs");
           break;
         default:
           router.push("./Indexs");

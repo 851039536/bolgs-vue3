@@ -25,13 +25,32 @@
 
     <!--标题-->
     <div class="article-title">
-      <a class="text-lg" @click="houtui">&lt;</a>
-      <p class="text-lg text-center">
+      <a-page-header :title="newinfo.title" @back="() => $router.go(-1)">
+        <a-descriptions size="small" :column="3">
+          <a-descriptions-item label="Created"> Junior@ </a-descriptions-item>
+          <a-descriptions-item label="Association"
+            >851039536
+          </a-descriptions-item>
+          <a-descriptions-item label="Creation Time">
+            {{ newinfo.time }}
+          </a-descriptions-item>
+          <a-descriptions-item label="Effective Time">
+            {{ newinfo.time }}
+          </a-descriptions-item>
+          <a-descriptions-item label="Remarks">
+            Guang dong, China
+          </a-descriptions-item>
+        </a-descriptions>
+      </a-page-header>
+
+      <!-- <a class="text-lg" @click="houtui">&lt;</a> -->
+      <!-- <p class="text-lg text-center">
         {{ newinfo.title }}
-      </p>
+      </p> -->
     </div>
     <!--内容-->
     <div class="editor-text">
+      <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
       <div class="blog" v-html="blog"></div>
     </div>
 
@@ -76,11 +95,6 @@
 
     <!-- 加载框 -->
     <div class="lo">
-      <a-spin :spinning="spinning">
-        <div class="spin-content">
-          <!-- 可以点击‘切换’按钮，控制本区域的spin展示。 -->
-        </div>
-      </a-spin>
       <!-- <a-switch v-model:checked="spinning" /> -->
     </div>
   </div>
@@ -150,7 +164,6 @@ export default {
             state.newinfo = res1.data;
             state.article = res2.data;
             UpRead(state.newinfo);
-
             state.blog = marked(state.newinfo.text);
             state.spinning = false;
             // alert(this.spinning);
@@ -190,7 +203,7 @@ export default {
           })
           .then((res: any) => {
             if (res.status === 200) {
-              console.log("1");
+              // console.log("1");
             } else {
               alert("更新失败");
             }
@@ -233,7 +246,7 @@ export default {
               var time = 10;
               var timer = setInterval(function () {
                 time--;
-                console.log(time);
+                // console.log(time);
                 if (time == 0) {
                   state.timebool = true;
                   // alert(this.timebool)
@@ -347,7 +360,7 @@ export default {
   /*编译器组件*/
   .editor-text {
     @include w-h(49%, null);
-    margin: 3px 0 0 23%;
+    margin: 104px 0 0 23%;
   }
 
   /*左侧边栏*/
@@ -388,6 +401,12 @@ export default {
     a {
       position: absolute;
       @include excursion(7px, null, 8px, null);
+    }
+    .ant-page-header {
+      @apply shadow rounded-sm;
+    }
+    .ant-page-header-back {
+      @apply mt-1;
     }
   }
 

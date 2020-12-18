@@ -60,7 +60,6 @@
           @change="currentchange"
           :total="count"
           :pageSize="pagesize"
-          show-size-changer
           show-quick-jumper
         />
       </div>

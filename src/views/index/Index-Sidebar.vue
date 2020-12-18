@@ -75,11 +75,13 @@
         </div>
       </div>
       <div class="sn-list7">
-        <div class="sn-list7-1">公告</div>
+        <div class="sn-list7-1"></div>
         <div class="sn-list7-2">
-          <p class="antialiased">
-            本站基于TailWindcss,Vue3,Axios, NetCoreWebApi 开发搭建
-          </p>
+          <a-calendar
+            v-model:value="value"
+            :fullscreen="false"
+            @panelChange="onPanelChange"
+          />
         </div>
       </div>
       <div class="sn-list4">
@@ -215,6 +217,7 @@ export default {
       SortCount: 0,
       LabelsCount: 0,
       zhihu: [],
+      value: "",
     });
 
     const AsyGetTest = async () => {
@@ -271,7 +274,7 @@ export default {
     const tagtest = (tagid: any) => {
       // .带参数跳转
       router.push({
-        path: "/SnTagText",
+        path: "/TagText",
         query: {
           id: tagid,
         },
@@ -287,6 +290,10 @@ export default {
         },
       });
     };
+
+    const onPanelChange = (value: string) => {
+      console.log(value);
+    };
     onMounted(async () => {
       await AsyGetTest();
     });
@@ -296,6 +303,7 @@ export default {
       tagtest,
       AsyGetTest,
       AsyGetTestID,
+      onPanelChange,
     };
   },
 };
@@ -426,14 +434,6 @@ export default {
 
         // 公告
         .sn-list7-1 {
-          @apply text-gray-900 m-1 p-1 text-base font-semibold bg-gray-200;
-        }
-        .sn-list7-2 {
-          p {
-            width: 100%;
-            @apply text-sm px-2 bg-gray-100;
-            @apply py-2;
-          }
         }
       }
 
