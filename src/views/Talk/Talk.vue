@@ -18,13 +18,13 @@
               </div>
             </template>
             <div>
-              <img src="../../assets/img/ab.jpg" alt="" />
+              <img src="../../assets/img/bg.jpg" alt="" />
             </div>
             <div>
               <img src="../../assets/img/bg.jpg" alt="" />
             </div>
             <div>
-              <img src="../../assets/img/ab.jpg" alt="" />
+              <img src="../../assets/img/bg.jpg" alt="" />
             </div>
             <div>
               <img src="../../assets/img/bg.jpg" alt="" />
@@ -42,31 +42,44 @@
           </div>
         </div>
 
-        <div class="talk-text-2">
+        <div class="talk-text-2" v-for="data in dataShow" :key="data.id">
           <div class="flex talk-text-2-1">
-            <div class="talk-text-2-1-1">
-              <!--                        <img src="@/assets/img/w.jpg" alt="">-->
-              <img src="../../assets/img/ab.jpg" alt="" />
-            </div>
+            <!-- <div class="talk-text-2-1-1">
+             
+            </div> -->
 
             <div class="talk-text-2-1-2">
               <div class="flex talk-text-2-1-2-1">
                 <div><a>烬落</a></div>
-                <div>2010-10-10</div>
-                <div><a>《我觉得好用就行啦。》</a></div>
+                <div>{{ data.talkTime }}</div>
+                <div>
+                  <a>《{{ data.talkTitle }}》</a>
+                </div>
               </div>
               <div class="talk-text-2-1-2-2">
-                2个美德乐的储奶瓶，如果大一点的时候辅食餐具加上的话，就要考虑重新置换一个容量大的啦～
-                个美德乐的储奶瓶个美德乐的储奶瓶个美德乐的储奶瓶个美德乐的储奶瓶
+                {{ data.talkBrief }}
               </div>
 
               <div class="flex talk-text-2-1-2-3">
-                <div>赞:100</div>
-                <div>阅读:1000</div>
-                <div>评论:1</div>
-                <div>分类:haha</div>
+                <div>赞:{{ data.talkGive }}</div>
+                <div>阅读:{{ data.talkRead }}</div>
+                <div>评论:{{ data.talkComment }}</div>
+                <div>分类:{{ data.talkTypeId }}</div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!--分页-->
+        <div class="p-1 m-1">
+          <div id="components-pagination-demo-mini">
+            <a-pagination
+              size="small"
+              @change="currentchange"
+              :total="count"
+              :pageSize="pagesize"
+              show-quick-jumper
+            />
           </div>
         </div>
       </div>
@@ -76,19 +89,103 @@
   </div>
 </template>
 
-<script>
-// import Sidebarsn from "../common/Sidebarsn";
+<script lang="ts">
+import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import TalkSidebar from "./TalkSidebar";
 export default {
   name: "Talk",
   components: { TalkSidebar },
-  // created () {
 
-  // },
-  // methods: {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const router = useRouter();
+    // 加载路由
+    // const route = useRoute();
+    const state = reactive({
+      dataShow: [], // 当前显示的数据
+      page: 1, //当前页码
+      pagesize: 8, //每页的数据条数
+      count: 0, //默认数据总数
+    });
 
-  // }
-}
+    const getCount = async () => {
+      proxy
+        .$api({
+          url: "/api/SnTalk/CountAsync",
+        })
+        .then((res: any) => {
+          state.count = res.data;
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
+    const AsyGetTest = async () => {
+      proxy
+        .$api({
+          url:
+            "/api/SnTalk/GetFyAllAsync?pageIndex=" +
+            state.page +
+            "&pageSize=" +
+            state.pagesize +
+            "&isDesc=true",
+        })
+        .then((res: any) => {
+          state.dataShow = res.data;
+        })
+        .catch((e: any) => {
+          console.log(e + "获取数据失败");
+        });
+    };
+
+    const AsyGetTestID = async (id: any) => {
+      // .带参数跳转
+      await router.push({
+        path: "/Indextext2",
+        query: {
+          id: id,
+        },
+      });
+    };
+
+    const currentchange = async (val: any) => {
+      state.page = val;
+      AsyGetTest();
+      backtop(); //回到顶部
+    };
+
+    const backtop = async () => {
+      {
+        var timer = setInterval(function () {
+          let osTop =
+            document.documentElement.scrollTop || document.body.scrollTop;
+          let ispeed = Math.floor(-osTop / 5);
+          document.documentElement.scrollTop = document.body.scrollTop =
+            osTop + ispeed;
+          // this.isTop = true;
+          if (osTop === 0) {
+            clearInterval(timer);
+          }
+        }, 30);
+      }
+    };
+    onMounted(async () => {
+      await getCount();
+      await AsyGetTest();
+    });
+
+    return {
+      ...toRefs(state),
+      getCount,
+      AsyGetTest,
+      AsyGetTestID,
+      currentchange,
+      backtop,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -96,17 +193,17 @@ export default {
 
   .talk {
     /*background-color: #dddddd;*/
-    width: 50%;
+    width: $w;
     height: 100%;
     margin-top: 60px;
-    margin-left: 23%;
+    margin-left: $ml;
     //@include boxshow;
     .talk-text {
       .talk-text-1 {
         /* For demo */
         .ant-carousel ::v-deep(.slick-slide) {
           text-align: center;
-          height: 180px;
+          height: 140px;
           line-height: 160px;
           background: #364d79;
           overflow: hidden;
@@ -171,11 +268,11 @@ export default {
 
       .talk-text-2 {
         @apply mt-3;
-        /*background-color: #6990f6;*/
+        // background-color: #6990f6;
 
         .talk-text-2-1 {
           background-color: #ffffff;
-          @include w-h(98%, 122px);
+          @include w-h(100%, 120px);
           margin: auto;
           @apply mt-4;
           /*border-bottom: 1px dashed #f1f1f1;*/
@@ -194,34 +291,34 @@ export default {
           // 右边内容
           .talk-text-2-1-2 {
             // background-color: #55a532;
-            @include w-h(75%, 100%);
+            @include w-h(100%, 100%);
             @apply text-justify;
 
             // 标题 作者 日期
             .talk-text-2-1-2-1 {
-              /*background-color: #0086b3;*/
+              // background-color: #0086b3;
               height: 30%;
 
               div {
                 /*background-color: #dddddd;*/
-                @apply p-1 px-2 text-sm cursor-pointer;
+                @apply p-1 px-4 pt-2 text-lg cursor-pointer font-semibold;
               }
             }
             // 内容
             .talk-text-2-1-2-2 {
               height: 40%;
               // background-color: #d1bda4;
-              @apply p-1 px-2 text-sm;
+              @apply p-1 pt-2 px-4 text-sm;
               @include line-number;
             }
 
             .talk-text-2-1-2-3 {
               height: 30%;
-              @apply px-1 pt-3 text-xs cursor-pointer;
+              @apply px-4 pt-2  text-sm cursor-pointer;
               // background-color: #9a6e3a;
 
               div {
-                @include w-h(null, 100%);
+                @include w-h(12%, 100%);
                 // background-color: #d1bda4;
                 @apply p-1;
               }

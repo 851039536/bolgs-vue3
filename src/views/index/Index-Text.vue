@@ -172,21 +172,21 @@ export default {
   @import "../../assets/sass/com";
 
   .sn-text {
-    @include initialize(49%, null, null, null, 23%, null, null);
+    @include initialize($w, null, null, null, $ml, null, null);
     // @include boxshow3;
     p {
       @apply mb-4 text-xs;
     }
 
     .sn-test-2 {
-      @include w-h(null, 120px);
+      @include w-h(null, 140px);
       @apply mb-2;
       background: no-repeat center/100% url("../../assets/img/bg.jpg");
       @include boxshow3;
     }
     .sn-test-1 {
       background-color: #ffffff;
-      @include w-h(100%, 140px);
+      @include w-h(100%, 145px);
       @apply mb-4 shadow rounded-md;
       // @include boxshow3;
 

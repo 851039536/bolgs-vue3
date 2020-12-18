@@ -77,11 +77,11 @@
       <div class="sn-list7">
         <div class="sn-list7-1"></div>
         <div class="sn-list7-2">
-          <a-calendar
+          <!-- <a-calendar
             v-model:value="value"
             :fullscreen="false"
             @panelChange="onPanelChange"
-          />
+          /> -->
         </div>
       </div>
       <div class="sn-list4">
@@ -313,8 +313,8 @@ export default {
   .sn-list {
     position: fixed;
     @include excursion(60px, null, null, 0);
-    @include w-h(28%, 90%);
-    // background-color: #4d4f91;
+    @include w-h(24%, 90%);
+    //background-color: #4d4f91;
     @apply ml-3;
     .sn-list-s {
       // background-color: #55a532;
@@ -322,7 +322,7 @@ export default {
       overflow: auto;
 
       .sn-list0 {
-        @include initialize(80%, 250px, 0, 0, auto, auto, #ffffff);
+        @include initialize(95%, 250px, 0, 0, auto, auto, #ffffff);
         @apply mb-3 shadow rounded;
         .sn-list0-img {
           @include initialize(140px, 100px, auto, auto, auto, auto, null);
@@ -331,7 +331,6 @@ export default {
             @apply p-3;
           }
         }
-
         .sn-list0-name {
           height: 30px;
           margin: 20px auto;
@@ -390,7 +389,7 @@ export default {
       }
 
       .sn-list2 {
-        @include w-h(80%, 50px);
+        @include w-h(95%, 50px);
         margin: 0 auto;
         @apply mb-3 shadow rounded bg-white;
         // @include boxshow;
@@ -407,7 +406,7 @@ export default {
         }
       }
       .sn-list4 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         text-align: center;
         @apply mb-3 shadow rounded bg-white;
@@ -427,7 +426,7 @@ export default {
       }
 
       .sn-list7 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
@@ -438,7 +437,7 @@ export default {
       }
 
       .sn-list8 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
@@ -464,7 +463,7 @@ export default {
       }
 
       .sn-list3 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
@@ -485,7 +484,7 @@ export default {
 
       // 分类
       .sn-list5 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply p-1 mb-2 bg-white;
         @apply shadow rounded;
@@ -499,7 +498,7 @@ export default {
       }
 
       .sn-list6 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;

@@ -303,7 +303,7 @@ export default {
   .TalkSidebar {
     position: fixed;
     @include excursion(9%, null, null, 0);
-    @include w-h(28%, 90%);
+    @include w-h(24%, 90%);
     font-size: 17px;
     color: #888888;
     /*background-color: #4d4f91;*/
@@ -315,7 +315,7 @@ export default {
 
       .TalkSidebar-text-1 {
         height: 50px;
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply mb-3;
         @apply shadow rounded;
@@ -332,7 +332,7 @@ export default {
       }
 
       .TalkSidebar-text-2 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply mb-3;
         @apply shadow rounded;
@@ -341,7 +341,7 @@ export default {
       }
 
       .TalkSidebar-text-3 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         @apply mb-3;
         @apply shadow rounded;
@@ -353,7 +353,7 @@ export default {
         height: 44px !important;
       }
       .sn-list4 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         background-color: #ffffff;
         text-align: center;
@@ -376,7 +376,7 @@ export default {
       }
 
       .sn-list7 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
@@ -393,7 +393,7 @@ export default {
       }
 
       .sn-list8 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
@@ -420,7 +420,7 @@ export default {
       }
 
       .sn-list3 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
@@ -442,7 +442,7 @@ export default {
       }
 
       .sn-list5 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2;
@@ -455,7 +455,7 @@ export default {
       }
 
       .TalkSidebar-text-4 {
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;

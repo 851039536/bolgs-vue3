@@ -110,7 +110,7 @@ export default {
   @import "../../assets/sass/com";
   .timeline {
     margin: 0 auto;
-    @include initialize(49%, null, 60px, null, 23%, null, #ffffff);
+    @include initialize($w, null, 60px, null, $ml, null, #ffffff);
     @apply text-base;
     @apply shadow;
     .timeline-img {

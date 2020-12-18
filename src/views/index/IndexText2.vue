@@ -332,7 +332,7 @@ export default {
 
   /*底部*/
   .article-3 {
-    @include initialize(49%, null, 1px, null, 23%, null, null);
+    @include initialize($w, null, 1px, null, $ml, null, null);
     @apply shadow rounded;
     @apply cursor-pointer bg-white text-black;
     .article-3-1 {
@@ -359,8 +359,8 @@ export default {
 
   /*编译器组件*/
   .editor-text {
-    @include w-h(49%, null);
-    margin: 104px 0 0 23%;
+    @include w-h($w, null);
+    margin: 104px 0 0 $ml;
   }
 
   /*左侧边栏*/
@@ -390,7 +390,7 @@ export default {
   /*返回上一页*/
   .article-title {
     position: relative;
-    @include initialize(49%, 40px, 60px, null, 23%, null, #ffffff);
+    @include initialize($w, 40px, 60px, null, $ml, null, #ffffff);
     @apply shadow rounded cursor-pointer;
 
     p {

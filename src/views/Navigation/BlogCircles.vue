@@ -76,7 +76,7 @@ export default {
     position: fixed;
     @include w-h(100%, 100%);
     .BlogCircles {
-      @include initialize(50%, 94%, 60px, null, 22%, null, #ffffff);
+      @include initialize($w, 94%, 60px, null, $ml, null, #ffffff);
       @apply shadow-sm rounded-sm;
       .BlogCircles-1 {
         @include w-h(200px, 80px);

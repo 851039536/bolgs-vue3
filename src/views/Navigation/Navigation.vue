@@ -1,10 +1,11 @@
 <template>
   <div>
     <Sidebarsn></Sidebarsn>
+    <IndexSidebar></IndexSidebar>
     <div class="n-nav animate__animated animate__fadeIn">
       <h5 class="px-2 py-2 m-1">网站导航</h5>
       <div
-        class="inline-grid col-gap-4 cursor-default xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="inline-grid col-gap-3 cursor-default xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div v-for="info in text" :key="info.navId" class="n-nav-1">
           <div class="n-nav-1-1">
@@ -69,11 +70,11 @@ export default {
   @import "../../assets/sass/com";
 
   .n-nav {
-    @include initialize(75%, null, 62px, null, 22%, null, #ffffff);
+    @include initialize($w, null, 60px, null, $ml, null, #ffffff);
     @apply shadow rounded-sm;
     .n-nav-1 {
-      @include w-h(null, 225px);
-      @apply shadow-sm rounded-sm;
+      @include w-h(null, 200px);
+      @apply shadow rounded-sm;
       margin: 10px;
       .n-nav-1-1 {
         img {

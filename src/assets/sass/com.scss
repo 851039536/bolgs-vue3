@@ -16,6 +16,9 @@ $boxshow11: 0 1px 1px -2px rgba(0, 0, 0, .2);
 $boxshow22: 0 1px 2px 0 rgba(0, 0, 0, .14);
 $boxshow33: 0 1px 3px 0 rgba(0, 0, 0, .12);
 
+$w:51%;
+$ml:23%;
+
 /* 背景3d边框*/
 @mixin boxshow1 {
   -webkit-box-sizing: border-box;

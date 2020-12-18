@@ -131,7 +131,7 @@ export default {
   .fo {
     position: relative;
 
-    @include w-h(20%, 100%);
+    @include w-h(21%, 100%);
     position: fixed;
     @include excursion(0, null, 0, null);
     background-color: #ffffff;

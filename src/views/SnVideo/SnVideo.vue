@@ -110,7 +110,7 @@ export default {
     @include w-h(100%, 100%);
     .SnVideo {
       position: relative;
-      @include initialize(77%, 99%, 60px, null, 21.5%, null, #ffffff);
+      @include initialize(76%, 99%, 60px, null, $ml, null, #ffffff);
       @apply shadow rounded-sm;
       .SnVideo-1 {
         @include initialize(20%, 80%, 8px, null, 0%, null, null);

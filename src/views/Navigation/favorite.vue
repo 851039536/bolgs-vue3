@@ -85,7 +85,7 @@ export default {
     position: fixed;
     @include w-h(100%, 100%);
     .PersonalNavigation {
-      @include initialize(50%, 100%, 60px, null, 22%, null, #ffffff);
+      @include initialize($w, 100%, 60px, null, $ml, null, #ffffff);
       @apply shadow-sm;
       .PersonalNavigation-2 {
         /*background-color: #FFFFFF;*/
