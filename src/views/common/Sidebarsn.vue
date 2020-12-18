@@ -95,7 +95,7 @@ export default {
     let nav = async (num: number) => {
       switch (num) {
         case 1:
-          router.push("/EverydayOne");
+          router.push("/One");
           break;
         case 2:
           router.push("/SnVideo");

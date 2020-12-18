@@ -157,6 +157,15 @@ const routes = [{
   },
   component: () => import('../views/Leave/Leave.vue')
 },
+
+{
+  path: '/One',
+  name: 'One',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/One/One.vue')
+},
 ]
 
 const router = createRouter({

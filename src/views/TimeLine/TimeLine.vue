@@ -19,11 +19,11 @@
 
     <div class="timeline-time">
       <div class="block">
-        <a-timeline v-for="(activity, index) in items" :key="index">
+        <a-timeline v-for="activity in items" :key="activity.articleId">
           <div class="block-1">
             <a-timeline-item>
               <h4>
-                <a>{{ activity.title }} </a>
+                <a @click="onk(activity.articleId)">{{ activity.title }} </a>
               </h4>
             </a-timeline-item>
             <a-timeline-item color="green">
@@ -48,6 +48,7 @@
 <script lang="ts">
 //从 vue 中引入 多个生命周期函数
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
 export default {
   name: "TimeLine",
   components: {},
@@ -62,6 +63,7 @@ export default {
     }
 
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const router = useRouter();
     const state: States = reactive({
       items: [],
       reverse: true,
@@ -77,7 +79,6 @@ export default {
         })
         .then((res: any) => {
           state.items = res.data;
-
           state.spinning = false;
         })
         .catch((e: never) => {
@@ -85,10 +86,20 @@ export default {
           console.log(e + "获取数据失败");
         });
     };
+
+    const onk = (id: number) => {
+      // .带参数跳转
+      router.push({
+        path: "/Indextext2",
+        query: {
+          id: id,
+        },
+      });
+    };
     onMounted(async () => {
       await asyGetTest();
     });
-    return { ...toRefs(state), asyGetTest };
+    return { ...toRefs(state), asyGetTest, onk };
   },
 };
 </script>
