@@ -57,8 +57,8 @@
       </div> -->
 
       <div class="EverydayOne-2">
-        <div class="text-lg EverydayOne-2-1">往期推荐</div>
-        <div class="text-lg EverydayOne-2-2">更多推荐</div>
+        <div class="text-lg EverydayOne-2-1">往期推荐!</div>
+        <div class="text-lg EverydayOne-2-2">更多推荐!</div>
       </div>
 
       <div
