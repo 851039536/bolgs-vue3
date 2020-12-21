@@ -1,45 +1,14 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-21 16:14:58
+ * @LastEditTime: 2020-12-21 16:46:12
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
+-->
 <template>
   <div class="TalkSidebar" id="sn-list" :class="{ isFixed: barFixed }">
     <div class="TalkSidebar-text">
-      <!--            <div class="font-mono sn-list0">-->
-      <!--                <div class="sn-list0-img">-->
-      <!--                    <img-->
-      <!--                            class="sn-list0-img2"-->
-      <!--                            id="img1"-->
-      <!--                            :src=User.userPhoto-->
-      <!--                            alt=""-->
-      <!--                    />-->
-      <!--                    &lt;!&ndash;                    <el-image&ndash;&gt;-->
-      <!--                    &lt;!&ndash;                            class="sn-list0-img2"&ndash;&gt;-->
-      <!--                    &lt;!&ndash;                            :src="User.userPhoto"&ndash;&gt;-->
-      <!--                    &lt;!&ndash;                            :fit="scale-down"></el-image>&ndash;&gt;-->
-      <!--                </div>-->
-      <!--                <div class="sn-list0-name">-->
-      <!--                    <h3 class="sn-list0-name1 ">{{User.userNickname}}</h3>-->
-      <!--                </div>-->
-
-      <!--                <div class="sn-list0-tag">-->
-      <!--                    <div class="flex sn-list0-tag-1">-->
-      <!--                        <div class="sn-list0-tag1 ">-->
-      <!--                            <div class="sn-list0-tag1-1-2"><a>{{ArticleCount}}</a></div>-->
-      <!--                            <div class="sn-list0-tag1-1-1">文章</div>-->
-      <!--                        </div>-->
-      <!--                        <div class="sn-list0-tag2 ">-->
-      <!--                            <div><a>-->
-      <!--                                {{LabelsCount}}-->
-      <!--                            </a></div>-->
-      <!--                            <div>标签</div>-->
-      <!--                        </div>-->
-      <!--                        <div class="sn-list0-tag3">-->
-      <!--                            <div><a>-->
-      <!--                                {{SortCount}}-->
-      <!--                            </a></div>-->
-      <!--                            <div>分类</div>-->
-      <!--                        </div>-->
-      <!--                    </div>-->
-      <!--                </div>-->
-      <!--            </div>-->
-
       <!--搜索框-->
       <div class="TalkSidebar-text-2">
         <div class="TalkSidebar-text-2-1">
@@ -48,41 +17,7 @@
           </el-input> -->
         </div>
       </div>
-      <!--qq 微信分享框-->
-      <div class="TalkSidebar-text-1">
-        <div class="flex items-center TalkSidebar-text-1-1">
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a
-              href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes"
-            >
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-QQ11"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a target="_blank" href="https://gitee.com/kaiouyang-sn">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-github1"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a>
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-weixin3"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a>
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-zhihu"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
+
       <div class="sn-list4">
         <h4>最新动态</h4>
         <div class="sn-list4-1">
@@ -100,7 +35,7 @@
         <div
           class="TalkSidebar-text-4-2"
           v-for="articles in article"
-          :key="articles.id"
+          :key="articles.oneId"
         >
           <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
             <svg class="inline-block icon" aria-hidden="true">
@@ -109,41 +44,10 @@
 "
               ></use>
             </svg>
-            <a @click="AsyGetTestID(articles.id)">{{ articles.talkTitle }}</a>
+            <a @click="AsyGetTestID(articles.oneId)">{{ articles.oneTitle }}</a>
           </div>
         </div>
       </div>
-
-      <!-- <div class="sn-list7">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list7-1"
-        >
-          公告
-        </div>
-        <div class="sn-list7-1">
-          <p class="">专注c#,vue,并发编程,netCore,WinForm,CSS</p>
-        </div>
-      </div> -->
-
-      <!-- <div class="sn-list3">
-        <div class="sn-list3-1">标签</div>
-
-        <div
-          class="sn-list3-2"
-          v-for="Labeslss in Labels"
-          :key="Labeslss.labelId"
-        >
-          <div
-            class="transition duration-500 ease-in-out transform sn-list3-2-1 hover: hover:scale-110 hover:text-red-600"
-            @click="tagtest(Labeslss.labelId)"
-          >
-            <svg class="inline-block icon" aria-hidden="true">
-              <use :xlink:href="Labeslss.labelAlias"></use>
-            </svg>
-            <a>{{ Labeslss.labelName }}</a>
-          </div>
-        </div>
-      </div> -->
       <div class="sn-list5">
         <div
           class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
@@ -158,9 +62,9 @@
         >
           <div
             class="flex-1 px-1 m-1 text-xs text-center text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
-            @click="tagtest(Labeslss.id)"
+            @click="tagtest(Sorts.id)"
           >
-            {{ Sorts.type }}
+            {{ Sorts.soTypeTitle }}
           </div>
         </div>
       </div>
@@ -228,10 +132,10 @@ export default {
       proxy.$api
         .all([
           //查询分类
-          proxy.$api.get("/api/SnTalkType/GetAllAsync"),
+          proxy.$api.get("/api/SnOneType/GetAll"),
           //查询最新发布前十文章
           proxy.$api.get(
-            "/api/SnTalk/GetFyAllAsync?pageIndex=1&pageSize=10&isDesc=true"
+            "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=10&isDesc=true"
           ),
           // 查询当前用户的说说
           proxy.$api.get(

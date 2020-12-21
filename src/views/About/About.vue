@@ -42,7 +42,7 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-C"></use>
             </svg>
-            <a>技术</a>
+            <a @click="Getid(1)">技术</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
@@ -51,7 +51,7 @@
 "
               ></use>
             </svg>
-            <a>生活</a>
+            <a @click="Getid(2)">娱乐</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
@@ -60,19 +60,19 @@
 "
               ></use>
             </svg>
-            <a>文章</a>
+            <a @click="Getid(3)">日志</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-daohang"></use>
             </svg>
-            <a>分享</a>
+            <a @click="Getid(4)">分享</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-chat"></use>
             </svg>
-            <a>留言</a>
+            <a @click="Getid(5)">留言</a>
           </div>
         </div>
         <div class="about-3">
@@ -138,11 +138,13 @@
 
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
 export default {
   name: "About",
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const router = useRouter();
     const state = reactive({
       activeClass: "animate__animated",
       errorClass: "animate__fadeInRightBig",
@@ -166,10 +168,31 @@ export default {
           console.log(e + "获取数据失败");
         });
     };
+
+    const Getid = async (id: number) => {
+      switch (id) {
+        case 1:
+          await router.push("./Indexs");
+          break;
+        case 2:
+          await router.push("./SnVideo");
+          break;
+        case 3:
+          await router.push("./Talk");
+          break;
+        case 4:
+          await router.push("./favorite");
+          break;
+        case 5:
+          await router.push("./Leave");
+          break;
+      }
+    };
+
     onMounted(async () => {
       await getall();
     });
-    return { ...toRefs(state), getall };
+    return { ...toRefs(state), getall, Getid };
   },
 };
 </script>

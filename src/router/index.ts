@@ -129,6 +129,14 @@ const routes = [{
   },
   component: () => import('../views/Talk/Talk.vue')
 },
+{
+  path: '/TalkText',
+  name: 'TalkText',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/Talk/TalkText.vue')
+},
 
 {
   path: '/SnVideo',

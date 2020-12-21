@@ -50,10 +50,10 @@
 
             <div class="talk-text-2-1-2">
               <div class="flex talk-text-2-1-2-1">
-                <div><a>烬落</a></div>
+                <!-- <div><a>Junior@</a></div> -->
                 <div>{{ data.talkTime }}</div>
                 <div>
-                  <a>《{{ data.talkTitle }}》</a>
+                  <a @click="GetTalkid(data.id)">《{{ data.talkTitle }}》</a>
                 </div>
               </div>
               <div class="talk-text-2-1-2-2">
@@ -61,10 +61,25 @@
               </div>
 
               <div class="flex talk-text-2-1-2-3">
-                <div>赞:{{ data.talkGive }}</div>
-                <div>阅读:{{ data.talkRead }}</div>
-                <div>评论:{{ data.talkComment }}</div>
-                <div>分类:{{ data.talkTypeId }}</div>
+                <div><a>Junior@</a></div>
+                <div>
+                  <svg class="inline-block icon" aria-hidden="true">
+                    <use
+                      xlink:href="#icon-dianzan2
+"
+                    ></use></svg
+                  >{{ data.talkGive }}
+                </div>
+                <div>
+                  <svg class="inline-block icon" aria-hidden="true">
+                    <use xlink:href="#icon-liulan"></use></svg
+                  >{{ data.talkRead }}
+                </div>
+                <div>
+                  <svg class="inline-block icon" aria-hidden="true">
+                    <use xlink:href="#icon-fenlei"></use></svg
+                  >{{ data.talkTypeId }}
+                </div>
               </div>
             </div>
           </div>
@@ -92,7 +107,7 @@
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import TalkSidebar from "./TalkSidebar";
+import TalkSidebar from "./TalkSidebar.vue";
 export default {
   name: "Talk",
   components: { TalkSidebar },
@@ -140,10 +155,10 @@ export default {
         });
     };
 
-    const AsyGetTestID = async (id: any) => {
+    const GetTalkid = async (id: any) => {
       // .带参数跳转
       await router.push({
-        path: "/Indextext2",
+        path: "/TalkText",
         query: {
           id: id,
         },
@@ -180,7 +195,7 @@ export default {
       ...toRefs(state),
       getCount,
       AsyGetTest,
-      AsyGetTestID,
+      GetTalkid,
       currentchange,
       backtop,
     };
@@ -193,10 +208,7 @@ export default {
 
   .talk {
     /*background-color: #dddddd;*/
-    width: $w;
-    height: 100%;
-    margin-top: 60px;
-    margin-left: $ml;
+    @include initialize($w, 100%, 60px, null, $ml, null, null);
     //@include boxshow;
     .talk-text {
       .talk-text-1 {
@@ -230,8 +242,7 @@ export default {
 
         div {
           img {
-            width: 100%;
-            height: 100%;
+            @include w-h(100%, 100%);
           }
         }
         /*父元素*/
@@ -247,7 +258,6 @@ export default {
           width: 100px;
           left: 7%;
           top: 40%;
-
           h4 {
             color: #ffffff;
           }

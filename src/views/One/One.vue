@@ -1,6 +1,7 @@
 <template>
   <div class="EverydayOnes">
     <Sidebarsn></Sidebarsn>
+    <OneSidebar></OneSidebar>
     <div class="EverydayOne animate__animated animate__fadeIn">
       <!--        每日最新  电脑端-->
       <div class="EverydayOne-1">
@@ -71,7 +72,7 @@
             <p class="EverydayOne-3-p1">
               <a>{{ data.oneTitle }}</a>
             </p>
-            <p class="EverydayOne-3-p2">xxx</p>
+            <!-- <p class="EverydayOne-3-p2">xxx</p> -->
             <p class="px-2 text-sm EverydayOne-3-p3">
               {{ data.oneText }}
             </p>
@@ -84,10 +85,10 @@
 
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-
+import OneSidebar from "./OneSidebar.vue";
 export default {
   name: "EverydayOne",
-  components: {},
+  components: { OneSidebar },
   setup() {
     const { proxy }: any = getCurrentInstance();
     const state: any = reactive({
@@ -142,7 +143,7 @@ export default {
     position: fixed;
     @include w-h(100%, 100%);
     .EverydayOne {
-      @include initialize(75%, 90%, 60px, null, $ml, null, #ffffff);
+      @include initialize($w, 90%, 60px, null, $ml, null, #ffffff);
       @apply shadow-sm rounded-sm;
       overflow: auto;
       .EverydayOne-1 {
@@ -150,8 +151,8 @@ export default {
         // background-color: #95999c;
         .EverydayOne-1-1 {
           // background-color: #4eb687;
-          width: 50%;
-          height: 100%;
+          width: 45%;
+          height: 76.5%;
           float: left;
           img {
             height: 100%;
@@ -161,7 +162,7 @@ export default {
 
         .EverydayOne-1-2 {
           // background-color: #007bff;
-          width: 50%;
+          width: 55%;
           height: 100%;
           float: right;
 
@@ -224,7 +225,7 @@ export default {
         @apply pl-1;
         .EverydayOne-3 {
           position: relative;
-          @include initialize(220px, 131px, 10px, null, null, null, #ffffff);
+          @include initialize(200px, 120px, 10px, null, null, null, #ffffff);
           @apply shadow rounded-sm cursor-pointer ml-6;
           .EverydayOne-3-1 {
             width: 100%;
