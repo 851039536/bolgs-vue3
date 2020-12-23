@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-14 17:22:05
+ * @LastEditTime: 2020-12-23 10:35:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\shims-vue.d.ts
+ */
 declare module '*.vue' {
   import { ComponentOptions } from 'vue'
   const componentOptions: ComponentOptions
@@ -12,9 +20,6 @@ declare module '*.js' {
   const contents: js;
   export default contents;
 }
-
-
-
-
-declare module '';
+declare module 'nprogress';
 declare module 'marked';
+declare module 'vue-marquee-text-component';

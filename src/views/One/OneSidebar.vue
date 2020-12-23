@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2020-12-21 16:46:12
+ * @LastEditTime: 2020-12-22 18:32:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -44,7 +44,15 @@
 "
               ></use>
             </svg>
-            <a @click="AsyGetTestID(articles.oneId)">{{ articles.oneTitle }}</a>
+            <a @click="setModal1Visible(true, articles.oneId)"
+              >{{ articles.oneTitle }}
+              {{
+                articles.oneData
+                  .toLocaleString()
+                  .replace(/T/g, " ")
+                  .replace(/\.[\d]{3}Z/, "")
+              }}</a
+            >
           </div>
         </div>
       </div>
@@ -103,6 +111,19 @@
         </div>
       </div>
     </div>
+    <div id="components-modal-demo-position">
+      <a-modal
+        v-model:visible="modal2Visible"
+        :title="text.oneTitle"
+        centered
+        cancelText="赞"
+        :closable="false"
+        okText="不了"
+        @ok="modal2Visible = false"
+      >
+        <p>{{ text.oneText }}</p>
+      </a-modal>
+    </div>
   </div>
 </template>
 
@@ -125,6 +146,8 @@ export default {
       //当前默认页
       barFixed: false,
       UserTalk: "",
+      modal2Visible: false,
+      text: [],
     });
 
     const getall = () => {
@@ -135,7 +158,7 @@ export default {
           proxy.$api.get("/api/SnOneType/GetAll"),
           //查询最新发布前十文章
           proxy.$api.get(
-            "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=10&isDesc=true"
+            "/api/SnOne/GetFyTypeAsync?type=999&pageIndex=1&pageSize=10&name=read&isDesc=true"
           ),
           // 查询当前用户的说说
           proxy.$api.get(
@@ -153,7 +176,19 @@ export default {
           console.log(err);
         });
     };
-
+    const setModal1Visible = (modal2Visible: boolean, id: number) => {
+      state.modal2Visible = modal2Visible;
+      proxy
+        .$api({
+          url: "/api/SnOne/GetOneIdAsync?id=" + id,
+        })
+        .then((res: any) => {
+          state.text = res.data;
+        })
+        .catch((e: never) => {
+          console.log(e + "获取数据失败");
+        });
+    };
     const AsyGetTestID = (id: number) => {
       //       // .带参数跳转
       router.push({
@@ -166,7 +201,7 @@ export default {
     onMounted(async () => {
       await getall();
     });
-    return { ...toRefs(state), getall, AsyGetTestID };
+    return { ...toRefs(state), getall, AsyGetTestID, setModal1Visible };
   },
 };
 </script>

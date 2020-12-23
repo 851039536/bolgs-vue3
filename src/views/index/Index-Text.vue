@@ -71,6 +71,7 @@
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 import { useRouter } from "vue-router";
+
 // 组件导入
 export default {
   name: "Index-Text",
@@ -203,14 +204,14 @@ export default {
             text-overflow: ellipsis;
             white-space: nowrap;
             //background-color: #4eb687;
-            @apply px-3 pt-1 m-1 text-lg cursor-pointer font-semibold;
+            @apply px-3 pt-1 m-1 text-xl cursor-pointer font-medium antialiased;
           }
 
           .sn-text-1-1-1-2 {
             color: #888888;
             @include w-h(null, 44%);
             // background-color: #9a6e3a;
-            @apply px-3 m-1 mt-2 text-sm tracking-wide leading-relaxed;
+            @apply px-3 m-1 mt-2 pt-1 text-sm tracking-wide leading-relaxed font-light antialiased;
             @include line-number;
           }
         }
@@ -218,11 +219,9 @@ export default {
 
       .sn-text-1-2 {
         // background-color: #95999c;
-
         @include w-h(100%, 25%);
-        // border-bottom: 1px solid #edeef0;
         //   background-color: #795da3;
-        @apply pl-3;
+        @apply pl-3 antialiased;
         div {
           // background-color: #0086b3;
           @include w-h(null, 78%);

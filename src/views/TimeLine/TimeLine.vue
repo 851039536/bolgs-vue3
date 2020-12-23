@@ -8,11 +8,11 @@
     <div class="timeline-title">
       <div class="timeline-title-1">
         <ul>
-          <li>分类 : 14+</li>
-          <li>标签 : 76+</li>
-          <li>文章 : 46+</li>
-          <li>阅读 : 46+</li>
-          <li>留言 : 100+</li>
+          <li>分类 : {{ SortCount }}</li>
+          <li>标签 : {{ LabelsCount }}</li>
+          <li>文章 : {{ ArticleCount }}</li>
+          <li>阅读 :{{ readCount }}+</li>
+          <li>字段数 : {{ textCount }}+</li>
         </ul>
       </div>
     </div>
@@ -51,6 +51,7 @@
 //从 vue 中引入 多个生命周期函数
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 export default {
   name: "TimeLine",
   components: {},
@@ -62,16 +63,34 @@ export default {
       reverse: boolean;
       spinning: boolean;
       items: (number | string)[]; //数组类型
+      textCount: number;
+      ArticleCount: number;
+      SortCount: number;
+      LabelsCount: number;
+      readCount: number;
     }
 
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
     const router = useRouter();
+    const store = useStore();
     const state: States = reactive({
       items: [],
       reverse: true,
       spinning: true,
+      textCount: 0, //文章字节数
+      ArticleCount: 0, //文章总数
+      SortCount: 0, //分类总数
+      LabelsCount: 0, //标签总数
+      readCount: 0, //阅读
     });
 
+    const iniCount = () => {
+      state.ArticleCount = store.state.ArticleCount;
+      state.textCount = store.state.textCount;
+      state.SortCount = store.state.SortCount;
+      state.LabelsCount = store.state.LabelsCount;
+      state.readCount = store.state.readCount;
+    };
     //void 为 函数没有类型，一般用在没有返回值的函数 如果方法类型为any，则可以返回任意类型
     const asyGetTest = (): void => {
       proxy
@@ -100,8 +119,9 @@ export default {
     };
     onMounted(async () => {
       await asyGetTest();
+      await iniCount();
     });
-    return { ...toRefs(state), asyGetTest, onk };
+    return { ...toRefs(state), asyGetTest, onk, iniCount };
   },
 };
 </script>
@@ -158,7 +178,7 @@ export default {
         .block-1 {
           @apply m-2;
           h4 {
-            @apply text-base;
+            @apply text-lg antialiased;
           }
         }
       }

@@ -3,27 +3,11 @@
     <Sidebarsn></Sidebarsn>
     <!--标题-->
     <div class="Talk-title">
-      <!-- <a-page-header :title="newinfo.talkTitle" @back="() => $router.go(-1)">
-        <a-descriptions size="small" :column="3">
-          <a-descriptions-item label="Created"> Junior@ </a-descriptions-item>
-          <a-descriptions-item label="Association"
-            >851039536
-          </a-descriptions-item>
-          <a-descriptions-item label="Creation Time">
-            {{ newinfo.talkTime }}
-          </a-descriptions-item>
-          <a-descriptions-item label="Effective Time">
-            {{ newinfo.talkTime }}
-          </a-descriptions-item>
-          <a-descriptions-item label="Remarks">
-            Guang dong, China
-          </a-descriptions-item>
-        </a-descriptions>
-      </a-page-header> -->
-      <a class="text-lg" @click="houtui">&lt;</a>
-      <p class="text-lg text-center">
+      <a-page-header :title="newinfo.talkTitle" @back="() => houtui()" />
+      <!-- <a class="text-lg" @click="houtui">&lt;</a> -->
+      <!-- <p class="text-lg text-center">
         {{ newinfo.talkTitle }}
-      </p>
+      </p> -->
     </div>
 
     <!--内容-->
@@ -324,7 +308,7 @@ export default {
   /*编译器组件*/
   .editor {
     @include w-h($w, null);
-    margin: 5px 0 0 $ml;
+    margin: 38px 0 0 $ml;
   }
 
   /*左侧边栏*/
@@ -375,54 +359,6 @@ export default {
   }
 
   .Talkblog {
-    @apply shadow rounded p-4;
-    @apply antialiased rounded-sm font-mono bg-white;
-
-    h1 {
-      @apply text-2xl py-1 text-gray-700 bg-white;
-    }
-    h2 {
-      @apply text-xl  py-1 text-gray-700 bg-white;
-    }
-
-    h3 {
-      @apply text-lg  py-1 bg-white;
-    }
-    h4 {
-      @apply text-base  py-1 bg-white;
-    }
-    h5 {
-      @apply text-sm  py-1 bg-white;
-    }
-    pre {
-      width: 100%;
-      @apply text-xs px-1 bg-gray-100;
-    }
-    code {
-      color: #6390bb;
-    }
-    p {
-      @apply text-sm  py-1 bg-white  leading-relaxed mb-1 antialiased text-gray-500;
-    }
-
-    li {
-      @apply text-xs py-1 bg-white  mb-1 antialiased text-gray-500;
-    }
-
-    table {
-      // background: gray;
-    }
-    th {
-      border: solid #f1f1f1 1px;
-      @apply p-1 text-sm;
-    }
-    td {
-      border: solid #f1f1f1 1px;
-      @apply p-1 text-sm;
-    }
-
-    a {
-      @apply text-red-800;
-    }
+    @include blogs;
   }
 </style>

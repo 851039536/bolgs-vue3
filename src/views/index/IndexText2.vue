@@ -25,7 +25,10 @@
 
     <!--标题-->
     <div class="article-title">
-      <a-page-header :title="newinfo.title" @back="() => $router.go(-1)">
+      <a-page-header
+        :title="newinfo.title"
+        @back="() => $router.push('/indexs')"
+      >
         <a-descriptions size="small" :column="3">
           <a-descriptions-item label="Created"> Junior@ </a-descriptions-item>
           <a-descriptions-item label="Association"
@@ -269,8 +272,7 @@ export default {
           id: id,
         },
       });
-
-      location.reload();
+      // location.reload();
     };
 
     // 代码高亮
@@ -324,6 +326,7 @@ export default {
 
 <style lang="scss">
   @import "../../assets/sass/com";
+
   .lo {
     position: fixed;
     top: 50%;
@@ -411,54 +414,56 @@ export default {
   }
 
   .blog {
-    @apply shadow rounded p-4;
-    @apply antialiased rounded-sm font-mono bg-white;
+    // @apply shadow rounded p-4;
+    // @apply antialiased rounded-sm  bg-white;
 
-    h1 {
-      @apply text-2xl py-1 text-gray-700 bg-white;
-    }
-    h2 {
-      @apply text-xl  py-1 text-gray-700 bg-white;
-    }
+    // h1 {
+    //   @apply text-2xl py-1 font-semibold text-gray-700 bg-white;
+    // }
+    // h2 {
+    //   @apply text-xl  py-1 font-semibold text-gray-700 bg-white;
+    // }
 
-    h3 {
-      @apply text-lg  py-1 bg-white;
-    }
-    h4 {
-      @apply text-base  py-1 bg-white;
-    }
-    h5 {
-      @apply text-sm  py-1 bg-white;
-    }
-    pre {
-      width: 100%;
-      @apply text-xs px-1 bg-gray-100;
-    }
-    code {
-      color: #6390bb;
-    }
-    p {
-      @apply text-sm  py-1 bg-white  leading-relaxed mb-1 antialiased text-gray-500;
-    }
+    // h3 {
+    //   @apply text-lg  py-1 font-semibold bg-white;
+    // }
+    // h4 {
+    //   @apply text-base  py-1 font-semibold bg-white;
+    // }
+    // h5 {
+    //   @apply text-sm  py-1 font-semibold bg-white;
+    // }
+    // pre {
+    //   width: 100%;
+    //   @apply text-sm px-1 bg-gray-100;
+    // }
+    // code {
+    //   color: #6390bb;
+    // }
+    // p {
+    //   @apply text-sm  py-1 bg-white  leading-relaxed mb-1 antialiased text-gray-500;
+    // }
 
-    li {
-      @apply text-xs py-1 bg-white  mb-1 antialiased text-gray-500;
-    }
+    // li {
+    //   @apply text-xs py-1 bg-white  mb-1 antialiased text-gray-500;
+    // }
 
-    table {
-      // background: gray;
-    }
-    th {
-      border: solid #f1f1f1 1px;
-      @apply p-1 text-sm;
-    }
-    td {
-      border: solid #f1f1f1 1px;
-      @apply p-1 text-sm;
-    }
+    // table {
+    //   // background: gray;
+    // }
+    // th {
+    //   border: solid #f1f1f1 1px;
+    //   @apply p-1 text-sm;
+    // }
+    // td {
+    //   border: solid #f1f1f1 1px;
+    //   @apply p-1 text-sm;
+    // }
 
-    a {
-      @apply text-red-800;
-    }
+    // a {
+    //   @apply text-red-800;
+    // }
+
+    @include blogs;
   }
 </style>

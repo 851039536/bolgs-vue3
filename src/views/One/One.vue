@@ -18,44 +18,14 @@
             {{ dataOne.oneText }}
           </div>
 
-          <div class="flex flex-row-reverse EverydayOne-1-2-3">
+          <div class="flex flex-row-reverse cursor-pointer EverydayOne-1-2-3">
             <div class="px-2 py-2 m-1 text-center text-gray-700">转载</div>
-            <div class="px-2 py-2 m-1 text-center text-gray-700">点赞(100)</div>
+            <div class="px-2 py-2 m-1 text-center text-gray-700">
+              点赞({{ dataOne.oneRead }})
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- 手机端
-      <div class="max-w-sm overflow-hidden rounded shadow-lg EverydayOne-1s">
-        <img
-          class="w-full"
-          src="https://s1.ax1x.com/2020/11/10/BqCQC6.jpg"
-          alt="Sunset in the mountains"
-        />
-        <div class="px-6 py-4">
-          <div class="mb-2 text-xs text-center">文|张拉登</div>
-          <p class="text-xs font-thin text-gray-700">
-            计师。我们后会有期（微信表情搜索“种子君”，发现会动的我～）
-          </p>
-        </div>
-      </div>
-
-      <div class="max-w-sm overflow-hidden rounded shadow-lg EverydayOne-2s">
-        <div class="text-center EverydayOne-2s-1">- 阅读 -</div>
-
-        <div class="EverydayOne-2s-2">好久不见,嘿嘿</div>
-        <div class="mb-2 EverydayOne-2s-3">文 / 张拉登</div>
-        <div class="px-2 py-2 EverydayOne-2s-4">
-          <p class="font-thin text-gray-700">计师。我们后会有期.</p>
-        </div>
-        <img
-          class="w-full"
-          src="https://s1.ax1x.com/2020/11/10/BqCK4x.jpg"
-          alt="Sunset in the mountains"
-        />
-
-        <div class="px-2 py-2 mb-2 font-hairline"><span>今天</span></div>
-      </div> -->
 
       <div class="EverydayOne-2">
         <div class="text-lg EverydayOne-2-1">往期推荐!</div>
@@ -70,7 +40,9 @@
         <div class="EverydayOne-3">
           <div class="EverydayOne-3-1">
             <p class="EverydayOne-3-p1">
-              <a>{{ data.oneTitle }}</a>
+              <a @click="setModal1Visible(true, data.oneId)">{{
+                data.oneTitle
+              }}</a>
             </p>
             <!-- <p class="EverydayOne-3-p2">xxx</p> -->
             <p class="px-2 text-sm EverydayOne-3-p3">
@@ -80,12 +52,28 @@
         </div>
       </div>
     </div>
+
+    <div id="components-modal-demo-position">
+      <a-modal
+        v-model:visible="modal2Visible"
+        :title="text.oneTitle"
+        centered
+        cancelText="赞"
+        :closable="false"
+        okText="不了"
+        @cancel="give()"
+        @ok="modal2Visible = false"
+      >
+        <p>{{ text.oneText }}</p>
+      </a-modal>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 import OneSidebar from "./OneSidebar.vue";
+import { message } from "ant-design-vue";
 export default {
   name: "EverydayOne",
   components: { OneSidebar },
@@ -94,19 +82,24 @@ export default {
     const state: any = reactive({
       dataTest: [],
       dataOne: [],
+      text: [],
+      modal2Visible: false,
     });
-    const getOne = () => {
-      // proxy
-      //   .$api({
-      //     url: "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=2&isDesc=true",
-      //   })
-      //   .then((res: any) => {
-      //     state.dataOne = res.data[0];
-      //   })
-      //   .catch((e: never) => {
-      //     console.log(e + "获取数据失败");
-      //   });
+    const setModal1Visible = (modal2Visible: boolean, id: number) => {
+      state.modal2Visible = modal2Visible;
+      proxy
+        .$api({
+          url: "/api/SnOne/GetOneIdAsync?id=" + id,
+        })
+        .then((res: any) => {
+          state.text = res.data;
+        })
+        .catch((e: never) => {
+          console.log(e + "获取数据失败");
+        });
+    };
 
+    const getOne = () => {
       proxy.$api
         .all([
           // 读取一条内容
@@ -115,7 +108,7 @@ export default {
           ),
           //查询最新发布前十内容
           proxy.$api.get(
-            "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=8&isDesc=true"
+            "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=6&isDesc=true"
           ),
         ])
         .then(
@@ -129,10 +122,13 @@ export default {
         });
     };
 
+    const give = (id: number) => {
+      message.info(id + "功能未完成");
+    };
     onMounted(async () => {
       await getOne();
     });
-    return { ...toRefs(state), getOne };
+    return { ...toRefs(state), getOne, setModal1Visible, give };
   },
 };
 </script>
@@ -226,7 +222,7 @@ export default {
         .EverydayOne-3 {
           position: relative;
           @include initialize(200px, 120px, 10px, null, null, null, #ffffff);
-          @apply shadow rounded-sm cursor-pointer ml-6;
+          @apply shadow rounded-sm cursor-pointer ml-4;
           .EverydayOne-3-1 {
             width: 100%;
             height: 100%;

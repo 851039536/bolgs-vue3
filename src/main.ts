@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-07 18:59:37
+ * @LastEditTime: 2020-12-23 10:38:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\main.ts
+ */
 import {
   createApp
 } from 'vue'
@@ -5,13 +13,14 @@ import Antd from 'ant-design-vue';
 import App from './App.vue'
 import 'ant-design-vue/dist/antd.css';
 import animated from 'animate.css'
+
 //字体图标
 import './assets/icon/fonts/iconfont.js'
 import './assets/icon/icon.css'
 //动画css
 import './index.css'
 import router from './router/index'
-import store from './store/index.js'
+import store from './store/index'
 import ajax from './api/index'
 // Vue.prototype.$api = ajax; // 将api挂载到vue的原型上复制代码
 
@@ -32,4 +41,5 @@ app.component("Headers", Headers)
 app.component("IndexSidebar", IndexSidebar)
 app.component("Sidebarsn", Sidebarsn)
 app.component("Comment", Comment)
+
 app.mount("#app");

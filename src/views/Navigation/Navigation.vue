@@ -1,9 +1,17 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-14 14:35:41
+ * @LastEditTime: 2020-12-22 15:45:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
+-->
 <template>
   <div>
     <Sidebarsn></Sidebarsn>
     <IndexSidebar></IndexSidebar>
     <div class="n-nav animate__animated animate__fadeIn">
-      <h5 class="px-2 py-2 m-1">网站导航</h5>
+      <h5 class="px-2 py-2 m-1">网站导航 {{ count }}</h5>
       <div
         class="inline-grid col-gap-3 cursor-default xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
@@ -30,6 +38,8 @@ import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 export default {
   name: "Navigation",
   components: {},
+
+  // inject: ["count"],
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this

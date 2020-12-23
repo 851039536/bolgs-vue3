@@ -6,9 +6,7 @@
         <span class="text-xl tracking-tight">Junior</span>
       </div>
 
-      <div
-        class="flex-grow block w-full header-sn-2 sm:flex sm:items-center sm:w-auto"
-      >
+      <div class="flex-grow block w-full sm:flex sm:items-center sm:w-auto">
         <div class="text-base sm:flex-grow">
           <a
             @click="onk(1)"
@@ -28,20 +26,6 @@
             </svg>
             标签
           </a>
-          <!--                    <a @click="onk(3)"-->
-          <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
-          <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-          <!--                            <use xlink:href="#icon-computer"></use>-->
-          <!--                        </svg>-->
-          <!--                        分享-->
-          <!--                    </a>-->
-          <!--                    <a @click="onk(4)"-->
-          <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
-          <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-          <!--                            <use xlink:href="#icon-exploit"></use>-->
-          <!--                        </svg>-->
-          <!--                        分类-->
-          <!--                    </a>-->
           <a
             @click="onk(5)"
             class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
@@ -210,7 +194,7 @@ export default {
   .header-sn {
     position: fixed;
     @include excursion(0, null, 0, null);
-    z-index: 9999;
+    z-index: 10;
     @include w-h(100%, 55px);
     // background-color: #795da3;
     @apply p-2 bg-white shadow-sm;

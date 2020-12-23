@@ -163,27 +163,19 @@
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
-            <div class="sn-list8-2-1-2">210篇</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">运行时间:</div>
-            <div class="sn-list8-2-1-2">333天</div>
+            <div class="sn-list8-2-1-2">{{ ArticleCount }}篇</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">总字数:</div>
-            <div class="sn-list8-2-1-2">1111k字</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">访客数:</div>
-            <div class="sn-list8-2-1-2">1111人</div>
+            <div class="sn-list8-2-1-2">{{ textCount }} 字</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">访问量:</div>
-            <div class="sn-list8-2-1-2">12434次</div>
+            <div class="sn-list8-2-1-2">{{ readCount }}次</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">最后更新:</div>
-            <div class="sn-list8-2-1-2">2012-12-12</div>
+            <div class="sn-list8-2-1-2">{{ articledata }}</div>
           </div>
         </div>
       </div>
@@ -194,14 +186,17 @@
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 import { useRouter } from "vue-router";
-
+import { useStore } from "vuex";
 export default {
   name: "Index-Sidebar",
   components: {},
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
     const router = useRouter();
+    const store = useStore();
+
     // 加载路由
     // const route = useRoute();
     const state = reactive({
@@ -218,6 +213,9 @@ export default {
       LabelsCount: 0,
       zhihu: [],
       value: "",
+      textCount: 0,
+      readCount: 0,
+      articledata: "",
     });
 
     const AsyGetTest = async () => {
@@ -243,6 +241,10 @@ export default {
           proxy.$api.get("/api/SnSort/GetSortCount"),
           //查询分类
           proxy.$api.get("/api/SnLabels/GetLabelsCount"),
+          // 内容字段数
+          proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
+          // 阅读量
+          proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
         ])
         .then(
           proxy.$api.spread(
@@ -254,16 +256,21 @@ export default {
               res5: any,
               res6: any,
               res7: any,
-              res8: any
+              res8: any,
+              res9: any,
+              res10: any
             ) => {
               state.Labels = res1.data;
               state.Sort = res2.data;
               state.article = res3.data;
+              state.articledata = res3.data[0].time;
               state.UserTalk = res4.data;
               state.User = res5.data[0];
-              state.ArticleCount = res6.data;
-              state.SortCount = res7.data;
-              state.LabelsCount = res8.data;
+              store.state.ArticleCount = state.ArticleCount = res6.data;
+              store.state.SortCount = state.SortCount = res7.data;
+              store.state.LabelsCount = state.LabelsCount = res8.data;
+              store.state.textCount = state.textCount = res9.data;
+              store.state.readCount = state.readCount = res10.data;
             }
           )
         )
@@ -281,10 +288,10 @@ export default {
       });
     };
     // 博客详情
-    const AsyGetTestID = (id: any) => {
+    const AsyGetTestID = (id: number) => {
       // .带参数跳转
       router.push({
-        path: "/Indextext2",
+        path: "/Transfer",
         query: {
           id: id,
         },
@@ -294,9 +301,12 @@ export default {
     const onPanelChange = (value: string) => {
       console.log(value);
     };
+
     onMounted(async () => {
       await AsyGetTest();
     });
+
+    // provide("count", state.textCount);
 
     return {
       ...toRefs(state),

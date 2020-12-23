@@ -1,26 +1,6 @@
 <template>
   <div class="fo">
     <div class="fos">
-      <!-- <vue-particles
-        class="bgys"
-        color="#dedede"
-        :particleOpacity="0.7"
-        :particlesNumber="60"
-        shapeType="circle"
-        :particleSize="4"
-        linesColor="#dedede"
-        :linesWidth="1"
-        :lineLinked="true"
-        :lineOpacity="0.4"
-        :linesDistance="150"
-        :moveSpeed="3"
-        :hoverEffect="true"
-        hoverMode="grab"
-        :clickEffect="true"
-        clickMode="push"
-      >
-      </vue-particles> -->
-
       <div class="fo-img1">
         <img src="@/assets/img/ab.jpg" alt="" />
       </div>
@@ -149,7 +129,7 @@ export default {
 
       .fo-img1 {
         img {
-          @include w-h(100%, 120px);
+          @include w-h(100%, 140px);
         }
 
         margin: 20% 0 40px 0;
@@ -159,13 +139,9 @@ export default {
         /*background-color: #55a532;*/
         @include w-h(40%, 30px);
         margin: 10px auto auto auto;
-        color: #aaaaaa;
-        text-align: center;
-        font-size: 15px;
-        cursor: default;
-
+        @apply text-center antialiased cursor-pointer;
         p {
-          @apply py-1 px-4 font-sans  text-base;
+          @apply py-1 px-4 text-lg font-light;
         }
       }
       .fo-2 {

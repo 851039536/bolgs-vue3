@@ -21,7 +21,14 @@
           <div class="SnVideo-2-1-2">
             <a @click="videos(info.vId)">{{ info.vTitle }}</a>
           </div>
-          <div class="SnVideo-2-1-3">{{ info.vData }}</div>
+          <div class="SnVideo-2-1-3">
+            {{
+              info.vData
+                .toLocaleString()
+                .replace(/T/g, " ")
+                .replace(/\.[\d]{3}Z/, "")
+            }}
+          </div>
         </div>
       </div>
     </div>

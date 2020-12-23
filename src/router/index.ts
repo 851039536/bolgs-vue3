@@ -69,6 +69,14 @@ const routes = [{
   component: () => import('../views/common/Sidebarsn.vue')
 },
 {
+  path: '/Transfer',
+  name: 'Transfer',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/common/Transfer.vue')
+},
+{
   path: '/TimeLine',
   name: 'TimeLine',
   meta: {

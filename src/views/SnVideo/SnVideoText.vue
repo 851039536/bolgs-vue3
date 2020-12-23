@@ -11,12 +11,19 @@
         >
           <div class="SnVideoText-2-1-1">
             <!-- <img :src="info.vImg" alt="" /> -->
-            <img src="../../assets/img/ab.jpg" alt="" />
+            <img src="../../assets/img/sp.png" alt="" />
           </div>
           <div class="p-1 text-sm SnVideoText-2-1-2">
             <a @click="videos(info.vId)">{{ info.vTitle }}</a>
           </div>
-          <div class="p-1 SnVideoText-2-1-3">{{ info.vData }}</div>
+          <div class="p-1 SnVideoText-2-1-3">
+            {{
+              info.vData
+                .toLocaleString()
+                .replace(/T/g, " ")
+                .replace(/\.[\d]{3}Z/, "")
+            }}
+          </div>
         </div>
       </div>
 

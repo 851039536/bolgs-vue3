@@ -135,7 +135,6 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 import { useRouter } from "vue-router";

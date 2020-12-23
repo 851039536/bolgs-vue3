@@ -51,7 +51,14 @@
             <div class="talk-text-2-1-2">
               <div class="flex talk-text-2-1-2-1">
                 <!-- <div><a>Junior@</a></div> -->
-                <div>{{ data.talkTime }}</div>
+                <div>
+                  {{
+                    data.talkTime
+                      .toLocaleString()
+                      .replace(/T/g, " ")
+                      .replace(/\.[\d]{3}Z/, "")
+                  }}
+                </div>
                 <div>
                   <a @click="GetTalkid(data.id)">《{{ data.talkTitle }}》</a>
                 </div>
@@ -76,9 +83,8 @@
                   >{{ data.talkRead }}
                 </div>
                 <div>
-                  <svg class="inline-block icon" aria-hidden="true">
-                    <use xlink:href="#icon-fenlei"></use></svg
-                  >{{ data.talkTypeId }}
+                  分类:
+                  {{ data.talkTypeId }}
                 </div>
               </div>
             </div>
@@ -311,14 +317,14 @@ export default {
 
               div {
                 /*background-color: #dddddd;*/
-                @apply p-1 px-4 pt-2 text-lg cursor-pointer font-semibold;
+                @apply p-1 px-4 pt-2 text-xl cursor-pointer font-normal antialiased;
               }
             }
             // 内容
             .talk-text-2-1-2-2 {
               height: 40%;
               // background-color: #d1bda4;
-              @apply p-1 pt-2 px-4 text-sm;
+              @apply p-1 pt-2 px-4 text-sm font-light antialiased;
               @include line-number;
             }
 
@@ -328,7 +334,7 @@ export default {
               // background-color: #9a6e3a;
 
               div {
-                @include w-h(12%, 100%);
+                @include w-h(10%, 100%);
                 // background-color: #d1bda4;
                 @apply p-1;
               }
