@@ -184,139 +184,139 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
-export default {
-  name: "Index-Sidebar",
-  components: {},
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  import { useStore } from "vuex";
+  export default {
+    name: "Index-Sidebar",
+    components: {},
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const router = useRouter();
-    const store = useStore();
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      const router = useRouter();
+      const store = useStore();
 
-    // 加载路由
-    // const route = useRoute();
-    const state = reactive({
-      newinfo: [],
-      Labels: [],
-      Sort: [],
-      article: [],
-      //当前默认页
-      barFixed: false,
-      UserTalk: "",
-      User: [],
-      ArticleCount: 0,
-      SortCount: 0,
-      LabelsCount: 0,
-      zhihu: [],
-      value: "",
-      textCount: 0,
-      readCount: 0,
-      articledata: "",
-    });
+      // 加载路由
+      // const route = useRoute();
+      const state = reactive({
+        newinfo: [],
+        Labels: [],
+        Sort: [],
+        article: [],
+        //当前默认页
+        barFixed: false,
+        UserTalk: "",
+        User: [],
+        ArticleCount: 0,
+        SortCount: 0,
+        LabelsCount: 0,
+        zhihu: [],
+        value: "",
+        textCount: 0,
+        readCount: 0,
+        articledata: "",
+      });
 
-    const AsyGetTest = async () => {
-      proxy.$api
-        .all([
-          //查询标签
-          proxy.$api.get("/api/SnLabels/GetLabels"),
-          //查询分类
-          proxy.$api.get("/api/SnSort/GetSort"),
-          //查询最新发布前十文章
-          proxy.$api.get(
-            "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
-          ),
-          // 查询当前用户的说说
-          proxy.$api.get(
-            "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-          ),
-          //查询当前用户信息
-          proxy.$api.get("/api/SnUser/AsyGetUserId?UserId=4"),
-          //查询文章总数
-          proxy.$api.get("/api/SnArticle/GetArticleCount"),
-          //查询标签
-          proxy.$api.get("/api/SnSort/GetSortCount"),
-          //查询分类
-          proxy.$api.get("/api/SnLabels/GetLabelsCount"),
-          // 内容字段数
-          proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
-          // 阅读量
-          proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
-        ])
-        .then(
-          proxy.$api.spread(
-            (
-              res1: any,
-              res2: any,
-              res3: any,
-              res4: any,
-              res5: any,
-              res6: any,
-              res7: any,
-              res8: any,
-              res9: any,
-              res10: any
-            ) => {
-              state.Labels = res1.data;
-              state.Sort = res2.data;
-              state.article = res3.data;
-              state.articledata = res3.data[0].time;
-              state.UserTalk = res4.data;
-              state.User = res5.data[0];
-              store.state.ArticleCount = state.ArticleCount = res6.data;
-              store.state.SortCount = state.SortCount = res7.data;
-              store.state.LabelsCount = state.LabelsCount = res8.data;
-              store.state.textCount = state.textCount = res9.data;
-              store.state.readCount = state.readCount = res10.data;
-            }
+      const AsyGetTest = async () => {
+        proxy.$api
+          .all([
+            //查询标签
+            proxy.$api.get("/api/SnLabels/GetLabels"),
+            //查询分类
+            proxy.$api.get("/api/SnSort/GetSort"),
+            //查询最新发布前十文章
+            proxy.$api.get(
+              "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
+            ),
+            // 查询当前用户的说说
+            proxy.$api.get(
+              "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
+            ),
+            //查询当前用户信息
+            proxy.$api.get("/api/SnUser/AsyGetUserId?UserId=4"),
+            //查询文章总数
+            proxy.$api.get("/api/SnArticle/GetArticleCount"),
+            //查询标签
+            proxy.$api.get("/api/SnSort/GetSortCount"),
+            //查询分类
+            proxy.$api.get("/api/SnLabels/GetLabelsCount"),
+            // 内容字段数
+            proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
+            // 阅读量
+            proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
+          ])
+          .then(
+            proxy.$api.spread(
+              (
+                res1: any,
+                res2: any,
+                res3: any,
+                res4: any,
+                res5: any,
+                res6: any,
+                res7: any,
+                res8: any,
+                res9: any,
+                res10: any
+              ) => {
+                state.Labels = res1.data;
+                state.Sort = res2.data;
+                state.article = res3.data;
+                state.articledata = res3.data[0].time;
+                state.UserTalk = res4.data;
+                state.User = res5.data[0];
+                store.state.ArticleCount = state.ArticleCount = res6.data;
+                store.state.SortCount = state.SortCount = res7.data;
+                store.state.LabelsCount = state.LabelsCount = res8.data;
+                store.state.textCount = state.textCount = res9.data;
+                store.state.readCount = state.readCount = res10.data;
+              }
+            )
           )
-        )
-        .catch((err: any) => {
-          console.log(err);
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
+      const tagtest = (tagid: any) => {
+        // .带参数跳转
+        router.push({
+          path: "/TagText",
+          query: {
+            id: tagid,
+          },
         });
-    };
-    const tagtest = (tagid: any) => {
-      // .带参数跳转
-      router.push({
-        path: "/TagText",
-        query: {
-          id: tagid,
-        },
+      };
+      // 博客详情
+      const AsyGetTestID = (id: number) => {
+        // .带参数跳转
+        router.push({
+          path: "/Transfer",
+          query: {
+            id: id,
+          },
+        });
+      };
+
+      const onPanelChange = (value: string) => {
+        console.log(value);
+      };
+
+      onMounted(async () => {
+        await AsyGetTest();
       });
-    };
-    // 博客详情
-    const AsyGetTestID = (id: number) => {
-      // .带参数跳转
-      router.push({
-        path: "/Transfer",
-        query: {
-          id: id,
-        },
-      });
-    };
 
-    const onPanelChange = (value: string) => {
-      console.log(value);
-    };
+      // provide("count", state.textCount);
 
-    onMounted(async () => {
-      await AsyGetTest();
-    });
-
-    // provide("count", state.textCount);
-
-    return {
-      ...toRefs(state),
-      tagtest,
-      AsyGetTest,
-      AsyGetTestID,
-      onPanelChange,
-    };
-  },
-};
+      return {
+        ...toRefs(state),
+        tagtest,
+        AsyGetTest,
+        AsyGetTestID,
+        onPanelChange,
+      };
+    },
+  };
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";

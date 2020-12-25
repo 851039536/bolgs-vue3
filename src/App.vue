@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2020-12-23 14:46:40
+ * @LastEditTime: 2020-12-24 16:01:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -16,41 +16,37 @@
       </keep-alive>
       <component :is="Component" v-if="!$route.meta.keepAlive" />
     </router-view>
+
+    <SnBootom></SnBootom>
   </div>
 </template>
 <script lang="ts">
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-import { useRouter } from "vue-router";
-import { onMounted } from "vue";
-export default {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const router = useRouter();
-    router.beforeEach((to, from, next) => {
-      NProgress.start();
-      next();
-    });
+  import NProgress from "nprogress";
+  import "nprogress/nprogress.css";
+  import { useRouter } from "vue-router";
+  import { onMounted } from "vue";
+  import SnBootom from './views/common/SnBootom.vue';
+  export default {
+    components: { SnBootom },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const router = useRouter();
+      router.beforeEach((to, from, next) => {
+        NProgress.start();
+        next();
+      });
 
-    router.afterEach(() => {
-      NProgress.done();
-    });
-    const doc = () => {
-      let table = document.querySelector("body");
-      if (table) {
-        table.setAttribute("style", "background-color:#f7f7f7");
-      }
-      // document
-      //   .querySelector("body")
-      //   .setAttribute("style", "background-color:#f7f7f7");
-    };
-    onMounted(async () => {
-      await doc();
-    });
+      router.afterEach(() => {
+        NProgress.done();
+      });
 
-    return { doc };
-  },
-};
+      onMounted(async () => {
+        // await doc();
+      });
+
+      return {};
+    },
+  };
 </script>
 <style lang="scss">
   @import "assets/sass/com";

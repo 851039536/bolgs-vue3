@@ -28,23 +28,12 @@
       <a-page-header
         :title="newinfo.title"
         @back="() => $router.push('/indexs')"
+      />
+      <!-- <a-page-header
+        :title="newinfo.title"
+        @back="() => $router.push('/indexs')"
       >
-        <a-descriptions size="small" :column="3">
-          <a-descriptions-item label="Created"> Junior@ </a-descriptions-item>
-          <a-descriptions-item label="Association"
-            >851039536
-          </a-descriptions-item>
-          <a-descriptions-item label="Creation Time">
-            {{ newinfo.time }}
-          </a-descriptions-item>
-          <a-descriptions-item label="Effective Time">
-            {{ newinfo.time }}
-          </a-descriptions-item>
-          <a-descriptions-item label="Remarks">
-            Guang dong, China
-          </a-descriptions-item>
-        </a-descriptions>
-      </a-page-header>
+      </a-page-header> -->
 
       <!-- <a class="text-lg" @click="houtui">&lt;</a> -->
       <!-- <p class="text-lg text-center">
@@ -105,223 +94,223 @@
 
 
 <script lang="ts">
-// 组件导入
-import "highlight.js/styles/googlecode.css";
-import hljs from "highlight.js"; //导入代码高亮文件
-import marked from "marked"; //解析器
+  // 组件导入
+  import "highlight.js/styles/googlecode.css";
+  import hljs from "highlight.js"; //导入代码高亮文件
+  import marked from "marked"; //解析器
 
-import {
-  getCurrentInstance,
-  reactive,
-  toRefs,
-  onMounted,
-  onUpdated,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
-// import { useRoute } from "vue-router";
-export default {
-  name: "IndexText2",
-  components: {},
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    // 简单的来说，它是类型约束的定义，当你使用这个定义接口时，它会一一匹对接口中定义的类型。
-    //只要不满足接口中的任何一个属性，都不会通过的。
-    // interface states {
-    //   // newinfo?: (number | string)[];
-    //   id: number;
-    //   // article: (number | string)[];
-    //   timebool: boolean;
-    //   fullscreenLoading: boolean;
-    //   blog: string;
-    //   spinning: boolean;
-    // }
-    //获取上下文实例，ctx=vue2的this
-    const { proxy }: any = getCurrentInstance();
-    // 加载路由
-    const route = useRoute();
-    const router = useRouter();
-    // 数据定义
-    const state: any = reactive({
-      newinfo: [],
-      id: route.query.id,
-      article: [],
-      timebool: true,
-      fullscreenLoading: false,
-      blog: "",
-      spinning: true,
-    });
-    // 加载内容
-    const AsyGetTest = (): void => {
-      console.log(state.id);
-      proxy.$api
-        .all([
-          // 读取详情页数据
-          proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + state.id),
-          //查询最新发布前十文章
-          proxy.$api.get(
-            "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
-          ),
-        ])
-        .then(
-          proxy.$api.spread((res1: any, res2: any) => {
-            state.newinfo = res1.data;
-            state.article = res2.data;
-            UpRead(state.newinfo);
-            state.blog = marked(state.newinfo.text);
-            state.spinning = false;
-            // alert(this.spinning);
-          })
-        )
-        .catch((err: never) => {
-          console.log(err);
+  import {
+    getCurrentInstance,
+    reactive,
+    toRefs,
+    onMounted,
+    onUpdated,
+  } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  // import { useRoute } from "vue-router";
+  export default {
+    name: "IndexText2",
+    components: {},
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      // 简单的来说，它是类型约束的定义，当你使用这个定义接口时，它会一一匹对接口中定义的类型。
+      //只要不满足接口中的任何一个属性，都不会通过的。
+      // interface states {
+      //   // newinfo?: (number | string)[];
+      //   id: number;
+      //   // article: (number | string)[];
+      //   timebool: boolean;
+      //   fullscreenLoading: boolean;
+      //   blog: string;
+      //   spinning: boolean;
+      // }
+      //获取上下文实例，ctx=vue2的this
+      const { proxy }: any = getCurrentInstance();
+      // 加载路由
+      const route = useRoute();
+      const router = useRouter();
+      // 数据定义
+      const state: any = reactive({
+        newinfo: [],
+        id: route.query.id,
+        article: [],
+        timebool: true,
+        fullscreenLoading: false,
+        blog: "",
+        spinning: true,
+      });
+      // 加载内容
+      const AsyGetTest = (): void => {
+        console.log(state.id);
+        proxy.$api
+          .all([
+            // 读取详情页数据
+            proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + state.id),
+            //查询最新发布前十文章
+            proxy.$api.get(
+              "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
+            ),
+          ])
+          .then(
+            proxy.$api.spread((res1: any, res2: any) => {
+              state.newinfo = res1.data;
+              state.article = res2.data;
+              UpRead(state.newinfo);
+              state.blog = marked(state.newinfo.text);
+              state.spinning = false;
+              // alert(this.spinning);
+            })
+          )
+          .catch((err: never) => {
+            console.log(err);
+          });
+      };
+      // 阅读数
+      const UpRead = (info: any): void => {
+        if (info == null) {
+          console.log(info);
+          return;
+        } else {
+          info.read++;
+          proxy
+            .$api({
+              // 更新
+              url: "/api/SnArticle/AysUpArticle",
+              method: "put",
+              data: {
+                articleId: info.articleId,
+                userId: Number(info.userId),
+                title: info.title,
+                titleText: info.titleText,
+                text: info.text,
+                time: info.time,
+                labelId: info.labelId,
+                read: Number(info.read),
+                give: Number(info.give),
+                comment: info.comment,
+                sortId: info.sortId,
+                typeTitle: info.typeTitle,
+                urlImg: info.urlImg,
+              },
+            })
+            .then((res: any) => {
+              if (res.status === 200) {
+                // console.log("1");
+              } else {
+                alert("更新失败");
+              }
+            })
+            .catch(console.error.bind(console)); // 异常
+        }
+      };
+      // 点击数
+      const UpGive = (info: any): void => {
+        var timebools = state.timebool;
+        if (info == null || timebools == false) {
+          console.log(info, state.timebool);
+          return;
+        } else {
+          info.give++;
+          proxy
+            .$api({
+              // 更新
+              url: "/api/SnArticle/AysUpArticle",
+              method: "put",
+              data: {
+                articleId: info.articleId,
+                userId: Number(info.userId),
+                title: info.title,
+                titleText: info.titleText,
+                text: info.text,
+                time: info.time,
+                labelId: info.labelId,
+                read: Number(info.read),
+                give: Number(info.give),
+                comment: info.comment,
+                sortId: info.sortId,
+                typeTitle: info.typeTitle,
+                urlImg: info.urlImg,
+              },
+            })
+            .then((res: any) => {
+              if (res.status === 200) {
+                state.timebool = false;
+                var time = 10;
+                var timer = setInterval(function () {
+                  time--;
+                  // console.log(time);
+                  if (time == 0) {
+                    state.timebool = true;
+                    // alert(this.timebool)
+                    clearInterval(timer);
+                  }
+                }, 1000);
+              } else {
+                alert("更新失败");
+              }
+            })
+            .catch(console.error.bind(console)); // 异常
+        }
+      };
+      // 博客详情
+      const AsyGetTestID = (id: number): void => {
+        // .带参数跳转
+        router.push({
+          path: "/Indextext2",
+          query: {
+            id: id,
+          },
         });
-    };
-    // 阅读数
-    const UpRead = (info: any): void => {
-      if (info == null) {
-        console.log(info);
-        return;
-      } else {
-        info.read++;
-        proxy
-          .$api({
-            // 更新
-            url: "/api/SnArticle/AysUpArticle",
-            method: "put",
-            data: {
-              articleId: info.articleId,
-              userId: Number(info.userId),
-              title: info.title,
-              titleText: info.titleText,
-              text: info.text,
-              time: info.time,
-              labelId: info.labelId,
-              read: Number(info.read),
-              give: Number(info.give),
-              comment: info.comment,
-              sortId: info.sortId,
-              typeTitle: info.typeTitle,
-              urlImg: info.urlImg,
-            },
-          })
-          .then((res: any) => {
-            if (res.status === 200) {
-              // console.log("1");
-            } else {
-              alert("更新失败");
+        // location.reload();
+      };
+
+      // 代码高亮
+      const highlighthandle = async () => {
+        await hljs;
+        let highlight = document.querySelectorAll("code,pre");
+        highlight.forEach((block: any) => {
+          hljs.highlightBlock(block);
+        });
+      };
+      const houtui = async () => {
+        router.go(-1);
+      };
+
+      const backtop = async () => {
+        {
+          var timer = setInterval(function () {
+            let osTop =
+              document.documentElement.scrollTop || document.body.scrollTop;
+            let ispeed = Math.floor(-osTop / 5);
+            document.documentElement.scrollTop = document.body.scrollTop =
+              osTop + ispeed;
+            // this.isTop = true;
+            if (osTop === 0) {
+              clearInterval(timer);
             }
-          })
-          .catch(console.error.bind(console)); // 异常
-      }
-    };
-    // 点击数
-    const UpGive = (info: any): void => {
-      var timebools = state.timebool;
-      if (info == null || timebools == false) {
-        console.log(info, state.timebool);
-        return;
-      } else {
-        info.give++;
-        proxy
-          .$api({
-            // 更新
-            url: "/api/SnArticle/AysUpArticle",
-            method: "put",
-            data: {
-              articleId: info.articleId,
-              userId: Number(info.userId),
-              title: info.title,
-              titleText: info.titleText,
-              text: info.text,
-              time: info.time,
-              labelId: info.labelId,
-              read: Number(info.read),
-              give: Number(info.give),
-              comment: info.comment,
-              sortId: info.sortId,
-              typeTitle: info.typeTitle,
-              urlImg: info.urlImg,
-            },
-          })
-          .then((res: any) => {
-            if (res.status === 200) {
-              state.timebool = false;
-              var time = 10;
-              var timer = setInterval(function () {
-                time--;
-                // console.log(time);
-                if (time == 0) {
-                  state.timebool = true;
-                  // alert(this.timebool)
-                  clearInterval(timer);
-                }
-              }, 1000);
-            } else {
-              alert("更新失败");
-            }
-          })
-          .catch(console.error.bind(console)); // 异常
-      }
-    };
-    // 博客详情
-    const AsyGetTestID = (id: number): void => {
-      // .带参数跳转
-      router.push({
-        path: "/Indextext2",
-        query: {
-          id: id,
-        },
+          }, 30);
+        }
+      };
+
+      onMounted(async () => {
+        await AsyGetTest();
+        await backtop();
       });
-      // location.reload();
-    };
-
-    // 代码高亮
-    const highlighthandle = async () => {
-      await hljs;
-      let highlight = document.querySelectorAll("code,pre");
-      highlight.forEach((block: any) => {
-        hljs.highlightBlock(block);
+      onUpdated(async () => {
+        await highlighthandle();
       });
-    };
-    const houtui = async () => {
-      router.go(-1);
-    };
-
-    const backtop = async () => {
-      {
-        var timer = setInterval(function () {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
-          // this.isTop = true;
-          if (osTop === 0) {
-            clearInterval(timer);
-          }
-        }, 30);
-      }
-    };
-
-    onMounted(async () => {
-      await AsyGetTest();
-      await backtop();
-    });
-    onUpdated(async () => {
-      await highlighthandle();
-    });
-    return {
-      ...toRefs(state),
-      AsyGetTest,
-      highlighthandle,
-      houtui,
-      UpRead,
-      UpGive,
-      AsyGetTestID,
-      backtop,
-    };
-  },
-};
+      return {
+        ...toRefs(state),
+        AsyGetTest,
+        highlighthandle,
+        houtui,
+        UpRead,
+        UpGive,
+        AsyGetTestID,
+        backtop,
+      };
+    },
+  };
 </script>
 
 <style lang="scss">
@@ -363,7 +352,7 @@ export default {
   /*编译器组件*/
   .editor-text {
     @include w-h($w, null);
-    margin: 104px 0 0 $ml;
+    margin: 28px 0 0 $ml;
   }
 
   /*左侧边栏*/
@@ -395,75 +384,40 @@ export default {
     position: relative;
     @include initialize($w, 40px, 60px, null, $ml, null, #ffffff);
     @apply shadow rounded cursor-pointer;
-
-    p {
-      line-height: 40px;
-      font-weight: 800;
+    .ant-page-header-heading-title {
+      @apply text-lg;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    a {
-      position: absolute;
-      @include excursion(7px, null, 8px, null);
-    }
     .ant-page-header {
-      @apply shadow rounded-sm;
+      @apply shadow-sm rounded-sm;
+
+      // background: #cc9494;
     }
     .ant-page-header-back {
-      @apply mt-1;
+      // background: #f1f1f1;
+      @apply mt-0;
     }
   }
 
   .blog {
-    // @apply shadow rounded p-4;
-    // @apply antialiased rounded-sm  bg-white;
-
-    // h1 {
-    //   @apply text-2xl py-1 font-semibold text-gray-700 bg-white;
-    // }
-    // h2 {
-    //   @apply text-xl  py-1 font-semibold text-gray-700 bg-white;
-    // }
-
-    // h3 {
-    //   @apply text-lg  py-1 font-semibold bg-white;
-    // }
-    // h4 {
-    //   @apply text-base  py-1 font-semibold bg-white;
-    // }
-    // h5 {
-    //   @apply text-sm  py-1 font-semibold bg-white;
-    // }
-    // pre {
-    //   width: 100%;
-    //   @apply text-sm px-1 bg-gray-100;
-    // }
-    // code {
-    //   color: #6390bb;
-    // }
-    // p {
-    //   @apply text-sm  py-1 bg-white  leading-relaxed mb-1 antialiased text-gray-500;
-    // }
-
-    // li {
-    //   @apply text-xs py-1 bg-white  mb-1 antialiased text-gray-500;
-    // }
-
-    // table {
-    //   // background: gray;
-    // }
-    // th {
-    //   border: solid #f1f1f1 1px;
-    //   @apply p-1 text-sm;
-    // }
-    // td {
-    //   border: solid #f1f1f1 1px;
-    //   @apply p-1 text-sm;
-    // }
-
-    // a {
-    //   @apply text-red-800;
-    // }
-
     @include blogs;
+  }
+
+  @screen xp {
+    .article-title {
+      width: 100%;
+      @apply ml-0;
+    }
+    .editor-text {
+      width: 100%;
+      @apply ml-0 mt-7;
+    }
+    .article-3 {
+      width: 100% !important;
+      @apply ml-0 #{!important};
+    }
   }
 </style>

@@ -1,21 +1,11 @@
 <template>
   <div class="PersonalNavigations">
     <div class="PersonalNavigation animate__animated animate__fadeIn">
-      <div class="flex PersonalNavigation-2">
-        <div class="PersonalNavigation-2-1">
-          <a @click="GetSnNavigation('VUE')">VUE</a>
-        </div>
-        <div class="PersonalNavigation-2-1">
-          <a @click="GetSnNavigation('CSS')">CSS</a>
-        </div>
-        <div class="PersonalNavigation-2-1">
-          <a @click="GetSnNavigation('NET')">Net</a>
-        </div>
-        <div class="PersonalNavigation-2-1">
-          <a @click="GetSnNavigation('javascript')">javascript</a>
-        </div>
-        <div class="PersonalNavigation-2-1">
-          <a @click="GetSnNavigation('个人工具')">个人工具</a>
+      <div class="flex flex-row">
+        <div class="PersonalNavigation-2" v-for="text in type" :key="text.id">
+          <div class="PersonalNavigation-2-1">
+            <a @click="GetSnNavigation(text.title)">{{ text.title }}</a>
+          </div>
         </div>
       </div>
       <div
@@ -40,42 +30,57 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
 
-export default {
-  name: "PersonalNavigation",
+  export default {
+    name: "PersonalNavigation",
 
-  setup() {
-    //获取上下文实例，ctx=vue2的this
-    const { proxy }: any = getCurrentInstance();
-    // 数据定义
-    const state = reactive({
-      text: [],
-    });
-    const GetSnNavigation = (name: string) => {
-      proxy
-        .$api({
-          url: "/api/SnNavigation/AsyGetWhereTest?type=" + name + "&fag=true",
-        })
-        .then((res: any) => {
-          state.text = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-    const urltest = (url: string) => {
-      //当前窗口跳转
-      // self.location.href=url
-      //新窗口跳转
-      window.open(url);
-    };
-    onMounted(async () => {
-      await GetSnNavigation("收藏");
-    });
-    return { ...toRefs(state), GetSnNavigation, urltest };
-  },
-};
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      //获取上下文实例，ctx=vue2的this
+      const { proxy }: any = getCurrentInstance();
+      // 数据定义
+      const state = reactive({
+        text: [],
+        type: []
+      });
+      const GetSnNavigation = (name: string) => {
+        proxy.$api
+          .all([
+            //查询标签
+            proxy.$api.get("/api/SnNavigation/AsyGetWhereTest?type=" + name + "&fag=true"),
+            //查询分类
+            proxy.$api.get(
+              "/api/SnNavigationType/GetAllAsync"
+            ),
+          ])
+          .then(
+            proxy.$api.spread(
+              (
+                res1: any,
+                res2: any,
+              ) => {
+                state.text = res1.data;
+                state.type = res2.data;
+              }
+            )
+          )
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
+      const urltest = (url: string) => {
+        //当前窗口跳转
+        // self.location.href=url
+        //新窗口跳转
+        window.open(url);
+      };
+      onMounted(async () => {
+        await GetSnNavigation("收藏");
+      });
+      return { ...toRefs(state), GetSnNavigation, urltest };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -89,7 +94,7 @@ export default {
       @apply shadow-sm;
       .PersonalNavigation-2 {
         /*background-color: #FFFFFF;*/
-        @apply bg-gray-200  font-bold py-1 px-3 rounded-sm shadow;
+        @apply text-lg font-bold py-1 ml-2 mt-1 px-1  rounded-sm;
         .PersonalNavigation-2-1 {
           @apply p-1 m-1 cursor-default text-sm;
         }
@@ -100,16 +105,14 @@ export default {
         /*background-color: #004085;*/
         overflow: auto;
         .PersonalNavigation-text {
-          @include w-h(85%, 100px);
-          @apply m-2;
-          @apply ml-5 shadow rounded-sm;
-
+          @include w-h(89%, 100px);
+          @apply mt-3;
+          @apply ml-2 antialiased shadow rounded-sm;
+          @apply hover:bg-gray-50;
           .PersonalNavigation-text-1 {
-            @apply p-1 text-base bg-gray-100;
+            @apply p-1 text-base;
 
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            @include line-ome;
           }
 
           .PersonalNavigation-text-2 {

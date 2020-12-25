@@ -34,12 +34,6 @@
           <div class="talk-text-1-1">
             <h4>Junior</h4>
           </div>
-
-          <div class="talk-text-1-2">
-            <p>评论:22</p>
-            <p>文章:162</p>
-            <p>动态:11</p>
-          </div>
         </div>
 
         <div class="talk-text-2" v-for="data in dataShow" :key="data.id">
@@ -111,102 +105,102 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import TalkSidebar from "./TalkSidebar.vue";
-export default {
-  name: "Talk",
-  components: { TalkSidebar },
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  import TalkSidebar from "./TalkSidebar.vue";
+  export default {
+    name: "Talk",
+    components: { TalkSidebar },
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const router = useRouter();
-    // 加载路由
-    // const route = useRoute();
-    const state = reactive({
-      dataShow: [], // 当前显示的数据
-      page: 1, //当前页码
-      pagesize: 8, //每页的数据条数
-      count: 0, //默认数据总数
-    });
-
-    const getCount = async () => {
-      proxy
-        .$api({
-          url: "/api/SnTalk/CountAsync",
-        })
-        .then((res: any) => {
-          state.count = res.data;
-        })
-        .catch((e: any) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-    const AsyGetTest = async () => {
-      proxy
-        .$api({
-          url:
-            "/api/SnTalk/GetFyAllAsync?pageIndex=" +
-            state.page +
-            "&pageSize=" +
-            state.pagesize +
-            "&isDesc=true",
-        })
-        .then((res: any) => {
-          state.dataShow = res.data;
-        })
-        .catch((e: any) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-
-    const GetTalkid = async (id: any) => {
-      // .带参数跳转
-      await router.push({
-        path: "/TalkText",
-        query: {
-          id: id,
-        },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      const router = useRouter();
+      // 加载路由
+      // const route = useRoute();
+      const state = reactive({
+        dataShow: [], // 当前显示的数据
+        page: 1, //当前页码
+        pagesize: 8, //每页的数据条数
+        count: 0, //默认数据总数
       });
-    };
 
-    const currentchange = async (val: any) => {
-      state.page = val;
-      AsyGetTest();
-      backtop(); //回到顶部
-    };
+      const getCount = async () => {
+        proxy
+          .$api({
+            url: "/api/SnTalk/CountAsync",
+          })
+          .then((res: any) => {
+            state.count = res.data;
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+      const AsyGetTest = async () => {
+        proxy
+          .$api({
+            url:
+              "/api/SnTalk/GetFyAllAsync?pageIndex=" +
+              state.page +
+              "&pageSize=" +
+              state.pagesize +
+              "&isDesc=true",
+          })
+          .then((res: any) => {
+            state.dataShow = res.data;
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+      };
 
-    const backtop = async () => {
-      {
-        var timer = setInterval(function () {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
-          // this.isTop = true;
-          if (osTop === 0) {
-            clearInterval(timer);
-          }
-        }, 30);
-      }
-    };
-    onMounted(async () => {
-      await getCount();
-      await AsyGetTest();
-    });
+      const GetTalkid = async (id: any) => {
+        // .带参数跳转
+        await router.push({
+          path: "/TalkText",
+          query: {
+            id: id,
+          },
+        });
+      };
 
-    return {
-      ...toRefs(state),
-      getCount,
-      AsyGetTest,
-      GetTalkid,
-      currentchange,
-      backtop,
-    };
-  },
-};
+      const currentchange = async (val: any) => {
+        state.page = val;
+        AsyGetTest();
+        backtop(); //回到顶部
+      };
+
+      const backtop = async () => {
+        {
+          var timer = setInterval(function () {
+            let osTop =
+              document.documentElement.scrollTop || document.body.scrollTop;
+            let ispeed = Math.floor(-osTop / 5);
+            document.documentElement.scrollTop = document.body.scrollTop =
+              osTop + ispeed;
+            // this.isTop = true;
+            if (osTop === 0) {
+              clearInterval(timer);
+            }
+          }, 30);
+        }
+      };
+      onMounted(async () => {
+        await getCount();
+        await AsyGetTest();
+      });
+
+      return {
+        ...toRefs(state),
+        getCount,
+        AsyGetTest,
+        GetTalkid,
+        currentchange,
+        backtop,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -263,21 +257,10 @@ export default {
           position: absolute;
           width: 100px;
           left: 7%;
-          top: 40%;
+          top: 36%;
           h4 {
             color: #ffffff;
-          }
-        }
-
-        .talk-text-1-2 {
-          position: absolute;
-          left: 75%;
-          top: 40%;
-
-          p {
-            color: #ffffff;
-            display: inline-block;
-            padding-right: 0.5rem;
+            @apply text-2xl;
           }
         }
       }

@@ -29,44 +29,43 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-export default {
-  components: {},
-  name: "BlogCircles",
-
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    //获取上下文实例，ctx=vue2的this
-    const { proxy }: any = getCurrentInstance();
-    // 数据定义
-    const state = reactive({
-      text: [],
-    });
-    const GetSnNavigation = () => {
-      proxy
-        .$api({
-          // url: '/api/SnNavigation/GetSnNavigation'
-          url: "/api/SnNavigation/AsyGetWhereTest?type=博客圈&fag=true",
-        })
-        .then((res: any) => {
-          state.text = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-    const urltest = (url: string) => {
-      //当前窗口跳转
-      // self.location.href=url
-      //新窗口跳转
-      window.open(url);
-    };
-    onMounted(async () => {
-      await GetSnNavigation();
-    });
-    return { ...toRefs(state), GetSnNavigation, urltest };
-  },
-};
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  export default {
+    components: {},
+    name: "BlogCircles",
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      //获取上下文实例，ctx=vue2的this
+      const { proxy }: any = getCurrentInstance();
+      // 数据定义
+      const state = reactive({
+        text: [],
+      });
+      const GetSnNavigation = () => {
+        proxy
+          .$api({
+            // url: '/api/SnNavigation/GetSnNavigation'
+            url: "/api/SnNavigation/AsyGetWhereTest?type=博客圈&fag=true",
+          })
+          .then((res: any) => {
+            state.text = res.data;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+      const urltest = (url: string) => {
+        //当前窗口跳转
+        // self.location.href=url
+        //新窗口跳转
+        window.open(url);
+      };
+      onMounted(async () => {
+        await GetSnNavigation();
+      });
+      return { ...toRefs(state), GetSnNavigation, urltest };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -78,13 +77,15 @@ export default {
     .BlogCircles {
       @include initialize($w, 94%, 60px, null, $ml, null, #ffffff);
       @apply shadow-sm rounded-sm;
+
+      // 导航窗体小
       .BlogCircles-1 {
-        @include w-h(200px, 80px);
-        @apply m-1 ml-3 shadow rounded;
+        @include w-h(210px, 90px);
+        @apply m-1 ml-2 antialiased shadow rounded hover:bg-gray-50;
         .BlogCircles-1-1 {
-          @include w-h(35%, 99%);
-          @apply pt-1;
-          /*background-color: red;*/
+          @include w-h(40%, 99%);
+          @apply p-1;
+          //background-color: red;
           float: left;
 
           img {
@@ -95,17 +96,13 @@ export default {
 
         .BlogCircles-1-2 {
           float: right;
-          width: 65%;
-          height: 100%;
+          @include w-h(60%, 100%);
           /*background-color: #95999c;*/
 
           .BlogCircles-1-2-1 {
             // background-color: #4eb687;
             @apply text-base p-1 pt-2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-
+            @include line-ome;
             /*动态下划线*/
             position: relative;
             text-decoration: none;
@@ -135,22 +132,17 @@ export default {
 
           .BlogCircles-1-2-2 {
             /*background-color: #00FFFF;*/
-
             @apply px-1 pt-3;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            @include line-ome;
           }
         }
       }
-
       .BlogCircles-2 {
-        padding: 7px;
+        @apply text-lg font-normal pl-2 bg-gray-50 shadow-sm;
       }
 
       .BlogCircles-1s {
-        height: 90%;
-        width: 100%;
+        @include w-h(100%, 90%);
         overflow: auto;
       }
       .BlogCircles-1s::-webkit-scrollbar {

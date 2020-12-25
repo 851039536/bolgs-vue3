@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2020-12-23 10:38:15
+ * @LastEditTime: 2020-12-25 15:31:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -17,6 +17,7 @@ import animated from 'animate.css'
 //字体图标
 import './assets/icon/fonts/iconfont.js'
 import './assets/icon/icon.css'
+import './assets/css/font.css'
 //动画css
 import './index.css'
 import router from './router/index'

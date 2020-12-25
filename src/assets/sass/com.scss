@@ -142,7 +142,13 @@ $ml:23%;
   transform: scale(1.1);
 }
 
-// 行数
+@mixin line-ome {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 2行数
 @mixin line-number {
   text-overflow: ellipsis;
   /*有些示例里需要定义该属性，实际可省略*/

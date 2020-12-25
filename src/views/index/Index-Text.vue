@@ -69,107 +69,107 @@
 
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
 
-// 组件导入
-export default {
-  name: "Index-Text",
-  components: {},
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const router = useRouter();
-    // 加载路由
-    // const route = useRoute();
-    const state = reactive({
-      pageSize: 7, // 每页显示的个数
-      dataShow: [], // 当前显示的数据
-      page: 1, //当前页码
-      pagesize: 8, //每页的数据条数
-      count: 0, //默认数据总数
-    });
-
-    const getCount = async () => {
-      proxy
-        .$api({
-          url: "/api/SnArticle/GetArticleCount",
-        })
-        .then((res: any) => {
-          state.count = res.data;
-        })
-        .catch((e: any) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-    const AsyGetTest = async () => {
-      proxy
-        .$api({
-          url:
-            "/api/SnArticle/GetfyTest?label=00" +
-            "&pageIndex=" +
-            state.page +
-            "&pageSize=" +
-            state.pagesize +
-            "&isDesc=true",
-        })
-        .then((res: any) => {
-          state.dataShow = res.data;
-        })
-        .catch((e: any) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-
-    const AsyGetTestID = async (id: any) => {
-      // .带参数跳转
-      await router.push({
-        path: "/Indextext2",
-        query: {
-          id: id,
-        },
+  // 组件导入
+  export default {
+    name: "Index-Text",
+    components: {},
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      const router = useRouter();
+      // 加载路由
+      // const route = useRoute();
+      const state = reactive({
+        pageSize: 7, // 每页显示的个数
+        dataShow: [], // 当前显示的数据
+        page: 1, //当前页码
+        pagesize: 8, //每页的数据条数
+        count: 0, //默认数据总数
       });
-    };
 
-    const currentchange = async (val: any) => {
-      state.page = val;
-      AsyGetTest();
-      backtop(); //回到顶部
-    };
+      const getCount = async () => {
+        proxy
+          .$api({
+            url: "/api/SnArticle/GetArticleCount",
+          })
+          .then((res: any) => {
+            state.count = res.data;
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+      const AsyGetTest = async () => {
+        proxy
+          .$api({
+            url:
+              "/api/SnArticle/GetfyTest?label=00" +
+              "&pageIndex=" +
+              state.page +
+              "&pageSize=" +
+              state.pagesize +
+              "&isDesc=true",
+          })
+          .then((res: any) => {
+            state.dataShow = res.data;
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+      };
 
-    const backtop = async () => {
-      {
-        var timer = setInterval(function () {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
-          // this.isTop = true;
-          if (osTop === 0) {
-            clearInterval(timer);
-          }
-        }, 30);
-      }
-    };
-    onMounted(async () => {
-      await getCount();
-      await AsyGetTest();
-    });
+      const AsyGetTestID = async (id: any) => {
+        // .带参数跳转
+        await router.push({
+          path: "/Indextext2",
+          query: {
+            id: id,
+          },
+        });
+      };
 
-    return {
-      ...toRefs(state),
-      getCount,
-      AsyGetTest,
-      AsyGetTestID,
-      currentchange,
-      backtop,
-    };
-  },
-};
+      const currentchange = async (val: any) => {
+        state.page = val;
+        AsyGetTest();
+        backtop(); //回到顶部
+      };
+
+      const backtop = async () => {
+        {
+          var timer = setInterval(function () {
+            let osTop =
+              document.documentElement.scrollTop || document.body.scrollTop;
+            let ispeed = Math.floor(-osTop / 5);
+            document.documentElement.scrollTop = document.body.scrollTop =
+              osTop + ispeed;
+            // this.isTop = true;
+            if (osTop === 0) {
+              clearInterval(timer);
+            }
+          }, 30);
+        }
+      };
+      onMounted(async () => {
+        await getCount();
+        await AsyGetTest();
+      });
+
+      return {
+        ...toRefs(state),
+        getCount,
+        AsyGetTest,
+        AsyGetTestID,
+        currentchange,
+        backtop,
+      };
+    },
+  };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
   @import "../../assets/sass/com";
 
   .sn-text {
@@ -181,14 +181,13 @@ export default {
 
     .sn-test-2 {
       @include w-h(null, 140px);
-      @apply mb-2;
       background: no-repeat center/100% url("../../assets/img/bg.jpg");
       @include boxshow3;
     }
     .sn-test-1 {
       background-color: #ffffff;
       @include w-h(100%, 145px);
-      @apply mb-4 shadow rounded-md;
+      @apply mb-3 mt-2 shadow rounded-md;
       // @include boxshow3;
 
       .sn-text-1-1 {
@@ -227,6 +226,23 @@ export default {
           @include w-h(null, 78%);
           @apply m-1;
         }
+      }
+    }
+  }
+
+  @screen xp {
+    .sn-list {
+      @apply hidden;
+    }
+    .fo {
+      @apply hidden;
+    }
+    .sn-text {
+      /* @apply bg-gray-400; */
+      width: 100%;
+      @apply ml-0 mb-14;
+      .sn-test-2 {
+        @apply hidden;
       }
     }
   }

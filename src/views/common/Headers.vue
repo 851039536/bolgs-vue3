@@ -1,35 +1,26 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 <template>
   <div>
-    <nav class="flex flex-wrap header-sn">
-      <div class="flex items-center flex-shrink-0 mr-6 text-black header-sn-1">
+    <nav class="flex header-sn">
+      <div class="flex items-center flex-shrink-0 text-black">
         <span class="text-xl tracking-tight">Junior</span>
       </div>
 
-      <div class="flex-grow block w-full sm:flex sm:items-center sm:w-auto">
-        <div class="text-base sm:flex-grow">
-          <a
-            @click="onk(1)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+      <div class="header-1">
+        <div class="header-1-1">
+          <a @click="onk(1)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-icon-"></use>
             </svg>
             主页
           </a>
-          <a
-            @click="onk(2)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+          <a @click="onk(2)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-biaoqian"></use>
             </svg>
             标签
           </a>
-          <a
-            @click="onk(5)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+          <a @click="onk(5)">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-dianzan
@@ -39,28 +30,19 @@
             </svg>
             时间线
           </a>
-          <a
-            @click="onk(6)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+          <a @click="onk(6)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-tupian"></use>
             </svg>
             图册
           </a>
-          <a
-            @click="onk(7)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+          <a @click="onk(7)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-daohang1"></use>
             </svg>
             导航站
           </a>
-          <a
-            @click="onk(8)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+          <a @click="onk(8)">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-guanyuwomen
@@ -70,51 +52,16 @@
             关于
           </a>
 
-          <a
-            @click="onk(9)"
-            class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
+          <a @click="onk(9)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-24"></use>
             </svg>
             日志
           </a>
-          <!--                    <a @click="onk(10)"-->
-          <!--                       class="hidden block mt-4 mr-4 sm:inline-block sm:mt-0 text-black-200 hover:text-red-400">-->
-          <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-          <!--                            <use xlink:href="#icon-changyongziyuan-->
-          <!--"></use>-->
-          <!--                        </svg>-->
-          <!--                        书籍-->
-          <!--                    </a>-->
-          <a
-            @click="onk(12)"
-            class="hidden block mt-4 mr-4 heaa sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-comments"></use>-->
-            <!--                        </svg>-->
-            留言
-          </a>
-          <a
-            @click="onk(13)"
-            class="hidden block mt-4 mr-4 heaa sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
-            <!--                        <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                            <use xlink:href="#icon-bokeyuan-->
-            <!--"></use>-->
-            <!--                        </svg>-->
-            博客园
-          </a>
-          <a
-            @click="onk(14)"
-            class="hidden block mt-4 mr-4 heaa sm:inline-block sm:mt-0 text-black-200 hover:text-red-400"
-          >
-            <!--                    <svg class="inline-block icon" aria-hidden="true">-->
-            <!--                        <use xlink:href="#icon-gitee-fill-round"></use>-->
-            <!--                    </svg>-->
-            Gitee
-          </a>
+
+          <a @click="onk(12)" class="header-1-1-a"> 留言 </a>
+          <a @click="onk(13)" class="header-1-1-a"> 博客园 </a>
+          <a @click="onk(14)" class="header-1-1-a"> Gitee </a>
         </div>
       </div>
     </nav>
@@ -122,70 +69,70 @@
 </template>
 
 <script lang="ts">
-import { useRouter } from "vue-router";
-export default {
-  name: "Headers",
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const router = useRouter();
-    let onk = async (num: any) => {
-      switch (num) {
-        case 1:
-          router.push("/Indexs");
-          break;
-        case 2:
-          router.push("/TagText");
-          break;
-        case 3:
-          router.push("./Resource");
-          break;
-        case 4:
-          router.push("./Classify");
-          break;
-        case 5:
-          router.push("./Timeline");
-          break;
-        case 6:
-          router.push("./Photo");
-          break;
-        case 7:
-          router.push("./Navigation");
-          break;
-        case 8:
-          router.push("./About");
-          break;
-        case 9:
-          router.push("./Talk");
-          break;
-        case 10:
-          router.push("./Books");
-          break;
-        case 11:
-          router.push("./PersonalNavigation");
-          break;
-        case 12:
-          router.push("./Leave");
-          break;
-        case 13:
-          window.open("https://www.cnblogs.com/ouyangkai/");
-          break;
-        case 14:
-          window.open("https://gitee.com/kaiouyang-sn");
-          break;
-        case 15:
-          router.push("./SnVideo");
-          break;
-        default:
-          router.push("./Indexs");
-          break;
-      }
-    };
+  import { useRouter } from "vue-router";
+  export default {
+    name: "Headers",
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const router = useRouter();
+      let onk = async (num: any) => {
+        switch (num) {
+          case 1:
+            router.push("/Indexs");
+            break;
+          case 2:
+            router.push("/TagText");
+            break;
+          case 3:
+            router.push("./Resource");
+            break;
+          case 4:
+            router.push("./Classify");
+            break;
+          case 5:
+            router.push("./Timeline");
+            break;
+          case 6:
+            router.push("./Photo");
+            break;
+          case 7:
+            router.push("./Navigation");
+            break;
+          case 8:
+            router.push("./About");
+            break;
+          case 9:
+            router.push("./Talk");
+            break;
+          case 10:
+            router.push("./Books");
+            break;
+          case 11:
+            router.push("./PersonalNavigation");
+            break;
+          case 12:
+            router.push("./Leave");
+            break;
+          case 13:
+            window.open("https://www.cnblogs.com/ouyangkai/");
+            break;
+          case 14:
+            window.open("https://gitee.com/kaiouyang-sn");
+            break;
+          case 15:
+            router.push("./SnVideo");
+            break;
+          default:
+            router.push("./Indexs");
+            break;
+        }
+      };
 
-    return {
-      onk,
-    };
-  },
-};
+      return {
+        onk,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -198,41 +145,29 @@ export default {
     @include w-h(100%, 55px);
     // background-color: #795da3;
     @apply p-2 bg-white shadow-sm;
+    .header-1 {
+      // background-color: #795da3;
+      width: 100%;
+      .header-1-1 {
+        // background-color: #b2a8c0;
+        @apply mt-2 text-base;
+        a {
+          // background-color: #b188e9;
+          @apply ml-3 hover:text-red-400;
+        }
 
-    .heaa {
-      float: right;
-      /*background-color: #1b1e21;*/
+        .header-1-1-a {
+          float: right;
+        }
+      }
     }
   }
 
-  .box {
-    width: 400px;
-    .top {
-      text-align: center;
-    }
-
-    .left {
-      float: left;
-      width: 60px;
-    }
-
-    .right {
-      float: right;
-      width: 60px;
-    }
-
-    .bottom {
-      clear: both;
-      text-align: center;
-    }
-
-    .item {
-      margin: 4px;
-    }
-
-    .left .el-tooltip__popper,
-    .right .el-tooltip__popper {
-      padding: 8px 10px;
+  @screen xp {
+    .header-sn {
+      a {
+        @apply hidden;
+      }
     }
   }
 </style>

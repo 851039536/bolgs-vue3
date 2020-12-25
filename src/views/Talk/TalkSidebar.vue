@@ -49,7 +49,7 @@
         </div>
       </div>
       <!--qq 微信分享框-->
-      <div class="TalkSidebar-text-1">
+      <!-- <div class="TalkSidebar-text-1">
         <div class="flex items-center TalkSidebar-text-1-1">
           <div class="flex-1 TalkSidebar-text-1-2">
             <a
@@ -82,7 +82,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="sn-list4">
         <h4>最新动态</h4>
         <div class="sn-list4-1">
@@ -113,37 +113,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="sn-list7">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list7-1"
-        >
-          公告
-        </div>
-        <div class="sn-list7-1">
-          <p class="">专注c#,vue,并发编程,netCore,WinForm,CSS</p>
-        </div>
-      </div> -->
-
-      <!-- <div class="sn-list3">
-        <div class="sn-list3-1">标签</div>
-
-        <div
-          class="sn-list3-2"
-          v-for="Labeslss in Labels"
-          :key="Labeslss.labelId"
-        >
-          <div
-            class="transition duration-500 ease-in-out transform sn-list3-2-1 hover: hover:scale-110 hover:text-red-600"
-            @click="tagtest(Labeslss.labelId)"
-          >
-            <svg class="inline-block icon" aria-hidden="true">
-              <use :xlink:href="Labeslss.labelAlias"></use>
-            </svg>
-            <a>{{ Labeslss.labelName }}</a>
-          </div>
-        </div>
-      </div> -->
       <div class="sn-list5">
         <div
           class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
@@ -204,67 +173,67 @@
 
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
-export default {
-  name: "TalkSidebar",
-  components: {},
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const router = useRouter();
-    // 加载路由
-    // const route = useRoute();
-    const state = reactive({
-      Sort: [],
-      article: [],
-      //当前默认页
-      barFixed: false,
-      UserTalk: "",
-    });
-
-    const getall = () => {
-      //     //加载文章
-      proxy.$api
-        .all([
-          //查询分类
-          proxy.$api.get("/api/SnTalkType/GetAllAsync"),
-          //查询最新发布前十文章
-          proxy.$api.get(
-            "/api/SnTalk/GetFyAllAsync?pageIndex=1&pageSize=10&isDesc=true"
-          ),
-          // 查询当前用户的说说
-          proxy.$api.get(
-            "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-          ),
-        ])
-        .then(
-          proxy.$api.spread((res2: any, res3: any, res4: any) => {
-            state.Sort = res2.data;
-            state.article = res3.data;
-            state.UserTalk = res4.data;
-          })
-        )
-        .catch((err: never) => {
-          console.log(err);
-        });
-    };
-
-    const AsyGetTestID = (id: number) => {
-      //       // .带参数跳转
-      router.push({
-        path: "/TalkText",
-        query: {
-          id: id,
-        },
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  export default {
+    name: "TalkSidebar",
+    components: {},
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      const router = useRouter();
+      // 加载路由
+      // const route = useRoute();
+      const state = reactive({
+        Sort: [],
+        article: [],
+        //当前默认页
+        barFixed: false,
+        UserTalk: "",
       });
-    };
-    onMounted(async () => {
-      await getall();
-    });
-    return { ...toRefs(state), getall, AsyGetTestID };
-  },
-};
+
+      const getall = () => {
+        //     //加载文章
+        proxy.$api
+          .all([
+            //查询分类
+            proxy.$api.get("/api/SnTalkType/GetAllAsync"),
+            //查询最新发布前十文章
+            proxy.$api.get(
+              "/api/SnTalk/GetFyAllAsync?pageIndex=1&pageSize=10&isDesc=true"
+            ),
+            // 查询当前用户的说说
+            proxy.$api.get(
+              "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
+            ),
+          ])
+          .then(
+            proxy.$api.spread((res2: any, res3: any, res4: any) => {
+              state.Sort = res2.data;
+              state.article = res3.data;
+              state.UserTalk = res4.data;
+            })
+          )
+          .catch((err: never) => {
+            console.log(err);
+          });
+      };
+
+      const AsyGetTestID = (id: number) => {
+        //       // .带参数跳转
+        router.push({
+          path: "/TalkText",
+          query: {
+            id: id,
+          },
+        });
+      };
+      onMounted(async () => {
+        await getall();
+      });
+      return { ...toRefs(state), getall, AsyGetTestID };
+    },
+  };
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";

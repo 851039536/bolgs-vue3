@@ -1,7 +1,7 @@
 <!--
- * @Author: your name
+ * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2020-12-22 18:32:16
+ * @LastEditTime: 2020-12-25 14:32:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -86,27 +86,15 @@
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
-            <div class="sn-list8-2-1-2">210篇</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">运行时间:</div>
-            <div class="sn-list8-2-1-2">333天</div>
+            <div class="sn-list8-2-1-2">{{ Count }}篇</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">总字数:</div>
-            <div class="sn-list8-2-1-2">1111k字</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">访客数:</div>
-            <div class="sn-list8-2-1-2">1111人</div>
+            <div class="sn-list8-2-1-2">{{ textNum }}字</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">访问量:</div>
-            <div class="sn-list8-2-1-2">12434次</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">最后更新:</div>
-            <div class="sn-list8-2-1-2">2012-12-12</div>
+            <div class="sn-list8-2-1-2">{{ readCount }}次</div>
           </div>
         </div>
       </div>
@@ -129,81 +117,98 @@
 
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
-export default {
-  name: "TalkSidebar",
-  components: {},
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const router = useRouter();
-    // 加载路由
-    // const route = useRoute();
-    const state = reactive({
-      Sort: [],
-      article: [],
-      //当前默认页
-      barFixed: false,
-      UserTalk: "",
-      modal2Visible: false,
-      text: [],
-    });
-
-    const getall = () => {
-      //     //加载文章
-      proxy.$api
-        .all([
-          //查询分类
-          proxy.$api.get("/api/SnOneType/GetAll"),
-          //查询最新发布前十文章
-          proxy.$api.get(
-            "/api/SnOne/GetFyTypeAsync?type=999&pageIndex=1&pageSize=10&name=read&isDesc=true"
-          ),
-          // 查询当前用户的说说
-          proxy.$api.get(
-            "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-          ),
-        ])
-        .then(
-          proxy.$api.spread((res2: any, res3: any, res4: any) => {
-            state.Sort = res2.data;
-            state.article = res3.data;
-            state.UserTalk = res4.data;
-          })
-        )
-        .catch((err: never) => {
-          console.log(err);
-        });
-    };
-    const setModal1Visible = (modal2Visible: boolean, id: number) => {
-      state.modal2Visible = modal2Visible;
-      proxy
-        .$api({
-          url: "/api/SnOne/GetOneIdAsync?id=" + id,
-        })
-        .then((res: any) => {
-          state.text = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-    const AsyGetTestID = (id: number) => {
-      //       // .带参数跳转
-      router.push({
-        path: "/TalkText",
-        query: {
-          id: id,
-        },
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  export default {
+    name: "TalkSidebar",
+    components: {},
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      const router = useRouter();
+      // 加载路由
+      // const route = useRoute();
+      const state = reactive({
+        Sort: [],
+        article: [],
+        //当前默认页
+        barFixed: false,
+        UserTalk: "",
+        modal2Visible: false,
+        text: [],
+        Count: 0,
+        textNum: 0,
+        readCount: 0
       });
-    };
-    onMounted(async () => {
-      await getall();
-    });
-    return { ...toRefs(state), getall, AsyGetTestID, setModal1Visible };
-  },
-};
+
+      const getall = () => {
+        //     //加载文章
+        proxy.$api
+          .all([
+            //查询分类
+            proxy.$api.get("/api/SnOneType/GetAll"),
+            //查询点赞前十文章
+            proxy.$api.get(
+              "/api/SnOne/GetFyTypeAsync?type=999&pageIndex=1&pageSize=10&name=give&isDesc=true"
+            ),
+            // 查询当前用户的说说
+            proxy.$api.get(
+              "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
+            ),
+            // 查询文章数量
+            proxy.$api.get(
+              "/api/SnOne/CountAsync"
+            ),
+            // 查询字段
+            proxy.$api.get(
+              "/api/SnOne/GetSumAsync?type=text"
+            ),
+            proxy.$api.get(
+              "/api/SnOne/GetSumAsync?type=read"
+            ),
+          ])
+          .then(
+            proxy.$api.spread((Sort: any, article: any, UserTalk: any, Count: any, textNum: any, readCount: any) => {
+              state.Sort = Sort.data;
+              state.article = article.data;
+              state.UserTalk = UserTalk.data;
+              state.Count = Count.data;
+              state.textNum = textNum.data;
+              state.readCount = readCount.data;
+            })
+          )
+          .catch((err: never) => {
+            console.log(err);
+          });
+      };
+      const setModal1Visible = (modal2Visible: boolean, id: number) => {
+        state.modal2Visible = modal2Visible;
+        proxy
+          .$api({
+            url: "/api/SnOne/GetOneIdAsync?id=" + id,
+          })
+          .then((res: any) => {
+            state.text = res.data;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+      const AsyGetTestID = (id: number) => {
+        //       // .带参数跳转
+        router.push({
+          path: "/TalkText",
+          query: {
+            id: id,
+          },
+        });
+      };
+      onMounted(async () => {
+        await getall();
+      });
+      return { ...toRefs(state), getall, AsyGetTestID, setModal1Visible };
+    },
+  };
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";

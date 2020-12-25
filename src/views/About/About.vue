@@ -136,64 +136,64 @@
   </div>
 </template>
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
-export default {
-  name: "About",
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-    const router = useRouter();
-    const state = reactive({
-      activeClass: "animate__animated",
-      errorClass: "animate__fadeInRightBig",
-      bounceIn: "animate__bounceIn",
-      backInDown: "animate__backInDown",
-      fadeInTopRight: "animate__fadeInTopRight",
-      User: [],
-      newinfo: [],
-    });
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  export default {
+    name: "About",
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      const router = useRouter();
+      const state = reactive({
+        activeClass: "animate__animated",
+        errorClass: "animate__fadeInRightBig",
+        bounceIn: "animate__bounceIn",
+        backInDown: "animate__backInDown",
+        fadeInTopRight: "animate__fadeInTopRight",
+        User: [],
+        newinfo: [],
+      });
 
-    const getall = () => {
-      //查询当前用户信息
-      proxy
-        .$api({
-          url: "/api/SnUser/AsyGetUserId?UserId=4",
-        })
-        .then((res: any) => {
-          state.User = res.data[0];
-        })
-        .catch((e: any) => {
-          console.log(e + "获取数据失败");
-        });
-    };
+      const getall = () => {
+        //查询当前用户信息
+        proxy
+          .$api({
+            url: "/api/SnUser/AsyGetUserId?UserId=4",
+          })
+          .then((res: any) => {
+            state.User = res.data[0];
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+      };
 
-    const Getid = async (id: number) => {
-      switch (id) {
-        case 1:
-          await router.push("./Indexs");
-          break;
-        case 2:
-          await router.push("./SnVideo");
-          break;
-        case 3:
-          await router.push("./Talk");
-          break;
-        case 4:
-          await router.push("./favorite");
-          break;
-        case 5:
-          await router.push("./Leave");
-          break;
-      }
-    };
+      const Getid = async (id: number) => {
+        switch (id) {
+          case 1:
+            await router.push("./Indexs");
+            break;
+          case 2:
+            await router.push("./SnVideo");
+            break;
+          case 3:
+            await router.push("./Talk");
+            break;
+          case 4:
+            await router.push("./favorite");
+            break;
+          case 5:
+            await router.push("./Leave");
+            break;
+        }
+      };
 
-    onMounted(async () => {
-      await getall();
-    });
-    return { ...toRefs(state), getall, Getid };
-  },
-};
+      onMounted(async () => {
+        await getall();
+      });
+      return { ...toRefs(state), getall, Getid };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
