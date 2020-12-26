@@ -85,7 +85,6 @@
         </div>
       </div>
       <div class="sn-list4">
-        <h4>最新动态</h4>
         <div class="sn-list4-1">
           <p class="">{{ UserTalk }}</p>
         </div>
@@ -419,8 +418,7 @@
         width: 95%;
         margin: 0 auto;
         text-align: center;
-        @apply mb-3 shadow rounded bg-white;
-
+        @apply mb-2 shadow rounded bg-white;
         h4 {
           height: 2rem;
           @apply text-gray-900;

@@ -18,16 +18,16 @@
               </div>
             </template>
             <div>
-              <img src="../../assets/img/bg.jpg" alt="" />
+              <img src="../../assets/img/bg.jpg" alt />
             </div>
             <div>
-              <img src="../../assets/img/bg.jpg" alt="" />
+              <img src="../../assets/img/bg.jpg" alt />
             </div>
             <div>
-              <img src="../../assets/img/bg.jpg" alt="" />
+              <img src="../../assets/img/bg.jpg" alt />
             </div>
             <div>
-              <img src="../../assets/img/bg.jpg" alt="" />
+              <img src="../../assets/img/bg.jpg" alt />
             </div>
           </a-carousel>
 
@@ -36,15 +36,10 @@
           </div>
         </div>
 
-        <div class="talk-text-2" v-for="data in dataShow" :key="data.id">
+        <!-- <div class="talk-text-2" v-for="data in dataShow" :key="data.id">
           <div class="flex talk-text-2-1">
-            <!-- <div class="talk-text-2-1-1">
-             
-            </div> -->
-
             <div class="talk-text-2-1-2">
               <div class="flex talk-text-2-1-2-1">
-                <!-- <div><a>Junior@</a></div> -->
                 <div>
                   {{
                     data.talkTime
@@ -57,24 +52,26 @@
                   <a @click="GetTalkid(data.id)">《{{ data.talkTitle }}》</a>
                 </div>
               </div>
-              <div class="talk-text-2-1-2-2">
-                {{ data.talkBrief }}
-              </div>
+              <div class="talk-text-2-1-2-2">{{ data.talkBrief }}</div>
 
               <div class="flex talk-text-2-1-2-3">
-                <div><a>Junior@</a></div>
+                <div>
+                  <a>Junior@</a>
+                </div>
                 <div>
                   <svg class="inline-block icon" aria-hidden="true">
                     <use
                       xlink:href="#icon-dianzan2
 "
-                    ></use></svg
-                  >{{ data.talkGive }}
+                    />
+                  </svg>
+                  {{ data.talkGive }}
                 </div>
                 <div>
                   <svg class="inline-block icon" aria-hidden="true">
-                    <use xlink:href="#icon-liulan"></use></svg
-                  >{{ data.talkRead }}
+                    <use xlink:href="#icon-liulan" />
+                  </svg>
+                  {{ data.talkRead }}
                 </div>
                 <div>
                   分类:
@@ -83,6 +80,25 @@
               </div>
             </div>
           </div>
+        </div> -->
+
+        <div class="talk-text-3" v-for="data in dataShow" :key="data.id">
+          <div class="talk-text-3-1">
+            {{
+              data.talkTime
+                .toLocaleString()
+                .replace(/T/g, " ")
+                .replace(/\.[\d]{3}Z/, "")
+            }}
+            <a @click="GetTalkid(data.id, data.userId)"
+              >《{{ data.talkTitle }}》</a
+            >
+          </div>
+          <div
+            class="talk-text-3-2"
+            v-if="data.userId != 0"
+            v-html="data.talkText"
+          ></div>
         </div>
 
         <!--分页-->
@@ -105,13 +121,16 @@
 </template>
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import "highlight.js/styles/googlecode.css";
+  import hljs from "highlight.js"; //导入代码高亮文件
+  import marked from "marked"; //解析器
+  import { getCurrentInstance, reactive, toRefs, onMounted, onUpdated } from "vue";
   import { useRouter } from "vue-router";
   import TalkSidebar from "./TalkSidebar.vue";
+  import { message } from 'ant-design-vue';
   export default {
     name: "Talk",
     components: { TalkSidebar },
-
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
@@ -123,6 +142,7 @@
         page: 1, //当前页码
         pagesize: 8, //每页的数据条数
         count: 0, //默认数据总数
+        blog: [],
       });
 
       const getCount = async () => {
@@ -149,20 +169,33 @@
           })
           .then((res: any) => {
             state.dataShow = res.data;
+            state.dataShow = marked(res.data);
           })
           .catch((e: any) => {
             console.log(e + "获取数据失败");
           });
       };
-
-      const GetTalkid = async (id: any) => {
-        // .带参数跳转
-        await router.push({
-          path: "/TalkText",
-          query: {
-            id: id,
-          },
+      // 代码高亮
+      const highlighthandle = async () => {
+        await hljs;
+        let highlight = document.querySelectorAll("code,pre");
+        highlight.forEach((block: any) => {
+          hljs.highlightBlock(block);
         });
+      };
+      const GetTalkid = async (id: number, userid: number) => {
+
+        if (userid != 0) {
+          // .带参数跳转
+          await router.push({
+            path: "/TalkText",
+            query: {
+              id: id,
+            },
+          });
+        } else {
+          message.info('无权限!');
+        }
       };
 
       const currentchange = async (val: any) => {
@@ -190,7 +223,9 @@
         await getCount();
         await AsyGetTest();
       });
-
+      onUpdated(async () => {
+        await highlighthandle();
+      });
       return {
         ...toRefs(state),
         getCount,
@@ -198,6 +233,7 @@
         GetTalkid,
         currentchange,
         backtop,
+        highlighthandle
       };
     },
   };
@@ -217,7 +253,7 @@
           text-align: center;
           height: 140px;
           line-height: 160px;
-          background: #364d79;
+          // background: #364d79;
           overflow: hidden;
         }
 
@@ -325,9 +361,36 @@
           }
         }
       }
-
+      .talk-text-3 {
+        @apply mt-2;
+        @apply bg-white  text-base  shadow-sm rounded p-2;
+        width: 100%;
+        .talk-text-3-1 {
+          @apply p-1 px-3 text-lg font-medium;
+          @include line-ome;
+          /* 边框下划线 */
+          border-bottom: 1px solid #d5d9e0;
+        }
+        .talk-text-3-2 {
+          @apply p-1 px-3 text-base text-gray-500 font-light;
+        }
+      }
       .asas {
         @apply bg-red-400;
+      }
+    }
+  }
+
+  @screen xp {
+    .TalkSidebar {
+      @apply hidden;
+    }
+    .talk {
+      width: 100%;
+      @apply ml-0 mb-14;
+
+      .talk-text-1 {
+        @apply hidden;
       }
     }
   }

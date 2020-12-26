@@ -60,6 +60,7 @@ const routes = [{
   name: 'IndexText2',
   component: () => import('../views/index/IndexText2.vue')
 },
+
 {
   path: '/Sidebarsn',
   name: 'Sidebarsn',
@@ -163,8 +164,6 @@ const routes = [{
   },
   component: () => import('../views/SnVideo/SnVideoText.vue')
 },
-
-
 {
   path: '/Leave',
   name: 'Leave',
@@ -173,7 +172,6 @@ const routes = [{
   },
   component: () => import('../views/Leave/Leave.vue')
 },
-
 {
   path: '/One',
   name: 'One',
@@ -181,6 +179,14 @@ const routes = [{
     keepAlive: false // 缓存
   },
   component: () => import('../views/One/One.vue')
+},
+{
+  path: '/Book',
+  name: 'Book',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/Book/Book.vue')
 },
 ]
 

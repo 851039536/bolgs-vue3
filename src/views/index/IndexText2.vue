@@ -99,6 +99,18 @@
   import hljs from "highlight.js"; //导入代码高亮文件
   import marked from "marked"; //解析器
 
+
+  let rendererMD = new marked.Renderer();
+  marked.setOptions({
+    renderer: rendererMD,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false
+  });
   import {
     getCurrentInstance,
     reactive,
@@ -124,6 +136,9 @@
       //   blog: string;
       //   spinning: boolean;
       // }
+
+
+
       //获取上下文实例，ctx=vue2的this
       const { proxy }: any = getCurrentInstance();
       // 加载路由
@@ -138,7 +153,11 @@
         fullscreenLoading: false,
         blog: "",
         spinning: true,
+
       });
+
+
+
       // 加载内容
       const AsyGetTest = (): void => {
         console.log(state.id);
@@ -292,9 +311,12 @@
         }
       };
 
+
       onMounted(async () => {
         await AsyGetTest();
         await backtop();
+
+
       });
       onUpdated(async () => {
         await highlighthandle();

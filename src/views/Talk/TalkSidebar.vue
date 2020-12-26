@@ -1,90 +1,7 @@
 <template>
   <div class="TalkSidebar" id="sn-list" :class="{ isFixed: barFixed }">
     <div class="TalkSidebar-text">
-      <!--            <div class="font-mono sn-list0">-->
-      <!--                <div class="sn-list0-img">-->
-      <!--                    <img-->
-      <!--                            class="sn-list0-img2"-->
-      <!--                            id="img1"-->
-      <!--                            :src=User.userPhoto-->
-      <!--                            alt=""-->
-      <!--                    />-->
-      <!--                    &lt;!&ndash;                    <el-image&ndash;&gt;-->
-      <!--                    &lt;!&ndash;                            class="sn-list0-img2"&ndash;&gt;-->
-      <!--                    &lt;!&ndash;                            :src="User.userPhoto"&ndash;&gt;-->
-      <!--                    &lt;!&ndash;                            :fit="scale-down"></el-image>&ndash;&gt;-->
-      <!--                </div>-->
-      <!--                <div class="sn-list0-name">-->
-      <!--                    <h3 class="sn-list0-name1 ">{{User.userNickname}}</h3>-->
-      <!--                </div>-->
-
-      <!--                <div class="sn-list0-tag">-->
-      <!--                    <div class="flex sn-list0-tag-1">-->
-      <!--                        <div class="sn-list0-tag1 ">-->
-      <!--                            <div class="sn-list0-tag1-1-2"><a>{{ArticleCount}}</a></div>-->
-      <!--                            <div class="sn-list0-tag1-1-1">文章</div>-->
-      <!--                        </div>-->
-      <!--                        <div class="sn-list0-tag2 ">-->
-      <!--                            <div><a>-->
-      <!--                                {{LabelsCount}}-->
-      <!--                            </a></div>-->
-      <!--                            <div>标签</div>-->
-      <!--                        </div>-->
-      <!--                        <div class="sn-list0-tag3">-->
-      <!--                            <div><a>-->
-      <!--                                {{SortCount}}-->
-      <!--                            </a></div>-->
-      <!--                            <div>分类</div>-->
-      <!--                        </div>-->
-      <!--                    </div>-->
-      <!--                </div>-->
-      <!--            </div>-->
-
-      <!--搜索框-->
-      <div class="TalkSidebar-text-2">
-        <div class="TalkSidebar-text-2-1">
-          <!-- <el-input placeholder="请输入内容" class="input-with-select">
-            <el-button slot="append" icon="el-icon-search"></el-button>
-          </el-input> -->
-        </div>
-      </div>
-      <!--qq 微信分享框-->
-      <!-- <div class="TalkSidebar-text-1">
-        <div class="flex items-center TalkSidebar-text-1-1">
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a
-              href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes"
-            >
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-QQ11"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a target="_blank" href="https://gitee.com/kaiouyang-sn">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-github1"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a>
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-weixin3"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="flex-1 TalkSidebar-text-1-2">
-            <a>
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-zhihu"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div> -->
       <div class="sn-list4">
-        <h4>最新动态</h4>
         <div class="sn-list4-1">
           <p class="">{{ UserTalk }}</p>
         </div>
@@ -99,8 +16,8 @@
 
         <div
           class="TalkSidebar-text-4-2"
-          v-for="articles in article"
-          :key="articles.id"
+          v-for="data in article"
+          :key="data.id"
         >
           <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
             <svg class="inline-block icon" aria-hidden="true">
@@ -109,7 +26,15 @@
 "
               ></use>
             </svg>
-            <a @click="AsyGetTestID(articles.id)">{{ articles.talkTitle }}</a>
+            <a @click="AsyGetTestID(data.id, data.userId)"
+              >{{ data.talkTitle }}
+              {{
+                data.talkTime
+                  .toLocaleString()
+                  .replace(/T/g, " ")
+                  .replace(/\.[\d]{3}Z/, "")
+              }}
+            </a>
           </div>
         </div>
       </div>
@@ -175,6 +100,7 @@
 <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
+  import { message } from 'ant-design-vue';
   export default {
     name: "TalkSidebar",
     components: {},
@@ -219,14 +145,18 @@
           });
       };
 
-      const AsyGetTestID = (id: number) => {
-        //       // .带参数跳转
-        router.push({
-          path: "/TalkText",
-          query: {
-            id: id,
-          },
-        });
+      const AsyGetTestID = (id: number, userid: number) => {
+
+        if (userid != 0) {
+          router.push({
+            path: "/TalkText",
+            query: {
+              id: id,
+            },
+          });
+        } else {
+          message.info('无权限!');
+        }
       };
       onMounted(async () => {
         await getall();
@@ -294,16 +224,9 @@
         margin: 0 auto;
         background-color: #ffffff;
         text-align: center;
-        @apply mb-3;
+        @apply mb-2;
         @apply shadow rounded;
         //@include gradient-text;
-
-        h4 {
-          height: 2rem;
-          color: #1b1e21;
-          font-size: 15px;
-          line-height: 2.5rem;
-        }
 
         .sn-list4-1 {
           p {
@@ -381,9 +304,7 @@
       .sn-list5 {
         width: 95%;
         margin: 0 auto;
-        background-color: #ffffff;
-        @apply p-1 mb-2;
-
+        @apply p-1 mb-2 bg-white;
         @apply shadow rounded;
 
         .sn-list5-1 {
@@ -394,8 +315,7 @@
       .TalkSidebar-text-4 {
         width: 95%;
         margin: 0 auto;
-        background-color: #ffffff;
-        @apply p-1 mb-2 cursor-pointer;
+        @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
 
         .TalkSidebar-text-4-1 {

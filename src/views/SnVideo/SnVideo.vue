@@ -16,7 +16,7 @@
         <div class="SnVideo-2-1" v-for="info in newtype" :key="info.vId">
           <div class="SnVideo-2-1-1">
             <!-- <img :src="info.vImg" alt="" /> -->
-            <img src="../../assets/img/ab.jpg" alt="" />
+            <img src="../../assets/img/hy.jpg" alt="" />
           </div>
           <div class="SnVideo-2-1-2">
             <a @click="videos(info.vId)">{{ info.vTitle }}</a>
@@ -36,77 +36,77 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
-export default {
-  name: "SnVideo",
-  components: {},
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  export default {
+    name: "SnVideo",
+    components: {},
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    //获取上下文实例，ctx=vue2的this
-    const { proxy }: any = getCurrentInstance();
-    // 加载路由
-    const router = useRouter();
-    // 数据定义
-    const state = reactive({
-      newtype: [],
-      videotype: [],
-    });
-
-    const VideoAll = (type: number) => {
-      proxy
-        .$api({
-          url: "/api/SnVideoType/AsyGestTest",
-        })
-        .then((res: any) => {
-          state.videotype = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-
-      proxy
-        .$api({
-          url: "/api/SnVideo/GetTestWhere?type=" + type,
-        })
-        .then((res: any) => {
-          state.newtype = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-
-    const videos = (id: number) => {
-      // .带参数跳转
-      router.push({
-        path: "/SnVideoText",
-        query: {
-          id: id,
-        },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      //获取上下文实例，ctx=vue2的this
+      const { proxy }: any = getCurrentInstance();
+      // 加载路由
+      const router = useRouter();
+      // 数据定义
+      const state = reactive({
+        newtype: [],
+        videotype: [],
       });
-    };
 
-    const cliname = (vid: number) => {
-      proxy
-        .$api({
-          url: "/api/SnVideo/GetTestWhere?type=" + vid,
-        })
-        .then((res: any) => {
-          state.newtype = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
+      const VideoAll = (type: number) => {
+        proxy
+          .$api({
+            url: "/api/SnVideoType/AsyGestTest",
+          })
+          .then((res: any) => {
+            state.videotype = res.data;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+
+        proxy
+          .$api({
+            url: "/api/SnVideo/GetTestWhere?type=" + type,
+          })
+          .then((res: any) => {
+            state.newtype = res.data;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+
+      const videos = (id: number) => {
+        // .带参数跳转
+        router.push({
+          path: "/SnVideoText",
+          query: {
+            id: id,
+          },
         });
-    };
+      };
 
-    onMounted(async () => {
-      await VideoAll(2);
-    });
-    return { ...toRefs(state), VideoAll, videos, cliname };
-  },
-};
+      const cliname = (vid: number) => {
+        proxy
+          .$api({
+            url: "/api/SnVideo/GetTestWhere?type=" + vid,
+          })
+          .then((res: any) => {
+            state.newtype = res.data;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+
+      onMounted(async () => {
+        await VideoAll(2);
+      });
+      return { ...toRefs(state), VideoAll, videos, cliname };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

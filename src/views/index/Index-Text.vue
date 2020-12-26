@@ -174,22 +174,21 @@
 
   .sn-text {
     @include initialize($w, null, null, null, $ml, null, null);
+
     // @include boxshow3;
     p {
       @apply mb-4 text-xs;
     }
-
     .sn-test-2 {
       @include w-h(null, 140px);
+
       background: no-repeat center/100% url("../../assets/img/bg.jpg");
       @include boxshow3;
     }
     .sn-test-1 {
-      background-color: #ffffff;
       @include w-h(100%, 145px);
-      @apply mb-3 mt-2 shadow rounded-md;
+      @apply mb-3 mt-2 bg-white shadow rounded-md;
       // @include boxshow3;
-
       .sn-text-1-1 {
         /*background-color: #63a35c;*/
         height: 78%;
@@ -199,9 +198,7 @@
           @include w-h(100%, 100%);
           .sn-text-1-1-1-1 {
             height: 35%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            @include line-ome;
             //background-color: #4eb687;
             @apply px-3 pt-1 m-1 text-xl cursor-pointer font-medium antialiased;
           }

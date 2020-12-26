@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2020-12-25 14:32:44
+ * @LastEditTime: 2020-12-26 13:46:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -9,17 +9,7 @@
 <template>
   <div class="TalkSidebar" id="sn-list" :class="{ isFixed: barFixed }">
     <div class="TalkSidebar-text">
-      <!--搜索框-->
-      <div class="TalkSidebar-text-2">
-        <div class="TalkSidebar-text-2-1">
-          <!-- <el-input placeholder="请输入内容" class="input-with-select">
-            <el-button slot="append" icon="el-icon-search"></el-button>
-          </el-input> -->
-        </div>
-      </div>
-
       <div class="sn-list4">
-        <h4>最新动态</h4>
         <div class="sn-list4-1">
           <p class="">{{ UserTalk }}</p>
         </div>
@@ -269,7 +259,7 @@
         margin: 0 auto;
         background-color: #ffffff;
         text-align: center;
-        @apply mb-3;
+        @apply mb-2;
         @apply shadow rounded;
         //@include gradient-text;
 

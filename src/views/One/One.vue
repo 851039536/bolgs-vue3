@@ -6,7 +6,7 @@
       <!--        每日最新  电脑端-->
       <div class="EverydayOne-1">
         <div class="EverydayOne-1-1">
-          <img src="../../assets/img/ab.jpg" alt="" />
+          <img src="../../assets/img/tg.jpg" alt="" />
         </div>
         <div class="EverydayOne-1-2">
           <div class="EverydayOne-1-2-1">
@@ -71,66 +71,66 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import OneSidebar from "./OneSidebar.vue";
-import { message } from "ant-design-vue";
-export default {
-  name: "EverydayOne",
-  components: { OneSidebar },
-  setup() {
-    const { proxy }: any = getCurrentInstance();
-    const state: any = reactive({
-      dataTest: [],
-      dataOne: [],
-      text: [],
-      modal2Visible: false,
-    });
-    const setModal1Visible = (modal2Visible: boolean, id: number) => {
-      state.modal2Visible = modal2Visible;
-      proxy
-        .$api({
-          url: "/api/SnOne/GetOneIdAsync?id=" + id,
-        })
-        .then((res: any) => {
-          state.text = res.data;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-
-    const getOne = () => {
-      proxy.$api
-        .all([
-          // 读取一条内容
-          proxy.$api.get(
-            "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=1&isDesc=true"
-          ),
-          //查询最新发布前十内容
-          proxy.$api.get(
-            "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=6&isDesc=true"
-          ),
-        ])
-        .then(
-          proxy.$api.spread((res1: any, res2: any) => {
-            state.dataOne = res1.data[0];
-            state.dataTest = res2.data;
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import OneSidebar from "./OneSidebar.vue";
+  import { message } from "ant-design-vue";
+  export default {
+    name: "EverydayOne",
+    components: { OneSidebar },
+    setup() {
+      const { proxy }: any = getCurrentInstance();
+      const state: any = reactive({
+        dataTest: [],
+        dataOne: [],
+        text: [],
+        modal2Visible: false,
+      });
+      const setModal1Visible = (modal2Visible: boolean, id: number) => {
+        state.modal2Visible = modal2Visible;
+        proxy
+          .$api({
+            url: "/api/SnOne/GetOneIdAsync?id=" + id,
           })
-        )
-        .catch((err: never) => {
-          console.log(err);
-        });
-    };
+          .then((res: any) => {
+            state.text = res.data;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
 
-    const give = (id: number) => {
-      message.info(id + "功能未完成");
-    };
-    onMounted(async () => {
-      await getOne();
-    });
-    return { ...toRefs(state), getOne, setModal1Visible, give };
-  },
-};
+      const getOne = () => {
+        proxy.$api
+          .all([
+            // 读取一条内容
+            proxy.$api.get(
+              "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=1&isDesc=true"
+            ),
+            //查询最新发布前十内容
+            proxy.$api.get(
+              "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=6&isDesc=true"
+            ),
+          ])
+          .then(
+            proxy.$api.spread((res1: any, res2: any) => {
+              state.dataOne = res1.data[0];
+              state.dataTest = res2.data;
+            })
+          )
+          .catch((err: never) => {
+            console.log(err);
+          });
+      };
+
+      const give = (id: number) => {
+        message.info(id + "功能未完成");
+      };
+      onMounted(async () => {
+        await getOne();
+      });
+      return { ...toRefs(state), getOne, setModal1Visible, give };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

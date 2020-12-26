@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2020-12-24 16:31:45
+ * @LastEditTime: 2020-12-26 14:21:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -41,7 +41,7 @@
           case 1:
             router.push('/Indexs')
             break;
-          case 2: router.push('/Indexs')
+          case 2: router.push('/Talk')
             break;
           case 3: router.push('./Indexs')
             break;

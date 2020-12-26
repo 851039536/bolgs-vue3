@@ -66,44 +66,44 @@
 </template>
 
 <script lang="ts">
-import { useRouter } from "vue-router";
-export default {
-  name: "Sidebarsn",
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const router = useRouter();
-    let nav = async (num: number) => {
-      switch (num) {
-        case 1:
-          router.push("/One");
-          break;
-        case 2:
-          router.push("/SnVideo");
-          break;
-        case 3:
-          // this.$router.push('/AfterLogin')
-          break;
-        case 4:
-          router.push("./favorite");
-          break;
-        case 5:
-          router.push("./BlogCircles");
+  import { useRouter } from "vue-router";
+  export default {
+    name: "Sidebarsn",
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const router = useRouter();
+      let nav = async (num: number) => {
+        switch (num) {
+          case 1:
+            router.push("/One");
+            break;
+          case 2:
+            router.push("/SnVideo");
+            break;
+          case 3:
+            // this.$router.push('/AfterLogin')
+            break;
+          case 4:
+            router.push("./favorite");
+            break;
+          case 5:
+            router.push("./BlogCircles");
 
-          break;
-        case 6:
-          router.push("./Indexs");
-          break;
-        default:
-          router.push("./Indexs");
-          break;
-      }
-    };
+            break;
+          case 6:
+            router.push("./Book");
+            break;
+          default:
+            router.push("./Indexs");
+            break;
+        }
+      };
 
-    return {
-      nav,
-    };
-  },
-};
+      return {
+        nav,
+      };
+    },
+  };
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";

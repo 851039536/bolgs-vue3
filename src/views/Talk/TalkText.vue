@@ -13,7 +13,7 @@
     <!--内容-->
     <div class="editor">
       <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
-      <div class="Talkblog" v-html="newinfo.talkText"></div>
+      <div class="Talkblog" v-html="blog"></div>
     </div>
 
     <!-- <Comment></Comment> -->
@@ -65,209 +65,210 @@
 
 
 <script lang="ts">
-// 组件导入
-import "highlight.js/styles/googlecode.css";
-import hljs from "highlight.js"; //导入代码高亮文件
-import marked from "marked"; //解析器
-import TalkSidebar from "./TalkSidebar.vue";
-import {
-  getCurrentInstance,
-  reactive,
-  toRefs,
-  onMounted,
-  onUpdated,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
-// import { useRoute } from "vue-router";
-export default {
-  name: "TalkText",
-  components: { TalkSidebar },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    //获取上下文实例，ctx=vue2的this
-    const { proxy }: any = getCurrentInstance();
-    // 加载路由
-    const route = useRoute();
-    const router = useRouter();
-    // 数据定义
-    const state: any = reactive({
-      newinfo: [],
-      id: route.query.id,
-      article: [],
-      timebool: true,
-      fullscreenLoading: false,
-      blog: "",
-      spinning: true,
-    });
-    // 加载内容
+  // 组件导入
+  import "highlight.js/styles/googlecode.css";
+  import hljs from "highlight.js"; //导入代码高亮文件
+  import marked from "marked"; //解析器
+  import TalkSidebar from "./TalkSidebar.vue";
+  import {
+    getCurrentInstance,
+    reactive,
+    toRefs,
+    onMounted,
+    onUpdated,
+  } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  // import { useRoute } from "vue-router";
+  export default {
+    name: "TalkText",
+    components: { TalkSidebar },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 
-    const AsyGetTest = (): void => {
-      console.log(state.id);
-      proxy.$api
-        .all([
-          // 读取详情页数据
-          proxy.$api.get("/api/SnTalk/GetAllAsyncID?id=" + state.id),
-        ])
-        .then(
-          proxy.$api.spread((res1: any) => {
-            state.newinfo = res1.data[0];
-            // UpRead(state.newinfo);
-            state.blog = marked(state.newinfo.talkText);
-            state.spinning = false;
-            // alert(this.spinning);
-          })
-        )
-        .catch((err: never) => {
-          console.log(err);
+    setup() {
+      //获取上下文实例，ctx=vue2的this
+      const { proxy }: any = getCurrentInstance();
+      // 加载路由
+      const route = useRoute();
+      const router = useRouter();
+      // 数据定义
+      const state: any = reactive({
+        newinfo: [],
+        id: route.query.id,
+        article: [],
+        timebool: true,
+        fullscreenLoading: false,
+        blog: "",
+        spinning: true,
+      });
+      // 加载内容
+
+      const AsyGetTest = (): void => {
+        console.log(state.id);
+        proxy.$api
+          .all([
+            // 读取详情页数据
+            proxy.$api.get("/api/SnTalk/GetAllAsyncID?id=" + state.id),
+          ])
+          .then(
+            proxy.$api.spread((res1: any) => {
+              state.newinfo = res1.data[0];
+              // UpRead(state.newinfo);
+              state.blog = marked(state.newinfo.talkText);
+              state.spinning = false;
+              // alert(this.spinning);
+            })
+          )
+          .catch((err: never) => {
+            console.log(err);
+          });
+      };
+      // 阅读数
+      // const UpRead = (info: any): void => {
+      //   if (info == null) {
+      //     console.log(info);
+      //     return;
+      //   } else {
+      //     info.read++;
+      //     proxy
+      //       .$api({
+      //         // 更新
+      //         url: "/api/SnArticle/AysUpArticle",
+      //         method: "put",
+      //         data: {
+      //           articleId: info.articleId,
+      //           userId: Number(info.userId),
+      //           title: info.title,
+      //           titleText: info.titleText,
+      //           text: info.text,
+      //           time: info.time,
+      //           labelId: info.labelId,
+      //           read: Number(info.read),
+      //           give: Number(info.give),
+      //           comment: info.comment,
+      //           sortId: info.sortId,
+      //           typeTitle: info.typeTitle,
+      //           urlImg: info.urlImg,
+      //         },
+      //       })
+      //       .then((res: any) => {
+      //         if (res.status === 200) {
+      //           // console.log("1");
+      //         } else {
+      //           alert("更新失败");
+      //         }
+      //       })
+      //       .catch(console.error.bind(console)); // 异常
+      //   }
+      // };
+      // 点击数
+      // const UpGive = (info: any): void => {
+      //   var timebools = state.timebool;
+      //   if (info == null || timebools == false) {
+      //     console.log(info, state.timebool);
+      //     return;
+      //   } else {
+      //     info.give++;
+      //     proxy
+      //       .$api({
+      //         // 更新
+      //         url: "/api/SnArticle/AysUpArticle",
+      //         method: "put",
+      //         data: {
+      //           articleId: info.articleId,
+      //           userId: Number(info.userId),
+      //           title: info.title,
+      //           titleText: info.titleText,
+      //           text: info.text,
+      //           time: info.time,
+      //           labelId: info.labelId,
+      //           read: Number(info.read),
+      //           give: Number(info.give),
+      //           comment: info.comment,
+      //           sortId: info.sortId,
+      //           typeTitle: info.typeTitle,
+      //           urlImg: info.urlImg,
+      //         },
+      //       })
+      //       .then((res: any) => {
+      //         if (res.status === 200) {
+      //           state.timebool = false;
+      //           var time = 10;
+      //           var timer = setInterval(function () {
+      //             time--;
+      //             // console.log(time);
+      //             if (time == 0) {
+      //               state.timebool = true;
+      //               // alert(this.timebool)
+      //               clearInterval(timer);
+      //             }
+      //           }, 1000);
+      //         } else {
+      //           alert("更新失败");
+      //         }
+      //       })
+      //       .catch(console.error.bind(console)); // 异常
+      //   }
+      // };
+      // 博客详情
+      const AsyGetTestID = (id: number): void => {
+        // .带参数跳转
+        router.push({
+          path: "/Indextext2",
+          query: {
+            id: id,
+          },
         });
-    };
-    // 阅读数
-    // const UpRead = (info: any): void => {
-    //   if (info == null) {
-    //     console.log(info);
-    //     return;
-    //   } else {
-    //     info.read++;
-    //     proxy
-    //       .$api({
-    //         // 更新
-    //         url: "/api/SnArticle/AysUpArticle",
-    //         method: "put",
-    //         data: {
-    //           articleId: info.articleId,
-    //           userId: Number(info.userId),
-    //           title: info.title,
-    //           titleText: info.titleText,
-    //           text: info.text,
-    //           time: info.time,
-    //           labelId: info.labelId,
-    //           read: Number(info.read),
-    //           give: Number(info.give),
-    //           comment: info.comment,
-    //           sortId: info.sortId,
-    //           typeTitle: info.typeTitle,
-    //           urlImg: info.urlImg,
-    //         },
-    //       })
-    //       .then((res: any) => {
-    //         if (res.status === 200) {
-    //           // console.log("1");
-    //         } else {
-    //           alert("更新失败");
-    //         }
-    //       })
-    //       .catch(console.error.bind(console)); // 异常
-    //   }
-    // };
-    // 点击数
-    // const UpGive = (info: any): void => {
-    //   var timebools = state.timebool;
-    //   if (info == null || timebools == false) {
-    //     console.log(info, state.timebool);
-    //     return;
-    //   } else {
-    //     info.give++;
-    //     proxy
-    //       .$api({
-    //         // 更新
-    //         url: "/api/SnArticle/AysUpArticle",
-    //         method: "put",
-    //         data: {
-    //           articleId: info.articleId,
-    //           userId: Number(info.userId),
-    //           title: info.title,
-    //           titleText: info.titleText,
-    //           text: info.text,
-    //           time: info.time,
-    //           labelId: info.labelId,
-    //           read: Number(info.read),
-    //           give: Number(info.give),
-    //           comment: info.comment,
-    //           sortId: info.sortId,
-    //           typeTitle: info.typeTitle,
-    //           urlImg: info.urlImg,
-    //         },
-    //       })
-    //       .then((res: any) => {
-    //         if (res.status === 200) {
-    //           state.timebool = false;
-    //           var time = 10;
-    //           var timer = setInterval(function () {
-    //             time--;
-    //             // console.log(time);
-    //             if (time == 0) {
-    //               state.timebool = true;
-    //               // alert(this.timebool)
-    //               clearInterval(timer);
-    //             }
-    //           }, 1000);
-    //         } else {
-    //           alert("更新失败");
-    //         }
-    //       })
-    //       .catch(console.error.bind(console)); // 异常
-    //   }
-    // };
-    // 博客详情
-    const AsyGetTestID = (id: number): void => {
-      // .带参数跳转
-      router.push({
-        path: "/Indextext2",
-        query: {
-          id: id,
-        },
+
+        location.reload();
+      };
+
+      // 代码高亮
+      const highlighthandle = async () => {
+        await hljs;
+        let highlight = document.querySelectorAll("code,pre");
+        highlight.forEach((block: any) => {
+          hljs.highlightBlock(block);
+        });
+      };
+      const houtui = async () => {
+        router.go(-1);
+      };
+
+      const backtop = async () => {
+        {
+          var timer = setInterval(function () {
+            let osTop =
+              document.documentElement.scrollTop || document.body.scrollTop;
+            let ispeed = Math.floor(-osTop / 5);
+            document.documentElement.scrollTop = document.body.scrollTop =
+              osTop + ispeed;
+            // this.isTop = true;
+            if (osTop === 0) {
+              clearInterval(timer);
+            }
+          }, 30);
+        }
+      };
+
+      onMounted(async () => {
+        await AsyGetTest();
+        await backtop();
       });
-
-      location.reload();
-    };
-
-    // 代码高亮
-    const highlighthandle = async () => {
-      await hljs;
-      let highlight = document.querySelectorAll("code,pre");
-      highlight.forEach((block: any) => {
-        hljs.highlightBlock(block);
+      onUpdated(async () => {
+        await highlighthandle();
       });
-    };
-    const houtui = async () => {
-      router.go(-1);
-    };
-
-    const backtop = async () => {
-      {
-        var timer = setInterval(function () {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
-          // this.isTop = true;
-          if (osTop === 0) {
-            clearInterval(timer);
-          }
-        }, 30);
-      }
-    };
-
-    onMounted(async () => {
-      await AsyGetTest();
-      await backtop();
-    });
-    onUpdated(async () => {
-      await highlighthandle();
-    });
-    return {
-      ...toRefs(state),
-      AsyGetTest,
-      highlighthandle,
-      houtui,
-      // UpRead,
-      // UpGive,
-      AsyGetTestID,
-      backtop,
-    };
-  },
-};
+      return {
+        ...toRefs(state),
+        AsyGetTest,
+        highlighthandle,
+        houtui,
+        // UpRead,
+        // UpGive,
+        AsyGetTestID,
+        backtop,
+      };
+    },
+  };
 </script>
 
 <style lang="scss">

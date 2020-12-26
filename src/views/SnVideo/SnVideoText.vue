@@ -43,108 +43,130 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
-import { useRoute } from "vue-router";
-export default {
-  name: "SnVideoText",
+  import {
+    getCurrentInstance,
+    reactive,
+    toRefs,
+    onMounted
+  } from "vue";
+  import {
+    useRoute
+  } from "vue-router";
+  export default {
+    name: "SnVideoText",
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    //获取上下文实例，ctx=vue2的this
-    const { proxy }: any = getCurrentInstance();
-    // 加载路由
-    const route = useRoute();
-    // 数据定义
-    const state = reactive({
-      id: route.query.id,
-      videourl: "",
-      type: null,
-      newvideo: [],
-    });
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      //获取上下文实例，ctx=vue2的this
+      const {
+        proxy
+      }: any = getCurrentInstance();
+      // 加载路由
+      const route = useRoute();
+      // 数据定义
+      const state = reactive({
+        id: route.query.id,
+        videourl: "",
+        type: null,
+        newvideo: [],
+      });
 
-    const getvideo = () => {
-      proxy
-        .$api({
-          url: "/api/SnVideo/AsyGetTestId?id=" + state.id,
-        })
-        .then((res: any) => {
-          state.videourl = res.data[0].vUrl;
-          state.type = res.data[0].vTypeid;
+      const getvideo = () => {
+        proxy
+          .$api({
+            url: "/api/SnVideo/AsyGetTestId?id=" + state.id,
+          })
+          .then((res: any) => {
+            state.videourl = res.data[0].vUrl;
+            state.type = res.data[0].vTypeid;
 
-          proxy
-            .$api({
-              url: "/api/SnVideo/GetTestWhere?type=" + state.type,
-            })
-            .then((res: any) => {
-              state.newvideo = res.data;
-            })
-            .catch((e: never) => {
-              console.log(e + "获取数据失败");
-            });
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
+            proxy
+              .$api({
+                url: "/api/SnVideo/GetTestWhere?type=" + state.type,
+              })
+              .then((res: any) => {
+                state.newvideo = res.data;
+              })
+              .catch((e: never) => {
+                console.log(e + "获取数据失败");
+              });
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
 
-    const videos = (id: number) => {
-      proxy
-        .$api({
-          url: "/api/SnVideo/AsyGetTestId?id=" + id,
-        })
-        .then((res: any) => {
-          state.videourl = res.data[0].vUrl;
-        })
-        .catch((e: never) => {
-          console.log(e + "获取数据失败");
-        });
-    };
-    onMounted(async () => {
-      await getvideo();
-    });
-    return { ...toRefs(state), getvideo, videos };
-  },
-};
+      const videos = (id: number) => {
+        proxy
+          .$api({
+            url: "/api/SnVideo/AsyGetTestId?id=" + id,
+          })
+          .then((res: any) => {
+            state.videourl = res.data[0].vUrl;
+          })
+          .catch((e: never) => {
+            console.log(e + "获取数据失败");
+          });
+      };
+      onMounted(async () => {
+        await getvideo();
+      });
+      return {
+        ...toRefs(state),
+        getvideo,
+        videos
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+
   .SnVideoTexts {
     position: fixed;
     @include w-h(100%, 100%);
+
     .SnVideoText {
       @include initialize(85%, 90%, 60px, null, 8%, null, #ffffff);
       @apply shadow-sm rounded-sm;
+
       .SnVideoText-1 {
         @include w-h(80%, 100%);
+
         /*background-color: #55a532;*/
         #if {
           margin: 0 auto;
           @include w-h(100%, 100%);
         }
       }
+
       .SnVideoText-2 {
         width: 19%;
         overflow: auto;
         /*background-color: #4eb687;*/
         @apply cursor-pointer;
+
         .SnVideoText-2-1 {
           @include w-h(90%, 170px);
           @apply shadow rounded-sm;
 
           .SnVideoText-2-1-1 {
             height: 65%;
+
             /*background-color: #55a532;*/
             img {
               @include w-h(185px, 100px);
             }
           }
+
           .SnVideoText-2-1-2 {
             height: 18%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
           }
+
           .SnVideoText-2-1-3 {
             height: 17%;
           }

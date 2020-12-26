@@ -25,14 +25,16 @@
     </div>
     <!--        侧边栏-->
     <Sidebarsn></Sidebarsn>
-    <IndexSidebar></IndexSidebar>
+    <FavSidebar></FavSidebar>
   </div>
 </template>
 
 <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import FavSidebar from './FavSidebar.vue';
 
   export default {
+    components: { FavSidebar },
     name: "PersonalNavigation",
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
