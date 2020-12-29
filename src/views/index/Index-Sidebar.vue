@@ -321,9 +321,9 @@
   @import "../../assets/sass/com";
   .sn-list {
     position: fixed;
-    @include excursion(60px, null, null, 0);
-    @include w-h(24%, 90%);
-    //background-color: #4d4f91;
+    @include excursion(60px, null, null, 4%);
+    @include w-h(20%, 90%);
+    // background-color: #4d4f91;
     @apply ml-3;
     .sn-list-s {
       // background-color: #55a532;
@@ -331,7 +331,7 @@
       overflow: auto;
 
       .sn-list0 {
-        @include initialize(95%, 250px, 0, 0, auto, auto, #ffffff);
+        @include initialize(100%, 250px, 0, 0, auto, auto, #ffffff);
         @apply mb-3 shadow rounded;
         .sn-list0-img {
           @include initialize(140px, 100px, auto, auto, auto, auto, null);
@@ -398,7 +398,7 @@
       }
 
       .sn-list2 {
-        @include w-h(95%, 50px);
+        @include w-h(100%, 50px);
         margin: 0 auto;
         @apply mb-3 shadow rounded bg-white;
         // @include boxshow;
@@ -415,7 +415,7 @@
         }
       }
       .sn-list4 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         text-align: center;
         @apply mb-2 shadow rounded bg-white;
@@ -434,7 +434,7 @@
       }
 
       .sn-list7 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
@@ -445,7 +445,7 @@
       }
 
       .sn-list8 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
@@ -471,7 +471,7 @@
       }
 
       .sn-list3 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
@@ -492,7 +492,7 @@
 
       // 分类
       .sn-list5 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 bg-white;
         @apply shadow rounded;
@@ -506,7 +506,7 @@
       }
 
       .sn-list6 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;

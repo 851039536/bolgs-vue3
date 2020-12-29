@@ -103,6 +103,7 @@ const routes = [{
   },
   component: () => import('../views/Photo/Photo.vue')
 },
+
 {
   path: '/Navigation',
   name: 'Navigation',

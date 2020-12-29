@@ -1,6 +1,7 @@
 <template>
   <div class="SnVideos">
     <Sidebarsn></Sidebarsn>
+    <video-sidebar></video-sidebar>
     <div class="SnVideo animate__animated animate__fadeIn">
       <div class="SnVideo-1">
         <div class="SnVideo-1-1" v-for="info in videotype" :key="info.vId">
@@ -11,7 +12,7 @@
         </div>
       </div>
       <div
-        class="inline-grid col-gap-4 SnVideo-2 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="inline-grid col-gap-3 SnVideo-2 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div class="SnVideo-2-1" v-for="info in newtype" :key="info.vId">
           <div class="SnVideo-2-1-1">
@@ -38,9 +39,10 @@
 <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
+  import VideoSidebar from './VideoSidebar.vue';
   export default {
     name: "SnVideo",
-    components: {},
+    components: { VideoSidebar },
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
@@ -117,7 +119,7 @@
     @include w-h(100%, 100%);
     .SnVideo {
       position: relative;
-      @include initialize(76%, 99%, 60px, null, $ml, null, #ffffff);
+      @include initialize($w, 99%, 60px, null, $ml, null, #ffffff);
       @apply shadow rounded-sm;
       .SnVideo-1 {
         @include initialize(20%, 80%, 8px, null, 0%, null, null);

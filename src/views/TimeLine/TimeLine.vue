@@ -1,12 +1,21 @@
+<!--
+ * @Author: 时间线
+ * @Date: 2020-12-10 10:40:17
+ * @LastEditTime: 2020-12-29 12:16:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
+-->
 <template>
   <div class="timeline animate__animated animate__fadeIn">
     <sidebarsn></sidebarsn>
+    <IndexSidebar></IndexSidebar>
     <div class="timeline-img">
       <h4>Archive</h4>
       <p>最后更新于2020年11月26日</p>
     </div>
-    <div class="timeline-title">
-      <div class="timeline-title-1">
+    <div class="timeline-type">
+      <div class="timeline-type-name">
         <ul>
           <li>分类 : {{ SortCount }}</li>
           <li>标签 : {{ LabelsCount }}</li>
@@ -34,17 +43,11 @@
           </div>
         </a-timeline>
       </div>
-      <IndexSidebar></IndexSidebar>
-
       <!-- 回到顶部 -->
       <a-back-top />
     </div>
   </div>
-  <div>
-    <!-- <a-spin :spinning="spinning" :delay="200">
-      <div class=""></div>
-    </a-spin> -->
-  </div>
+  <div></div>
 </template>
 
 <script lang="ts">
@@ -129,15 +132,13 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   .timeline {
-    margin: 0 auto;
     @include initialize($w, null, 60px, null, $ml, null, #ffffff);
     @apply text-base;
     @apply shadow;
     .timeline-img {
       position: relative;
-      @include w-h(100%, 100px);
+      @include w-h(100%, 78px);
       @include bg-img("../../assets/img/timebg.jpg");
-      // @apply shadow;
       h4 {
         position: absolute;
         @include excursion(16%, null, 45%, null);
@@ -153,11 +154,9 @@
       }
     }
 
-    .timeline-title {
-      margin-top: 10px;
-      .timeline-title-1 {
-        margin: 0 auto;
-        @apply shadow;
+    .timeline-type {
+      .timeline-type-name {
+        // @apply shadow;
         ul li {
           display: inline-block;
           padding-left: 6.8%;
@@ -171,14 +170,13 @@
 
     .timeline-time {
       position: relative;
-      margin: 20px auto 0 auto;
-      // @apply shadow;
+      @apply mt-4;
       .block {
         @apply mx-4 mt-2;
         .block-1 {
           @apply m-2;
           h4 {
-            @apply text-lg antialiased;
+            @apply text-lg;
           }
         }
       }

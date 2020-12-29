@@ -19,15 +19,21 @@
           v-for="data in article"
           :key="data.id"
         >
-          <div class="TalkSidebar-text-4-2-1">
+          <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-liulan
 "
               ></use>
             </svg>
-            <a @click="AsyGetTestID(data.id, data.userId)"
+            <a @click="AsyGetTestID(data.id)"
               >{{ data.talkTitle }}
+              {{
+                data.talkTime
+                  .toLocaleString()
+                  .replace(/T/g, " ")
+                  .replace(/\.[\d]{3}Z/, "")
+              }}
             </a>
           </div>
         </div>
@@ -94,9 +100,8 @@
 <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
-  import { message } from 'ant-design-vue';
   export default {
-    name: "TalkSidebar",
+    name: "PhoSidebar",
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
@@ -139,18 +144,14 @@
           });
       };
 
-      const AsyGetTestID = (id: number, userid: number) => {
-
-        if (userid != 0) {
-          router.push({
-            path: "/TalkText",
-            query: {
-              id: id,
-            },
-          });
-        } else {
-          message.info('无权限!');
-        }
+      const AsyGetTestID = (id: number) => {
+        //       // .带参数跳转
+        router.push({
+          path: "/TalkText",
+          query: {
+            id: id,
+          },
+        });
       };
       onMounted(async () => {
         await getall();
@@ -298,7 +299,9 @@
       .sn-list5 {
         width: 100%;
         margin: 0 auto;
-        @apply p-1 mb-2 bg-white;
+        background-color: #ffffff;
+        @apply p-1 mb-2;
+
         @apply shadow rounded;
 
         .sn-list5-1 {
@@ -309,7 +312,8 @@
       .TalkSidebar-text-4 {
         width: 100%;
         margin: 0 auto;
-        @apply p-1 mb-2 cursor-pointer bg-white;
+        background-color: #ffffff;
+        @apply p-1 mb-2 cursor-pointer;
         @apply shadow rounded;
 
         .TalkSidebar-text-4-1 {
@@ -319,9 +323,6 @@
         .TalkSidebar-text-4-2 {
           background-color: white;
           border-bottom: 1px dashed #f1f1f1;
-          .TalkSidebar-text-4-2-1 {
-            @apply m-1 pl-1 text-base;
-          }
         }
       }
     }

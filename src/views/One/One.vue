@@ -33,7 +33,7 @@
       </div>
 
       <div
-        class="inline-grid col-gap-4 EverydayOne-33"
+        class="inline-grid EverydayOne-33"
         v-for="data in dataTest"
         :key="data.oneId"
       >
@@ -221,7 +221,7 @@
         @apply pl-1;
         .EverydayOne-3 {
           position: relative;
-          @include initialize(200px, 120px, 10px, null, null, null, #ffffff);
+          @include initialize(190px, 120px, 10px, null, null, null, #ffffff);
           @apply shadow rounded-sm cursor-pointer ml-4;
           .EverydayOne-3-1 {
             width: 100%;

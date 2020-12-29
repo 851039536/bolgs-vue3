@@ -173,7 +173,7 @@
   @import "../../assets/sass/com";
 
   .sn-text {
-    @include initialize($w, null, null, null, $ml, null, null);
+    @include initialize($w, null, 60px, null, $ml, null, null);
 
     // @include boxshow3;
     p {

@@ -3,7 +3,7 @@
     <div class="about gradient-bg animate__animated animate__fadeIn">
       <sncode></sncode>
 
-      <div class="bg">
+      <div class="about-bg">
         <div class="about-1" v-bind:class="[activeClass, backInDown]">
           <div class="about-1-1">
             <div class="about-1-1-1">
@@ -203,14 +203,11 @@
     @include w-h(100%, 100%);
     /* 关于界面 */
     .about {
-      @include initialize(83%, 100%, 60px, auto, auto, auto, #ffffff);
+      @include initialize(91%, 100%, 60px, auto, auto, auto, #ffffff);
       padding: 0 0 1.25rem 0;
-
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
-      /*overflow: auto;*/
-
-      .bg {
+      .about-bg {
         height: 500px;
         /* 背景图片 */
         background: no-repeat center/100% url("../../assets/img/ab.jpg");

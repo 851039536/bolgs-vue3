@@ -140,9 +140,9 @@
 
   .header-sn {
     position: fixed;
-    @include excursion(0, null, 0, null);
+    @include excursion(0, null, 4%, null);
     z-index: 10;
-    @include w-h(100%, 55px);
+    @include w-h(92%, 55px);
     // background-color: #795da3;
     @apply p-2 bg-white shadow-sm;
     .header-1 {
@@ -165,6 +165,8 @@
 
   @screen xp {
     .header-sn {
+      width: 100%;
+      @include excursion(0, null, 0, null);
       a {
         @apply hidden;
       }

@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2020-12-26 13:46:59
+ * @LastEditTime: 2020-12-28 17:37:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -27,7 +27,7 @@
           v-for="articles in article"
           :key="articles.oneId"
         >
-          <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
+          <div class="p-1 pl-2 text-base TalkSidebar-text-4-2-1">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-liulan
@@ -36,13 +36,7 @@
             </svg>
             <a @click="setModal1Visible(true, articles.oneId)"
               >{{ articles.oneTitle }}
-              {{
-                articles.oneData
-                  .toLocaleString()
-                  .replace(/T/g, " ")
-                  .replace(/\.[\d]{3}Z/, "")
-              }}</a
-            >
+            </a>
           </div>
         </div>
       </div>
@@ -204,8 +198,8 @@
   @import "../../assets/sass/com";
   .TalkSidebar {
     position: fixed;
-    @include excursion(9%, null, null, 0);
-    @include w-h(24%, 90%);
+    @include excursion(9%, null, null, 4%);
+    @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;
     /*background-color: #4d4f91;*/
@@ -217,7 +211,7 @@
 
       .TalkSidebar-text-1 {
         height: 50px;
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply mb-3;
         @apply shadow rounded;
@@ -234,7 +228,7 @@
       }
 
       .TalkSidebar-text-2 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply mb-3;
         @apply shadow rounded;
@@ -243,7 +237,7 @@
       }
 
       .TalkSidebar-text-3 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         @apply mb-3;
         @apply shadow rounded;
@@ -255,7 +249,7 @@
         height: 44px !important;
       }
       .sn-list4 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         text-align: center;
@@ -278,7 +272,7 @@
       }
 
       .sn-list7 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
@@ -295,7 +289,7 @@
       }
 
       .sn-list8 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
@@ -322,7 +316,7 @@
       }
 
       .sn-list3 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
@@ -344,7 +338,7 @@
       }
 
       .sn-list5 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2;
@@ -357,7 +351,7 @@
       }
 
       .TalkSidebar-text-4 {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;

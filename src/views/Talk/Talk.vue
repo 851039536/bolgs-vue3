@@ -2,10 +2,11 @@
   <div>
     <!--侧边栏-->
     <Sidebarsn></Sidebarsn>
+    <TalkSidebar></TalkSidebar>
     <div class="talk animate__animated animate__fadeIn">
       <!--文章内容-->
       <div class="talk-text">
-        <div class="talk-text-1">
+        <div class="text-carousel">
           <a-carousel arrows>
             <template #prevArrow>
               <div class="custom-slick-arrow" style="left: 10px; zindex: 1">
@@ -31,7 +32,7 @@
             </div>
           </a-carousel>
 
-          <div class="talk-text-1-1">
+          <div class="text-carousel-1">
             <h4>Junior</h4>
           </div>
         </div>
@@ -82,8 +83,8 @@
           </div>
         </div> -->
 
-        <div class="talk-text-3" v-for="data in dataShow" :key="data.id">
-          <div class="talk-text-3-1">
+        <div class="text-title" v-for="data in dataShow" :key="data.id">
+          <div class="text-title-1">
             {{
               data.talkTime
                 .toLocaleString()
@@ -95,7 +96,7 @@
             >
           </div>
           <div
-            class="talk-text-3-2"
+            class="text-title-2"
             v-if="data.userId != 0"
             v-html="data.talkText"
           ></div>
@@ -103,7 +104,7 @@
 
         <!--分页-->
         <div class="p-1 m-1">
-          <div id="components-pagination-demo-mini">
+          <div>
             <a-pagination
               size="small"
               @change="currentchange"
@@ -114,8 +115,6 @@
           </div>
         </div>
       </div>
-
-      <TalkSidebar></TalkSidebar>
     </div>
   </div>
 </template>
@@ -247,7 +246,7 @@
     @include initialize($w, 100%, 60px, null, $ml, null, null);
     //@include boxshow;
     .talk-text {
-      .talk-text-1 {
+      .text-carousel {
         /* For demo */
         .ant-carousel ::v-deep(.slick-slide) {
           text-align: center;
@@ -283,12 +282,9 @@
         }
         /*父元素*/
         position: relative;
-        // height: 175px;
-        // background: no-repeat center/100% url("../../assets/img/bg.jpg");
-        // border-radius: 3px;
         @apply shadow rounded-sm;
 
-        .talk-text-1-1 {
+        .text-carousel-1 {
           /*绝对定位*/
           position: absolute;
           width: 100px;
@@ -361,17 +357,17 @@
           }
         }
       }
-      .talk-text-3 {
+      .text-title {
         @apply mt-2;
         @apply bg-white  text-base  shadow-sm rounded p-2;
         width: 100%;
-        .talk-text-3-1 {
+        .text-title-1 {
           @apply p-1 px-3 text-lg font-medium;
           @include line-ome;
           /* 边框下划线 */
           border-bottom: 1px solid #d5d9e0;
         }
-        .talk-text-3-2 {
+        .text-title-2 {
           @apply p-1 px-3 text-base text-gray-500 font-light;
         }
       }

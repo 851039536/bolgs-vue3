@@ -1,13 +1,22 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-11 12:16:33
+ * @LastEditTime: 2020-12-28 09:48:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\Photo\Photo.vue
+-->
 <template>
   <div>
     <!-- 左侧边栏 -->
     <Sidebarsn></Sidebarsn>
+    <PhoSidebar></PhoSidebar>
     <div class="photo animate__animated animate__fadeIn">
       <div class="photo-1">
         <p class="px-1 py-2 m-1">记忆</p>
       </div>
       <div
-        class="inline-grid col-gap-4 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="inline-grid col-gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div class="m-1 photo-text">
           <img src="@/assets/img/ab.jpg" alt="" />
@@ -36,15 +45,17 @@
 </template>
 
 <script>
-export default {
-  name: "Photo",
-}
+  import PhoSidebar from './PhoSidebar.vue'
+  export default {
+    components: { PhoSidebar },
+    name: "Photo",
+  }
 </script>
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   .photo {
-    @include initialize(75%, null, 60px, null, 22%, null, #ffffff);
+    @include initialize($w, null, 60px, null, $ml, null, #ffffff);
     @apply shadow rounded-sm;
     .photo-1 {
       @include underline;

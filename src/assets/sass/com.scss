@@ -16,8 +16,8 @@ $boxshow11: 0 1px 1px -2px rgba(0, 0, 0, .2);
 $boxshow22: 0 1px 2px 0 rgba(0, 0, 0, .14);
 $boxshow33: 0 1px 3px 0 rgba(0, 0, 0, .12);
 
-$w:51%;
-$ml:23%;
+$w:48%;
+$ml:26%;
 
 /* 背景3d边框*/
 @mixin boxshow1 {
@@ -242,15 +242,59 @@ $ml:23%;
   }
 
   code {
-    color: #6390bb;
+    @apply text-gray-700;
+
+    .hljs-keyword {
+      color: #6161b3;
+    }
+
+    //方法
+    .hljs-title {
+      color: #a31515;
+    }
+
+    .hljs-string {
+      @apply text-red-700;
+    }
+
+    // 注释
+    .hljs-comment {
+      @apply text-gray-400;
+    }
+
+    .hljs-params {
+      color: #0000ff;
+    }
+  }
+
+  blockquote {
+    p {
+      @apply bg-gray-50 mt-1 rounded-sm text-base text-current shadow-sm pl-2;
+    }
   }
 
   p {
-    @apply text-sm py-1 bg-white leading-relaxed mb-1 antialiased text-gray-500;
+    @apply text-sm py-1 bg-white leading-relaxed antialiased;
+
+    code {
+      @apply bg-gray-50 px-1 text-red-800;
+    }
+
+    .hljs {
+      @apply bg-gray-50 rounded-sm;
+    }
   }
 
-  li {
-    @apply text-xs py-1 bg-white mb-1 antialiased text-gray-500;
+  ul {
+    @apply p-1;
+
+    li {
+      code {
+        color: #2008fa;
+      }
+
+      @apply text-xs bg-white text-gray-500;
+    }
   }
 
   table {

@@ -128,12 +128,11 @@
     @include w-h(100%, 100%);
 
     .SnVideoText {
-      @include initialize(85%, 90%, 60px, null, 8%, null, #ffffff);
+      @include initialize(92%, 90%, 60px, null, 4%, null, #ffffff);
       @apply shadow-sm rounded-sm;
 
       .SnVideoText-1 {
         @include w-h(80%, 100%);
-
         /*background-color: #55a532;*/
         #if {
           margin: 0 auto;
@@ -162,9 +161,7 @@
 
           .SnVideoText-2-1-2 {
             height: 18%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            @include line-ome;
           }
 
           .SnVideoText-2-1-3 {
