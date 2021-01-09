@@ -1,13 +1,9 @@
 <template>
   <div class="sn-list" id="sn-list" :class="{ isFixed: barFixed }">
     <div class="sn-list-s">
-      <div class="font-mono sn-list0">
+      <!-- <div class="font-mono sn-list0">
         <div class="sn-list0-img">
           <img class="sn-list0-img2" id="img1" :src="User.userPhoto" alt="" />
-          <!--                    <el-image-->
-          <!--                            class="sn-list0-img2"-->
-          <!--                            :src="User.userPhoto"-->
-          <!--                            :fit="scale-down"></el-image>-->
         </div>
         <div class="sn-list0-name">
           <h3 class="sn-list0-name1">{{ User.userNickname }}</h3>
@@ -39,7 +35,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="sn-list2">
         <div class="flex items-center sn-list2-1">
           <div class="flex-1 sn-list2-1-1">
@@ -74,16 +70,7 @@
           </div>
         </div>
       </div>
-      <div class="sn-list7">
-        <div class="sn-list7-1"></div>
-        <div class="sn-list7-2">
-          <!-- <a-calendar
-            v-model:value="value"
-            :fullscreen="false"
-            @panelChange="onPanelChange"
-          /> -->
-        </div>
-      </div>
+
       <div class="sn-list4">
         <div class="sn-list4-1">
           <p class="">{{ UserTalk }}</p>
@@ -321,7 +308,7 @@
   @import "../../assets/sass/com";
   .sn-list {
     position: fixed;
-    @include excursion(60px, null, null, 4%);
+    @include excursion(60px, null, null, 5%);
     @include w-h(20%, 90%);
     // background-color: #4d4f91;
     @apply ml-3;
@@ -400,7 +387,7 @@
       .sn-list2 {
         @include w-h(100%, 50px);
         margin: 0 auto;
-        @apply mb-3 shadow rounded bg-white;
+        @apply mb-2 shadow rounded bg-white;
         // @include boxshow;
 
         .sn-list2-1 {

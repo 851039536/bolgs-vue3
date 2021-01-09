@@ -142,7 +142,7 @@
     .text {
       position: absolute;
       top: 21.2%;
-      @include initialize(92%, 75%, null, null, 4%, null, #ffffff);
+      @include initialize(90%, 75%, null, null, 5%, null, #ffffff);
       // 侧边框
       .text-sidebar {
         @include w-h(32%, null);
@@ -173,7 +173,7 @@
     .SnTagText-top {
       position: absolute;
       top: 9.5%;
-      @include initialize(92%, 11%, null, null, 4%, null, #ffffff);
+      @include initialize(90%, 11%, null, null, 5%, null, #ffffff);
       @apply rounded-sm;
       .tag-text {
         @include w-h(null, 100%);

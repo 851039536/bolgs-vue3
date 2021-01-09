@@ -218,10 +218,9 @@
         }
       }
       .EverydayOne-33 {
-        @apply pl-1;
         .EverydayOne-3 {
           position: relative;
-          @include initialize(190px, 120px, 10px, null, null, null, #ffffff);
+          @include initialize(188px, 120px, 10px, null, null, null, #ffffff);
           @apply shadow rounded-sm cursor-pointer ml-4;
           .EverydayOne-3-1 {
             width: 100%;
@@ -260,6 +259,20 @@
           }
         }
       }
+    }
+  }
+  @screen xp {
+    .OneSidebar {
+      @apply hidden;
+    }
+    .EverydayOnes .EverydayOne {
+      width: 100%;
+      @apply ml-0 mb-14;
+    }
+
+    .EverydayOnes .EverydayOne .EverydayOne-33 .EverydayOne-3 {
+      width: 100%;
+      @apply ml-0;
     }
   }
 </style>

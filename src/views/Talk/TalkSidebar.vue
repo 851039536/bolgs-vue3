@@ -62,23 +62,15 @@
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
-            <div class="sn-list8-2-1-2">210篇</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">运行时间:</div>
-            <div class="sn-list8-2-1-2">333天</div>
+            <div class="sn-list8-2-1-2">0篇</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">总字数:</div>
-            <div class="sn-list8-2-1-2">1111k字</div>
-          </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">访客数:</div>
-            <div class="sn-list8-2-1-2">1111人</div>
+            <div class="sn-list8-2-1-2">0k字</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">访问量:</div>
-            <div class="sn-list8-2-1-2">12434次</div>
+            <div class="sn-list8-2-1-2">0次</div>
           </div>
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">最后更新:</div>
@@ -163,7 +155,7 @@
   @import "../../assets/sass/com";
   .TalkSidebar {
     position: fixed;
-    @include excursion(9%, null, null, 4%);
+    @include excursion(9%, null, null, 5%);
     @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;

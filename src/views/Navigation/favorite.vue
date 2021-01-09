@@ -9,7 +9,7 @@
         </div>
       </div>
       <div
-        class="inline-grid col-gap-3 PersonalNavigation-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="grid PersonalNavigation-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div
           class="PersonalNavigation-text"

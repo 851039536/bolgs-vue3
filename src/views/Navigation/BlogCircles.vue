@@ -5,22 +5,22 @@
     <div class="BlogCircles animate__animated animate__fadeIn">
       <div class="font-extrabold BlogCircles-2">博客圈</div>
       <div
-        class="inline-grid col-gap-3 BlogCircles-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1"
+        class="grid BlogCircles-1s 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div class="BlogCircles-1" v-for="info in text" :key="info.navId">
+        <div class="BlogCircles-1" v-for="data in text" :key="data.navId">
           <div class="BlogCircles-1-1">
             <!-- <img src="图片的url地址" alt="图片XX" onerror="this.src='默认图片的url地址;this.οnerrοr=null'"/>   -->
             <img
-              :src="info.navImg"
+              :src="data.navImg"
               alt=""
               onerror="this.style.display='none '"
             />
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
-              <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
+              <a @click="urltest(data.navUrl)">{{ data.navTitle }}</a>
             </div>
-            <div class="BlogCircles-1-2-2">{{ info.navText }}</div>
+            <div class="BlogCircles-1-2-2">{{ data.navText }}</div>
           </div>
         </div>
       </div>
@@ -37,14 +37,12 @@
     setup() {
       //获取上下文实例，ctx=vue2的this
       const { proxy }: any = getCurrentInstance();
-      // 数据定义
       const state = reactive({
         text: [],
       });
       const GetSnNavigation = () => {
         proxy
           .$api({
-            // url: '/api/SnNavigation/GetSnNavigation'
             url: "/api/SnNavigation/AsyGetWhereTest?type=博客圈&fag=true",
           })
           .then((res: any) => {
@@ -54,16 +52,13 @@
             console.log(e + "获取数据失败");
           });
       };
-      const urltest = (url: string) => {
-        //当前窗口跳转
-        // self.location.href=url
-        //新窗口跳转
+      const url = (url: string) => {
         window.open(url);
       };
       onMounted(async () => {
         await GetSnNavigation();
       });
-      return { ...toRefs(state), GetSnNavigation, urltest };
+      return { ...toRefs(state), GetSnNavigation, url };
     },
   };
 </script>
@@ -80,8 +75,8 @@
 
       // 导航窗体小
       .BlogCircles-1 {
-        @include w-h(210px, 90px);
-        @apply m-1 ml-2 antialiased shadow rounded hover:bg-gray-50;
+        @include w-h(200px, 90px);
+        @apply m-1 ml-1 shadow rounded hover:bg-gray-50;
         .BlogCircles-1-1 {
           @include w-h(40%, 99%);
           @apply p-1;

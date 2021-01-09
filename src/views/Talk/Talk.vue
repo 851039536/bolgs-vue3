@@ -300,7 +300,6 @@
       .talk-text-2 {
         @apply mt-3;
         // background-color: #6990f6;
-
         .talk-text-2-1 {
           background-color: #ffffff;
           @include w-h(100%, 120px);

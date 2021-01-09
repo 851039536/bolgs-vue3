@@ -12,7 +12,7 @@
         </div>
       </div>
       <div
-        class="inline-grid col-gap-3 SnVideo-2 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="grid SnVideo-2 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div class="SnVideo-2-1" v-for="info in newtype" :key="info.vId">
           <div class="SnVideo-2-1-1">

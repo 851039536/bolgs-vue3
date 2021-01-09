@@ -4,10 +4,6 @@
     <!--标题-->
     <div class="Talk-title">
       <a-page-header :title="newinfo.talkTitle" @back="() => houtui()" />
-      <!-- <a class="text-lg" @click="houtui">&lt;</a> -->
-      <!-- <p class="text-lg text-center">
-        {{ newinfo.talkTitle }}
-      </p> -->
     </div>
 
     <!--内容-->
@@ -39,16 +35,16 @@
             {{ newinfo.give }}</a
           >
         </div>
-        <div class="">
+        <div>
           <svg class="inline-block icon" aria-hidden="true">
             <use xlink:href="#icon-liulan"></use>
           </svg>
           ({{ newinfo.read }})
         </div>
 
-        <div class="">xxx</div>
-        <div class="">xxx</div>
-        <div class="">{{ newinfo.time }}</div>
+        <div>xxx</div>
+        <div>xxx</div>
+        <div>{{ newinfo.time }}</div>
       </div>
 
       <TalkSidebar></TalkSidebar>
@@ -83,11 +79,8 @@
     name: "TalkText",
     components: { TalkSidebar },
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-
     setup() {
-      //获取上下文实例，ctx=vue2的this
       const { proxy }: any = getCurrentInstance();
-      // 加载路由
       const route = useRoute();
       const router = useRouter();
       // 数据定义
@@ -101,7 +94,6 @@
         spinning: true,
       });
       // 加载内容
-
       const AsyGetTest = (): void => {
         console.log(state.id);
         proxy.$api

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 <template>
   <div>
     <nav class="flex header-sn">
@@ -140,9 +139,9 @@
 
   .header-sn {
     position: fixed;
-    @include excursion(0, null, 4%, null);
+    @include excursion(0, null, 5%, null);
     z-index: 10;
-    @include w-h(92%, 55px);
+    @include w-h(90%, 56px);
     // background-color: #795da3;
     @apply p-2 bg-white shadow-sm;
     .header-1 {

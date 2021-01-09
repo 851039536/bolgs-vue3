@@ -203,7 +203,7 @@
     @include w-h(100%, 100%);
     /* 关于界面 */
     .about {
-      @include initialize(91%, 100%, 60px, auto, auto, auto, #ffffff);
+      @include initialize(90%, 100%, 60px, auto, auto, auto, #ffffff);
       padding: 0 0 1.25rem 0;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;

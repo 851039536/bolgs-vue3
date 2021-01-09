@@ -128,7 +128,7 @@
     @include w-h(100%, 100%);
 
     .SnVideoText {
-      @include initialize(92%, 90%, 60px, null, 4%, null, #ffffff);
+      @include initialize(90%, 90%, 60px, null, 5%, null, #ffffff);
       @apply shadow-sm rounded-sm;
 
       .SnVideoText-1 {

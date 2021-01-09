@@ -1,13 +1,13 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2020-12-28 17:37:49
+ * @LastEditTime: 2021-01-05 14:09:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
 -->
 <template>
-  <div class="TalkSidebar" id="sn-list" :class="{ isFixed: barFixed }">
+  <div class="OneSidebar" id="sn-list" :class="{ isFixed: barFixed }">
     <div class="TalkSidebar-text">
       <div class="sn-list4">
         <div class="sn-list4-1">
@@ -196,9 +196,9 @@
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-  .TalkSidebar {
+  .OneSidebar {
     position: fixed;
-    @include excursion(9%, null, null, 4%);
+    @include excursion(9%, null, null, 5%);
     @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;

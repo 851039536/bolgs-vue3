@@ -164,7 +164,7 @@
   @import "../../assets/sass/com";
   .TalkSidebar {
     position: fixed;
-    @include excursion(9%, null, null, 4%);
+    @include excursion(9%, null, null, 5%);
     @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;

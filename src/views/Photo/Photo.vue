@@ -1,7 +1,7 @@
 <!--
- * @Author: your name
+ * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2020-12-28 09:48:10
+ * @LastEditTime: 2021-01-03 14:59:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
@@ -16,26 +16,26 @@
         <p class="px-1 py-2 m-1">记忆</p>
       </div>
       <div
-        class="inline-grid col-gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div class="m-1 photo-text">
+        <div class="photo-text">
           <img src="@/assets/img/ab.jpg" alt="" />
           <p>安静与喧嚣</p>
         </div>
 
-        <div class="m-1 photo-text">
+        <div class="photo-text">
           <img src="@/assets/img/ab.jpg" alt="" />
           <p>安静与喧嚣</p>
         </div>
-        <div class="m-1 photo-text">
+        <div class="photo-text">
           <img src="@/assets/img/ab.jpg" alt="" />
           <p>安静与喧嚣</p>
         </div>
-        <div class="m-1 photo-text">
+        <div class="photo-text">
           <img src="@/assets/img/ab.jpg" alt="" />
           <p>安静与喧嚣</p>
         </div>
-        <div class="m-1 photo-text">
+        <div class="photo-text">
           <img src="@/assets/img/ab.jpg" alt="" />
           <p>安静与喧嚣</p>
         </div>
@@ -63,6 +63,7 @@
     }
     .photo-text {
       position: relative;
+      @apply m-1;
 
       img {
         @include w-h(100%, 200px);
