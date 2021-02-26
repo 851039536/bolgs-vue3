@@ -171,4 +171,14 @@
       }
     }
   }
+
+  @screen xp {
+    .SnVideoText-2 {
+      @apply hidden;
+    }
+    .SnVideoTexts .SnVideoText .SnVideoText-1 {
+      width: 100%;
+      height: 90%;
+    }
+  }
 </style>

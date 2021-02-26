@@ -178,4 +178,15 @@
       }
     }
   }
+
+  @screen xp {
+    .SnVideos .SnVideo {
+      width: 100%;
+      @apply ml-0;
+    }
+    .SnVideos .SnVideo .SnVideo-2 .SnVideo-2-1[data-v-3c7b4ac7] {
+      width: 56%;
+      height: 210px;
+    }
+  }
 </style>

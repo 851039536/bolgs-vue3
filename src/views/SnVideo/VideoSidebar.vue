@@ -346,4 +346,10 @@
     fill: currentColor;
     overflow: hidden;
   }
+
+  @screen xp {
+    .TalkSidebar {
+      @apply hidden;
+    }
+  }
 </style>

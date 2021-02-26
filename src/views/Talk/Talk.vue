@@ -103,7 +103,7 @@
         </div>
 
         <!--分页-->
-        <div class="p-1 m-1">
+        <div class="text-page">
           <div>
             <a-pagination
               size="small"
@@ -370,6 +370,10 @@
           @apply p-1 px-3 text-base text-gray-500 font-light;
         }
       }
+
+      .text-page {
+        @apply p-1 m-1;
+      }
       .asas {
         @apply bg-red-400;
       }
@@ -382,10 +386,14 @@
     }
     .talk {
       width: 100%;
-      @apply ml-0 mb-14;
+      @apply ml-0;
 
       .talk-text-1 {
         @apply hidden;
+      }
+
+      .text-page {
+        height: 110px;
       }
     }
   }

@@ -53,7 +53,7 @@
     </div>
 
     <!--分页-->
-    <div class="p-1 m-1">
+    <div class="sn-test-3">
       <div id="components-pagination-demo-mini">
         <a-pagination
           size="small"
@@ -225,6 +225,10 @@
         }
       }
     }
+
+    .sn-test-3 {
+      @apply p-1 m-1;
+    }
   }
 
   @screen xp {
@@ -235,12 +239,17 @@
       @apply hidden;
     }
     .sn-text {
-      /* @apply bg-gray-400; */
+      // @apply bg-gray-400;
       width: 100%;
-      @apply ml-0 mb-14;
+      @apply ml-0;
+
       .sn-test-2 {
         @apply hidden;
       }
+    }
+
+    .sn-test-3 {
+      height: 110px;
     }
   }
 </style>

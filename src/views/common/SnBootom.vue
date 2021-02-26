@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-01-05 14:07:22
+ * @LastEditTime: 2021-02-26 14:45:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -12,7 +12,7 @@
       <div class="" @click="onk(1)">首页</div>
       <div class="" @click="onk(2)">日志</div>
       <div class="" @click="onk(3)">一文</div>
-      <div class="" @click="onk(4)">图册</div>
+      <div class="" @click="onk(4)">视频</div>
       <div class="" @click="onk(5)">书单</div>
     </div>
   </div>
@@ -45,7 +45,7 @@
             break;
           case 3: router.push('./One')
             break;
-          case 4: router.push('./Indexs')
+          case 4: router.push('./SnVideo')
             break;
           case 5: router.push('./Indexs')
             break;
