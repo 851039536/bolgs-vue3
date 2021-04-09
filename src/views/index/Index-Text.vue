@@ -6,17 +6,17 @@
       class="sn-test-1"
       v-for="(info, index) in dataShow"
       :class="{ alt: index % 2 == 1 }"
-      :key="info.articleId"
+      :key="info.article_id"
     >
       <div class="flex sn-text-1-1">
         <div class="sn-text-1-1-1">
           <div
             class="sn-text-1-1-1-1"
-            v-on:click="AsyGetTestID(info.articleId)"
+            v-on:click="AsyGetTestID(info.article_id)"
           >
             <a>{{ info.title }}</a>
           </div>
-          <div class="sn-text-1-1-1-2">{{ info.titleText }}</div>
+          <div class="sn-text-1-1-1-2">{{ info.title_text }}</div>
         </div>
       </div>
 
@@ -32,7 +32,7 @@
             {{ info.comment }}</a
           >
         </div>
-        <div @click="AsyGetTestID(info.articleId)">
+        <div @click="AsyGetTestID(info.article_id)">
           <a>
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-liulan"></use>
@@ -102,16 +102,17 @@
             console.log(e + "获取数据失败");
           });
       };
-      const AsyGetTest = async () => {
+      const GetFyTitleAsync = async () => {
         proxy
           .$api({
             url:
-              "/api/SnArticle/GetfyTest?label=00" +
+              "/api/SnArticle/GetFyTitleAsync?" +
               "&pageIndex=" +
               state.page +
               "&pageSize=" +
               state.pagesize +
               "&isDesc=true",
+
           })
           .then((res: any) => {
             state.dataShow = res.data;
@@ -133,7 +134,7 @@
 
       const currentchange = async (val: any) => {
         state.page = val;
-        AsyGetTest();
+        GetFyTitleAsync();
         backtop(); //回到顶部
       };
 
@@ -154,13 +155,13 @@
       };
       onMounted(async () => {
         await getCount();
-        await AsyGetTest();
+        await GetFyTitleAsync();
       });
 
       return {
         ...toRefs(state),
         getCount,
-        AsyGetTest,
+        GetFyTitleAsync,
         AsyGetTestID,
         currentchange,
         backtop,

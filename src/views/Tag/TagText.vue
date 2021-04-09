@@ -5,9 +5,9 @@
         <div
           class="text-sidebar-forms"
           v-for="label in newinfo"
-          :key="label.articleId"
+          :key="label.article_id"
         >
-          <div class="forms-1" @click="AsyGetTest(label.articleId)">
+          <div class="forms-1" @click="AsyGetTest(label.article_id)">
             <a>{{ label.title }}</a>
           </div>
           <div class="forms-2">{{ label.time }}</div>
@@ -76,7 +76,7 @@
         }
         proxy
           .$api({
-            url: "/api/SnArticle/AsyGetTestString?LabelId=" + id,
+            url: "/api/SnArticle/GetTagtextAsync?labelId=" + id + "&isDesc=true",
           })
           .then((res: any) => {
             state.newinfo = res.data;

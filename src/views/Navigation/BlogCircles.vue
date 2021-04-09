@@ -13,7 +13,7 @@
             <img
               :src="data.navImg"
               alt=""
-              onerror="this.style.display='none '"
+              onerror="this.style.display='none'"
             />
           </div>
           <div class="BlogCircles-1-2">
@@ -52,13 +52,13 @@
             console.log(e + "获取数据失败");
           });
       };
-      const url = (url: string) => {
+      const urltest = (url: string) => {
         window.open(url);
       };
       onMounted(async () => {
         await GetSnNavigation();
       });
-      return { ...toRefs(state), GetSnNavigation, url };
+      return { ...toRefs(state), GetSnNavigation, urltest };
     },
   };
 </script>

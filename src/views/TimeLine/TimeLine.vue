@@ -1,7 +1,7 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2020-12-29 12:16:16
+ * @LastEditTime: 2021-04-09 11:47:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
@@ -30,11 +30,11 @@
       <div class="block">
         <!-- 骨架 -->
         <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
-        <a-timeline v-for="activity in items" :key="activity.articleId">
+        <a-timeline v-for="activity in items" :key="activity.article_id">
           <div class="block-1">
             <a-timeline-item>
               <h4>
-                <a @click="onk(activity.articleId)">{{ activity.title }} </a>
+                <a @click="onk(activity.article_id)">{{ activity.title }} </a>
               </h4>
             </a-timeline-item>
             <a-timeline-item color="green">
@@ -99,7 +99,7 @@
         proxy
           .$api({
             url:
-              "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=500&isDesc=true",
+              "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=1150&isDesc=true",
           })
           .then((res: any) => {
             state.items = res.data;

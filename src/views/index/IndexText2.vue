@@ -113,18 +113,6 @@
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      // 简单的来说，它是类型约束的定义，当你使用这个定义接口时，它会一一匹对接口中定义的类型。
-      //只要不满足接口中的任何一个属性，都不会通过的。
-      // interface states {
-      //   // newinfo?: (number | string)[];
-      //   id: number;
-      //   // article: (number | string)[];
-      //   timebool: boolean;
-      //   fullscreenLoading: boolean;
-      //   blog: string;
-      //   spinning: boolean;
-      // }
-
 
       //获取上下文实例，ctx=vue2的this
       const { proxy }: any = getCurrentInstance();
@@ -143,11 +131,9 @@
 
       });
 
-
-
       // 加载内容
       const AsyGetTest = (): void => {
-        console.log(state.id);
+
         proxy.$api
           .all([
             // 读取详情页数据
@@ -177,26 +163,28 @@
           console.log(info);
           return;
         } else {
+          console.log(info.read);
           info.read++;
+          console.log(state.id + "-" + info.read);
           proxy
             .$api({
               // 更新
-              url: "/api/SnArticle/AysUpArticle",
+              url: "/api/SnArticle/UpdatePortionAsync?type=read",
               method: "put",
               data: {
-                articleId: info.articleId,
-                userId: Number(info.userId),
-                title: info.title,
-                titleText: info.titleText,
-                text: info.text,
+                article_id: info.article_id,
+                user_id: Number(info.user_id),
+                title: "string",
+                title_text: "string",
+                text: "string",
                 time: info.time,
-                labelId: info.labelId,
+                label_id: 0,
                 read: Number(info.read),
-                give: Number(info.give),
-                comment: info.comment,
-                sortId: info.sortId,
-                typeTitle: info.typeTitle,
-                urlImg: info.urlImg,
+                give: 0,
+                comment: "0",
+                sort_id: 0,
+                type_title: "string",
+                url_img: "string",
               },
             })
             .then((res: any) => {
@@ -213,29 +201,30 @@
       const UpGive = (info: any): void => {
         var timebools = state.timebool;
         if (info == null || timebools == false) {
-          console.log(info, state.timebool);
+          // console.log(info, state.timebool);
           return;
         } else {
           info.give++;
+          console.log(info.give);
           proxy
             .$api({
               // 更新
-              url: "/api/SnArticle/AysUpArticle",
+              url: "/api/SnArticle/UpdatePortionAsync?type=give",
               method: "put",
               data: {
-                articleId: info.articleId,
-                userId: Number(info.userId),
-                title: info.title,
-                titleText: info.titleText,
-                text: info.text,
+                article_id: info.article_id,
+                user_id: Number(info.user_id),
+                title: "string",
+                title_text: "string",
+                text: "string",
                 time: info.time,
-                labelId: info.labelId,
-                read: Number(info.read),
+                label_id: 0,
+                read: 0,
                 give: Number(info.give),
-                comment: info.comment,
-                sortId: info.sortId,
-                typeTitle: info.typeTitle,
-                urlImg: info.urlImg,
+                comment: "0",
+                sort_id: 0,
+                type_title: "string",
+                url_img: "string",
               },
             })
             .then((res: any) => {
@@ -244,7 +233,7 @@
                 var time = 10;
                 var timer = setInterval(function () {
                   time--;
-                  // console.log(time);
+                  //console.log(time);
                   if (time == 0) {
                     state.timebool = true;
                     // alert(this.timebool)
