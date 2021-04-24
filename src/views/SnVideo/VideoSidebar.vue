@@ -162,9 +162,10 @@
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .TalkSidebar {
     position: fixed;
-    @include excursion(9%, null, null, 5%);
+    @include excursion($sidebar_r_t, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;

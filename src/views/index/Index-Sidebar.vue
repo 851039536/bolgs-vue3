@@ -124,7 +124,7 @@
         <div
           class="sn-list6-2"
           v-for="articles in article"
-          :key="articles.articleId"
+          :key="articles.article_id"
         >
           <div class="p-1 m-1 text-sm sn-list6-2-1">
             <svg class="inline-block icon" aria-hidden="true">
@@ -133,7 +133,7 @@
 "
               ></use>
             </svg>
-            <a @click="AsyGetTestID(articles.articleId)">{{
+            <a @click="AsyGetTestID(articles.article_id)">{{
               articles.title
             }}</a>
           </div>
@@ -208,12 +208,12 @@
         proxy.$api
           .all([
             //查询标签
-            proxy.$api.get("/api/SnLabels/GetLabels"),
+            proxy.$api.get("/api/ReSnLabels/GetAllAsync"),
             //查询分类
-            proxy.$api.get("/api/SnSort/GetSort"),
+            proxy.$api.get("/api/SnSort/GetAllAsync"),
             //查询最新发布前十文章
             proxy.$api.get(
-              "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
+              "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true"
             ),
             // 查询当前用户的说说
             proxy.$api.get(
@@ -222,11 +222,11 @@
             //查询当前用户信息
             proxy.$api.get("/api/SnUser/AsyGetUserId?UserId=4"),
             //查询文章总数
-            proxy.$api.get("/api/SnArticle/GetArticleCount"),
+            proxy.$api.get("/api/SnArticle/GetCountAsync"),
             //查询标签
-            proxy.$api.get("/api/SnSort/GetSortCount"),
+            proxy.$api.get("/api/SnSort/GetCountAsync"),
             //查询分类
-            proxy.$api.get("/api/SnLabels/GetLabelsCount"),
+            proxy.$api.get("/api/SnLabels/GetCountAsync"),
             // 内容字段数
             proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
             // 阅读量
@@ -306,9 +306,10 @@
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .sn-list {
     position: fixed;
-    @include excursion(60px, null, null, 5%);
+    @include excursion($sidebar_r_t, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
     // background-color: #4d4f91;
     @apply ml-3;

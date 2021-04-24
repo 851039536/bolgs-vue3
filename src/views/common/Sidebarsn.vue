@@ -107,14 +107,14 @@
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-
+  @import "../../assets/sass/uitl";
   .fo {
     position: relative;
 
     @include w-h(20%, 100%);
     position: fixed;
-    @include excursion(0, null, 5%, null);
-    background-color: #ffffff;
+    @include excursion(60px, null, 3%, null);
+    background-color: $back_sidebar;
     @apply shadow;
 
     .fos {
@@ -131,8 +131,6 @@
         img {
           @include w-h(100%, 140px);
         }
-
-        margin: 20% 0 40px 0;
       }
 
       .fo-1 {

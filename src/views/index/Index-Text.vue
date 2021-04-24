@@ -4,16 +4,13 @@
     <!--        加载article表内容-->
     <div
       class="sn-test-1"
-      v-for="(info, index) in dataShow"
+      v-for="(info, index) in dataResult"
       :class="{ alt: index % 2 == 1 }"
       :key="info.article_id"
     >
       <div class="flex sn-text-1-1">
         <div class="sn-text-1-1-1">
-          <div
-            class="sn-text-1-1-1-1"
-            v-on:click="AsyGetTestID(info.article_id)"
-          >
+          <div class="sn-text-1-1-1-1" v-on:click="jump(info.article_id)">
             <a>{{ info.title }}</a>
           </div>
           <div class="sn-text-1-1-1-2">{{ info.title_text }}</div>
@@ -32,7 +29,7 @@
             {{ info.comment }}</a
           >
         </div>
-        <div @click="AsyGetTestID(info.article_id)">
+        <div @click="jump(info.article_id)">
           <a>
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-liulan"></use>
@@ -83,17 +80,16 @@
       // 加载路由
       // const route = useRoute();
       const state = reactive({
-        pageSize: 7, // 每页显示的个数
-        dataShow: [], // 当前显示的数据
+        dataResult: [], // 当前显示的数据
         page: 1, //当前页码
         pagesize: 8, //每页的数据条数
         count: 0, //默认数据总数
       });
 
-      const getCount = async () => {
+      const GetCountAsync = async () => {
         proxy
           .$api({
-            url: "/api/SnArticle/GetArticleCount",
+            url: "/api/SnArticle/GetCountAsync",
           })
           .then((res: any) => {
             state.count = res.data;
@@ -115,14 +111,14 @@
 
           })
           .then((res: any) => {
-            state.dataShow = res.data;
+            state.dataResult = res.data;
           })
           .catch((e: any) => {
             console.log(e + "获取数据失败");
           });
       };
 
-      const AsyGetTestID = async (id: any) => {
+      const jump = async (id: any) => {
         // .带参数跳转
         await router.push({
           path: "/Indextext2",
@@ -154,15 +150,15 @@
         }
       };
       onMounted(async () => {
-        await getCount();
+        await GetCountAsync();
         await GetFyTitleAsync();
       });
 
       return {
         ...toRefs(state),
-        getCount,
+        GetCountAsync,
         GetFyTitleAsync,
-        AsyGetTestID,
+        jump,
         currentchange,
         backtop,
       };

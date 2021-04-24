@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-01-03 14:58:01
+ * @LastEditTime: 2021-04-24 14:05:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -49,7 +49,7 @@
         //查询当前用户信息
         proxy
           .$api({
-            url: "/api/SnNavigation/AsyGetWhereTest?type=网站&fag=true",
+            url: "/api/SnNavigation/GetTypeOrderAsync?type=%E7%BD%91%E7%AB%99&order=true",
           })
           .then((res: any) => {
             state.text = res.data;

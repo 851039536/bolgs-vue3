@@ -2,7 +2,7 @@
   <div>
     <nav class="flex header-sn">
       <div class="flex items-center flex-shrink-0 text-black">
-        <span class="text-xl tracking-tight">Junior</span>
+        <span class="text-2xl font-medium tracking-tight">少年</span>
       </div>
 
       <div class="header-1">
@@ -136,32 +136,27 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-
+  @import "../../assets/sass/uitl";
   .header-sn {
     position: fixed;
-    @include excursion(0, null, 5%, null);
+    @include excursion(0, null, 3%, null);
     z-index: 10;
-    @include w-h(90%, 56px);
-    // background-color: #795da3;
-    @apply p-2 bg-white shadow-sm;
+    @include w-h(94%, 57px);
+    background-color: $back_headers;
+    @apply p-2  shadow-sm rounded-sm;
     .header-1 {
-      // background-color: #795da3;
       width: 100%;
       .header-1-1 {
-        // background-color: #b2a8c0;
         @apply mt-2 text-base;
         a {
-          // background-color: #b188e9;
           @apply ml-3 hover:text-red-400;
         }
-
         .header-1-1-a {
           float: right;
         }
       }
     }
   }
-
   @screen xp {
     .header-sn {
       width: 100%;

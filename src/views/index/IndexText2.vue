@@ -3,25 +3,6 @@
     <Sidebarsn></Sidebarsn>
     <!--侧边栏-->
     <IndexSidebar></IndexSidebar>
-    <!--左侧边栏-->
-    <!-- <div class="article-text">
-      <div class="article-text-1">
-        <p class="py-1 text-base font-medium text-center text-gray-800">
-          最新随笔
-        </p>
-      </div>
-      <div class="article-text-2">
-        <div v-for="articles in article" :key="articles.articleId">
-          <svg class="inline-block icon" aria-hidden="true">
-            <use
-              xlink:href="#icon-liulan
-"
-            ></use>
-          </svg>
-          <a @click="AsyGetTestID(articles.articleId)">{{ articles.title }}</a>
-        </div>
-      </div>
-    </div> -->
 
     <!--标题-->
     <div class="article-title">
@@ -29,16 +10,6 @@
         :title="newinfo.title"
         @back="() => $router.push('/indexs')"
       />
-      <!-- <a-page-header
-        :title="newinfo.title"
-        @back="() => $router.push('/indexs')"
-      >
-      </a-page-header> -->
-
-      <!-- <a class="text-lg" @click="houtui">&lt;</a> -->
-      <!-- <p class="text-lg text-center">
-        {{ newinfo.title }}
-      </p> -->
     </div>
     <!--内容-->
     <div class="editor-text">
@@ -132,21 +103,21 @@
       });
 
       // 加载内容
-      const AsyGetTest = (): void => {
+      const GetTest = (): void => {
 
         proxy.$api
           .all([
             // 读取详情页数据
             proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + state.id),
-            //查询最新发布前十文章
-            proxy.$api.get(
-              "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
-            ),
+            // //查询最新发布前十文章
+            // proxy.$api.get(
+            //   "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
+            // ),
           ])
           .then(
-            proxy.$api.spread((res1: any, res2: any) => {
+            proxy.$api.spread((res1: any) => {
               state.newinfo = res1.data;
-              state.article = res2.data;
+              // state.article = res2.data;
               UpRead(state.newinfo);
               state.blog = marked(state.newinfo.text);
               state.spinning = false;
@@ -291,7 +262,7 @@
 
 
       onMounted(async () => {
-        await AsyGetTest();
+        await GetTest();
         await backtop();
 
 
@@ -301,7 +272,7 @@
       });
       return {
         ...toRefs(state),
-        AsyGetTest,
+        GetTest,
         highlighthandle,
         houtui,
         UpRead,

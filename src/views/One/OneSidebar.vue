@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-01-05 14:09:31
+ * @LastEditTime: 2021-04-24 14:35:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -130,7 +130,7 @@
         proxy.$api
           .all([
             //查询分类
-            proxy.$api.get("/api/SnOneType/GetAll"),
+            proxy.$api.get("/api/SnOneType/GetAllAsync"),
             //查询点赞前十文章
             proxy.$api.get(
               "/api/SnOne/GetFyTypeAsync?type=999&pageIndex=1&pageSize=10&name=give&isDesc=true"
@@ -196,9 +196,10 @@
 </script>
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .OneSidebar {
     position: fixed;
-    @include excursion(9%, null, null, 5%);
+    @include excursion($sidebar_r_t, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;

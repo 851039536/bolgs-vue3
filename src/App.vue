@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2020-12-26 10:39:18
+ * @LastEditTime: 2021-04-22 18:05:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -50,11 +50,9 @@
 </script>
 <style lang="scss">
   @import "assets/sass/com";
-  #app {
-  }
 
   .home-router {
     transition: all 1.8s linear;
   }
-  @include scroll;
+  @include scroll; //滚动条美化
 </style>

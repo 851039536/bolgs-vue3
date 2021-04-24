@@ -89,7 +89,7 @@
         state.modal2Visible = modal2Visible;
         proxy
           .$api({
-            url: "/api/SnOne/GetOneIdAsync?id=" + id,
+            url: "/api/SnOne/GetByIdAsync?id=" + id,
           })
           .then((res: any) => {
             state.text = res.data;
@@ -104,11 +104,11 @@
           .all([
             // 读取一条内容
             proxy.$api.get(
-              "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=1&isDesc=true"
+              "/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true"
             ),
             //查询最新发布前十内容
             proxy.$api.get(
-              "/api/SnOne/GetPagingOne?pageIndex=1&pageSize=6&isDesc=true"
+              "/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true"
             ),
           ])
           .then(

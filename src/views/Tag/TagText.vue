@@ -92,7 +92,7 @@
             //查询标签
             proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + id),
             //查询分类
-            proxy.$api.get("/api/SnLabels/GetLabels"),
+            proxy.$api.get("/api/SnLabels/GetAllAsync"),
           ])
           .then(
             proxy.$api.spread((res1: any, res2: any) => {
@@ -142,7 +142,7 @@
     .text {
       position: absolute;
       top: 21.2%;
-      @include initialize(90%, 75%, null, null, 5%, null, #ffffff);
+      @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
       // 侧边框
       .text-sidebar {
         @include w-h(32%, null);
@@ -173,7 +173,7 @@
     .SnTagText-top {
       position: absolute;
       top: 9.5%;
-      @include initialize(90%, 11%, null, null, 5%, null, #ffffff);
+      @include initialize(94%, 11%, null, null, 3%, null, #ffffff);
       @apply rounded-sm;
       .tag-text {
         @include w-h(null, 100%);
