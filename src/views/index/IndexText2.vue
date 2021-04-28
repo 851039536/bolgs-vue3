@@ -7,7 +7,7 @@
     <!--标题-->
     <div class="article-title">
       <a-page-header
-        :title="newinfo.title"
+        :title="article_String.title"
         @back="() => $router.push('/indexs')"
       />
     </div>
@@ -30,26 +30,30 @@
       </div>
       <div class="flex article-3-2">
         <div class="">
-          <a @click="UpGive(newinfo)">
+          <a @click="UpGive(article_String)">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-qinggan
 "
               ></use>
             </svg>
-            {{ newinfo.give }}</a
+            {{ article_String.give }}</a
           >
         </div>
         <div class="">
           <svg class="inline-block icon" aria-hidden="true">
             <use xlink:href="#icon-liulan"></use>
           </svg>
-          ({{ newinfo.read }})
+          ({{ article_String.read }})
         </div>
 
-        <div class="">xxx</div>
-        <div class="">xxx</div>
-        <div class="">{{ newinfo.time }}</div>
+        <div class="article_type">
+          {{ Sort.sortName }}
+        </div>
+        <div class="article_type">
+          {{ Labels.labelName }}
+        </div>
+        <div class="">{{ article_String.time }}</div>
       </div>
     </div>
 
@@ -95,9 +99,11 @@
       const router = useRouter();
       // 数据定义
       const state: any = reactive({
-        newinfo: [],
+        // article内容结果
+        article_String: [],
+        Labels: [],
+        Sort: [],
         id: route.query.id,
-        article: [],
         timebool: true,
         fullscreenLoading: false,
         blog: "",
@@ -124,17 +130,15 @@
           .all([
             // 读取详情页数据
             proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + state.id),
-            // //查询最新发布前十文章
-            // proxy.$api.get(
-            //   "/api/SnArticle/GetfyTest?label=00&pageIndex=1&pageSize=10&isDesc=true"
-            // ),
+
           ])
           .then(
             proxy.$api.spread((res1: any) => {
-              state.newinfo = res1.data;
-              // state.article = res2.data;
-              UpRead(state.newinfo);
-              state.blog = marked(state.newinfo.text);
+              state.article_String = res1.data;
+              GetLabelsById(state.article_String.label_id);
+              GetSortById(state.article_String.sort_id);
+              UpRead(state.article_String);
+              state.blog = marked(state.article_String.text);
               state.spinning = false;
               // alert(this.spinning);
             })
@@ -143,6 +147,32 @@
             console.log(err);
           });
       };
+      const GetLabelsById = (id: number) => {
+        proxy
+          .$api({
+            url: "/api/SnLabels/GetByIdAsync?id=" + id,
+          })
+          .then((res: any) => {
+            state.Labels = res.data;
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+
+      }
+      const GetSortById = (id: number) => {
+        proxy
+          .$api({
+            url: "/api/SnSort/GetByIdAsync?sortId=" + id,
+          })
+          .then((res: any) => {
+            state.Sort = res.data;
+          })
+          .catch((e: any) => {
+            console.log(e + "获取数据失败");
+          });
+
+      }
       // 阅读数
       const UpRead = (info: any): void => {
         if (info == null) {
@@ -294,7 +324,9 @@
         UpGive,
         AsyGetTestID,
         backtop,
-        like
+        like,
+        GetLabelsById,
+        GetSortById
       };
     },
   };
@@ -394,9 +426,12 @@
     }
 
     .article-3-2 {
+      .article_type {
+        @apply bg-blue-400 shadow  rounded-sm;
+      }
       div {
         /*background-color: #795da3;*/
-        @apply text-center px-1 py-2 m-2 text-sm font-light;
+        @apply text-center px-1 py-1 m-2 text-sm font-light;
       }
     }
   }

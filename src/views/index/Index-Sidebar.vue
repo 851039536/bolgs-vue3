@@ -51,7 +51,7 @@
           <div class="flex-1 sn-list2-1-1">
             <a target="_blank" href="https://gitee.com/kaiouyang-sn">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-github1"></use>
+                <use xlink:href="#icon-gitee-fill-round"></use>
               </svg>
             </a>
           </div>
@@ -65,7 +65,10 @@
           <div class="flex-1 sn-list2-1-1">
             <a>
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-zhihu"></use>
+                <use
+                  xlink:href="#icon-liulan
+"
+                ></use>
               </svg>
             </a>
           </div>

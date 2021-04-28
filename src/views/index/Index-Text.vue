@@ -51,15 +51,13 @@
 
     <!--分页-->
     <div class="sn-test-3">
-      <div id="components-pagination-demo-mini">
-        <a-pagination
-          size="small"
-          @change="currentchange"
-          :total="count"
-          :pageSize="pagesize"
-          show-quick-jumper
-        />
-      </div>
+      <a-pagination
+        size="small"
+        @change="currentchange"
+        :total="count"
+        :pageSize="pagesize"
+        show-quick-jumper
+      />
     </div>
   </div>
 </template>
@@ -225,7 +223,8 @@
     }
 
     .sn-test-3 {
-      @apply p-1 m-1;
+      width: 100%;
+      @apply py-5 bg-white shadow rounded;
     }
   }
 

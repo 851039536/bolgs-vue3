@@ -136,12 +136,13 @@
 
 <style lang="scss">
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .SnTagText {
     position: fixed;
     @include w-h(100%, 100%);
     .text {
       position: absolute;
-      top: 21.2%;
+      top: 22.1%;
       @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
       // 侧边框
       .text-sidebar {
@@ -172,7 +173,7 @@
     // 头部
     .SnTagText-top {
       position: absolute;
-      top: 9.5%;
+      top: $Text_height;
       @include initialize(94%, 11%, null, null, 3%, null, #ffffff);
       @apply rounded-sm;
       .tag-text {

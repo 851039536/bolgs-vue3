@@ -97,8 +97,7 @@
       @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow-sm;
       .PersonalNavigation-2 {
-        /*background-color: #FFFFFF;*/
-        @apply text-lg font-bold py-1 ml-2 mt-1 px-1  rounded-sm;
+        @apply text-lg  font-bold py-1 ml-2 mt-1 px-1  rounded-sm;
         .PersonalNavigation-2-1 {
           @apply p-1 m-1 cursor-default text-sm;
         }
@@ -106,11 +105,10 @@
 
       .PersonalNavigation-1 {
         @include w-h(100%, 82%);
-        //  background-color: #004085;
         overflow: auto;
         .PersonalNavigation-text {
           @include w-h(89%, 100px);
-          @apply mt-3 bg-gray-600;
+          @apply mt-3 bg-gray-200;
           @apply ml-2 antialiased shadow rounded-sm;
           // @apply hover:bg-gray-50;
           .PersonalNavigation-text-1 {

@@ -1,7 +1,7 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2021-04-26 10:41:20
+ * @LastEditTime: 2021-04-28 11:35:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
@@ -10,7 +10,7 @@
   <div class="timeline animate__animated animate__fadeIn">
     <sidebarsn></sidebarsn>
     <IndexSidebar></IndexSidebar>
-    <div class="timeline-img">
+    <div class="timeline_img">
       <h4>Archive</h4>
       <p>最后更新于2020年11月26日</p>
     </div>
@@ -135,11 +135,12 @@
   .timeline {
     @include initialize($w, null, $Text_height, null, $ml, null, #ffffff);
     @apply text-base;
-    @apply shadow;
-    .timeline-img {
+    @apply shadow rounded;
+    .timeline_img {
       position: relative;
-      @include w-h(100%, 78px);
-      @include bg-img("../../assets/img/timebg.jpg");
+      @include w-h(100%, 140px);
+      @include bg-img("../../assets/img/si.jpg");
+      @apply rounded;
       h4 {
         position: absolute;
         @include excursion(16%, null, 45%, null);
@@ -156,15 +157,13 @@
     }
 
     .timeline-type {
+      // background-color: antiquewhite;
+
+      @apply shadow mt-1 rounded;
       .timeline-type-name {
-        // @apply shadow;
         ul li {
           display: inline-block;
-          padding-left: 6.8%;
-          color: #666;
-          text-align: center;
-          height: 80px;
-          line-height: 90px;
+          @apply p-4  text-lg font-semibold;
         }
       }
     }

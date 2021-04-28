@@ -14,9 +14,12 @@
           </a>
           <a @click="onk(2)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-biaoqian"></use>
+              <use
+                xlink:href="#icon-liulan
+"
+              ></use>
             </svg>
-            标签
+            博文
           </a>
           <a @click="onk(5)">
             <svg class="inline-block icon" aria-hidden="true">
@@ -37,7 +40,7 @@
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-daohang1"></use>
             </svg>
-            导航站
+            导航
           </a>
           <a @click="onk(8)">
             <svg class="inline-block icon" aria-hidden="true">

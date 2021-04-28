@@ -1,43 +1,22 @@
 <template>
-  <div class="TalkSidebar" id="sn-list" :class="{ isFixed: barFixed }">
-    <div class="TalkSidebar-text">
-      <div class="sn-list4">
-        <div class="sn-list4-1">
-          <p class="">{{ UserTalk }}</p>
-        </div>
+  <div class="FavSidebar" id="sn-list">
+    <div class="FavSidebar-text">
+      <div class="FavSidebar_describe">
+        <p class="">{{ UserTalk }}</p>
       </div>
       <!--内容框-->
-      <div class="TalkSidebar-text-4">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 TalkSidebar-text-4-1"
-        >
-          推荐内容
+      <div class="FavSidebar_itme">
+        <div class="FavSidebar_itme_1">最近添加</div>
+        <div class="FavSidebar_itme_2">
+          <div class="itme_1">LintCode 领扣</div>
+          <div class="itme_2"><span>添加时间: 2020-1-11</span></div>
         </div>
-
-        <div
-          class="TalkSidebar-text-4-2"
-          v-for="data in article"
-          :key="data.id"
-        >
-          <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
-            <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-liulan
-"
-              ></use>
-            </svg>
-            <a @click="AsyGetTestID(data.id)"
-              >{{ data.talkTitle }}
-              {{
-                data.talkTime
-                  .toLocaleString()
-                  .replace(/T/g, " ")
-                  .replace(/\.[\d]{3}Z/, "")
-              }}
-            </a>
-          </div>
+        <div class="FavSidebar_itme_2">
+          <div class="itme_1">LintCode 领扣</div>
+          <div class="itme_2"><span>添加时间: 2020-1-11</span></div>
         </div>
       </div>
+
       <div class="sn-list5">
         <div
           class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
@@ -155,16 +134,12 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .TalkSidebar {
+  .FavSidebar {
     position: fixed;
     @include excursion($Text_height, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
-    font-size: 17px;
-    color: #888888;
-    /*background-color: #4d4f91;*/
     @apply ml-3;
-    .TalkSidebar-text {
-      /*background-color: #55a532;*/
+    .FavSidebar-text {
       @include w-h(100%, 100%);
       overflow: auto;
 
@@ -207,18 +182,14 @@
       .el-calendar-table .el-calendar-day {
         height: 44px !important;
       }
-      .sn-list4 {
+      .FavSidebar_describe {
         width: 100%;
         margin: 0 auto;
         text-align: center;
-        @apply mb-2 bg-white;
-        @apply shadow rounded;
-        //@include gradient-text;
+        @apply mb-2 bg-white shadow rounded;
 
-        .sn-list4-1 {
-          p {
-            @apply text-sm px-2 py-4 m-1 cursor-pointer;
-          }
+        p {
+          @apply text-sm px-2 py-4 m-1 cursor-pointer;
         }
       }
 
@@ -301,19 +272,23 @@
         }
       }
 
-      .TalkSidebar-text-4 {
-        width: 100%;
-        margin: 0 auto;
-        background-color: #ffffff;
-        @apply p-1 mb-2 cursor-pointer;
-        @apply shadow rounded;
+      .FavSidebar_itme {
+        @include initialize(100%, null, 0, auto, null, auto, #ffffff);
+        @apply p-1 mb-2  shadow rounded;
 
-        .TalkSidebar-text-4-1 {
+        .FavSidebar_itme_1 {
           color: #1b1e21;
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
         }
 
-        .TalkSidebar-text-4-2 {
-          background-color: white;
+        .FavSidebar_itme_2 {
+          @apply bg-indigo-100 m-1 rounded-md shadow;
+          div {
+            @apply px-2;
+          }
+          .itme_1 {
+            @apply text-base bg-indigo-200 rounded-md shadow;
+          }
           border-bottom: 1px dashed #f1f1f1;
         }
       }
