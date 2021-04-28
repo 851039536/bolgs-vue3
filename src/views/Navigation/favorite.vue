@@ -33,6 +33,7 @@
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import FavSidebar from './FavSidebar.vue';
 
+
   export default {
     components: { FavSidebar },
     name: "PersonalNavigation",
@@ -50,7 +51,7 @@
         proxy.$api
           .all([
             //查询标签
-            proxy.$api.get("/api/SnNavigation/AsyGetWhereTest?type=" + name + "&fag=true"),
+            proxy.$api.get("api/SnNavigation/GetTypeOrderAsync?type=" + name + "&order=true"),
             //查询分类
             proxy.$api.get(
               "/api/SnNavigationType/GetAllAsync"
@@ -87,12 +88,13 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
 
   .PersonalNavigations {
     position: fixed;
     @include w-h(100%, 100%);
     .PersonalNavigation {
-      @include initialize($w, 100%, 60px, null, $ml, null, #ffffff);
+      @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow-sm;
       .PersonalNavigation-2 {
         /*background-color: #FFFFFF;*/
@@ -104,23 +106,22 @@
 
       .PersonalNavigation-1 {
         @include w-h(100%, 82%);
-        /*background-color: #004085;*/
+        //  background-color: #004085;
         overflow: auto;
         .PersonalNavigation-text {
           @include w-h(89%, 100px);
-          @apply mt-3;
+          @apply mt-3 bg-gray-600;
           @apply ml-2 antialiased shadow rounded-sm;
-          @apply hover:bg-gray-50;
+          // @apply hover:bg-gray-50;
           .PersonalNavigation-text-1 {
-            @apply p-1 text-base;
-
+            color: #b49d1a;
+            @apply p-1 px-2 text-base;
             @include line-ome;
           }
 
           .PersonalNavigation-text-2 {
-            // background-color: #155724;
-            height: 50px;
-            @apply p-1  mt-3;
+            height: 46px;
+            @apply px-2 mt-3 mx-1 bg-white rounded-md;
             @include line-number;
           }
         }

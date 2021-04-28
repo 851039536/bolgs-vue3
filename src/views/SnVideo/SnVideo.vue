@@ -113,13 +113,14 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
 
   .SnVideos {
     position: fixed;
     @include w-h(100%, 100%);
     .SnVideo {
       position: relative;
-      @include initialize($w, 99%, 60px, null, $ml, null, #ffffff);
+      @include initialize($w, 99%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow rounded-sm;
       .SnVideo-1 {
         @include initialize(20%, 80%, 8px, null, 0%, null, null);

@@ -4,9 +4,8 @@
       <div class="flex items-center flex-shrink-0 text-black">
         <span class="text-2xl font-medium tracking-tight">少年</span>
       </div>
-
-      <div class="header-1">
-        <div class="header-1-1">
+      <div class="header_div">
+        <div class="header_text">
           <a @click="onk(1)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-icon-"></use>
@@ -23,7 +22,6 @@
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-dianzan
-
             "
               ></use>
             </svg>
@@ -58,9 +56,9 @@
             日志
           </a>
 
-          <a @click="onk(12)" class="header-1-1-a"> 留言 </a>
-          <a @click="onk(13)" class="header-1-1-a"> 博客园 </a>
-          <a @click="onk(14)" class="header-1-1-a"> Gitee </a>
+          <a @click="onk(12)" class="header_text_text"> 留言 </a>
+          <a @click="onk(13)" class="header_text_text"> 博客园 </a>
+          <a @click="onk(14)" class="header_text_text"> Gitee </a>
         </div>
       </div>
     </nav>
@@ -71,8 +69,7 @@
   import { useRouter } from "vue-router";
   export default {
     name: "Headers",
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    setup() {
+    setup(): { onk: (num: any) => Promise<void>; } {
       const router = useRouter();
       let onk = async (num: any) => {
         switch (num) {
@@ -144,14 +141,14 @@
     @include w-h(94%, 57px);
     background-color: $back_headers;
     @apply p-2  shadow-sm rounded-sm;
-    .header-1 {
+    .header_div {
       width: 100%;
-      .header-1-1 {
+      .header_text {
         @apply mt-2 text-base;
         a {
           @apply ml-3 hover:text-red-400;
         }
-        .header-1-1-a {
+        .header_text_text {
           float: right;
         }
       }

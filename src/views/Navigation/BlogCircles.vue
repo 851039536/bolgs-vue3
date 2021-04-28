@@ -43,7 +43,7 @@
       const GetSnNavigation = () => {
         proxy
           .$api({
-            url: "/api/SnNavigation/AsyGetWhereTest?type=博客圈&fag=true",
+            url: "/api/SnNavigation/GetTypeOrderAsync?type=博客圈&order=true",
           })
           .then((res: any) => {
             state.text = res.data;
@@ -65,12 +65,13 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
 
   .BlogCircless {
     position: fixed;
     @include w-h(100%, 100%);
     .BlogCircles {
-      @include initialize($w, 94%, 60px, null, $ml, null, #ffffff);
+      @include initialize($w, 94%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow-sm rounded-sm;
 
       // 导航窗体小

@@ -77,7 +77,7 @@
   export default {
     name: "EverydayOne",
     components: { OneSidebar },
-    setup() {
+    setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: number) => void; } {
       const { proxy }: any = getCurrentInstance();
       const state: any = reactive({
         dataTest: [],
@@ -135,11 +135,12 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .EverydayOnes {
     position: fixed;
     @include w-h(100%, 100%);
     .EverydayOne {
-      @include initialize($w, 90%, 60px, null, $ml, null, #ffffff);
+      @include initialize($w, 90%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow-sm rounded-sm;
       overflow: auto;
       .EverydayOne-1 {

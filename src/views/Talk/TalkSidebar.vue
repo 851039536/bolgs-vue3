@@ -156,7 +156,7 @@
   @import "../../assets/sass/uitl";
   .TalkSidebar {
     position: fixed;
-    @include excursion($sidebar_r_t, null, null, $sidebar_r_r);
+    @include excursion($Text_height, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
     font-size: 17px;
     color: #888888;

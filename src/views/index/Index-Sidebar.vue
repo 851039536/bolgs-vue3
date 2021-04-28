@@ -1,6 +1,7 @@
 <template>
-  <div class="sn-list" id="sn-list" :class="{ isFixed: barFixed }">
-    <div class="sn-list-s">
+  <!--  :class="{ isFixed: barFixed }" -->
+  <div class="index_si_div">
+    <div class="index_si_text">
       <!-- <div class="font-mono sn-list0">
         <div class="sn-list0-img">
           <img class="sn-list0-img2" id="img1" :src="User.userPhoto" alt="" />
@@ -36,7 +37,7 @@
           </div>
         </div>
       </div> -->
-      <div class="sn-list2">
+      <div class="index_si_contact">
         <div class="flex items-center sn-list2-1">
           <div class="flex-1 sn-list2-1-1">
             <a
@@ -307,13 +308,13 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .sn-list {
+  .index_si_div {
     position: fixed;
-    @include excursion($sidebar_r_t, null, null, $sidebar_r_r);
+    @include excursion($Text_height, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
     // background-color: #4d4f91;
     @apply ml-3;
-    .sn-list-s {
+    .index_si_text {
       // background-color: #55a532;
       @include w-h(100%, 100%);
       overflow: auto;
@@ -385,7 +386,7 @@
         }
       }
 
-      .sn-list2 {
+      .index_si_contact {
         @include w-h(100%, 50px);
         margin: 0 auto;
         @apply mb-2 shadow rounded bg-white;
@@ -509,7 +510,7 @@
       }
     }
 
-    .sn-list-s::-webkit-scrollbar {
+    .index_si_text::-webkit-scrollbar {
       display: none;
     }
   }

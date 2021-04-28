@@ -60,6 +60,9 @@
     <div class="lo">
       <!-- <a-switch v-model:checked="spinning" /> -->
     </div>
+    <div class="give">
+      <div class="btn" @click="like()">点赞</div>
+    </div>
   </div>
 </template>
 
@@ -101,6 +104,18 @@
         spinning: true,
 
       });
+
+      let count = 0;
+      const like = () => {
+        const likeDom = document.createElement("div");
+        count++;
+        likeDom.className = count % 2 === 0 ? "like" : "like like--is-second";
+        likeDom.style.willChange = "margin-top";
+        document.body.appendChild(likeDom);
+        setTimeout(() => {
+          document.body.removeChild(likeDom);
+        }, 3900);
+      }
 
       // 加载内容
       const GetTest = (): void => {
@@ -264,7 +279,7 @@
       onMounted(async () => {
         await GetTest();
         await backtop();
-
+        like();
 
       });
       onUpdated(async () => {
@@ -279,6 +294,7 @@
         UpGive,
         AsyGetTestID,
         backtop,
+        like
       };
     },
   };
@@ -286,11 +302,80 @@
 
 <style lang="scss">
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
 
   .lo {
     position: fixed;
     top: 50%;
     width: 100%;
+  }
+
+  /* 规定动画，改变y轴偏移距离*/
+  @keyframes animation-y {
+    0% {
+      transform: translate(-50%, 100px) scale(0);
+    }
+    50% {
+      transform: translate(-50%, -100px) scale(1.5);
+    }
+    100% {
+      transform: translate(-50%, -300px) scale(1.5);
+    }
+  }
+  /* 规定动画，改变x轴偏移距离 */
+  @keyframes animation-x {
+    0% {
+      margin-left: 0px;
+    }
+    25% {
+      margin-left: 25px;
+    }
+    75% {
+      margin-left: -25px;
+    }
+    100% {
+      margin-left: 0px;
+    }
+  }
+  .like {
+    position: fixed;
+    left: 90%;
+    bottom: 35%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134959/40/26/8929/5ec79d68E968b0377/aa4feff2b7bcf231.png);
+    animation: animation-x 3s 0s linear infinite, animation-y 4s 0s linear 1;
+  }
+  .like--is-second {
+    background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134906/37/26/9080/5ec79d5dE90e5f972/bc39e647c61c8bab.png);
+    animation: animation-x 3s -2s linear infinite, animation-y 4s 0s linear 1;
+  }
+  .btn {
+    position: fixed;
+    left: 90%;
+    top: 90%;
+    transform: translate(-50%, -50%);
+    top: 80%;
+    user-select: none;
+    width: 50px;
+    line-height: 50px;
+    background: rgb(255, 0, 179);
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #999;
+    cursor: pointer;
+  }
+  .btn:hover {
+    opacity: 0.8;
+  }
+  .btn:active {
+    opacity: 1;
   }
 
   /*底部*/
@@ -353,7 +438,7 @@
   /*返回上一页*/
   .article-title {
     position: relative;
-    @include initialize($w, 40px, 60px, null, $ml, null, #ffffff);
+    @include initialize($w, 40px, $Text_height, null, $ml, null, #ffffff);
     @apply shadow rounded cursor-pointer;
     .ant-page-header-heading-title {
       @apply text-lg;

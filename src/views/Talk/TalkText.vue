@@ -265,6 +265,7 @@
 
 <style lang="scss">
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .lo {
     position: fixed;
     top: 50%;

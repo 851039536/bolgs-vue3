@@ -240,10 +240,10 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-
+  @import "../../assets/sass/uitl";
   .talk {
     /*background-color: #dddddd;*/
-    @include initialize($w, 100%, 60px, null, $ml, null, null);
+    @include initialize($w, 100%, $Text_height, null, $ml, null, null);
     //@include boxshow;
     .talk-text {
       .text-carousel {

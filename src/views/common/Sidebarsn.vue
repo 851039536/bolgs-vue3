@@ -1,63 +1,53 @@
 <template>
-  <div class="fo">
-    <div class="fos">
-      <div class="fo-img1">
-        <img src="@/assets/img/ab.jpg" alt="" />
+  <div class="sidebarsn">
+    <div class="si_scroll">
+      <div class="si_img">
+        <img src="@/assets/img/si.jpg" alt="" />
       </div>
-      <div class="fo-1">
-        <p
-          class="text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
-          @click="nav(1)"
-        >
-          短文
-        </p>
+      <div class="si_text">
+        <p @click="nav(1)">舔狗日记</p>
       </div>
-      <div class="fo-1">
-        <p
-          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
-          @click="nav(2)"
-        >
-          视频
-        </p>
+      <div class="si_text">
+        <p @click="nav(2)">bili视频</p>
       </div>
-      <div class="fo-1">
-        <p
-          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
-          @click="nav(4)"
-        >
-          收藏
-        </p>
+      <div class="si_text">
+        <p @click="nav(4)">网站收藏</p>
       </div>
-      <div class="fo-1">
-        <p
-          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
-          @click="nav(5)"
-        >
-          博客
-        </p>
+      <div class="si_text">
+        <p @click="nav(5)">博客导航</p>
       </div>
-      <div class="fo-1">
-        <p
-          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
-          @click="nav(6)"
-        >
-          书单
-        </p>
+      <div class="si_text">
+        <p @click="nav(6)">我的书单</p>
       </div>
-      <div class="fo-1">
-        <p
-          class="text-gray-700 transition duration-500 ease-in-out transform text-xm hover: hover:scale-110 hover:text-red-600"
-          @click="nav(7)"
-        >
-          后台
-        </p>
+      <div class="si_text">
+        <p @click="nav(7)">后台管理</p>
       </div>
-
-      <div class="fo-2">
-        <a class="text-xs fo-2-p1"> http://oykperson.xyz</a>
+      <div class="si_text">
+        <p @click="nav(8)">聚合搜索</p>
       </div>
-      <div class="fo-3">
-        <p class="text-xs fo-2-p2">
+      <div class="si_text">
+        <p @click="nav(8)">博客日记</p>
+      </div>
+      <div class="si_text">
+        <p @click="nav(8)">工具软件</p>
+      </div>
+      <div class="si_text">
+        <p @click="nav(8)">工具软件</p>
+      </div>
+      <div class="si_text">
+        <p @click="nav(8)">工具软件</p>
+      </div>
+      <div class="si_text">
+        <p @click="nav(8)">工具软件</p>
+      </div>
+      <div class="si_text">
+        <p @click="nav(8)">工具软件</p>
+      </div>
+      <div class="si_website">
+        <a> http://oykperson.xyz</a>
+      </div>
+      <div class="si_described">
+        <p class="si_described_text">
           SN © 2019. All Rights Reserved. 粤ICP备19130826号 2017 - 2020 Junior
         </p>
       </div>
@@ -69,8 +59,7 @@
   import { useRouter } from "vue-router";
   export default {
     name: "Sidebarsn",
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    setup() {
+    setup(): { nav: (num: number) => Promise<void>; } {
       const router = useRouter();
       let nav = async (num: number) => {
         switch (num) {
@@ -108,57 +97,55 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .fo {
+  .sidebarsn {
     position: relative;
-
     @include w-h(20%, 100%);
     position: fixed;
-    @include excursion(60px, null, 3%, null);
+    @include excursion($Text_height, null, 3%, null);
     background-color: $back_sidebar;
-    @apply shadow;
+    @apply shadow rounded-md;
 
-    .fos {
+    .si_scroll {
       height: 80%;
       overflow: auto;
-
       .bgys {
         position: absolute;
         top: 0;
         @include w-h(100%, 100%);
       }
-
-      .fo-img1 {
+      .si_img {
         img {
           @include w-h(100%, 140px);
+          @apply rounded-md;
         }
       }
-
-      .fo-1 {
-        /*background-color: #55a532;*/
-        @include w-h(40%, 30px);
-        margin: 10px auto auto auto;
+      .si_text {
+        // background-color: #55a532;
+        @include initialize(40%, 30px, 5px, auto, auto, auto, null);
         @apply text-center antialiased cursor-pointer;
         p {
-          @apply py-1 px-4 text-lg font-light;
+          @apply py-1 px-4 text-base font-light;
+        }
+        p:hover {
+          color: #f08080;
         }
       }
-      .fo-2 {
+      .si_website {
         position: absolute;
         bottom: 18%;
         margin-left: 25%;
       }
-
-      .fo-3 {
+      .si_described {
         position: absolute;
         bottom: 12%;
-
-        .fo-2-p2 {
+        @apply text-xs;
+        .si_described_text {
           text-align: center;
-          color: #95999c;
+          color: #333336;
         }
       }
     }
-    .fos::-webkit-scrollbar {
+    .si_scroll::-webkit-scrollbar {
       display: none;
     }
   }

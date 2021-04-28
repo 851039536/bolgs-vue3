@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-04-24 14:05:05
+ * @LastEditTime: 2021-04-26 10:37:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -76,9 +76,9 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-
+  @import "../../assets/sass/uitl";
   .n-nav {
-    @include initialize($w, null, 60px, null, $ml, null, #ffffff);
+    @include initialize($w, null, $Text_height, null, $ml, null, #ffffff);
     @apply shadow rounded-sm;
 
     .n-nav-text {

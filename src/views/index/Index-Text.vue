@@ -168,9 +168,10 @@
 
 <style lang="scss" >
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
 
   .sn-text {
-    @include initialize($w, null, 60px, null, $ml, null, null);
+    @include initialize($w, null, $Text_height, null, $ml, null, null);
 
     // @include boxshow3;
     p {
@@ -229,10 +230,10 @@
   }
 
   @screen xp {
-    .sn-list {
+    .index_si_div {
       @apply hidden;
     }
-    .fo {
+    .sidebarsn {
       @apply hidden;
     }
     .sn-text {

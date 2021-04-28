@@ -7,7 +7,8 @@
         <div class="about-1" v-bind:class="[activeClass, backInDown]">
           <div class="about-1-1">
             <div class="about-1-1-1">
-              <img :src="User.userPhoto" alt="" />
+              <!-- <img :src="User.userPhoto" alt="" /> -->
+              <img src="../../assets/img/bb.jpg" />
             </div>
           </div>
           <div class="about-1-2">
@@ -133,6 +134,9 @@
         </div>
       </div>
     </div>
+    <div>
+      <div class="btn" @click="like()">jenny</div>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -153,7 +157,17 @@
         User: [],
         newinfo: [],
       });
-
+      let count = 0;
+      const like = () => {
+        const likeDom = document.createElement("div");
+        count++;
+        likeDom.className = count % 2 === 0 ? "like" : "like like--is-second";
+        likeDom.style.willChange = "margin-top";
+        document.body.appendChild(likeDom);
+        setTimeout(() => {
+          document.body.removeChild(likeDom);
+        }, 3900);
+      };
       const getall = () => {
         //查询当前用户信息
         proxy
@@ -191,19 +205,20 @@
       onMounted(async () => {
         await getall();
       });
-      return { ...toRefs(state), getall, Getid };
+      return { ...toRefs(state), getall, Getid, like };
     },
   };
 </script>
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .abouts {
     /*position: fixed;*/
     @include w-h(100%, 100%);
     /* 关于界面 */
     .about {
-      @include initialize(93%, 100%, 60px, auto, auto, auto, #ffffff);
+      @include initialize(93%, 100%, $Text_height, auto, auto, auto, #ffffff);
       padding: 0 0 1.25rem 0;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
@@ -223,7 +238,7 @@
             height: 50%;
 
             .about-1-1-1 {
-              @include initialize(150px, 112px, 3%, auto, auto, auto, null);
+              @include initialize(160px, 140px, 3%, auto, auto, auto, null);
               @apply p-3;
               img {
                 @include w-h(100%, 100%);
@@ -345,5 +360,73 @@
     vertical-align: -0.5rem;
     fill: currentColor;
     overflow: hidden;
+  }
+
+  /* 规定动画，改变y轴偏移距离*/
+  @keyframes animation-y {
+    0% {
+      transform: translate(-50%, 100px) scale(0);
+    }
+    50% {
+      transform: translate(-50%, -100px) scale(1.5);
+    }
+    100% {
+      transform: translate(-50%, -300px) scale(1.5);
+    }
+  }
+  /* 规定动画，改变x轴偏移距离 */
+  @keyframes animation-x {
+    0% {
+      margin-left: 0px;
+    }
+    25% {
+      margin-left: 25px;
+    }
+    75% {
+      margin-left: -25px;
+    }
+    100% {
+      margin-left: 0px;
+    }
+  }
+  .like {
+    position: fixed;
+    left: 90%;
+    bottom: 35%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134959/40/26/8929/5ec79d68E968b0377/aa4feff2b7bcf231.png);
+    animation: animation-x 3s 0s linear infinite, animation-y 4s 0s linear 1;
+  }
+  .like--is-second {
+    background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134906/37/26/9080/5ec79d5dE90e5f972/bc39e647c61c8bab.png);
+    animation: animation-x 3s -2s linear infinite, animation-y 4s 0s linear 1;
+  }
+  .btn {
+    position: fixed;
+    left: 90%;
+    top: 90%;
+    transform: translate(-50%, -50%);
+    top: 80%;
+    user-select: none;
+    width: 50px;
+    line-height: 50px;
+    background: rgb(255, 0, 179);
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #999;
+    cursor: pointer;
+  }
+  .btn:hover {
+    opacity: 0.8;
+  }
+  .btn:active {
+    opacity: 1;
   }
 </style>

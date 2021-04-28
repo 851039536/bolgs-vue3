@@ -1,7 +1,7 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2021-04-09 11:47:36
+ * @LastEditTime: 2021-04-26 10:41:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
@@ -131,8 +131,9 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .timeline {
-    @include initialize($w, null, 60px, null, $ml, null, #ffffff);
+    @include initialize($w, null, $Text_height, null, $ml, null, #ffffff);
     @apply text-base;
     @apply shadow;
     .timeline-img {
