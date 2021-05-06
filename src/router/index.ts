@@ -189,6 +189,14 @@ const routes = [{
   },
   component: () => import('../views/Book/Book.vue')
 },
+{
+  path: '/test',
+  name: 'test',
+  meta: {
+    keepAlive: false // 缓存
+  },
+  component: () => import('../views/test/test.vue')
+},
 ]
 
 const router = createRouter({

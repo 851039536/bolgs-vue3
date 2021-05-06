@@ -24,25 +24,23 @@
         <div>
           <a>
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-chat"></use>
+              <use xlink:href="#icon-chat" />
             </svg>
-            {{ info.comment }}</a
-          >
+            {{ info.comment }}
+          </a>
         </div>
         <div @click="jump(info.article_id)">
           <a>
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-liulan"></use>
+              <use xlink:href="#icon-liulan" />
             </svg>
-            {{ info.read }}</a
-          >
+            {{ info.read }}
+          </a>
         </div>
         <div>
           <svg class="inline-block icon" aria-hidden="true">
-            <use
-              xlink:href="#icon-dianzan2
-"
-            ></use>
+            <use xlink:href="#icon-dianzan2
+" />
           </svg>
           {{ info.give }}
         </div>
@@ -66,7 +64,6 @@
 <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
-
   // 组件导入
   export default {
     name: "Index-Text",
@@ -150,6 +147,7 @@
       onMounted(async () => {
         await GetCountAsync();
         await GetFyTitleAsync();
+
       });
 
       return {

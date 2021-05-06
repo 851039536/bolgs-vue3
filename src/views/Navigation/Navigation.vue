@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-04-26 10:37:17
+ * @LastEditTime: 2021-05-04 14:48:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -21,9 +21,7 @@
             <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
           </div>
           <div class="n-nav-1-3">
-            <p>
-              {{ info.navText }}
-            </p>
+            <p>{{ info.navText }}</p>
           </div>
         </div>
       </div>
@@ -31,7 +29,7 @@
   </div>
 </template>
 
-<script lang="ts">
+  <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   export default {
     name: "Navigation",
@@ -44,7 +42,6 @@
       const state = reactive({
         text: [],
       });
-
       const GetSnNavigation = async () => {
         //查询当前用户信息
         proxy

@@ -6,15 +6,12 @@
 
     <!--标题-->
     <div class="article-title">
-      <a-page-header
-        :title="article_String.title"
-        @back="() => $router.push('/indexs')"
-      />
+      <a-page-header :title="article_String.title" @back="() => $router.push('/indexs')" />
     </div>
     <!--内容-->
     <div class="editor-text">
       <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
-      <div class="blog" v-html="blog"></div>
+      <div id="content" class="blog" v-html="blog"></div>
     </div>
 
     <!-- <Comment></Comment> -->
@@ -29,31 +26,25 @@
         </div>
       </div>
       <div class="flex article-3-2">
-        <div class="">
+        <div class>
           <a @click="UpGive(article_String)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-qinggan
-"
-              ></use>
+              <use xlink:href="#icon-qinggan
+" />
             </svg>
-            {{ article_String.give }}</a
-          >
+            {{ article_String.give }}
+          </a>
         </div>
-        <div class="">
+        <div class>
           <svg class="inline-block icon" aria-hidden="true">
-            <use xlink:href="#icon-liulan"></use>
+            <use xlink:href="#icon-liulan" />
           </svg>
           ({{ article_String.read }})
         </div>
 
-        <div class="article_type">
-          {{ Sort.sortName }}
-        </div>
-        <div class="article_type">
-          {{ Labels.labelName }}
-        </div>
-        <div class="">{{ article_String.time }}</div>
+        <div class="article_type">{{ Sort.sortName }}</div>
+        <div class="article_type">{{ Labels.labelName }}</div>
+        <div class>{{ article_String.time }}</div>
       </div>
     </div>
 
@@ -73,10 +64,10 @@
 
 <script lang="ts">
   // 组件导入
-  import "highlight.js/styles/googlecode.css";
-  import hljs from "highlight.js"; //导入代码高亮文件
-  import marked from "marked"; //解析器
-
+  // import "highlight.js/styles/googlecode.css";
+  // import hljs from "highlight.js"; //导入代码高亮文件
+  // import marked from "marked"; //解析器
+  import markdown from "@/utils/markdown.js";
   import {
     getCurrentInstance,
     reactive,
@@ -85,21 +76,15 @@
     onUpdated,
   } from "vue";
   import { useRoute, useRouter } from "vue-router";
-  // import { useRoute } from "vue-router";
   export default {
     name: "IndexText2",
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-
-      //获取上下文实例，ctx=vue2的this
       const { proxy }: any = getCurrentInstance();
-      // 加载路由
       const route = useRoute();
       const router = useRouter();
-      // 数据定义
       const state: any = reactive({
-        // article内容结果
         article_String: [],
         Labels: [],
         Sort: [],
@@ -108,9 +93,7 @@
         fullscreenLoading: false,
         blog: "",
         spinning: true,
-
       });
-
       let count = 0;
       const like = () => {
         const likeDom = document.createElement("div");
@@ -138,9 +121,16 @@
               GetLabelsById(state.article_String.label_id);
               GetSortById(state.article_String.sort_id);
               UpRead(state.article_String);
-              state.blog = marked(state.article_String.text);
+              // state.blog = marked(state.article_String.text);
+
+              // -----------------------------------------------------------------
+              // 使用 marked 转换
+              const article = markdown.marked(state.article_String.text);
+              article.then((response: any) => {
+                state.blog = response.content;
+
+              });
               state.spinning = false;
-              // alert(this.spinning);
             })
           )
           .catch((err: never) => {
@@ -277,13 +267,11 @@
 
       // 代码高亮
       const highlighthandle = async () => {
-        await hljs;
-        let highlight = document.querySelectorAll("pre");
-        highlight.forEach((block: any) => {
-          hljs.highlightBlock(block);
-        });
-
-
+        // await hljs;
+        // let highlight = document.querySelectorAll("pre");
+        // highlight.forEach((block: any) => {
+        //   hljs.highlightBlock(block);
+        // });
       };
       const houtui = async () => {
         router.go(-1);
@@ -305,12 +293,10 @@
         }
       };
 
-
       onMounted(async () => {
         await GetTest();
         await backtop();
         like();
-
       });
       onUpdated(async () => {
         await highlighthandle();
@@ -341,7 +327,9 @@
     top: 50%;
     width: 100%;
   }
-
+  .color {
+    color: #42b983;
+  }
   /* 规定动画，改变y轴偏移距离*/
   @keyframes animation-y {
     0% {

@@ -1,7 +1,9 @@
 <template>
-  <div class="PersonalNavigations">
+  <div class="favorite">
     <div class="PersonalNavigation animate__animated animate__fadeIn">
-      <div class="flex flex-row">
+      <div
+        class="grid shadow 2xl:grid-cols-10 xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4"
+      >
         <div class="PersonalNavigation-2" v-for="text in type" :key="text.id">
           <div class="PersonalNavigation-2-1">
             <a @click="GetSnNavigation(text.title)">{{ text.title }}</a>
@@ -90,16 +92,16 @@
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
 
-  .PersonalNavigations {
+  .favorite {
     position: fixed;
     @include w-h(100%, 100%);
     .PersonalNavigation {
       @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
-      @apply shadow-sm;
+      @apply shadow  rounded;
       .PersonalNavigation-2 {
-        @apply text-lg  font-bold py-1 ml-2 mt-1 px-1  rounded-sm;
+        @apply text-lg font-bold  mt-1 text-center;
         .PersonalNavigation-2-1 {
-          @apply p-1 m-1 cursor-default text-sm;
+          @apply p-1  cursor-default text-sm;
         }
       }
 

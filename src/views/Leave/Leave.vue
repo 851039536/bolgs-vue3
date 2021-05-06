@@ -2,22 +2,7 @@
   <div class="SnLeaves">
     <div class="SnLeave" data-title="气泡背景墙">
       <ul class="bubble-bgwall">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-        <li>11</li>
-        <li>12</li>
-        <li>13</li>
-        <li>14</li>
-        <li>15</li>
-        <li>16</li>
+        <li v-for="result1 in result" :key="result1.id">{{ result1.title }}</li>
       </ul>
 
       <div class="bruce-2 animate__animated animate__fadeInUpBig">
@@ -34,9 +19,7 @@
             <button
               class="px-3 py-2 font-bold text-white bg-purple-500 rounded shadow hover:bg-purple-400 focus:shadow-outline focus:outline-none"
               type="button"
-            >
-              Up
-            </button>
+            >Up</button>
           </div>
         </form>
       </div>
@@ -44,21 +27,67 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "SnLeave"
-}
+<script lang="ts">
+  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  export default {
+    name: "SnLeave",
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+
+      // 加载路由
+      // const route = useRoute();
+      const state = reactive({
+        result: [],
+        //当前默认页
+      });
+
+      const AsyGetTest = async () => {
+        proxy.$api
+          .all([
+            //查询标签
+            proxy.$api.get("/api/Snleave/GetAllAsync"),
+
+          ])
+          .then(
+            proxy.$api.spread(
+              (
+                res1: any,
+              ) => {
+                state.result = res1.data;
+              }
+            )
+          )
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
+
+
+      onMounted(async () => {
+        await AsyGetTest();
+      });
+
+
+      return {
+        ...toRefs(state),
+        AsyGetTest,
+      };
+    },
+
+  }
 </script>
 
 <style lang="scss" scoped>
+  @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
   .SnLeaves {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    @include w-h(100%, 100%);
     .SnLeave {
       position: relative;
       height: 100%;
-      background-image: linear-gradient(270deg, #8146b4, #6990f6);
+      background-image: linear-gradient(270deg, #e96dc4, #6990f6);
       .bruce-2 {
         position: absolute;
         top: 40%;
@@ -96,66 +125,146 @@ export default {
         animation-delay: 2s;
       }
       &:nth-child(3) {
-        left: 10%;
+        left: 9%;
         animation-delay: 4s;
       }
       &:nth-child(4) {
-        left: 20%;
+        left: 12%;
         background-color: rgba(#fff, 0.3);
         animation-duration: 8s;
       }
       &:nth-child(5) {
-        left: 30%;
+        left: 15%;
       }
       &:nth-child(6) {
-        left: 40%;
+        left: 18%;
         background-color: rgba(#fff, 0.2);
         animation-delay: 3s;
       }
       &:nth-child(7) {
-        left: 50%;
+        left: 21%;
         animation-delay: 2s;
       }
       &:nth-child(8) {
-        left: 60%;
+        left: 24%;
         font-size: 12px;
         animation-duration: 15s;
         animation-delay: 4s;
       }
       &:nth-child(9) {
-        left: 25%;
+        left: 27%;
         background-color: rgba(#fff, 0.3);
         font-size: 12px;
         animation-duration: 12s;
         animation-delay: 2s;
       }
       &:nth-child(10) {
-        left: 70%;
+        left: 30%;
         animation-delay: 3s;
       }
 
       &:nth-child(11) {
-        left: 80%;
+        left: 33%;
         animation-delay: 9s;
       }
 
       &:nth-child(12) {
-        left: 85%;
+        left: 36%;
         animation-delay: 4s;
       }
 
       &:nth-child(13) {
-        left: 90%;
+        left: 39%;
         animation-delay: 7s;
       }
 
       &:nth-child(14) {
-        left: 95%;
+        left: 42%;
         animation-delay: 5s;
       }
       &:nth-child(15) {
-        left: 75%;
+        left: 45%;
+        animation-delay: 3s;
+      }
+      &:nth-child(16) {
+        left: 48%;
         animation-delay: 2s;
+      }
+      &:nth-child(17) {
+        left: 51%;
+        animation-delay: 5s;
+      }
+      &:nth-child(18) {
+        left: 54%;
+        animation-delay: 4s;
+      }
+      &:nth-child(19) {
+        left: 57%;
+        animation-delay: 3s;
+      }
+      &:nth-child(20) {
+        left: 60%;
+        animation-delay: 4s;
+      }
+      &:nth-child(21) {
+        left: 62%;
+        animation-delay: 5s;
+      }
+      &:nth-child(22) {
+        left: 65%;
+        animation-delay: 6.5s;
+      }
+      &:nth-child(23) {
+        left: 68%;
+        animation-delay: 2.5s;
+      }
+      &:nth-child(24) {
+        left: 71%;
+        animation-delay: 7.5s;
+      }
+      &:nth-child(25) {
+        left: 74%;
+        animation-delay: 5s;
+      }
+      &:nth-child(26) {
+        left: 76%;
+        animation-delay: 2.5s;
+      }
+      &:nth-child(27) {
+        left: 80%;
+        animation-delay: 2.5s;
+      }
+      &:nth-child(28) {
+        left: 83%;
+        animation-delay: 3.5s;
+      }
+      &:nth-child(29) {
+        left: 85%;
+        animation-delay: 8.5s;
+      }
+      &:nth-child(30) {
+        left: 88%;
+        animation-delay: 1.8s;
+      }
+      &:nth-child(31) {
+        left: 90%;
+        animation-delay: 5.4s;
+      }
+      &:nth-child(32) {
+        left: 93%;
+        animation-delay: 2.9s;
+      }
+      &:nth-child(33) {
+        left: 97%;
+        animation-delay: 2.8s;
+      }
+      &:nth-child(34) {
+        left: 95%;
+        animation-delay: 3.5s;
+      }
+      &:nth-child(35) {
+        left: 99%;
+        animation-delay: 5.1s;
       }
     }
   }

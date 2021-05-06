@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-14 17:18:11
+ * @LastEditTime: 2021-05-06 09:35:32
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\.eslintrc.js
+ */
 module.exports = {
   extends: [
     'plugin:vue/vue3-essential',
@@ -9,6 +17,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-unused-vars': 'error',
     // 允许非空断言
     '@typescript-eslint/no-non-null-assertion': 'off',

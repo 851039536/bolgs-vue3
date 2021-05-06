@@ -239,6 +239,7 @@ $ml:25%;
   pre {
     width: 100%;
     @apply text-sm px-1 bg-gray-100;
+
   }
 
   code {
@@ -314,4 +315,47 @@ $ml:25%;
   a {
     @apply text-red-800;
   }
+
+
+  /*对 markdown 样式的补充*/
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1em;
+    /* margin-bottom: 1em; */
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  p>code:not([class]) {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+  }
+
+  p img {
+    /* 图片居中 */
+    margin: 0 auto;
+    display: flex;
+  }
+
+  #content .desc h1,
+  #content .desc h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  #content .desc a {
+    color: #009a61;
+  }
+
 }
