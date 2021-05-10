@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-06 11:38:40
- * @LastEditTime: 2021-05-06 12:38:58
+ * @LastEditTime: 2021-05-06 16:44:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\test\test.vue
@@ -19,17 +19,15 @@
 
 <script lang="ts">
   import "../../assets/css/index.css";
-  // 整体引入
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-  // import styles from '../../assets/css/index.css'
-
-  // console.log(styles);
 
   export default {
 
   }
 </script>
 
-<style module>
+<style lang="scss" scoped>
+  .color {
+    font-size: 12px;
+    // color: $back_sidebar;
+  }
 </style>

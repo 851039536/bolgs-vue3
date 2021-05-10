@@ -61,19 +61,17 @@
   </div>
 </template>
 
-
 <script lang="ts">
-  // 组件导入
-  // import "highlight.js/styles/googlecode.css";
-  // import hljs from "highlight.js"; //导入代码高亮文件
-  // import marked from "marked"; //解析器
   import markdown from "@/utils/markdown.js";
+  import { article } from '../../api/article';
+  import { labels } from '../../api/labels';// 导入我们的api接口
+  import { sort } from '../../api/sort';// 导入我们的api接口
+  // import utils from "@/utils/utils.js";
   import {
     getCurrentInstance,
     reactive,
     toRefs,
     onMounted,
-    onUpdated,
   } from "vue";
   import { useRoute, useRouter } from "vue-router";
   export default {
@@ -95,7 +93,7 @@
         spinning: true,
       });
       let count = 0;
-      const like = () => {
+      const like = async () => {
         const likeDom = document.createElement("div");
         count++;
         likeDom.className = count % 2 === 0 ? "like" : "like like--is-second";
@@ -107,150 +105,69 @@
       }
 
       // 加载内容
-      const GetTest = (): void => {
-
-        proxy.$api
-          .all([
-            // 读取详情页数据
-            proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + state.id),
-
-          ])
-          .then(
-            proxy.$api.spread((res1: any) => {
-              state.article_String = res1.data;
-              GetLabelsById(state.article_String.label_id);
-              GetSortById(state.article_String.sort_id);
-              UpRead(state.article_String);
-              // state.blog = marked(state.article_String.text);
-
-              // -----------------------------------------------------------------
-              // 使用 marked 转换
-              const article = markdown.marked(state.article_String.text);
-              article.then((response: any) => {
-                state.blog = response.content;
-
-              });
-              state.spinning = false;
-            })
-          )
-          .catch((err: never) => {
-            console.log(err);
-          });
+      const GetAll = async () => {
+        await article.GetAll(state.id).then(
+          proxy.$api.spread((res1: any) => {
+            state.article_String = res1.data;
+            GetByIdAsync(state.article_String.label_id);
+            GetSortById(state.article_String.sort_id);
+            UpRead(state.article_String);
+            const article = markdown.marked(state.article_String.text);
+            article.then((response: any) => {
+              state.blog = response.content;
+            });
+            state.spinning = false;
+          })
+        )
       };
-      const GetLabelsById = (id: number) => {
-        proxy
-          .$api({
-            url: "/api/SnLabels/GetByIdAsync?id=" + id,
-          })
-          .then((res: any) => {
-            state.Labels = res.data;
-          })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
-
+      const GetByIdAsync = (id: number) => {
+        labels.GetByIdAsync(id).then((result: any) => {
+          state.Labels = result.data;
+        })
       }
       const GetSortById = (id: number) => {
-        proxy
-          .$api({
-            url: "/api/SnSort/GetByIdAsync?sortId=" + id,
-          })
-          .then((res: any) => {
-            state.Sort = res.data;
-          })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
 
+        sort.GetByIdAsync(id).then((result: any) => {
+          state.Sort = result.data;
+        })
       }
       // 阅读数
-      const UpRead = (info: any): void => {
+      const UpRead = async (info: any) => {
         if (info == null) {
           console.log(info);
           return;
         } else {
-          console.log(info.read);
+          // console.log(info.read);
           info.read++;
-          console.log(state.id + "-" + info.read);
-          proxy
-            .$api({
-              // 更新
-              url: "/api/SnArticle/UpdatePortionAsync?type=read",
-              method: "put",
-              data: {
-                article_id: info.article_id,
-                user_id: Number(info.user_id),
-                title: "string",
-                title_text: "string",
-                text: "string",
-                time: info.time,
-                label_id: 0,
-                read: Number(info.read),
-                give: 0,
-                comment: "0",
-                sort_id: 0,
-                type_title: "string",
-                url_img: "string",
-              },
-            })
-            .then((res: any) => {
-              if (res.status === 200) {
-                // console.log("1");
-              } else {
-                alert("更新失败");
-              }
-            })
-            .catch(console.error.bind(console)); // 异常
+          // console.log(state.id + "-" + info.read);
+          await article.UpdatePortionAsync(info, "read");
         }
       };
       // 点击数
-      const UpGive = (info: any): void => {
+      const UpGive = async (info: any) => {
         var timebools = state.timebool;
         if (info == null || timebools == false) {
           // console.log(info, state.timebool);
           return;
         } else {
           info.give++;
-          console.log(info.give);
-          proxy
-            .$api({
-              // 更新
-              url: "/api/SnArticle/UpdatePortionAsync?type=give",
-              method: "put",
-              data: {
-                article_id: info.article_id,
-                user_id: Number(info.user_id),
-                title: "string",
-                title_text: "string",
-                text: "string",
-                time: info.time,
-                label_id: 0,
-                read: 0,
-                give: Number(info.give),
-                comment: "0",
-                sort_id: 0,
-                type_title: "string",
-                url_img: "string",
-              },
-            })
+          // console.log(info.give);
+          await article.UpdatePortionAsync(info, "give")
             .then((res: any) => {
               if (res.status === 200) {
                 state.timebool = false;
                 var time = 10;
                 var timer = setInterval(function () {
                   time--;
-                  //console.log(time);
+                  // console.log(time);
                   if (time == 0) {
                     state.timebool = true;
                     // alert(this.timebool)
                     clearInterval(timer);
                   }
                 }, 1000);
-              } else {
-                alert("更新失败");
               }
             })
-            .catch(console.error.bind(console)); // 异常
         }
       };
       // 博客详情
@@ -265,20 +182,15 @@
         // location.reload();
       };
 
-      // 代码高亮
-      const highlighthandle = async () => {
-        // await hljs;
-        // let highlight = document.querySelectorAll("pre");
-        // highlight.forEach((block: any) => {
-        //   hljs.highlightBlock(block);
-        // });
-      };
+
       const houtui = async () => {
         router.go(-1);
       };
 
-      const backtop = async () => {
+      const backtop = () => {
         {
+          // utils.backtop();
+
           var timer = setInterval(function () {
             let osTop =
               document.documentElement.scrollTop || document.body.scrollTop;
@@ -294,24 +206,21 @@
       };
 
       onMounted(async () => {
-        await GetTest();
+        await GetAll();
         await backtop();
-        like();
+        await like();
       });
-      onUpdated(async () => {
-        await highlighthandle();
-      });
+
       return {
         ...toRefs(state),
-        GetTest,
-        highlighthandle,
+        GetAll,
         houtui,
         UpRead,
         UpGive,
         AsyGetTestID,
         backtop,
         like,
-        GetLabelsById,
+        GetByIdAsync,
         GetSortById
       };
     },

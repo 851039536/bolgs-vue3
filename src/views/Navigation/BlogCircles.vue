@@ -10,11 +10,7 @@
         <div class="BlogCircles-1" v-for="data in text" :key="data.navId">
           <div class="BlogCircles-1-1">
             <!-- <img src="图片的url地址" alt="图片XX" onerror="this.src='默认图片的url地址;this.οnerrοr=null'"/>   -->
-            <img
-              :src="data.navImg"
-              alt=""
-              onerror="this.style.display='none'"
-            />
+            <img :src="data.navImg" alt onerror="this.style.display='none'" />
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
@@ -40,6 +36,7 @@
       const state = reactive({
         text: [],
       });
+
       const GetSnNavigation = () => {
         proxy
           .$api({
@@ -60,6 +57,8 @@
       });
       return { ...toRefs(state), GetSnNavigation, urltest };
     },
+
+
   };
 </script>
 

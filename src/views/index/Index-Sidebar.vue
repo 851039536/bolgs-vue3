@@ -36,39 +36,35 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>-->
       <div class="index_si_contact">
         <div class="flex items-center sn-list2-1">
           <div class="flex-1 sn-list2-1-1">
-            <a
-              href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes"
-            >
+            <a href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-QQ11"></use>
+                <use xlink:href="#icon-QQ11" />
               </svg>
             </a>
           </div>
           <div class="flex-1 sn-list2-1-1">
             <a target="_blank" href="https://gitee.com/kaiouyang-sn">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-gitee-fill-round"></use>
+                <use xlink:href="#icon-gitee-fill-round" />
               </svg>
             </a>
           </div>
           <div class="flex-1 sn-list2-1-1">
             <a>
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-weixin3"></use>
+                <use xlink:href="#icon-weixin3" />
               </svg>
             </a>
           </div>
           <div class="flex-1 sn-list2-1-1">
             <a>
               <svg class="icon" aria-hidden="true">
-                <use
-                  xlink:href="#icon-liulan
-"
-                ></use>
+                <use xlink:href="#icon-liulan
+" />
               </svg>
             </a>
           </div>
@@ -77,79 +73,55 @@
 
       <div class="sn-list4">
         <div class="sn-list4-1">
-          <p class="">{{ UserTalk }}</p>
+          <p class>{{ UserTalk }}</p>
         </div>
       </div>
 
       <div class="sn-list3">
         <div class="sn-list3-1">标签</div>
 
-        <div
-          class="sn-list3-2"
-          v-for="Labeslss in Labels"
-          :key="Labeslss.labelId"
-        >
+        <div class="sn-list3-2" v-for="Labeslss in Labels" :key="Labeslss.labelId">
           <div
             class="transition duration-500 ease-in-out transform sn-list3-2-1 hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Labeslss.labelId)"
           >
             <svg class="inline-block icon" aria-hidden="true">
-              <use :xlink:href="Labeslss.labelAlias"></use>
+              <use :xlink:href="Labeslss.labelAlias" />
             </svg>
             <a>{{ Labeslss.labelName }}</a>
           </div>
         </div>
       </div>
       <div class="sn-list5">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
-        >
-          分类
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1">分类</div>
 
-        <div
-          class="inline-flex cursor-pointer"
-          v-for="Sorts in Sort"
-          :key="Sorts.sortId"
-        >
+        <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.sortId">
           <div
             class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform sn-list5-2 hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Labeslss.labelId)"
-          >
-            {{ Sorts.sortName }}
-          </div>
+          >{{ Sorts.sortName }}</div>
         </div>
       </div>
       <div class="sn-list6">
-        <div class="p-1 m-1 text-base font-semibold bg-gray-200 sn-list6-1">
-          最新内容
-        </div>
+        <div class="p-1 m-1 text-base font-semibold bg-gray-200 sn-list6-1">最新内容</div>
 
-        <div
-          class="sn-list6-2"
-          v-for="articles in article"
-          :key="articles.article_id"
-        >
+        <div class="sn-list6-2" v-for="articles in article" :key="articles.article_id">
           <div class="p-1 m-1 text-sm sn-list6-2-1">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-liulan
-"
-              ></use>
+              <use xlink:href="#icon-liulan
+" />
             </svg>
-            <a @click="AsyGetTestID(articles.article_id)">{{
+            <a @click="AsyGetTestID(articles.article_id)">
+              {{
               articles.title
-            }}</a>
+              }}
+            </a>
           </div>
         </div>
       </div>
 
       <div class="sn-list8">
-        <div
-          class="p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer sn-list8-1"
-        >
-          站点信息
-        </div>
+        <div class="p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer sn-list8-1">站点信息</div>
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
@@ -268,12 +240,12 @@
             console.log(err);
           });
       };
-      const tagtest = (tagid: any) => {
+      const tagtest = (id: any) => {
         // .带参数跳转
         router.push({
           path: "/TagText",
           query: {
-            id: tagid,
+            id: id,
           },
         });
       };
@@ -288,10 +260,6 @@
         });
       };
 
-      const onPanelChange = (value: string) => {
-        console.log(value);
-      };
-
       onMounted(async () => {
         await AsyGetTest();
       });
@@ -303,7 +271,6 @@
         tagtest,
         AsyGetTest,
         AsyGetTestID,
-        onPanelChange,
       };
     },
   };

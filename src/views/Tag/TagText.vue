@@ -2,11 +2,7 @@
   <div class="SnTagText animate__animated animate__fadeIn">
     <div class="flex text">
       <div class="text-sidebar">
-        <div
-          class="text-sidebar-forms"
-          v-for="label in newinfo"
-          :key="label.article_id"
-        >
+        <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.article_id">
           <div class="forms-1" @click="AsyGetTest(label.article_id)">
             <a>{{ label.title }}</a>
           </div>
@@ -21,14 +17,8 @@
 
     <div class="SnTagText-top">
       <div class="flex flex-wrap tag-text">
-        <div
-          class="tag-text-1 w-2/16"
-          v-for="labelss in labels"
-          :key="labelss.labelId"
-        >
-          <a @click="GetlabelsID(labelss.labelId)" variant="light"
-            >{{ labelss.labelName }}
-          </a>
+        <div class="tag-text-1 w-2/16" v-for="labelss in labels" :key="labelss.labelId">
+          <a @click="GetlabelsID(labelss.labelId)" variant="light">{{ labelss.labelName }}</a>
         </div>
       </div>
     </div>
@@ -36,16 +26,21 @@
     <div class="bruce flex-ct-x animate__animated animate__fadeIn">
       <div class="vertical-text">
         <!--                <h3></h3>-->
-        <p>我见犹怜<br />爱不释手</p>
+        <p>
+          我见犹怜
+          <br />爱不释手
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import "highlight.js/styles/googlecode.css";
-  import hljs from "highlight.js"; //导入代码高亮文件
-  import marked from "marked"; //解析器
+  // import "highlight.js/styles/googlecode.css";
+  // import hljs from "highlight.js"; //导入代码高亮文件
+  // import marked from "marked"; //解析器
+
+  import markdown from "@/utils/markdown.js";
   import {
     getCurrentInstance,
     reactive,
@@ -97,7 +92,11 @@
           .then(
             proxy.$api.spread((res1: any, res2: any) => {
               state.labels = res2.data;
-              state.blog = marked(res1.data.text);
+              // state.blog = marked(res1.data.text);
+              const article = markdown.marked(res1.data.text);
+              article.then((response: any) => {
+                state.blog = response.content;
+              });
             })
           )
           .catch((err: any) => {
@@ -109,11 +108,11 @@
         AsyGetTag(id);
       };
       const highlighthandle = async () => {
-        await hljs;
-        let highlight = document.querySelectorAll("code,pre");
-        highlight.forEach((block: any) => {
-          hljs.highlightBlock(block);
-        });
+        // await hljs;
+        // let highlight = document.querySelectorAll("code,pre");
+        // highlight.forEach((block: any) => {
+        //   hljs.highlightBlock(block);
+        // });
       };
       onMounted(async () => {
         await AsyGetTag(state.id);

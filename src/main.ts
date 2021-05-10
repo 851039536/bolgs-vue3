@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-04 16:03:43
+ * @LastEditTime: 2021-05-10 14:39:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -22,7 +22,7 @@ import './assets/css/font.css'
 import './index.css'
 import router from './router/index'
 import store from './store/index'
-import ajax from './api/index'
+import axios from './api/axios'
 // Vue.prototype.$api = ajax; // 将api挂载到vue的原型上复制代码
 
 import Headers from "./views/common/Headers.vue"
@@ -37,7 +37,7 @@ app.use(router)
 app.use(Antd)
 app.use(animated)
 // 全局ctx(this) 上挂载 $axios
-app.config.globalProperties.$api = ajax
+app.config.globalProperties.$api = axios
 app.component("Headers", Headers)
 app.component("IndexSidebar", IndexSidebar)
 app.component("Sidebarsn", Sidebarsn)

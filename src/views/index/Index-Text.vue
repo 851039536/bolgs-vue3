@@ -62,15 +62,16 @@
 
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
+  import { article } from '../../api/article';// 导入我们的api接口
+  import utils from "@/utils/utils.js";
   // 组件导入
   export default {
     name: "Index-Text",
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const router = useRouter();
       // 加载路由
       // const route = useRoute();
@@ -80,41 +81,19 @@
         pagesize: 8, //每页的数据条数
         count: 0, //默认数据总数
       });
-
       const GetCountAsync = async () => {
-        proxy
-          .$api({
-            url: "/api/SnArticle/GetCountAsync",
-          })
-          .then((res: any) => {
-            state.count = res.data;
-          })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
+        await article.GetCountAsync().then((result: any) => {
+          state.count = result.data;
+        })
       };
+
       const GetFyTitleAsync = async () => {
-        proxy
-          .$api({
-            url:
-              "/api/SnArticle/GetFyTitleAsync?" +
-              "&pageIndex=" +
-              state.page +
-              "&pageSize=" +
-              state.pagesize +
-              "&isDesc=true",
-
-          })
-          .then((res: any) => {
-            state.dataResult = res.data;
-          })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
+        await article.GetFyTitleAsync(state.page, state.pagesize).then((result: any) => {
+          state.dataResult = result.data;
+        });
       };
 
-      const jump = async (id: any) => {
-        // .带参数跳转
+      const jump = async (id: number) => {
         await router.push({
           path: "/Indextext2",
           query: {
@@ -123,31 +102,19 @@
         });
       };
 
-      const currentchange = async (val: any) => {
+      const currentchange = async (val: number) => {
         state.page = val;
         GetFyTitleAsync();
         backtop(); //回到顶部
       };
-
       const backtop = async () => {
         {
-          var timer = setInterval(function () {
-            let osTop =
-              document.documentElement.scrollTop || document.body.scrollTop;
-            let ispeed = Math.floor(-osTop / 5);
-            document.documentElement.scrollTop = document.body.scrollTop =
-              osTop + ispeed;
-            // this.isTop = true;
-            if (osTop === 0) {
-              clearInterval(timer);
-            }
-          }, 30);
+          utils.backtop();
         }
       };
       onMounted(async () => {
         await GetCountAsync();
         await GetFyTitleAsync();
-
       });
 
       return {

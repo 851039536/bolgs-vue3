@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-05-04 16:07:50
- * @LastEditTime: 2021-05-04 16:29:16
+ * @LastEditTime: 2021-05-10 10:35:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\markdown.js
  */
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+import "highlight.js/styles/googlecode.css";
 const highlight = require("highlight.js");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const marked = require("marked");
