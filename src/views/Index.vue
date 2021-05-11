@@ -1,7 +1,7 @@
 <!--
  * @Author: Index.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-11 10:21:25
+ * @LastEditTime: 2021-05-11 10:33:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Index.vue
@@ -35,9 +35,9 @@
         notification.open({
           message: 'Notification Title',
           description:
-            '基于TailWindcss Vue3 NetCoreWebApi TypeScript AntDesignVue 开发搭建 项目地址: https://gitee.com/kaiouyang-sn"',
+            '基于TailWindcss,Vue3+TypeScript, NetCore3.1,AntDesignVue组件库 开发搭建 项目地址: https://gitee.com/kaiouyang-sn"',
           onClick: () => {
-            console.log('Notification Clicked!');
+            console.log('基于TailWindcss,Vue3+TypeScript, NetCore3.1,AntDesignVue组件库 开发搭建 项目地址: https://gitee.com/kaiouyang-sn"');
           },
         });
       };
