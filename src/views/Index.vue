@@ -1,7 +1,7 @@
 <!--
  * @Author: Index.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-11 10:11:57
+ * @LastEditTime: 2021-05-11 10:21:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Index.vue
@@ -25,7 +25,7 @@
   import { notification } from "ant-design-vue";
   import { onMounted } from "vue";
   export default {
-    name: "Index",
+    name: "index",
     components: {
       IndexTitle,
     },
