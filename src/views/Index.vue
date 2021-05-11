@@ -1,7 +1,7 @@
 <!--
  * @Author: Index.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2020-12-29 12:08:18
+ * @LastEditTime: 2021-05-11 10:11:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Index.vue
@@ -13,7 +13,7 @@
     <!--侧边栏-->
     <IndexSidebar></IndexSidebar>
     <!-- 内容页面 -->
-    <IndexText></IndexText>
+    <IndexTitle></IndexTitle>
     <!-- 回到顶部 -->
     <a-back-top />
   </div>
@@ -21,13 +21,13 @@
 
 <script lang="ts">
   // 组件导入
-  import IndexText from "./index/Index-Text.vue";
+  import IndexTitle from "./index/IndexTitle.vue";
   import { notification } from "ant-design-vue";
   import { onMounted } from "vue";
   export default {
     name: "Index",
     components: {
-      IndexText,
+      IndexTitle,
     },
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {

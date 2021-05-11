@@ -48,12 +48,12 @@ const routes = [{
   component: () => import('../views/index/Index-Sidebar.vue')
 },
 {
-  path: '/IndexText',
-  name: 'IndexText',
+  path: '/IndexTitle',
+  name: 'IndexTitle',
   meta: {
     keepAlive: true // 缓存
   },
-  component: () => import('../views/index/Index-Text.vue')
+  component: () => import('../views/index/IndexTitle.vue')
 },
 {
   path: '/IndexText2',
