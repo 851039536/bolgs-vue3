@@ -24,20 +24,18 @@
         </div>
       </div>
       <div class="flex article-3-2">
-        <div class="">
+        <div class>
           <a @click="UpGive(newinfo)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-qinggan
-"
-              ></use>
+              <use xlink:href="#icon-qinggan
+" />
             </svg>
-            {{ newinfo.give }}</a
-          >
+            {{ newinfo.give }}
+          </a>
         </div>
         <div>
           <svg class="inline-block icon" aria-hidden="true">
-            <use xlink:href="#icon-liulan"></use>
+            <use xlink:href="#icon-liulan" />
           </svg>
           ({{ newinfo.read }})
         </div>
@@ -110,9 +108,7 @@
               // alert(this.spinning);
             })
           )
-          .catch((err: never) => {
-            console.log(err);
-          });
+
       };
       // 阅读数
       // const UpRead = (info: any): void => {

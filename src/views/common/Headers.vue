@@ -8,60 +8,54 @@
         <div class="header_text">
           <a @click="onk(1)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-icon-"></use>
+              <use xlink:href="#icon-icon-" />
             </svg>
             主页
           </a>
           <a @click="onk(2)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-liulan
-"
-              ></use>
+              <use xlink:href="#icon-liulan
+" />
             </svg>
             博文
           </a>
           <a @click="onk(5)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-dianzan
-            "
-              ></use>
+              <use xlink:href="#icon-dianzan
+            " />
             </svg>
             时间线
           </a>
           <a @click="onk(6)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-tupian"></use>
+              <use xlink:href="#icon-tupian" />
             </svg>
             图册
           </a>
           <a @click="onk(7)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-daohang1"></use>
+              <use xlink:href="#icon-daohang1" />
             </svg>
             导航
           </a>
           <a @click="onk(8)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-guanyuwomen
-"
-              ></use>
+              <use xlink:href="#icon-guanyuwomen
+" />
             </svg>
             关于
           </a>
 
           <a @click="onk(9)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-24"></use>
+              <use xlink:href="#icon-24" />
             </svg>
             日志
           </a>
 
-          <a @click="onk(12)" class="header_text_text"> 留言 </a>
-          <a @click="onk(13)" class="header_text_text"> 博客园 </a>
-          <a @click="onk(14)" class="header_text_text"> Gitee </a>
+          <a @click="onk(12)" class="header_text_text">留言</a>
+          <a @click="onk(13)" class="header_text_text">博客园</a>
+          <a @click="onk(14)" class="header_text_text">Gitee</a>
         </div>
       </div>
     </nav>
@@ -77,7 +71,7 @@
       let onk = async (num: any) => {
         switch (num) {
           case 1:
-            router.push("/Indexs");
+            router.push("/index");
             break;
           case 2:
             router.push("/TagText");

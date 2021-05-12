@@ -1,9 +1,9 @@
 <template>
-  <div class="abouts">
-    <div class="about gradient-bg animate__animated animate__fadeIn">
-      <sncode></sncode>
+  <div class="About">
+    <div class="About-div gradient-bg animate__animated animate__fadeIn">
+      <!-- <sncode></sncode> -->
 
-      <div class="about-bg">
+      <div class="About-bg">
         <div class="about-1" v-bind:class="[activeClass, backInDown]">
           <div class="about-1-1">
             <div class="about-1-1-1">
@@ -17,22 +17,22 @@
           <div class="flex items-center about-1-3">
             <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-QQ11"></use>
+                <use xlink:href="#icon-QQ11" />
               </svg>
             </div>
             <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-github1"></use>
+                <use xlink:href="#icon-github1" />
               </svg>
             </div>
             <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-weixin3"></use>
+                <use xlink:href="#icon-weixin3" />
               </svg>
             </div>
             <div class="flex-1 about-1-3-1">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-zhihu"></use>
+                <use xlink:href="#icon-zhihu" />
               </svg>
             </div>
           </div>
@@ -41,37 +41,33 @@
         <div class="flex flex-wrap about-2">
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-C"></use>
+              <use xlink:href="#icon-C" />
             </svg>
             <a @click="Getid(1)">技术</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-dianzan
-"
-              ></use>
+              <use xlink:href="#icon-dianzan
+" />
             </svg>
             <a @click="Getid(2)">娱乐</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-wenzhang
-"
-              ></use>
+              <use xlink:href="#icon-wenzhang
+" />
             </svg>
             <a @click="Getid(3)">日志</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-daohang"></use>
+              <use xlink:href="#icon-daohang" />
             </svg>
             <a @click="Getid(4)">分享</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-chat"></use>
+              <use xlink:href="#icon-chat" />
             </svg>
             <a @click="Getid(5)">留言</a>
           </div>
@@ -88,10 +84,8 @@
             <h2>
               <svg class="inline-block icon" aria-hidden="true">
                 -->
-                <use
-                  xlink:href="#icon-guanyuqunfeng
-"
-                ></use>
+                <use xlink:href="#icon-guanyuqunfeng
+" />
               </svg>
               关于我：
             </h2>
@@ -103,10 +97,8 @@
             <h2>
               <svg class="inline-block icon" aria-hidden="true">
                 -->
-                <use
-                  xlink:href="#icon-shujuku1
-"
-                ></use>
+                <use xlink:href="#icon-shujuku1
+" />
               </svg>
               关于本站：
             </h2>
@@ -121,11 +113,9 @@
             <h2>
               <svg class="inline-block icon" aria-hidden="true">
                 -->
-                <use
-                  xlink:href="#icon-shudan
+                <use xlink:href="#icon-shudan
 
-"
-                ></use>
+" />
               </svg>
               建站缘由
             </h2>
@@ -140,13 +130,14 @@
   </div>
 </template>
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
+  import { user } from "../../api/user";
   export default {
     name: "About",
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+      // const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const router = useRouter();
       const state = reactive({
         activeClass: "animate__animated",
@@ -168,24 +159,18 @@
           document.body.removeChild(likeDom);
         }, 3900);
       };
-      const getall = () => {
-        //查询当前用户信息
-        proxy
-          .$api({
-            url: "/api/SnUser/AsyGetUserId?UserId=4",
-          })
+      const getall = async () => {
+
+        await user.GetAll()
           .then((res: any) => {
             state.User = res.data[0];
           })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
       };
 
       const Getid = async (id: number) => {
         switch (id) {
           case 1:
-            await router.push("./Indexs");
+            await router.push("./index");
             break;
           case 2:
             await router.push("./SnVideo");
@@ -213,16 +198,15 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .abouts {
-    /*position: fixed;*/
+  .About {
     @include w-h(100%, 100%);
     /* 关于界面 */
-    .about {
+    .About-div {
       @include initialize(93%, 100%, $Text_height, auto, auto, auto, #ffffff);
       padding: 0 0 1.25rem 0;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
-      .about-bg {
+      .About-bg {
         height: 500px;
         /* 背景图片 */
         background: no-repeat center/100% url("../../assets/img/ab.jpg");

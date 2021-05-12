@@ -2,28 +2,21 @@
   <div class="FavSidebar">
     <div class="FavSidebar-text">
       <div class="FavSidebar_describe">
-        <p class="">各式各样网站收集分享</p>
+        <p class>各式各样网站收集分享</p>
       </div>
       <!--内容框-->
       <div class="FavSidebar_itme">
         <div class="FavSidebar_itme_1">最近添加</div>
-        <div
-          class="FavSidebar_itme_2"
-          v-for="result in Navigation"
-          :key="result.navId"
-        >
+        <div class="FavSidebar_itme_2" v-for="result in Navigation" :key="result.navId">
           <div class="itme_1">
-            {{ result.navTitle }} <span>{{ result.navType }}</span>
+            {{ result.navTitle }}
+            <span>{{ result.navType }}</span>
           </div>
         </div>
       </div>
 
       <div class="FavSidebar_statistics">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1"
-        >
-          站点信息
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1">站点信息</div>
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
@@ -40,7 +33,7 @@
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">最后更新:</div>
             <div class="sn-list8-2-1-2">2012-12-12</div>
-          </div> -->
+          </div>-->
         </div>
       </div>
     </div>
@@ -68,9 +61,9 @@
         resultCount: "",
       });
 
-      const GetAll = () => {
+      const GetAll = async () => {
         //     //加载文章
-        proxy.$api
+        await proxy.$api
           .all([
             //查询分类
             proxy.$api.get("/api/SnTalkType/GetAllAsync"),
@@ -90,9 +83,7 @@
               state.resultCount = res4.data;
             })
           )
-          .catch((err: never) => {
-            console.log(err);
-          });
+
       };
 
       const AsyGetTestID = (id: number) => {

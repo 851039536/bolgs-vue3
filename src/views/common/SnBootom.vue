@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-04-27 16:27:27
+ * @LastEditTime: 2021-05-12 10:40:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -9,11 +9,11 @@
 <template>
   <div class="SnBootom">
     <div class="flex justify-around SnBootom-1">
-      <div class="" @click="onk(1)">首页</div>
-      <div class="" @click="onk(2)">日志</div>
-      <div class="" @click="onk(3)">一文</div>
-      <div class="" @click="onk(4)">视频</div>
-      <div class="" @click="onk(5)">图库</div>
+      <div class @click="onk(1)">首页</div>
+      <div class @click="onk(2)">TG</div>
+      <div class @click="onk(3)">One</div>
+      <div class @click="onk(4)">视频</div>
+      <div class @click="onk(5)">图库</div>
     </div>
   </div>
 </template>
@@ -39,23 +39,23 @@
         console.log(num)
         switch (num) {
           case 1:
-            router.push('/Indexs')
+            router.push('/index')
             break;
-          case 2: router.push('/Talk')
+          case 2: router.push('/One')
             break;
-          case 3: router.push('./One')
+          case 3: router.push('./Book')
             break;
           case 4: router.push('./SnVideo')
             break;
           case 5: router.push('./Photo')
             break;
-          case 6: router.push('.Indexs')
+          case 6: router.push('./index')
             break;
-          case 7: router.push('./Indexs')
+          case 7: router.push('./index')
             break;
 
           default:
-            router.push('./Indexs')
+            router.push('./index')
             break;
         }
 

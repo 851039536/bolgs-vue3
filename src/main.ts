@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-10 14:39:57
+ * @LastEditTime: 2021-05-11 14:48:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -26,7 +26,7 @@ import axios from './api/axios'
 // Vue.prototype.$api = ajax; // 将api挂载到vue的原型上复制代码
 
 import Headers from "./views/common/Headers.vue"
-import IndexSidebar from "./views/index/Index-Sidebar.vue";
+import IndexSidebar from "./views/index/IndexSidebar.vue";
 import Sidebarsn from "./views/common/Sidebarsn.vue";
 import Comment from "./views/common/Comment.vue";
 

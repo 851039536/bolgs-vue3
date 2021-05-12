@@ -45,7 +45,7 @@ const routes = [{
   meta: {
     keepAlive: true // 缓存
   },
-  component: () => import('../views/index/Index-Sidebar.vue')
+  component: () => import('../views/index/IndexSidebar.vue')
 },
 {
   path: '/IndexTitle',
@@ -56,9 +56,9 @@ const routes = [{
   component: () => import('../views/index/IndexTitle.vue')
 },
 {
-  path: '/IndexText2',
-  name: 'IndexText2',
-  component: () => import('../views/index/IndexText2.vue')
+  path: '/IndexText',
+  name: 'IndexText',
+  component: () => import('../views/index/IndexText.vue')
 },
 
 {

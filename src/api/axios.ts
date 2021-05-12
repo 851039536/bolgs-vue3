@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-05-10 14:34:35
+ * @LastEditTime: 2021-05-12 10:49:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -32,7 +32,7 @@ axios.interceptors.request.use(function (config) {
   // 若是有做鉴权token , 就给头部带上token
   if (store.state.token) {
     config.headers.Authorization = store.state.token;
-    console.log("token:" + store.state.token);
+    // console.log("token:" + store.state.token);
   }
   return config;
 }, error => {
@@ -47,7 +47,7 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(function (config) {
 
-  if (config.status === 200) {
+  if (config.status === 200 || config.status === 204) {
     return Promise.resolve(config);
   } else {
     return Promise.reject(config);

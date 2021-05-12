@@ -5,19 +5,20 @@
     <IndexSidebar></IndexSidebar>
 
     <!--标题-->
-    <div class="article-title">
-      <a-page-header :title="article_String.title" @back="() => $router.push('/indexs')" />
+    <div class="IndexText-title">
+      <a-page-header :title="article_String.title" @back="() => $router.push('/index')" />
     </div>
+    <!-- ---------------------------- -->
     <!--内容-->
-    <div class="editor-text">
+    <div class="IndexText-text">
       <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
       <div id="content" class="blog" v-html="blog"></div>
     </div>
-
+    <!-- -------------------------------------------- -->
     <!-- <Comment></Comment> -->
     <!--底部信息-->
-    <div class="article-3">
-      <div class="article-3-1">
+    <div class="IndexText-copyright">
+      <div class="IndexText-copyright-text">
         <div>版权属于：少年</div>
         <div>本文链接：原创文章转载请注明</div>
         <div>
@@ -25,7 +26,7 @@
           进行许可
         </div>
       </div>
-      <div class="flex article-3-2">
+      <div class="flex IndexText-comment">
         <div class>
           <a @click="UpGive(article_String)">
             <svg class="inline-block icon" aria-hidden="true">
@@ -42,21 +43,17 @@
           ({{ article_String.read }})
         </div>
 
-        <div class="article_type">{{ Sort.sortName }}</div>
-        <div class="article_type">{{ Labels.labelName }}</div>
+        <div class="IndexText-comment-text">{{ Sort.sortName }}</div>
+        <div class="IndexText-comment-text">{{ Labels.labelName }}</div>
         <div class>{{ article_String.time }}</div>
       </div>
     </div>
-
+    <!-- ------------------------------------------------- -->
     <!-- 回到顶部 -->
     <a-back-top />
 
-    <!-- 加载框 -->
-    <div class="lo">
-      <!-- <a-switch v-model:checked="spinning" /> -->
-    </div>
-    <div class="give">
-      <div class="btn" @click="like()">点赞</div>
+    <div class="IndexText-give">
+      <div class="btn" @click="like(article_String)">点赞</div>
     </div>
   </div>
 </template>
@@ -64,9 +61,8 @@
 <script lang="ts">
   import markdown from "@/utils/markdown.js";
   import { article } from '../../api/article';
-  import { labels } from '../../api/labels';// 导入我们的api接口
-  import { sort } from '../../api/sort';// 导入我们的api接口
-  // import utils from "@/utils/utils.js";
+  import { labels } from '../../api/labels';
+  import { sort } from '../../api/sort';
   import {
     getCurrentInstance,
     reactive,
@@ -75,7 +71,7 @@
   } from "vue";
   import { useRoute, useRouter } from "vue-router";
   export default {
-    name: "IndexText2",
+    name: "IndexText",
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
@@ -93,7 +89,9 @@
         spinning: true,
       });
       let count = 0;
-      const like = async () => {
+      const like = async (name: any) => {
+
+        await UpGive(name);
         const likeDom = document.createElement("div");
         count++;
         likeDom.className = count % 2 === 0 ? "like" : "like like--is-second";
@@ -171,26 +169,21 @@
         }
       };
       // 博客详情
-      const AsyGetTestID = (id: number): void => {
+      const SkipText = (id: number): void => {
         // .带参数跳转
         router.push({
-          path: "/Indextext2",
+          path: "/IndexText",
           query: {
             id: id,
           },
         });
-        // location.reload();
       };
-
-
       const houtui = async () => {
         router.go(-1);
       };
-
       const backtop = () => {
         {
           // utils.backtop();
-
           var timer = setInterval(function () {
             let osTop =
               document.documentElement.scrollTop || document.body.scrollTop;
@@ -208,7 +201,6 @@
       onMounted(async () => {
         await GetAll();
         await backtop();
-        await like();
       });
 
       return {
@@ -217,7 +209,7 @@
         houtui,
         UpRead,
         UpGive,
-        AsyGetTestID,
+        SkipText,
         backtop,
         like,
         GetByIdAsync,
@@ -231,11 +223,6 @@
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
 
-  .lo {
-    position: fixed;
-    top: 50%;
-    width: 100%;
-  }
   .color {
     color: #42b983;
   }
@@ -308,26 +295,23 @@
   }
 
   /*底部*/
-  .article-3 {
+  .IndexText-copyright {
     @include initialize($w, null, 1px, null, $ml, null, null);
     @apply shadow rounded;
     @apply cursor-pointer bg-white text-black;
-    .article-3-1 {
-      /*background-color: #55ff00;*/
+    .IndexText-copyright-text {
       @apply p-1;
       div {
         border-bottom: 1px dashed #f1f1f1;
-        /*background-color: #4eb687;*/
         @apply p-1 m-1 text-sm font-light;
       }
     }
 
-    .article-3-2 {
-      .article_type {
+    .IndexText-comment {
+      .IndexText-comment-text {
         @apply bg-blue-400 shadow  rounded-sm;
       }
       div {
-        /*background-color: #795da3;*/
         @apply text-center px-1 py-1 m-2 text-sm font-light;
       }
     }
@@ -338,37 +322,13 @@
   }
 
   /*编译器组件*/
-  .editor-text {
+  .IndexText-text {
     @include w-h($w, null);
     margin: 28px 0 0 $ml;
   }
 
-  /*左侧边栏*/
-  .article-text {
-    position: fixed;
-    @include excursion(61px, null, 1%, null);
-    @include w-h(17%, bull);
-    @apply shadow rounded-sm;
-    @apply font-sans bg-white;
-
-    .article-text-1 {
-      @apply font-semibold bg-gray-200 cursor-pointer;
-    }
-
-    .article-text-2 {
-      // background-color: #9a6e3a;
-      @apply m-1 cursor-pointer;
-
-      div {
-        /*background-color: #55a532;*/
-        @apply m-1 p-1 px-3 text-base;
-        border-bottom: 1px dashed #f1f1f1;
-      }
-    }
-  }
-
   /*返回上一页*/
-  .article-title {
+  .IndexText-title {
     position: relative;
     @include initialize($w, 40px, $Text_height, null, $ml, null, #ffffff);
     @apply shadow rounded cursor-pointer;
@@ -381,11 +341,8 @@
 
     .ant-page-header {
       @apply shadow-sm rounded-sm;
-
-      // background: #cc9494;
     }
     .ant-page-header-back {
-      // background: #f1f1f1;
       @apply mt-0;
     }
   }
@@ -395,15 +352,15 @@
   }
 
   @screen xp {
-    .article-title {
+    .IndexText-title {
       width: 100%;
       @apply ml-0;
     }
-    .editor-text {
+    .IndexText-text {
       width: 100%;
       @apply ml-0 mt-7;
     }
-    .article-3 {
+    .IndexText-copyright {
       width: 100% !important;
       @apply ml-0 #{!important};
     }

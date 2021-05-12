@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-04-26 10:38:03
+ * @LastEditTime: 2021-05-12 10:15:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -11,62 +11,36 @@
     <div class="TalkSidebar-text">
       <div class="sn-list4">
         <div class="sn-list4-1">
-          <p class="">{{ UserTalk }}</p>
+          <p class>{{ UserTalk }}</p>
         </div>
       </div>
       <!--内容框-->
       <div class="TalkSidebar-text-4">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 TalkSidebar-text-4-1"
-        >
-          推荐内容
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 TalkSidebar-text-4-1">推荐内容</div>
 
-        <div
-          class="TalkSidebar-text-4-2"
-          v-for="articles in article"
-          :key="articles.oneId"
-        >
+        <div class="TalkSidebar-text-4-2" v-for="articles in article" :key="articles.oneId">
           <div class="p-1 pl-2 text-base TalkSidebar-text-4-2-1">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-liulan
-"
-              ></use>
+              <use xlink:href="#icon-liulan
+" />
             </svg>
-            <a @click="setModal1Visible(true, articles.oneId)"
-              >{{ articles.oneTitle }}
-            </a>
+            <a @click="setModal1Visible(true, articles.oneId)">{{ articles.oneTitle }}</a>
           </div>
         </div>
       </div>
       <div class="sn-list5">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
-        >
-          分类
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1">分类</div>
 
-        <div
-          class="inline-flex cursor-pointer"
-          v-for="Sorts in Sort"
-          :key="Sorts.id"
-        >
+        <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.id">
           <div
             class="flex-1 px-1 m-1 text-xs text-center text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Sorts.id)"
-          >
-            {{ Sorts.soTypeTitle }}
-          </div>
+          >{{ Sorts.soTypeTitle }}</div>
         </div>
       </div>
 
       <div class="sn-list8">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1"
-        >
-          站点信息
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1">站点信息</div>
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
@@ -161,9 +135,7 @@
               state.readCount = readCount.data;
             })
           )
-          .catch((err: never) => {
-            console.log(err);
-          });
+
       };
       const setModal1Visible = (modal2Visible: boolean, id: number) => {
         state.modal2Visible = modal2Visible;
@@ -174,9 +146,7 @@
           .then((res: any) => {
             state.text = res.data;
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
       const AsyGetTestID = (id: number) => {
         //       // .带参数跳转

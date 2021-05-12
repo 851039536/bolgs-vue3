@@ -13,11 +13,7 @@
       <div
         class="grid PersonalNavigation-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div
-          class="PersonalNavigation-text"
-          v-for="info in text"
-          :key="info.navId"
-        >
+        <div class="PersonalNavigation-text" v-for="info in text" :key="info.navId">
           <div class="PersonalNavigation-text-1">
             <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
           </div>
@@ -70,9 +66,7 @@
               }
             )
           )
-          .catch((err: any) => {
-            console.log(err);
-          });
+
       };
       const urltest = (url: string) => {
         //当前窗口跳转

@@ -28,50 +28,30 @@
 </template>
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { leave } from "../../api/leave";
+  import { reactive, toRefs, onMounted } from "vue";
   export default {
     name: "SnLeave",
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-
-      // 加载路由
-      // const route = useRoute();
       const state = reactive({
         result: [],
         //当前默认页
       });
 
-      const AsyGetTest = async () => {
-        proxy.$api
-          .all([
-            //查询标签
-            proxy.$api.get("/api/Snleave/GetAllAsync"),
-
-          ])
-          .then(
-            proxy.$api.spread(
-              (
-                res1: any,
-              ) => {
-                state.result = res1.data;
-              }
-            )
-          )
-          .catch((err: any) => {
-            console.log(err);
-          });
+      const GetAllAsync = async () => {
+        leave.GetAllAsync().then((result) => {
+          state.result = result.data;
+        })
       };
 
-
       onMounted(async () => {
-        await AsyGetTest();
+        await GetAllAsync();
       });
-
 
       return {
         ...toRefs(state),
-        AsyGetTest,
+        GetAllAsync,
       };
     },
 

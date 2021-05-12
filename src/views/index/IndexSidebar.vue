@@ -38,7 +38,8 @@
         </div>
       </div>-->
       <div class="index_si_contact">
-        <div class="flex items-center sn-list2-1">
+        <!-- qq 微信  知乎图标导航 -->
+        <div class="flex items-center index-si-ioc">
           <div class="flex-1 sn-list2-1-1">
             <a href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes">
               <svg class="icon" aria-hidden="true">
@@ -69,21 +70,24 @@
             </a>
           </div>
         </div>
+        <!-- -------------------------------- -->
       </div>
-
-      <div class="sn-list4">
-        <div class="sn-list4-1">
+      <!-- 说说显示描述内容 -->
+      <div class="index-si-describe">
+        <div class="index-si-describe-text">
           <p class>{{ UserTalk }}</p>
         </div>
       </div>
+      <!-- ---------------------------------------- -->
 
-      <div class="sn-list3">
-        <div class="sn-list3-1">标签</div>
+      <!-- 标签框内容 -->
+      <div class="index-si-tag">
+        <div class="index-si-tag-title">标签</div>
 
-        <div class="sn-list3-2" v-for="Labeslss in Labels" :key="Labeslss.labelId">
+        <div class="index-si-tag-div" v-for="Labeslss in Labels" :key="Labeslss.labelId">
           <div
-            class="transition duration-500 ease-in-out transform sn-list3-2-1 hover: hover:scale-110 hover:text-red-600"
-            @click="tagtest(Labeslss.labelId)"
+            class="transition duration-500 ease-in-out transform index-si-tag-text hover: hover:scale-110 hover:text-red-600"
+            @click="TagSkip(Labeslss.labelId)"
           >
             <svg class="inline-block icon" aria-hidden="true">
               <use :xlink:href="Labeslss.labelAlias" />
@@ -92,26 +96,31 @@
           </div>
         </div>
       </div>
-      <div class="sn-list5">
-        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1">分类</div>
+      <!-- ----------------------------------------------- -->
+
+      <!-- 分类内容框 -->
+      <div class="index-si-type">
+        <div class="index-si-type-title">分类</div>
 
         <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.sortId">
           <div
-            class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform sn-list5-2 hover: hover:scale-110 hover:text-red-600"
-            @click="tagtest(Labeslss.labelId)"
+            class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform index-si-type-text hover: hover:scale-110 hover:text-red-600"
+            @click="TagSkip(Labeslss.labelId)"
           >{{ Sorts.sortName }}</div>
         </div>
       </div>
-      <div class="sn-list6">
-        <div class="p-1 m-1 text-base font-semibold bg-gray-200 sn-list6-1">最新内容</div>
+      <!-- ------------------------------------------------- -->
 
-        <div class="sn-list6-2" v-for="articles in article" :key="articles.article_id">
-          <div class="p-1 m-1 text-sm sn-list6-2-1">
+      <!-- 文章内容框 -->
+      <div class="index-si-article">
+        <div class="index-si-article-title">最新内容</div>
+        <div class="index-si-article-div" v-for="articles in article" :key="articles.article_id">
+          <div class="index-si-article-text">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-liulan
 " />
             </svg>
-            <a @click="AsyGetTestID(articles.article_id)">
+            <a @click="SkipText(articles.article_id)">
               {{
               articles.title
               }}
@@ -119,28 +128,31 @@
           </div>
         </div>
       </div>
+      <!-- ------------------------------------------------------ -->
 
-      <div class="sn-list8">
-        <div class="p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer sn-list8-1">站点信息</div>
-        <div class="sn-list8-2">
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">文章数量:</div>
-            <div class="sn-list8-2-1-2">{{ ArticleCount }}篇</div>
+      <!-- 站点统计框 -->
+      <div class="index-si-statistics">
+        <div class="index-si-statistics-title">站点信息</div>
+        <div class="index-si-statistics-div">
+          <div class="flex index-si-statistics-frame">
+            <div class="sindex-si-statistics-frame-title">文章数量:</div>
+            <div class="sindex-si-statistics-frame-text">{{ ArticleCount }}篇</div>
           </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">总字数:</div>
-            <div class="sn-list8-2-1-2">{{ textCount }} 字</div>
+          <div class="flex index-si-statistics-frame">
+            <div class="sindex-si-statistics-frame-title">总字数:</div>
+            <div class="sindex-si-statistics-frame-text">{{ textCount }} 字</div>
           </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">访问量:</div>
-            <div class="sn-list8-2-1-2">{{ readCount }}次</div>
+          <div class="flex index-si-statistics-frame">
+            <div class="sindex-si-statistics-frame-title">访问量:</div>
+            <div class="sindex-si-statistics-frame-text">{{ readCount }}次</div>
           </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">最后更新:</div>
-            <div class="sn-list8-2-1-2">{{ articledata }}</div>
+          <div class="flex index-si-statistics-frame">
+            <div class="sindex-si-statistics-frame-title">最后更新:</div>
+            <div class="sindex-si-statistics-frame-text">{{ articledata }}</div>
           </div>
         </div>
       </div>
+      <!-- ------------------------------------------------------- -->
     </div>
   </div>
 </template>
@@ -150,7 +162,7 @@
   import { useRouter } from "vue-router";
   import { useStore } from "vuex";
   export default {
-    name: "Index-Sidebar",
+    name: "IndexSidebar",
     components: {},
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -162,25 +174,20 @@
       // 加载路由
       // const route = useRoute();
       const state = reactive({
-        newinfo: [],
         Labels: [],
         Sort: [],
         article: [],
-        //当前默认页
-        barFixed: false,
         UserTalk: "",
         User: [],
         ArticleCount: 0,
         SortCount: 0,
         LabelsCount: 0,
-        zhihu: [],
-        value: "",
         textCount: 0,
         readCount: 0,
         articledata: "",
       });
 
-      const AsyGetTest = async () => {
+      const GetAllasync = async () => {
         proxy.$api
           .all([
             //查询标签
@@ -240,7 +247,7 @@
             console.log(err);
           });
       };
-      const tagtest = (id: any) => {
+      const TagSkip = (id: any) => {
         // .带参数跳转
         router.push({
           path: "/TagText",
@@ -250,7 +257,7 @@
         });
       };
       // 博客详情
-      const AsyGetTestID = (id: number) => {
+      const SkipText = (id: number) => {
         // .带参数跳转
         router.push({
           path: "/Transfer",
@@ -261,16 +268,13 @@
       };
 
       onMounted(async () => {
-        await AsyGetTest();
+        await GetAllasync();
       });
-
-      // provide("count", state.textCount);
-
       return {
         ...toRefs(state),
-        tagtest,
-        AsyGetTest,
-        AsyGetTestID,
+        TagSkip,
+        GetAllasync,
+        SkipText,
       };
     },
   };
@@ -282,10 +286,8 @@
     position: fixed;
     @include excursion($Text_height, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
-    // background-color: #4d4f91;
     @apply ml-3;
     .index_si_text {
-      // background-color: #55a532;
       @include w-h(100%, 100%);
       overflow: auto;
 
@@ -362,8 +364,7 @@
         @apply mb-2 shadow rounded bg-white;
         // @include boxshow;
 
-        .sn-list2-1 {
-          /*background-color: #95999c;*/
+        .index-si-ioc {
           @include w-h(60%, 100%);
           margin: 0 auto;
 
@@ -373,7 +374,7 @@
           }
         }
       }
-      .sn-list4 {
+      .index-si-describe {
         width: 100%;
         margin: 0 auto;
         text-align: center;
@@ -385,64 +386,49 @@
           line-height: 2.5rem;
         }
 
-        .sn-list4-1 {
+        .index-si-describe-text {
           p {
             @apply text-sm  px-1 py-2 m-1 cursor-pointer;
           }
         }
       }
 
-      .sn-list7 {
+      .index-si-statistics {
         width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
-
-        // 公告
-        .sn-list7-1 {
+        .index-si-statistics-title {
+          @apply text-gray-900 p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer;
         }
-      }
-
-      .sn-list8 {
-        width: 100%;
-        margin: 0 auto;
-        @apply p-1 mb-2 cursor-pointer bg-white;
-        @apply shadow rounded;
-        .sn-list8-1 {
-          @apply text-gray-900;
-        }
-        .sn-list8-2 {
+        .index-si-statistics-div {
           @apply text-sm m-2;
-          .sn-list8-2-1 {
-            /*background-color: #6990f6;*/
-            .sn-list8-2-1-1 {
-              /*background-color: #dddddd;*/
+          .index-si-statistics-frame {
+            .sindex-si-statistics-frame-title {
               @apply p-1;
               width: 35%;
             }
-            .sn-list8-2-1-2 {
+            .sindex-si-statistics-frame-text {
               width: 40%;
               @apply p-1;
-              /*background-color: #55a532;*/
             }
           }
         }
       }
 
-      .sn-list3 {
+      .index-si-tag {
         width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
 
-        // 标签
-        .sn-list3-1 {
+        .index-si-tag-title {
           @apply m-1 p-1 text-base font-semibold bg-gray-200 text-gray-900;
         }
 
-        .sn-list3-2 {
+        .index-si-tag-div {
           @apply inline-flex;
-          .sn-list3-2-1 {
+          .index-si-tag-text {
             @apply flex-1;
             @apply text-gray-700 text-sm text-center px-1 m-1 bg-blue-100 rounded-sm;
           }
@@ -450,32 +436,35 @@
       }
 
       // 分类
-      .sn-list5 {
+      .index-si-type {
         width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 bg-white;
         @apply shadow rounded;
 
-        .sn-list5-1 {
-          @apply text-gray-900 text-base;
+        .index-si-type-title {
+          @apply text-gray-900 text-base p-1 m-1 font-semibold bg-gray-200 cursor-pointer;
         }
-        .sn-list5-2 {
+        .index-si-type-text {
           @apply bg-red-100 rounded-sm;
         }
       }
 
-      .sn-list6 {
+      .index-si-article {
         width: 100%;
         margin: 0 auto;
         @apply p-1 mb-2 cursor-pointer bg-white;
         @apply shadow rounded;
 
-        .sn-list6-1 {
-          @apply text-gray-900;
+        .index-si-article-title {
+          @apply text-gray-900 p-1 m-1 text-base font-semibold bg-gray-200;
         }
-        .sn-list6-2 {
+        .index-si-article-div {
           background-color: white;
           border-bottom: 1px dashed #f1f1f1;
+          .index-si-article-text {
+            @apply p-1 m-1 text-sm;
+          }
         }
       }
     }
@@ -483,12 +472,6 @@
     .index_si_text::-webkit-scrollbar {
       display: none;
     }
-  }
-
-  .isFixed {
-    position: fixed;
-    @include excursion(0, null, null, 7%);
-    z-index: 999;
   }
 
   .icon {

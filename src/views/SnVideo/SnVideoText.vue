@@ -4,24 +4,20 @@
       <div
         class="col-gap-4 SnVideoText-2 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div
-          class="m-2 SnVideoText-2-1"
-          v-for="info in newvideo"
-          :key="info.vId"
-        >
+        <div class="m-2 SnVideoText-2-1" v-for="info in newvideo" :key="info.vId">
           <div class="SnVideoText-2-1-1">
             <!-- <img :src="info.vImg" alt="" /> -->
-            <img src="../../assets/img/sp.png" alt="" />
+            <img src="../../assets/img/sp.png" alt />
           </div>
           <div class="p-1 text-sm SnVideoText-2-1-2">
             <a @click="videos(info.vId)">{{ info.vTitle }}</a>
           </div>
           <div class="p-1 SnVideoText-2-1-3">
             {{
-              info.vData
-                .toLocaleString()
-                .replace(/T/g, " ")
-                .replace(/\.[\d]{3}Z/, "")
+            info.vData
+            .toLocaleString()
+            .replace(/T/g, " ")
+            .replace(/\.[\d]{3}Z/, "")
             }}
           </div>
         </div>
@@ -91,9 +87,7 @@
                 console.log(e + "获取数据失败");
               });
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       const videos = (id: number) => {
@@ -104,9 +98,7 @@
           .then((res: any) => {
             state.videourl = res.data[0].vUrl;
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
       onMounted(async () => {
         await getvideo();

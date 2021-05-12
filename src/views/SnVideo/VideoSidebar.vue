@@ -3,68 +3,44 @@
     <div class="TalkSidebar-text">
       <div class="sn-list4">
         <div class="sn-list4-1">
-          <p class="">{{ UserTalk }}</p>
+          <p class>{{ UserTalk }}</p>
         </div>
       </div>
       <!--内容框-->
       <div class="TalkSidebar-text-4">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 TalkSidebar-text-4-1"
-        >
-          推荐内容
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 TalkSidebar-text-4-1">推荐内容</div>
 
-        <div
-          class="TalkSidebar-text-4-2"
-          v-for="data in article"
-          :key="data.id"
-        >
+        <div class="TalkSidebar-text-4-2" v-for="data in article" :key="data.id">
           <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
             <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-liulan
-"
-              ></use>
+              <use xlink:href="#icon-liulan
+" />
             </svg>
-            <a @click="AsyGetTestID(data.id)"
-              >{{ data.talkTitle }}
+            <a @click="AsyGetTestID(data.id)">
+              {{ data.talkTitle }}
               {{
-                data.talkTime
-                  .toLocaleString()
-                  .replace(/T/g, " ")
-                  .replace(/\.[\d]{3}Z/, "")
+              data.talkTime
+              .toLocaleString()
+              .replace(/T/g, " ")
+              .replace(/\.[\d]{3}Z/, "")
               }}
             </a>
           </div>
         </div>
       </div>
       <div class="sn-list5">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1"
-        >
-          分类
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1">分类</div>
 
-        <div
-          class="inline-flex cursor-pointer"
-          v-for="Sorts in Sort"
-          :key="Sorts.id"
-        >
+        <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.id">
           <div
             class="flex-1 px-1 m-1 text-xs text-center text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
             @click="tagtest(Labeslss.id)"
-          >
-            {{ Sorts.type }}
-          </div>
+          >{{ Sorts.type }}</div>
         </div>
       </div>
 
       <div class="sn-list8">
-        <div
-          class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1"
-        >
-          站点信息
-        </div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1">站点信息</div>
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
@@ -139,9 +115,7 @@
               state.UserTalk = res4.data;
             })
           )
-          .catch((err: never) => {
-            console.log(err);
-          });
+
       };
 
       const AsyGetTestID = (id: number) => {

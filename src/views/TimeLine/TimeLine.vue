@@ -1,7 +1,7 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2021-04-28 11:35:08
+ * @LastEditTime: 2021-05-12 10:17:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
@@ -34,7 +34,7 @@
           <div class="block-1">
             <a-timeline-item>
               <h4>
-                <a @click="onk(activity.article_id)">{{ activity.title }} </a>
+                <a @click="onk(activity.article_id)">{{ activity.title }}</a>
               </h4>
             </a-timeline-item>
             <a-timeline-item color="green">
@@ -105,10 +105,7 @@
             state.items = res.data;
             state.spinning = false;
           })
-          .catch((e: never) => {
-            //never 代表不存在的值类型，常用作为 抛出异常或者 无限循环的函数返回类型
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       const onk = (id: number) => {

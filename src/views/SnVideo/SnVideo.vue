@@ -5,9 +5,9 @@
     <div class="SnVideo animate__animated animate__fadeIn">
       <div class="SnVideo-1">
         <div class="SnVideo-1-1" v-for="info in videotype" :key="info.vId">
-          <span class="SnVideo-1-1-1"
-            ><a @click="cliname(info.vId)">{{ info.vType }}</a></span
-          >
+          <span class="SnVideo-1-1-1">
+            <a @click="cliname(info.vId)">{{ info.vType }}</a>
+          </span>
           <span class="SnVideo-1-1-2">13</span>
         </div>
       </div>
@@ -17,17 +17,17 @@
         <div class="SnVideo-2-1" v-for="info in newtype" :key="info.vId">
           <div class="SnVideo-2-1-1">
             <!-- <img :src="info.vImg" alt="" /> -->
-            <img src="../../assets/img/hy.jpg" alt="" />
+            <img src="../../assets/img/hy.jpg" alt />
           </div>
           <div class="SnVideo-2-1-2">
             <a @click="videos(info.vId)">{{ info.vTitle }}</a>
           </div>
           <div class="SnVideo-2-1-3">
             {{
-              info.vData
-                .toLocaleString()
-                .replace(/T/g, " ")
-                .replace(/\.[\d]{3}Z/, "")
+            info.vData
+            .toLocaleString()
+            .replace(/T/g, " ")
+            .replace(/\.[\d]{3}Z/, "")
             }}
           </div>
         </div>
@@ -75,9 +75,7 @@
           .then((res: any) => {
             state.newtype = res.data;
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       const videos = (id: number) => {
@@ -98,9 +96,7 @@
           .then((res: any) => {
             state.newtype = res.data;
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       onMounted(async () => {

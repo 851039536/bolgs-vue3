@@ -1,53 +1,43 @@
 <template>
-  <div class="EverydayOnes">
+  <div class="One">
     <Sidebarsn></Sidebarsn>
     <OneSidebar></OneSidebar>
-    <div class="EverydayOne animate__animated animate__fadeIn">
+    <div class="One-div animate__animated animate__fadeIn">
       <!--        每日最新  电脑端-->
-      <div class="EverydayOne-1">
-        <div class="EverydayOne-1-1">
-          <img src="../../assets/img/tg.jpg" alt="" />
+      <div class="One-top">
+        <div class="One-top-img">
+          <img src="../../assets/img/tg.jpg" alt />
         </div>
-        <div class="EverydayOne-1-2">
-          <div class="EverydayOne-1-2-1">
+        <div class="One-top-text">
+          <div class="One-top-text-title">
             <a class="text-lg">{{ dataOne.oneTitle }}</a>
           </div>
-          <div
-            class="px-4 py-4 m-2 font-thin leading-loose tracking-wide text-center shadow-2xl EverydayOne-1-2-2"
-          >
-            {{ dataOne.oneText }}
-          </div>
+          <div class="One-top-give">{{ dataOne.oneText }}</div>
 
-          <div class="flex flex-row-reverse cursor-pointer EverydayOne-1-2-3">
-            <div class="px-2 py-2 m-1 text-center text-gray-700">转载</div>
-            <div class="px-2 py-2 m-1 text-center text-gray-700">
-              点赞({{ dataOne.oneRead }})
-            </div>
+          <div class="flex flex-row-reverse One-top-give-div">
+            <div>转载</div>
+            <div>点赞({{ dataOne.oneRead }})</div>
           </div>
         </div>
       </div>
-
-      <div class="EverydayOne-2">
-        <div class="text-lg EverydayOne-2-1">往期推荐!</div>
-        <div class="text-lg EverydayOne-2-2">更多推荐!</div>
+      <!-- 推荐列表 -->
+      <div class="One-recommend">
+        <div class="One-recommend-l">往期推荐!</div>
+        <div class="One-recommend-r">更多推荐!</div>
       </div>
-
-      <div
-        class="inline-grid EverydayOne-33"
-        v-for="data in dataTest"
-        :key="data.oneId"
-      >
-        <div class="EverydayOne-3">
-          <div class="EverydayOne-3-1">
-            <p class="EverydayOne-3-p1">
-              <a @click="setModal1Visible(true, data.oneId)">{{
+      <!-- ---------------------------------- -->
+      <div class="inline-grid One-list" v-for="data in dataTest" :key="data.oneId">
+        <div class="One-list-div">
+          <div class="One-list-div-frame">
+            <p class="One-list-div-frame-title">
+              <a @click="setModal1Visible(true, data.oneId)">
+                {{
                 data.oneTitle
-              }}</a>
+                }}
+              </a>
             </p>
             <!-- <p class="EverydayOne-3-p2">xxx</p> -->
-            <p class="px-2 text-sm EverydayOne-3-p3">
-              {{ data.oneText }}
-            </p>
+            <p class="One-list-div-frame-text">{{ data.oneText }}</p>
           </div>
         </div>
       </div>
@@ -94,9 +84,7 @@
           .then((res: any) => {
             state.text = res.data;
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       const getOne = () => {
@@ -117,9 +105,7 @@
               state.dataTest = res2.data;
             })
           )
-          .catch((err: never) => {
-            console.log(err);
-          });
+
       };
 
       const give = (id: number) => {
@@ -136,116 +122,80 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .EverydayOnes {
+  .One {
     position: fixed;
     @include w-h(100%, 100%);
-    .EverydayOne {
+    .One-div {
       @include initialize($w, 90%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow-sm rounded-sm;
       overflow: auto;
-      .EverydayOne-1 {
+      .One-top {
         @include w-h(100%, 55%);
-        // background-color: #95999c;
-        .EverydayOne-1-1 {
-          // background-color: #4eb687;
-          width: 45%;
-          height: 76.5%;
+        .One-top-img {
+          @include w-h(45%, 76.5%);
           float: left;
           img {
-            height: 100%;
-            width: 100%;
+            @include w-h(100%, 100%);
           }
         }
 
-        .EverydayOne-1-2 {
-          // background-color: #007bff;
-          width: 55%;
-          height: 100%;
+        .One-top-text {
+          @include w-h(55%, 100%);
+
           float: right;
 
-          .EverydayOne-1-2-1 {
+          .One-top-text-title {
             @apply text-center m-1 pt-2;
             height: 14%;
-            // background-color: #ffffff;
           }
-          .EverydayOne-1-2-2 {
+          .One-top-give {
             height: 60%;
-            // background-color: #ffffff;
-            @apply m-1;
+            @apply m-1 px-4 py-4  font-thin leading-loose tracking-wide text-center shadow-2xl;
           }
-          .EverydayOne-1-2-3 {
-            @apply m-1;
+          .One-top-give-div {
+            @apply m-1 cursor-pointer;
             height: 17%;
-            // background-color: #55a532;
+            div {
+              @apply px-2 py-2 m-1 text-center text-gray-700;
+            }
           }
         }
       }
 
-      .EverydayOne-1s {
-        margin: 4.6rem 10px auto 10px;
-      }
-
-      .EverydayOne-2s {
-        margin: 0 10px auto 10px;
-
-        .EverydayOne-2s-1 {
-          margin: 0.8rem;
-          padding: 0.1rem;
-        }
-        .EverydayOne-2s-2 {
-          font-size: 1rem;
-          font-weight: 700;
-          padding: 0.2rem 0 0.5rem 0.4rem;
-        }
-        .EverydayOne-2s-3 {
-          font-size: 14px;
-          padding: 0 0 0 0.5rem;
-        }
-        .EverydayOne-2s-4 {
-          font-size: 15px;
-        }
-      }
-      .EverydayOne-2 {
-        width: 100%;
-        height: 30px;
+      .One-recommend {
+        @include w-h(100%, 30px);
         margin-top: 5px;
         @apply px-2 my-1 shadow bg-gray-100;
-        .EverydayOne-2-1 {
+        .One-recommend-l {
           float: left;
+          @apply text-lg;
         }
 
-        .EverydayOne-2-2 {
+        .One-recommend-r {
           float: right;
+          @apply text-lg;
         }
       }
-      .EverydayOne-33 {
-        .EverydayOne-3 {
+      .One-list {
+        .One-list-div {
           position: relative;
           @include initialize(188px, 120px, 10px, null, null, null, #ffffff);
           @apply shadow rounded-sm cursor-pointer ml-4;
-          .EverydayOne-3-1 {
-            width: 100%;
-            height: 100%;
-
-            .EverydayOne-3-p1 {
+          .One-list-div-frame {
+            @include w-h(100%, 100%);
+            .One-list-div-frame-title {
               height: 23%;
-              // background-color: #55a532;
               @apply m-1 px-1 text-base font-semibold bg-gray-100;
-
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
+              @include line-ome;
             }
 
             .EverydayOne-3-p2 {
               height: 15%;
-              /*background-color: #795da3;*/
               @apply px-3 text-xs;
             }
 
-            .EverydayOne-3-p3 {
-              // background-color: red;
-              @apply m-1 p-1 text-sm font-thin;
+            .One-list-div-frame-text {
+              @apply px-2  m-1 p-1 text-sm font-thin;
               height: 51%;
               text-overflow: ellipsis;
               /*有些示例里需要定义该属性，实际可省略*/
@@ -266,12 +216,12 @@
     .OneSidebar {
       @apply hidden;
     }
-    .EverydayOnes .EverydayOne {
+    .One .One-div {
       width: 100%;
       @apply ml-0 mb-14;
     }
 
-    .EverydayOnes .EverydayOne .EverydayOne-33 .EverydayOne-3 {
+    .One .One-div .One-list .One-list-div {
       width: 100%;
       @apply ml-0;
     }

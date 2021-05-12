@@ -81,25 +81,21 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>-->
 
         <div class="text-title" v-for="data in dataShow" :key="data.id">
           <div class="text-title-1">
             {{
-              data.talkTime
-                .toLocaleString()
-                .replace(/T/g, " ")
-                .replace(/\.[\d]{3}Z/, "")
+            data.talkTime
+            .toLocaleString()
+            .replace(/T/g, " ")
+            .replace(/\.[\d]{3}Z/, "")
             }}
-            <a @click="GetTalkid(data.id, data.userId)"
-              >《{{ data.talkTitle }}》</a
-            >
+            <a
+              @click="GetTalkid(data.id, data.userId)"
+            >《{{ data.talkTitle }}》</a>
           </div>
-          <div
-            class="text-title-2"
-            v-if="data.userId != 0"
-            v-html="data.talkText"
-          ></div>
+          <div class="text-title-2" v-if="data.userId != 0" v-html="data.talkText"></div>
         </div>
 
         <!--分页-->
@@ -152,9 +148,7 @@
           .then((res: any) => {
             state.count = res.data;
           })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
       const AsyGetTest = async () => {
         proxy
@@ -170,9 +164,7 @@
             state.dataShow = res.data;
             state.dataShow = marked(res.data);
           })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
       // 代码高亮
       const highlighthandle = async () => {

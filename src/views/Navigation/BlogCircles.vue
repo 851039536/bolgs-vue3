@@ -45,9 +45,7 @@
           .then((res: any) => {
             state.text = res.data;
           })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
       const urltest = (url: string) => {
         window.open(url);

@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-05-04 14:48:01
+ * @LastEditTime: 2021-05-12 10:14:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -44,16 +44,14 @@
       });
       const GetSnNavigation = async () => {
         //查询当前用户信息
-        proxy
+        await proxy
           .$api({
             url: "/api/SnNavigation/GetTypeOrderAsync?type=%E7%BD%91%E7%AB%99&order=true",
           })
           .then((res: any) => {
             state.text = res.data;
           })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       const urltest = async (url: any) => {

@@ -36,17 +36,12 @@
 </template>
 
 <script lang="ts">
-  // import "highlight.js/styles/googlecode.css";
-  // import hljs from "highlight.js"; //导入代码高亮文件
-  // import marked from "marked"; //解析器
-
   import markdown from "@/utils/markdown.js";
   import {
     getCurrentInstance,
     reactive,
     toRefs,
     onMounted,
-    onUpdated,
   } from "vue";
   import { useRoute } from "vue-router";
   export default {
@@ -76,9 +71,7 @@
           .then((res: any) => {
             state.newinfo = res.data;
           })
-          .catch((e: any) => {
-            console.log(e + "获取数据失败");
-          });
+
       };
 
       const AsyGetTest = async (id: any) => {
@@ -91,43 +84,32 @@
           ])
           .then(
             proxy.$api.spread((res1: any, res2: any) => {
-              state.labels = res2.data;
-              // state.blog = marked(res1.data.text);
               const article = markdown.marked(res1.data.text);
               article.then((response: any) => {
                 state.blog = response.content;
               });
+              state.labels = res2.data;
             })
           )
-          .catch((err: any) => {
-            console.log(err);
-          });
+
       };
 
       const GetlabelsID = async (id: any) => {
         AsyGetTag(id);
       };
-      const highlighthandle = async () => {
-        // await hljs;
-        // let highlight = document.querySelectorAll("code,pre");
-        // highlight.forEach((block: any) => {
-        //   hljs.highlightBlock(block);
-        // });
-      };
+
       onMounted(async () => {
+
         await AsyGetTag(state.id);
         await AsyGetTest(1);
       });
-      onUpdated(async () => {
-        await highlighthandle();
-      });
+
 
       return {
         ...toRefs(state),
         AsyGetTag,
         AsyGetTest,
         GetlabelsID,
-        highlighthandle,
       };
     },
   };
