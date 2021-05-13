@@ -1,33 +1,60 @@
-<!--
- * @Author: your name
- * @Date: 2021-05-06 11:38:40
- * @LastEditTime: 2021-05-06 16:44:13
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\views\test\test.vue
--->
 <template>
-  <div>
-    <div>
-      <h1 class="color">121212</h1>
-    </div>
-    <div>
-      <h1 class="${styles.color}">121212</h1>
-    </div>
+  <div class="cj">
+    <LuckyGrid
+      width="265px"
+      height="200px"
+      rows="3"
+      cols="4"
+      :demo="true"
+      :blocks="blocks"
+      :prizes="prizes"
+      :buttons="buttons"
+      @start="startCallBack"
+      ref="$lucky"
+      :active-style="activeStyle"
+    />
   </div>
 </template>
 
-<script lang="ts">
-  import "../../assets/css/index.css";
-
+<script>
   export default {
-
+    data() {
+      return {
+        blocks: [{ padding: '5px', background: '#ff4a4c', borderRadius: 10 }],
+        prizes: [
+          { x: 0, y: 0, fonts: [{ text: '0元', top: 20 }] },
+          { x: 1, y: 0, fonts: [{ text: '1元', top: 20 }] },
+          { x: 2, y: 0, fonts: [{ text: '2元', top: 20 }] },
+          { x: 3, y: 0, fonts: [{ text: '3元', top: 20 }] },
+          { x: 3, y: 1, fonts: [{ text: '4元', top: 20 }] },
+          { x: 3, y: 2, fonts: [{ text: '5元', top: 20 }] },
+          { x: 2, y: 2, fonts: [{ text: '6元', top: 20 }] },
+          { x: 1, y: 2, fonts: [{ text: '7元', top: 20 }] },
+          { x: 0, y: 2, fonts: [{ text: '8元', top: 20 }] },
+          { x: 0, y: 1, fonts: [{ text: '9元', top: 20 }] }
+        ],
+        buttons: [{ x: 1, y: 1, col: 2, fonts: [{ text: '抽奖按钮', top: 20 }] }],
+        activeStyle: {
+          fontColor: '#ff4a4c',
+          background: 'pink',
+          shadow: '0 5 1 #ebf1f4'
+        },
+      }
+    },
+    methods: {
+      startCallBack() {
+        this.$refs.$lucky.play()
+        setTimeout(() => {
+          this.$refs.$lucky.stop(Math.random() * 4 >> 1)
+        }, 3000)
+      }
+    }
   }
 </script>
-
 <style lang="scss" scoped>
-  .color {
-    font-size: 12px;
-    // color: $back_sidebar;
+  .cj {
+    position: fixed;
+    top: 25%;
+    left: 30%;
   }
 </style>

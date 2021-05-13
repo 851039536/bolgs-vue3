@@ -2,7 +2,7 @@
   <div class="sidebarsn">
     <div class="si_scroll">
       <div class="si_img">
-        <img src="@/assets/img/si.jpg" alt="" />
+        <img src="@/assets/img/si.jpg" alt />
       </div>
       <div class="si_text">
         <p @click="nav(1)">舔狗日记</p>
@@ -44,12 +44,12 @@
         <p @click="nav(8)">工具软件</p>
       </div>
       <div class="si_website">
-        <a> http://oykperson.xyz</a>
+        <a>http://oykperson.xyz</a>
       </div>
       <div class="si_described">
-        <p class="si_described_text">
-          SN © 2019. All Rights Reserved. 粤ICP备19130826号 2017 - 2020 Junior
-        </p>
+        <p
+          class="si_described_text"
+        >SN © 2019. All Rights Reserved. 粤ICP备19130826号 2017 - 2020 Junior</p>
       </div>
     </div>
   </div>
@@ -82,8 +82,12 @@
           case 6:
             router.push("./Book");
             break;
+          case 7:
+            window.open("http://localhost:8082/");
+            break;
+
           default:
-            router.push("./Indexs");
+            router.push("./index");
             break;
         }
       };

@@ -1,7 +1,7 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2021-05-12 10:17:22
+ * @LastEditTime: 2021-05-12 14:52:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
@@ -30,7 +30,7 @@
       <div class="block">
         <!-- 骨架 -->
         <a-skeleton :loading="spinning" :paragraph="{ rows: 15 }" active />
-        <a-timeline v-for="activity in items" :key="activity.article_id">
+        <!-- <a-timeline v-for="activity in items" :key="activity.article_id">
           <div class="block-1">
             <a-timeline-item>
               <h4>
@@ -41,7 +41,51 @@
               <p>提交于 {{ activity.time }}</p>
             </a-timeline-item>
           </div>
-        </a-timeline>
+        </a-timeline>-->
+
+        <section class="text-gray-600 body-font">
+          <div class="container flex flex-wrap px-5 py-24 mx-auto">
+            <div
+              class="relative flex pt-10 pb-20 mx-auto sm:items-center md:w-2/3"
+              v-for="activity in items"
+              :key="activity.article_id"
+            >
+              <div class="absolute inset-0 flex items-center justify-center w-6 h-full">
+                <div class="w-1 h-full bg-gray-200 pointer-events-none"></div>
+              </div>
+
+              <div
+                class="relative z-10 inline-flex items-center justify-center flex-shrink-0 w-6 h-6 mt-10 text-sm font-medium text-white bg-indigo-500 rounded-full sm:mt-0 title-font"
+              >{{ activity.article_id }}</div>
+
+              <div
+                class="flex flex-col items-start flex-grow pl-6 md:pl-8 sm:items-center sm:flex-row"
+              >
+                <!-- <div
+                  class="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 text-indigo-500 bg-indigo-100 rounded-full"
+                >
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    class="w-12 h-12"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>-->
+                <div class="flex-grow mt-6 sm:pl-6 sm:mt-0">
+                  <h2 class="mb-1 text-xl font-medium text-gray-900 title-font">{{ activity.title }}</h2>
+                  <p
+                    class="leading-relaxed"
+                  >VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk bespoke try-hard cliche palo santo offal.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
       <!-- 回到顶部 -->
       <a-back-top />

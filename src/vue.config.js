@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:16:33
- * @LastEditTime: 2021-05-10 10:02:44
+ * @LastEditTime: 2021-05-13 09:29:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\vue.config.js
@@ -13,6 +13,13 @@ const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
 
+  devServer: {
+    host: '10.175.112.61', // ip
+    port: 8082, // 设置端口号
+    https: false, // https:{type:Boolean}
+    open: false, //配置自动启动浏览器
+    proxy: null //设置代理
+  },
   chainWebpack: config => {
     config.resolve.extensions
       .add('ts')
@@ -20,11 +27,13 @@ module.exports = {
     // 修复热更新失效
     config.resolve.symlinks(true);
     //  如果使用多页打包，使用vue inspect --plugins 查看html是都在结果数组中
-    config.plugin("html").tap((args) => {
-      // 修复路由懒加载的报错
-      args[0].chunksSortMode = "none";
-      return args;
-    });
+    // config.plugin("html").tap((args) => {
+    //   // 修复路由懒加载的报错
+    //   args[0].chunksSortMode = "none";
+    //   return args;
+    // });
+    // eslint-disable-next-line no-undef
+    config.plugin('cache').use(HardSourceWebpackPlugin);
     // 文件引入时，自定义别名
     // eslint-disable-next-line no-undef
     config.resolve.alias
@@ -51,6 +60,7 @@ module.exports = {
           }
         }
       });
+
 
   },
 

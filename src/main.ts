@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-11 14:48:58
+ * @LastEditTime: 2021-05-12 17:42:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -24,7 +24,8 @@ import router from './router/index'
 import store from './store/index'
 import axios from './api/axios'
 // Vue.prototype.$api = ajax; // 将api挂载到vue的原型上复制代码
-
+// 完整加载
+import LuckDraw from 'vue-luck-draw/vue3'
 import Headers from "./views/common/Headers.vue"
 import IndexSidebar from "./views/index/IndexSidebar.vue";
 import Sidebarsn from "./views/common/Sidebarsn.vue";
@@ -36,6 +37,7 @@ app.use(store);
 app.use(router)
 app.use(Antd)
 app.use(animated)
+app.use(LuckDraw)
 // 全局ctx(this) 上挂载 $axios
 app.config.globalProperties.$api = axios
 app.component("Headers", Headers)

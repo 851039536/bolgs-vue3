@@ -121,6 +121,8 @@
             </h2>
           </div>
           <div class="bg-2-3-2">搭建一个属于我自己的世界。</div>
+
+          <div></div>
         </div>
       </div>
     </div>
@@ -133,6 +135,7 @@
   import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   import { user } from "../../api/user";
+
   export default {
     name: "About",
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
