@@ -19,13 +19,13 @@
             </svg>
             博文
           </a>
-          <a @click="onk(5)">
+          <!-- <a @click="onk(5)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-dianzan
             " />
             </svg>
             时间线
-          </a>
+          </a>-->
           <a @click="onk(6)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-tupian" />

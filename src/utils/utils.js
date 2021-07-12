@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 16:41:51
- * @LastEditTime: 2021-05-08 16:47:44
+ * @LastEditTime: 2021-07-09 14:08:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\utils.js
@@ -9,7 +9,7 @@
 
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function backtop() {
+async function backtop() {
   var timer = setInterval(function () {
     let osTop =
       document.documentElement.scrollTop || document.body.scrollTop;

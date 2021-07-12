@@ -3,15 +3,14 @@ import {
   createWebHistory,
   // createWebHashHistory
 } from 'vue-router'
-import index from '../views/index.vue'
+import Index from '../views/index.vue'
 
 const routes = [{
-  //path是路由的路径
   path: '/',
-  //redirect代表重定向，因为当前路径'/'并没有对应的组件，所以需要重定向到其他路由页面
+  //重定向，当前路径'/'没有对应的组件，需要重定向到其他路由页面
   redirect: '/index',
-  name: 'index',
-  component: index,
+  name: 'Index',
+  component: Index,
 },
 
 {
@@ -27,11 +26,8 @@ const routes = [{
     keepAlive: true // 缓存
   },
   component: () => import('../views/index.vue'),
-
-
 },
 {
-
   path: '/Headers',
   name: 'Headers',
   meta: {
@@ -196,6 +192,23 @@ const routes = [{
     keepAlive: false // 缓存
   },
   component: () => import('../views/test/test.vue')
+},
+
+{
+  path: '/ListContent',
+  name: 'ListContent',
+  meta: {
+    keepAlive: false
+  },
+  component: () => import('../views/ListContent/ListContent.vue')
+},
+{
+  path: '/Software',
+  name: 'Software',
+  meta: {
+    keepAlive: false
+  },
+  component: () => import('../views/Software/Software.vue')
 },
 ]
 

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-05-10 17:48:11
+ * @LastEditTime: 2021-07-09 14:54:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -30,7 +30,20 @@ export class article {
     })
   }
 
-
+  //主键查询
+  static async AsyGetTestID(id: number): Promise<any> {
+    return await request({
+      url: "/api/SnArticle/AsyGetTestID?id=" + id,
+      method: 'get',
+    })
+  }
+  //按标签查询
+  static async GetTagtextAsync(id: number): Promise<any> {
+    return await request({
+      url: "/api/SnArticle/GetTagtextAsync?labelId=" + id + "&isDesc=true",
+      method: 'get',
+    })
+  }
   //分页查询
   static async GetFyTitleAsync(page: number, pagesize: number): Promise<any> {
     return await request({

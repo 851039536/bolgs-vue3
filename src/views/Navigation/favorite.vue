@@ -1,78 +1,65 @@
 <template>
-  <div class="favorite">
-    <div class="PersonalNavigation animate__animated animate__fadeIn">
+  <div id="favorite">
+    <!-- 侧边栏-->
+    <Sidebarsn></Sidebarsn>
+    <FavSidebar></FavSidebar>
+    <!-- ---------- -->
+    <div id="favorite_main" class="animate__animated animate__fadeIn">
+      <!-- 网站分类 -->
       <div
         class="grid shadow 2xl:grid-cols-10 xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4"
       >
-        <div class="PersonalNavigation-2" v-for="text in type" :key="text.id">
-          <div class="PersonalNavigation-2-1">
+        <div class="favorite_type" v-for="text in type" :key="text.id">
+          <div class="favorite_type_name">
             <a @click="GetSnNavigation(text.title)">{{ text.title }}</a>
           </div>
         </div>
       </div>
+      <!-- ---------- -->
+
+      <!-- 网站内容 -->
       <div
-        class="grid PersonalNavigation-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="grid favorite_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div class="PersonalNavigation-text" v-for="info in text" :key="info.navId">
-          <div class="PersonalNavigation-text-1">
+        <div class="favorite_content_text" v-for="info in text" :key="info.navId">
+          <div class="favorite_content_text-1">
             <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
           </div>
-          <div class="PersonalNavigation-text-2">{{ info.navText }}</div>
+          <div class="favorite_content_text-2">{{ info.navText }}</div>
         </div>
       </div>
-    </div>
 
-    <!--        侧边栏-->
-    <Sidebarsn></Sidebarsn>
-    <FavSidebar></FavSidebar>
+      <!-- ---------- -->
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { reactive, toRefs, onMounted } from "vue";
   import FavSidebar from './FavSidebar.vue';
-
+  import { navigation } from '../../api/navigation';
 
   export default {
     components: { FavSidebar },
-    name: "PersonalNavigation",
+    name: "favorite",
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      //获取上下文实例，ctx=vue2的this
-      const { proxy }: any = getCurrentInstance();
       // 数据定义
       const state = reactive({
         text: [],
         type: []
       });
       const GetSnNavigation = (name: string) => {
-        proxy.$api
-          .all([
-            //查询标签
-            proxy.$api.get("api/SnNavigation/GetTypeOrderAsync?type=" + name + "&order=true"),
-            //查询分类
-            proxy.$api.get(
-              "/api/SnNavigationType/GetAllAsync"
-            ),
-          ])
-          .then(
-            proxy.$api.spread(
-              (
-                res1: any,
-                res2: any,
-              ) => {
-                state.text = res1.data;
-                state.type = res2.data;
-              }
-            )
-          )
+        navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
+          state.type = res.data;
+        })
+        navigation.GetTypeOrderAsync(name).then((res: any) => {
+          state.text = res.data;
+        })
 
       };
       const urltest = (url: string) => {
-        //当前窗口跳转
-        // self.location.href=url
-        //新窗口跳转
         window.open(url);
       };
       onMounted(async () => {
@@ -87,36 +74,34 @@
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
 
-  .favorite {
+  #favorite {
     position: fixed;
     @include w-h(100%, 100%);
-    .PersonalNavigation {
+    #favorite_main {
       @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow  rounded;
-      .PersonalNavigation-2 {
+      .favorite_type {
         @apply text-lg font-bold  mt-1 text-center;
-        .PersonalNavigation-2-1 {
+        .favorite_type_name {
           @apply p-1  cursor-default text-sm;
         }
       }
 
-      .PersonalNavigation-1 {
-        @include w-h(100%, 82%);
+      .favorite_content {
+        @include w-h(100%, 80%);
         overflow: auto;
-        .PersonalNavigation-text {
-          @include w-h(89%, 100px);
-          @apply mt-3 bg-gray-200;
-          @apply ml-2 antialiased shadow rounded-sm;
-          // @apply hover:bg-gray-50;
-          .PersonalNavigation-text-1 {
-            color: #b49d1a;
-            @apply p-1 px-2 text-base;
+        .favorite_content_text {
+          @include w-h(89%, 88px);
+          background-color: #f5f7fd;
+          @apply mt-2 ml-2 antialiased  rounded-sm;
+          .favorite_content_text-1 {
+            @apply px-1 text-base font-semibold;
             @include line-ome;
           }
 
-          .PersonalNavigation-text-2 {
+          .favorite_content_text-2 {
             height: 46px;
-            @apply px-2 mt-3 mx-1 bg-white rounded-md;
+            @apply px-2 mt-2 mx-1 bg-white;
             @include line-number;
           }
         }

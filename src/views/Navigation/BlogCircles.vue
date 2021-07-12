@@ -1,7 +1,7 @@
 <template>
   <div class="BlogCircless">
     <Sidebarsn></Sidebarsn>
-    <IndexSidebar></IndexSidebar>
+    <blog-circles-sidebar></blog-circles-sidebar>
     <div class="BlogCircles animate__animated animate__fadeIn">
       <div class="font-extrabold BlogCircles-2">博客圈</div>
       <div
@@ -26,8 +26,9 @@
 
 <script lang="ts">
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import BlogCirclesSidebar from './BlogCirclesSidebar.vue';
   export default {
-    components: {},
+    components: { BlogCirclesSidebar },
     name: "BlogCircles",
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {

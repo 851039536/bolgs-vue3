@@ -68,7 +68,7 @@
   import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   import { article } from '../../api/article';
-  import utils from "@/utils/utils.js";
+  // import utils from "@/utils/utils.js";
   // 组件导入
   export default {
     name: "IndexTitle",
@@ -82,35 +82,47 @@
         pagesize: 8, //每页条数
         count: 0, //总数
       });
-      const GetCountAsync = async () => {
+      async function GetCountAsync(): Promise<void> {
         await article.GetCountAsync().then((result: any) => {
           state.count = result.data;
-        })
-      };
+        });
+      }
 
-      const GetFyTitleAsync = async () => {
+      async function GetFyTitleAsync(): Promise<void> {
         await article.GetFyTitleAsync(state.page, state.pagesize).then((result: any) => {
           state.dataResult = result.data;
         });
-      };
+      }
 
-      const jump = async (id: number) => {
+      async function jump(id: number): Promise<void> {
         await router.push({
           path: "/IndexText",
           query: {
             id: id,
           },
         });
-      };
+      }
 
-      const currentchange = async (val: number) => {
+      async function currentchange(val: number): Promise<void> {
         state.page = val;
         GetFyTitleAsync();
-        backtop(); //回到顶部
-      };
+        await backtop(); //回到顶部
+      }
       const backtop = async () => {
         {
-          utils.backtop();
+
+          var timer = setInterval(function () {
+            let osTop =
+              document.documentElement.scrollTop || document.body.scrollTop;
+            let ispeed = Math.floor(-osTop / 5);
+            document.documentElement.scrollTop = document.body.scrollTop =
+              osTop + ispeed;
+            // this.isTop = true;
+            if (osTop === 0) {
+              clearInterval(timer);
+            }
+          }, 30);
+          //utils.backtop();
         }
       };
       onMounted(async () => {

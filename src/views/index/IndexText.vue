@@ -52,9 +52,9 @@
     <!-- 回到顶部 -->
     <a-back-top />
 
-    <div class="IndexText-give">
+    <!-- <div class="IndexText-give">
       <div class="btn" @click="like(article_String)">点赞</div>
-    </div>
+    </div>-->
   </div>
 </template>
 

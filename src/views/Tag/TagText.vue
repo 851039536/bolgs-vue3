@@ -3,7 +3,7 @@
     <div class="flex text">
       <div class="text-sidebar">
         <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.article_id">
-          <div class="forms-1" @click="AsyGetTest(label.article_id)">
+          <div class="forms-1" @click="getAll(label.article_id)">
             <a>{{ label.title }}</a>
           </div>
           <div class="forms-2">{{ label.time }}</div>
@@ -37,8 +37,10 @@
 
 <script lang="ts">
   import markdown from "@/utils/markdown.js";
+  import { article } from '../../api/article';
+  import { labels } from '../../api/labels';
   import {
-    getCurrentInstance,
+
     reactive,
     toRefs,
     onMounted,
@@ -48,7 +50,6 @@
     name: "TagText",
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       // 加载路由
       const route = useRoute();
       const state = reactive({
@@ -60,55 +61,39 @@
         blog: "",
       });
 
-      const AsyGetTag = async (id: any) => {
+      async function AsyGetTag(id: any): Promise<void> {
         if (id == null) {
           id = 1;
         }
-        proxy
-          .$api({
-            url: "/api/SnArticle/GetTagtextAsync?labelId=" + id + "&isDesc=true",
-          })
-          .then((res: any) => {
-            state.newinfo = res.data;
-          })
+        await article.GetTagtextAsync(id).then((result: any) => {
+          state.newinfo = result.data;
+        });
+      }
+      async function getAll(id: any): Promise<void> {
 
-      };
+        await article.AsyGetTestID(id).then((res: any) => {
+          const result = markdown.marked(res.data.text);
+          result.then((response: any) => {
+            state.blog = response.content;
+          });
+        });
+        await labels.GetAllAsync().then((result: any) => {
+          state.labels = result.data;
+        });
+      }
 
-      const AsyGetTest = async (id: any) => {
-        proxy.$api
-          .all([
-            //查询标签
-            proxy.$api.get("/api/SnArticle/AsyGetTestID?id=" + id),
-            //查询分类
-            proxy.$api.get("/api/SnLabels/GetAllAsync"),
-          ])
-          .then(
-            proxy.$api.spread((res1: any, res2: any) => {
-              const article = markdown.marked(res1.data.text);
-              article.then((response: any) => {
-                state.blog = response.content;
-              });
-              state.labels = res2.data;
-            })
-          )
-
-      };
-
-      const GetlabelsID = async (id: any) => {
+      async function GetlabelsID(id: any): Promise<void> {
         AsyGetTag(id);
-      };
-
+      }
       onMounted(async () => {
-
         await AsyGetTag(state.id);
-        await AsyGetTest(1);
+        await getAll(1);
       });
-
 
       return {
         ...toRefs(state),
         AsyGetTag,
-        AsyGetTest,
+        getAll,
         GetlabelsID,
       };
     },

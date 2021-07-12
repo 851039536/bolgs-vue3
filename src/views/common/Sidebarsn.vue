@@ -29,22 +29,11 @@
         <p @click="nav(8)">博客日记</p>
       </div>
       <div class="si_text">
-        <p @click="nav(8)">工具软件</p>
+        <p @click="nav(10)">工具软件</p>
       </div>
-      <div class="si_text">
-        <p @click="nav(8)">工具软件</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(8)">工具软件</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(8)">工具软件</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(8)">工具软件</p>
-      </div>
+
       <div class="si_website">
-        <a>http://oykperson.xyz</a>
+        <a href="http://oykperson.xyz">http://oykperson.xyz</a>
       </div>
       <div class="si_described">
         <p
@@ -85,7 +74,12 @@
           case 7:
             window.open("http://localhost:8082/");
             break;
-
+          case 8:
+            router.push("./ListContent");
+            break;
+          case 10:
+            router.push("./Software");
+            break;
           default:
             router.push("./index");
             break;

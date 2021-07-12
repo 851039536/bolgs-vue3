@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:09:51
- * @LastEditTime: 2021-05-10 17:38:38
+ * @LastEditTime: 2021-07-09 15:05:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\labels.ts
@@ -17,6 +17,13 @@ export class labels {
   static async GetByIdAsync(id: number): Promise<any> {
     return await request({
       url: ByIdUrl + id,
+      method: 'get',
+    })
+  }
+
+  static async GetAllAsync(): Promise<any> {
+    return await request({
+      url: "/api/SnLabels/GetAllAsync",
       method: 'get',
     })
   }
