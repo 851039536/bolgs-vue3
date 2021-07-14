@@ -3,16 +3,22 @@ import {
   createWebHistory,
   // createWebHashHistory
 } from 'vue-router'
-import Index from '../views/index.vue'
+import Home from '../views/common/Home.vue'
 
 const routes = [{
   path: '/',
   //重定向，当前路径'/'没有对应的组件，需要重定向到其他路由页面
-  redirect: '/index',
-  name: 'Index',
-  component: Index,
+  redirect: '/home',
+  name: 'home',
+  component: Home,
 },
 
+{
+  path: '/Home',
+  name: 'Home',
+  component: () => import('../views/common/Home.vue'),
+
+},
 {
   path: '/About',
   name: 'About',
