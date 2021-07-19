@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-07-09 14:54:56
+ * @LastEditTime: 2021-07-19 16:27:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -30,6 +30,16 @@ export class article {
     })
   }
 
+  //查询分类总条数
+  static async ConutSort(id: number): Promise<any> {
+    return await request({
+      url: "/api/SnArticle/ConutSort?type=" + id,
+      method: 'get',
+    })
+  }
+
+
+
   //主键查询
   static async AsyGetTestID(id: number): Promise<any> {
     return await request({
@@ -44,7 +54,7 @@ export class article {
       method: 'get',
     })
   }
-  //分页查询
+  //标签分页查询
   static async GetFyTitleAsync(page: number, pagesize: number): Promise<any> {
     return await request({
       url:
@@ -54,6 +64,14 @@ export class article {
         "&pageSize=" +
         pagesize +
         "&isDesc=true",
+      method: 'get',
+    })
+  }
+
+  //分类分页查询
+  static async GetFySortTitleAsync(page: number, pagesize: number): Promise<any> {
+    return await request({
+      url: "/api/SnArticle/GetfySortTestAsync?type=7&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=true",
       method: 'get',
     })
   }

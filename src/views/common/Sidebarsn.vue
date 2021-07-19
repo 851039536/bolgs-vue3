@@ -19,17 +19,18 @@
       <div class="si_text">
         <p @click="nav(6)">我的书单</p>
       </div>
-      <div class="si_text">
-        <p @click="nav(7)">后台管理</p>
-      </div>
+
       <div class="si_text">
         <p @click="nav(8)">聚合搜索</p>
       </div>
       <div class="si_text">
-        <p @click="nav(8)">博客日记</p>
+        <p @click="nav(9)">博客日记</p>
       </div>
       <div class="si_text">
         <p @click="nav(10)">工具软件</p>
+      </div>
+      <div class="si_text">
+        <p @click="nav(7)">后台管理</p>
       </div>
 
       <div class="si_website">
@@ -76,6 +77,9 @@
             break;
           case 8:
             router.push("./ListContent");
+            break;
+          case 9:
+            router.push("./Blogs");
             break;
           case 10:
             router.push("./Software");

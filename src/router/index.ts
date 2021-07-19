@@ -26,6 +26,13 @@ const routes = [{
 
 },
 {
+  path: '/Blogs',
+  name: 'Blogs',
+  component: () => import('../views/Blogs/Blogs.vue'),
+
+},
+{
+
   path: '/index',
   name: 'index',
   meta: {

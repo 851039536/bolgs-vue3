@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-05-13 16:02:47
+ * @LastEditTime: 2021-07-19 14:26:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -150,7 +150,7 @@
         state.modal2Visible = modal2Visible;
         proxy
           .$api({
-            url: "/api/SnOne/GetOneIdAsync?id=" + id,
+            url: "/api/SnOne/GetByIdAsync?id=" + id,
           })
           .then((res: any) => {
             state.text = res.data;

@@ -38,6 +38,9 @@
             </p>
             <!-- <p class="EverydayOne-3-p2">xxx</p> -->
             <p class="One-list-div-frame-text">{{ data.oneText }}</p>
+            <div>
+              <!-- <p @click="give2(data)">{{data.oneGive}}</p> -->
+            </div>
           </div>
         </div>
       </div>
@@ -51,7 +54,7 @@
         cancelText="赞"
         :closable="false"
         okText="不了"
-        @cancel="give()"
+        @cancel="give(text.OneId)"
         @ok="modal2Visible = false"
       >
         <p>{{ text.oneText }}</p>
@@ -61,13 +64,14 @@
 </template>
 
 <script lang="ts">
+  import { one } from '../../api/one';
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import OneSidebar from "./OneSidebar.vue";
   import { message } from "ant-design-vue";
   export default {
     name: "EverydayOne",
     components: { OneSidebar },
-    setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: number) => void; } {
+    setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: any) => void; give2: (id: any) => void; } {
       const { proxy }: any = getCurrentInstance();
       const state: any = reactive({
         dataTest: [],
@@ -108,13 +112,21 @@
 
       };
 
-      const give = (id: number) => {
+      const give2 = async (result: any) => {
+
+        message.info(result + "功能未完成");
+
+        await one.UpdatePortionAsync(result, "give")
+
+      };
+
+      const give = (id: any) => {
         message.info(id + "功能未完成");
       };
       onMounted(async () => {
         await getOne();
       });
-      return { ...toRefs(state), getOne, setModal1Visible, give };
+      return { ...toRefs(state), getOne, setModal1Visible, give, give2 };
     },
   };
 </script>

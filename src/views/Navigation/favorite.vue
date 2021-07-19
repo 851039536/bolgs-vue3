@@ -79,11 +79,12 @@
     @include w-h(100%, 100%);
     #favorite_main {
       @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
-      @apply shadow  rounded;
+      @apply rounded;
       .favorite_type {
-        @apply text-lg font-bold  mt-1 text-center;
+        @apply text-base   cursor-default  text-center;
         .favorite_type_name {
-          @apply p-1  cursor-default text-sm;
+          background: #e5e7eb;
+          @apply m-1 py-1 mt-2  rounded;
         }
       }
 
