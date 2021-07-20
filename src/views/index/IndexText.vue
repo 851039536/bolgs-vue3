@@ -6,7 +6,7 @@
 
     <!--标题-->
     <div class="IndexText-title">
-      <a-page-header :title="article_String.title" @back="() => $router.push('/index')" />
+      <a-page-header :title="article_String.title" @back="() => $router.back(-1)" />
     </div>
     <!-- ---------------------------- -->
     <!--内容-->
@@ -19,12 +19,12 @@
     <!--底部信息-->
     <div class="IndexText-copyright">
       <div class="IndexText-copyright-text">
-        <div>版权属于：少年</div>
+        <!-- <div>版权属于：少年</div> -->
         <div>本文链接：原创文章转载请注明</div>
-        <div>
+        <!-- <div>
           作品采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议
           进行许可
-        </div>
+        </div>-->
       </div>
       <div class="flex IndexText-comment">
         <div class>

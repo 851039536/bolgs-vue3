@@ -46,12 +46,12 @@
             关于
           </a>
 
-          <a @click="onk(9)">
+          <!-- <a @click="onk(9)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-24" />
             </svg>
             日志
-          </a>
+          </a>-->
 
           <a @click="onk(12)" class="header_text_text">留言</a>
           <a @click="onk(13)" class="header_text_text">博客园</a>

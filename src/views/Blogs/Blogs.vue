@@ -21,7 +21,7 @@
           </div>
           <div class="oftware_content__frame">
             <p class="oftware_content__frame-1">
-              <a @click="setModal1Visible(true, data.oneId)">{{ info.title }}</a>
+              <a @click="jump(info.article_id)">{{ info.title }}</a>
             </p>
             <p class="oftware_content__frame-2">{{ info.title_text }}</p>
 
@@ -53,13 +53,14 @@
 
 <script lang="ts">
   import { reactive, toRefs, onMounted } from "vue";
+  import { useRouter } from "vue-router";
   // import OneSidebar from "./OneSidebar.vue";
   import { article } from '../../api/article';
   import FavSidebar from '../Navigation/FavSidebar.vue';
   export default {
     name: "Blogs",
     components: { FavSidebar },
-    setup(): { GetFySortTitleAsync: () => void; ConutSort: () => void; currentchange: (val: number) => void; backtop: () => void; } {
+    setup(): { jump: (id: number) => void; GetFySortTitleAsync: () => void; ConutSort: () => void; currentchange: (val: number) => void; backtop: () => void; } {
       const state: any = reactive({
 
         dataResult: [], // 显示的数据
@@ -68,7 +69,7 @@
         count: 0, //总数
       });
 
-
+      const router = useRouter();
 
       async function GetFySortTitleAsync(): Promise<void> {
         await article.GetFySortTitleAsync(state.page, state.pagesize).then((result: any) => {
@@ -102,12 +103,19 @@
           //utils.backtop();
         }
       };
-
+      async function jump(id: number): Promise<void> {
+        await router.push({
+          path: "/IndexText",
+          query: {
+            id: id,
+          },
+        });
+      }
       onMounted(async () => {
         await ConutSort();
         await GetFySortTitleAsync();
       });
-      return { ...toRefs(state), GetFySortTitleAsync, ConutSort, currentchange, backtop };
+      return { ...toRefs(state), GetFySortTitleAsync, ConutSort, currentchange, backtop, jump };
     },
   };
 </script>

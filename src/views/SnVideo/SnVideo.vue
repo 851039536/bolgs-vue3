@@ -1,24 +1,21 @@
 <template>
-  <div class="SnVideos">
+  <div class="snvideo">
     <Sidebarsn></Sidebarsn>
     <video-sidebar></video-sidebar>
-    <div class="SnVideo animate__animated animate__fadeIn">
+    <div class="snvideo_main animate__animated animate__fadeIn">
       <div
         class="grid shadow SnVideo-1 2xl:grid-cols-10 xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4"
       >
-        <div class="SnVideo-1-1" v-for="info in videotype" :key="info.vId">
-          <span class="SnVideo-1-1-1">
-            <a @click="cliname(info.vId)">{{ info.vType }}</a>
-          </span>
+        <div class="snvideo_main_top" v-for="info in videotype" :key="info.vId">
+          <a @click="cliname(info.vId)">{{ info.vType }}</a>
         </div>
       </div>
       <div
-        class="grid SnVideo-2 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="grid snvideo_main_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div class="SnVideo-2-1" v-for="info in newtype" :key="info.vId">
           <div class="SnVideo-2-1-1">
-            <!-- <img :src="info.vImg" alt="" /> -->
-            <img src="../../assets/img/hy.jpg" alt />
+            <img src="../../assets/img/hy.jpg" />
           </div>
           <div class="SnVideo-2-1-2">
             <a @click="videos(info.vId)">{{ info.vTitle }}</a>
@@ -112,10 +109,10 @@
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
 
-  .SnVideos {
+  .snvideo {
     position: fixed;
     @include w-h(100%, 100%);
-    .SnVideo {
+    .snvideo_main {
       position: relative;
       @include initialize($w, 99%, $Text_height, null, $ml, null, #ffffff);
       @apply shadow rounded-sm;
@@ -124,23 +121,18 @@
         @apply shadow-sm rounded-sm;
         overflow: auto;
 
-        // 左侧边栏
-        .SnVideo-1-1 {
-          /*background-color: #795da3;*/
-          @apply p-1 m-1 text-sm bg-gray-100 cursor-default;
-          border-bottom: 1px dashed #f1f1f1;
+        .snvideo_main_top {
+          @apply py-1 m-2 text-base bg-gray-200 rounded text-center;
         }
       }
 
-      .SnVideo-2 {
+      .snvideo_main_content {
         @include w-h(100%, 80%);
         overflow: auto;
         position: absolute;
         @include excursion(8%, null, null, 0%);
-        /*background-color: #4eb687;*/
         .SnVideo-2-1 {
           @include w-h(95%, 90%);
-
           @apply ml-1 shadow;
           .SnVideo-2-1-1 {
             height: 65%;
@@ -150,9 +142,8 @@
           }
 
           .SnVideo-2-1-2 {
-            /*background-color: #dddddd;*/
             height: 18%;
-            @apply cursor-default text-sm p-1;
+            @apply text-sm p-1;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -160,7 +151,6 @@
 
           .SnVideo-2-1-3 {
             height: 17%;
-            /*background-color: #0086b3;*/
             @apply p-1;
           }
         }
@@ -169,13 +159,9 @@
   }
 
   @screen xp {
-    .SnVideos .SnVideo {
+    .snvideo .snvideo_main {
       width: 100%;
       @apply ml-0;
-    }
-    .SnVideos .SnVideo .SnVideo-2 .SnVideo-2-1[data-v-3c7b4ac7] {
-      // width: 56%;
-      // height: 210px;
     }
   }
 </style>

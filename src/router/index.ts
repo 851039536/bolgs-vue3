@@ -28,6 +28,9 @@ const routes = [{
 {
   path: '/Blogs',
   name: 'Blogs',
+  meta: {
+    keepAlive: false
+  },
   component: () => import('../views/Blogs/Blogs.vue'),
 
 },

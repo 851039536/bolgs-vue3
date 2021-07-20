@@ -19,16 +19,17 @@
       <!---------------------------------------------------------------------------->
       <!--发表用户-->
       <div class="flex IndexTitle-user">
-        <div>Junior@</div>
+        <div>少年</div>
+        <div class="IndexTitle-user_type">随笔</div>
         <div>{{ info.time }}</div>
-        <div>
+        <!-- <div>
           <a>
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-chat" />
             </svg>
             {{ info.comment }}
           </a>
-        </div>
+        </div>-->
         <div @click="jump(info.article_id)">
           <a>
             <svg class="inline-block icon" aria-hidden="true">
@@ -160,7 +161,6 @@
       @include w-h(100%, 145px);
       @apply mb-3 mt-2 bg-white shadow rounded-md;
       .IndexTitle-text-div {
-        height: 78%;
         @include w-h(null, 78%);
         .IndexTitle-title-div {
           @include w-h(100%, 100%);
@@ -171,9 +171,8 @@
           }
 
           .IndexTitle-title-text {
-            color: #888888;
             @include w-h(null, 44%);
-            @apply px-3 m-1 mt-2 pt-1 text-sm tracking-wide leading-relaxed font-light antialiased;
+            @apply px-3 m-1 mt-2 pt-1 text-sm  leading-relaxed;
             @include line-number;
           }
         }
@@ -181,10 +180,13 @@
 
       .IndexTitle-user {
         @include w-h(100%, 25%);
-        @apply pl-3 antialiased;
+        @apply pl-3;
         div {
           @include w-h(null, 78%);
           @apply m-1;
+        }
+        .IndexTitle-user_type {
+          // @apply bg-gray-300;
         }
       }
     }

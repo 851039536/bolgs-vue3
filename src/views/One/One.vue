@@ -3,7 +3,6 @@
     <Sidebarsn></Sidebarsn>
     <OneSidebar></OneSidebar>
     <div class="One-div animate__animated animate__fadeIn">
-      <!--        每日最新  电脑端-->
       <div class="One-top">
         <div class="One-top-img">
           <img src="../../assets/img/tg.jpg" alt />
@@ -65,59 +64,39 @@
 
 <script lang="ts">
   import { one } from '../../api/one';
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { reactive, toRefs, onMounted } from "vue";
   import OneSidebar from "./OneSidebar.vue";
   import { message } from "ant-design-vue";
   export default {
     name: "EverydayOne",
     components: { OneSidebar },
     setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: any) => void; give2: (id: any) => void; } {
-      const { proxy }: any = getCurrentInstance();
       const state: any = reactive({
         dataTest: [],
         dataOne: [],
         text: [],
         modal2Visible: false,
       });
-      const setModal1Visible = (modal2Visible: boolean, id: number) => {
+      const setModal1Visible = async (modal2Visible: boolean, id: number) => {
         state.modal2Visible = modal2Visible;
-        proxy
-          .$api({
-            url: "/api/SnOne/GetByIdAsync?id=" + id,
-          })
-          .then((res: any) => {
-            state.text = res.data;
-          })
-
+        await one.GetByIdAsync(id).then((res: any) => {
+          state.text = res.data;
+        })
       };
 
-      const getOne = () => {
-        proxy.$api
-          .all([
-            // 读取一条内容
-            proxy.$api.get(
-              "/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true"
-            ),
-            //查询最新发布前十内容
-            proxy.$api.get(
-              "/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true"
-            ),
-          ])
-          .then(
-            proxy.$api.spread((res1: any, res2: any) => {
-              state.dataOne = res1.data[0];
-              state.dataTest = res2.data;
-            })
-          )
+      const getOne = async () => {
+        await one.GetFyAllAsync(1, 6).then((res: any) => {
+          state.dataTest = res.data;
+        })
+        await one.GetFyAllAsync(1, 1).then((res2: any) => {
+          state.dataOne = res2.data[0];
+        })
 
       };
 
       const give2 = async (result: any) => {
-
         message.info(result + "功能未完成");
-
-        await one.UpdatePortionAsync(result, "give")
-
+        // await one.UpdatePortionAsync(result, "give")
       };
 
       const give = (id: any) => {
@@ -153,15 +132,22 @@
 
         .One-top-text {
           @include w-h(55%, 100%);
-
           float: right;
-
           .One-top-text-title {
             @apply text-center m-1 pt-2;
             height: 14%;
           }
           .One-top-give {
             height: 60%;
+
+            text-overflow: ellipsis;
+            /*有些示例里需要定义该属性，实际可省略*/
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            /*规定超过两行的部分截断*/
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-all;
             @apply m-1 px-4 py-4  font-thin leading-loose tracking-wide text-center shadow-2xl;
           }
           .One-top-give-div {
@@ -217,7 +203,6 @@
               -webkit-box-orient: vertical;
               overflow: hidden;
               word-break: break-all;
-              /*在任何地方换行*/
             }
           }
         }

@@ -43,7 +43,7 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-C" />
             </svg>
-            <a @click="Getid(1)">技术</a>
+            <a @click="Getid(1)">文章</a>
           </div>
           <div class="w-1/5 p-2 about-2-1">
             <svg class="icon" aria-hidden="true">
@@ -104,7 +104,7 @@
             </h2>
           </div>
           <div class="bg-2-2-2">
-            本站基于TailWindcss,Vue,Axios,NetCoreWebApi
+            本站基于TailWindcss,Vue,NetCoreWebApi
             开发搭建，部署于腾讯云，备案于腾讯云，建站初衷是想学习记录生活。
           </div>
         </div>
@@ -120,7 +120,7 @@
               建站缘由
             </h2>
           </div>
-          <div class="bg-2-3-2">搭建一个属于我自己的世界。</div>
+          <div class="bg-2-3-2">搭建一个属于自己的世界。</div>
 
           <div></div>
         </div>

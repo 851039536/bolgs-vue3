@@ -1,34 +1,24 @@
 <template>
-  <div class="TalkSidebar" id="sn-list" :class="{ isFixed: barFixed }">
-    <div class="TalkSidebar-text">
-      <div class="sn-list4">
-        <div class="sn-list4-1">
-          <p class>{{ UserTalk }}</p>
+  <div class="video_sidebar">
+    <div class="video_sidebar_main">
+      <!-- 标签头部 -->
+      <div class="video_s_m_top">
+        <div class="video_s_m_top_title">
+          <p class>燃向视频收集</p>
         </div>
       </div>
-      <!--内容框-->
-      <div class="TalkSidebar-text-4">
-        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 TalkSidebar-text-4-1">推荐内容</div>
 
-        <div class="TalkSidebar-text-4-2" v-for="data in article" :key="data.id">
-          <div class="p-1 m-1 text-sm TalkSidebar-text-4-2-1">
-            <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-liulan
-" />
-            </svg>
-            <a @click="AsyGetTestID(data.id)">
-              {{ data.talkTitle }}
-              {{
-              data.talkTime
-              .toLocaleString()
-              .replace(/T/g, " ")
-              .replace(/\.[\d]{3}Z/, "")
-              }}
-            </a>
+      <!--内容框-->
+      <div class="video_s_m_content">
+        <div class="video_s_m_content-1">推荐内容</div>
+
+        <div class="video_s_m_content-2" v-for="data in article" :key="data.id">
+          <div class="p-1 m-1 text-sm">
+            <a @click="AsyGetTestID(data.id)">111111111111111111111111</a>
           </div>
         </div>
       </div>
-      <div class="sn-list5">
+      <!-- <div class="sn-list5">
         <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list5-1">分类</div>
 
         <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.id">
@@ -37,27 +27,21 @@
             @click="tagtest(Labeslss.id)"
           >{{ Sorts.type }}</div>
         </div>
-      </div>
+      </div>-->
 
       <div class="sn-list8">
-        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1">站点信息</div>
+        <div class="p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer sn-list8-1">视频信息</div>
         <div class="sn-list8-2">
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">文章数量:</div>
             <div class="sn-list8-2-1-2">210篇</div>
           </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">运行时间:</div>
-            <div class="sn-list8-2-1-2">333天</div>
-          </div>
+
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">总字数:</div>
             <div class="sn-list8-2-1-2">1111k字</div>
           </div>
-          <div class="flex sn-list8-2-1">
-            <div class="sn-list8-2-1-1">访客数:</div>
-            <div class="sn-list8-2-1-2">1111人</div>
-          </div>
+
           <div class="flex sn-list8-2-1">
             <div class="sn-list8-2-1-1">访问量:</div>
             <div class="sn-list8-2-1-2">12434次</div>
@@ -137,7 +121,7 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .TalkSidebar {
+  .video_sidebar {
     position: fixed;
     @include excursion($Text_height, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
@@ -145,8 +129,7 @@
     color: #888888;
     /*background-color: #4d4f91;*/
     @apply ml-3;
-    .TalkSidebar-text {
-      /*background-color: #55a532;*/
+    .video_sidebar_main {
       @include w-h(100%, 100%);
       overflow: auto;
 
@@ -189,18 +172,15 @@
       .el-calendar-table .el-calendar-day {
         height: 44px !important;
       }
-      .sn-list4 {
+      .video_s_m_top {
         width: 100%;
         margin: 0 auto;
-        background-color: #ffffff;
-        text-align: center;
-        @apply mb-2;
+        @apply mb-2 text-center bg-white;
         @apply shadow rounded;
-        //@include gradient-text;
 
-        .sn-list4-1 {
+        .video_s_m_top_title {
           p {
-            @apply text-sm px-2 py-4 m-1 cursor-pointer;
+            @apply text-sm px-2 py-4 m-1;
           }
         }
       }
@@ -284,25 +264,26 @@
         }
       }
 
-      .TalkSidebar-text-4 {
+      .video_s_m_content {
         width: 100%;
         margin: 0 auto;
         background-color: #ffffff;
         @apply p-1 mb-2 cursor-pointer;
         @apply shadow rounded;
 
-        .TalkSidebar-text-4-1 {
+        .video_s_m_content-1 {
           color: #1b1e21;
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
         }
 
-        .TalkSidebar-text-4-2 {
+        .video_s_m_content-2 {
           background-color: white;
           border-bottom: 1px dashed #f1f1f1;
         }
       }
     }
 
-    .TalkSidebar-text::-webkit-scrollbar {
+    .video_sidebar_main::-webkit-scrollbar {
       display: none;
     }
   }
@@ -323,7 +304,7 @@
   }
 
   @screen xp {
-    .TalkSidebar {
+    .video_sidebar {
       @apply hidden;
     }
   }

@@ -1,6 +1,6 @@
 <template>
-  <div class="SnVideoTexts">
-    <div class="flex SnVideoText animate__animated animate__fadeIn">
+  <div class="snvideotext">
+    <div class="flex snvideotext_main animate__animated animate__fadeIn">
       <div
         class="col-gap-4 SnVideoText-2 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
@@ -116,11 +116,11 @@
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
 
-  .SnVideoTexts {
+  .snvideotext {
     position: fixed;
     @include w-h(100%, 100%);
 
-    .SnVideoText {
+    .snvideotext_main {
       @include initialize(90%, 90%, $Text_height, null, 5%, null, #ffffff);
       @apply shadow-sm rounded-sm;
 
@@ -136,7 +136,6 @@
       .SnVideoText-2 {
         width: 19%;
         overflow: auto;
-        /*background-color: #4eb687;*/
         @apply cursor-pointer;
 
         .SnVideoText-2-1 {
@@ -169,7 +168,7 @@
     .SnVideoText-2 {
       @apply hidden;
     }
-    .SnVideoTexts .SnVideoText .SnVideoText-1 {
+    .snvideotext .snvideotext_main .SnVideoText-1 {
       width: 100%;
       height: 90%;
     }
