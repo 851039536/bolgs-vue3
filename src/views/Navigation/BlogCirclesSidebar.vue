@@ -32,19 +32,19 @@
 
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+
+  import { navigation } from '../../api/navigation';
+  import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   export default {
     name: "FavSidebar",
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const router = useRouter();
       // 加载路由
       // const route = useRoute();
       const state = reactive({
-        Sort: [],
         Navigation: [],
         //当前默认页
         barFixed: false,
@@ -52,28 +52,13 @@
       });
 
       const GetAll = async () => {
-        //     //加载文章
-        await proxy.$api
-          .all([
-            //查询分类
-            proxy.$api.get("/api/SnTalkType/GetAllAsync"),
-            //查询最新发布前十
-            proxy.$api.get(
-              "/api/SnNavigation/GetFyAllAsync?type=all&pageIndex=1&pageSize=10&isDesc=true"
-            ),
-            // 查询总数
-            proxy.$api.get(
-              "/api/SnNavigation/GetCountAsync"
-            ),
-          ])
-          .then(
-            proxy.$api.spread((res2: any, res3: any, res4: any) => {
-              state.Sort = res2.data;
-              state.Navigation = res3.data;
-              state.resultCount = res4.data;
-            })
-          )
 
+        await navigation.GetFyAllAsync("all", 1, 10, true).then((res: any) => {
+          state.Navigation = res.data;
+        })
+        await navigation.GetCountAsync().then((res: any) => {
+          state.resultCount = res.data;
+        })
       };
 
       const AsyGetTestID = (id: number) => {

@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-07-19 14:26:34
+ * @LastEditTime: 2021-07-22 09:13:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -19,13 +19,13 @@
       <!--内容框-->
       <div class="One-Sidebar-textlist">
         <div class="One-Sidebar-textlist-title">推荐内容</div>
-        <div class="TalkSidebar-text-4-2" v-for="articles in article" :key="articles.oneId">
+        <div class="TalkSidebar-text-4-2" v-for="result in resultOne" :key="result.oneId">
           <div class="p-1 pl-2 text-base">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-liulan
 " />
             </svg>
-            <a @click="setModal1Visible(true, articles.oneId)">{{ articles.oneTitle }}</a>
+            <a @click="setModal1Visible(true, result.oneId)">{{ result.oneTitle }}</a>
           </div>
         </div>
       </div>
@@ -36,11 +36,11 @@
       <div class="sn-list5">
         <div class="sn-list5-1">分类</div>
 
-        <div class="inline-flex" v-for="Sorts in Sort" :key="Sorts.id">
+        <div class="inline-flex" v-for="result in resultOneType" :key="result.id">
           <div
             class="flex-1 px-1 m-1 text-xs text-center text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
-            @click="tagtest(Sorts.id)"
-          >{{ Sorts.soTypeTitle }}</div>
+            @click="tagtest(result.id)"
+          >{{ result.soTypeTitle }}</div>
         </div>
       </div>
       <!-- ----------------------------------------- -->
@@ -86,21 +86,20 @@
 
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { one } from '../../api/one';
+  import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   export default {
     name: "TalkSidebar",
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const router = useRouter();
       // 加载路由
       // const route = useRoute();
       const state = reactive({
-        Sort: [],
-        article: [],
-        UserTalk: "",
+        resultOneType: [],
+        resultOne: [],
         modal2Visible: false,
         text: [],
         Count: 0,
@@ -108,53 +107,45 @@
         readCount: 0
       });
 
-      const getall = () => {
-        //     //加载文章
-        proxy.$api
-          .all([
-            //查询分类
-            proxy.$api.get("/api/SnOneType/GetAllAsync"),
-            //查询点赞前十文章
-            proxy.$api.get(
-              "/api/SnOne/GetFyTypeAsync?type=999&pageIndex=1&pageSize=10&name=give&isDesc=true"
-            ),
-            // 查询当前用户的说说
-            proxy.$api.get(
-              "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-            ),
-            // 查询文章数量
-            proxy.$api.get(
-              "/api/SnOne/CountAsync"
-            ),
-            // 查询字段
-            proxy.$api.get(
-              "/api/SnOne/GetSumAsync?type=text"
-            ),
-            proxy.$api.get(
-              "/api/SnOne/GetSumAsync?type=read"
-            ),
-          ])
-          .then(
-            proxy.$api.spread((Sort: any, article: any, UserTalk: any, Count: any, textNum: any, readCount: any) => {
-              state.Sort = Sort.data;
-              state.article = article.data;
-              state.UserTalk = UserTalk.data;
-              state.Count = Count.data;
-              state.textNum = textNum.data;
-              state.readCount = readCount.data;
-            })
-          )
+      const getall = async () => {
+
+        await one.GetOneTypeAllAsync().then((res: any) => {
+          state.resultOneType = res.data;
+        })
+        await one.GetFyTypeAsync(999, 1, 10, "read").then((res: any) => {
+          state.resultOne = res.data;
+        })
+        await one.CountAsync().then((res: any) => {
+          state.Count = res.data;
+        })
+        await one.GetSumAsync("text").then((res: any) => {
+          state.textNum = res.data;
+        })
+        await one.GetSumAsync("read").then((res: any) => {
+          state.readCount = res.data;
+        })
+
 
       };
-      const setModal1Visible = (modal2Visible: boolean, id: number) => {
+      const setModal1Visible = async (modal2Visible: boolean, id: number) => {
         state.modal2Visible = modal2Visible;
-        proxy
-          .$api({
-            url: "/api/SnOne/GetByIdAsync?id=" + id,
-          })
-          .then((res: any) => {
-            state.text = res.data;
-          })
+
+
+
+        await one.GetByIdAsync(id).then((res: any) => {
+          state.text = res.data;
+
+          if (res.data == null) {
+            console.log(res.data);
+            return;
+          } else {
+            console.log("1" + res.data.oneRead);
+            res.data.oneRead++;
+            console.log("2" + res.data.oneRead);
+            one.UpdatePortionAsync(state.text, "read");
+          }
+        })
+
 
       };
       const AsyGetTestID = (id: number) => {

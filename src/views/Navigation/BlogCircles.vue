@@ -1,15 +1,14 @@
 <template>
-  <div class="BlogCircless">
+  <div class="blogcircles">
     <Sidebarsn></Sidebarsn>
     <blog-circles-sidebar></blog-circles-sidebar>
-    <div class="BlogCircles_main animate__animated animate__fadeIn">
+    <div class="blogcircles_main animate__animated animate__fadeIn">
       <!-- <div class="BlogCircles-2">博客圈</div> -->
       <div
-        class="grid BlogCircles-1s 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+        class="grid blogcircles_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
         <div class="BlogCircles-1" v-for="data in text" :key="data.navId">
           <div class="BlogCircles-1-1">
-            <!-- <img src="图片的url地址" alt="图片XX" onerror="this.src='默认图片的url地址;this.οnerrοr=null'" /> -->
             <img :src="data.navImg" alt onerror="this.style.display='none'" />
             <!-- <img :src="data.navImg" onerror="this.src='../../assets/img/bb.jpg'" /> -->
           </div>
@@ -26,7 +25,8 @@
 </template>
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+  import { navigation } from '../../api/navigation';
+  import { reactive, toRefs, onMounted } from "vue";
   import BlogCirclesSidebar from './BlogCirclesSidebar.vue';
   export default {
     components: { BlogCirclesSidebar },
@@ -34,28 +34,25 @@
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       //获取上下文实例，ctx=vue2的this
-      const { proxy }: any = getCurrentInstance();
+      //const { proxy }: any = getCurrentInstance();
       const state = reactive({
         text: [],
       });
 
-      const GetSnNavigation = () => {
-        proxy
-          .$api({
-            url: "/api/SnNavigation/GetTypeOrderAsync?type=博客圈&order=true",
-          })
-          .then((res: any) => {
-            state.text = res.data;
-          })
+      const GetTypeOrderAsync = async () => {
+
+        await navigation.GetTypeOrderAsync("博客圈").then((res: any) => {
+          state.text = res.data;
+        })
 
       };
       const urltest = (url: string) => {
         window.open(url);
       };
       onMounted(async () => {
-        await GetSnNavigation();
+        await GetTypeOrderAsync();
       });
-      return { ...toRefs(state), GetSnNavigation, urltest };
+      return { ...toRefs(state), GetTypeOrderAsync, urltest };
     },
 
 
@@ -66,17 +63,17 @@
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
 
-  .BlogCircless {
+  .blogcircles {
     position: fixed;
     @include w-h(100%, 100%);
-    .BlogCircles_main {
+    .blogcircles_main {
       @include initialize($w, 94%, $Text_height, null, $ml, null, #ffffff);
       @apply rounded-sm;
 
       // 导航窗体小
       .BlogCircles-1 {
-        @include w-h(200px, 90px);
-        @apply m-1 ml-1 shadow rounded;
+        @include w-h(210px, 93px);
+        @apply m-2 mt-4 shadow rounded hover:bg-gray-200;
         .BlogCircles-1-1 {
           @include w-h(40%, 99%);
           @apply p-1;
@@ -93,7 +90,7 @@
           @include w-h(60%, 100%);
 
           .BlogCircles-1-2-1 {
-            @apply text-base p-1 pt-2;
+            @apply text-base font-semibold p-1 pt-2;
             @include line-ome;
             /*动态下划线*/
             position: relative;
@@ -133,11 +130,11 @@
         @apply text-lg font-normal pl-2 bg-gray-50 shadow-sm;
       }
 
-      .BlogCircles-1s {
+      .blogcircles_content {
         @include w-h(100%, 90%);
         overflow: auto;
       }
-      .BlogCircles-1s::-webkit-scrollbar {
+      .blogcircles_content::-webkit-scrollbar {
         display: none;
       }
     }

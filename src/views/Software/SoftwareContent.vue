@@ -1,5 +1,5 @@
 <template>
-  <div id="software">
+  <div id="softwarecontent">
     <Sidebarsn></Sidebarsn>
     <fav-sidebar></fav-sidebar>
     <div class="software_main animate__animated animate__fadeIn">
@@ -30,31 +30,17 @@
         </div>
       </div>
       <!-- ------ -->
-      <div class="software_content" v-for="data in dataTest" :key="data.oneId">
-        <div class="flex software_content_div">
-          <div class="software_content_img">
-            <img
-              src="https://media.creatorsdaily.com/QmQPDaRDWY6hJQKPA4T47xE6cXzHrdzWXwjtjWMDBCBNAo-160-160-contain"
-            />
-          </div>
-          <div class="oftware_content__frame">
-            <p class="oftware_content__frame-1">
-              <a @click="skip(data.oneId)">
-                {{
-                data.oneTitle
-                }}
-              </a>
-            </p>
-            <p class="oftware_content__frame-2">{{ data.oneText }}</p>
-
-            <p class="oftware_content__frame-3">
-              <span>剧本</span>
-              <span>测试</span>
-              <span>热度</span>
-              <span>测试</span>
-              <span>测试</span>
-            </p>
-          </div>
+      <div class="software_content-3">
+        <div
+          class="software_content-3_content"
+        >少年 发表于2017-10-23 20:43:47 | 热度：198749℃ | 懒得勤快 最后修改于2021-07-22 09:16:16</div>
+      </div>
+      <div class="software_content-2">
+        <div class="software_content-2_content">
+          在这里你可以找到更多好玩有趣的极客应用、小众软件、玩机技巧。 加入我们和玩机大神一起搞机，手机、数码、软件。。。
+          软件自带很多实用工具，比如资源搜索模块、短视频下载、小霸王游戏、森林之声白噪音功能等等。
+          最强大是内置的视频模块，只要导入视频规则就可以把它当作一款强大的影视软件，非常强大，社区内大神有分享，请自行探索！
+          软件过于强大，喜欢搞机的朋友可以自行研究！
         </div>
       </div>
     </div>
@@ -66,11 +52,10 @@
   // import OneSidebar from "./OneSidebar.vue";
   import { message } from "ant-design-vue";
   import FavSidebar from '../Navigation/FavSidebar.vue';
-  import { useRouter } from "vue-router";
   export default {
-    name: "Software",
+    name: "SoftwareContent",
     components: { FavSidebar },
-    setup(): { getOne: () => void; skip: (id: number) => void; give: (id: number) => void; } {
+    setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: number) => void; } {
       const { proxy }: any = getCurrentInstance();
       const state: any = reactive({
         dataTest: [],
@@ -78,16 +63,15 @@
         text: [],
         modal2Visible: false,
       });
-
-      const router = useRouter();
-      const skip = async (id: number) => {
-
-        await router.push({
-          path: "/SoftwareContent",
-          query: {
-            id: id,
-          },
-        });
+      const setModal1Visible = (modal2Visible: boolean, id: number) => {
+        state.modal2Visible = modal2Visible;
+        proxy
+          .$api({
+            url: "/api/SnOne/GetByIdAsync?id=" + id,
+          })
+          .then((res: any) => {
+            state.text = res.data;
+          })
 
       };
 
@@ -118,7 +102,7 @@
       onMounted(async () => {
         await getOne();
       });
-      return { ...toRefs(state), getOne, skip, give };
+      return { ...toRefs(state), getOne, setModal1Visible, give };
     },
   };
 </script>
@@ -126,7 +110,7 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  #software {
+  #softwarecontent {
     // position: fixed;
     @include w-h(100%, 100%);
     .software_main {
@@ -139,7 +123,7 @@
         .software_content_div {
           // position: relative;
           @include initialize(100%, 125px, 10px, null, null, null, #ffffff);
-          @apply mb-6 shadow rounded-sm cursor-pointer;
+          @apply mb-1 shadow rounded-sm cursor-pointer;
 
           .software_content_img {
             @include w-h(20%, 100%);
@@ -173,6 +157,20 @@
               }
             }
           }
+        }
+      }
+
+      .software_content-2 {
+        @apply m-2;
+        .software_content-2_content {
+          @apply mb-1 shadow rounded-sm p-2 bg-white;
+        }
+      }
+      .software_content-3 {
+        @apply m-2;
+        .software_content-3_content {
+          // @include initialize(100%, null, 2px, null, null, null, #ffffff);
+          @apply shadow rounded-sm p-2 bg-white;
         }
       }
     }

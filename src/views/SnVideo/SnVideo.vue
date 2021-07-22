@@ -35,7 +35,9 @@
 </template>
 
 <script lang="ts">
-  import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+
+  import { video } from '../../api/video';
+  import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   import VideoSidebar from './VideoSidebar.vue';
   export default {
@@ -44,8 +46,6 @@
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      //获取上下文实例，ctx=vue2的this
-      const { proxy }: any = getCurrentInstance();
       // 加载路由
       const router = useRouter();
       // 数据定义
@@ -54,25 +54,13 @@
         videotype: [],
       });
 
-      const VideoAll = (type: number) => {
-        proxy
-          .$api({
-            url: "/api/SnVideoType/AsyGestTest",
-          })
-          .then((res: any) => {
-            state.videotype = res.data;
-          })
-          .catch((e: never) => {
-            console.log(e + "获取数据失败");
-          });
-
-        proxy
-          .$api({
-            url: "/api/SnVideo/GetTestWhere?type=" + type,
-          })
-          .then((res: any) => {
-            state.newtype = res.data;
-          })
+      const VideoAll = async (type: number) => {
+        await video.AsyGestTest().then((res: any) => {
+          state.videotype = res.data;
+        })
+        await video.GetTypeAllAsync(type).then((res: any) => {
+          state.newtype = res.data;
+        })
 
       };
 
@@ -86,15 +74,10 @@
         });
       };
 
-      const cliname = (vid: number) => {
-        proxy
-          .$api({
-            url: "/api/SnVideo/GetTestWhere?type=" + vid,
-          })
-          .then((res: any) => {
-            state.newtype = res.data;
-          })
-
+      const cliname = async (type: number) => {
+        await video.GetTypeAllAsync(type).then((res: any) => {
+          state.newtype = res.data;
+        })
       };
 
       onMounted(async () => {

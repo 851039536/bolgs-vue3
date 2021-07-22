@@ -167,12 +167,12 @@
           .IndexTitle-title {
             height: 35%;
             @include line-ome;
-            @apply px-3 pt-1 m-1 text-xl cursor-pointer font-medium antialiased;
+            @apply px-3 pt-1 m-1 text-base font-semibold  cursor-pointer;
           }
 
           .IndexTitle-title-text {
             @include w-h(null, 44%);
-            @apply px-3 m-1 mt-2 pt-1 text-sm  leading-relaxed;
+            @apply px-3 m-1 mt-2  text-sm font-thin  leading-relaxed;
             @include line-number;
           }
         }

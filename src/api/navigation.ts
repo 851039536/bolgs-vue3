@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-07-12 11:17:28
+ * @LastEditTime: 2021-07-22 09:59:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -12,6 +12,14 @@ import request from './axios'
 export class navigation {
 
 
+
+  //查询总条数
+  static async GetCountAsync(): Promise<any> {
+    return await request({
+      url: "/api/SnNavigation/GetCountAsync",
+      method: 'get',
+    })
+  }
   //查询类别所有
   static async GetSnNavigationTypeSAllAsync(): Promise<any> {
     return await request({
@@ -23,6 +31,14 @@ export class navigation {
   static async GetTypeOrderAsync(name: string): Promise<any> {
     return await request({
       url: "api/SnNavigation/GetTypeOrderAsync?type=" + name + "&order=true",
+      method: 'get',
+    })
+  }
+
+  //分页查询
+  static async GetFyAllAsync(type: string, page: number, pagesize: number, isDesc: boolean): Promise<any> {
+    return await request({
+      url: "/api/SnNavigation/GetFyAllAsync?type=" + type + "&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=" + isDesc,
       method: 'get',
     })
   }

@@ -4,7 +4,7 @@
       <div class="flex items-center flex-shrink-0 text-black">
         <span class="text-2xl font-medium tracking-tight">少年</span>
       </div>
-      <div class="header_div">
+      <div class="header_main">
         <div class="header_text">
           <a @click="onk(1)">
             <svg class="inline-block icon" aria-hidden="true">
@@ -135,10 +135,10 @@
     position: fixed;
     @include excursion(0, null, 3%, null);
     z-index: 10;
-    @include w-h(94%, 57px);
+    @include w-h(94%, 58px);
     background-color: $back_headers;
     @apply p-2  shadow-sm rounded-sm;
-    .header_div {
+    .header_main {
       width: 100%;
       .header_text {
         @apply mt-2 text-base;

@@ -39,8 +39,9 @@
 </template>
 
 <script lang="ts">
+
+  import { video } from '../../api/video';
   import {
-    getCurrentInstance,
     reactive,
     toRefs,
     onMounted
@@ -53,10 +54,6 @@
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      //获取上下文实例，ctx=vue2的this
-      const {
-        proxy
-      }: any = getCurrentInstance();
       // 加载路由
       const route = useRoute();
       // 数据定义
@@ -67,37 +64,23 @@
         newvideo: [],
       });
 
-      const getvideo = () => {
-        proxy
-          .$api({
-            url: "/api/SnVideo/AsyGetTestId?id=" + state.id,
-          })
-          .then((res: any) => {
-            state.videourl = res.data[0].vUrl;
-            state.type = res.data[0].vTypeid;
-
-            proxy
-              .$api({
-                url: "/api/SnVideo/GetTestWhere?type=" + state.type,
-              })
-              .then((res: any) => {
-                state.newvideo = res.data;
-              })
-              .catch((e: never) => {
-                console.log(e + "获取数据失败");
-              });
-          })
+      const getvideo = async () => {
+        await video.GetByIdAsync(state.id).then((res: any) => {
+          state.videourl = res.data.vUrl;
+          state.type = res.data.vTypeid;
+        })
+        await video.GetTypeAllAsync(state.type).then((res: any) => {
+          state.newvideo = res.data;
+        })
 
       };
 
-      const videos = (id: number) => {
-        proxy
-          .$api({
-            url: "/api/SnVideo/AsyGetTestId?id=" + id,
-          })
-          .then((res: any) => {
-            state.videourl = res.data[0].vUrl;
-          })
+      const videos = async (id: number) => {
+
+        await video.GetByIdAsync(id).then((res: any) => {
+          state.videourl = res.data.vUrl;
+        })
+
 
       };
       onMounted(async () => {

@@ -226,6 +226,14 @@ const routes = [{
   },
   component: () => import('../views/Software/Software.vue')
 },
+{
+  path: '/SoftwareContent',
+  name: 'SoftwareContent',
+  meta: {
+    keepAlive: false
+  },
+  component: () => import('../views/Software/SoftwareContent.vue')
+},
 ]
 
 const router = createRouter({

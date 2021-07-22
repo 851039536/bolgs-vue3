@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-07-20 10:18:06
+ * @LastEditTime: 2021-07-22 17:11:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
@@ -13,7 +13,10 @@
       <div class="home_main_top">
         <div class="home_introduce">
           <p class="home_introduce-1 animate__animated animate__slideInDown">你好，</p>
-          <p class="home_introduce-2 animate__animated animate__slideInLeft">我叫xxx。</p>
+          <p class="home_introduce-2 animate__animated animate__slideInLeft">
+            我叫少年
+            。
+          </p>
           <p
             class="home_introduce-3 animate__animated animate__slideInLeft animate__slideInRight"
           >一位热爱生活、xxxxxx开发者。</p>

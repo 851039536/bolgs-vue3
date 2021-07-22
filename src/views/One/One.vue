@@ -81,6 +81,16 @@
         state.modal2Visible = modal2Visible;
         await one.GetByIdAsync(id).then((res: any) => {
           state.text = res.data;
+
+          if (res.data == null) {
+            console.log(res.data);
+            return;
+          } else {
+            console.log("1" + res.data.oneRead);
+            res.data.oneRead++;
+            console.log("2" + res.data.oneRead);
+            one.UpdatePortionAsync(state.text, "read");
+          }
         })
       };
 

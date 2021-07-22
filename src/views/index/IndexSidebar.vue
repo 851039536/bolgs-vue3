@@ -1,10 +1,10 @@
 <template>
   <!--  :class="{ isFixed: barFixed }" -->
-  <div class="index_si_div">
-    <div class="index_si_text">
-      <!-- <div class="font-mono sn-list0">
+  <div id="index_sidebar">
+    <div class="index_s_main">
+      <!-- <div class="sn-list0">
         <div class="sn-list0-img">
-          <img class="sn-list0-img2" id="img1" :src="User.userPhoto" alt="" />
+          <img class="sn-list0-img2" id="img1" :src="User.userPhoto" alt />
         </div>
         <div class="sn-list0-name">
           <h3 class="sn-list0-name1">{{ User.userNickname }}</h3>
@@ -20,17 +20,13 @@
             </div>
             <div class="sn-list0-tag2">
               <div>
-                <a>
-                  {{ LabelsCount }}
-                </a>
+                <a>{{ LabelsCount }}</a>
               </div>
               <div>标签</div>
             </div>
             <div class="sn-list0-tag3">
               <div>
-                <a>
-                  {{ SortCount }}
-                </a>
+                <a>{{ SortCount }}</a>
               </div>
               <div>分类</div>
             </div>
@@ -112,7 +108,7 @@
       <!-- ------------------------------------------------- -->
 
       <!-- 文章内容框 -->
-      <div class="index-si-article">
+      <!-- <div class="index-si-article">
         <div class="index-si-article-title">最新内容</div>
         <div class="index-si-article-div" v-for="articles in article" :key="articles.article_id">
           <div class="index-si-article-text">
@@ -127,7 +123,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div>-->
       <!-- ------------------------------------------------------ -->
 
       <!-- 站点统计框 -->
@@ -282,12 +278,12 @@
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
   @import "../../assets/sass/uitl";
-  .index_si_div {
+  #index_sidebar {
     position: fixed;
     @include excursion($Text_height, null, null, $sidebar_r_r);
     @include w-h(20%, 90%);
     @apply ml-3;
-    .index_si_text {
+    .index_s_main {
       @include w-h(100%, 100%);
       overflow: auto;
 
@@ -402,7 +398,7 @@
           @apply text-gray-900 p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer;
         }
         .index-si-statistics-div {
-          @apply text-sm m-2;
+          @apply m-2;
           .index-si-statistics-frame {
             .sindex-si-statistics-frame-title {
               @apply p-1;
@@ -457,19 +453,19 @@
         @apply shadow rounded;
 
         .index-si-article-title {
-          @apply text-gray-900 p-1 m-1 text-base font-semibold bg-gray-200;
+          @apply p-1 m-1 text-base font-semibold bg-gray-200;
         }
         .index-si-article-div {
           background-color: white;
           border-bottom: 1px dashed #f1f1f1;
           .index-si-article-text {
-            @apply p-1 m-1 text-sm;
+            @apply p-1 m-1;
           }
         }
       }
     }
 
-    .index_si_text::-webkit-scrollbar {
+    .index_s_main::-webkit-scrollbar {
       display: none;
     }
   }
