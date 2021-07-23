@@ -4,7 +4,7 @@
       <!-- <sncode></sncode> -->
 
       <div class="About-bg">
-        <div class="about-1" v-bind:class="[activeClass, backInDown]">
+        <div class="about-1" :class="[activeClass, backInDown]">
           <div class="about-1-1">
             <div class="about-1-1-1">
               <!-- <img :src="User.userPhoto" alt="" /> -->

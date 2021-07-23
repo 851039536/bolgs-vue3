@@ -25,6 +25,14 @@
       Arial,
       sans-serif; */
     /* font-family: "zt"; font-mono */
+    font-family: "Helvetica Neue",
+      Helvetica,
+      Arial,
+      "PingFang SC",
+      "Hiragino Sans GB",
+      "WenQuanYi Micro Hei",
+      "Microsoft Yahei",
+      sans-serif;
     @apply antialiased;
   }
 

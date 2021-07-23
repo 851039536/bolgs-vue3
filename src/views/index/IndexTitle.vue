@@ -32,10 +32,10 @@
         </div>-->
         <div @click="jump(info.article_id)">
           <a>
-            <svg class="inline-block icon" aria-hidden="true">
+            <!-- <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-liulan" />
-            </svg>
-            {{ info.read }}
+            </svg>-->
+            {{ info.read }} ℃
           </a>
         </div>
         <div>
@@ -171,6 +171,7 @@
           }
 
           .IndexTitle-title-text {
+            color: #666;
             @include w-h(null, 44%);
             @apply px-3 m-1 mt-2  text-sm font-thin  leading-relaxed;
             @include line-number;

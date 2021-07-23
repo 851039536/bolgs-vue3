@@ -213,27 +213,27 @@ $ml:25%;
 }
 
 @mixin blogs {
-  @apply shadow rounded p-4;
+  @apply shadow rounded p-3;
   @apply antialiased rounded-sm bg-white;
 
   h1 {
-    @apply text-2xl py-1 font-semibold text-gray-700 bg-white;
+    @apply text-2xl p-1 font-semibold text-gray-700 bg-white;
   }
 
   h2 {
-    @apply text-xl py-1 font-semibold text-gray-700 bg-white;
+    @apply text-xl p-1 font-semibold text-gray-700 bg-white;
   }
 
   h3 {
-    @apply text-lg py-1 font-semibold bg-white;
+    @apply text-lg p-1 font-semibold bg-white;
   }
 
   h4 {
-    @apply text-base py-1 font-semibold bg-white;
+    @apply text-base p-1 font-semibold bg-white;
   }
 
   h5 {
-    @apply text-sm py-1 font-semibold bg-white;
+    @apply text-sm p-1 font-semibold bg-white;
   }
 
   pre {
@@ -243,7 +243,7 @@ $ml:25%;
   }
 
   code {
-    @apply text-gray-700;
+    @apply text-gray-700 px-1;
 
     .hljs-keyword {
       color: #6161b3;
@@ -275,7 +275,7 @@ $ml:25%;
   }
 
   p {
-    @apply text-sm py-1 bg-white leading-relaxed antialiased;
+    @apply p-1 bg-white text-gray-800 leading-relaxed;
 
     code {
       @apply bg-gray-50 px-1 text-red-800;
@@ -290,6 +290,8 @@ $ml:25%;
     @apply p-1;
 
     li {
+      @apply p-1;
+
       code {
         color: #2008fa;
       }
@@ -313,7 +315,7 @@ $ml:25%;
   }
 
   a {
-    @apply text-red-800;
+    @apply p-1 text-red-800;
   }
 
 

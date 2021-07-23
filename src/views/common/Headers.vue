@@ -53,7 +53,7 @@
             日志
           </a>-->
 
-          <a @click="onk(12)" class="header_text_text">留言</a>
+          <!-- <a @click="onk(12)" class="header_text_text">留言</a> -->
           <a @click="onk(13)" class="header_text_text">博客园</a>
           <a @click="onk(14)" class="header_text_text">Gitee</a>
         </div>

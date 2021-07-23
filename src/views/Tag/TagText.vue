@@ -1,7 +1,7 @@
 <template>
-  <div class="SnTagText animate__animated animate__fadeIn">
+  <div :class="[SnTagText,activeClass, fadeIn]">
     <div class="flex text">
-      <div class="text-sidebar">
+      <div class="text-sidebar animate__animated" :class="[backInDown]">
         <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.article_id">
           <div class="forms-1" @click="getAll(label.article_id)">
             <a>{{ label.title }}</a>
@@ -39,6 +39,7 @@
   import markdown from "@/utils/markdown.js";
   import { article } from '../../api/article';
   import { labels } from '../../api/labels';
+  // import $ from '../assets/js/jquery.js';//非必要
   import {
 
     reactive,
@@ -56,9 +57,16 @@
         newinfo: [],
         newtext: [],
         labels: [],
-        // 获取index主页传过来的id值
         id: route.query.id,
         blog: "",
+        // -----------------------------------------
+        activeClass: "animate__animated",
+        errorClass: "animate__fadeInRightBig",
+        bounceIn: "animate__bounceIn",
+        backInDown: "animate__backInDown",
+        fadeInTopRight: "animate__fadeInTopRight",
+        fadeIn: "animate__fadeIn",
+        SnTagText: "SnTagText"
       });
 
       async function AsyGetTag(id: any): Promise<void> {
@@ -67,11 +75,12 @@
         }
         await article.GetTagtextAsync(id).then((result: any) => {
           state.newinfo = result.data;
+
         });
       }
       async function getAll(id: any): Promise<void> {
 
-        await article.AsyGetTestID(id).then((res: any) => {
+        await article.GetByIdAsync(id, true).then((res: any) => {
           const result = markdown.marked(res.data.text);
           result.then((response: any) => {
             state.blog = response.content;
@@ -83,7 +92,12 @@
       }
 
       async function GetlabelsID(id: any): Promise<void> {
+
+
+        // $('#f').addClass('animated bounceOutLeft')
         AsyGetTag(id);
+
+
       }
       onMounted(async () => {
         await AsyGetTag(state.id);

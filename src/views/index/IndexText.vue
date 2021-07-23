@@ -37,10 +37,10 @@
           </a>
         </div>
         <div class>
-          <svg class="inline-block icon" aria-hidden="true">
+          <!-- <svg class="inline-block icon" aria-hidden="true">
             <use xlink:href="#icon-liulan" />
-          </svg>
-          ({{ article_String.read }})
+          </svg>-->
+          {{ article_String.read }} ℃
         </div>
 
         <div class="IndexText-comment-text">{{ Sort.sortName }}</div>
@@ -64,7 +64,6 @@
   import { labels } from '../../api/labels';
   import { sort } from '../../api/sort';
   import {
-    getCurrentInstance,
     reactive,
     toRefs,
     onMounted,
@@ -75,7 +74,6 @@
     components: {},
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      const { proxy }: any = getCurrentInstance();
       const route = useRoute();
       const router = useRouter();
       const state: any = reactive({
@@ -104,19 +102,19 @@
 
       // 加载内容
       const GetAll = async () => {
-        await article.GetAll(state.id).then(
-          proxy.$api.spread((res1: any) => {
-            state.article_String = res1.data;
-            GetByIdAsync(state.article_String.label_id);
-            GetSortById(state.article_String.sort_id);
-            UpRead(state.article_String);
-            const article = markdown.marked(state.article_String.text);
-            article.then((response: any) => {
-              state.blog = response.content;
-            });
-            state.spinning = false;
-          })
-        )
+
+        await article.GetByIdAsync(state.id, true).then((res: any) => {
+          state.article_String = res.data;
+          GetByIdAsync(state.article_String.label_id);
+          GetSortById(state.article_String.sort_id);
+          UpRead(state.article_String);
+          const article = markdown.marked(state.article_String.text);
+          article.then((response: any) => {
+            state.blog = response.content;
+          });
+          state.spinning = false;
+        })
+
       };
       const GetByIdAsync = (id: number) => {
         labels.GetByIdAsync(id).then((result: any) => {

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-07-19 16:27:12
+ * @LastEditTime: 2021-07-23 16:45:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -41,9 +41,9 @@ export class article {
 
 
   //主键查询
-  static async AsyGetTestID(id: number): Promise<any> {
+  static async GetByIdAsync(id: number, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/AsyGetTestID?id=" + id,
+      url: "/api/SnArticle/GetByIdAsync?id=" + id + "&cache=" + cache,
       method: 'get',
     })
   }

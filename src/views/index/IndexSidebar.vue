@@ -130,19 +130,19 @@
       <div class="index-si-statistics">
         <div class="index-si-statistics-title">站点信息</div>
         <div class="index-si-statistics-div">
-          <div class="flex index-si-statistics-frame">
+          <div class="index-si-statistics-frame">
             <div class="sindex-si-statistics-frame-title">文章数量:</div>
-            <div class="sindex-si-statistics-frame-text">{{ ArticleCount }}篇</div>
+            <div class="sindex-si-statistics-frame-text">{{ ArticleCount }} 篇</div>
           </div>
-          <div class="flex index-si-statistics-frame">
-            <div class="sindex-si-statistics-frame-title">总字数:</div>
+          <div class="index-si-statistics-frame">
+            <div class="sindex-si-statistics-frame-title">总字段数:</div>
             <div class="sindex-si-statistics-frame-text">{{ textCount }} 字</div>
           </div>
-          <div class="flex index-si-statistics-frame">
-            <div class="sindex-si-statistics-frame-title">访问量:</div>
-            <div class="sindex-si-statistics-frame-text">{{ readCount }}次</div>
+          <div class="index-si-statistics-frame">
+            <div class="sindex-si-statistics-frame-title">总访问量:</div>
+            <div class="sindex-si-statistics-frame-text">{{ readCount }} ℃</div>
           </div>
-          <div class="flex index-si-statistics-frame">
+          <div class="index-si-statistics-frame">
             <div class="sindex-si-statistics-frame-title">最后更新:</div>
             <div class="sindex-si-statistics-frame-text">{{ articledata }}</div>
           </div>
@@ -371,16 +371,9 @@
         }
       }
       .index-si-describe {
-        width: 100%;
         margin: 0 auto;
-        text-align: center;
-        @apply mb-2 shadow rounded bg-white;
-        h4 {
-          height: 2rem;
-          @apply text-gray-900;
-          font-size: 15px;
-          line-height: 2.5rem;
-        }
+        color: #666;
+        @apply mb-2 shadow rounded bg-white text-center;
 
         .index-si-describe-text {
           p {
@@ -400,13 +393,12 @@
         .index-si-statistics-div {
           @apply m-2;
           .index-si-statistics-frame {
+            @apply flex justify-between mt-1;
             .sindex-si-statistics-frame-title {
               @apply p-1;
-              width: 35%;
             }
             .sindex-si-statistics-frame-text {
-              width: 40%;
-              @apply p-1;
+              @apply p-1 bg-gray-100 rounded;
             }
           }
         }
@@ -425,8 +417,8 @@
         .index-si-tag-div {
           @apply inline-flex;
           .index-si-tag-text {
-            @apply flex-1;
-            @apply text-gray-700 text-sm text-center px-1 m-1 bg-blue-100 rounded-sm;
+            @apply flex-1 p-1;
+            @apply text-gray-700 text-sm text-center  m-1 bg-gray-100 rounded-sm;
           }
         }
       }
@@ -439,10 +431,10 @@
         @apply shadow rounded;
 
         .index-si-type-title {
-          @apply text-gray-900 text-base p-1 m-1 font-semibold bg-gray-200 cursor-pointer;
+          @apply text-gray-900 text-base p-1  m-1 font-semibold bg-gray-200 cursor-pointer;
         }
         .index-si-type-text {
-          @apply bg-red-100 rounded-sm;
+          @apply p-1 bg-gray-100 rounded;
         }
       }
 
