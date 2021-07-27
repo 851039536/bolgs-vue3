@@ -11,7 +11,7 @@
         class="software_content"
         v-for="(info, index) in dataResult"
         :class="{ alt: index % 2 == 1 }"
-        :key="info.article_id"
+        :key="info.articleId"
       >
         <div class="flex software_content_div">
           <div class="software_content_img">
@@ -21,9 +21,9 @@
           </div>
           <div class="oftware_content__frame">
             <p class="oftware_content__frame-1">
-              <a @click="jump(info.article_id)">{{ info.title }}</a>
+              <a @click="jump(info.articleId)">{{ info.title }}</a>
             </p>
-            <p class="oftware_content__frame-2">{{ info.title_text }}</p>
+            <p class="oftware_content__frame-2">{{ info.titleText }}</p>
 
             <p class="oftware_content__frame-3">
               <span>剧本</span>

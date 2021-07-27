@@ -6,14 +6,14 @@
       class="IndexTitle-text"
       v-for="(info, index) in dataResult"
       :class="{ alt: index % 2 == 1 }"
-      :key="info.article_id"
+      :key="info.articleId"
     >
       <div class="flex IndexTitle-text-div">
         <div class="IndexTitle-title-div">
-          <div class="IndexTitle-title" v-on:click="jump(info.article_id)">
+          <div class="IndexTitle-title" v-on:click="jump(info.articleId)">
             <a>{{ info.title }}</a>
           </div>
-          <div class="IndexTitle-title-text">{{ info.title_text }}</div>
+          <div class="IndexTitle-title-text">{{ info.titleText }}</div>
         </div>
       </div>
       <!---------------------------------------------------------------------------->

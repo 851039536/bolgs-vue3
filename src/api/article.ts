@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-07-23 16:45:25
+ * @LastEditTime: 2021-07-27 15:07:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -33,7 +33,7 @@ export class article {
   //查询分类总条数
   static async ConutSort(id: number): Promise<any> {
     return await request({
-      url: "/api/SnArticle/ConutSort?type=" + id,
+      url: "/api/SnArticle/GetConutSortAsync?type=" + id + "&cache=true",
       method: 'get',
     })
   }
@@ -47,10 +47,10 @@ export class article {
       method: 'get',
     })
   }
-  //按标签查询
-  static async GetTagtextAsync(id: number): Promise<any> {
+  //按标签条件查询
+  static async GetTagtextAsync(id: number, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetTagtextAsync?labelId=" + id + "&isDesc=true",
+      url: "/api/SnArticle/GetTagAsync?labelId=" + id + "&isDesc=true&cache=" + cache,
       method: 'get',
     })
   }
@@ -71,7 +71,7 @@ export class article {
   //分类分页查询
   static async GetFySortTitleAsync(page: number, pagesize: number): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetfySortTestAsync?type=7&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=true",
+      url: "/api/SnArticle/GetfySortTestAsync?type=7&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=true&cache=true",
       method: 'get',
     })
   }

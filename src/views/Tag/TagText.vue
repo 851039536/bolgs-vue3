@@ -2,8 +2,8 @@
   <div :class="[SnTagText,activeClass, fadeIn]">
     <div class="flex text">
       <div class="text-sidebar animate__animated" :class="[backInDown]">
-        <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.article_id">
-          <div class="forms-1" @click="getAll(label.article_id)">
+        <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.articleId">
+          <div class="forms-1" @click="getAll1(label.articleId)">
             <a>{{ label.title }}</a>
           </div>
           <div class="forms-2">{{ label.time }}</div>
@@ -73,12 +73,13 @@
         if (id == null) {
           id = 1;
         }
-        await article.GetTagtextAsync(id).then((result: any) => {
+        await article.GetTagtextAsync(id, true).then((result: any) => {
           state.newinfo = result.data;
 
         });
       }
-      async function getAll(id: any): Promise<void> {
+
+      async function getAll1(id: any): Promise<void> {
 
         await article.GetByIdAsync(id, true).then((res: any) => {
           const result = markdown.marked(res.data.text);
@@ -86,28 +87,34 @@
             state.blog = response.content;
           });
         });
+
+      }
+      async function getAll(): Promise<void> {
+
+        // await article.GetByIdAsync(id, true).then((res: any) => {
+        //   const result = markdown.marked(res.data.text);
+        //   result.then((response: any) => {
+        //     state.blog = response.content;
+        //   });
+        // });
         await labels.GetAllAsync().then((result: any) => {
           state.labels = result.data;
         });
       }
 
       async function GetlabelsID(id: any): Promise<void> {
-
-
-        // $('#f').addClass('animated bounceOutLeft')
         AsyGetTag(id);
-
-
       }
       onMounted(async () => {
         await AsyGetTag(state.id);
-        await getAll(1);
+        await getAll();
       });
 
       return {
         ...toRefs(state),
         AsyGetTag,
         getAll,
+        getAll1,
         GetlabelsID,
       };
     },

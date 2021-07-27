@@ -105,8 +105,8 @@
 
         await article.GetByIdAsync(state.id, true).then((res: any) => {
           state.article_String = res.data;
-          GetByIdAsync(state.article_String.label_id);
-          GetSortById(state.article_String.sort_id);
+          GetByIdAsync(state.article_String.labelId);
+          GetSortById(state.article_String.sortId);
           UpRead(state.article_String);
           const article = markdown.marked(state.article_String.text);
           article.then((response: any) => {
@@ -136,7 +136,7 @@
           // console.log(info.read);
           info.read++;
           // console.log(state.id + "-" + info.read);
-          await article.UpdatePortionAsync(info, "read");
+          await article.UpdatePortionAsync(info, "Read");
         }
       };
       // 点击数
@@ -148,7 +148,7 @@
         } else {
           info.give++;
           // console.log(info.give);
-          await article.UpdatePortionAsync(info, "give")
+          await article.UpdatePortionAsync(info, "Give")
             .then((res: any) => {
               if (res.status === 200) {
                 state.timebool = false;
