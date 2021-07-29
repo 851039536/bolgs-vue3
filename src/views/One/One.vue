@@ -52,7 +52,7 @@
         centered
         cancelText="赞"
         :closable="false"
-        okText="不了"
+        okText="关闭"
         @cancel="give(text.OneId)"
         @ok="modal2Visible = false"
       >

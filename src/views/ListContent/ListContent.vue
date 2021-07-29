@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-09 10:55:56
+ * @LastEditTime: 2021-07-29 14:43:47
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\ListContent\ListContent.vue
+-->
 
 <template>
   <div>
@@ -8,97 +16,61 @@
       <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
         <div class="ListContent_div">
           <div class="ListContent_text">
-            <div>From 少年 To Jenny</div>
-            <div>1111111111111111111111</div>
-            <div>22222222222222222222222</div>
-            <div>233333333333333333333333333</div>
-            <div>222222222222222222222</div>
-            <div>21111111111111</div>
-            <div>23233333333333333</div>
-            <div>22333333333333333333333333</div>
-            <div>22222222222222222222222</div>
-            <div>2222222222222222222222222</div>
-            <div>2021-01-11</div>
+            <div class="ListContent_t_title">
+              <div>博客园</div>
+              <div>最新</div>
+            </div>
+            <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
+              <a :href="listHref[index]" target="_blank">
+                <span>{{index}}</span>
+                {{res}}
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="ListContent_div">
           <div class="ListContent_text">
-            <div>From 少年 To Jenny</div>
-            <div>1111111111111111111111</div>
-            <div>22222222222222222222222</div>
-            <div>233333333333333333333333333</div>
-            <div>222222222222222222222</div>
-            <div>21111111111111</div>
-            <div>23233333333333333</div>
-            <div>22333333333333333333333333</div>
-            <div>22222222222222222222222</div>
-            <div>2222222222222222222222222</div>
-            <div>2021-01-11</div>
+            <div class="ListContent_t_title">
+              <div>博客园</div>
+              <div>最新</div>
+            </div>
+            <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
+              <a :href="listHref[index]" target="_blank">
+                <span>{{index}}</span>
+                {{res}}
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="ListContent_div">
           <div class="ListContent_text">
-            <div>From 少年 To Jenny</div>
-            <div>1111111111111111111111</div>
-            <div>22222222222222222222222</div>
-            <div>233333333333333333333333333</div>
-            <div>222222222222222222222</div>
-            <div>21111111111111</div>
-            <div>23233333333333333</div>
-            <div>22333333333333333333333333</div>
-            <div>22222222222222222222222</div>
-            <div>2222222222222222222222222</div>
-            <div>2021-01-11</div>
+            <div class="ListContent_t_title">
+              <div>博客园</div>
+              <div>最新</div>
+            </div>
+            <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
+              <a :href="listHref[index]" target="_blank">
+                <span>{{index}}</span>
+                {{res}}
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="ListContent_div">
           <div class="ListContent_text">
-            <div>From 少年 To Jenny</div>
-            <div>1111111111111111111111</div>
-            <div>22222222222222222222222</div>
-            <div>233333333333333333333333333</div>
-            <div>222222222222222222222</div>
-            <div>21111111111111</div>
-            <div>23233333333333333</div>
-            <div>22333333333333333333333333</div>
-            <div>22222222222222222222222</div>
-            <div>2222222222222222222222222</div>
-            <div>2021-01-11</div>
-          </div>
-        </div>
-
-        <div class="ListContent_div">
-          <div class="ListContent_text">
-            <div>From 少年 To Jenny</div>
-            <div>1111111111111111111111</div>
-            <div>22222222222222222222222</div>
-            <div>233333333333333333333333333</div>
-            <div>222222222222222222222</div>
-            <div>21111111111111</div>
-            <div>23233333333333333</div>
-            <div>22333333333333333333333333</div>
-            <div>22222222222222222222222</div>
-            <div>2222222222222222222222222</div>
-            <div>2021-01-11</div>
-          </div>
-        </div>
-
-        <div class="ListContent_div">
-          <div class="ListContent_text">
-            <div>From 少年 To Jenny</div>
-            <div>1111111111111111111111</div>
-            <div>22222222222222222222222</div>
-            <div>233333333333333333333333333</div>
-            <div>222222222222222222222</div>
-            <div>21111111111111</div>
-            <div>23233333333333333</div>
-            <div>22333333333333333333333333</div>
-            <div>22222222222222222222222</div>
-            <div>2222222222222222222222222</div>
-            <div>2021-01-11</div>
+            <div class="ListContent_t_title">
+              <div>博客园</div>
+              <div>最新</div>
+            </div>
+            <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
+              <a :href="listHref[index]" target="_blank">
+                <span>{{index}}</span>
+                {{res}}
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -106,10 +78,46 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { reactive, toRefs, onMounted } from "vue";
+  import { listContent } from '../../api/listContent';
+  import { message } from 'ant-design-vue';
   export default {
     components: {},
     name: "ListContent",
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+
+      const state = reactive({
+        listTitle: [],
+        listHref: []
+      });
+      const info = () => {
+        message.info('功能进行中...');
+      };
+      const testall = async () => {
+        {
+          listContent.Cnblogs().then(res => {
+            let str = res.data;
+            for (let index = 0; index < str.length; index++) {
+              const element = str[index].split("-");
+              state.listTitle[index] = element[0]
+              state.listHref[index] = element[1]
+            }
+          })
+        }
+      }
+      onMounted(async () => {
+        await testall();
+        info();
+      });
+
+      return {
+        ...toRefs(state),
+        testall,
+        info
+      };
+    }
   }
 </script>
 
@@ -129,11 +137,25 @@
     }
     .ListContent_div {
       @apply m-3;
-      @apply rounded-md shadow;
-      background-color: #ffffff;
+      @apply rounded shadow;
+
       .ListContent_text {
-        color: #5f6c7b;
-        @apply p-2 px-4 text-base;
+        @apply p-2  text-sm bg-white rounded;
+
+        .ListContent_t_title {
+          @apply bg-gray-100 flex justify-between rounded;
+          div {
+            @apply p-1;
+          }
+        }
+        .ListContent_t_content {
+          @apply p-1;
+          a {
+            span {
+              @apply bg-gray-200  px-1  rounded;
+            }
+          }
+        }
       }
     }
   }

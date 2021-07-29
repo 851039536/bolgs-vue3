@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-07-22 17:11:27
+ * @LastEditTime: 2021-07-28 11:06:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
@@ -67,6 +67,7 @@
   @import "../../assets/sass/uitl";
   #home {
     position: fixed;
+    z-index: 6;
     @apply bg-white;
     @include w-h(100%, 100%);
 

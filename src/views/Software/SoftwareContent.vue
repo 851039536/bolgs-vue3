@@ -48,6 +48,7 @@
 </template>
 
 <script lang="ts">
+
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   // import OneSidebar from "./OneSidebar.vue";
   import { message } from "ant-design-vue";
@@ -61,6 +62,8 @@
         dataTest: [],
         dataOne: [],
         text: [],
+        listResult: [],
+
         modal2Visible: false,
       });
       const setModal1Visible = (modal2Visible: boolean, id: number) => {
@@ -100,6 +103,8 @@
         message.info(id + "功能未完成");
       };
       onMounted(async () => {
+
+
         await getOne();
       });
       return { ...toRefs(state), getOne, setModal1Visible, give };

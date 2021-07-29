@@ -134,7 +134,7 @@
   .header-sn {
     position: fixed;
     @include excursion(0, null, 3%, null);
-    z-index: 10;
+    z-index: 5;
     @include w-h(94%, 58px);
     background-color: $back_headers;
     @apply p-2  shadow-sm rounded-sm;
