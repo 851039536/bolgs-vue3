@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-09 10:55:56
- * @LastEditTime: 2021-07-29 14:43:47
+ * @LastEditTime: 2021-07-29 15:29:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\ListContent\ListContent.vue
@@ -89,8 +89,8 @@
     setup() {
 
       const state = reactive({
-        listTitle: [],
-        listHref: []
+        listTitle: [] as any[],
+        listHref: [] as any[]
       });
       const info = () => {
         message.info('功能进行中...');

@@ -1,0 +1,164 @@
+@import "../../assets/sass/com";
+@import "../../assets/sass/uitl";
+
+.color {
+  color: #42b983;
+}
+
+/* 规定动画，改变y轴偏移距离*/
+@keyframes animation-y {
+  0% {
+    transform: translate(-50%, 100px) scale(0);
+  }
+
+  50% {
+    transform: translate(-50%, -100px) scale(1.5);
+  }
+
+  100% {
+    transform: translate(-50%, -300px) scale(1.5);
+  }
+}
+
+/* 规定动画，改变x轴偏移距离 */
+@keyframes animation-x {
+  0% {
+    margin-left: 0px;
+  }
+
+  25% {
+    margin-left: 25px;
+  }
+
+  75% {
+    margin-left: -25px;
+  }
+
+  100% {
+    margin-left: 0px;
+  }
+}
+
+.like {
+  position: fixed;
+  left: 90%;
+  bottom: 35%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134959/40/26/8929/5ec79d68E968b0377/aa4feff2b7bcf231.png);
+  animation: animation-x 3s 0s linear infinite, animation-y 4s 0s linear 1;
+}
+
+.like--is-second {
+  background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134906/37/26/9080/5ec79d5dE90e5f972/bc39e647c61c8bab.png);
+  animation: animation-x 3s -2s linear infinite, animation-y 4s 0s linear 1;
+}
+
+.btn {
+  position: fixed;
+  left: 90%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  top: 80%;
+  user-select: none;
+  width: 50px;
+  line-height: 50px;
+  background: rgb(255, 0, 179);
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #999;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  opacity: 1;
+}
+
+/*底部*/
+.IndexText-copyright {
+  @include initialize($w, null, 1px, null, $ml, null, null);
+  @apply shadow rounded;
+  @apply cursor-pointer bg-white text-black;
+
+  .IndexText-copyright-text {
+    @apply p-1;
+
+    div {
+      border-bottom: 1px dashed #f1f1f1;
+      @apply p-1 m-1 text-sm font-light;
+    }
+  }
+
+  .IndexText-comment {
+    .IndexText-comment-text {
+      @apply bg-blue-400 shadow rounded-sm;
+    }
+
+    div {
+      @apply text-center px-1 py-1 m-2 text-sm font-light;
+    }
+  }
+}
+
+.icons {
+  @include w-h(1.5em, 1.5em);
+}
+
+/*编译器组件*/
+.IndexText-text {
+  @include w-h($w, null);
+  margin: 28px 0 0 $ml;
+}
+
+/*返回上一页*/
+.IndexText-title {
+  position: relative;
+  @include initialize($w, 40px, $Text_height, null, $ml, null, #ffffff);
+  @apply shadow rounded cursor-pointer;
+
+  .ant-page-header-heading-title {
+    @apply text-lg;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ant-page-header {
+    @apply shadow-sm rounded-sm;
+  }
+
+  .ant-page-header-back {
+    @apply mt-0;
+  }
+}
+
+.blog {
+  @include blogs;
+}
+
+@screen xp {
+  .IndexText-title {
+    width: 100%;
+    @apply ml-0;
+  }
+
+  .IndexText-text {
+    width: 100%;
+    @apply ml-0 mt-7;
+  }
+
+  .IndexText-copyright {
+    width: 100% !important;
+    @apply ml-0 #{!important};
+  }
+}

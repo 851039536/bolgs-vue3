@@ -13,7 +13,7 @@
           <div class="IndexTitle-title" v-on:click="jump(info.articleId)">
             <a>{{ info.title }}</a>
           </div>
-          <div class="IndexTitle-title-text">{{ info.titleText }}</div>
+          <div class="IndexTitle-title-text">摘要: {{ info.titleText }}</div>
         </div>
       </div>
       <!---------------------------------------------------------------------------->
@@ -143,79 +143,5 @@
 </script>
 
 <style lang="scss" >
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-
-  .IndexTitle {
-    @include initialize($w, null, $Text_height, null, $ml, null, null);
-    p {
-      @apply mb-4 text-xs;
-    }
-    .IndexTitle-img {
-      @include w-h(null, 140px);
-      background: no-repeat center/100% url("../../assets/img/bg.jpg");
-      @include boxshow3;
-    }
-    .IndexTitle-text {
-      @include w-h(100%, 145px);
-      @apply mb-3 mt-2 bg-white shadow rounded-md;
-      .IndexTitle-text-div {
-        @include w-h(null, 78%);
-        .IndexTitle-title-div {
-          @include w-h(100%, 100%);
-          .IndexTitle-title {
-            height: 35%;
-            @include line-ome;
-            @apply px-3 pt-1 m-1 text-base font-semibold  cursor-pointer;
-          }
-
-          .IndexTitle-title-text {
-            color: #666;
-            @include w-h(null, 44%);
-            @apply px-3 m-1 mt-2  text-sm font-thin  leading-relaxed;
-            @include line-number;
-          }
-        }
-      }
-
-      .IndexTitle-user {
-        @include w-h(100%, 25%);
-        @apply pl-3;
-        div {
-          @include w-h(null, 78%);
-          @apply m-1;
-        }
-        .IndexTitle-user_type {
-          // @apply bg-gray-300;
-        }
-      }
-    }
-
-    .IndexTitle-page {
-      width: 100%;
-      @apply py-5 bg-white shadow rounded;
-    }
-  }
-
-  @screen xp {
-    .index_si_div {
-      @apply hidden;
-    }
-    .sidebarsn {
-      @apply hidden;
-    }
-    .IndexTitle {
-      // @apply bg-gray-400;
-      width: 100%;
-      @apply ml-0;
-
-      .IndexTitle-img {
-        @apply hidden;
-      }
-    }
-
-    .IndexTitle-page {
-      height: 110px;
-    }
-  }
+  @import "./scss/indexTitle.scss";
 </style>
