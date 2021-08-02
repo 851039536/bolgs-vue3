@@ -41,7 +41,7 @@ const routes = [{
   meta: {
     keepAlive: true // 缓存
   },
-  component: () => import('../views/index.vue'),
+  component: () => import('../views/Index.vue'),
 },
 {
   path: '/Headers',
