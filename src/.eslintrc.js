@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:18:11
- * @LastEditTime: 2021-05-08 15:30:05
+ * @LastEditTime: 2021-08-03 09:30:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\.eslintrc.js
@@ -28,5 +28,9 @@ module.exports = {
     '@typescript-eslint/no-this-alias': 'off',
     // 允许使用any类型
     '@typescript-eslint/no-explicit-any': ['off'],
+    //Missing return type on function
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+
+
   }
 }

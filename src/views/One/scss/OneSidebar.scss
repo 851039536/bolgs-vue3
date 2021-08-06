@@ -1,0 +1,154 @@
+  @import "../../assets/sass/com";
+  @import "../../assets/sass/uitl";
+
+  .One-Sidebar {
+    position: fixed;
+    @include excursion($Text_height, null, null, $sidebar_r_r);
+    @include w-h(20%, 90%);
+    /*background-color: #4d4f91;*/
+    @apply ml-3;
+
+    .One-Sidebar-div {
+      /*background-color: #55a532;*/
+      @include w-h(100%, 100%);
+      overflow: auto;
+
+      .TalkSidebar-text-1 {
+        @include w-h(100%, 50px);
+        margin: 0 auto;
+        @apply mb-3;
+        @apply shadow rounded;
+
+        .TalkSidebar-text-1-1 {
+          /*background-color: #95999c;*/
+          @include w-h(60%, 100%);
+          margin: 0 auto;
+
+          .TalkSidebar-text-1-2 {
+            /*background-color: #4eb687;*/
+            @apply text-center py-2 m-1 cursor-pointer;
+          }
+        }
+      }
+
+      .TalkSidebar-text-2 {
+        width: 100%;
+        margin: 0 auto;
+        @apply mb-3;
+        @apply shadow rounded;
+      }
+
+      .TalkSidebar-text-3 {
+        width: 100%;
+        margin: 0 auto;
+        @apply mb-3;
+        @apply shadow rounded;
+
+        #calendar {
+          height: 200px;
+        }
+      }
+
+      .el-calendar-table .el-calendar-day {
+        height: 44px !important;
+      }
+
+      .One-Sidebar-describe {
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        text-align: center;
+        @apply mb-2;
+        @apply shadow rounded;
+        //@include gradient-text;
+
+        h4 {
+          height: 2rem;
+          color: #1b1e21;
+          font-size: 15px;
+          line-height: 2.5rem;
+        }
+
+        .One-Sidebar-describe-text {
+          p {
+            @apply text-sm px-2 py-4 m-1 cursor-pointer;
+          }
+        }
+      }
+
+      .sn-list8 {
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        @apply p-1 mb-2 cursor-pointer;
+        @apply shadow rounded;
+
+        .sn-list8-1 {
+          color: #1b1e21;
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+        }
+
+        .sn-list8-2 {
+          @apply text-sm m-2;
+
+          .sn-list8-2-1 {
+
+            /*background-color: #6990f6;*/
+            .sn-list8-2-1-1 {
+              /*background-color: #dddddd;*/
+              @apply p-1;
+              width: 35%;
+            }
+
+            .sn-list8-2-1-2 {
+              width: 40%;
+              @apply p-1;
+              /*background-color: #55a532;*/
+            }
+          }
+        }
+      }
+
+      .sn-list5 {
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        @apply p-1 mb-2 cursor-pointer;
+        @apply shadow rounded;
+
+        .sn-list5-1 {
+          color: #1b1e21;
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+        }
+      }
+
+      .One-Sidebar-textlist {
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        @apply p-1 mb-2 cursor-pointer;
+        @apply shadow rounded;
+
+        .One-Sidebar-textlist-title {
+          color: #1b1e21;
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+        }
+
+        .TalkSidebar-text-4-2 {
+          border-bottom: 1px dashed #f1f1f1;
+        }
+      }
+    }
+
+    .TalkSidebar-text::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.1em;
+    fill: currentColor;
+    overflow: hidden;
+  }

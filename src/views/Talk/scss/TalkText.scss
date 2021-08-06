@@ -1,0 +1,96 @@
+ @import "../../assets/sass/com";
+ @import "../../assets/sass/uitl";
+
+ .lo {
+   position: fixed;
+   top: 50%;
+   width: 100%;
+ }
+
+ /*底部*/
+ .article-3 {
+   @include initialize($w, null, 1px, null, $ml, null, null);
+   @apply shadow rounded;
+   @apply cursor-pointer bg-white text-black;
+
+   .article-3-1 {
+     /*background-color: #55ff00;*/
+     @apply p-1;
+
+     div {
+       border-bottom: 1px dashed #f1f1f1;
+       /*background-color: #4eb687;*/
+       @apply p-1 m-1 text-sm font-light;
+     }
+   }
+
+   .article-3-2 {
+     div {
+       /*background-color: #795da3;*/
+       @apply text-center px-1 py-2 m-2 text-sm font-light;
+     }
+   }
+ }
+
+ .icons {
+   @include w-h(1.5em, 1.5em);
+ }
+
+ /*编译器组件*/
+ .editor {
+   @include w-h($w, null);
+   margin: 38px 0 0 $ml;
+ }
+
+ /*左侧边栏*/
+ .article-text {
+   position: fixed;
+   @include excursion(61px, null, 1%, null);
+   @include w-h(17%, bull);
+   @apply shadow rounded-sm;
+   @apply font-sans bg-white;
+
+   .article-text-1 {
+     @apply font-semibold bg-gray-200 cursor-pointer;
+   }
+
+   .article-text-2 {
+     // background-color: #9a6e3a;
+     @apply m-1 cursor-pointer;
+
+     div {
+       /*background-color: #55a532;*/
+       @apply m-1 p-1 px-3 text-base;
+       border-bottom: 1px dashed #f1f1f1;
+     }
+   }
+ }
+
+ /*返回上一页*/
+ .Talk-title {
+   position: relative;
+   @include initialize($w, 30px, 60px, null, $ml, null, #ffffff);
+   @apply shadow rounded cursor-pointer;
+
+   p {
+     line-height: 30px;
+     font-weight: 800;
+   }
+
+   a {
+     position: absolute;
+     @include excursion(1px, null, 8px, null);
+   }
+
+   .ant-page-header {
+     @apply shadow rounded-sm;
+   }
+
+   .ant-page-header-back {
+     @apply mt-1;
+   }
+ }
+
+ .Talkblog {
+   @include blogs;
+ }

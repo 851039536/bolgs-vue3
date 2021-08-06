@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-10 11:29:37
+ * @LastEditTime: 2021-08-06 15:13:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\store\index.ts
@@ -18,7 +18,10 @@ export default createStore({
     LabelsCount: 0, //标签总数
     readCount: 0, //阅读
     token: "test",
+    //设置页面是否新窗口打开
+    SetPage: true
   },
+
   mutations: {
 
   },

@@ -1,38 +1,20 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-08 11:27:26
+ * @LastEditTime: 2021-08-06 12:16:32
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
+-->
 <template>
   <div class="sidebarsn">
     <div class="si_scroll">
       <div class="si_img">
         <img src="@/assets/img/si.jpg" alt />
       </div>
-      <div class="si_text">
-        <p @click="nav(1)">舔狗日记</p>
+      <div class="si_text" v-for="(item, index) in ResultList" :key="index">
+        <p @click="nav(item.path)" v-if="item.identity">{{item.title}}</p>
       </div>
-      <div class="si_text">
-        <p @click="nav(2)">bili视频</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(4)">网站收藏</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(5)">博客导航</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(6)">我的书单</p>
-      </div>
-
-      <div class="si_text">
-        <p @click="nav(8)">聚合搜索</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(9)">博客日记</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(10)">工具软件</p>
-      </div>
-      <div class="si_text">
-        <p @click="nav(7)">后台管理</p>
-      </div>
-
       <div class="si_website">
         <a href="http://oykperson.xyz">http://oykperson.xyz</a>
       </div>
@@ -47,108 +29,46 @@
 
 <script lang="ts">
   import { useRouter } from "vue-router";
+  import { interfaces } from '../../api/interfaces';
+  import {
+    reactive,
+    toRefs,
+    onMounted,
+  } from "vue";
   export default {
     name: "Sidebarsn",
-    setup(): { nav: (num: number) => Promise<void>; } {
+    setup(): { nav: (num: string) => Promise<void>; queryAll: () => Promise<void>; } {
+
+
+      const state: any = reactive({
+        ResultList: [],
+      });
       const router = useRouter();
-      let nav = async (num: number) => {
-        switch (num) {
-          case 1:
-            router.push("/One");
-            break;
-          case 2:
-            router.push("/SnVideo");
-            break;
-          case 3:
-            // this.$router.push('/AfterLogin')
-            break;
-          case 4:
-            router.push("./favorite");
-            break;
-          case 5:
-            router.push("./BlogCircles");
-
-            break;
-          case 6:
-            router.push("./Book");
-            break;
-          case 7:
-            window.open("http://localhost:8082/");
-            break;
-          case 8:
-            router.push("./ListContent");
-            break;
-          case 9:
-            router.push("./Blogs");
-            break;
-          case 10:
-            router.push("./Software");
-            break;
-          default:
-            router.push("./index");
-            break;
-        }
+      let nav = async (num: string) => {
+        router.push({
+          path: num,
+          query: {
+            t: +new Date()
+          }
+        })
       };
-
+      const queryAll = async () => {
+        await interfaces.GetTypeAsync(4, 2).then((res: any) => {
+          state.ResultList = res.data;
+        })
+      };
+      onMounted(async () => {
+        await queryAll();
+      });
       return {
+        ...toRefs(state),
         nav,
+        queryAll,
+
       };
     },
   };
 </script>
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-  .sidebarsn {
-    position: relative;
-    @include w-h(20%, 100%);
-    position: fixed;
-    @include excursion($Text_height, null, 3%, null);
-    background-color: $back_sidebar;
-    @apply shadow rounded-md;
-
-    .si_scroll {
-      height: 80%;
-      overflow: auto;
-      .bgys {
-        position: absolute;
-        top: 0;
-        @include w-h(100%, 100%);
-      }
-      .si_img {
-        img {
-          @include w-h(100%, 140px);
-          @apply rounded-md;
-        }
-      }
-      .si_text {
-        // background-color: #55a532;
-        @include initialize(40%, 30px, 5px, auto, auto, auto, null);
-        @apply text-center antialiased cursor-pointer;
-        p {
-          @apply py-1 px-4 text-base font-light;
-        }
-        p:hover {
-          color: #f08080;
-        }
-      }
-      .si_website {
-        position: absolute;
-        bottom: 18%;
-        margin-left: 25%;
-      }
-      .si_described {
-        position: absolute;
-        bottom: 12%;
-        @apply text-xs;
-        .si_described_text {
-          text-align: center;
-          color: #333336;
-        }
-      }
-    }
-    .si_scroll::-webkit-scrollbar {
-      display: none;
-    }
-  }
+  @import "./scss/Sidebarsn.scss";
 </style>

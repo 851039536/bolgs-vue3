@@ -158,7 +158,21 @@ $ml:25%;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-all;
-  /*在任何地方换行*/
+}
+
+@mixin m-center {
+  margin: 0 auto;
+}
+
+@mixin line-numbers($num) {
+  text-overflow: ellipsis;
+  /*有些示例里需要定义该属性，实际可省略*/
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  /*规定超过两行的部分截断*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 @mixin scroll {

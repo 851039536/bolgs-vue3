@@ -1,0 +1,98 @@
+@import "../../assets/sass/com";
+@import "../../assets/sass/uitl";
+
+#home {
+  @apply fixed z-20;
+  @apply bg-gray-600;
+
+  @include w-h(100%, 100%);
+
+  .home_main {
+
+    position: absolute;
+    width: 42%;
+    height: 80%;
+
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    width: 800px;
+    @apply bg-gray-50 shadow-xl rounded-sm;
+
+    .home_main_top {
+      @apply bg-gray-50 m-1;
+
+      .home_introduce {
+        @apply text-center p-1;
+        @include initialize(50%, 40%, 13%, null, 25%, null, null);
+
+        p {
+          @apply mt-3;
+        }
+
+        .home_introduce-1 {
+          @apply text-7xl;
+        }
+
+        .home_introduce-2 {
+          @apply text-6xl;
+        }
+
+        .home_introduce-3 {
+          @apply text-3xl;
+        }
+
+        .home_introduce-4 {
+          @apply text-4xl;
+        }
+      }
+    }
+
+    .home_enter {
+      @apply text-3xl mt-10;
+
+      div {
+        width: 20%;
+        margin: auto;
+
+        @apply text-center rounded;
+
+      }
+
+      // .home_enter-2 {
+      //   @include initialize(50%, 100%, null, null, null, null, null);
+      //   @apply bg-gray-50 text-center shadow;
+      // }
+    }
+  }
+}
+
+@screen xp {
+  #home .home_main .home_main_top {
+    @include initialize(100%, 50%, 35%, null, null, null, null);
+  }
+
+  #home .home_main .home_enter {
+    @include initialize(45%, null, null, null, 26%, null, null);
+  }
+
+  #home .home_main .home_main_top .home_introduce .home_introduce-1 {
+    @apply text-5xl;
+  }
+
+  #home .home_main .home_main_top .home_introduce .home_introduce-2 {
+    @apply text-4xl;
+  }
+
+  #home .home_main .home_main_top .home_introduce .home_introduce-3 {
+    @apply text-3xl;
+  }
+
+  #home .home_main .home_main_top .home_introduce .home_introduce-4 {
+    @apply text-2xl;
+  }
+}

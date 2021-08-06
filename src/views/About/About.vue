@@ -1,5 +1,5 @@
 <template>
-  <div class="About">
+  <div id="About">
     <div class="About-div gradient-bg animate__animated animate__fadeIn">
       <!-- <sncode></sncode> -->
 
@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="about-1-2">
-            <a>{{ User.userBrief }}</a>
+            <a>{{ User.brief }}</a>
           </div>
           <div class="flex items-center about-1-3">
             <div class="flex-1 about-1-3-1">
@@ -138,9 +138,7 @@
 
   export default {
     name: "About",
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      // const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const router = useRouter();
       const state = reactive({
         activeClass: "animate__animated",
@@ -164,9 +162,9 @@
       };
       const getall = async () => {
 
-        await user.GetAll()
+        await user.GetByIdAsync(4)
           .then((res: any) => {
-            state.User = res.data[0];
+            state.User = res.data;
           })
       };
 
@@ -199,221 +197,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-  .About {
-    @include w-h(100%, 100%);
-    /* 关于界面 */
-    .About-div {
-      @include initialize(93%, 100%, $Text_height, auto, auto, auto, #ffffff);
-      padding: 0 0 1.25rem 0;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      .About-bg {
-        height: 500px;
-        /* 背景图片 */
-        background: no-repeat center/100% url("../../assets/img/ab.jpg");
-        @include boxshow;
-
-        .about-1 {
-          /*background-color: #0086b3;*/
-          @include initialize(35%, 61%, 5%, auto, auto, auto, null);
-          @include boxshow;
-
-          .about-1-1 {
-            /*background-color: #55ff00;*/
-            height: 50%;
-
-            .about-1-1-1 {
-              @include initialize(160px, 140px, 3%, auto, auto, auto, null);
-              @apply p-3;
-              img {
-                @include w-h(100%, 100%);
-                border-radius: 2%;
-              }
-            }
-          }
-
-          .about-1-2 {
-            @include initialize(null, 20%, 0, auto, auto, auto, #4d4d4d);
-            @apply p-1 pt-4 text-lg text-center;
-            a {
-              background-image: linear-gradient(90deg, #f66, #f90);
-              background-clip: text;
-              animation: hue 5s linear infinite;
-              -webkit-text-fill-color: transparent;
-              @keyframes hue {
-                from {
-                  filter: hue-rotate(0);
-                }
-                to {
-                  filter: hue-rotate(-1turn);
-                }
-              }
-            }
-          }
-
-          .about-1-3 {
-            /*background-color: #55a532;*/
-            @include initialize(50%, 30%, 0, auto, auto, auto, null);
-            .about-1-3-1 {
-              /*background-color: #4eb687;*/
-              @apply text-center py-2 m-1;
-            }
-          }
-        }
-
-        .about-2 {
-          @include initialize(35%, null, 10px, auto, auto, auto, null);
-          @apply text-base cursor-pointer bg-gray-200;
-          @apply shadow rounded-sm;
-          .about-2-1 {
-            @apply pl-5;
-          }
-        }
-
-        .about-3 {
-          /*background-color: #6990f6;*/
-          @include initialize(55%, null, 20px, auto, auto, auto, null);
-        }
-      }
-
-      .bg-2 {
-        width: 100%;
-        /*background-color: #95999c;*/
-
-        margin: 10px auto 0 auto;
-
-        .bg-2-1 {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-          @apply m-2;
-          /*background-color: #4eb687;*/
-          .bg-2-1-1 {
-            /*background-color: #0086b3;*/
-            @apply m-2 text-lg;
-          }
-
-          .bg-2-1-2 {
-            /*background-color: #55ff00;*/
-            @apply m-2 text-base font-light;
-          }
-        }
-
-        .bg-2-2 {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-          @apply m-2;
-          /*background-color: #4eb687;*/
-
-          .bg-2-2-1 {
-            /*background-color: #0086b3;*/
-            @apply m-2 text-lg;
-          }
-
-          .bg-2-2-2 {
-            /*background-color: #55ff00;*/
-            @apply m-2 text-base font-light;
-          }
-        }
-
-        .bg-2-3 {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-          @apply m-2 text-lg;
-          /*background-color: #4eb687;*/
-
-          .bg-2-3-1 {
-            /*background-color: #0086b3;*/
-            @apply m-2;
-          }
-
-          .bg-2-3-2 {
-            /*background-color: #55ff00;*/
-            @apply m-2 text-base font-light;
-          }
-        }
-      }
-    }
-
-    /*.about::-webkit-scrollbar{*/
-    /*    display: none;*/
-    /*}*/
-  }
-
-  .icon {
-    width: 1.5em;
-    height: 1.5em;
-    vertical-align: -0.5rem;
-    fill: currentColor;
-    overflow: hidden;
-  }
-
-  /* 规定动画，改变y轴偏移距离*/
-  @keyframes animation-y {
-    0% {
-      transform: translate(-50%, 100px) scale(0);
-    }
-    50% {
-      transform: translate(-50%, -100px) scale(1.5);
-    }
-    100% {
-      transform: translate(-50%, -300px) scale(1.5);
-    }
-  }
-  /* 规定动画，改变x轴偏移距离 */
-  @keyframes animation-x {
-    0% {
-      margin-left: 0px;
-    }
-    25% {
-      margin-left: 25px;
-    }
-    75% {
-      margin-left: -25px;
-    }
-    100% {
-      margin-left: 0px;
-    }
-  }
-  .like {
-    position: fixed;
-    left: 90%;
-    bottom: 35%;
-    transform: translate(-50%, -50%);
-    width: 25px;
-    height: 25px;
-    pointer-events: none;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134959/40/26/8929/5ec79d68E968b0377/aa4feff2b7bcf231.png);
-    animation: animation-x 3s 0s linear infinite, animation-y 4s 0s linear 1;
-  }
-  .like--is-second {
-    background-image: url(https://img14.360buyimg.com/ling/jfs/t1/134906/37/26/9080/5ec79d5dE90e5f972/bc39e647c61c8bab.png);
-    animation: animation-x 3s -2s linear infinite, animation-y 4s 0s linear 1;
-  }
-  .btn {
-    position: fixed;
-    left: 90%;
-    top: 90%;
-    transform: translate(-50%, -50%);
-    top: 80%;
-    user-select: none;
-    width: 50px;
-    line-height: 50px;
-    background: rgb(255, 0, 179);
-    color: #fff;
-    text-align: center;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #999;
-    cursor: pointer;
-  }
-  .btn:hover {
-    opacity: 0.8;
-  }
-  .btn:active {
-    opacity: 1;
-  }
+  @import "./About.scss";
 </style>

@@ -1,0 +1,37 @@
+  @import "../../../assets/sass/uitl.scss";
+  @import "../../../assets/sass/com.scss";
+
+  .header-sn {
+    @include w-h(94%, 58px);
+    @apply flex fixed z-10;
+    @include excursion(0, null, 3%, null);
+    @apply p-2 shadow-sm rounded-sm;
+    @apply bg-white;
+
+    .header_main {
+      width: 100%;
+
+      .header_text {
+        @apply mt-2 text-base;
+
+        a {
+          @apply ml-3;
+        }
+
+        .header_text_text {
+          @apply float-right;
+        }
+      }
+    }
+  }
+
+  @screen xp {
+    .header-sn {
+      width: 100%;
+      @include excursion(0, null, 0, null);
+
+      a {
+        @apply hidden;
+      }
+    }
+  }

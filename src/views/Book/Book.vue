@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 14:05:13
- * @LastEditTime: 2021-05-12 12:17:29
+ * @LastEditTime: 2021-08-03 09:02:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Book\Index.vue
@@ -96,66 +96,5 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-  .Book {
-    position: fixed;
-    @include w-h(100%, 100%);
-    .Book_text {
-      @include initialize($w, 89%, $Text_height, null, $ml, null, #ffffff);
-      @apply shadow-sm rounded-sm antialiased;
-      overflow: auto;
-      .Book_title {
-        @include underline;
-        margin-bottom: 5px;
-        p {
-          @apply px-1 py-2 m-2 text-base font-medium;
-        }
-      }
-      .Book_film {
-        // background-color: aqua;
-        @apply py-2 shadow rounded-sm;
-        span {
-          @apply px-3 text-base;
-        }
-      }
-      .Book_film_text {
-        @apply m-1 shadow-xl rounded-sm p-1;
-        // background-color: blueviolet;
-        @include w-h(95%, 370px);
-        .Book_img {
-          @include w-h(100%, 220px);
-          img {
-            @include w-h(100%, 100%);
-            @apply rounded-sm;
-          }
-        }
-        .Book_film_title {
-          background-color: wheat;
-          @apply text-lg text-center p-1;
-        }
-        .Book_film_type {
-          // background-color: yellow;
-          @apply p-1 px-3 text-sm text-gray-400;
-          div {
-            @apply m-1;
-          }
-        }
-      }
-    }
-  }
-
-  @screen xp {
-    .Book .Book_text {
-      width: 100%;
-      @apply ml-2;
-    }
-
-    .Book .Book_text .Book_film_text .Book_img {
-      height: 380px;
-    }
-    .Book .Book_text .Book_film_text {
-      height: 540px;
-    }
-  }
+  @import "./Book.scss";
 </style>

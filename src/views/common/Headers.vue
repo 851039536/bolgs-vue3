@@ -1,12 +1,20 @@
 <template>
   <div>
-    <nav class="flex header-sn">
+    <nav class="header-sn">
       <div class="flex items-center flex-shrink-0 text-black">
         <span class="text-2xl font-medium tracking-tight">少年</span>
       </div>
       <div class="header_main">
         <div class="header_text">
-          <a @click="onk(1)">
+          <template v-for="(item, index) in ResultList" :key="index">
+            <a @click="onk(item.path)" v-if="item.identity">
+              <!-- <svg class="inline-block icon" aria-hidden="true">
+              <use xlink:href="#icon-icon-" />
+              </svg>-->
+              {{item.title}}
+            </a>
+          </template>
+          <!-- <a @click="onk(1)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-icon-" />
             </svg>
@@ -18,7 +26,7 @@
 " />
             </svg>
             博文
-          </a>
+          </a>-->
           <!-- <a @click="onk(5)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-dianzan
@@ -26,7 +34,7 @@
             </svg>
             时间线
           </a>-->
-          <a @click="onk(6)">
+          <!-- <a @click="onk(6)">
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-tupian" />
             </svg>
@@ -44,7 +52,7 @@
 " />
             </svg>
             关于
-          </a>
+          </a>-->
 
           <!-- <a @click="onk(9)">
             <svg class="inline-block icon" aria-hidden="true">
@@ -64,48 +72,31 @@
 
 <script lang="ts">
   import { useRouter } from "vue-router";
+  import { interfaces } from '../../api/interfaces';
+  import {
+    reactive,
+    toRefs,
+    onMounted,
+  } from "vue";
   export default {
     name: "Headers",
-    setup(): { onk: (num: any) => Promise<void>; } {
+    setup(): { onk: (num: any) => Promise<void>; queryAll: () => Promise<void>; } {
+
+      const state: any = reactive({
+        ResultList: [],
+
+      });
       const router = useRouter();
-      let onk = async (num: any) => {
+      const onk = async (num: any) => {
+
+        router.push({
+          path: num,
+          query: {
+            t: +new Date()
+          }
+        })
         switch (num) {
-          case 1:
-            router.push("/index");
-            break;
-          case 2:
-            router.push("/TagText");
-            break;
-          case 3:
-            router.push("./Resource");
-            break;
-          case 4:
-            router.push("./Classify");
-            break;
-          case 5:
-            router.push("./Timeline");
-            break;
-          case 6:
-            router.push("./Photo");
-            break;
-          case 7:
-            router.push("./Navigation");
-            break;
-          case 8:
-            router.push("./About");
-            break;
-          case 9:
-            router.push("./Talk");
-            break;
-          case 10:
-            router.push("./Books");
-            break;
-          case 11:
-            router.push("./PersonalNavigation");
-            break;
-          case 12:
-            router.push("./Leave");
-            break;
+
           case 13:
             window.open("https://www.cnblogs.com/ouyangkai/");
             break;
@@ -115,49 +106,27 @@
           case 15:
             router.push("./SnVideo");
             break;
-          default:
-            router.push("./Indexs");
-            break;
+
         }
       };
-
+      const queryAll = async () => {
+        await interfaces.GetTypeAsync(4, 1).then((res: any) => {
+          state.ResultList = res.data;
+        })
+      };
+      onMounted(async () => {
+        await queryAll();
+      });
       return {
+        ...toRefs(state),
+        queryAll,
         onk,
+
       };
     },
   };
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-  .header-sn {
-    position: fixed;
-    @include excursion(0, null, 3%, null);
-    z-index: 5;
-    @include w-h(94%, 58px);
-    background-color: $back_headers;
-    @apply p-2  shadow-sm rounded-sm;
-    .header_main {
-      width: 100%;
-      .header_text {
-        @apply mt-2 text-base;
-        a {
-          @apply ml-3 hover:text-red-400;
-        }
-        .header_text_text {
-          float: right;
-        }
-      }
-    }
-  }
-  @screen xp {
-    .header-sn {
-      width: 100%;
-      @include excursion(0, null, 0, null);
-      a {
-        @apply hidden;
-      }
-    }
-  }
+  @import "./scss/Headers.scss";
 </style>

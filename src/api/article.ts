@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-07-27 15:07:10
+ * @LastEditTime: 2021-08-03 17:55:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -12,6 +12,7 @@ const countUrl = "/api/SnArticle/GetCountAsync";
 //条件查询总数 (缓存)
 // const conutTypeUrl = "/api/SnArticle/ConutLabel";
 export class article {
+
 
 
   static async GetAll(state: number): Promise<any> {
@@ -37,7 +38,13 @@ export class article {
       method: 'get',
     })
   }
-
+  //模糊查询
+  static async GetContainsAsync(name: string): Promise<any> {
+    return await request({
+      url: "/api/SnArticle/GetContainsAsync?name=" + name + "&cache=true",
+      method: 'get',
+    })
+  }
 
 
   //主键查询

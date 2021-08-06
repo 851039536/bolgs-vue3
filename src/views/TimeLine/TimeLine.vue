@@ -1,7 +1,7 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2021-07-06 08:48:57
+ * @LastEditTime: 2021-08-06 15:11:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
@@ -157,56 +157,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-  .timeline {
-    @include initialize($w, null, $Text_height, null, $ml, null, #ffffff);
-    @apply text-base;
-    @apply shadow rounded;
-    .timeline_img {
-      position: relative;
-      @include w-h(100%, 140px);
-      @include bg-img("../../assets/img/si.jpg");
-      @apply rounded;
-      h4 {
-        position: absolute;
-        @include excursion(16%, null, 45%, null);
-        color: white;
-        font-weight: 300;
-      }
-      p {
-        position: absolute;
-        @include excursion(53%, null, 39%, null);
-        color: #7f828f;
-        font-weight: 300;
-        font-size: 15px;
-      }
-    }
-
-    .timeline-type {
-      // background-color: antiquewhite;
-
-      @apply shadow mt-1 rounded;
-      .timeline-type-name {
-        ul li {
-          display: inline-block;
-          @apply p-4  text-lg font-semibold;
-        }
-      }
-    }
-
-    .timeline-time {
-      position: relative;
-      @apply mt-4;
-      .block {
-        @apply mx-4 mt-2;
-        .block-1 {
-          @apply m-2;
-          h4 {
-            @apply text-lg;
-          }
-        }
-      }
-    }
-  }
+  @import "./TimeLine.scss";
 </style>

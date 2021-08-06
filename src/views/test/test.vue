@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-06 11:38:40
+ * @LastEditTime: 2021-08-03 08:51:14
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\test\test.vue
+-->
 <template>
   <div class="cj">
     <LuckyGrid
@@ -18,6 +26,7 @@
 
 <script>
   export default {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     data() {
       return {
         blocks: [{ padding: '5px', background: '#ff4a4c', borderRadius: 10 }],
@@ -42,6 +51,7 @@
       }
     },
     methods: {
+      // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
       startCallBack() {
         this.$refs.$lucky.play()
         setTimeout(() => {

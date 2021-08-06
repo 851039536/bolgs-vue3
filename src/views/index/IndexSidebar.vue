@@ -2,62 +2,31 @@
   <!--  :class="{ isFixed: barFixed }" -->
   <div id="index_sidebar">
     <div class="index_s_main">
-      <!-- <div class="sn-list0">
-        <div class="sn-list0-img">
-          <img class="sn-list0-img2" id="img1" :src="User.userPhoto" alt />
-        </div>
-        <div class="sn-list0-name">
-          <h3 class="sn-list0-name1">{{ User.userNickname }}</h3>
-        </div>
-
-        <div class="sn-list0-tag">
-          <div class="flex sn-list0-tag-1">
-            <div class="sn-list0-tag1">
-              <div class="sn-list0-tag1-1-2">
-                <a>{{ ArticleCount }}</a>
-              </div>
-              <div class="sn-list0-tag1-1-1">文章</div>
-            </div>
-            <div class="sn-list0-tag2">
-              <div>
-                <a>{{ LabelsCount }}</a>
-              </div>
-              <div>标签</div>
-            </div>
-            <div class="sn-list0-tag3">
-              <div>
-                <a>{{ SortCount }}</a>
-              </div>
-              <div>分类</div>
-            </div>
-          </div>
-        </div>
-      </div>-->
       <div class="index_si_contact">
         <!-- qq 微信  知乎图标导航 -->
-        <div class="flex items-center index-si-ioc">
-          <div class="flex-1 sn-list2-1-1">
+        <div class="index-si-ioc">
+          <div class="index-si-ioc-2">
             <a href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-QQ11" />
               </svg>
             </a>
           </div>
-          <div class="flex-1 sn-list2-1-1">
+          <div class="index-si-ioc-2">
             <a target="_blank" href="https://gitee.com/kaiouyang-sn">
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-gitee-fill-round" />
               </svg>
             </a>
           </div>
-          <div class="flex-1 sn-list2-1-1">
+          <div class="index-si-ioc-2">
             <a>
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-weixin3" />
               </svg>
             </a>
           </div>
-          <div class="flex-1 sn-list2-1-1">
+          <div class="index-si-ioc-2">
             <a>
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-liulan
@@ -68,10 +37,40 @@
         </div>
         <!-- -------------------------------- -->
       </div>
+
+      <!-- 搜索 -->
+      <div class="index_si_input">
+        <div>
+          <a-select
+            show-search
+            v-model:value="sntitle"
+            placeholder="input search text"
+            style="width: 200px"
+            :show-arrow="false"
+            :filter-option="false"
+            @search="SearchTitle"
+          >
+            >
+            <a-select-option v-for="d in article1" :key="d.articleId">{{ d.title }}</a-select-option>
+          </a-select>
+
+          <!-- <a-input-search
+            v-model:value="title"
+            placeholder="input search text"
+            style="width: 200px"
+            @search="SearchTitle(title)"
+            :change="SearchTitle(title)"
+          />-->
+        </div>
+        <div>
+          <!-- <button @click="SearchTitle(title)">搜索</button> -->
+        </div>
+      </div>
+      <!-- -------------------------------- -->
       <!-- 说说显示描述内容 -->
       <div class="index-si-describe">
-        <div class="index-si-describe-text">
-          <p class>{{ UserTalk }}</p>
+        <div>
+          <p>{{ UserTalk }}</p>
         </div>
       </div>
       <!-- ---------------------------------------- -->
@@ -105,6 +104,13 @@
           >{{ Sorts.sortName }}</div>
         </div>
       </div>
+
+      <div>
+        <img
+          alt="Code Time"
+          src="https://img.shields.io/endpoint?style=flat&url=https://codetime-api.datreks.com/badge/undefined?logoColor=white%26project=%26recentMS=0%26showProject=true"
+        />
+      </div>
       <!-- ------------------------------------------------- -->
 
       <!-- 文章内容框 -->
@@ -127,24 +133,24 @@
       <!-- ------------------------------------------------------ -->
 
       <!-- 站点统计框 -->
-      <div class="index-si-statistics">
-        <div class="index-si-statistics-title">站点信息</div>
-        <div class="index-si-statistics-div">
-          <div class="index-si-statistics-frame">
-            <div class="sindex-si-statistics-frame-title">文章数量:</div>
-            <div class="sindex-si-statistics-frame-text">{{ ArticleCount }} 篇</div>
+      <div class="index-si-count">
+        <div class="index-si-count-title">站点信息</div>
+        <div class="index-si-count-div">
+          <div class="index-si-count-frame">
+            <div class="index-si-count-frame-title">文章数量:</div>
+            <div class="index-si-count-frame-text">{{ ArticleCount }} 篇</div>
           </div>
-          <div class="index-si-statistics-frame">
-            <div class="sindex-si-statistics-frame-title">总字段数:</div>
-            <div class="sindex-si-statistics-frame-text">{{ textCount }} 字</div>
+          <div class="index-si-count-frame">
+            <div class="index-si-count-frame-title">总字段数:</div>
+            <div class="index-si-count-frame-text">{{ textCount }} 字</div>
           </div>
-          <div class="index-si-statistics-frame">
-            <div class="sindex-si-statistics-frame-title">总访问量:</div>
-            <div class="sindex-si-statistics-frame-text">{{ readCount }} ℃</div>
+          <div class="index-si-count-frame">
+            <div class="index-si-count-frame-title">总访问量:</div>
+            <div class="index-si-count-frame-text">{{ readCount }} ℃</div>
           </div>
-          <div class="index-si-statistics-frame">
-            <div class="sindex-si-statistics-frame-title">最后更新:</div>
-            <div class="sindex-si-statistics-frame-text">{{ articledata }}</div>
+          <div class="index-si-count-frame">
+            <div class="index-si-count-frame-title">最后更新:</div>
+            <div class="index-si-count-frame-text">{{ articledata }}</div>
           </div>
         </div>
       </div>
@@ -157,11 +163,11 @@
   import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   import { useStore } from "vuex";
+  import { article } from '../../api/article';
   export default {
     name: "IndexSidebar",
     components: {},
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const router = useRouter();
@@ -172,7 +178,8 @@
       const state = reactive({
         Labels: [],
         Sort: [],
-        article: [],
+        article: [] as any,
+        article1: [],
         UserTalk: "",
         User: [],
         ArticleCount: 0,
@@ -181,7 +188,19 @@
         textCount: 0,
         readCount: 0,
         articledata: "",
+        sntitle: "" as string
       });
+
+      const SearchTitle = async (title: string) => {
+
+        console.log(title);
+
+        await article.GetContainsAsync(title).then(res => {
+          state.article1 = res.data;
+          console.log(state.article.title);
+        })
+
+      };
 
       const GetAllasync = async () => {
         proxy.$api
@@ -199,7 +218,7 @@
               "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
             ),
             //查询当前用户信息
-            proxy.$api.get("/api/SnUser/AsyGetUserId?UserId=4"),
+            proxy.$api.get("/api/SnUser/GetByIdAsync?id=4&cache=true"),
             //查询文章总数
             proxy.$api.get("/api/SnArticle/GetCountAsync"),
             //查询标签
@@ -230,7 +249,7 @@
                 state.article = res3.data;
                 state.articledata = res3.data[0].time;
                 state.UserTalk = res4.data;
-                state.User = res5.data[0];
+                state.User = res5.data;
                 store.state.ArticleCount = state.ArticleCount = res6.data;
                 store.state.SortCount = state.SortCount = res7.data;
                 store.state.LabelsCount = state.LabelsCount = res8.data;
@@ -271,6 +290,7 @@
         TagSkip,
         GetAllasync,
         SkipText,
+        SearchTitle
       };
     },
   };

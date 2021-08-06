@@ -119,6 +119,8 @@
       const GetByIdAsync = (id: number) => {
         labels.GetByIdAsync(id).then((result: any) => {
           state.Labels = result.data;
+
+          // alert(result.data.sortName);
         })
       }
       const GetSortById = (id: number) => {

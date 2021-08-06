@@ -8,46 +8,42 @@
       :class="{ alt: index % 2 == 1 }"
       :key="info.articleId"
     >
-      <div class="flex IndexTitle-text-div">
+      <div class="IndexTitle-text-div">
         <div class="IndexTitle-title-div">
           <div class="IndexTitle-title" v-on:click="jump(info.articleId)">
             <a>{{ info.title }}</a>
           </div>
           <div class="IndexTitle-title-text">摘要: {{ info.titleText }}</div>
-        </div>
-      </div>
-      <!---------------------------------------------------------------------------->
-      <!--发表用户-->
-      <div class="flex IndexTitle-user">
-        <div>少年</div>
-        <div class="IndexTitle-user_type">随笔</div>
-        <div>{{ info.time }}</div>
-        <!-- <div>
+          <div class="IndexTitle-user">
+            <div>少年</div>
+            <div>随笔</div>
+            <div>{{ info.time }}</div>
+            <!-- <div>
           <a>
             <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-chat" />
             </svg>
             {{ info.comment }}
           </a>
-        </div>-->
-        <div @click="jump(info.article_id)">
-          <a>
-            <!-- <svg class="inline-block icon" aria-hidden="true">
+            </div>-->
+            <div @click="jump(info.article_id)">
+              <a>
+                <!-- <svg class="inline-block icon" aria-hidden="true">
               <use xlink:href="#icon-liulan" />
-            </svg>-->
-            {{ info.read }} ℃
-          </a>
-        </div>
-        <div>
-          <svg class="inline-block icon" aria-hidden="true">
-            <use xlink:href="#icon-dianzan2
+                </svg>-->
+                {{ info.read }} ℃
+              </a>
+            </div>
+            <div>
+              <svg class="inline-block icon" aria-hidden="true">
+                <use xlink:href="#icon-dianzan2
 " />
-          </svg>
-          {{ info.give }}
+              </svg>
+              {{ info.give }}
+            </div>
+          </div>
         </div>
       </div>
-
-      <!---------------------------------------------------------------------------->
     </div>
 
     <!------------------------分页-------------->
@@ -68,14 +64,15 @@
 <script lang="ts">
   import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
+  import { useStore } from "vuex";
   import { article } from '../../api/article';
   // 组件导入
   export default {
     name: "IndexTitle",
     components: {},
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const router = useRouter();
+      const stores = useStore();
       const state = reactive({
         dataResult: [], // 显示的数据
         page: 1, //页码
@@ -95,12 +92,24 @@
       }
 
       async function jump(id: number): Promise<void> {
-        await router.push({
-          path: "/IndexText",
-          query: {
-            id: id,
-          },
-        });
+        if (stores.state.SetPage) {
+          const { href } = await router.resolve({
+            path: "/IndexText",
+            query: { id: id }
+          });
+          window.open(href, '_blank');
+        } else {
+          await router.push({
+            path: "/IndexText",
+            query: {
+              id: id,
+            },
+          });
+
+        }
+
+
+
       }
 
       async function currentchange(val: number): Promise<void> {
@@ -122,7 +131,6 @@
               clearInterval(timer);
             }
           }, 30);
-          //utils.backtop();
         }
       };
       onMounted(async () => {

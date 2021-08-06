@@ -1,0 +1,173 @@
+ @import "../../assets/sass/com";
+ @import "../../assets/sass/uitl";
+
+ .talk {
+   /*background-color: #dddddd;*/
+   @include initialize($w, 100%, $Text_height, null, $ml, null, null);
+
+   //@include boxshow;
+   .talk-text {
+     .text-carousel {
+
+       /* For demo */
+       .ant-carousel ::v-deep(.slick-slide) {
+         text-align: center;
+         height: 140px;
+         line-height: 160px;
+         // background: #364d79;
+         overflow: hidden;
+       }
+
+       .ant-carousel ::v-deep(.slick-arrow.custom-slick-arrow) {
+         width: 25px;
+         height: 25px;
+         font-size: 25px;
+         color: #fff;
+         background-color: rgba(31, 45, 61, 0.11);
+         opacity: 0.3;
+       }
+
+       .ant-carousel ::v-deep(.custom-slick-arrow:before) {
+         display: none;
+       }
+
+       .ant-carousel ::v-deep(.custom-slick-arrow:hover) {
+         opacity: 0.5;
+       }
+
+       .ant-carousel ::v-deep(.slick-slide h3) {
+         color: #fff;
+       }
+
+       div {
+         img {
+           @include w-h(100%, 100%);
+         }
+       }
+
+       /*父元素*/
+       position: relative;
+       @apply shadow rounded-sm;
+
+       .text-carousel-1 {
+         /*绝对定位*/
+         position: absolute;
+         width: 100px;
+         left: 7%;
+         top: 36%;
+
+         h4 {
+           color: #ffffff;
+           @apply text-2xl;
+         }
+       }
+     }
+
+     .talk-text-2 {
+       @apply mt-3;
+
+       // background-color: #6990f6;
+       .talk-text-2-1 {
+         background-color: #ffffff;
+         @include w-h(100%, 120px);
+         margin: auto;
+         @apply mt-4;
+         /*border-bottom: 1px dashed #f1f1f1;*/
+         @apply shadow rounded;
+
+         // 左边图片
+         .talk-text-2-1-1 {
+           /*background-color: #95999c;*/
+           @include w-h(25%, 100%);
+           @apply shadow-sm;
+
+           img {
+             @include w-h(100%, 100%);
+           }
+         }
+
+         // 右边内容
+         .talk-text-2-1-2 {
+           // background-color: #55a532;
+           @include w-h(100%, 100%);
+           @apply text-justify;
+
+           // 标题 作者 日期
+           .talk-text-2-1-2-1 {
+             // background-color: #0086b3;
+             height: 30%;
+
+             div {
+               /*background-color: #dddddd;*/
+               @apply p-1 px-4 pt-2 text-xl cursor-pointer font-normal antialiased;
+             }
+           }
+
+           // 内容
+           .talk-text-2-1-2-2 {
+             height: 40%;
+             // background-color: #d1bda4;
+             @apply p-1 pt-2 px-4 text-sm font-light antialiased;
+             @include line-number;
+           }
+
+           .talk-text-2-1-2-3 {
+             height: 30%;
+             @apply px-4 pt-2 text-sm cursor-pointer;
+             // background-color: #9a6e3a;
+
+             div {
+               @include w-h(10%, 100%);
+               // background-color: #d1bda4;
+               @apply p-1;
+             }
+           }
+         }
+       }
+     }
+
+     .text-title {
+       @apply mt-2;
+       @apply bg-white text-base shadow-sm rounded p-2;
+       width: 100%;
+
+       .text-title-1 {
+         @apply p-1 px-3 text-lg font-medium;
+         @include line-ome;
+         /* 边框下划线 */
+         border-bottom: 1px solid #d5d9e0;
+       }
+
+       .text-title-2 {
+         @apply p-1 px-3 text-base text-gray-500 font-light;
+       }
+     }
+
+     .text-page {
+       @apply p-1 m-1;
+     }
+
+     .asas {
+       @apply bg-red-400;
+     }
+   }
+ }
+
+ @screen xp {
+   .TalkSidebar {
+     @apply hidden;
+   }
+
+   .talk {
+     width: 100%;
+     @apply ml-0;
+
+     .talk-text-1 {
+       @apply hidden;
+     }
+
+     .text-page {
+       height: 110px;
+     }
+   }
+ }

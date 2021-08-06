@@ -2,7 +2,7 @@
  @import "../../assets/sass/uitl";
 
  #index_sidebar {
-   position: fixed;
+   @apply fixed bg-gray-100;
    @include excursion($Text_height, null, null, $sidebar_r_r);
    @include w-h(20%, 90%);
    @apply ml-3;
@@ -11,128 +11,57 @@
      @include w-h(100%, 100%);
      overflow: auto;
 
-     .sn-list0 {
-       @include initialize(100%, 250px, 0, 0, auto, auto, #ffffff);
-       @apply mb-3 shadow rounded;
-
-       .sn-list0-img {
-         @include initialize(140px, 100px, auto, auto, auto, auto, null);
-
-         img {
-           @include w-h(100%, 100%);
-           @apply p-3;
-         }
-       }
-
-       .sn-list0-name {
-         height: 30px;
-         margin: 20px auto;
-       }
-
-       .sn-list0-name1 {
-         text-align: center;
-         @apply text-xl;
-       }
-
-       .sn-list0-tag {
-         /*background-color: #9a6e3a;*/
-         @include w-h(100%, 100%);
-         @apply cursor-pointer;
-
-         .sn-list0-tag-1 {
-           /*background-color: #4eb687;*/
-           width: 150px;
-           margin: 0 auto;
-
-           .sn-list0-tag1 {
-             //background-color: #55a532;
-             width: 34%;
-             @apply text-lg;
-
-             .sn-list0-tag1-1-1 {
-               /*background-color: #dddddd;*/
-               text-align: center;
-             }
-
-             .sn-list0-tag1-1-2 {
-               /*background-color: #795da3;*/
-               text-align: center;
-             }
-           }
-
-           .sn-list0-tag2 {
-             /*background-color: #0086b3;*/
-             width: 33%;
-             @apply text-lg;
-
-             div {
-               text-align: center;
-             }
-           }
-
-           .sn-list0-tag3 {
-             @apply text-lg;
-             /*background-color: #8146b4;*/
-             width: 33%;
-
-             div {
-               text-align: center;
-             }
-           }
-         }
-       }
-     }
-
      .index_si_contact {
-       @include w-h(100%, 50px);
-       margin: 0 auto;
-       @apply mb-2 shadow rounded bg-white;
-       // @include boxshow;
+       @include w-h(100%, 60px);
+       //  margin: 0 auto;
+       @apply mb-2 shadow rounded;
+       @apply bg-gray-50;
 
        .index-si-ioc {
          @include w-h(60%, 100%);
-         margin: 0 auto;
+         @include m-center;
+         @apply flex pl-3 rounded;
+         @apply bg-white items-center;
 
-         .sn-list2-1-1 {
-           /*background-color: #4eb687;*/
-           @apply text-center py-2 m-1 cursor-pointer;
+         .index-si-ioc-2 {
+           @apply flex-1 py-1 m-1;
+           @apply text-center;
          }
        }
      }
 
      .index-si-describe {
-       margin: 0 auto;
        color: #666;
-       @apply mb-2 shadow rounded bg-white text-center;
+       @apply mb-2 shadow rounded;
+       @apply bg-white text-center;
 
-       .index-si-describe-text {
-         p {
-           @apply text-sm px-1 py-2 m-1 cursor-pointer;
-         }
+       div>p {
+         @apply px-1 py-2 m-1;
+         @apply bg-gray-50 text-sm;
        }
      }
 
-     .index-si-statistics {
-       width: 100%;
-       margin: 0 auto;
-       @apply p-1 mb-2 cursor-pointer bg-white;
-       @apply shadow rounded;
+     .index-si-count {
 
-       .index-si-statistics-title {
-         @apply text-gray-900 p-1 m-1 text-base font-semibold bg-gray-200 cursor-pointer;
+       @apply p-1 mb-2 shadow rounded cursor-pointer;
+       @apply bg-white;
+
+       .index-si-count-title {
+         @apply p-1 m-1;
+         @apply text-gray-900 text-base font-semibold bg-gray-200;
        }
 
-       .index-si-statistics-div {
+       .index-si-count-div {
          @apply m-2;
 
-         .index-si-statistics-frame {
+         .index-si-count-frame {
            @apply flex justify-between mt-1;
 
-           .sindex-si-statistics-frame-title {
+           .index-si-count-frame-title {
              @apply p-1;
            }
 
-           .sindex-si-statistics-frame-text {
+           .index-si-count-frame-text {
              @apply p-1 bg-gray-100 rounded;
            }
          }
@@ -140,10 +69,9 @@
      }
 
      .index-si-tag {
-       width: 100%;
-       margin: 0 auto;
-       @apply p-1 mb-2 cursor-pointer bg-white;
-       @apply shadow rounded;
+
+       @apply p-1 mb-2 shadow rounded cursor-pointer;
+       @apply bg-white;
 
        .index-si-tag-title {
          @apply m-1 p-1 text-base font-semibold bg-gray-200 text-gray-900;
@@ -161,8 +89,7 @@
 
      // 分类
      .index-si-type {
-       width: 100%;
-       margin: 0 auto;
+
        @apply p-1 mb-2 bg-white;
        @apply shadow rounded;
 
@@ -175,9 +102,27 @@
        }
      }
 
+
+     .index_si_input {
+
+       @apply flex p-2 mb-2 shadow rounded;
+       @apply bg-white;
+
+       div>input {
+         @apply bg-gray-100 rounded ml-1;
+         height: 30px;
+       }
+
+       div>button {
+         @apply text-base font-medium ml-3;
+         height: 30px;
+
+       }
+
+     }
+
      .index-si-article {
-       width: 100%;
-       margin: 0 auto;
+
        @apply p-1 mb-2 cursor-pointer bg-white;
        @apply shadow rounded;
 

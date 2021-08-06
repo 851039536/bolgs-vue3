@@ -1,0 +1,82 @@
+@import "../../assets/sass/com";
+@import "../../assets/sass/uitl";
+
+.SnTagText {
+  position: fixed;
+  @include w-h(100%, 100%);
+
+  .text {
+    position: absolute;
+    top: 22.1%;
+    @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
+
+    // 侧边框
+    .text-sidebar {
+      @include w-h(32%, null);
+      overflow: auto;
+
+      .text-sidebar-forms {
+        @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
+
+        .forms-1 {
+          @apply bg-gray-300 text-base p-1;
+        }
+
+        .forms-2 {
+          @apply p-2;
+        }
+      }
+    }
+
+    // 内容
+    .text-blog {
+      @include w-h(68%, null);
+      @apply px-1 bg-gray-100;
+      overflow: auto;
+
+      .blog {
+        @include blogs;
+      }
+    }
+  }
+
+  // 头部
+  .SnTagText-top {
+    position: absolute;
+    top: $Text_height;
+    @include initialize(94%, 11%, null, null, 3%, null, #ffffff);
+    @apply rounded-sm;
+
+    .tag-text {
+      @include w-h(null, 100%);
+
+      .tag-text-1 {
+        @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
+
+        a {
+          @apply p-2;
+        }
+      }
+    }
+  }
+
+  .vertical-text {
+    position: absolute;
+    top: 12%;
+    right: 0px;
+    border-radius: 2px;
+    writing-mode: vertical-rl;
+
+    h3 {
+      padding-left: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #f66;
+    }
+
+    p {
+      line-height: 30px;
+      color: #66f;
+    }
+  }
+}

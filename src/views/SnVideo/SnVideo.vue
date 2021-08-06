@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-17 08:21:57
+ * @LastEditTime: 2021-08-03 09:16:05
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
+-->
 <template>
   <div class="snvideo">
     <Sidebarsn></Sidebarsn>
@@ -89,62 +97,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-
-  .snvideo {
-    position: fixed;
-    @include w-h(100%, 100%);
-    .snvideo_main {
-      position: relative;
-      @include initialize($w, 99%, $Text_height, null, $ml, null, #ffffff);
-      @apply shadow rounded-sm;
-      .SnVideo-1 {
-        @include initialize(100%, null, 8px, null, 0%, null, null);
-        @apply shadow-sm rounded-sm;
-        overflow: auto;
-
-        .snvideo_main_top {
-          @apply py-1 m-2 text-base bg-gray-200 rounded text-center;
-        }
-      }
-
-      .snvideo_main_content {
-        @include w-h(100%, 80%);
-        overflow: auto;
-        position: absolute;
-        @include excursion(8%, null, null, 0%);
-        .SnVideo-2-1 {
-          @include w-h(95%, 90%);
-          @apply ml-1 shadow;
-          .SnVideo-2-1-1 {
-            height: 65%;
-            img {
-              @include w-h(100%, 100%);
-            }
-          }
-
-          .SnVideo-2-1-2 {
-            height: 18%;
-            @apply text-sm p-1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-
-          .SnVideo-2-1-3 {
-            height: 17%;
-            @apply p-1;
-          }
-        }
-      }
-    }
-  }
-
-  @screen xp {
-    .snvideo .snvideo_main {
-      width: 100%;
-      @apply ml-0;
-    }
-  }
+  @import "./scss/SnVideo.scss";
 </style>
