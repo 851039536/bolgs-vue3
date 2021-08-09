@@ -66,6 +66,7 @@
   import { useRouter } from "vue-router";
   import { useStore } from "vuex";
   import { article } from '../../api/article';
+  import { setBlog } from '../../api/setBlog';
   // 组件导入
   export default {
     name: "IndexTitle",
@@ -92,9 +93,12 @@
       }
 
       async function jump(id: number): Promise<void> {
+        await setBlog.GetByIdAsync(1, false).then(res => {
+          stores.state.SetPage = res.data.setIsopen;
+        })
         if (stores.state.SetPage) {
           const { href } = await router.resolve({
-            path: "/IndexText",
+            path: "/Particulars",
             query: { id: id }
           });
           window.open(href, '_blank');

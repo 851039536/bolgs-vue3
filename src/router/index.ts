@@ -234,6 +234,14 @@ const routes = [{
   },
   component: () => import('../views/Software/SoftwareContent.vue')
 },
+{
+  path: '/Particulars',
+  name: 'Particulars',
+  meta: {
+    keepAlive: false
+  },
+  component: () => import('../views/common/Particulars.vue')
+},
 ]
 
 const router = createRouter({

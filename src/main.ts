@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-05-12 17:42:01
+ * @LastEditTime: 2021-08-07 08:56:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -13,6 +13,7 @@ import Antd from 'ant-design-vue';
 import App from './App.vue'
 import 'ant-design-vue/dist/antd.css';
 import animated from 'animate.css'
+
 
 //字体图标
 import './assets/icon/fonts/iconfont.js'
@@ -30,6 +31,8 @@ import Headers from "./views/common/Headers.vue"
 import IndexSidebar from "./views/index/IndexSidebar.vue";
 import Sidebarsn from "./views/common/Sidebarsn.vue";
 import Comment from "./views/common/Comment.vue";
+
+// use
 
 
 const app = createApp(App);
