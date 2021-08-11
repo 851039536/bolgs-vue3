@@ -75,13 +75,12 @@
   @import "../../assets/sass/uitl";
 
   #favorite {
-    position: fixed;
-    @include w-h(100%, 100%);
+    @apply fixed w-full h-full;
     #favorite_main {
       @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
       @apply rounded;
       .favorite_type {
-        @apply text-base   cursor-default  text-center;
+        @apply text-base cursor-default text-center;
         .favorite_type_name {
           background: #e5e7eb;
           @apply m-1 py-1 mt-2  rounded;
@@ -89,8 +88,7 @@
       }
 
       .favorite_content {
-        @include w-h(100%, 80%);
-        overflow: auto;
+        @apply w-full h-full m-auto;
         .favorite_content_text {
           @include w-h(89%, 88px);
           background-color: #f5f7fd;

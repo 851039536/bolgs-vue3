@@ -1,5 +1,4 @@
 <template>
-  <!--  :class="{ isFixed: barFixed }" -->
   <div id="index_sidebar">
     <div class="index_s_main">
       <div class="index_si_contact">
@@ -53,18 +52,8 @@
             >
             <a-select-option v-for="d in article1" :key="d.articleId">{{ d.title }}</a-select-option>
           </a-select>
-
-          <!-- <a-input-search
-            v-model:value="title"
-            placeholder="input search text"
-            style="width: 200px"
-            @search="SearchTitle(title)"
-            :change="SearchTitle(title)"
-          />-->
         </div>
-        <div>
-          <!-- <button @click="SearchTitle(title)">搜索</button> -->
-        </div>
+        <div></div>
       </div>
       <!-- -------------------------------- -->
       <!-- 说说显示描述内容 -->
@@ -111,25 +100,7 @@
           src="https://img.shields.io/endpoint?style=flat&url=https://codetime-api.datreks.com/badge/undefined?logoColor=white%26project=%26recentMS=0%26showProject=true"
         />
       </div>
-      <!-- ------------------------------------------------- -->
 
-      <!-- 文章内容框 -->
-      <!-- <div class="index-si-article">
-        <div class="index-si-article-title">最新内容</div>
-        <div class="index-si-article-div" v-for="articles in article" :key="articles.article_id">
-          <div class="index-si-article-text">
-            <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-liulan
-" />
-            </svg>
-            <a @click="SkipText(articles.article_id)">
-              {{
-              articles.title
-              }}
-            </a>
-          </div>
-        </div>
-      </div>-->
       <!-- ------------------------------------------------------ -->
 
       <!-- 站点统计框 -->

@@ -15,7 +15,6 @@
       <div id="content" class="blog" v-html="blog"></div>
     </div>
     <!-- -------------------------------------------- -->
-    <!-- <Comment></Comment> -->
     <!--底部信息-->
     <div class="IndexText-copyright">
       <div class="IndexText-copyright-text">

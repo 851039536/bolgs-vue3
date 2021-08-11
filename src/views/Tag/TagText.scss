@@ -2,8 +2,8 @@
 @import "../../assets/sass/uitl";
 
 .SnTagText {
-  position: fixed;
-  @include w-h(100%, 100%);
+
+  @apply fixed w-full h-full;
 
   .text {
     position: absolute;
@@ -31,21 +31,22 @@
     // 内容
     .text-blog {
       @include w-h(68%, null);
-      @apply px-1 bg-gray-100;
-      overflow: auto;
+      @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
 
       .blog {
         @include blogs;
+        @apply mt-1;
+
       }
     }
   }
 
   // 头部
   .SnTagText-top {
-    position: absolute;
+    @apply absolute rounded-sm;
     top: $Text_height;
     @include initialize(94%, 11%, null, null, 3%, null, #ffffff);
-    @apply rounded-sm;
+
 
     .tag-text {
       @include w-h(null, 100%);

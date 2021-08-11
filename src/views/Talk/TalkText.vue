@@ -12,7 +12,6 @@
       <div class="Talkblog" v-html="blog"></div>
     </div>
 
-    <!-- <Comment></Comment> -->
     <!--底部信息-->
     <div class="article-3">
       <div class="article-3-1">
@@ -110,93 +109,7 @@
           )
 
       };
-      // 阅读数
-      // const UpRead = (info: any): void => {
-      //   if (info == null) {
-      //     console.log(info);
-      //     return;
-      //   } else {
-      //     info.read++;
-      //     proxy
-      //       .$api({
-      //         // 更新
-      //         url: "/api/SnArticle/AysUpArticle",
-      //         method: "put",
-      //         data: {
-      //           articleId: info.articleId,
-      //           userId: Number(info.userId),
-      //           title: info.title,
-      //           titleText: info.titleText,
-      //           text: info.text,
-      //           time: info.time,
-      //           labelId: info.labelId,
-      //           read: Number(info.read),
-      //           give: Number(info.give),
-      //           comment: info.comment,
-      //           sortId: info.sortId,
-      //           typeTitle: info.typeTitle,
-      //           urlImg: info.urlImg,
-      //         },
-      //       })
-      //       .then((res: any) => {
-      //         if (res.status === 200) {
-      //           // console.log("1");
-      //         } else {
-      //           alert("更新失败");
-      //         }
-      //       })
-      //       .catch(console.error.bind(console)); // 异常
-      //   }
-      // };
-      // 点击数
-      // const UpGive = (info: any): void => {
-      //   var timebools = state.timebool;
-      //   if (info == null || timebools == false) {
-      //     console.log(info, state.timebool);
-      //     return;
-      //   } else {
-      //     info.give++;
-      //     proxy
-      //       .$api({
-      //         // 更新
-      //         url: "/api/SnArticle/AysUpArticle",
-      //         method: "put",
-      //         data: {
-      //           articleId: info.articleId,
-      //           userId: Number(info.userId),
-      //           title: info.title,
-      //           titleText: info.titleText,
-      //           text: info.text,
-      //           time: info.time,
-      //           labelId: info.labelId,
-      //           read: Number(info.read),
-      //           give: Number(info.give),
-      //           comment: info.comment,
-      //           sortId: info.sortId,
-      //           typeTitle: info.typeTitle,
-      //           urlImg: info.urlImg,
-      //         },
-      //       })
-      //       .then((res: any) => {
-      //         if (res.status === 200) {
-      //           state.timebool = false;
-      //           var time = 10;
-      //           var timer = setInterval(function () {
-      //             time--;
-      //             // console.log(time);
-      //             if (time == 0) {
-      //               state.timebool = true;
-      //               // alert(this.timebool)
-      //               clearInterval(timer);
-      //             }
-      //           }, 1000);
-      //         } else {
-      //           alert("更新失败");
-      //         }
-      //       })
-      //       .catch(console.error.bind(console)); // 异常
-      //   }
-      // };
+
       // 博客详情
       const AsyGetTestID = (id: number): void => {
         // .带参数跳转

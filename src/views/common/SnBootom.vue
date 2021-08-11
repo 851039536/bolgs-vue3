@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-05-12 10:40:50
+ * @LastEditTime: 2021-08-11 16:32:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -69,14 +69,11 @@
   @import "../../assets/sass/com";
 
   .SnBootom {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
+    @apply fixed bottom-0 w-full z-10;
     @apply bg-white shadow text-base;
     .SnBootom-1 {
       div {
-        @apply px-2 py-3 m-2 text-center text-gray-700 hover:text-red-400;
+        @apply px-2 py-3 m-2 text-center text-gray-700;
       }
     }
   }

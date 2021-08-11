@@ -1,7 +1,7 @@
 <!--
  * @Author: Index.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-08-02 19:46:56
+ * @LastEditTime: 2021-08-10 13:40:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Index.vue
@@ -51,6 +51,5 @@
   };
 </script>
 <style lang="scss" scoped>
-  @import "../assets/sass/com";
 </style>
 

@@ -2,33 +2,27 @@
 @import "../../assets/sass/uitl";
 
 .TalkSidebar {
-  position: fixed;
+  @apply fixed ml-3;
   @include excursion($Text_height, null, null, $sidebar_r_r);
   @include w-h(20%, 90%);
   font-size: 17px;
   color: #888888;
-  /*background-color: #4d4f91;*/
-  @apply ml-3;
+
 
   .TalkSidebar-text {
-    /*background-color: #55a532;*/
-    @include w-h(100%, 100%);
-    overflow: auto;
+    @apply w-full h-full overflow-auto;
 
     .TalkSidebar-text-1 {
       height: 50px;
       width: 100%;
-      margin: 0 auto;
-      @apply mb-3;
+      @apply mb-3 m-auto;
       @apply shadow rounded;
 
       .TalkSidebar-text-1-1 {
-        /*background-color: #95999c;*/
         @include w-h(60%, 100%);
         margin: 0 auto;
 
         .TalkSidebar-text-1-2 {
-          /*background-color: #4eb687;*/
           @apply text-center py-2 m-1 cursor-pointer;
         }
       }
@@ -36,17 +30,14 @@
 
     .TalkSidebar-text-2 {
       width: 100%;
-      margin: 0 auto;
-      @apply mb-3;
+      @apply mb-3 m-auto;
       @apply shadow rounded;
 
-      .TalkSidebar-text-2-1 {}
     }
 
     .TalkSidebar-text-3 {
       width: 100%;
-      margin: 0 auto;
-      @apply mb-3;
+      @apply mb-3 m-auto;
       @apply shadow rounded;
 
       #calendar {
@@ -59,13 +50,8 @@
     }
 
     .sn-list4 {
-      width: 100%;
-      margin: 0 auto;
-      background-color: #ffffff;
-      text-align: center;
-      @apply mb-2;
-      @apply shadow rounded;
-      //@include gradient-text;
+      @apply mb-2 w-full m-auto;
+      @apply shadow rounded bg-white text-center;
 
       .sn-list4-1 {
         p {
@@ -75,11 +61,8 @@
     }
 
     .sn-list7 {
-      width: 100%;
-      margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
-      @apply shadow rounded;
+      @apply p-1 mb-2 w-full m-auto cursor-pointer;
+      @apply shadow rounded bg-white;
 
       //@include gradient-text;
 
@@ -93,11 +76,8 @@
     }
 
     .sn-list8 {
-      width: 100%;
-      margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
-      @apply shadow rounded;
+      @apply w-full p-1 mb-2 m-auto cursor-pointer;
+      @apply shadow rounded bg-white;
 
       .sn-list8-1 {
         color: #1b1e21;
@@ -108,9 +88,7 @@
 
         .sn-list8-2-1 {
 
-          /*background-color: #6990f6;*/
           .sn-list8-2-1-1 {
-            /*background-color: #dddddd;*/
             @apply p-1;
             width: 35%;
           }
@@ -118,18 +96,14 @@
           .sn-list8-2-1-2 {
             width: 40%;
             @apply p-1;
-            /*background-color: #55a532;*/
           }
         }
       }
     }
 
     .sn-list3 {
-      width: 100%;
-      margin: 0 auto;
-      background-color: #ffffff;
-      @apply p-1 mb-2 cursor-pointer;
-      @apply shadow rounded;
+      @apply w-full p-1 mb-2 m-auto cursor-pointer;
+      @apply shadow rounded bg-white;
 
       .sn-list3-1 {
         @apply m-1 p-1 text-sm font-semibold bg-gray-200;
@@ -149,8 +123,8 @@
     .sn-list5 {
       width: 100%;
       margin: 0 auto;
-      @apply p-1 mb-2 bg-white;
-      @apply shadow rounded;
+      @apply w-full p-1 mb-2 m-auto;
+      @apply shadow rounded bg-white;
 
       .sn-list5-1 {
         color: #1b1e21;
@@ -158,9 +132,7 @@
     }
 
     .TalkSidebar-text-4 {
-      width: 100%;
-      margin: 0 auto;
-      @apply p-1 mb-2 cursor-pointer bg-white;
+      @apply w-full p-1 mb-2 m-auto cursor-pointer bg-white;
       @apply shadow rounded;
 
       .TalkSidebar-text-4-1 {

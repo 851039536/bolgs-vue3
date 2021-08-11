@@ -2,32 +2,22 @@
  @import "../../assets/sass/uitl";
 
  .sidebarsn {
-   position: relative;
    @include w-h(20%, 100%);
-   position: fixed;
    @include excursion($Text_height, null, 3%, null);
    background-color: $back_sidebar;
-   @apply shadow rounded-md;
+   @apply shadow rounded-md fixed;
 
    .si_scroll {
-     height: 80%;
-     overflow: auto;
-
-     .bgys {
-       position: absolute;
-       top: 0;
-       @include w-h(100%, 100%);
-     }
+     @apply h-4/5 overflow-auto;
 
      .si_img {
        img {
-         @include w-h(100%, 140px);
+         @include w-h(100%, 144px);
          @apply rounded-md;
        }
      }
 
      .si_text {
-       // background-color: #55a532;
        @include initialize(40%, 30px, 5px, auto, auto, auto, null);
        @apply text-center antialiased cursor-pointer;
 

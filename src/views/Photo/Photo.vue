@@ -1,7 +1,7 @@
 <!--
  * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2021-08-03 09:19:38
+ * @LastEditTime: 2021-08-11 17:16:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
@@ -118,32 +118,21 @@
       }
     }
     .photo_img {
-      position: relative;
-      @apply m-3;
+      @apply relative m-3;
       @apply rounded-md shadow;
 
       img {
         @include w-h(100%, 300px);
-        // max-width: 100%;
-        // height: auto;
         border: 1px solid #ddd;
         border-radius: 4px;
         padding: 5px;
-        // background: $back_sidebar;
       }
 
-      // &:hover img {
-      //   -moz-transform: scale(1.1);
-      //   -webkit-transform: scale(1.1);
-      //   -o-transform: scale(1.1);
-      //   transform: scale(1.1);
-      // }
       a {
         position: absolute;
         @include excursion(null, 3%, null, 3%);
       }
       .photo_text {
-        // background-color: antiquewhite;
         color: #5f6c7b;
         @apply p-2 px-4 text-base cursor-pointer hover:text-red-300;
       }

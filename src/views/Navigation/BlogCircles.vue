@@ -76,8 +76,7 @@
         @apply m-2 mt-4 shadow rounded hover:bg-gray-200;
         .BlogCircles-1-1 {
           @include w-h(40%, 99%);
-          @apply p-1;
-          float: left;
+          @apply p-1 float-left;
 
           img {
             @include w-h(100%, 100%);
@@ -86,7 +85,7 @@
         }
 
         .BlogCircles-1-2 {
-          float: right;
+          @apply float-right;
           @include w-h(60%, 100%);
 
           .BlogCircles-1-2-1 {

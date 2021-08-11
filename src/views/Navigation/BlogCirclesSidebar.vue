@@ -92,16 +92,15 @@
         height: 44px !important;
       }
       .FavSidebar_describe {
-        @include initialize(100%, null, 0, auto, 0, auto, #ffffff);
-        text-align: center;
-        @apply mb-2 shadow rounded;
+        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+        @apply mb-2 shadow rounded text-center;
         p {
           @apply text-sm px-2 py-4 m-1 cursor-pointer;
         }
       }
 
       .FavSidebar_footer {
-        @include initialize(100%, null, 0, auto, 0, auto, #ffffff);
+        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
         @apply p-1 mb-2 cursor-pointer shadow rounded;
 
         .FavSidebar_f_title {
@@ -121,7 +120,7 @@
       }
 
       .FavSidebar_itme {
-        @include initialize(100%, null, 0, auto, null, auto, #ffffff);
+        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
         @apply p-1 mb-2  shadow rounded;
 
         .FavSidebar_itme_1 {

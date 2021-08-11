@@ -15,9 +15,8 @@
       >
         <div class="flex software_content_div">
           <div class="software_content_img">
-            <img
-              src="https://media.creatorsdaily.com/QmVbZPz82JrqYkVnyfMeRuTkrbDQyyQWAQYNntqc7BuSR7-160-160-contain"
-            />
+            <!-- <img src="/img/blog/1.jpg" /> -->
+            <img :src="info.urlImg" />
           </div>
           <div class="oftware_content__frame">
             <p class="oftware_content__frame-1">
@@ -121,64 +120,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
-  #software {
-    // position: fixed;
-    @include w-h(100%, 100%);
-    .software_main {
-      @include initialize($w, 90%, $Text_height, null, $ml, null, #fafafa);
-      @apply shadow-sm rounded-sm;
-      overflow: auto;
-
-      .software_content {
-        @apply m-2;
-        .software_content_div {
-          // position: relative;
-          @include initialize(100%, 125px, 10px, null, null, null, #ffffff);
-          @apply shadow rounded-sm cursor-pointer;
-
-          .software_content_img {
-            @include w-h(20%, 100%);
-            @apply p-2;
-            img {
-              @include w-h(100%, 100%);
-            }
-          }
-          .oftware_content__frame {
-            @include w-h(80%, 100%);
-            .oftware_content__frame-1 {
-              @apply m-1 px-1 text-base font-semibold;
-              @include line-ome;
-            }
-
-            .oftware_content__frame-2 {
-              @apply px-2  m-1 p-1 text-sm font-thin;
-              height: 51%;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
-              word-break: break-all;
-            }
-
-            .oftware_content__frame-3 {
-              @apply m-1 px-1  font-semibold;
-              span {
-                @apply p-1;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .IndexTitle-page {
-    width: 100%;
-    @apply py-5 bg-white shadow rounded;
-  }
-  @screen xp {
-  }
+  @import "./scss/Blogs.scss";
 </style>

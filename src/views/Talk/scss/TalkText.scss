@@ -14,19 +14,16 @@
    @apply cursor-pointer bg-white text-black;
 
    .article-3-1 {
-     /*background-color: #55ff00;*/
      @apply p-1;
 
      div {
        border-bottom: 1px dashed #f1f1f1;
-       /*background-color: #4eb687;*/
        @apply p-1 m-1 text-sm font-light;
      }
    }
 
    .article-3-2 {
      div {
-       /*background-color: #795da3;*/
        @apply text-center px-1 py-2 m-2 text-sm font-light;
      }
    }
@@ -44,10 +41,9 @@
 
  /*左侧边栏*/
  .article-text {
-   position: fixed;
+   @apply fixed shadow rounded-sm;
    @include excursion(61px, null, 1%, null);
    @include w-h(17%, bull);
-   @apply shadow rounded-sm;
    @apply font-sans bg-white;
 
    .article-text-1 {
@@ -55,11 +51,9 @@
    }
 
    .article-text-2 {
-     // background-color: #9a6e3a;
      @apply m-1 cursor-pointer;
 
      div {
-       /*background-color: #55a532;*/
        @apply m-1 p-1 px-3 text-base;
        border-bottom: 1px dashed #f1f1f1;
      }
@@ -68,9 +62,8 @@
 
  /*返回上一页*/
  .Talk-title {
-   position: relative;
+   @apply relative shadow rounded cursor-pointer;
    @include initialize($w, 30px, 60px, null, $ml, null, #ffffff);
-   @apply shadow rounded cursor-pointer;
 
    p {
      line-height: 30px;

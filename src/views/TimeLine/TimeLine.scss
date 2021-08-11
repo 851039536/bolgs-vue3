@@ -7,10 +7,10 @@
   @apply shadow rounded;
 
   .timeline_img {
-    position: relative;
+    @apply relative rounded;
     @include w-h(100%, 140px);
     @include bg-img("../../assets/img/si.jpg");
-    @apply rounded;
+
 
     h4 {
       position: absolute;
@@ -29,7 +29,6 @@
   }
 
   .timeline-type {
-    // background-color: antiquewhite;
 
     @apply shadow mt-1 rounded;
 
@@ -42,8 +41,7 @@
   }
 
   .timeline-time {
-    position: relative;
-    @apply mt-4;
+    @apply relative mt-4;
 
     .block {
       @apply mx-4 mt-2;

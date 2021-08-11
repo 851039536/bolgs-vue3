@@ -7,15 +7,15 @@
 
   .One-div {
     @include initialize($w, 90%, $Text_height, null, $ml, null, #ffffff);
-    @apply shadow-sm rounded-sm;
-    overflow: auto;
+    @apply shadow-sm rounded-sm overflow-auto;
+
 
     .One-top {
       @include w-h(100%, 55%);
 
       .One-top-img {
         @include w-h(45%, 76.5%);
-        float: left;
+        @apply float-left;
 
         img {
           @include w-h(100%, 100%);
@@ -24,7 +24,7 @@
 
       .One-top-text {
         @include w-h(55%, 100%);
-        float: right;
+        @apply float-right;
 
         .One-top-text-title {
           @apply text-center m-1 pt-2;
@@ -34,14 +34,7 @@
         .One-top-give {
           height: 60%;
 
-          text-overflow: ellipsis;
-          /*有些示例里需要定义该属性，实际可省略*/
-          display: -webkit-box;
-          -webkit-line-clamp: 5;
-          /*规定超过两行的部分截断*/
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          word-break: break-all;
+          @include line-numbers(5);
           @apply m-1 px-4 py-4 font-thin leading-loose tracking-wide text-center shadow-2xl;
         }
 
@@ -58,28 +51,27 @@
 
     .One-recommend {
       @include w-h(100%, 30px);
-      margin-top: 5px;
-      @apply px-2 my-1 shadow bg-gray-100;
+      @apply px-2 my-1 mt-1 shadow bg-gray-100;
 
       .One-recommend-l {
-        float: left;
+        @apply float-left;
         @apply text-lg;
       }
 
       .One-recommend-r {
-        float: right;
+        @apply float-right;
         @apply text-lg;
       }
     }
 
     .One-list {
       .One-list-div {
-        position: relative;
         @include initialize(188px, 120px, 10px, null, null, null, #ffffff);
-        @apply shadow rounded-sm cursor-pointer ml-4;
+        @apply relative shadow rounded-sm cursor-pointer ml-4;
 
         .One-list-div-frame {
-          @include w-h(100%, 100%);
+
+          @apply w-full h-full;
 
           .One-list-div-frame-title {
             height: 23%;
@@ -95,14 +87,7 @@
           .One-list-div-frame-text {
             @apply px-2 m-1 p-1 text-sm font-thin;
             height: 51%;
-            text-overflow: ellipsis;
-            /*有些示例里需要定义该属性，实际可省略*/
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            /*规定超过两行的部分截断*/
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            word-break: break-all;
+            @include line-numbers(3);
           }
         }
       }
@@ -116,12 +101,10 @@
   }
 
   .One .One-div {
-    width: 100%;
-    @apply ml-0 mb-14;
+    @apply w-full ml-0 mb-14;
   }
 
   .One .One-div .One-list .One-list-div {
-    width: 100%;
-    @apply ml-0;
+    @apply w-full ml-0;
   }
 }

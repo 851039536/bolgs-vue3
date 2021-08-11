@@ -2,19 +2,16 @@
 @import "../../assets/sass/uitl";
 
 #softwarecontent {
-  // position: fixed;
-  @include w-h(100%, 100%);
+  @apply w-full h-full;
 
   .software_main {
     @include initialize($w, 90%, $Text_height, null, $ml, null, #fafafa);
-    @apply shadow-sm rounded-sm;
-    overflow: auto;
+    @apply shadow-sm rounded-sm overflow-auto;
 
     .software_content {
       @apply m-2;
 
       .software_content_div {
-        // position: relative;
         @include initialize(100%, 125px, 10px, null, null, null, #ffffff);
         @apply mb-1 shadow rounded-sm cursor-pointer;
 
@@ -38,12 +35,7 @@
           .oftware_content__frame-2 {
             @apply px-2 m-1 p-1 text-sm font-thin;
             height: 51%;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            word-break: break-all;
+            @include line-numbers(3);
           }
 
           .oftware_content__frame-3 {
@@ -69,7 +61,6 @@
       @apply m-2;
 
       .software_content-3_content {
-        // @include initialize(100%, null, 2px, null, null, null, #ffffff);
         @apply shadow rounded-sm p-2 bg-white;
       }
     }

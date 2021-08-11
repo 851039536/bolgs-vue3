@@ -2,10 +2,8 @@
  @import "../../assets/sass/uitl";
 
  .talk {
-   /*background-color: #dddddd;*/
    @include initialize($w, 100%, $Text_height, null, $ml, null, null);
 
-   //@include boxshow;
    .talk-text {
      .text-carousel {
 
@@ -66,18 +64,13 @@
      .talk-text-2 {
        @apply mt-3;
 
-       // background-color: #6990f6;
        .talk-text-2-1 {
-         background-color: #ffffff;
          @include w-h(100%, 120px);
-         margin: auto;
-         @apply mt-4;
-         /*border-bottom: 1px dashed #f1f1f1;*/
-         @apply shadow rounded;
+         @apply mt-4 m-auto;
+         @apply shadow rounded bg-white;
 
          // 左边图片
          .talk-text-2-1-1 {
-           /*background-color: #95999c;*/
            @include w-h(25%, 100%);
            @apply shadow-sm;
 
@@ -88,17 +81,14 @@
 
          // 右边内容
          .talk-text-2-1-2 {
-           // background-color: #55a532;
            @include w-h(100%, 100%);
            @apply text-justify;
 
            // 标题 作者 日期
            .talk-text-2-1-2-1 {
-             // background-color: #0086b3;
              height: 30%;
 
              div {
-               /*background-color: #dddddd;*/
                @apply p-1 px-4 pt-2 text-xl cursor-pointer font-normal antialiased;
              }
            }
@@ -106,7 +96,6 @@
            // 内容
            .talk-text-2-1-2-2 {
              height: 40%;
-             // background-color: #d1bda4;
              @apply p-1 pt-2 px-4 text-sm font-light antialiased;
              @include line-number;
            }
@@ -114,11 +103,9 @@
            .talk-text-2-1-2-3 {
              height: 30%;
              @apply px-4 pt-2 text-sm cursor-pointer;
-             // background-color: #9a6e3a;
 
              div {
                @include w-h(10%, 100%);
-               // background-color: #d1bda4;
                @apply p-1;
              }
            }
@@ -127,13 +114,13 @@
      }
 
      .text-title {
-       @apply mt-2;
+       @apply mt-2 w-full;
        @apply bg-white text-base shadow-sm rounded p-2;
-       width: 100%;
 
        .text-title-1 {
          @apply p-1 px-3 text-lg font-medium;
          @include line-ome;
+
          /* 边框下划线 */
          border-bottom: 1px solid #d5d9e0;
        }

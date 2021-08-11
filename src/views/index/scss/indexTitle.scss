@@ -1,8 +1,9 @@
 @import "../../assets/sass/com", "../../assets/sass/uitl";
 
 .IndexTitle {
-  @include initialize($w, null, $Text_height, null, $ml, null, null);
 
+
+  @include initialize($w, null, $Text_height, null, $ml, null, null);
 
   .IndexTitle-img {
     @include w-h(null, 140px);
@@ -54,8 +55,7 @@
   }
 
   .IndexTitle-page {
-    width: 100%;
-    @apply py-4 bg-white shadow rounded;
+    @apply w-full py-4 bg-white shadow rounded;
   }
 }
 
@@ -69,9 +69,7 @@
   }
 
   .IndexTitle {
-    // @apply bg-gray-400;
-    width: 100%;
-    @apply ml-0;
+    @apply w-full ml-0;
 
     .IndexTitle-img {
       @apply hidden;

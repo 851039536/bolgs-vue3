@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-08-03 09:25:15
+ * @LastEditTime: 2021-08-11 17:12:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -79,8 +79,7 @@
       @apply grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1;
       .n-nav-1 {
         @include w-h(null, 200px);
-        @apply shadow rounded-sm;
-        margin: 10px;
+        @apply shadow rounded-sm m-2.5;
         .n-nav-1-1 {
           img {
             @include w-h(100%, 100%);

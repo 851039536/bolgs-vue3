@@ -2,24 +2,21 @@
 @import "../../assets/sass/uitl";
 
 #About {
-  @apply bg-gray-300;
 
   /* 关于界面 */
   .About-div {
     @include initialize(93%, 100%, $Text_height, auto, auto, auto, #ffffff);
 
-    // white-space: nowrap;
-    // -webkit-overflow-scrolling: touch;
 
     .About-bg {
       height: 500px;
       background: no-repeat center/100% url("../../assets/img/ab.jpg");
-      @include boxshow;
+      @apply shadow;
 
       .about-1 {
         /*background-color: #0086b3;*/
         @include initialize(35%, 61%, 5%, auto, auto, auto, null);
-        @include boxshow;
+        @apply shadow;
 
         .about-1-1 {
           /*background-color: #55ff00;*/
