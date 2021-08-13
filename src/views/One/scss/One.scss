@@ -65,9 +65,12 @@
     }
 
     .One-list {
+
+
       .One-list-div {
-        @include initialize(188px, 120px, 10px, null, null, null, #ffffff);
-        @apply relative shadow rounded-sm cursor-pointer ml-4;
+        height: 123px;
+        @apply w-4/12 mt-1 m-auto;
+        @apply relative shadow rounded-sm cursor-pointer;
 
         .One-list-div-frame {
 

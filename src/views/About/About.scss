@@ -14,12 +14,10 @@
       @apply shadow;
 
       .about-1 {
-        /*background-color: #0086b3;*/
         @include initialize(35%, 61%, 5%, auto, auto, auto, null);
         @apply shadow;
 
         .about-1-1 {
-          /*background-color: #55ff00;*/
           height: 50%;
 
           .about-1-1-1 {

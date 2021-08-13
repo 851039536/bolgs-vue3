@@ -25,8 +25,8 @@
         <div class="One-recommend-r">更多推荐!</div>
       </div>
       <!-- ---------------------------------- -->
-      <div class="inline-grid One-list" v-for="data in dataTest" :key="data.oneId">
-        <div class="One-list-div">
+      <div class="flex flex-wrap One-list">
+        <div class="One-list-div" v-for="data in dataTest" :key="data.oneId">
           <div class="One-list-div-frame">
             <p class="One-list-div-frame-title">
               <a @click="setModal1Visible(true, data.oneId)">

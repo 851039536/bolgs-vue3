@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-08-03 09:23:54
+ * @LastEditTime: 2021-08-12 10:26:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -12,13 +12,13 @@
       <!-- 文章描述 -->
       <div class="One-Sidebar-describe">
         <div class="One-Sidebar-describe-text">
-          <p class>文章来源于网络,进行收集整理</p>
+          <p class>内容来源于网络</p>
         </div>
       </div>
       <!-- ------------- -->
       <!--内容框-->
       <div class="One-Sidebar-textlist">
-        <div class="One-Sidebar-textlist-title">推荐内容</div>
+        <div class="One-Sidebar-textlist-title">舔狗最爱</div>
         <div class="TalkSidebar-text-4-2" v-for="result in resultOne" :key="result.oneId">
           <div class="p-1 pl-2 text-base">
             <svg class="inline-block icon" aria-hidden="true">

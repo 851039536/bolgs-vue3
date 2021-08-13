@@ -87,6 +87,7 @@
         }
         .n-nav-1-2 {
           padding: 5px;
+          
         }
         .n-nav-1-3 {
           padding: 5px;

@@ -2,6 +2,7 @@
   <div class="IndexTitle animate__animated animate__fadeIn">
     <div class="IndexTitle-img"></div>
     <!----------------------加载article表内容---------------------------->
+
     <div
       class="IndexTitle-text"
       v-for="(info, index) in dataResult"
@@ -111,9 +112,6 @@
           });
 
         }
-
-
-
       }
 
       async function currentchange(val: number): Promise<void> {

@@ -48,6 +48,7 @@
             :show-arrow="false"
             :filter-option="false"
             @search="SearchTitle"
+            @select="tiaozhuan"
           >
             >
             <a-select-option v-for="d in article1" :key="d.articleId">{{ d.title }}</a-select-option>
@@ -73,9 +74,9 @@
             class="transition duration-500 ease-in-out transform index-si-tag-text hover: hover:scale-110 hover:text-red-600"
             @click="TagSkip(Labeslss.labelId)"
           >
-            <svg class="inline-block icon" aria-hidden="true">
+            <!-- <svg class="inline-block icon" aria-hidden="true">
               <use :xlink:href="Labeslss.labelAlias" />
-            </svg>
+            </svg>-->
             <a>{{ Labeslss.labelName }}</a>
           </div>
         </div>
@@ -125,6 +126,29 @@
           </div>
         </div>
       </div>
+
+      <div class="index-si-count">
+        <div class="stat">
+          <div class="stat-figure text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-8 h-8 stroke-current"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </div>
+          <div class="stat-title">Total Likes</div>
+          <div class="stat-value text-primary">25.6K</div>
+          <div class="stat-desc">21% more than last month</div>
+        </div>
+      </div>
       <!-- ------------------------------------------------------- -->
     </div>
   </div>
@@ -135,6 +159,8 @@
   import { useRouter } from "vue-router";
   import { useStore } from "vuex";
   import { article } from '../../api/article';
+  import { labels } from '../../api/labels';
+  import { sort } from '../../api/sort';
   export default {
     name: "IndexSidebar",
     components: {},
@@ -164,22 +190,37 @@
 
       const SearchTitle = async (title: string) => {
 
-        console.log(title);
-
         await article.GetContainsAsync(title).then(res => {
           state.article1 = res.data;
-          console.log(state.article.title);
         })
 
       };
 
+      const tiaozhuan = async (title: string) => {
+
+        const { href } = await router.resolve({
+          path: "/Particulars",
+          query: {
+            id: title,
+            t: +new Date()
+          }
+        });
+        window.open(href, '_blank');
+      }
+
       const GetAllasync = async () => {
+
+        //查询标签
+        await labels.GetAllAsync(true).then(res => {
+          state.Labels = res.data;
+        });
+        //查询分类
+        await sort.GetAllAsync(true).then(res => {
+          state.Sort = res.data;
+        });
         proxy.$api
           .all([
-            //查询标签
-            proxy.$api.get("/api/ReSnLabels/GetAllAsync"),
-            //查询分类
-            proxy.$api.get("/api/SnSort/GetAllAsync"),
+
             //查询最新发布前十文章
             proxy.$api.get(
               "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true"
@@ -204,8 +245,7 @@
           .then(
             proxy.$api.spread(
               (
-                res1: any,
-                res2: any,
+
                 res3: any,
                 res4: any,
                 res5: any,
@@ -215,8 +255,8 @@
                 res9: any,
                 res10: any
               ) => {
-                state.Labels = res1.data;
-                state.Sort = res2.data;
+
+
                 state.article = res3.data;
                 state.articledata = res3.data[0].time;
                 state.UserTalk = res4.data;
@@ -261,7 +301,8 @@
         TagSkip,
         GetAllasync,
         SkipText,
-        SearchTitle
+        SearchTitle,
+        tiaozhuan
       };
     },
   };

@@ -90,7 +90,7 @@
       }
       async function getAll(): Promise<void> {
 
-        await labels.GetAllAsync().then((result: any) => {
+        await labels.GetAllAsync(true).then((result: any) => {
           state.labels = result.data;
         });
       }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:09:51
- * @LastEditTime: 2021-07-27 11:45:30
+ * @LastEditTime: 2021-08-12 08:53:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\labels.ts
@@ -18,9 +18,9 @@ export class labels {
     })
   }
 
-  static async GetAllAsync(): Promise<any> {
+  static async GetAllAsync(cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnLabels/GetAllAsync",
+      url: "/api/SnLabels/GetAllAsync?cache=" + cache,
       method: 'get',
     })
   }
