@@ -119,13 +119,14 @@
         labels.GetByIdAsync(id).then((result: any) => {
           state.Labels = result.data;
 
-          // alert(result.data.sortName);
         })
       }
       const GetSortById = (id: number) => {
 
         sort.GetByIdAsync(id).then((result: any) => {
           state.Sort = result.data;
+
+
         })
       }
       // 阅读数

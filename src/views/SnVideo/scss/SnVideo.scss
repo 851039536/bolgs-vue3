@@ -1,7 +1,7 @@
 @import "../../assets/sass/com";
 @import "../../assets/sass/uitl";
 
-.snvideo {
+#snvideo {
   @apply fixed w-full h-full;
 
   .snvideo_main {
@@ -19,12 +19,12 @@
 
     .snvideo_main_content {
       @include w-h(100%, 80%);
-      @apply overflow-auto absolute;
-      @include excursion(8%, null, null, 0%);
+      @apply overflow-auto absolute top-3;
+
 
       .SnVideo-2-1 {
-        @include w-h(95%, 90%);
-        @apply ml-1 shadow;
+        @include w-h(31%, 50%);
+        @apply shadow m-auto mt-4;
 
         .SnVideo-2-1-1 {
           height: 65%;
@@ -50,8 +50,22 @@
 }
 
 @screen xp {
-  .snvideo .snvideo_main {
-    width: 100%;
-    @apply ml-0;
+  #snvideo {
+
+    .snvideo_main {
+      width: 100%;
+      @apply m-0;
+
+      .snvideo_main_content {
+
+        .SnVideo-2-1 {
+          width: 97%;
+          height: 65%;
+
+          .SnVideo-2-1-1 {}
+        }
+      }
+    }
   }
+
 }

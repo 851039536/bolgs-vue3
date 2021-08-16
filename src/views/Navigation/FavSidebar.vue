@@ -139,4 +139,10 @@
       }
     }
   }
+
+  @screen xp {
+    #FavSidebar {
+      display: none;
+    }
+  }
 </style>

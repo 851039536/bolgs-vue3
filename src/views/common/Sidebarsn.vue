@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-08-06 12:16:32
+ * @LastEditTime: 2021-08-16 15:08:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
 -->
 <template>
-  <div class="sidebarsn">
+  <div id="sidebarsn">
     <div class="si_scroll">
       <div class="si_img">
         <img src="@/assets/img/si.jpg" alt />

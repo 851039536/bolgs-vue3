@@ -133,3 +133,9 @@
     fill: currentColor;
     overflow: hidden;
   }
+
+  @screen xp {
+    .One-Sidebar {
+      display: none;
+    }
+  }

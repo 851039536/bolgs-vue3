@@ -1,7 +1,7 @@
  @import "../../assets/sass/com";
  @import "../../assets/sass/uitl";
 
- .sidebarsn {
+ #sidebarsn {
    @include w-h(20%, 100%);
    @include excursion($Text_height, null, 3%, null);
    background-color: $back_sidebar;
@@ -45,6 +45,12 @@
    }
 
    .si_scroll::-webkit-scrollbar {
+     display: none;
+   }
+ }
+
+ @screen xp {
+   #sidebarsn {
      display: none;
    }
  }

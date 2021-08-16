@@ -72,12 +72,9 @@
 }
 
 @screen xp {
-  #home .home_main .home_main_top {
-    @include initialize(100%, 50%, 35%, null, null, null, null);
-  }
 
-  #home .home_main .home_enter {
-    @include initialize(45%, null, null, null, 26%, null, null);
+  #home .home_main {
+    width: 100%;
   }
 
   #home .home_main .home_main_top .home_introduce .home_introduce-1 {
