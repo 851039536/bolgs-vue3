@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-17 08:49:57
+ * @LastEditTime: 2021-08-17 14:25:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\SnVideo\SnVideoText.vue
+-->
 <template>
   <div class="snvideotext">
     <div class="flex snvideotext_main animate__animated animate__fadeIn">
@@ -51,8 +59,6 @@
   } from "vue-router";
   export default {
     name: "SnVideoText",
-
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       // 加载路由
       const route = useRoute();

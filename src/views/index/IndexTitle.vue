@@ -2,7 +2,6 @@
   <div class="IndexTitle animate__animated animate__fadeIn">
     <div class="IndexTitle-img"></div>
     <!----------------------加载article表内容---------------------------->
-
     <div
       class="IndexTitle-text"
       v-for="(info, index) in dataResult"
@@ -18,7 +17,11 @@
           <div class="IndexTitle-user">
             <div>少年</div>
             <div>随笔</div>
-            <div>{{ info.time }}</div>
+            <div>
+              {{ info.timeCreate.toLocaleString()
+              .replace(/T/g, " ")
+              .replace(/\.[\d]{3}Z/, "")}}
+            </div>
             <!-- <div>
           <a>
             <svg class="inline-block icon" aria-hidden="true">

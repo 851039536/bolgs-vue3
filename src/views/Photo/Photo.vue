@@ -1,7 +1,7 @@
 <!--
  * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2021-08-11 17:16:07
+ * @LastEditTime: 2021-08-17 10:40:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
@@ -105,7 +105,7 @@
 
 <style lang="scss" scoped>
   @import "../../assets/sass/com";
-  @import "../../styles/uitl.scss";
+  @import "../../assets/sass/uitl.scss";
 
   .photo {
     @include initialize(94%, null, $Text_height, null, 3%, null, #ffffff);

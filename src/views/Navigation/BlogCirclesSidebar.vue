@@ -39,7 +39,6 @@
   export default {
     name: "FavSidebar",
     components: {},
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const router = useRouter();
       // 加载路由

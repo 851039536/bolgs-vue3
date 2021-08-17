@@ -1,14 +1,16 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-08-10 14:10:01
+ * @LastEditTime: 2021-08-17 14:26:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
 -->
 <template>
   <div id="app">
-    <Headers></Headers>
+    <!-- <Headers></Headers> -->
+    <blog-header></blog-header>
+    <!-- <blog-sidebar></blog-sidebar> -->
     <!-- vue3.0配置 -->
     <router-view v-slot="{ Component }">
       <keep-alive>
@@ -16,7 +18,6 @@
       </keep-alive>
       <component :is="Component" v-if="!$route.meta.keepAlive" />
     </router-view>
-
     <SnBootom></SnBootom>
   </div>
 </template>
@@ -27,7 +28,7 @@
   import { onMounted } from "vue";
   import SnBootom from './views/common/SnBootom.vue';
   export default {
-    components: { SnBootom },
+    components: { SnBootom, },
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const router = useRouter();

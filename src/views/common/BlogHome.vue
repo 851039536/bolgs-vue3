@@ -1,14 +1,14 @@
 <!--
- * @Author: your name
+ * @Author: 自我介绍
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-08-06 15:28:48
+ * @LastEditTime: 2021-08-17 14:53:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
 -->
 
 <template>
-  <div id="home" class="animate__animated animate__fadeIn">
+  <div id="BlogHome" class="animate__animated animate__fadeIn">
     <div class="home_main">
       <div class="home_main_top">
         <div class="home_introduce">
@@ -25,10 +25,10 @@
       </div>
       <div class="flex home_enter animate__animated animate__slideInUp">
         <div class="home_enter-1">
-          <button @click="onk(1)">进入</button>
+          <button @click="skip(1)">进入</button>
         </div>
         <div class="home_enter-2">
-          <button @click="onk(2)">关于</button>
+          <button @click="skip(2)">关于</button>
         </div>
       </div>
     </div>
@@ -38,10 +38,10 @@
 <script lang="ts">
   import { useRouter } from "vue-router";
   export default {
-    name: "Home",
-    setup(): { onk: (num: any) => Promise<void>; } {
+    name: "BlogHome",
+    setup(): { skip: (num: any) => Promise<void>; } {
       const router = useRouter();
-      let onk = async (num: any) => {
+      let skip = async (num: any) => {
         switch (num) {
           case 1:
             router.push("/Blogs");
@@ -53,11 +53,11 @@
       };
 
       return {
-        onk,
+        skip,
       };
     },
   };
 </script>
 <style lang="scss" scoped>
-  @import "./scss/Home.scss";
+  @import "./scss/BlogHome.scss";
 </style>

@@ -1,27 +1,23 @@
 <!--
  * @Author: Index.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-08-10 13:40:48
+ * @LastEditTime: 2021-08-17 14:21:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Index.vue
 -->
 <template>
   <div>
-    <!-- 左侧边栏 -->
-    <Sidebarsn></Sidebarsn>
-    <!--侧边栏-->
+    <blog-sidebar></blog-sidebar>
     <IndexSidebar></IndexSidebar>
-    <!-- 内容页面 -->
     <IndexTitle></IndexTitle>
-    <!-- 回到顶部 -->
     <a-back-top />
   </div>
 </template>
 
 <script lang="ts">
   // 组件导入
-  import IndexTitle from "./index/IndexTitle.vue";
+  import IndexTitle from "./IndexTitle.vue";
   import { notification } from "ant-design-vue";
   import { onMounted } from "vue";
   export default {
@@ -29,7 +25,6 @@
     components: {
       IndexTitle,
     },
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const openNotification = () => {
         notification.open({
@@ -50,6 +45,3 @@
     },
   };
 </script>
-<style lang="scss" scoped>
-</style>
-

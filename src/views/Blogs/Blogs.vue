@@ -1,6 +1,6 @@
 <template>
   <div id="software">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <fav-sidebar></fav-sidebar>
     <div class="software_main animate__animated animate__fadeIn">
       <!-- ---------------------------------- -->
@@ -25,11 +25,9 @@
             <p class="oftware_content__frame-2">{{ info.titleText }}</p>
 
             <p class="oftware_content__frame-3">
-              <span>剧本</span>
               <span>测试</span>
-              <span>热度</span>
-              <span>测试</span>
-              <span>测试</span>
+              <span>{{info.read}} ℃</span>
+              <span>{{info.timeCreate}}</span>
             </p>
           </div>
         </div>
@@ -64,11 +62,12 @@
 
         dataResult: [], // 显示的数据
         page: 1, //页码
-        pagesize: 7, //每页条数
+        pagesize: 10, //每页条数
         count: 0, //总数
       });
 
       const router = useRouter();
+
 
       async function GetFySortTitleAsync(): Promise<void> {
         await article.GetFySortTitleAsync(state.page, state.pagesize).then((result: any) => {

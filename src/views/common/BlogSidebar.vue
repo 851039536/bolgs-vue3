@@ -1,13 +1,13 @@
 <!--
- * @Author: your name
+ * @Author: 博客侧边栏
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-08-16 15:08:35
+ * @LastEditTime: 2021-08-17 14:20:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
 -->
 <template>
-  <div id="sidebarsn">
+  <div id="BlogSidebar">
     <div class="si_scroll">
       <div class="si_img">
         <img src="@/assets/img/si.jpg" alt />
@@ -69,6 +69,6 @@
     },
   };
 </script>
-<style lang="scss" scoped>
-  @import "./scss/Sidebarsn.scss";
+<style lang="scss" >
+  @import "./scss/BlogSidebar.scss";
 </style>

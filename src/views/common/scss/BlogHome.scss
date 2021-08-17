@@ -1,7 +1,7 @@
 @import "../../assets/sass/com";
 @import "../../assets/sass/uitl";
 
-#home {
+#BlogHome {
   @apply fixed z-20;
   @apply bg-gray-600;
 
@@ -73,23 +73,23 @@
 
 @screen xp {
 
-  #home .home_main {
+  #BlogHome .home_main {
     width: 100%;
   }
 
-  #home .home_main .home_main_top .home_introduce .home_introduce-1 {
+  #BlogHome .home_main .home_main_top .home_introduce .home_introduce-1 {
     @apply text-5xl;
   }
 
-  #home .home_main .home_main_top .home_introduce .home_introduce-2 {
+  #BlogHome .home_main .home_main_top .home_introduce .home_introduce-2 {
     @apply text-4xl;
   }
 
-  #home .home_main .home_main_top .home_introduce .home_introduce-3 {
+  #BlogHome .home_main .home_main_top .home_introduce .home_introduce-3 {
     @apply text-3xl;
   }
 
-  #home .home_main .home_main_top .home_introduce .home_introduce-4 {
+  #BlogHome .home_main .home_main_top .home_introduce .home_introduce-4 {
     @apply text-2xl;
   }
 }

@@ -3,26 +3,26 @@ import {
   createWebHistory,
   // createWebHashHistory
 } from 'vue-router'
-import Home from '../views/common/Home.vue'
+import BlogHome from '../views/common/BlogHome.vue'
 
 const routes = [{
   path: '/',
   //重定向，当前路径'/'没有对应的组件，需要重定向到其他路由页面
-  redirect: '/home',
-  name: 'home',
-  component: Home,
+  redirect: '/BlogHome',
+  name: 'Home',
+  component: BlogHome,
 },
 
 {
-  path: '/Home',
-  name: 'Home',
-  component: () => import('../views/common/Home.vue'),
+  path: '/BlogHome',
+  name: 'BlogHome',
+  component: () => import('../views/common/BlogHome.vue'),
 
 },
 {
   path: '/About',
   name: 'About',
-  component: () => import( /* webpackChunkName: "about" */ '../views/About/About.vue'),
+  component: () => import('../views/About/About.vue'),
 
 },
 {
@@ -39,23 +39,23 @@ const routes = [{
   path: '/index',
   name: 'index',
   meta: {
-    keepAlive: true // 缓存
+    keepAlive: true
   },
-  component: () => import('../views/Index.vue'),
+  component: () => import('../views/index/Index.vue'),
 },
 {
-  path: '/Headers',
-  name: 'Headers',
+  path: '/BlogHeader',
+  name: 'BlogHeader',
   meta: {
-    keepAlive: true // 缓存
+    keepAlive: true
   },
-  component: () => import('../views/common/Headers.vue')
+  component: () => import('../views/common/BlogHeader.vue')
 },
 {
   path: '/IndexSidebar',
   name: 'IndexSidebar',
   meta: {
-    keepAlive: true // 缓存
+    keepAlive: true
   },
   component: () => import('../views/index/IndexSidebar.vue')
 },
@@ -63,7 +63,7 @@ const routes = [{
   path: '/IndexTitle',
   name: 'IndexTitle',
   meta: {
-    keepAlive: true // 缓存
+    keepAlive: true
   },
   component: () => import('../views/index/IndexTitle.vue')
 },
@@ -74,18 +74,18 @@ const routes = [{
 },
 
 {
-  path: '/Sidebarsn',
-  name: 'Sidebarsn',
+  path: '/BlogSidebar',
+  name: 'BlogSidebar',
   meta: {
-    keepAlive: true // 缓存
+    keepAlive: true
   },
-  component: () => import('../views/common/Sidebarsn.vue')
+  component: () => import('../views/common/BlogSidebar.vue')
 },
 {
   path: '/Transfer',
   name: 'Transfer',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/common/Transfer.vue')
 },
@@ -93,7 +93,7 @@ const routes = [{
   path: '/TimeLine',
   name: 'TimeLine',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/TimeLine/TimeLine.vue'),
 
@@ -102,7 +102,7 @@ const routes = [{
   path: '/TagText',
   name: 'TagText',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Tag/TagText.vue')
 },
@@ -111,7 +111,7 @@ const routes = [{
   path: '/Photo',
   name: 'Photo',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Photo/Photo.vue')
 },
@@ -120,7 +120,7 @@ const routes = [{
   path: '/Navigation',
   name: 'Navigation',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Navigation/Navigation.vue')
 },
@@ -129,7 +129,7 @@ const routes = [{
   path: '/BlogCircles',
   name: 'BlogCircles',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Navigation/BlogCircles.vue')
 },
@@ -138,7 +138,7 @@ const routes = [{
   path: '/favorite',
   name: 'favorite',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Navigation/favorite.vue')
 },
@@ -147,7 +147,7 @@ const routes = [{
   path: '/Talk',
   name: 'Talk',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Talk/Talk.vue')
 },
@@ -155,7 +155,7 @@ const routes = [{
   path: '/TalkText',
   name: 'TalkText',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Talk/TalkText.vue')
 },
@@ -164,7 +164,7 @@ const routes = [{
   path: '/SnVideo',
   name: 'SnVideo',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/SnVideo/SnVideo.vue')
 },
@@ -173,7 +173,7 @@ const routes = [{
   path: '/SnVideoText',
   name: 'SnVideoText',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/SnVideo/SnVideoText.vue')
 },
@@ -181,7 +181,7 @@ const routes = [{
   path: '/Leave',
   name: 'Leave',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Leave/Leave.vue')
 },
@@ -189,7 +189,7 @@ const routes = [{
   path: '/One',
   name: 'One',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/One/One.vue')
 },
@@ -197,7 +197,7 @@ const routes = [{
   path: '/Book',
   name: 'Book',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/Book/Book.vue')
 },
@@ -205,7 +205,7 @@ const routes = [{
   path: '/test',
   name: 'test',
   meta: {
-    keepAlive: false // 缓存
+    keepAlive: false
   },
   component: () => import('../views/test/test.vue')
 },

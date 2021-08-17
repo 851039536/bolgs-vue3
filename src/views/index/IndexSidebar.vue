@@ -86,7 +86,6 @@
       <!-- 分类内容框 -->
       <div class="index-si-type">
         <div class="index-si-type-title">分类</div>
-
         <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.sortId">
           <div
             class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform index-si-type-text hover: hover:scale-110 hover:text-red-600"
@@ -95,37 +94,13 @@
         </div>
       </div>
 
-      <div>
-        <img
-          alt="Code Time"
-          src="https://img.shields.io/endpoint?style=flat&url=https://codetime-api.datreks.com/badge/undefined?logoColor=white%26project=%26recentMS=0%26showProject=true"
-        />
-      </div>
-
-      <!-- ------------------------------------------------------ -->
-
       <!-- 站点统计框 -->
-      <div class="index-si-count">
-        <div class="index-si-count-title">站点信息</div>
-        <div class="index-si-count-div">
-          <div class="index-si-count-frame">
-            <div class="index-si-count-frame-title">文章数量:</div>
-            <div class="index-si-count-frame-text">{{ ArticleCount }} 篇</div>
-          </div>
-          <div class="index-si-count-frame">
-            <div class="index-si-count-frame-title">总字段数:</div>
-            <div class="index-si-count-frame-text">{{ textCount }} 字</div>
-          </div>
-          <div class="index-si-count-frame">
-            <div class="index-si-count-frame-title">总访问量:</div>
-            <div class="index-si-count-frame-text">{{ readCount }} ℃</div>
-          </div>
-          <div class="index-si-count-frame">
-            <div class="index-si-count-frame-title">最后更新:</div>
-            <div class="index-si-count-frame-text">{{ articledata }}</div>
-          </div>
-        </div>
-      </div>
+      <blog-information
+        :ArticleCount="ArticleCount"
+        :TextCount="textCount"
+        :ReadCount="readCount"
+        :Articledata="articledata"
+      ></blog-information>
 
       <div class="index-si-count">
         <div class="stat">
@@ -149,7 +124,6 @@
           <div class="stat-desc">21% more than last month</div>
         </div>
       </div>
-      <!-- ------------------------------------------------------- -->
     </div>
   </div>
 </template>
@@ -161,9 +135,10 @@
   import { article } from '../../api/article';
   import { labels } from '../../api/labels';
   import { sort } from '../../api/sort';
+  import BlogInformation from '../common/SidebarModule/BlogInformation.vue';
   export default {
     name: "IndexSidebar",
-    components: {},
+    components: { BlogInformation },
 
     setup() {
       const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
@@ -220,10 +195,9 @@
         });
         proxy.$api
           .all([
-
             //查询最新发布前十文章
             proxy.$api.get(
-              "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true"
+              "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true"
             ),
             // 查询当前用户的说说
             proxy.$api.get(
@@ -255,10 +229,8 @@
                 res9: any,
                 res10: any
               ) => {
-
-
                 state.article = res3.data;
-                state.articledata = res3.data[0].time;
+                state.articledata = res3.data[0].timeCreate;
                 state.UserTalk = res4.data;
                 state.User = res5.data;
                 store.state.ArticleCount = state.ArticleCount = res6.data;

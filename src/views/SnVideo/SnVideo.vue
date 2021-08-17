@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-08-16 15:47:36
+ * @LastEditTime: 2021-08-17 14:25:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
 -->
 <template>
   <div id="snvideo">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <video-sidebar></video-sidebar>
     <div class="snvideo_main animate__animated animate__fadeIn">
       <!-- <div
@@ -49,8 +49,6 @@
   export default {
     name: "SnVideo",
     components: { VideoSidebar },
-
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       // 加载路由
       const router = useRouter();

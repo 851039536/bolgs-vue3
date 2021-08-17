@@ -1,7 +1,7 @@
 <template>
   <div id="favorite">
     <!-- 侧边栏-->
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <FavSidebar></FavSidebar>
     <!-- ---------- -->
     <div id="favorite_main" class="animate__animated animate__fadeIn">
@@ -42,8 +42,6 @@
   export default {
     components: { FavSidebar },
     name: "favorite",
-
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       // 数据定义
       const state = reactive({

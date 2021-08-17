@@ -1,6 +1,6 @@
 <template>
   <div class="animate__animated animate__fadeIn">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <!--标题-->
     <div class="Talk-title">
       <a-page-header :title="newinfo.talkTitle" @back="() => houtui()" />

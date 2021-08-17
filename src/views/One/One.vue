@@ -1,6 +1,6 @@
 <template>
   <div class="One">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <OneSidebar></OneSidebar>
     <div class="One-div animate__animated animate__fadeIn">
       <div class="One-top">
@@ -25,7 +25,7 @@
         <div class="One-recommend-r">更多推荐!</div>
       </div>
       <!-- ---------------------------------- -->
-      <div class="flex flex-wrap One-list">
+      <div class=" One-list">
         <div class="One-list-div" v-for="data in dataTest" :key="data.oneId">
           <div class="One-list-div-frame">
             <p class="One-list-div-frame-title">
@@ -35,11 +35,8 @@
                 }}
               </a>
             </p>
-            <!-- <p class="EverydayOne-3-p2">xxx</p> -->
             <p class="One-list-div-frame-text">{{ data.oneText }}</p>
-            <div>
-              <!-- <p @click="give2(data)">{{data.oneGive}}</p> -->
-            </div>
+            <div></div>
           </div>
         </div>
       </div>

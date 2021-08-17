@@ -1,14 +1,14 @@
 <!--
  * @Author: 时间线
  * @Date: 2020-12-10 10:40:17
- * @LastEditTime: 2021-08-06 15:11:06
+ * @LastEditTime: 2021-08-17 14:40:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
 -->
 <template>
   <div class="timeline animate__animated animate__fadeIn">
-    <sidebarsn></sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <IndexSidebar></IndexSidebar>
     <div class="timeline_img">
       <h4>Archive</h4>
@@ -34,44 +34,14 @@
           <div class="block-1">
             <a-timeline-item>
               <h4>
-                <a @click="onk(activity.article_id)">{{ activity.title }}</a>
+                <a @click="onk(activity.articleId)">{{ activity.title }}</a>
               </h4>
             </a-timeline-item>
             <a-timeline-item color="green">
-              <p>提交于 {{ activity.time }}</p>
+              <p>提交于 {{ activity.timeCreate }}</p>
             </a-timeline-item>
           </div>
         </a-timeline>
-
-        <!-- <section class="text-gray-600 body-font">
-          <div class="container flex flex-wrap px-5 py-24 mx-auto">
-            <div
-              class="relative flex pt-10 pb-20 mx-auto sm:items-center md:w-2/3"
-              v-for="activity in items"
-              :key="activity.article_id"
-            >
-              <div class="absolute inset-0 flex items-center justify-center w-6 h-full">
-                <div class="w-1 h-full bg-gray-200 pointer-events-none"></div>
-              </div>
-
-              <div
-                class="relative z-10 inline-flex items-center justify-center flex-shrink-0 w-6 h-6 mt-10 text-sm font-medium text-white bg-indigo-500 rounded-full sm:mt-0 title-font"
-              >{{ activity.article_id }}</div>
-
-              <div
-                class="flex flex-col items-start flex-grow pl-6 md:pl-8 sm:items-center sm:flex-row"
-              >
-               
-                <div class="flex-grow mt-6 sm:pl-6 sm:mt-0">
-                  <h2 class="mb-1 text-xl font-medium text-gray-900 title-font">{{ activity.title }}</h2>
-                  <p
-                    class="leading-relaxed"
-                  >VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk bespoke try-hard cliche palo santo offal.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>-->
       </div>
       <!-- 回到顶部 -->
       <a-back-top />
@@ -88,7 +58,6 @@
   export default {
     name: "TimeLine",
     components: {},
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       // 简单的来说，它是类型约束的定义，当你使用这个定义接口时，它会一一匹对接口中定义的类型。
       //只要不满足接口中的任何一个属性，都不会通过的。
@@ -125,11 +94,11 @@
         state.readCount = store.state.readCount;
       };
       //void 为 函数没有类型，一般用在没有返回值的函数 如果方法类型为any，则可以返回任意类型
-      const asyGetTest = (): void => {
+      const GetFyTitleAsync = (): void => {
         proxy
           .$api({
             url:
-              "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=1150&isDesc=true",
+              "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true",
           })
           .then((res: any) => {
             state.items = res.data;
@@ -141,17 +110,17 @@
       const onk = (id: number) => {
         // .带参数跳转
         router.push({
-          path: "/Indextext",
+          path: "/IndexText",
           query: {
             id: id,
           },
         });
       };
       onMounted(async () => {
-        await asyGetTest();
+        await GetFyTitleAsync();
         await iniCount();
       });
-      return { ...toRefs(state), asyGetTest, onk, iniCount };
+      return { ...toRefs(state), GetFyTitleAsync, onk, iniCount };
     },
   };
 </script>

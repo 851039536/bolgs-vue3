@@ -1,7 +1,7 @@
 <!--
- * @Author: your name
+ * @Author: 书单
  * @Date: 2020-12-26 14:05:13
- * @LastEditTime: 2021-08-03 09:02:17
+ * @LastEditTime: 2021-08-17 14:28:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Book\Index.vue
@@ -9,7 +9,7 @@
 
 <template>
   <div class="Book">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <index-sidebar></index-sidebar>
     <div class="Book_text">
       <div class="Book_title">

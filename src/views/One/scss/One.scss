@@ -28,11 +28,11 @@
 
         .One-top-text-title {
           @apply text-center m-1 pt-2;
-          height: 14%;
+          height: 19%;
         }
 
         .One-top-give {
-          height: 60%;
+          height: 55%;
 
           @include line-numbers(5);
           @apply m-1 px-4 py-4 font-thin leading-loose tracking-wide text-center shadow-2xl;
@@ -66,10 +66,12 @@
 
     .One-list {
 
+      @apply flex flex-wrap;
 
       .One-list-div {
         height: 123px;
-        @apply w-4/12 mt-1 m-auto;
+        width: 31%;
+        @apply mt-1 m-auto;
         @apply relative shadow rounded-sm cursor-pointer;
 
         .One-list-div-frame {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--侧边栏-->
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <TalkSidebar></TalkSidebar>
     <div class="talk animate__animated animate__fadeIn">
       <!--文章内容-->

@@ -1,14 +1,14 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-08-11 17:12:17
+ * @LastEditTime: 2021-08-17 14:24:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
 -->
 <template>
   <div>
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <IndexSidebar></IndexSidebar>
     <div class="n-nav animate__animated animate__fadeIn">
       <h5 class="px-2 py-2 m-1">网站导航 {{ count }}</h5>
@@ -36,7 +36,6 @@
     components: {},
 
     // inject: ["count"],
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
       const state = reactive({
@@ -55,9 +54,6 @@
       };
 
       const urltest = async (url: any) => {
-        //当前窗口跳转
-        // self.location.href=url
-        //新窗口跳转
         window.open(url);
       };
 
@@ -87,7 +83,6 @@
         }
         .n-nav-1-2 {
           padding: 5px;
-          
         }
         .n-nav-1-3 {
           padding: 5px;

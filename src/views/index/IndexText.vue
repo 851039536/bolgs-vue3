@@ -1,6 +1,6 @@
 <template>
   <div class="animate__animated animate__fadeIn">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <!--侧边栏-->
     <IndexSidebar></IndexSidebar>
 
@@ -44,16 +44,11 @@
 
         <div class="IndexText-comment-text">{{ Sort.sortName }}</div>
         <div class="IndexText-comment-text">{{ Labels.labelName }}</div>
-        <div class>{{ article_String.time }}</div>
+        <div class>{{ article_String.timeCreate }}</div>
       </div>
     </div>
     <!-- ------------------------------------------------- -->
-    <!-- 回到顶部 -->
     <a-back-top />
-
-    <!-- <div class="IndexText-give">
-      <div class="btn" @click="like(article_String)">点赞</div>
-    </div>-->
   </div>
 </template>
 
@@ -71,7 +66,6 @@
   export default {
     name: "IndexText",
     components: {},
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
       const route = useRoute();
       const router = useRouter();
@@ -135,9 +129,7 @@
           console.log(info);
           return;
         } else {
-          // console.log(info.read);
           info.read++;
-          // console.log(state.id + "-" + info.read);
           await article.UpdatePortionAsync(info, "Read");
         }
       };
@@ -157,10 +149,8 @@
                 var time = 10;
                 var timer = setInterval(function () {
                   time--;
-                  // console.log(time);
                   if (time == 0) {
                     state.timebool = true;
-                    // alert(this.timebool)
                     clearInterval(timer);
                   }
                 }, 1000);

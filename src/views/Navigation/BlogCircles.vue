@@ -1,6 +1,6 @@
 <template>
   <div class="blogcircles">
-    <Sidebarsn></Sidebarsn>
+    <blog-sidebar></blog-sidebar>
     <blog-circles-sidebar></blog-circles-sidebar>
     <div class="blogcircles_main animate__animated animate__fadeIn">
       <!-- <div class="BlogCircles-2">博客圈</div> -->
@@ -28,13 +28,11 @@
   import { navigation } from '../../api/navigation';
   import { reactive, toRefs, onMounted } from "vue";
   import BlogCirclesSidebar from './BlogCirclesSidebar.vue';
+  import BlogSidebar from '../common/BlogSidebar.vue';
   export default {
-    components: { BlogCirclesSidebar },
+    components: { BlogCirclesSidebar, BlogSidebar },
     name: "BlogCircles",
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-      //获取上下文实例，ctx=vue2的this
-      //const { proxy }: any = getCurrentInstance();
       const state = reactive({
         text: [],
       });

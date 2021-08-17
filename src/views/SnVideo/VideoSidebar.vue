@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-28 09:49:17
- * @LastEditTime: 2021-08-03 09:17:40
+ * @LastEditTime: 2021-08-17 14:25:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\VideoSidebar.vue
@@ -55,9 +55,7 @@
   export default {
     name: "VideoSidebar",
     components: {},
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setup() {
-
       const router = useRouter();
       // 加载路由
       // const route = useRoute();

@@ -1,7 +1,7 @@
 <!--
- * @Author: your name
+ * @Author: 移动端导航栏
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-08-11 16:32:56
+ * @LastEditTime: 2021-08-17 14:21:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -9,11 +9,11 @@
 <template>
   <div class="SnBootom">
     <div class="flex justify-around SnBootom-1">
-      <div class @click="onk(1)">首页</div>
-      <div class @click="onk(2)">TG</div>
-      <div class @click="onk(3)">One</div>
-      <div class @click="onk(4)">视频</div>
-      <div class @click="onk(5)">图库</div>
+      <div class @click="skip(1)">首页</div>
+      <div class @click="skip(2)">TG</div>
+      <div class @click="skip(3)">One</div>
+      <div class @click="skip(4)">视频</div>
+      <div class @click="skip(5)">图库</div>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@
       const state: any = reactive({
         id: 0,
       });
-      const onk = (num: number) => {
+      const skip = (num: number) => {
         console.log(num)
         switch (num) {
           case 1:
@@ -60,7 +60,7 @@
         }
 
       };
-      return { ...toRefs(state), onk }
+      return { ...toRefs(state), skip }
     }
   }
 </script>
