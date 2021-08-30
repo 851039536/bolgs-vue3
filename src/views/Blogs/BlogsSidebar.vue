@@ -31,29 +31,6 @@
       </div>
       <!-- ---------------------------------------- -->
 
-      <!-- 标签框内容 -->
-      <div class="index-si-tag">
-        <div class="index-si-tag-title">标签</div>
-        <blog-tag
-          v-for="Labeslss in Labels"
-          :key="Labeslss.labelId"
-          :title=" Labeslss.labelName"
-          @click="TagSkip(Labeslss.labelId)"
-        ></blog-tag>
-      </div>
-      <!-- ----------------------------------------------- -->
-
-      <!-- 分类内容框 -->
-      <div class="index-si-type">
-        <div class="index-si-type-title">分类</div>
-        <div class="inline-flex cursor-pointer" v-for="Sorts in Sort" :key="Sorts.sortId">
-          <div
-            class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform index-si-type-text hover: hover:scale-110 hover:text-red-600"
-            @click="TagSkip(Labeslss.labelId)"
-          >{{ Sorts.sortName }}</div>
-        </div>
-      </div>
-
       <!-- 站点统计框 -->
       <blog-information
         :ArticleCount="ArticleCount"
@@ -79,9 +56,9 @@
               />
             </svg>
           </div>
-          <!-- <div class="stat-title">Total Likes</div> -->
+          <div class="stat-title">Total Likes</div>
           <div class="stat-value text-primary">{{readCount}}</div>
-          <!-- <div class="stat-desc">21% more than last month</div> -->
+          <div class="stat-desc">21% more than last month</div>
         </div>
       </div>
     </div>
@@ -96,11 +73,10 @@
   import { labels } from '../../api/labels';
   import { sort } from '../../api/sort';
   import BlogInformation from '../common/SidebarModule/BlogInformation.vue';
-  import BlogIco from '../common/SidebarModule/BlogIco.vue';
-  import BlogTag from '../common/SidebarModule/BlogTag.vue';
+
   export default {
     name: "IndexSidebar",
-    components: { BlogInformation, BlogIco, BlogTag },
+    components: { BlogInformation },
 
     setup() {
       const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
@@ -242,5 +218,5 @@
   };
 </script>
 <style lang="scss" scoped>
-  @import "./scss/indexSidebar.scss";
+  @import "./scss/BlogsSidebar.scss";
 </style>

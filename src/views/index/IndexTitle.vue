@@ -17,11 +17,7 @@
           <div class="IndexTitle-user">
             <div>少年</div>
             <div>随笔</div>
-            <div>
-              {{ info.timeCreate.toLocaleString()
-              .replace(/T/g, " ")
-              .replace(/\.[\d]{3}Z/, "")}}
-            </div>
+            <div>{{ info.timeCreate.substring(0,10)}}</div>
             <!-- <div>
           <a>
             <svg class="inline-block icon" aria-hidden="true">

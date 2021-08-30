@@ -12,11 +12,12 @@
        @apply m-2;
 
        .software_content_div {
-         @include initialize(100%, 125px, 10px, null, null, null, #ffffff);
+
+         @include initialize(100%, 155px, 10px, null, null, null, #ffffff);
          @apply shadow rounded-sm cursor-pointer;
 
          .software_content_img {
-           @include w-h(20%, 100%);
+           @include w-h(25%, 100%);
            @apply p-2;
 
            img {
@@ -25,7 +26,7 @@
          }
 
          .oftware_content__frame {
-           @include w-h(80%, 100%);
+           @include w-h(75%, 100%);
 
            .oftware_content__frame-1 {
              @apply m-1 px-1 text-base font-semibold;
@@ -34,8 +35,8 @@
 
            .oftware_content__frame-2 {
              @apply px-2 m-1 p-1 text-sm font-thin;
-             height: 51%;
-             @include line-numbers(3);
+             height: 52%;
+             @include line-numbers(4);
 
            }
 

@@ -1,7 +1,9 @@
 <template>
   <div id="software">
     <blog-sidebar></blog-sidebar>
-    <fav-sidebar></fav-sidebar>
+    <blogs-sidebar></blogs-sidebar>
+    <a-back-top />
+
     <div class="software_main animate__animated animate__fadeIn">
       <!-- ---------------------------------- -->
 
@@ -25,9 +27,10 @@
             <p class="oftware_content__frame-2">{{ info.titleText }}</p>
 
             <p class="oftware_content__frame-3">
-              <span>测试</span>
+              <span>文章</span>
               <span>{{info.read}} ℃</span>
-              <span>{{info.timeCreate}}</span>
+              <span>赞 {{info.give}}</span>
+              <span>{{info.timeCreate.substring(0,10)}}</span>
             </p>
           </div>
         </div>
@@ -49,14 +52,16 @@
 </template>
 
 <script lang="ts">
+
+
   import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   // import OneSidebar from "./OneSidebar.vue";
   import { article } from '../../api/article';
-  import FavSidebar from '../Navigation/FavSidebar.vue';
+  import BlogsSidebar from './BlogsSidebar.vue';
   export default {
     name: "Blogs",
-    components: { FavSidebar },
+    components: { BlogsSidebar },
     setup(): { jump: (id: number) => void; GetFySortTitleAsync: () => void; ConutSort: () => void; currentchange: (val: number) => void; backtop: () => void; } {
       const state: any = reactive({
 
