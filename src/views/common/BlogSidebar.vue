@@ -1,7 +1,7 @@
 <!--
  * @Author: 博客侧边栏
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-08-17 14:20:21
+ * @LastEditTime: 2021-09-01 16:41:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
@@ -15,6 +15,7 @@
       <div class="si_text" v-for="(item, index) in ResultList" :key="index">
         <p @click="nav(item.path)" v-if="item.identity">{{item.title}}</p>
       </div>
+
       <div class="si_website">
         <a href="http://oykperson.xyz">http://oykperson.xyz</a>
       </div>

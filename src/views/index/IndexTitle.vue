@@ -1,5 +1,6 @@
 <template>
   <div class="IndexTitle animate__animated animate__fadeIn">
+    <a-back-top />
     <div class="IndexTitle-img"></div>
     <!----------------------加载article表内容---------------------------->
     <div
@@ -18,21 +19,9 @@
             <div>少年</div>
             <div>随笔</div>
             <div>{{ info.timeCreate.substring(0,10)}}</div>
-            <!-- <div>
-          <a>
-            <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-chat" />
-            </svg>
-            {{ info.comment }}
-          </a>
-            </div>-->
+
             <div @click="jump(info.article_id)">
-              <a>
-                <!-- <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-liulan" />
-                </svg>-->
-                {{ info.read }} ℃
-              </a>
+              <a>{{ info.read }} ℃</a>
             </div>
             <div>
               <svg class="inline-block icon" aria-hidden="true">
@@ -115,7 +104,7 @@
 
       async function currentchange(val: number): Promise<void> {
         state.page = val;
-        GetFyTitleAsync();
+        await GetFyTitleAsync();
         await backtop(); //回到顶部
       }
       const backtop = async () => {
@@ -127,7 +116,6 @@
             let ispeed = Math.floor(-osTop / 5);
             document.documentElement.scrollTop = document.body.scrollTop =
               osTop + ispeed;
-            // this.isTop = true;
             if (osTop === 0) {
               clearInterval(timer);
             }

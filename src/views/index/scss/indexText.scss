@@ -121,7 +121,7 @@
 /*返回上一页*/
 .IndexText-title {
   position: relative;
-  @include initialize($w, 40px, $Text_height, null, $ml, null, #ffffff);
+  @include initialize($w, 40px, 3.6%, null, $ml, null, #ffffff);
   @apply shadow rounded cursor-pointer;
 
   .ant-page-header-heading-title {

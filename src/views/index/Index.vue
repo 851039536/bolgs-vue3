@@ -1,7 +1,7 @@
 <!--
  * @Author: Index.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-08-17 14:21:51
+ * @LastEditTime: 2021-09-01 15:54:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Index.vue
@@ -11,7 +11,6 @@
     <blog-sidebar></blog-sidebar>
     <IndexSidebar></IndexSidebar>
     <IndexTitle></IndexTitle>
-    <a-back-top />
   </div>
 </template>
 

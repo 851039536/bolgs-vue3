@@ -72,7 +72,7 @@
   #favorite {
     @apply w-full h-full;
     #favorite_main {
-      @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
+      @include initialize($w, 100%, 3.6%, null, $ml, null, #ffffff);
       @apply rounded shadow;
       .favorite_type {
         @apply text-base cursor-default text-center;

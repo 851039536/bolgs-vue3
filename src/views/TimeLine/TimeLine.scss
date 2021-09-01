@@ -2,7 +2,7 @@
 @import "../../assets/sass/uitl";
 
 .timeline {
-  @include initialize($w, null, $Text_height, null, $ml, null, #ffffff);
+  @include initialize($w, null, 3.6%, null, $ml, null, #ffffff);
   @apply text-base;
   @apply shadow rounded;
 

@@ -2,9 +2,9 @@
  @import "../../assets/sass/uitl";
 
  #index_sidebar {
-   @apply fixed bg-gray-100;
+   @apply fixed bg-gray-100 shadow;
    @include excursion($Text_height, null, null, $sidebar_r_r);
-   @include w-h(20.4%, 90%);
+   @include w-h(20.4%, 93%);
    @apply ml-3 overflow-auto;
 
    .index_s_main {
@@ -95,10 +95,12 @@
      }
    }
 
-   .index_s_main::-webkit-scrollbar {
-     display: none;
-   }
+
  }
+
+ //  .index_sidebar::-webkit-scrollbar {
+ //    display: none;
+ //  }
 
  .icon {
    @include w-h(1.5em, 1.5em);

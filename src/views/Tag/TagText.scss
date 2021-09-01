@@ -7,7 +7,7 @@
 
   .SnTagText-main {
 
-    @apply absolute bg-blue-200;
+    @apply absolute bg-blue-200 shadow;
     left: 3%;
     top: 7%;
     width: 94%;
@@ -15,7 +15,7 @@
 
     .text {
       position: absolute;
-      top: 15.5%;
+      top: 16.2%;
       @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
 
       // 侧边框
@@ -53,8 +53,8 @@
     // 头部
     .SnTagText-top {
 
-      @apply absolute rounded-sm bg-yellow-400 h-full;
-      top: 1px;
+      @apply absolute rounded-sm bg-yellow-400 h-full shadow;
+      top: 5px;
       @include initialize(94%, 15%, null, null, 3%, null, null);
 
       .tag-text-1 {

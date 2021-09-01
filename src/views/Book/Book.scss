@@ -6,7 +6,7 @@
   @include w-h(100%, 100%);
 
   .Book_text {
-    @include initialize($w, 89%, $Text_height, null, $ml, null, #ffffff);
+    @include initialize($w, 89%, 3.6%, null, $ml, null, #ffffff);
     @apply shadow-sm rounded-sm overflow-auto;
 
     .Book_title {

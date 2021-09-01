@@ -1,19 +1,24 @@
 @import "../../assets/sass/com", "../../assets/sass/uitl";
 
+
+
+
 .IndexTitle {
 
+  @apply shadow;
+  @include initialize(50%, 92%, 3.6%, null, 25%, null, null);
 
-  @include initialize($w, null, $Text_height, null, $ml, null, null);
+
 
   .IndexTitle-img {
-    @include w-h(null, 140px);
+    @include w-h(null, 160px);
     background: no-repeat center/100% url("../../assets/img/bg.jpg");
     @include boxshow3;
   }
 
   .IndexTitle-text {
-    @include w-h(100%, 155px);
-    @apply mb-3 mt-2 shadow rounded-md;
+    @include w-h(99%, 155px);
+    @apply mb-3 mt-2 shadow rounded-md m-auto;
     @apply bg-white;
 
     .IndexTitle-text-div {
@@ -57,7 +62,10 @@
   .IndexTitle-page {
     @apply w-full py-4 bg-white shadow rounded;
   }
+
 }
+
+
 
 @screen xp {
   .index_si_div {

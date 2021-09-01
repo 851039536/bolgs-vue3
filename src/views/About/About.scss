@@ -5,7 +5,7 @@
 
   /* 关于界面 */
   .About-div {
-    @include initialize(93%, 100%, $Text_height, auto, auto, auto, #ffffff);
+    @include initialize(93%, 100%, 3.6%, auto, auto, auto, #ffffff);
 
 
     .About-bg {

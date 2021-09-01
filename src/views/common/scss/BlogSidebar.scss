@@ -18,11 +18,11 @@
      }
 
      .si_text {
-       @include initialize(40%, 30px, 5px, auto, auto, auto, null);
-       @apply text-center antialiased cursor-pointer;
+       @include initialize(40%, 6%, 5px, auto, auto, auto, null);
+       @apply text-center cursor-pointer;
 
        p {
-         @apply py-1 px-4 text-base font-light;
+         @apply py-1 px-4 text-lg;
        }
      }
 

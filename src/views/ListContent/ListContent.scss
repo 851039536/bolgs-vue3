@@ -2,7 +2,7 @@
 @import "../../assets/sass/uitl.scss";
 
 .ListContent {
-  @include initialize(94%, null, $Text_height, null, 3%, null, #f9f9f9);
+  @include initialize(94%, null, 3.6%, null, 3%, null, #f9f9f9);
   @apply shadow rounded-md;
 
   .ListContent_title {
