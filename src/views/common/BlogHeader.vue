@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-08-17 14:18:00
+ * @LastEditTime: 2021-09-01 08:46:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -9,22 +9,19 @@
 <template>
   <div>
     <nav class="header-sn">
-      <div class="flex items-center flex-shrink-0 text-black">
+      <div class="header-title">
         <span class="text-2xl font-medium tracking-tight">少年</span>
       </div>
       <div class="header_main">
         <div class="header_text">
-          <template v-for="(item, index) in ResultList" :key="index">
-            <a @click="skip(item.path)" v-if="item.identity">
-              <!-- <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-icon-" />
-              </svg>-->
-              {{item.title}}
-            </a>
-          </template>
+          <div>
+            <template v-for="(item, index) in ResultList" :key="index">
+              <a @click="skip(item.path)" v-if="item.identity">{{item.title}}</a>
+            </template>
 
-          <a @click="skip(13)" class="header_text_text">博客园</a>
-          <a @click="skip(14)" class="header_text_text">Gitee</a>
+            <a @click="skip(13)" class="header_text_text">博客园</a>
+            <a @click="skip(14)" class="header_text_text">Gitee</a>
+          </div>
         </div>
       </div>
     </nav>

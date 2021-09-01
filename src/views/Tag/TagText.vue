@@ -15,11 +15,9 @@
       </div>
     </div>
 
-    <div class="SnTagText-top">
-      <div class="flex flex-wrap tag-text">
-        <div class="tag-text-1 w-2/16" v-for="labelss in labels" :key="labelss.labelId">
-          <a @click="GetlabelsID(labelss.labelId)" variant="light">{{ labelss.labelName }}</a>
-        </div>
+    <div class="flex flex-wrap SnTagText-top">
+      <div class="tag-text-1" v-for="labelss in labels" :key="labelss.labelId">
+        <a @click="GetlabelsID(labelss.labelId)" variant="light">{{ labelss.labelName }}</a>
       </div>
     </div>
 

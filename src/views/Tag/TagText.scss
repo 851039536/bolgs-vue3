@@ -7,7 +7,7 @@
 
   .text {
     position: absolute;
-    top: 22.1%;
+    top: 22%;
     @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
 
     // 侧边框
@@ -43,20 +43,18 @@
 
   // 头部
   .SnTagText-top {
-    @apply absolute rounded-sm;
+
+    @apply absolute rounded-sm bg-yellow-400 h-full;
     top: $Text_height;
-    @include initialize(94%, 11%, null, null, 3%, null, #ffffff);
+    @include initialize(94%, 12.0%, null, null, 3%, null, null);
 
+    .tag-text-1 {
 
-    .tag-text {
-      @include w-h(null, 100%);
+      height: 30px;
+      @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
 
-      .tag-text-1 {
-        @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
-
-        a {
-          @apply p-2;
-        }
+      a {
+        @apply p-1;
       }
     }
   }
