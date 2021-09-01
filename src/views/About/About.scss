@@ -9,7 +9,7 @@
 
 
     .About-bg {
-      height: 500px;
+      height: 640px;
       background: no-repeat center/100% url("../../assets/img/ab.jpg");
       @apply shadow;
 
@@ -21,7 +21,7 @@
           height: 50%;
 
           .about-1-1-1 {
-            @include initialize(160px, 140px, 3%, auto, auto, auto, null);
+            @include initialize(230px, 190px, 3%, auto, auto, auto, null);
             @apply p-3;
 
             img {
@@ -73,7 +73,11 @@
       }
 
       .about-3 {
-        @include initialize(55%, null, 20px, auto, auto, auto, null);
+        width: 35%;
+        @apply m-auto mt-4 shadow;
+        @apply bg-pink-50;
+
+
       }
     }
 

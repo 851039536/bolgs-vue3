@@ -1,31 +1,34 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-09-01 08:46:29
+ * @LastEditTime: 2021-09-01 13:34:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
 -->
 <template>
-  <div>
-    <nav class="header-sn">
-      <div class="header-title">
-        <span class="text-2xl font-medium tracking-tight">少年</span>
-      </div>
+  <nav class="header-sn">
+    <div class="header-sn-1">
+      <!--  -->
       <div class="header_main">
+        <div class="header-title">
+          <span class="text-2xl font-medium tracking-tight">少年</span>
+        </div>
         <div class="header_text">
-          <div>
-            <template v-for="(item, index) in ResultList" :key="index">
-              <a @click="skip(item.path)" v-if="item.identity">{{item.title}}</a>
-            </template>
-
-            <a @click="skip(13)" class="header_text_text">博客园</a>
-            <a @click="skip(14)" class="header_text_text">Gitee</a>
-          </div>
+          <template v-for="(item, index) in ResultList" :key="index">
+            <a @click="skip(item.path)" v-if="item.identity">{{item.title}}</a>
+          </template>
         </div>
       </div>
-    </nav>
-  </div>
+      <!--  -->
+      <div class="header_text_1">
+        <div class="header-text-r-1">
+          <a @click="skip(13)">博客园</a>
+          <a @click="skip(14)">Gitee</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script lang="ts">

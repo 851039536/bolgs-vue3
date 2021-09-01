@@ -3,79 +3,90 @@
 
 .SnTagText {
 
-  @apply fixed w-full h-full;
+  @apply fixed w-full h-full bg-green-200;
 
-  .text {
-    position: absolute;
-    top: 22%;
-    @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
+  .SnTagText-main {
 
-    // 侧边框
-    .text-sidebar {
-      @include w-h(32%, null);
-      overflow: auto;
+    @apply absolute bg-blue-200;
+    left: 3%;
+    top: 7%;
+    width: 94%;
+    height: 100%;
 
-      .text-sidebar-forms {
-        @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
+    .text {
+      position: absolute;
+      top: 15.5%;
+      @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
 
-        .forms-1 {
-          @apply bg-gray-300 text-base p-1;
+      // 侧边框
+      .text-sidebar {
+        @include w-h(32%, null);
+        overflow: auto;
+        @apply shadow;
+
+        .text-sidebar-forms {
+          @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
+
+          .forms-1 {
+            @apply bg-gray-300 text-base p-1;
+          }
+
+          .forms-2 {
+            @apply p-2;
+          }
         }
+      }
 
-        .forms-2 {
-          @apply p-2;
+      // 内容
+      .text-blog {
+        @include w-h(68%, null);
+        @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
+
+        .blog {
+          @include blogs;
+          @apply mt-1;
+
         }
       }
     }
 
-    // 内容
-    .text-blog {
-      @include w-h(68%, null);
-      @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
+    // 头部
+    .SnTagText-top {
 
-      .blog {
-        @include blogs;
-        @apply mt-1;
+      @apply absolute rounded-sm bg-yellow-400 h-full;
+      top: 1px;
+      @include initialize(94%, 15%, null, null, 3%, null, null);
 
+      .tag-text-1 {
+
+        height: 30px;
+        @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
+
+        a {
+          @apply p-1;
+        }
       }
     }
-  }
 
-  // 头部
-  .SnTagText-top {
+    .vertical-text {
+      position: absolute;
+      top: 12%;
+      right: 0px;
+      border-radius: 2px;
+      writing-mode: vertical-rl;
 
-    @apply absolute rounded-sm bg-yellow-400 h-full;
-    top: $Text_height;
-    @include initialize(94%, 12.0%, null, null, 3%, null, null);
+      h3 {
+        padding-left: 20px;
+        font-weight: bold;
+        font-size: 18px;
+        color: #f66;
+      }
 
-    .tag-text-1 {
-
-      height: 30px;
-      @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
-
-      a {
-        @apply p-1;
+      p {
+        line-height: 30px;
+        color: #66f;
       }
     }
-  }
 
-  .vertical-text {
-    position: absolute;
-    top: 12%;
-    right: 0px;
-    border-radius: 2px;
-    writing-mode: vertical-rl;
-
-    h3 {
-      padding-left: 20px;
-      font-weight: bold;
-      font-size: 18px;
-      color: #f66;
-    }
-
-    p {
-      line-height: 30px;
-      color: #66f;
-    }
   }
 }

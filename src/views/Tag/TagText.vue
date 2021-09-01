@@ -1,33 +1,35 @@
 <template>
   <div :class="[SnTagText,activeClass, fadeIn]">
-    <div class="flex text">
-      <div class="text-sidebar animate__animated" :class="[backInDown]">
-        <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.articleId">
-          <div class="forms-1" @click="getAll1(label.articleId)">
-            <a>{{ label.title }}</a>
+    <div class="SnTagText-main">
+      <div class="flex text">
+        <div class="text-sidebar animate__animated" :class="[backInDown]">
+          <div class="text-sidebar-forms" v-for="label in newinfo" :key="label.articleId">
+            <div class="forms-1" @click="getAll1(label.articleId)">
+              <a>{{ label.title }}</a>
+            </div>
+            <div class="forms-2">{{ label.timeCreate.substring(0,10) }}</div>
           </div>
-          <div class="forms-2">{{ label.time }}</div>
+        </div>
+
+        <div class="text-blog">
+          <div class="blog" v-html="blog"></div>
         </div>
       </div>
 
-      <div class="text-blog">
-        <div class="blog" v-html="blog"></div>
+      <div class="flex flex-wrap SnTagText-top">
+        <div class="tag-text-1" v-for="labelss in labels" :key="labelss.labelId">
+          <a @click="GetlabelsID(labelss.labelId)" variant="light">{{ labelss.labelName }}</a>
+        </div>
       </div>
-    </div>
 
-    <div class="flex flex-wrap SnTagText-top">
-      <div class="tag-text-1" v-for="labelss in labels" :key="labelss.labelId">
-        <a @click="GetlabelsID(labelss.labelId)" variant="light">{{ labelss.labelName }}</a>
-      </div>
-    </div>
-
-    <div class="bruce flex-ct-x animate__animated animate__fadeIn">
-      <div class="vertical-text">
-        <!--                <h3></h3>-->
-        <p>
-          我见犹怜
-          <br />爱不释手
-        </p>
+      <div class="bruce flex-ct-x animate__animated animate__fadeIn">
+        <div class="vertical-text">
+          <!--                <h3></h3>-->
+          <p>
+            我见犹怜
+            <br />爱不释手
+          </p>
+        </div>
       </div>
     </div>
   </div>

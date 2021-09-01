@@ -1,8 +1,6 @@
 <template>
   <div id="About">
     <div class="About-div gradient-bg animate__animated animate__fadeIn">
-      <!-- <sncode></sncode> -->
-
       <div class="About-bg">
         <div class="about-1" :class="[activeClass, backInDown]">
           <div class="about-1-1">

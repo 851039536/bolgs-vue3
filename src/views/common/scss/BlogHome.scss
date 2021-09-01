@@ -20,21 +20,20 @@
     bottom: 0;
     right: 0;
 
-    width: 800px;
     @apply bg-gray-50 shadow-xl rounded-sm;
 
     .home_main_top {
-      @apply bg-gray-50 m-1;
 
       .home_introduce {
         @apply text-center p-1;
-        @include initialize(50%, 40%, 13%, null, 25%, null, null);
+        @include initialize(50%, 100%, 12%, null, 25%, null, null);
 
         p {
           @apply mt-3;
         }
 
         .home_introduce-1 {
+
           @apply text-7xl;
         }
 
@@ -63,10 +62,6 @@
 
       }
 
-      // .home_enter-2 {
-      //   @include initialize(50%, 100%, null, null, null, null, null);
-      //   @apply bg-gray-50 text-center shadow;
-      // }
     }
   }
 }

@@ -3,12 +3,11 @@
     <!-- 侧边栏-->
     <blog-sidebar></blog-sidebar>
     <FavSidebar></FavSidebar>
+    <a-back-top />
     <!-- ---------- -->
     <div id="favorite_main" class="animate__animated animate__fadeIn">
       <!-- 网站分类 -->
-      <div
-        class="grid shadow 2xl:grid-cols-10 xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4"
-      >
+      <div class="flex flex-wrap">
         <div class="favorite_type" v-for="text in type" :key="text.id">
           <div class="favorite_type_name">
             <a @click="GetSnNavigation(text.title)">{{ text.title }}</a>
@@ -18,9 +17,7 @@
       <!-- ---------- -->
 
       <!-- 网站内容 -->
-      <div
-        class="grid favorite_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
-      >
+      <div class="flex flex-wrap favorite_content">
         <div class="favorite_content_text" v-for="info in text" :key="info.navId">
           <div class="favorite_content_text-1">
             <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
@@ -73,33 +70,35 @@
   @import "../../assets/sass/uitl";
 
   #favorite {
-    @apply fixed w-full h-full;
+    @apply w-full h-full;
     #favorite_main {
       @include initialize($w, 100%, $Text_height, null, $ml, null, #ffffff);
-      @apply rounded;
+      @apply rounded shadow;
       .favorite_type {
         @apply text-base cursor-default text-center;
         .favorite_type_name {
           background: #e5e7eb;
-          @apply m-1 py-1 mt-2  rounded;
+          @apply m-1  px-2   rounded;
         }
       }
 
       .favorite_content {
         @apply w-full h-full m-auto;
         .favorite_content_text {
-          @include w-h(89%, 88px);
+          @include w-h(31%, 100px);
+          @apply m-auto;
           background-color: #f5f7fd;
-          @apply mt-2 ml-2 antialiased  rounded-sm;
+          @apply mt-2 ml-2   rounded-sm;
           .favorite_content_text-1 {
             @apply px-1 text-base font-semibold;
+            height: 25%;
             @include line-ome;
           }
 
           .favorite_content_text-2 {
-            height: 46px;
+            height: 65%;
             @apply px-2 mt-2 mx-1 bg-white;
-            @include line-number;
+            @include line-numbers(3);
           }
         }
       }

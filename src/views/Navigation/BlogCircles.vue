@@ -65,12 +65,12 @@
     position: fixed;
     @include w-h(100%, 100%);
     .blogcircles_main {
-      @include initialize($w, 94%, $Text_height, null, $ml, null, #ffffff);
-      @apply rounded-sm;
+      @include initialize($w, 99%, $Text_height, null, $ml, null, #ffffff);
+      @apply rounded-sm shadow;
 
       // 导航窗体小
       .BlogCircles-1 {
-        @include w-h(210px, 93px);
+        @include w-h(210px, 100px);
         @apply m-2 mt-4 shadow rounded hover:bg-gray-200;
         .BlogCircles-1-1 {
           @include w-h(40%, 99%);
@@ -78,7 +78,7 @@
 
           img {
             @include w-h(100%, 100%);
-            @apply rounded-full;
+            @apply rounded-full shadow;
           }
         }
 
