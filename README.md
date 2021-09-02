@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-07 18:59:58
- * @LastEditTime: 2021-09-02 17:57:08
+ * @LastEditTime: 2021-09-02 18:06:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\README.md
@@ -31,7 +31,7 @@ yarn lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### v1.0.0-2021-09-02
+### v1.0.0--2021-09-02
 
 [新增] one日记点赞实现,分页框实现。
 
