@@ -1,7 +1,7 @@
 <!--
  * @Author: 自我介绍
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-08-17 14:53:43
+ * @LastEditTime: 2021-09-02 09:10:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
@@ -11,7 +11,17 @@
   <div id="BlogHome" class="animate__animated animate__fadeIn">
     <div class="home_main">
       <div class="home_main_top">
-        <div class="home_introduce">
+        <div class="min-h-screen hero bg-base-200">
+          <div class="text-center hero-content">
+            <div class="max-w-md">
+              <h1 class="mb-5 text-5xl font-bold">哈喽，我叫少年</h1>
+              <p class="mb-5">一位热爱生活、xxxxxx开发者。</p>
+              <button class="btn btn-primary" @click="skip(1)">冲冲冲！</button>
+              <button class="btn btn-link">link</button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="home_introduce">
           <p class="home_introduce-1 animate__animated animate__slideInDown">你好，</p>
           <p class="home_introduce-2 animate__animated animate__slideInLeft">
             叫我少年
@@ -21,16 +31,16 @@
             class="home_introduce-3 animate__animated animate__slideInLeft animate__slideInRight"
           >一位热爱生活、xxxxxx开发者。</p>
           <p class="home_introduce-4 animate__animated animate__jackInTheBox">很高兴与你相遇！</p>
-        </div>
+        </div>-->
       </div>
-      <div class="flex home_enter animate__animated animate__slideInUp">
+      <!-- <div class="flex home_enter animate__animated animate__slideInUp">
         <div class="home_enter-1">
           <button @click="skip(1)">进入</button>
         </div>
         <div class="home_enter-2">
           <button @click="skip(2)">关于</button>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>

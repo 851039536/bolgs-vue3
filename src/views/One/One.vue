@@ -3,6 +3,7 @@
     <blog-sidebar></blog-sidebar>
     <OneSidebar></OneSidebar>
     <div class="One-div animate__animated animate__fadeIn">
+      <!-- 头部 -->
       <div class="One-top">
         <div class="One-top-img">
           <img src="../../assets/img/tg.jpg" alt />
@@ -19,14 +20,17 @@
           </div>
         </div>
       </div>
+      <!-- end 头部 -->
       <!-- 推荐列表 -->
       <div class="One-recommend">
         <div class="One-recommend-l">往期推荐!</div>
         <div class="One-recommend-r">更多推荐!</div>
       </div>
-      <!-- ---------------------------------- -->
-      <div class=" One-list">
-        <div class="One-list-div" v-for="data in dataTest" :key="data.oneId">
+      <!-- end 推荐列表 -->
+
+      <!-- list -->
+      <div class="One-list">
+        <div class="One-list-div" v-for="data in dataResult" :key="data.oneId">
           <div class="One-list-div-frame">
             <p class="One-list-div-frame-title">
               <a @click="setModal1Visible(true, data.oneId)">
@@ -40,8 +44,22 @@
           </div>
         </div>
       </div>
+      <!-- end list -->
+
+      <!-- 分页 -->
+      <div class="IndexTitle-page">
+        <a-pagination
+          size="small"
+          @change="currentchange"
+          :total="count"
+          :pageSize="pagesize"
+          show-quick-jumper
+        />
+      </div>
+      <!-- end 分页-->
     </div>
 
+    <!-- 点赞提示框 -->
     <div id="components-modal-demo-position">
       <a-modal
         v-model:visible="modal2Visible"
@@ -50,12 +68,13 @@
         cancelText="赞"
         :closable="false"
         okText="关闭"
-        @cancel="give(text.OneId)"
+        @cancel="give(text.oneId)"
         @ok="modal2Visible = false"
       >
         <p>{{ text.oneText }}</p>
       </a-modal>
     </div>
+    <!-- end 点赞提示框 -->
   </div>
 </template>
 
@@ -67,12 +86,16 @@
   export default {
     name: "EverydayOne",
     components: { OneSidebar },
-    setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: any) => void; give2: (id: any) => void; } {
+    setup(): { getOne: () => void; setModal1Visible: (modal2Visible: boolean, id: number) => void; give: (id: any) => void; CountAsync: () => void; currentchange: (val: number) => void; } {
       const state: any = reactive({
-        dataTest: [],
+        dataResult: [],
         dataOne: [],
         text: [],
         modal2Visible: false,
+
+        page: 1, //页码
+        pagesize: 6, //每页条数
+        count: 0, //总数
       });
       const setModal1Visible = async (modal2Visible: boolean, id: number) => {
         state.modal2Visible = modal2Visible;
@@ -91,9 +114,21 @@
         })
       };
 
+      const currentchange = async (val: number) => {
+        state.page = val;
+        await one.GetFyAllAsync(state.page, state.pagesize).then((res: any) => {
+          state.dataResult = res.data;
+        })
+        // await backtop(); //回到顶部
+      }
+      const CountAsync = async () => {
+        await one.CountAsync().then((result: any) => {
+          state.count = result.data;
+        });
+      }
       const getOne = async () => {
-        await one.GetFyAllAsync(1, 6).then((res: any) => {
-          state.dataTest = res.data;
+        await one.GetFyAllAsync(state.page, state.pagesize).then((res: any) => {
+          state.dataResult = res.data;
         })
         await one.GetFyAllAsync(1, 1).then((res2: any) => {
           state.dataOne = res2.data[0];
@@ -101,18 +136,25 @@
 
       };
 
-      const give2 = async (result: any) => {
-        message.info(result + "功能未完成");
-        // await one.UpdatePortionAsync(result, "give")
-      };
-
-      const give = (id: any) => {
-        message.info(id + "功能未完成");
+      const give = async (id: any) => {
+        message.info("已点赞");
+        await one.GetByIdAsync(id).then((res: any) => {
+          if (res.data == null) {
+            console.log(res.data);
+            return;
+          } else {
+            console.log("1" + res.data.oneGive);
+            res.data.oneGive++;
+            console.log("2" + res.data.oneGive);
+            one.UpdatePortionAsync(res.data, "give");
+          }
+        })
       };
       onMounted(async () => {
+        await CountAsync();
         await getOne();
       });
-      return { ...toRefs(state), getOne, setModal1Visible, give, give2 };
+      return { ...toRefs(state), getOne, setModal1Visible, give, CountAsync, currentchange };
     },
   };
 </script>

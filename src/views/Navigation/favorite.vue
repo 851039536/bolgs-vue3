@@ -1,12 +1,12 @@
 <template>
   <div id="favorite">
-    <!-- 侧边栏-->
+    <!-- 加载组件 -->
     <blog-sidebar></blog-sidebar>
     <FavSidebar></FavSidebar>
     <a-back-top />
-    <!-- ---------- -->
+    <!-- end 加载组件 -->
     <div id="favorite_main" class="animate__animated animate__fadeIn">
-      <!-- 网站分类 -->
+      <!-- 分类列表 -->
       <div class="flex flex-wrap">
         <div class="favorite_type" v-for="text in type" :key="text.id">
           <div class="favorite_type_name">
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <!-- ---------- -->
+      <!-- end 分类列表 -->
 
       <!-- 网站内容 -->
       <div class="flex flex-wrap favorite_content">
@@ -25,8 +25,19 @@
           <div class="favorite_content_text-2">{{ info.navText }}</div>
         </div>
       </div>
+      <!-- end 网站内容 -->
 
-      <!-- ---------- -->
+      <!-- 分页 -->
+      <div class="IndexTitle-page">
+        <a-pagination
+          size="small"
+          @change="currentchange"
+          :total="count"
+          :pageSize="pagesize"
+          show-quick-jumper
+        />
+      </div>
+      <!-- end 分页-->
     </div>
   </div>
 </template>
@@ -38,7 +49,7 @@
 
   export default {
     components: { FavSidebar },
-    name: "favorite",
+    name: "Favorite",
     setup() {
       // 数据定义
       const state = reactive({

@@ -59,19 +59,8 @@
 
      .index_si_input {
        width: 97%;
-       @apply flex p-2 mt-1 mb-2 shadow rounded m-auto;
+       @apply p-2 mt-1 mb-2 shadow rounded m-auto;
        @apply bg-white;
-
-       div>input {
-         @apply bg-gray-100 rounded ml-1;
-         height: 30px;
-       }
-
-       div>button {
-         @apply text-base font-medium ml-3;
-         height: 30px;
-
-       }
 
      }
 

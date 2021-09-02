@@ -3,9 +3,11 @@
 
 #About {
 
+  // @apply w-full bg-red-100;
+
   /* 关于界面 */
   .About-div {
-    @include initialize(93%, 100%, 3.6%, auto, auto, auto, #ffffff);
+    @include initialize(93%, 100%, 1%, auto, auto, auto, #ffffff);
 
 
     .About-bg {

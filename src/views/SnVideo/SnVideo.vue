@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-08-17 14:25:19
+ * @LastEditTime: 2021-09-02 16:29:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
@@ -36,6 +36,18 @@
           </div>
         </div>
       </div>
+
+      <!-- 分页 -->
+      <!-- <div class="IndexTitle-page">
+        <a-pagination
+          size="small"
+          @change="currentchange"
+          :total="count"
+          :pageSize="pagesize"
+          show-quick-jumper
+        />
+      </div>-->
+      <!-- end 分页-->
     </div>
   </div>
 </template>

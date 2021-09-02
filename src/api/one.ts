@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-07-22 08:55:38
+ * @LastEditTime: 2021-09-02 16:42:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -62,7 +62,7 @@ export class one {
     })
   }
 
-  //主键查询
+  //主键查询  
   static async GetByIdAsync(id: number): Promise<any> {
     return await request({
       url:

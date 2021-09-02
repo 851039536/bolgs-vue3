@@ -1,13 +1,17 @@
 /*
  * @Author: your name
  * @Date: 2020-12-08 09:43:09
- * @LastEditTime: 2021-08-10 15:19:51
+ * @LastEditTime: 2021-09-02 08:54:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\tailwind.config.js
  */
 module.exports = {
-  purge: ['./src/**/*.{vue,js,ts,jsx,tsx}'], //删除未使用的CSS
+  // purge: ['./src/**/*.{vue,js,ts,jsx,tsx}'], //删除未使用的CSS
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
@@ -56,7 +60,7 @@ module.exports = {
   // config (optional)
   daisyui: {
     styled: true,
-    themes: true,
+    themes: false,
     base: false,
     utils: true,
     logs: true,

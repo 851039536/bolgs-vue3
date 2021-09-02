@@ -135,12 +135,12 @@ const routes = [{
 },
 
 {
-  path: '/favorite',
-  name: 'favorite',
+  path: '/Favorite',
+  name: 'Favorite',
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Navigation/favorite.vue')
+  component: () => import('../views/Navigation/Favorite.vue')
 },
 
 {

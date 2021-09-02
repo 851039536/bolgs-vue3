@@ -5,22 +5,19 @@
       <blog-ico></blog-ico>
       <!-- 搜索 -->
       <div class="index_si_input">
-        <div>
-          <a-select
-            show-search
-            v-model:value="sntitle"
-            placeholder="input search text"
-            style="width: 200px"
-            :show-arrow="false"
-            :filter-option="false"
-            @search="SearchTitle"
-            @select="tiaozhuan"
+        <a-select
+          show-search
+          v-model:value="sntitle"
+          placeholder="input search text"
+          style="width: 200px"
+          :show-arrow="false"
+          :filter-option="false"
+          @search="SearchTitle"
+          @select="tiaozhuan"
+        >
           >
-            >
-            <a-select-option v-for="d in article1" :key="d.articleId">{{ d.title }}</a-select-option>
-          </a-select>
-        </div>
-        <div></div>
+          <a-select-option v-for="d in article1" :key="d.articleId">{{ d.title }}</a-select-option>
+        </a-select>
       </div>
       <!-- -------------------------------- -->
       <!-- 说说显示描述内容 -->

@@ -7,7 +7,7 @@
 
   .SnTagText-main {
 
-    @apply absolute bg-blue-200 shadow;
+    @apply absolute shadow;
     left: 3%;
     top: 7%;
     width: 94%;
@@ -20,9 +20,8 @@
 
       // 侧边框
       .text-sidebar {
-        @include w-h(32%, null);
-        overflow: auto;
-        @apply shadow;
+        @include w-h(28%, null);
+        @apply overflow-auto shadow;
 
         .text-sidebar-forms {
           @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
@@ -39,7 +38,7 @@
 
       // 内容
       .text-blog {
-        @include w-h(68%, null);
+        @include w-h(72%, null);
         @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
 
         .blog {
@@ -53,7 +52,7 @@
     // 头部
     .SnTagText-top {
 
-      @apply absolute rounded-sm bg-yellow-400 h-full shadow;
+      @apply absolute rounded-sm h-full shadow bg-white;
       top: 5px;
       @include initialize(94%, 15%, null, null, 3%, null, null);
 

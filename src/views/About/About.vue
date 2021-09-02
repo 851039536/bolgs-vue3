@@ -124,9 +124,9 @@
         </div>
       </div>
     </div>
-    <div>
+    <!-- <div>
       <div class="btn" @click="like()">jenny</div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script lang="ts">
