@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-07 18:59:58
- * @LastEditTime: 2021-09-02 17:35:19
+ * @LastEditTime: 2021-09-02 17:54:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\README.md
@@ -35,4 +35,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [新增] one日记点赞实现,分页框实现。
 
-[优化] scss代码持续优化
+[优化] scss代码持续优化。
