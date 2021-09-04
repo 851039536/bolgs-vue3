@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-09-02 16:29:44
+ * @LastEditTime: 2021-09-03 12:28:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
@@ -11,99 +11,90 @@
     <blog-sidebar></blog-sidebar>
     <video-sidebar></video-sidebar>
     <div class="snvideo_main animate__animated animate__fadeIn">
-      <!-- <div
-        class="SnVideo-1 2xl:grid-cols-10 xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4"
-      >
-        <div class="snvideo_main_top" v-for="info in videotype" :key="info.vId">
-          <a @click="cliname(info.vId)">{{ info.vType }}</a>
-        </div>
-      </div>-->
       <div class="flex flex-wrap snvideo_main_content">
-        <div class="SnVideo-2-1" v-for="info in newtype" :key="info.vId">
+        <div class="SnVideo-2-1" v-for="info in newtype" :key="info['vId']">
           <div class="SnVideo-2-1-1">
             <img src="../../assets/img/hy.jpg" />
           </div>
           <div class="SnVideo-2-1-2">
-            <a @click="videos(info.vId)">{{ info.vTitle }}</a>
+            <a @click="videos(info['vId'])">{{ info["vTitle"] }}</a>
           </div>
           <div class="SnVideo-2-1-3">
             {{
-            info.vData
-            .toLocaleString()
-            .replace(/T/g, " ")
-            .replace(/\.[\d]{3}Z/, "")
+              info["vData"].toLocaleString()
+                .replace(/T/g, " ")
+                .replace(/\.[\d]{3}Z/, "")
             }}
           </div>
         </div>
       </div>
-
       <!-- 分页 -->
-      <!-- <div class="IndexTitle-page">
-        <a-pagination
-          size="small"
-          @change="currentchange"
-          :total="count"
-          :pageSize="pagesize"
-          show-quick-jumper
-        />
+      <!--<div class="IndexTitle-page">
+<a-pagination
+size="small"
+@change="currentchange"
+:total="count"
+:pageSize="pagesize"
+show-quick-jumper
+/>
       </div>-->
-      <!-- end 分页-->
+      <!-- end 分页 -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 
-  import { video } from '../../api/video';
-  import { reactive, toRefs, onMounted } from "vue";
-  import { useRouter } from "vue-router";
-  import VideoSidebar from './VideoSidebar.vue';
-  export default {
-    name: "SnVideo",
-    components: { VideoSidebar },
-    setup() {
-      // 加载路由
-      const router = useRouter();
-      // 数据定义
-      const state = reactive({
-        newtype: [],
-        videotype: [],
+import { video } from '../../api/video';
+import { reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import VideoSidebar from './VideoSidebar.vue';
+export default {
+  name: "SnVideo",
+  components: { VideoSidebar },
+  setup() {
+    // 加载路由
+    const router = useRouter();
+    // 数据定义
+    const state = reactive({
+      newtype: [],
+      videotype: [],
+    });
+
+    const VideoAll = async (type: number) => {
+      await video.AsyGestTest().then((res: any) => {
+        state.videotype = res.data;
+      })
+      await video.GetTypeAllAsync(type).then((res: any) => {
+        state.newtype = res.data;
+      })
+
+    };
+
+    const videos = (id: number) => {
+      // .带参数跳转
+      router.push({
+        path: "/SnVideoText",
+        query: {
+          id: id,
+        },
       });
+    };
 
-      const VideoAll = async (type: number) => {
-        await video.AsyGestTest().then((res: any) => {
-          state.videotype = res.data;
-        })
-        await video.GetTypeAllAsync(type).then((res: any) => {
-          state.newtype = res.data;
-        })
+    const cliname = async (type: number) => {
+      await video.GetTypeAllAsync(type).then((res: any) => {
+        state.newtype = res.data;
+      })
+    };
 
-      };
-
-      const videos = (id: number) => {
-        // .带参数跳转
-        router.push({
-          path: "/SnVideoText",
-          query: {
-            id: id,
-          },
-        });
-      };
-
-      const cliname = async (type: number) => {
-        await video.GetTypeAllAsync(type).then((res: any) => {
-          state.newtype = res.data;
-        })
-      };
-
-      onMounted(async () => {
-        await VideoAll(2);
-      });
-      return { ...toRefs(state), VideoAll, videos, cliname };
-    },
-  };
+    onMounted(async () => {
+      await VideoAll(2);
+    });
+    return { ...toRefs(state), VideoAll, videos, cliname };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @import "./scss/SnVideo.scss";
+@import "./scss/SnVideo.scss";
 </style>

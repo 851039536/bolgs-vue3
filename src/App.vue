@@ -1,16 +1,14 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-08-17 14:26:25
+ * @LastEditTime: 2021-09-04 09:51:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
 -->
 <template>
   <div id="app">
-    <!-- <Headers></Headers> -->
     <blog-header></blog-header>
-    <!-- <blog-sidebar></blog-sidebar> -->
     <!-- vue3.0配置 -->
     <router-view v-slot="{ Component }">
       <keep-alive>
@@ -22,38 +20,38 @@
   </div>
 </template>
 <script lang="ts">
-  import NProgress from "nprogress";
-  import "nprogress/nprogress.css";
-  import { useRouter } from "vue-router";
-  import { onMounted } from "vue";
-  import SnBootom from './views/common/SnBootom.vue';
-  export default {
-    components: { SnBootom, },
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    setup() {
-      const router = useRouter();
-      router.beforeEach((to, from, next) => {
-        NProgress.start();
-        next();
-      });
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import { useRouter } from "vue-router";
+import { onMounted } from "vue";
+import SnBootom from './views/common/SnBootom.vue';
+export default {
+  components: { SnBootom, },
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const router = useRouter();
+    router.beforeEach((to, from, next) => {
+      NProgress.start();
+      next();
+    });
 
-      router.afterEach(() => {
-        NProgress.done();
-      });
+    router.afterEach(() => {
+      NProgress.done();
+    });
 
-      onMounted(async () => {
-        // await doc();
-      });
+    onMounted(async () => {
+      // await doc();
+    });
 
-      return {};
-    },
-  };
+    return {};
+  },
+};
 </script>
 <style lang="scss">
-  @import "assets/sass/com";
+@import "assets/sass/com";
 
-  .home-router {
-    transition: all 1.8s linear;
-  }
-  @include scroll; //滚动条美化
+.home-router {
+  transition: all 1.8s linear;
+}
+@include scroll; //滚动条美化
 </style>

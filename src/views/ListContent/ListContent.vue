@@ -22,8 +22,8 @@
             </div>
             <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
               <a :href="listHref[index]" target="_blank">
-                <span>{{index}}</span>
-                {{res}}
+                <span>{{ index }}</span>
+                {{ res }}
               </a>
             </div>
           </div>
@@ -37,8 +37,8 @@
             </div>
             <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
               <a :href="listHref[index]" target="_blank">
-                <span>{{index}}</span>
-                {{res}}
+                <span>{{ index }}</span>
+                {{ res }}
               </a>
             </div>
           </div>
@@ -52,8 +52,8 @@
             </div>
             <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
               <a :href="listHref[index]" target="_blank">
-                <span>{{index}}</span>
-                {{res}}
+                <span>{{ index }}</span>
+                {{ res }}
               </a>
             </div>
           </div>
@@ -67,8 +67,8 @@
             </div>
             <div class="ListContent_t_content" v-for="(res,index) in listTitle" :key="index">
               <a :href="listHref[index]" target="_blank">
-                <span>{{index}}</span>
-                {{res}}
+                <span>{{ index }}</span>
+                {{ res }}
               </a>
             </div>
           </div>
@@ -79,48 +79,48 @@
 </template>
 
 <script lang="ts">
-  import { reactive, toRefs, onMounted } from "vue";
-  import { listContent } from '../../api/listContent';
-  import { message } from 'ant-design-vue';
-  export default {
-    components: {},
-    name: "ListContent",
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    setup() {
+import { reactive, toRefs, onMounted } from "vue";
+import { listContent } from '../../api/listContent';
+import { message } from 'ant-design-vue';
+export default {
+  components: {},
+  name: "ListContent",
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
 
-      const state = reactive({
-        listTitle: [] as any[],
-        listHref: [] as any[]
-      });
-      const info = () => {
-        message.info('功能进行中...');
-      };
-      const testall = async () => {
-        {
-          listContent.Cnblogs().then(res => {
-            let str = res.data;
-            for (let index = 0; index < str.length; index++) {
-              const element = str[index].split("-");
-              state.listTitle[index] = element[0]
-              state.listHref[index] = element[1]
-            }
-          })
-        }
+    const state = reactive({
+      listTitle: [] as any[],
+      listHref: [] as any[]
+    });
+    const info = () => {
+      message.info('功能进行中...');
+    };
+    const testall = async () => {
+      {
+        listContent.Cnblogs().then(res => {
+          let str = res.data;
+          for (let index = 0; index < str.length; index++) {
+            const element = str[index].split("-");
+            state.listTitle[index] = element[0]
+            state.listHref[index] = element[1]
+          }
+        })
       }
-      onMounted(async () => {
-        await testall();
-        info();
-      });
-
-      return {
-        ...toRefs(state),
-        testall,
-        info
-      };
     }
+    onMounted(async () => {
+      await testall();
+      info();
+    });
+
+    return {
+      ...toRefs(state),
+      testall,
+      info
+    };
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  @import "./ListContent.scss";
+@import "./ListContent.scss";
 </style>

@@ -28,9 +28,9 @@
 
             <p class="oftware_content__frame-3">
               <span>文章</span>
-              <span>{{info.read}} ℃</span>
-              <span>赞 {{info.give}}</span>
-              <span>{{info.timeCreate.substring(0,10)}}</span>
+              <span>{{ info.read }} ℃</span>
+              <span>赞 {{ info.give }}</span>
+              <span>{{ info.timeCreate.substring(0, 10) }}</span>
             </p>
           </div>
         </div>
@@ -54,75 +54,75 @@
 <script lang="ts">
 
 
-  import { reactive, toRefs, onMounted } from "vue";
-  import { useRouter } from "vue-router";
-  // import OneSidebar from "./OneSidebar.vue";
-  import { article } from '../../api/article';
-  import BlogsSidebar from './BlogsSidebar.vue';
-  export default {
-    name: "Blogs",
-    components: { BlogsSidebar },
-    setup(): { jump: (id: number) => void; GetFySortTitleAsync: () => void; ConutSort: () => void; currentchange: (val: number) => void; backtop: () => void; } {
-      const state: any = reactive({
+import { reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
+// import OneSidebar from "./OneSidebar.vue";
+import { article } from '../../api/article';
+import BlogsSidebar from './BlogsSidebar.vue';
+export default {
+  name: "Blogs",
+  components: { BlogsSidebar },
+  setup(): { jump: (id: number) => void; GetFySortTitleAsync: () => void; ConutSort: () => void; currentchange: (val: number) => void; backtop: () => void; } {
+    const state: any = reactive({
 
-        dataResult: [], // 显示的数据
-        page: 1, //页码
-        pagesize: 10, //每页条数
-        count: 0, //总数
+      dataResult: [], // 显示的数据
+      page: 1, //页码
+      pagesize: 10, //每页条数
+      count: 0, //总数
+    });
+
+    const router = useRouter();
+
+
+    async function GetFySortTitleAsync(): Promise<void> {
+      await article.GetFySortTitleAsync(state.page, state.pagesize).then((result: any) => {
+        state.dataResult = result.data;
       });
-
-      const router = useRouter();
-
-
-      async function GetFySortTitleAsync(): Promise<void> {
-        await article.GetFySortTitleAsync(state.page, state.pagesize).then((result: any) => {
-          state.dataResult = result.data;
-        });
-      }
-      async function ConutSort(): Promise<void> {
-        await article.ConutSort(7).then((result: any) => {
-          state.count = result.data;
-        });
-      }
-      async function currentchange(val: number): Promise<void> {
-        state.page = val;
-        GetFySortTitleAsync();
-        await backtop(); //回到顶部
-      }
-      const backtop = async () => {
-        {
-
-          var timer = setInterval(function () {
-            let osTop =
-              document.documentElement.scrollTop || document.body.scrollTop;
-            let ispeed = Math.floor(-osTop / 5);
-            document.documentElement.scrollTop = document.body.scrollTop =
-              osTop + ispeed;
-            // this.isTop = true;
-            if (osTop === 0) {
-              clearInterval(timer);
-            }
-          }, 30);
-          //utils.backtop();
-        }
-      };
-      async function jump(id: number): Promise<void> {
-        await router.push({
-          path: "/IndexText",
-          query: {
-            id: id,
-          },
-        });
-      }
-      onMounted(async () => {
-        await ConutSort();
-        await GetFySortTitleAsync();
+    }
+    async function ConutSort(): Promise<void> {
+      await article.ConutSort(7).then((result: any) => {
+        state.count = result.data;
       });
-      return { ...toRefs(state), GetFySortTitleAsync, ConutSort, currentchange, backtop, jump };
-    },
-  };
+    }
+    async function currentchange(val: number): Promise<void> {
+      state.page = val;
+      GetFySortTitleAsync();
+      await backtop(); //回到顶部
+    }
+    const backtop = async () => {
+      {
+
+        var timer = setInterval(function () {
+          let osTop =
+            document.documentElement.scrollTop || document.body.scrollTop;
+          let ispeed = Math.floor(-osTop / 5);
+          document.documentElement.scrollTop = document.body.scrollTop =
+            osTop + ispeed;
+          // this.isTop = true;
+          if (osTop === 0) {
+            clearInterval(timer);
+          }
+        }, 30);
+        //utils.backtop();
+      }
+    };
+    async function jump(id: number): Promise<void> {
+      await router.push({
+        path: "/IndexText",
+        query: {
+          id: id,
+        },
+      });
+    }
+    onMounted(async () => {
+      await ConutSort();
+      await GetFySortTitleAsync();
+    });
+    return { ...toRefs(state), GetFySortTitleAsync, ConutSort, currentchange, backtop, jump };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @import "./scss/Blogs.scss";
+@import "./scss/Blogs.scss";
 </style>

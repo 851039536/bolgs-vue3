@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="about-1-2">
-            <a>{{ User.brief }}</a>
+            <a>{{ User["brief"] }}</a>
           </div>
           <div class="flex items-center about-1-3">
             <div class="flex-1 about-1-3-1">
@@ -130,70 +130,72 @@
   </div>
 </template>
 <script lang="ts">
-  import { reactive, toRefs, onMounted } from "vue";
-  import { useRouter } from "vue-router";
-  import { user } from "../../api/user";
+import { reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { user } from "../../api/user";
 
-  export default {
-    name: "About",
-    setup() {
-      const router = useRouter();
-      const state = reactive({
-        activeClass: "animate__animated",
-        errorClass: "animate__fadeInRightBig",
-        bounceIn: "animate__bounceIn",
-        backInDown: "animate__backInDown",
-        fadeInTopRight: "animate__fadeInTopRight",
-        User: [],
-        newinfo: [],
-      });
-      let count = 0;
-      const like = () => {
-        const likeDom = document.createElement("div");
-        count++;
-        likeDom.className = count % 2 === 0 ? "like" : "like like--is-second";
-        likeDom.style.willChange = "margin-top";
-        document.body.appendChild(likeDom);
-        setTimeout(() => {
-          document.body.removeChild(likeDom);
-        }, 3900);
-      };
-      const getall = async () => {
+export default {
+  name: "About",
+  setup() {
+    const router = useRouter();
+    const state = reactive({
+      activeClass: "animate__animated",
+      errorClass: "animate__fadeInRightBig",
+      bounceIn: "animate__bounceIn",
+      backInDown: "animate__backInDown",
+      fadeInTopRight: "animate__fadeInTopRight",
+      User: [] as any,
+      newinfo: [],
+    });
+    let count = 0;
+    const like = () => {
+      const likeDom = document.createElement("div");
+      count++;
+      likeDom.className = count % 2 === 0 ? "like" : "like like--is-second";
+      likeDom.style.willChange = "margin-top";
+      document.body.appendChild(likeDom);
+      setTimeout(() => {
+        document.body.removeChild(likeDom);
+      }, 3900);
+    };
+    const getall = async () => {
 
-        await user.GetByIdAsync(4)
-          .then((res: any) => {
-            state.User = res.data;
-          })
-      };
+      await user.GetByIdAsync(4)
+        .then((res: any) => {
+          state.User = res.data;
+        })
+    };
 
-      const Getid = async (id: number) => {
-        switch (id) {
-          case 1:
-            await router.push("./index");
-            break;
-          case 2:
-            await router.push("./SnVideo");
-            break;
-          case 3:
-            await router.push("./Talk");
-            break;
-          case 4:
-            await router.push("./favorite");
-            break;
-          case 5:
-            await router.push("./Leave");
-            break;
-        }
-      };
+    const Getid = async (id: number) => {
+      switch (id) {
+        case 1:
+          await router.push("./index");
+          break;
+        case 2:
+          await router.push("./SnVideo");
+          break;
+        case 3:
+          await router.push("./Talk");
+          break;
+        case 4:
+          await router.push("./favorite");
+          break;
+        case 5:
+          await router.push("./Leave");
+          break;
+      }
+    };
 
-      onMounted(async () => {
-        await getall();
-      });
-      return { ...toRefs(state), getall, Getid, like };
-    },
-  };
+    onMounted(async () => {
+      await getall();
+      window.scrollTo(0, 0);
+
+    });
+    return { ...toRefs(state), getall, Getid, like };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @import "./About.scss";
+@import "./About.scss";
 </style>

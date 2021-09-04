@@ -1,7 +1,7 @@
 <!--
  * @Author: 自我介绍
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-09-02 09:10:34
+ * @LastEditTime: 2021-09-04 09:15:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
@@ -21,53 +21,34 @@
             </div>
           </div>
         </div>
-        <!-- <div class="home_introduce">
-          <p class="home_introduce-1 animate__animated animate__slideInDown">你好，</p>
-          <p class="home_introduce-2 animate__animated animate__slideInLeft">
-            叫我少年
-            。
-          </p>
-          <p
-            class="home_introduce-3 animate__animated animate__slideInLeft animate__slideInRight"
-          >一位热爱生活、xxxxxx开发者。</p>
-          <p class="home_introduce-4 animate__animated animate__jackInTheBox">很高兴与你相遇！</p>
-        </div>-->
       </div>
-      <!-- <div class="flex home_enter animate__animated animate__slideInUp">
-        <div class="home_enter-1">
-          <button @click="skip(1)">进入</button>
-        </div>
-        <div class="home_enter-2">
-          <button @click="skip(2)">关于</button>
-        </div>
-      </div>-->
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { useRouter } from "vue-router";
-  export default {
-    name: "BlogHome",
-    setup(): { skip: (num: any) => Promise<void>; } {
-      const router = useRouter();
-      let skip = async (num: any) => {
-        switch (num) {
-          case 1:
-            router.push("/Blogs");
-            break;
-          case 2:
-            router.push("/About");
-            break;
-        }
-      };
+import { useRouter } from "vue-router";
+export default {
+  name: "BlogHome",
+  setup(): { skip: (num: any) => Promise<void>; } {
+    const router = useRouter();
+    let skip = async (num: any) => {
+      switch (num) {
+        case 1:
+          router.push("/Blogs");
+          break;
+        case 2:
+          router.push("/About");
+          break;
+      }
+    };
 
-      return {
-        skip,
-      };
-    },
-  };
+    return {
+      skip,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
-  @import "./scss/BlogHome.scss";
+@import "./scss/BlogHome.scss";
 </style>
