@@ -3,12 +3,7 @@
     <a-back-top />
     <div class="IndexTitle-img"></div>
     <!----------------------加载article表内容---------------------------->
-    <div
-      class="IndexTitle-text"
-      v-for="(info, index) in dataResult"
-      :class="{ alt: index % 2 == 1 }"
-      :key="info.articleId"
-    >
+    <div class="IndexTitle-text" v-for="info in state.dataResult" :key="info.articleId">
       <div class="IndexTitle-text-div">
         <div class="IndexTitle-title-div">
           <div class="IndexTitle-title" v-on:click="jump(info.articleId)">
@@ -18,7 +13,7 @@
           <div class="IndexTitle-user">
             <div>少年</div>
             <div>随笔</div>
-            <div>{{ info.timeCreate.substring(0,10)}}</div>
+            <div>{{ info.timeCreate.substring(0, 10) }}</div>
 
             <div @click="jump(info.article_id)">
               <a>{{ info.read }} ℃</a>
@@ -40,8 +35,8 @@
       <a-pagination
         size="small"
         @change="currentchange"
-        :total="count"
-        :pageSize="pagesize"
+        :total="state.count"
+        :pageSize="state.pagesize"
         show-quick-jumper
       />
     </div>
@@ -50,95 +45,90 @@
 </template>
 
 
-<script lang="ts">
-  import { reactive, toRefs, onMounted } from "vue";
-  import { useRouter } from "vue-router";
-  import { useStore } from "vuex";
-  import { article } from '../../api/article';
-  import { setBlog } from '../../api/setBlog';
-  // 组件导入
-  export default {
-    name: "IndexTitle",
-    components: {},
-    setup() {
-      const router = useRouter();
-      const stores = useStore();
-      const state = reactive({
-        dataResult: [], // 显示的数据
-        page: 1, //页码
-        pagesize: 8, //每页条数
-        count: 0, //总数
-      });
-      async function GetCountAsync(): Promise<void> {
-        await article.GetCountAsync().then((result: any) => {
-          state.count = result.data;
-        });
+<script lang="ts" setup>
+import { reactive, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { article } from '../../api/article';
+import { setBlog } from '../../api/setBlog';
+
+const router = useRouter();
+const stores = useStore();
+interface State {
+  dataResult: any, // 显示的数据
+  page: number,//页码
+  readonly pagesize: number, //每页条数
+  count: number, //总数
+}
+const state: State = reactive({
+  dataResult: [],
+  page: 1,
+  pagesize: 8,
+  count: 0,
+});
+async function GetCountAsync(): Promise<void> {
+
+  await article.GetCountAsync().then((result: any) => {
+    state.count = result.data;
+    console.log(state.count);
+  });
+}
+
+async function GetFyTitleAsync(): Promise<void> {
+  await article.GetFyTitleAsync(state.page, state.pagesize).then((result: any) => {
+    state.dataResult = result.data;
+    console.log(state.dataResult[0].titleText, state.page, state.pagesize);
+  });
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function jump(id: number): Promise<void> {
+  await setBlog.GetByIdAsync(1, false).then(res => {
+    stores.state.SetPage = res.data.setIsopen;
+  })
+  if (stores.state.SetPage) {
+    const { href } = await router.resolve({
+      path: "/Particulars",
+      query: { id: id }
+    });
+    window.open(href, '_blank');
+  } else {
+    await router.push({
+      path: "/IndexText",
+      query: {
+        id: id,
+      },
+    });
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const currentchange = async (val: number) => {
+  state.page = val;
+  await GetFyTitleAsync();
+  await backtop(); //回到顶部
+}
+const backtop = async () => {
+  {
+
+    var timer = setInterval(function () {
+      let osTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      let ispeed = Math.floor(-osTop / 5);
+      document.documentElement.scrollTop = document.body.scrollTop =
+        osTop + ispeed;
+      if (osTop === 0) {
+        clearInterval(timer);
       }
-
-      async function GetFyTitleAsync(): Promise<void> {
-        await article.GetFyTitleAsync(state.page, state.pagesize).then((result: any) => {
-          state.dataResult = result.data;
-        });
-      }
-
-      async function jump(id: number): Promise<void> {
-        await setBlog.GetByIdAsync(1, false).then(res => {
-          stores.state.SetPage = res.data.setIsopen;
-        })
-        if (stores.state.SetPage) {
-          const { href } = await router.resolve({
-            path: "/Particulars",
-            query: { id: id }
-          });
-          window.open(href, '_blank');
-        } else {
-          await router.push({
-            path: "/IndexText",
-            query: {
-              id: id,
-            },
-          });
-
-        }
-      }
-
-      async function currentchange(val: number): Promise<void> {
-        state.page = val;
-        await GetFyTitleAsync();
-        await backtop(); //回到顶部
-      }
-      const backtop = async () => {
-        {
-
-          var timer = setInterval(function () {
-            let osTop =
-              document.documentElement.scrollTop || document.body.scrollTop;
-            let ispeed = Math.floor(-osTop / 5);
-            document.documentElement.scrollTop = document.body.scrollTop =
-              osTop + ispeed;
-            if (osTop === 0) {
-              clearInterval(timer);
-            }
-          }, 30);
-        }
-      };
-      onMounted(async () => {
-        await GetCountAsync();
-        await GetFyTitleAsync();
-      });
-
-      return {
-        ...toRefs(state),
-        GetCountAsync,
-        GetFyTitleAsync,
-        jump,
-        currentchange,
-        backtop,
-      };
-    },
-  };
+    }, 30);
+  }
+};
+onMounted(async () => {
+  await GetCountAsync();
+  await GetFyTitleAsync();
+});
 </script>
 
 <style lang="scss" >
-  @import "./scss/indexTitle.scss";
+@import "./scss/indexTitle.scss";
 </style>

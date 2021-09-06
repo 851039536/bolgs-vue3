@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-05-14 09:37:01
+ * @LastEditTime: 2021-09-06 13:55:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -10,8 +10,6 @@ import axios from 'axios';
 import qs from "qs";
 import store from "../store/index";
 import router from '../router';
-//'http://129.204.92.64:8081/' 腾讯服务器
-// axios.defaults.baseURL = 'https://localhost:44367/',
 axios.defaults.baseURL = process.env.VUE_APP_API_URL,
   axios.defaults.timeout = 12000;
 // axios.defaults.headers.common['token'] =  AUTH_TOKEN

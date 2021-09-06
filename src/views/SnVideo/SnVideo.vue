@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-09-03 12:28:37
+ * @LastEditTime: 2021-09-06 15:00:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
@@ -21,9 +21,7 @@
           </div>
           <div class="SnVideo-2-1-3">
             {{
-              info["vData"].toLocaleString()
-                .replace(/T/g, " ")
-                .replace(/\.[\d]{3}Z/, "")
+            info["vData"]
             }}
           </div>
         </div>
