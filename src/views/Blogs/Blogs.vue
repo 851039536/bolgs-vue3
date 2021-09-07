@@ -1,22 +1,22 @@
 <template>
-  <div id="software">
+  <div id="blogs" class="animate__animated animate__fadeIn">
     <blog-sidebar></blog-sidebar>
     <blogs-sidebar></blogs-sidebar>
     <a-back-top></a-back-top>
-    <div class="software_main animate__animated animate__fadeIn">
+    <div class="blogs_main">
       <!-- 内容框 -->
-      <div class="software_content" v-for="info in state.dataResult" :key="info.articleId">
-        <div class="flex software_content_div">
-          <div class="software_content_img">
+      <div class="blogs_content" v-for="info in state.dataResult" :key="info.articleId">
+        <div class="blogs_content_div">
+          <div class="blogs_content_img">
             <!-- <img src="/img/blog/1.jpg" /> -->
             <img :src="info.urlImg" />
           </div>
-          <div class="oftware_content__frame">
-            <p class="oftware_content__frame-1">
+          <div class="blogs_content__frame">
+            <p class="blogs_content__frame-1">
               <a @click="jump(info.articleId)">{{ info.title }}</a>
             </p>
-            <p class="oftware_content__frame-2">{{ info.titleText }}</p>
-            <p class="oftware_content__frame-3">
+            <p class="blogs_content__frame-2">{{ info.titleText }}</p>
+            <p class="blogs_content__frame-3">
               <span>文章</span>
               <span>{{ info.read }} ℃</span>
               <span>赞 {{ info.give }}</span>
@@ -26,8 +26,9 @@
         </div>
       </div>
       <!-- end 内容框  -->
+
       <!-- 分页 -->
-      <div class="IndexTitle-page">
+      <div class="blogs-page">
         <a-pagination
           size="small"
           @change="currentchange"
@@ -73,7 +74,6 @@ async function ConutSort(): Promise<void> {
     state.count = result.data;
   });
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function currentchange(val: number): Promise<void> {
   state.page = val;
   GetFySortTitleAsync();
@@ -95,7 +95,6 @@ const backtop = async () => {
     }, 30);
   }
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function jump(id: number): Promise<void> {
   await router.push({
     path: "/IndexText",
@@ -111,5 +110,5 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@import "./scss/Blogs.scss";
+@import "./index.scss";
 </style>

@@ -13,7 +13,7 @@
         <img src="@/assets/img/si.jpg" alt />
       </div>
       <div class="si_text" v-for="(item, index) in ResultList" :key="index">
-        <p @click="nav(item.path)" v-if="item.identity">{{item.title}}</p>
+        <p @click="nav(item.path)" v-if="item.identity">{{ item.title }}</p>
       </div>
 
       <div class="si_website">
@@ -29,47 +29,47 @@
 </template>
 
 <script lang="ts">
-  import { useRouter } from "vue-router";
-  import { interfaces } from '../../api/interfaces';
-  import {
-    reactive,
-    toRefs,
-    onMounted,
-  } from "vue";
-  export default {
-    name: "Sidebarsn",
-    setup(): { nav: (num: string) => Promise<void>; queryAll: () => Promise<void>; } {
+import { useRouter } from "vue-router";
+import { interfaces } from '../../api/interfaces';
+import {
+  reactive,
+  toRefs,
+  onMounted,
+} from "vue";
+export default {
+  name: "Sidebarsn",
+  setup(): { nav: (num: string) => Promise<void>; queryAll: () => Promise<void>; } {
 
 
-      const state: any = reactive({
-        ResultList: [],
-      });
-      const router = useRouter();
-      let nav = async (num: string) => {
-        router.push({
-          path: num,
-          query: {
-            t: +new Date()
-          }
-        })
-      };
-      const queryAll = async () => {
-        await interfaces.GetTypeAsync(4, 2).then((res: any) => {
-          state.ResultList = res.data;
-        })
-      };
-      onMounted(async () => {
-        await queryAll();
-      });
-      return {
-        ...toRefs(state),
-        nav,
-        queryAll,
+    const state: any = reactive({
+      ResultList: [],
+    });
+    const router = useRouter();
+    let nav = async (num: string) => {
+      router.push({
+        path: num,
+        query: {
+          t: +new Date()
+        }
+      })
+    };
+    const queryAll = async () => {
+      await interfaces.GetTypeAsync(4, 2).then((res: any) => {
+        state.ResultList = res.data;
+      })
+    };
+    onMounted(async () => {
+      await queryAll();
+    });
+    return {
+      ...toRefs(state),
+      nav,
+      queryAll,
 
-      };
-    },
-  };
+    };
+  },
+};
 </script>
 <style lang="scss" >
-  @import "./scss/BlogSidebar.scss";
+@import "./scss/BlogSidebar.scss";
 </style>

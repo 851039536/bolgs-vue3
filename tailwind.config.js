@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-08 09:43:09
- * @LastEditTime: 2021-09-02 08:54:26
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-07 14:00:48
+ * @LastEditors: your name
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\tailwind.config.js
  */
@@ -60,7 +60,7 @@ module.exports = {
   // config (optional)
   daisyui: {
     styled: true,
-    themes: false,
+    themes: true,
     base: false,
     utils: true,
     logs: true,

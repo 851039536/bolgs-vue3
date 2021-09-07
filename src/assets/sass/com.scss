@@ -116,14 +116,9 @@ $ml:25%;
 }
 
 // 宽高
-@mixin w-h($w, $h) {
-  @if $w !=null {
-    width: $w;
-  }
-
-  @if $h !=null {
-    height: $h;
-  }
+@mixin w-h($w:100%, $h:100%) {
+  width: $w;
+  height: $h;
 }
 
 // 背景图片
@@ -314,9 +309,9 @@ $ml:25%;
     }
   }
 
-  table {
-    // background: gray;
-  }
+  // table {
+  //   // background: gray;
+  // }
 
   th {
     border: solid #f1f1f1 1px;

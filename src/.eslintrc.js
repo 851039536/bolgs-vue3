@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:18:11
- * @LastEditTime: 2021-09-06 14:38:44
+ * @LastEditTime: 2021-09-07 14:00:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\.eslintrc.js
@@ -19,7 +19,7 @@ module.exports = {
   rules: {
 
     '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
     // 允许非空断言
     '@typescript-eslint/no-non-null-assertion': 'off',
     // 允许自定义模块和命名空间

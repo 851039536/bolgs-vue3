@@ -1,35 +1,47 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-07 18:59:58
- * @LastEditTime: 2021-09-06 18:06:22
+ * @LastEditTime: 2021-09-07 17:30:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\README.md
 -->
 # blogs-s
-
 ## Project setup
+
 ```
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 yarn serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn build
 ```
 
 ### Lints and fixes files
+
 ```
 yarn lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### v1.0.3--2021-09-07
+
+[优化] About blogs blogsSidebar blogHome,关于页面vue新语法 css优化
+
+[删除] 删除About.scss,blogs.scss,blogsSidebar.scss,blogHome.scss
+
+[新增] index.scss 统一用此命名
 
 ### v1.0.2--2021-09-06
 
