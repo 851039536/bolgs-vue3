@@ -1,0 +1,22 @@
+@import "../../assets/sass/com";
+@import "../../assets/sass/uitl";
+
+/* blogHome 
+----------------------------------------------------------------*/
+#blogHome {
+  @apply fixed z-20;
+  @include w-h;
+  @apply bg-white;
+
+  .home_main {
+    @apply absolute m-auto top-0 left-0 bottom-0 right-0;
+    @include w-h(90%, 100%);
+    @apply shadow-xl rounded-sm;
+  }
+}
+
+@screen xp {
+  #BlogHome .home_main {
+    width: 100%;
+  }
+}
