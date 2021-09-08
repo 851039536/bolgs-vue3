@@ -259,6 +259,11 @@
   resolved "https://registry.nlark.com/@babel/helper-validator-identifier/download/@babel/helper-validator-identifier-7.14.0.tgz?cache=0&sync_timestamp=1619727644929&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fhelper-validator-identifier%2Fdownload%2F%40babel%2Fhelper-validator-identifier-7.14.0.tgz#d26cad8a47c65286b15df1547319a5d0bcf27288"
   integrity sha1-0mytikfGUoaxXfFUcxml0Lzycog=
 
+"@babel/helper-validator-identifier@^7.14.9":
+  version "7.14.9"
+  resolved "https://registry.nlark.com/@babel/helper-validator-identifier/download/@babel/helper-validator-identifier-7.14.9.tgz#6654d171b2024f6d8ee151bf2509699919131d48"
+  integrity sha1-ZlTRcbICT22O4VG/JQlpmRkTHUg=
+
 "@babel/helper-validator-option@^7.12.1":
   version "7.12.1"
   resolved "https://registry.npm.taobao.org/@babel/helper-validator-option/download/@babel/helper-validator-option-7.12.1.tgz?cache=0&sync_timestamp=1602801773085&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fhelper-validator-option%2Fdownload%2F%40babel%2Fhelper-validator-option-7.12.1.tgz#175567380c3e77d60ff98a54bb015fe78f2178d9"
@@ -305,6 +310,11 @@
   version "7.12.7"
   resolved "https://registry.npm.taobao.org/@babel/parser/download/@babel/parser-7.12.7.tgz?cache=0&sync_timestamp=1605904555840&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fparser%2Fdownload%2F%40babel%2Fparser-7.12.7.tgz#fee7b39fe809d0e73e5b25eecaf5780ef3d73056"
   integrity sha1-/uezn+gJ0Oc+WyXuyvV4DvPXMFY=
+
+"@babel/parser@^7.15.0":
+  version "7.15.5"
+  resolved "https://registry.nlark.com/@babel/parser/download/@babel/parser-7.15.5.tgz?cache=0&sync_timestamp=1630746008183&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fparser%2Fdownload%2F%40babel%2Fparser-7.15.5.tgz#d33a58ca69facc05b26adfe4abebfed56c1c2dac"
+  integrity sha1-0zpYymn6zAWyat/kq+v+1WwcLaw=
 
 "@babel/plugin-proposal-async-generator-functions@^7.12.1":
   version "7.12.1"
@@ -915,6 +925,14 @@
   dependencies:
     "@babel/helper-validator-identifier" "^7.10.4"
     lodash "^4.17.19"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.15.0":
+  version "7.15.4"
+  resolved "https://registry.nlark.com/@babel/types/download/@babel/types-7.15.4.tgz?cache=0&sync_timestamp=1630618915456&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Ftypes%2Fdownload%2F%40babel%2Ftypes-7.15.4.tgz#74eeb86dbd6748d2741396557b9860e57fce0a0d"
+  integrity sha1-dO64bb1nSNJ0E5ZVe5hg5X/OCg0=
+  dependencies:
+    "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
 "@ctrl/tinycolor@^3.1.6":
@@ -1581,6 +1599,17 @@
     estree-walker "^2.0.1"
     source-map "^0.6.1"
 
+"@vue/compiler-core@3.2.9":
+  version "3.2.9"
+  resolved "https://registry.nlark.com/@vue/compiler-core/download/@vue/compiler-core-3.2.9.tgz?cache=0&sync_timestamp=1630881500647&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fcompiler-core%2Fdownload%2F%40vue%2Fcompiler-core-3.2.9.tgz#874d04d3e4de98f3a60769db7fa47e041bfca490"
+  integrity sha1-h00E0+TemPOmB2nbf6R+BBv8pJA=
+  dependencies:
+    "@babel/parser" "^7.15.0"
+    "@babel/types" "^7.15.0"
+    "@vue/shared" "3.2.9"
+    estree-walker "^2.0.2"
+    source-map "^0.6.1"
+
 "@vue/compiler-dom@3.0.4":
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/@vue/compiler-dom/download/@vue/compiler-dom-3.0.4.tgz?cache=0&sync_timestamp=1606946111216&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vue%2Fcompiler-dom%2Fdownload%2F%40vue%2Fcompiler-dom-3.0.4.tgz#834fd4b15c5698cf9f4505c2bfbccca058a843eb"
@@ -1588,6 +1617,14 @@
   dependencies:
     "@vue/compiler-core" "3.0.4"
     "@vue/shared" "3.0.4"
+
+"@vue/compiler-dom@3.2.9":
+  version "3.2.9"
+  resolved "https://registry.nlark.com/@vue/compiler-dom/download/@vue/compiler-dom-3.2.9.tgz?cache=0&sync_timestamp=1630881500802&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fcompiler-dom%2Fdownload%2F%40vue%2Fcompiler-dom-3.2.9.tgz#e42b2bc285366224a1738f7ed6648d4260cbbbef"
+  integrity sha1-5CsrwoU2YiShc49+1mSNQmDLu+8=
+  dependencies:
+    "@vue/compiler-core" "3.2.9"
+    "@vue/shared" "3.2.9"
 
 "@vue/compiler-sfc@^3.0.0":
   version "3.0.4"
@@ -1654,6 +1691,13 @@
   dependencies:
     "@vue/shared" "3.0.4"
 
+"@vue/reactivity@3.2.9":
+  version "3.2.9"
+  resolved "https://registry.nlark.com/@vue/reactivity/download/@vue/reactivity-3.2.9.tgz?cache=0&sync_timestamp=1630881501334&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Freactivity%2Fdownload%2F%40vue%2Freactivity-3.2.9.tgz#f4ec61519f4779224d98a23ac07b481d95687cae"
+  integrity sha1-9OxhUZ9HeSJNmKI6wHtIHZVofK4=
+  dependencies:
+    "@vue/shared" "3.2.9"
+
 "@vue/runtime-core@3.0.4":
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/@vue/runtime-core/download/@vue/runtime-core-3.0.4.tgz?cache=0&sync_timestamp=1606946113820&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vue%2Fruntime-core%2Fdownload%2F%40vue%2Fruntime-core-3.0.4.tgz#a5b9a001560b1fd8c01a43f68b764c555de7836c"
@@ -1661,6 +1705,14 @@
   dependencies:
     "@vue/reactivity" "3.0.4"
     "@vue/shared" "3.0.4"
+
+"@vue/runtime-core@3.2.9":
+  version "3.2.9"
+  resolved "https://registry.nlark.com/@vue/runtime-core/download/@vue/runtime-core-3.2.9.tgz?cache=0&sync_timestamp=1630881501595&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fruntime-core%2Fdownload%2F%40vue%2Fruntime-core-3.2.9.tgz#32854c9d9853aa2075fcecfc762b5f033a6bae1e"
+  integrity sha1-MoVMnZhTqiB1/Oz8ditfAzprrh4=
+  dependencies:
+    "@vue/reactivity" "3.2.9"
+    "@vue/shared" "3.2.9"
 
 "@vue/runtime-dom@3.0.4":
   version "3.0.4"
@@ -1671,10 +1723,24 @@
     "@vue/shared" "3.0.4"
     csstype "^2.6.8"
 
+"@vue/runtime-dom@3.2.9":
+  version "3.2.9"
+  resolved "https://registry.nlark.com/@vue/runtime-dom/download/@vue/runtime-dom-3.2.9.tgz?cache=0&sync_timestamp=1630881501742&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fruntime-dom%2Fdownload%2F%40vue%2Fruntime-dom-3.2.9.tgz#397572a142db2772fb4b7f0a2bc06b5486e5db81"
+  integrity sha1-OXVyoULbJ3L7S38KK8BrVIbl24E=
+  dependencies:
+    "@vue/runtime-core" "3.2.9"
+    "@vue/shared" "3.2.9"
+    csstype "^2.6.8"
+
 "@vue/shared@3.0.4":
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/@vue/shared/download/@vue/shared-3.0.4.tgz?cache=0&sync_timestamp=1606946112084&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vue%2Fshared%2Fdownload%2F%40vue%2Fshared-3.0.4.tgz#6dc50f593bdfdeaa6183d1dbc15e2d45e7c6b8b3"
   integrity sha1-bcUPWTvf3qphg9HbwV4tRefGuLM=
+
+"@vue/shared@3.2.9":
+  version "3.2.9"
+  resolved "https://registry.nlark.com/@vue/shared/download/@vue/shared-3.2.9.tgz?cache=0&sync_timestamp=1630881474290&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fshared%2Fdownload%2F%40vue%2Fshared-3.2.9.tgz#44e44dbd82819997f192fb7dbdb90af5715dbf52"
+  integrity sha1-RORNvYKBmZfxkvt9vbkK9XFdv1I=
 
 "@vue/web-component-wrapper@^1.2.0":
   version "1.2.0"
@@ -4204,6 +4270,11 @@ estree-walker@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-2.0.1.tgz#f8e030fb21cefa183b44b7ad516b747434e7a3e0"
   integrity sha1-+OAw+yHO+hg7RLetUWt0dDTno+A=
+
+estree-walker@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-2.0.2.tgz?cache=0&sync_timestamp=1611956983677&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Festree-walker%2Fdownload%2Festree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
+  integrity sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw=
 
 esutils@^2.0.2:
   version "2.0.3"
@@ -9848,6 +9919,15 @@ vue@^3.0.0:
     "@vue/compiler-dom" "3.0.4"
     "@vue/runtime-dom" "3.0.4"
     "@vue/shared" "3.0.4"
+
+vue@^3.2.9:
+  version "3.2.9"
+  resolved "https://registry.nlark.com/vue/download/vue-3.2.9.tgz#f8373c0d78136e331ad079e18ed72deaa95be5f2"
+  integrity sha1-+Dc8DXgTbjMa0Hnhjtct6qlb5fI=
+  dependencies:
+    "@vue/compiler-dom" "3.2.9"
+    "@vue/runtime-dom" "3.2.9"
+    "@vue/shared" "3.2.9"
 
 vuex@^4.0.0-0:
   version "4.0.0-rc.2"

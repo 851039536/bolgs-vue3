@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-07 11:07:46
+ * @LastEditTime: 2021-09-08 09:56:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -23,13 +23,14 @@
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "vue-router";
-import { onMounted } from "vue";
+import { onMounted, reactive, toRefs } from "vue";
 import SnBootom from './views/common/SnBootom.vue';
+import BlogSidebar from "./views/common/BlogSidebar.vue";
 export default {
   components: { SnBootom, },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const router = useRouter();
+
     router.beforeEach((to, from, next) => {
       NProgress.start();
       next();
@@ -39,11 +40,10 @@ export default {
       NProgress.done();
     });
 
-    onMounted(async () => {
-      // await doc();
-    });
+    return {
+      reactive,
 
-    return {};
+    };
   },
 };
 </script>

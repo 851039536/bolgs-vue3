@@ -1,10 +1,12 @@
 <template>
-  <div id="index_sidebar">
+  <div id="indexsidebar">
     <div class="index_s_main">
       <!-- qq 微信  知乎图标导航 -->
       <blog-ico></blog-ico>
+      <!-- end qq 微信  知乎图标导航 -->
+
       <!-- 搜索 -->
-      <div class="index_si_input">
+      <div class="index_s_input">
         <a-select
           show-search
           v-model:value="state.sntitle"
@@ -19,18 +21,19 @@
           <a-select-option v-for="d in state.article1" :key="d.articleId">{{ d.title }}</a-select-option>
         </a-select>
       </div>
-      <!-- -------------------------------- -->
+      <!-- end 搜索 -->
+
       <!-- 说说显示描述内容 -->
-      <div class="index-si-describe">
+      <div class="index_s_describe">
         <div>
           <p>{{ state.UserTalk }}</p>
         </div>
       </div>
-      <!-- ---------------------------------------- -->
+      <!-- end 说说显示描述内容 -->
 
       <!-- 标签框内容 -->
-      <div class="index-si-tag">
-        <div class="index-si-tag-title">标签</div>
+      <div class="index_s_tag">
+        <div class="index_s_tag_name">标签</div>
         <blog-tag
           v-for="Labeslss in state.Labels"
           :key="Labeslss.labelId"
@@ -38,26 +41,25 @@
           @click="TagSkip(Labeslss.labelId)"
         ></blog-tag>
       </div>
-      <!-- ----------------------------------------------- -->
+      <!-- end 标签框内容 -->
 
       <!-- 分类内容框 -->
-      <div class="index-si-type">
-        <div class="index-si-type-title">分类</div>
-        <div class="inline-flex cursor-pointer" v-for="Sorts in state.Sort" :key="Sorts.sortId">
-          <div
-            class="flex-1 px-1 m-1 text-sm text-center text-gray-700 transition duration-500 ease-in-out transform index-si-type-text hover: hover:scale-110 hover:text-red-600"
-            @click="TagSkip(Sorts.labelId)"
-          >{{ Sorts.sortName }}</div>
+      <div class="index_s_type">
+        <div class="index_s_type_name">分类</div>
+        <div class="inline-flex" v-for="Sorts in state.Sort" :key="Sorts.sortId">
+          <div class="index-si-type-text" @click="TagSkip(Sorts.labelId)">{{ Sorts.sortName }}</div>
         </div>
       </div>
+      <!-- end 分类内容框  -->
 
       <!-- 站点统计框 -->
-      <blog-information
+      <BlogInformation
         :ArticleCount="state.ArticleCount"
         :TextCount="state.textCount"
         :ReadCount="state.readCount"
         :Articledata="state.articledata.substring(0, 10)"
-      ></blog-information>
+      ></BlogInformation>
+      <!-- end 站点统计框 -->
 
       <div class="index-si-count">
         <div class="stat">
@@ -86,154 +88,163 @@
 </template>
 
 
-<script lang="ts" setup>
-import { getCurrentInstance, reactive, onMounted } from "vue";
+<script lang="ts">
+import { getCurrentInstance, reactive, onMounted, defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { article } from '../../api/article';
 import { labels } from '../../api/labels';
 import { sort } from '../../api/sort';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import BlogIco from '../common/SidebarModule/BlogIco.vue';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import BlogInformation from '../common/SidebarModule/BlogInformation.vue';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import BlogTag from '../common/SidebarModule/BlogTag.vue';
 
-const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-const router = useRouter();
-const store = useStore();
-interface State {
-  Labels: any,
-  Sort: any,
-  article: any,
-  article1: any,
-  UserTalk: string,
-  User: any,
-  ArticleCount: number,
-  SortCount: number,
-  LabelsCount: number,
-  textCount: number,
-  readCount: number,
-  articledata: string,
-  sntitle: string
+export default defineComponent({
 
-}
-const state: State = reactive({
-  Labels: [],
-  Sort: [],
-  article: [],
-  article1: [],
-  UserTalk: "",
-  User: [],
-  ArticleCount: 0,
-  SortCount: 0,
-  LabelsCount: 0,
-  textCount: 0,
-  readCount: 0,
-  articledata: "",
-  sntitle: ""
-});
+  components: { BlogInformation, BlogTag, BlogIco },
+  setup() {
+    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const router = useRouter();
+    const store = useStore();
+    interface State {
+      Labels: any,
+      Sort: any,
+      article: any,
+      article1: any,
+      UserTalk: string,
+      User: any,
+      ArticleCount: number,
+      SortCount: number,
+      LabelsCount: number,
+      textCount: number,
+      readCount: number,
+      articledata: string,
+      sntitle: string
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SearchTitle = async (title: string) => {
-  await article.GetContainsAsync(title).then(res => {
-    state.article1 = res.data;
-  })
-
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const tiaozhuan = async (title: string) => {
-
-  const { href } = await router.resolve({
-    path: "/Particulars",
-    query: {
-      id: title,
-      t: +new Date()
     }
-  });
-  window.open(href, '_blank');
-}
-
-const GetAllasync = async () => {
-
-  //查询标签
-  await labels.GetAllAsync(true).then(res => {
-    state.Labels = res.data;
-  });
-  //查询分类
-  await sort.GetAllAsync(true).then(res => {
-    state.Sort = res.data;
-  });
-  proxy.$api
-    .all([
-      //查询最新发布前十文章
-      proxy.$api.get(
-        "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true"
-      ),
-      // 查询当前用户的说说
-      proxy.$api.get(
-        "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-      ),
-      //查询当前用户信息
-      proxy.$api.get("/api/SnUser/GetByIdAsync?id=4&cache=true"),
-      //查询文章总数
-      proxy.$api.get("/api/SnArticle/GetCountAsync"),
-      //查询标签
-      proxy.$api.get("/api/SnSort/GetCountAsync"),
-      //查询分类
-      proxy.$api.get("/api/SnLabels/GetCountAsync"),
-      // 内容字段数
-      proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
-      // 阅读量
-      proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
-    ])
-    .then(
-      proxy.$api.spread(
-        (
-
-          res3: any,
-          res4: any,
-          res5: any,
-          res6: any,
-          res7: any,
-          res8: any,
-          res9: any,
-          res10: any
-        ) => {
-          state.article = res3.data;
-          state.articledata = res3.data[0].timeCreate;
-          state.UserTalk = res4.data;
-          state.User = res5.data;
-          store.state.ArticleCount = state.ArticleCount = res6.data;
-          store.state.SortCount = state.SortCount = res7.data;
-          store.state.LabelsCount = state.LabelsCount = res8.data;
-          store.state.textCount = state.textCount = res9.data;
-          store.state.readCount = state.readCount = res10.data;
-        }
-      )
-    )
-    .catch((err: any) => {
-      console.log(err);
+    const state: State = reactive({
+      Labels: [],
+      Sort: [],
+      article: [],
+      article1: [],
+      UserTalk: "",
+      User: [],
+      ArticleCount: 0,
+      SortCount: 0,
+      LabelsCount: 0,
+      textCount: 0,
+      readCount: 0,
+      articledata: "",
+      sntitle: ""
     });
-};
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const TagSkip = (id: any) => {
-  // .带参数跳转
-  router.push({
-    path: "/TagText",
-    query: {
-      id: id,
-    },
-  });
-};
-// 博客详情
 
-onMounted(async () => {
-  await GetAllasync();
+    const SearchTitle = async (title: string) => {
+      await article.GetContainsAsync(title).then(res => {
+        state.article1 = res.data;
+      })
+
+    };
+
+    const tiaozhuan = async (title: string) => {
+
+      const { href } = await router.resolve({
+        path: "/Particulars",
+        query: {
+          id: title,
+          t: +new Date()
+        }
+      });
+      window.open(href, '_blank');
+    }
+
+    const GetAllasync = async () => {
+
+      //查询标签
+      await labels.GetAllAsync(true).then(res => {
+        state.Labels = res.data;
+      });
+      //查询分类
+      await sort.GetAllAsync(true).then(res => {
+        state.Sort = res.data;
+      });
+      proxy.$api
+        .all([
+          //查询最新发布前十文章
+          proxy.$api.get(
+            "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true"
+          ),
+          // 查询当前用户的说说
+          proxy.$api.get(
+            "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
+          ),
+          //查询当前用户信息
+          proxy.$api.get("/api/SnUser/GetByIdAsync?id=4&cache=true"),
+          //查询文章总数
+          proxy.$api.get("/api/SnArticle/GetCountAsync"),
+          //查询标签
+          proxy.$api.get("/api/SnSort/GetCountAsync"),
+          //查询分类
+          proxy.$api.get("/api/SnLabels/GetCountAsync"),
+          // 内容字段数
+          proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
+          // 阅读量
+          proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
+        ])
+        .then(
+          proxy.$api.spread(
+            (
+
+              res3: any,
+              res4: any,
+              res5: any,
+              res6: any,
+              res7: any,
+              res8: any,
+              res9: any,
+              res10: any
+            ) => {
+              state.article = res3.data;
+              state.articledata = res3.data[0].timeCreate;
+              state.UserTalk = res4.data;
+              state.User = res5.data;
+              store.state.ArticleCount = state.ArticleCount = res6.data;
+              store.state.SortCount = state.SortCount = res7.data;
+              store.state.LabelsCount = state.LabelsCount = res8.data;
+              store.state.textCount = state.textCount = res9.data;
+              store.state.readCount = state.readCount = res10.data;
+            }
+          )
+        )
+        .catch((err: any) => {
+          console.log(err);
+        });
+    };
+    const TagSkip = (id: any) => {
+      // .带参数跳转
+      router.push({
+        path: "/TagText",
+        query: {
+          id: id,
+        },
+      });
+    };
+    // 博客详情
+
+    onMounted(async () => {
+      await GetAllasync();
+    });
+    return {
+      BlogIco,
+      BlogInformation,
+      BlogTag,
+      state,
+      SearchTitle,
+      tiaozhuan,
+      TagSkip,
+    };
+  },
 });
 </script>
 <style lang="scss" scoped>
-@import "./scss/indexSidebar.scss";
+@import "./index.scss";
 </style>

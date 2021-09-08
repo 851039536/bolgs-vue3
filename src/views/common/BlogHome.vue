@@ -1,7 +1,7 @@
 <!--
  * @Author: 自我介绍
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-09-07 11:55:52
+ * @LastEditTime: 2021-09-07 18:25:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
@@ -24,22 +24,27 @@
 </template>
 
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
-const router = useRouter();
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-let skip = async (num: any) => {
-  switch (num) {
-    case 1:
-      router.push("/Blogs");
-      break;
-    case 2:
-      router.push("/About");
-      break;
-  }
-};
+export default defineComponent({
+  setup() {
+    const router = useRouter();
+    let skip = async (num: any) => {
+      switch (num) {
+        case 1:
+          router.push("/Blogs");
+          break;
+      }
+    };
+    return {
+      router,
+      skip,
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
-@import "./index.scss";
+@import "index.scss";
 </style>

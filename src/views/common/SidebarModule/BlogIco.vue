@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-30 15:22:12
- * @LastEditTime: 2021-08-30 15:32:03
+ * @LastEditTime: 2021-09-08 10:55:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\SidebarModule\BlogIco.vue
@@ -42,29 +42,19 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">import { defineComponent, onMounted } from "vue";
 
-  }
+export default defineComponent({
+  setup() {
+    onMounted(async () => {
+      console.log("ico");
+    });
+    return {
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../assets/sass/com";
-  @import "../../../assets/sass/uitl.scss";
-  .index_si_contact {
-    @include w-h(97%, 80px);
-    @apply mb-2 mt-1 m-auto shadow rounded;
-    @apply bg-gray-50;
-
-    .index-si-ioc {
-      @include w-h(60%, 100%);
-      @apply flex pl-3 rounded m-auto;
-      @apply bg-white items-center;
-
-      .index-si-ioc-2 {
-        @apply flex-1 py-1 m-1;
-        @apply text-center;
-      }
-    }
-  }
+@import "../index.scss";
 </style>

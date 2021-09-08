@@ -66,8 +66,8 @@
 </template>
 
 
-<script lang="ts" setup>
-import { getCurrentInstance, reactive, onMounted } from "vue";
+<script lang="ts">
+import { getCurrentInstance, reactive, onMounted, defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { article } from '../../api/article';
@@ -75,127 +75,135 @@ import { labels } from '../../api/labels';
 import { sort } from '../../api/sort';
 import BlogInformation from '../common/SidebarModule/BlogInformation.vue';
 
-const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
-const router = useRouter();
-const store = useStore();
+export default defineComponent({
 
-interface State {
-  Labels: any,
-  Sort: any,
-  article: any,
-  article1: any,
-  UserTalk: string,
-  User: any,
-  ArticleCount: number,
-  SortCount: number,
-  LabelsCount: number,
-  textCount: number,
-  readCount: number,
-  articledata: string,
-  sntitle: string
-}
-const state: State = reactive({
-  Labels: [],
-  Sort: [],
-  article: [],
-  article1: [],
-  UserTalk: "",
-  User: [],
-  ArticleCount: 0,
-  SortCount: 0,
-  LabelsCount: 0,
-  textCount: 0,
-  readCount: 0,
-  articledata: "",
-  sntitle: ""
-});
+  setup() {
+    const { proxy }: any = getCurrentInstance();
+    const router = useRouter();
+    const store = useStore();
 
-const SearchTitle = async (title: string) => {
-  await article.GetContainsAsync(title).then(res => {
-    state.article1 = res.data;
-  })
-
-};
-
-const tiaozhuan = async (title: any) => {
-
-  const { href } = await router.resolve({
-    path: "/Particulars",
-    query: {
-      id: title,
-      t: +new Date()
+    interface State {
+      Labels: any,
+      Sort: any,
+      article: any,
+      article1: any,
+      UserTalk: string,
+      User: any,
+      ArticleCount: number,
+      SortCount: number,
+      LabelsCount: number,
+      textCount: number,
+      readCount: number,
+      articledata: string,
+      sntitle: string
     }
-  });
-  window.open(href, '_blank');
-}
-
-const GetAllasync = async () => {
-
-  //查询标签
-  await labels.GetAllAsync(true).then(res => {
-    state.Labels = res.data;
-  });
-  //查询分类
-  await sort.GetAllAsync(true).then(res => {
-    state.Sort = res.data;
-  });
-  proxy.$api
-    .all([
-      //查询最新发布前十文章
-      proxy.$api.get(
-        "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true"
-      ),
-      // 查询当前用户的说说
-      proxy.$api.get(
-        "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
-      ),
-      //查询当前用户信息
-      proxy.$api.get("/api/SnUser/GetByIdAsync?id=4&cache=true"),
-      //查询文章总数
-      proxy.$api.get("/api/SnArticle/GetCountAsync"),
-      //查询标签
-      proxy.$api.get("/api/SnSort/GetCountAsync"),
-      //查询分类
-      proxy.$api.get("/api/SnLabels/GetCountAsync"),
-      // 内容字段数
-      proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
-      // 阅读量
-      proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
-    ])
-    .then(
-      proxy.$api.spread(
-        (
-
-          res3: any,
-          res4: any,
-          res5: any,
-          res6: any,
-          res7: any,
-          res8: any,
-          res9: any,
-          res10: any
-        ) => {
-          state.article = res3.data;
-          state.articledata = res3.data[0].timeCreate;
-          state.UserTalk = res4.data;
-          state.User = res5.data;
-          store.state.ArticleCount = state.ArticleCount = res6.data;
-          store.state.SortCount = state.SortCount = res7.data;
-          store.state.LabelsCount = state.LabelsCount = res8.data;
-          store.state.textCount = state.textCount = res9.data;
-          store.state.readCount = state.readCount = res10.data;
-        }
-      )
-    )
-    .catch((err: any) => {
-      console.log(err);
+    const state: State = reactive({
+      Labels: [],
+      Sort: [],
+      article: [],
+      article1: [],
+      UserTalk: "",
+      User: [],
+      ArticleCount: 0,
+      SortCount: 0,
+      LabelsCount: 0,
+      textCount: 0,
+      readCount: 0,
+      articledata: "",
+      sntitle: ""
     });
-};
 
-onMounted(async () => {
-  await GetAllasync();
+    const SearchTitle = async (title: string) => {
+      await article.GetContainsAsync(title).then(res => {
+        state.article1 = res.data;
+      })
+
+    };
+
+    const tiaozhuan = async (title: any) => {
+      const { href } = await router.resolve({
+        path: "/Particulars",
+        query: {
+          id: title,
+          t: +new Date()
+        }
+      });
+      window.open(href, '_blank');
+    }
+
+    const GetAllasync = async () => {
+      //查询标签
+      await labels.GetAllAsync(true).then(res => {
+        state.Labels = res.data;
+      });
+      //查询分类
+      await sort.GetAllAsync(true).then(res => {
+        state.Sort = res.data;
+      });
+      proxy.$api
+        .all([
+          //查询最新发布前十文章
+          proxy.$api.get(
+            "/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true"
+          ),
+          // 查询当前用户的说说
+          proxy.$api.get(
+            "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true"
+          ),
+          //查询当前用户信息
+          proxy.$api.get("/api/SnUser/GetByIdAsync?id=4&cache=true"),
+          //查询文章总数
+          proxy.$api.get("/api/SnArticle/GetCountAsync"),
+          //查询标签
+          proxy.$api.get("/api/SnSort/GetCountAsync"),
+          //查询分类
+          proxy.$api.get("/api/SnLabels/GetCountAsync"),
+          // 内容字段数
+          proxy.$api.get("/api/SnArticle/GetSumAsync?type=text"),
+          // 阅读量
+          proxy.$api.get("/api/SnArticle/GetSumAsync?type=read"),
+        ])
+        .then(
+          proxy.$api.spread(
+            (
+              res3: any,
+              res4: any,
+              res5: any,
+              res6: any,
+              res7: any,
+              res8: any,
+              res9: any,
+              res10: any
+            ) => {
+              state.article = res3.data;
+              state.articledata = res3.data[0].timeCreate;
+              state.UserTalk = res4.data;
+              state.User = res5.data;
+              store.state.ArticleCount = state.ArticleCount = res6.data;
+              store.state.SortCount = state.SortCount = res7.data;
+              store.state.LabelsCount = state.LabelsCount = res8.data;
+              store.state.textCount = state.textCount = res9.data;
+              store.state.readCount = state.readCount = res10.data;
+            }
+          )
+        )
+        .catch((err: any) => {
+          console.log(err);
+        });
+    };
+
+    onMounted(async () => {
+      await GetAllasync();
+    });
+    return {
+      BlogInformation,
+      state,
+      SearchTitle,
+      tiaozhuan,
+    };
+  },
 });
 </script>
 <style lang="scss" scoped>
-@import "./index.scss";
+@import "index.scss";
 </style>

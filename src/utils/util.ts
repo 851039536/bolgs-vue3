@@ -20,7 +20,7 @@ export class util {
         id: id,
       },
     });
-    console.log(id + "--" + name);
+    // console.log(id + "--" + name);
   }
 
 

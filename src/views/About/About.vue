@@ -126,64 +126,75 @@
     <!-- end 关于我：  -->
   </div>
 </template>
-<script lang="ts" setup>
-import { reactive, onMounted } from "vue";
+<script lang="ts">
+import { reactive, onMounted, defineComponent, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import { user } from "../../api/user";
 
-const router = useRouter();
+export default defineComponent({
+  setup() {
+    const router = useRouter();
+    interface State {
+      activeClass: string,
+      errorClass: string,
+      bounceIn: string,
+      backInDown: string,
+      fadeInTopRight: string,
+      fadeIn: string,
+      User: any,
+    }
+    const state: State = reactive({
+      activeClass: "animate__animated",
+      errorClass: "animate__fadeInRightBig",
+      bounceIn: "animate__bounceIn",
+      backInDown: "animate__backInDown",
+      fadeInTopRight: "animate__fadeInTopRight",
+      fadeIn: "animate__fadeIn",
+      User: [],
+    });
 
-interface State {
-  activeClass: string,
-  errorClass: string,
-  bounceIn: string,
-  backInDown: string,
-  fadeInTopRight: string,
-  fadeIn: string,
-  User: any,
-}
-const state: State = reactive({
-  activeClass: "animate__animated",
-  errorClass: "animate__fadeInRightBig",
-  bounceIn: "animate__bounceIn",
-  backInDown: "animate__backInDown",
-  fadeInTopRight: "animate__fadeInTopRight",
-  fadeIn: "animate__fadeIn",
-  User: [],
-});
+    const getall = async () => {
+      await user.GetByIdAsync(4)
+        .then((res: any) => {
+          state.User = res.data;
+        })
+    };
 
-const getall = async () => {
-  await user.GetByIdAsync(4)
-    .then((res: any) => {
-      state.User = res.data;
+    const Getid = async (id: number) => {
+      switch (id) {
+        case 1:
+          await router.push("./index");
+          break;
+        case 2:
+          await router.push("./SnVideo");
+          break;
+        case 3:
+          await router.push("./Talk");
+          break;
+        case 4:
+          await router.push("./favorite");
+          break;
+        case 5:
+          await router.push("./Leave");
+          break;
+      }
+    };
+    // 挂载开始之前被调用
+    onBeforeMount(() => {
+      console.log("about");
     })
-};
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Getid = async (id: number) => {
-  switch (id) {
-    case 1:
-      await router.push("./index");
-      break;
-    case 2:
-      await router.push("./SnVideo");
-      break;
-    case 3:
-      await router.push("./Talk");
-      break;
-    case 4:
-      await router.push("./favorite");
-      break;
-    case 5:
-      await router.push("./Leave");
-      break;
-  }
-};
+    onMounted(async () => {
+      await getall();
+      window.scrollTo(0, 0);
 
-onMounted(async () => {
-  await getall();
-  window.scrollTo(0, 0);
-
+    });
+    // 页面使用必须
+    return {
+      state,
+      Getid,
+    };
+  },
 });
 </script>
 

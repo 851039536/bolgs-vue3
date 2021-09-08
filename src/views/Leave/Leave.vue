@@ -1,18 +1,17 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 10:22:02
- * @LastEditTime: 2021-08-03 09:03:09
+ * @LastEditTime: 2021-09-08 17:00:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Leave\Leave.vue
 -->
 <template>
-  <div class="SnLeaves">
-    <div class="SnLeave" data-title="气泡背景墙">
-      <ul class="bubble-bgwall">
-        <li v-for="result1 in result" :key="result1.id">{{ result1.title }}</li>
+  <div class="leave">
+    <div class="leave_main" data-title="气泡背景墙">
+      <ul class="bubble_bgwall">
+        <li v-for="result1 in state.result" :key="result1.id">{{ result1.title }}</li>
       </ul>
-
       <div class="bruce-2 animate__animated animate__fadeInUpBig">
         <form class="w-full max-w-sm">
           <div class="md:flex md:items-center">
@@ -36,36 +35,35 @@
 </template>
 
 <script lang="ts">
-  import { leave } from "../../api/leave";
-  import { reactive, toRefs, onMounted } from "vue";
-  export default {
-    name: "SnLeave",
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    setup() {
-      const state = reactive({
-        result: [],
-        //当前默认页
-      });
+import { leave } from "../../api/leave";
+import { reactive, onMounted, defineComponent } from "vue";
 
-      const GetAllAsync = async () => {
-        leave.GetAllAsync().then((result) => {
-          state.result = result.data;
-        })
-      };
+export default defineComponent({
+  name: "SnLeave",
+  setup() {
+    interface State {
+      result: any
+    }
+    const state: State = reactive({
+      result: [],
+    });
 
-      onMounted(async () => {
-        await GetAllAsync();
-      });
+    const GetAllAsync = async () => {
+      leave.GetAllAsync().then((result) => {
+        state.result = result.data;
+      })
+    };
 
-      return {
-        ...toRefs(state),
-        GetAllAsync,
-      };
-    },
-
-  }
+    onMounted(async () => {
+      await GetAllAsync();
+    });
+    return {
+      state,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-  @import "./Leave.scss";
+@import "./index.scss";
 </style>

@@ -92,7 +92,7 @@ export default {
     });
     // 加载内容
     const AsyGetTest = (): void => {
-      console.log(state.id);
+      // console.log(state.id);
       proxy.$api
         .all([
           // 读取详情页数据

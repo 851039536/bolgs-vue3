@@ -86,84 +86,84 @@
 
 
 <script lang="ts">
-  import { one } from '../../api/one';
-  import { reactive, toRefs, onMounted } from "vue";
-  import { useRouter } from "vue-router";
-  export default {
-    name: "TalkSidebar",
-    components: {},
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    setup() {
-      const router = useRouter();
-      // 加载路由
-      // const route = useRoute();
-      const state = reactive({
-        resultOneType: [],
-        resultOne: [],
-        modal2Visible: false,
-        text: [],
-        Count: 0,
-        textNum: 0,
-        readCount: 0
+import { one } from '../../api/one';
+import { reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
+export default {
+  name: "TalkSidebar",
+  components: {},
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  setup() {
+    const router = useRouter();
+    // 加载路由
+    // const route = useRoute();
+    const state = reactive({
+      resultOneType: [],
+      resultOne: [],
+      modal2Visible: false,
+      text: [],
+      Count: 0,
+      textNum: 0,
+      readCount: 0
+    });
+
+    const getall = async () => {
+
+      await one.GetOneTypeAllAsync().then((res: any) => {
+        state.resultOneType = res.data;
+      })
+      await one.GetFyTypeAsync(999, 1, 10, "read").then((res: any) => {
+        state.resultOne = res.data;
+      })
+      await one.CountAsync().then((res: any) => {
+        state.Count = res.data;
+      })
+      await one.GetSumAsync("text").then((res: any) => {
+        state.textNum = res.data;
+      })
+      await one.GetSumAsync("read").then((res: any) => {
+        state.readCount = res.data;
+      })
+
+
+    };
+    const setModal1Visible = async (modal2Visible: boolean, id: number) => {
+      state.modal2Visible = modal2Visible;
+
+
+
+      await one.GetByIdAsync(id).then((res: any) => {
+        state.text = res.data;
+
+        if (res.data == null) {
+          // console.log(res.data);
+          return;
+        } else {
+          // console.log("1" + res.data.oneRead);
+          res.data.oneRead++;
+          // console.log("2" + res.data.oneRead);
+          one.UpdatePortionAsync(state.text, "read");
+        }
+      })
+
+
+    };
+    const AsyGetTestID = (id: number) => {
+      //       // .带参数跳转
+      router.push({
+        path: "/TalkText",
+        query: {
+          id: id,
+        },
       });
-
-      const getall = async () => {
-
-        await one.GetOneTypeAllAsync().then((res: any) => {
-          state.resultOneType = res.data;
-        })
-        await one.GetFyTypeAsync(999, 1, 10, "read").then((res: any) => {
-          state.resultOne = res.data;
-        })
-        await one.CountAsync().then((res: any) => {
-          state.Count = res.data;
-        })
-        await one.GetSumAsync("text").then((res: any) => {
-          state.textNum = res.data;
-        })
-        await one.GetSumAsync("read").then((res: any) => {
-          state.readCount = res.data;
-        })
-
-
-      };
-      const setModal1Visible = async (modal2Visible: boolean, id: number) => {
-        state.modal2Visible = modal2Visible;
-
-
-
-        await one.GetByIdAsync(id).then((res: any) => {
-          state.text = res.data;
-
-          if (res.data == null) {
-            console.log(res.data);
-            return;
-          } else {
-            console.log("1" + res.data.oneRead);
-            res.data.oneRead++;
-            console.log("2" + res.data.oneRead);
-            one.UpdatePortionAsync(state.text, "read");
-          }
-        })
-
-
-      };
-      const AsyGetTestID = (id: number) => {
-        //       // .带参数跳转
-        router.push({
-          path: "/TalkText",
-          query: {
-            id: id,
-          },
-        });
-      };
-      onMounted(async () => {
-        await getall();
-      });
-      return { ...toRefs(state), getall, AsyGetTestID, setModal1Visible };
-    },
-  };
+    };
+    onMounted(async () => {
+      await getall();
+    });
+    return { ...toRefs(state), getall, AsyGetTestID, setModal1Visible };
+  },
+};
 </script>
 <style lang="scss" scoped>
-  @import "./scss/OneSidebar.scss";
+@import "./scss/OneSidebar.scss";
 </style>

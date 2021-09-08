@@ -1,7 +1,7 @@
 import {
   createRouter,
   createWebHistory,
-  // createWebHashHistory
+  createWebHashHistory
 } from 'vue-router'
 import BlogHome from '../views/common/BlogHome.vue'
 
@@ -242,8 +242,18 @@ const routes = [{
   },
   component: () => import('../views/common/Particulars.vue')
 },
+  // {
+  //   path: '/BlogsSidebar',
+  //   name: 'BlogsSidebar',
+  //   meta: {
+  //     keepAlive: false
+  //   },
+  //   component: () => import('../views/Blogs/BlogsSidebar.vue')
+  // },
 ]
 
+
+//createWebHashHistory createWebHistory
 const router = createRouter({
   history: createWebHistory(), //HTML5模式
   routes,

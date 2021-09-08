@@ -1,7 +1,7 @@
 <!--
  * @Author: 站点信息模块
  * @Date: 2021-08-17 11:54:18
- * @LastEditTime: 2021-08-17 14:18:57
+ * @LastEditTime: 2021-09-08 10:58:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\SidebarModule\BlogInformation.vue
@@ -30,37 +30,19 @@
   </div>
 </template>
 
-<script>
-  export default {
-    props: ['ArticleCount', 'TextCount', 'ReadCount', 'Articledata'],
-  }
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  props: ['ArticleCount', 'TextCount', 'ReadCount', 'Articledata'],
+  setup() {
+
+    return {
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-  .BlogInformation {
-    width: 97%;
-    @apply p-1 mb-2 shadow rounded m-auto cursor-pointer;
-    @apply bg-white;
-
-    .index-si-count-title {
-      @apply p-1 m-1;
-      @apply text-gray-900 text-base font-semibold bg-gray-200;
-    }
-
-    .index-si-count-div {
-      @apply m-2;
-
-      .index-si-count-frame {
-        @apply flex justify-between mt-1;
-
-        .index-si-count-frame-title {
-          @apply p-1;
-        }
-
-        .index-si-count-frame-text {
-          @apply p-1 bg-gray-100 rounded;
-        }
-      }
-    }
-  }
+@import "../index.scss";
 </style>

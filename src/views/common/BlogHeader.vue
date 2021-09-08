@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-09-02 08:23:21
+ * @LastEditTime: 2021-09-08 10:42:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -15,8 +15,8 @@
           <span class="text-2xl font-medium tracking-tight">少年</span>
         </div>
         <div class="header_text">
-          <template v-for="(item, index) in ResultList" :key="index">
-            <a @click="skip(item.path)" v-if="item.identity">{{item.title}}</a>
+          <template v-for="(item, index) in state.ResultList" :key="index">
+            <a @click="skip(item.path)" v-if="item.identity">{{ item.title }}</a>
           </template>
         </div>
       </div>
@@ -31,57 +31,68 @@
   </nav>
 </template>
 
-<script lang="ts">
-  import { useRouter } from "vue-router";
-  import { interfaces } from '../../api/interfaces';
-  import {
-    reactive,
-    toRefs,
-    onMounted,
-  } from "vue";
-  export default {
-    name: "BlogHeader",
-    setup(): { skip: (num: any) => Promise<void>; GetType: () => Promise<void>; } {
 
-      const state: any = reactive({
-        ResultList: [],
-      });
-      const router = useRouter();
-      const skip = async (num: any) => {
-        switch (num) {
-          case 13:
-            window.open("https://www.cnblogs.com/ouyangkai/");
-            break;
-          case 14:
-            window.open("https://gitee.com/kaiouyang-sn");
-            break;
-          default:
-            router.push({
-              path: num,
-              query: {
-                t: +new Date()
-              }
-            })
-            break;
-        }
-      };
-      const GetType = async () => {
-        await interfaces.GetTypeAsync(4, 1).then((res: any) => {
-          state.ResultList = res.data;
-        })
-      };
-      onMounted(async () => {
-        await GetType();
-      });
-      return {
-        ...toRefs(state),
-        GetType,
-        skip,
-      };
-    },
-  };
+
+<script lang="ts">
+import { useRouter } from "vue-router";
+import { interfaces } from '../../api/interfaces';
+import {
+  reactive,
+  toRefs,
+  onMounted,
+  defineComponent,
+} from "vue";
+import { useStore } from "vuex";
+
+export default defineComponent({
+  name: "BlogHeader",
+  setup() {
+
+    interface State {
+      ResultList: any;
+    }
+    const state: State = reactive({
+      ResultList: [],
+    });
+    const router = useRouter();
+    const stores = useStore();
+
+    const skip = async (num: any) => {
+      switch (num) {
+        case 13:
+          window.open("https://www.cnblogs.com/ouyangkai/");
+          break;
+        case 14:
+          window.open("https://gitee.com/kaiouyang-sn");
+          break;
+        default:
+
+          router.push({
+            path: num,
+            query: {
+              t: +new Date()
+            }
+          })
+          break;
+      }
+    };
+    const GetType = async () => {
+      await interfaces.GetTypeAsync(4, 1).then((res: any) => {
+        state.ResultList = res.data;
+      })
+    };
+    onMounted(async () => {
+
+      await GetType();
+    });
+    return {
+      state,
+      skip,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-  @import "./scss/BlogHeader.scss";
+@import "./scss/BlogHeader.scss";
 </style>

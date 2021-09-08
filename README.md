@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-07 18:59:58
- * @LastEditTime: 2021-09-07 17:30:10
+ * @LastEditTime: 2021-09-08 17:45:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\README.md
@@ -34,6 +34,12 @@ yarn lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### v1.0.4--2021-09-08
+
+[优化] 页面vue,css优化
+
+[修复] 修复多个页面build后页面空白
 
 ### v1.0.3--2021-09-07
 
