@@ -1,23 +1,23 @@
 <!--
  * @Author: 书单
  * @Date: 2020-12-26 14:05:13
- * @LastEditTime: 2021-08-17 14:28:21
+ * @LastEditTime: 2021-09-10 14:22:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Book\Index.vue
 -->
 
 <template>
-  <div class="Book">
+  <div class="book">
     <blog-sidebar></blog-sidebar>
     <index-sidebar></index-sidebar>
-    <div class="Book_text">
-      <div class="Book_title">
+    <div class="book_text">
+      <div class="book_title">
         <p>
           <a>观影</a> / 总计 501 本月 5 今年 20
         </p>
       </div>
-      <div class="Book_film">
+      <div class="book_film">
         <span>
           <a>全部</a>
         </span>
@@ -38,12 +38,12 @@
         </span>
       </div>
       <div class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-        <div class="Book_film_text">
-          <div class="Book_img">
+        <div class="book_film_text">
+          <div class="book_img">
             <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
-          <div class="Book_film_title">小说家</div>
-          <div class="Book_film_type">
+          <div class="book_film_title">小说家</div>
+          <div class="book_film_type">
             <div>类型</div>
             <div>评分:7.2</div>
             <div>主演 xxx xxx xxx</div>
@@ -51,12 +51,12 @@
           </div>
         </div>
 
-        <div class="Book_film_text">
-          <div class="Book_img">
-            <img src="https://cdn.share-man.com/image/movie/48bf012f0dfbfca9eaac51dee21f03d4.webp" />
+        <div class="book_film_text">
+          <div class="book_img">
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
-          <div class="Book_film_title">小说家</div>
-          <div class="Book_film_type">
+          <div class="book_film_title">小说家</div>
+          <div class="book_film_type">
             <div>类型</div>
             <div>评分:7.2</div>
             <div>主演 xxx xxx xxx</div>
@@ -64,12 +64,12 @@
           </div>
         </div>
 
-        <div class="Book_film_text">
-          <div class="Book_img">
-            <img src="https://cdn.share-man.com/image/movie/922d59e9b95b1fad26ffa5e3d8013ef0.webp" />
+        <div class="book_film_text">
+          <div class="book_img">
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
-          <div class="Book_film_title">小说家</div>
-          <div class="Book_film_type">
+          <div class="book_film_title">小说家</div>
+          <div class="book_film_type">
             <div>类型</div>
             <div>评分:7.2</div>
             <div>主演 xxx xxx xxx</div>
@@ -77,12 +77,25 @@
           </div>
         </div>
 
-        <div class="Book_film_text">
-          <div class="Book_img">
-            <img src="https://cdn.share-man.com/movie/hdzdy1.jpg" />
+        <div class="book_film_text">
+          <div class="book_img">
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
-          <div class="Book_film_title">小说家</div>
-          <div class="Book_film_type">
+          <div class="book_film_title">小说家</div>
+          <div class="book_film_type">
+            <div>类型</div>
+            <div>评分:7.2</div>
+            <div>主演 xxx xxx xxx</div>
+            <div>2020-10-10 xxx</div>
+          </div>
+        </div>
+
+        <div class="book_film_text">
+          <div class="book_img">
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
+          </div>
+          <div class="book_film_title">小说家</div>
+          <div class="book_film_type">
             <div>类型</div>
             <div>评分:7.2</div>
             <div>主演 xxx xxx xxx</div>
@@ -96,5 +109,5 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  @import "./Book.scss";
+@import "./index.scss";
 </style>

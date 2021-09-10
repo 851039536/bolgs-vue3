@@ -1,7 +1,7 @@
 <!--
  * @Author: 移动端导航栏
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-09-08 10:17:58
+ * @LastEditTime: 2021-09-10 11:54:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -65,7 +65,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/sass/com";
+@import "../../design/com.scss";
+@import "../../design/uitl";
 
 .SnBootom {
   @apply fixed bottom-0 w-full z-10;

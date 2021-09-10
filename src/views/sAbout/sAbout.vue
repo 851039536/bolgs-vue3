@@ -128,12 +128,12 @@
 </template>
 <script lang="ts">
 import { reactive, onMounted, defineComponent, onBeforeMount } from "vue";
-import { useRouter } from "vue-router";
+import { Routers } from "../../hooks/index";
 import { user } from "../../api/user";
+import { toScss } from "../../hooks/dynamicScss";
 
 export default defineComponent({
   setup() {
-    const router = useRouter();
     interface State {
       activeClass: string,
       errorClass: string,
@@ -153,29 +153,22 @@ export default defineComponent({
       User: [],
     });
 
-    const getall = async () => {
-      await user.GetByIdAsync(4)
-        .then((res: any) => {
-          state.User = res.data;
-        })
-    };
-
     const Getid = async (id: number) => {
       switch (id) {
         case 1:
-          await router.push("./index");
+          await Routers("/index");
           break;
         case 2:
-          await router.push("./SnVideo");
+          await Routers("/SnVideo");
           break;
         case 3:
-          await router.push("./Talk");
+          await Routers("/Talk");
           break;
         case 4:
-          await router.push("./favorite");
+          await Routers("/favorite");
           break;
         case 5:
-          await router.push("./Leave");
+          await Routers("/Leave");
           break;
       }
     };
@@ -185,7 +178,11 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      await getall();
+      await toScss("sAbout");
+      await user.GetByIdAsync(4)
+        .then((res: any) => {
+          state.User = res.data;
+        })
       window.scrollTo(0, 0);
 
     });
@@ -199,6 +196,4 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@charset "UTF-8";
-@import "./index.scss";
 </style>

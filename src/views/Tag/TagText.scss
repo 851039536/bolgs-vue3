@@ -1,91 +1,91 @@
-@import "../../assets/sass/com";
-@import "../../assets/sass/uitl";
+ @import "../../design/com";
+ @import "../../design/uitl";
 
-.SnTagText {
+ .SnTagText {
 
-  @apply fixed w-full h-full bg-green-200;
+   @apply fixed w-full h-full bg-green-200;
 
-  .SnTagText-main {
+   .SnTagText-main {
 
-    @apply absolute shadow;
-    left: 3%;
-    top: 7%;
-    width: 94%;
-    height: 100%;
+     @apply absolute shadow;
+     left: 3%;
+     top: 7%;
+     width: 94%;
+     height: 100%;
 
-    .text {
-      position: absolute;
-      top: 16.2%;
-      @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
+     .text {
+       position: absolute;
+       top: 16.2%;
+       @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
 
-      // 侧边框
-      .text-sidebar {
-        @include w-h(28%, null);
-        @apply overflow-auto shadow;
+       // 侧边框
+       .text-sidebar {
+         @include w-h(28%, null);
+         @apply overflow-auto shadow;
 
-        .text-sidebar-forms {
-          @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
+         .text-sidebar-forms {
+           @apply p-1 m-1 bg-gray-100 cursor-pointer shadow;
 
-          .forms-1 {
-            @apply bg-gray-300 text-base p-1;
-          }
+           .forms-1 {
+             @apply bg-gray-300 text-base p-1;
+           }
 
-          .forms-2 {
-            @apply p-2;
-          }
-        }
-      }
+           .forms-2 {
+             @apply p-2;
+           }
+         }
+       }
 
-      // 内容
-      .text-blog {
-        @include w-h(72%, null);
-        @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
+       // 内容
+       .text-blog {
+         @include w-h(72%, null);
+         @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
 
-        .blog {
-          @include blogs;
-          @apply mt-1;
+         .blog {
+           @include blogs;
+           @apply mt-1;
 
-        }
-      }
-    }
+         }
+       }
+     }
 
-    // 头部
-    .SnTagText-top {
+     // 头部
+     .SnTagText-top {
 
-      @apply absolute rounded-sm h-full shadow bg-white;
-      top: 5px;
-      @include initialize(94%, 15%, null, null, 3%, null, null);
+       @apply absolute rounded-sm h-full shadow bg-white;
+       top: 5px;
+       @include initialize(94%, 15%, null, null, 3%, null, null);
 
-      .tag-text-1 {
+       .tag-text-1 {
 
-        height: 30px;
-        @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
+         height: 30px;
+         @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
 
-        a {
-          @apply p-1;
-        }
-      }
-    }
+         a {
+           @apply p-1;
+         }
+       }
+     }
 
-    .vertical-text {
-      position: absolute;
-      top: 12%;
-      right: 0px;
-      border-radius: 2px;
-      writing-mode: vertical-rl;
+     .vertical-text {
+       position: absolute;
+       top: 12%;
+       right: 0px;
+       border-radius: 2px;
+       writing-mode: vertical-rl;
 
-      h3 {
-        padding-left: 20px;
-        font-weight: bold;
-        font-size: 18px;
-        color: #f66;
-      }
+       h3 {
+         padding-left: 20px;
+         font-weight: bold;
+         font-size: 18px;
+         color: #f66;
+       }
 
-      p {
-        line-height: 30px;
-        color: #66f;
-      }
-    }
+       p {
+         line-height: 30px;
+         color: #66f;
+       }
+     }
 
-  }
-}
+   }
+ }

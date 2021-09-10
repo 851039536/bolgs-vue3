@@ -1,72 +1,188 @@
-@import "../../assets/sass/com";
-@import "../../assets/sass/uitl";
+ @import "../../design/com.scss";
+ @import "../../design/uitl";
 
-/* blogHome 
+ /* blogHome 
 ----------------------------------------------------------------*/
-#blogHome {
-  @apply fixed z-20;
-  @include w-h;
-  @apply bg-white;
+ #blogHome {
+   @apply fixed z-20;
+   @include w-h;
+   @apply bg-white;
 
-  .home_main {
-    @apply absolute m-auto top-0 left-0 bottom-0 right-0;
-    @include w-h(90%, 100%);
-    @apply shadow-xl rounded-sm;
-  }
-}
+   .home_main {
+     @apply absolute m-auto top-0 left-0 bottom-0 right-0;
+     @include w-h(90%, 100%);
+     @apply shadow-xl rounded-sm;
+   }
+ }
 
-@screen xp {
-  #BlogHome .home_main {
-    width: 100%;
-  }
-}
+ @screen xp {
+   #BlogHome .home_main {
+     width: 100%;
+   }
+ }
 
 
-/* blogIco 
+ /* blogIco 
 ----------------------------------------------------------------*/
-.index_si_contact {
-  @include w-h(97%, 80px);
-  @apply mb-2 mt-1 m-auto shadow rounded;
-  @apply bg-gray-50;
+ .index_si_contact {
+   @include w-h(97%, 80px);
+   @apply mb-2 mt-1 m-auto shadow rounded;
+   @apply bg-gray-50;
 
-  .index-si-ioc {
-    @include w-h(60%, 100%);
-    @apply flex pl-3 rounded m-auto;
-    @apply bg-white items-center;
+   .index-si-ioc {
+     @include w-h(60%, 100%);
+     @apply flex pl-3 rounded m-auto;
+     @apply bg-white items-center;
 
-    .index-si-ioc-2 {
-      @apply flex-1 py-1 m-1;
-      @apply text-center;
-    }
-  }
-}
+     .index-si-ioc-2 {
+       @apply flex-1 py-1 m-1;
+       @apply text-center;
+     }
+   }
+ }
 
 
-/* BlogInformation 
+ /* BlogInformation 
 ----------------------------------------------------------------*/
-.BlogInformation {
-  width: 97%;
-  @apply p-1 mb-2 shadow rounded m-auto cursor-pointer;
-  @apply bg-white;
+ .BlogInformation {
+   width: 97%;
+   @apply p-1 mb-2 shadow rounded m-auto cursor-pointer;
+   @apply bg-white;
 
-  .index-si-count-title {
-    @apply p-1 m-1;
-    @apply text-gray-900 text-base font-semibold bg-gray-200;
-  }
+   .index-si-count-title {
+     @apply p-1 m-1;
+     @apply text-gray-900 text-base font-semibold bg-gray-200;
+   }
 
-  .index-si-count-div {
-    @apply m-2;
+   .index-si-count-div {
+     @apply m-2;
 
-    .index-si-count-frame {
-      @apply flex justify-between mt-1;
+     .index-si-count-frame {
+       @apply flex justify-between mt-1;
 
-      .index-si-count-frame-title {
-        @apply p-1;
-      }
+       .index-si-count-frame-title {
+         @apply p-1;
+       }
 
-      .index-si-count-frame-text {
-        @apply p-1 bg-gray-100 rounded;
-      }
-    }
-  }
-}
+       .index-si-count-frame-text {
+         @apply p-1 bg-gray-100 rounded;
+       }
+     }
+   }
+ }
+
+
+ /* BlogHeader 
+----------------------------------------------------------------*/
+ .header-sn {
+   @apply flex fixed z-10 p-2;
+   @include excursion(0, null, 3%, null);
+   @include w-h(94%, 6.5%);
+   @apply shadow-sm rounded-sm bg-white;
+
+   .header-sn-1 {
+     @apply flex flex-wrap w-full;
+   }
+
+
+   .header_main {
+     width: 90%;
+     @apply flex h-full text-lg;
+
+     .header-title {
+       @apply flex items-center flex-shrink-0 h-full;
+     }
+
+     .header_text {
+       @apply w-full flex items-center flex-shrink-0;
+
+       a {
+         @apply ml-3;
+       }
+
+     }
+
+   }
+
+   .header_text_1 {
+     width: 10%;
+     @apply flex text-lg h-full;
+
+     .header-text-r-1 {
+       @apply flex items-center flex-shrink-0;
+
+       a {
+         @apply m-1;
+       }
+     }
+
+   }
+ }
+
+ @screen xp {
+   .header-sn {
+     width: 100%;
+     @include excursion(0, null, 0, null);
+
+     .header-sn-1 {
+       @apply hidden;
+     }
+
+   }
+ }
+
+ /* blogSidebar 
+----------------------------------------------------------------*/
+ #blogSidebar {
+   @apply fixed shadow rounded-md;
+   @include w-h(20%, 100%);
+   @include excursion($Text_height, null, 3%, null);
+   background-color: $back_sidebar;
+
+   .si_scroll {
+     @apply h-4/5 overflow-auto;
+
+     .si_img {
+       img {
+         @include w-h(100%, 144px);
+         @apply rounded-md;
+       }
+     }
+
+     .si_text {
+       @include initialize(40%, 6%, 5px, auto, auto, auto, null);
+       @apply text-center cursor-pointer;
+
+       p {
+         @apply py-1 px-4 text-lg;
+       }
+     }
+
+     .si_website {
+       position: absolute;
+       bottom: 18%;
+       margin-left: 25%;
+     }
+
+     .si_described {
+       position: absolute;
+       bottom: 12%;
+       @apply text-xs;
+
+       .si_described_text {
+         text-align: center;
+         color: #333336;
+       }
+     }
+   }
+
+   .si_scroll::-webkit-scrollbar {
+     display: none;
+   }
+ }
+
+ @screen xp {
+   #blogSidebar {
+     display: none;
+   }
+ }

@@ -1,141 +1,141 @@
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
+ @import "../../design/com";
+ @import "../../design/uitl";
 
-  .One-Sidebar {
-    @apply fixed ml-3;
-    @include excursion($Text_height, null, null, $sidebar_r_r);
-    @include w-h(20%, 90%);
+ .One-Sidebar {
+   @apply fixed ml-3;
+   @include excursion($Text_height, null, null, $sidebar_r_r);
+   @include w-h(20%, 90%);
 
 
-    .One-Sidebar-div {
-      @include w-h(100%, 100%);
-      overflow: auto;
+   .One-Sidebar-div {
+     @include w-h(100%, 100%);
+     overflow: auto;
 
-      .TalkSidebar-text-1 {
-        @include w-h(100%, 50px);
-        @apply mb-3 m-auto;
-        @apply shadow rounded;
+     .TalkSidebar-text-1 {
+       @include w-h(100%, 50px);
+       @apply mb-3 m-auto;
+       @apply shadow rounded;
 
-        .TalkSidebar-text-1-1 {
-          @include w-h(60%, 100%);
-          margin: 0 auto;
+       .TalkSidebar-text-1-1 {
+         @include w-h(60%, 100%);
+         margin: 0 auto;
 
-          .TalkSidebar-text-1-2 {
-            @apply text-center py-2 m-1 cursor-pointer;
-          }
-        }
-      }
+         .TalkSidebar-text-1-2 {
+           @apply text-center py-2 m-1 cursor-pointer;
+         }
+       }
+     }
 
-      .TalkSidebar-text-2 {
-        width: 97%;
-        @apply mb-3 m-auto;
-        @apply shadow rounded;
-      }
+     .TalkSidebar-text-2 {
+       width: 97%;
+       @apply mb-3 m-auto;
+       @apply shadow rounded;
+     }
 
-      .TalkSidebar-text-3 {
-        width: 97%;
-        @apply mb-3 m-auto;
-        @apply shadow rounded;
+     .TalkSidebar-text-3 {
+       width: 97%;
+       @apply mb-3 m-auto;
+       @apply shadow rounded;
 
-        #calendar {
-          height: 200px;
-        }
-      }
+       #calendar {
+         height: 200px;
+       }
+     }
 
-      .el-calendar-table .el-calendar-day {
-        height: 44px !important;
-      }
+     .el-calendar-table .el-calendar-day {
+       height: 44px !important;
+     }
 
-      .One-Sidebar-describe {
-        width: 97%;
-        @apply mb-2 m-auto;
-        @apply shadow rounded bg-white text-center;
-        //@include gradient-text;
+     .One-Sidebar-describe {
+       width: 97%;
+       @apply mb-2 m-auto;
+       @apply shadow rounded bg-white text-center;
+       //@include gradient-text;
 
-        h4 {
-          height: 2rem;
-          color: #1b1e21;
-          font-size: 15px;
-          line-height: 2.5rem;
-        }
+       h4 {
+         height: 2rem;
+         color: #1b1e21;
+         font-size: 15px;
+         line-height: 2.5rem;
+       }
 
-        .One-Sidebar-describe-text {
-          p {
-            @apply text-sm px-2 py-4 m-1 cursor-pointer;
-          }
-        }
-      }
+       .One-Sidebar-describe-text {
+         p {
+           @apply text-sm px-2 py-4 m-1 cursor-pointer;
+         }
+       }
+     }
 
-      .sn-list8 {
-        width: 97%;
-        @apply p-1 mb-2 m-auto cursor-pointer;
-        @apply shadow rounded bg-white;
+     .sn-list8 {
+       width: 97%;
+       @apply p-1 mb-2 m-auto cursor-pointer;
+       @apply shadow rounded bg-white;
 
-        .sn-list8-1 {
-          color: #1b1e21;
-          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
-        }
+       .sn-list8-1 {
+         color: #1b1e21;
+         @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+       }
 
-        .sn-list8-2 {
-          @apply text-sm m-2;
+       .sn-list8-2 {
+         @apply text-sm m-2;
 
-          .sn-list8-2-1 {
+         .sn-list8-2-1 {
 
-            .sn-list8-2-1-1 {
-              @apply p-1;
-              width: 35%;
-            }
+           .sn-list8-2-1-1 {
+             @apply p-1;
+             width: 35%;
+           }
 
-            .sn-list8-2-1-2 {
-              width: 40%;
-              @apply p-1;
-            }
-          }
-        }
-      }
+           .sn-list8-2-1-2 {
+             width: 40%;
+             @apply p-1;
+           }
+         }
+       }
+     }
 
-      .sn-list5 {
-        width: 97%;
-        @apply p-1 mb-2 m-auto cursor-pointer;
-        @apply shadow rounded bg-white;
+     .sn-list5 {
+       width: 97%;
+       @apply p-1 mb-2 m-auto cursor-pointer;
+       @apply shadow rounded bg-white;
 
-        .sn-list5-1 {
-          color: #1b1e21;
-          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
-        }
-      }
+       .sn-list5-1 {
+         color: #1b1e21;
+         @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+       }
+     }
 
-      .One-Sidebar-textlist {
-        width: 97%;
-        @apply p-1 mb-2 m-auto cursor-pointer;
-        @apply shadow rounded bg-white;
+     .One-Sidebar-textlist {
+       width: 97%;
+       @apply p-1 mb-2 m-auto cursor-pointer;
+       @apply shadow rounded bg-white;
 
-        .One-Sidebar-textlist-title {
-          color: #1b1e21;
-          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
-        }
+       .One-Sidebar-textlist-title {
+         color: #1b1e21;
+         @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+       }
 
-        .TalkSidebar-text-4-2 {
-          border-bottom: 1px dashed #f1f1f1;
-        }
-      }
-    }
+       .TalkSidebar-text-4-2 {
+         border-bottom: 1px dashed #f1f1f1;
+       }
+     }
+   }
 
-    .TalkSidebar-text::-webkit-scrollbar {
-      display: none;
-    }
-  }
+   .TalkSidebar-text::-webkit-scrollbar {
+     display: none;
+   }
+ }
 
-  .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.1em;
-    fill: currentColor;
-    overflow: hidden;
-  }
+ .icon {
+   width: 1em;
+   height: 1em;
+   vertical-align: -0.1em;
+   fill: currentColor;
+   overflow: hidden;
+ }
 
-  @screen xp {
-    .One-Sidebar {
-      display: none;
-    }
-  }
+ @screen xp {
+   .One-Sidebar {
+     display: none;
+   }
+ }

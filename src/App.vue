@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-08 09:56:45
+ * @LastEditTime: 2021-09-10 11:58:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -11,9 +11,11 @@
     <blog-header></blog-header>
     <!-- vue3.0配置 -->
     <router-view v-slot="{ Component }">
+      <!-- 需要缓存的视图组件 -->
       <keep-alive>
         <component :is="Component" v-if="$route.meta.keepAlive" />
       </keep-alive>
+      <!-- 不需要缓存的视图组件 -->
       <component :is="Component" v-if="!$route.meta.keepAlive" />
     </router-view>
     <SnBootom></SnBootom>
@@ -23,7 +25,6 @@
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "vue-router";
-import { onMounted, reactive, toRefs } from "vue";
 import SnBootom from './views/common/SnBootom.vue';
 import BlogSidebar from "./views/common/BlogSidebar.vue";
 export default {
@@ -41,13 +42,12 @@ export default {
     });
 
     return {
-      reactive,
 
     };
   },
 };
 </script>
 <style lang="scss">
-@import "assets/sass/com";
-@include scroll; //滚动条美化
+@import "./design/com.scss";
+@include scroll; //滚动条美化 qweqw王企鹅群翁二位 王企鹅额re rrewqwewefdfd
 </style>

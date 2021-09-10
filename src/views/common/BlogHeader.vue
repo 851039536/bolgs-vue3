@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-09-08 10:42:38
+ * @LastEditTime: 2021-09-10 14:28:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -38,12 +38,9 @@ import { useRouter } from "vue-router";
 import { interfaces } from '../../api/interfaces';
 import {
   reactive,
-  toRefs,
   onMounted,
   defineComponent,
 } from "vue";
-import { useStore } from "vuex";
-
 export default defineComponent({
   name: "BlogHeader",
   setup() {
@@ -55,7 +52,6 @@ export default defineComponent({
       ResultList: [],
     });
     const router = useRouter();
-    const stores = useStore();
 
     const skip = async (num: any) => {
       switch (num) {
@@ -66,7 +62,6 @@ export default defineComponent({
           window.open("https://gitee.com/kaiouyang-sn");
           break;
         default:
-
           router.push({
             path: num,
             query: {
@@ -82,7 +77,6 @@ export default defineComponent({
       })
     };
     onMounted(async () => {
-
       await GetType();
     });
     return {
@@ -94,5 +88,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "./scss/BlogHeader.scss";
+@import "./index.scss";
 </style>

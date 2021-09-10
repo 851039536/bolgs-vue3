@@ -1,5 +1,5 @@
- @import "../../assets/sass/com";
- @import "../../assets/sass/uitl";
+ @import "../../design/com";
+ @import "../../design/uitl";
 
  .n-nav {
    @include initialize($w, null, 3.6%, null, $ml, null, #ffffff);

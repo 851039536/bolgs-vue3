@@ -1,5 +1,5 @@
- @import "../../assets/sass/com";
- @import "../../assets/sass/uitl";
+ @import "../../design/com";
+ @import "../../design/uitl";
 
  .talk {
    @include initialize($w, 100%, $Text_height, null, $ml, null, null);

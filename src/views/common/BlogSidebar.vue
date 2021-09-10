@@ -1,18 +1,18 @@
 <!--
  * @Author: 博客侧边栏
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-09-01 16:41:19
+ * @LastEditTime: 2021-09-10 14:34:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
 -->
 <template>
-  <div id="BlogSidebar">
+  <div id="blogSidebar">
     <div class="si_scroll">
       <div class="si_img">
         <img src="@/assets/img/si.jpg" alt />
       </div>
-      <div class="si_text" v-for="(item, index) in ResultList" :key="index">
+      <div class="si_text" v-for="(item, index) in state.resultList" :key="index">
         <p @click="nav(item.path)" v-if="item.identity">{{ item.title }}</p>
       </div>
 
@@ -28,6 +28,8 @@
   </div>
 </template>
 
+
+
 <script lang="ts">
 import { useRouter } from "vue-router";
 import { interfaces } from '../../api/interfaces';
@@ -35,14 +37,18 @@ import {
   reactive,
   toRefs,
   onMounted,
+  defineComponent,
 } from "vue";
-export default {
+
+export default defineComponent({
   name: "Sidebarsn",
-  setup(): { nav: (num: string) => Promise<void>; queryAll: () => Promise<void>; } {
+  setup() {
 
-
-    const state: any = reactive({
-      ResultList: [],
+    interface State {
+      resultList: any
+    }
+    const state: State = reactive({
+      resultList: [],
     });
     const router = useRouter();
     let nav = async (num: string) => {
@@ -55,7 +61,7 @@ export default {
     };
     const queryAll = async () => {
       await interfaces.GetTypeAsync(4, 2).then((res: any) => {
-        state.ResultList = res.data;
+        state.resultList = res.data;
       })
     };
     onMounted(async () => {
@@ -63,13 +69,12 @@ export default {
     });
     return {
       ...toRefs(state),
+      state,
       nav,
-      queryAll,
-
     };
   },
-};
+});
 </script>
 <style lang="scss" >
-@import "./scss/BlogSidebar.scss";
+@import "./index.scss";
 </style>

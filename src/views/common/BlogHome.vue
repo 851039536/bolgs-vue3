@@ -1,7 +1,7 @@
 <!--
  * @Author: 自我介绍
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-09-07 18:25:52
+ * @LastEditTime: 2021-09-10 09:36:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
@@ -15,7 +15,8 @@
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">哈喽，我叫少年</h1>
             <p class="mb-5">一位热爱生活、xxxxxx开发者。</p>
-            <button class="btn btn-link" @click="skip(1)">Go</button>
+            <button class="btn btn-link" @click="Routers('/Blogs')">Go</button>
+            <button @click="warn('Form cannot be submitted yet.', $event)">Submit</button>
           </div>
         </div>
       </div>
@@ -26,21 +27,20 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useRouter } from "vue-router";
+import { Routers } from "../../hooks/index";
 
 export default defineComponent({
   setup() {
-    const router = useRouter();
-    let skip = async (num: any) => {
-      switch (num) {
-        case 1:
-          router.push("/Blogs");
-          break;
+    let warn = async (message: any, event: any) => {
+      // 现在可以访问到原生事件
+      if (event) {
+        event.preventDefault()
       }
-    };
+      alert(message)
+    }
     return {
-      router,
-      skip,
+      Routers,
+      warn,
     };
   },
 });

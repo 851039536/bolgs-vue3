@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-07 08:43:19
- * @LastEditTime: 2021-09-07 17:57:56
+ * @LastEditTime: 2021-09-10 14:51:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Particulars.vue
@@ -62,12 +62,12 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "../../assets/sass/com", "../../assets/sass/uitl";
+@import "../../design/com";
+@import "../../design/uitl";
 
 #Particulars {
   @include initialize(95%, null, null, null, null, null, null);
   @apply bg-gray-500 m-auto;
-
   .w-e-text-container {
     height: 100% !important;
   }

@@ -73,6 +73,7 @@ export default defineComponent({
       pagesize: 8,
       count: 0,
     });
+
     async function GetCountAsync(): Promise<void> {
 
       await article.GetCountAsync().then((result: any) => {
@@ -133,20 +134,9 @@ export default defineComponent({
       await GetFyTitleAsync();
     });
     return {
-      reactive,
-      onMounted,
-      useRouter,
-      useStore,
-      article,
-      setBlog,
-      router,
-      stores,
       state,
-      GetCountAsync,
-      GetFyTitleAsync,
       jump,
       currentchange,
-      backtop,
     };
   },
 });

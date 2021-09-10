@@ -32,115 +32,115 @@
 
 
 <script lang="ts">
-  import { navigation } from '../../api/navigation';
-  import { reactive, toRefs, onMounted } from "vue";
-  import { useRouter } from "vue-router";
-  export default {
-    name: "FavSidebar",
-    components: {},
-    setup() {
-      const router = useRouter();
-      // 加载路由
-      // const route = useRoute();
-      const state = reactive({
-        Navigation: [],
-        resultCount: "",
+import { navigation } from '../../api/navigation';
+import { reactive, toRefs, onMounted } from "vue";
+import { useRouter } from "vue-router";
+export default {
+  name: "FavSidebar",
+  components: {},
+  setup() {
+    const router = useRouter();
+    // 加载路由
+    // const route = useRoute();
+    const state = reactive({
+      Navigation: [],
+      resultCount: "",
+    });
+
+    const GetAll = async () => {
+
+      await navigation.GetFyAllAsync("all", 1, 10, true).then((res: any) => {
+        state.Navigation = res.data;
+      })
+      await navigation.GetCountAsync().then((res: any) => {
+        state.resultCount = res.data;
+      })
+
+
+    };
+
+    const AsyGetTestID = (id: number) => {
+      router.push({
+        path: "/TalkText",
+        query: {
+          id: id,
+        },
       });
-
-      const GetAll = async () => {
-
-        await navigation.GetFyAllAsync("all", 1, 10, true).then((res: any) => {
-          state.Navigation = res.data;
-        })
-        await navigation.GetCountAsync().then((res: any) => {
-          state.resultCount = res.data;
-        })
-
-
-      };
-
-      const AsyGetTestID = (id: number) => {
-        router.push({
-          path: "/TalkText",
-          query: {
-            id: id,
-          },
-        });
-      };
-      onMounted(async () => {
-        await GetAll();
-      });
-      return { ...toRefs(state), GetAll, AsyGetTestID };
-    },
-  };
+    };
+    onMounted(async () => {
+      await GetAll();
+    });
+    return { ...toRefs(state), GetAll, AsyGetTestID };
+  },
+};
 </script>
 <style lang="scss" scoped>
-  @import "../../assets/sass/com";
-  @import "../../assets/sass/uitl";
+@import "../../design/com";
+@import "../../design/uitl";
+#FavSidebar {
+  position: fixed;
+  @include excursion($Text_height, null, null, $sidebar_r_r);
+  @include w-h(20%, 90%);
+  @apply ml-3;
+  #FavSidebar_main {
+    @apply w-full h-full overflow-auto;
+    .el-calendar-table .el-calendar-day {
+      height: 44px !important;
+    }
+    .FavSidebar_describe {
+      @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+      @apply mb-2 shadow rounded text-center;
+      p {
+        @apply text-sm px-2 py-4 m-1 cursor-pointer;
+      }
+    }
+
+    .FavSidebar_footer {
+      @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+      @apply p-1 mb-2 cursor-pointer shadow rounded;
+
+      .FavSidebar_f_title {
+        @apply p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer;
+      }
+      .FavSidebar_f_content {
+        @apply text-sm m-2;
+        .FavSidebar_f_content_name {
+          @apply p-1;
+          width: 35%;
+        }
+        .FavSidebar_f_content_text {
+          width: 40%;
+          @apply p-1;
+        }
+      }
+    }
+
+    .FavSidebar_itme {
+      @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+      @apply p-1 mb-2  shadow rounded;
+
+      .FavSidebar_itme_1 {
+        color: #1b1e21;
+        @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+      }
+
+      .FavSidebar_itme_2 {
+        background-color: #f5f7fd;
+        @apply m-1 cursor-pointer;
+        div {
+          @apply p-2;
+        }
+        .itme_1 {
+          @apply text-base;
+        }
+      }
+    }
+  }
+}
+
+@screen xp {
   #FavSidebar {
-    position: fixed;
-    @include excursion($Text_height, null, null, $sidebar_r_r);
-    @include w-h(20%, 90%);
-    @apply ml-3;
-    #FavSidebar_main {
-      @apply w-full h-full overflow-auto;
-      .el-calendar-table .el-calendar-day {
-        height: 44px !important;
-      }
-      .FavSidebar_describe {
-        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
-        @apply mb-2 shadow rounded text-center;
-        p {
-          @apply text-sm px-2 py-4 m-1 cursor-pointer;
-        }
-      }
-
-      .FavSidebar_footer {
-        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
-        @apply p-1 mb-2 cursor-pointer shadow rounded;
-
-        .FavSidebar_f_title {
-          @apply p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer;
-        }
-        .FavSidebar_f_content {
-          @apply text-sm m-2;
-          .FavSidebar_f_content_name {
-            @apply p-1;
-            width: 35%;
-          }
-          .FavSidebar_f_content_text {
-            width: 40%;
-            @apply p-1;
-          }
-        }
-      }
-
-      .FavSidebar_itme {
-        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
-        @apply p-1 mb-2  shadow rounded;
-
-        .FavSidebar_itme_1 {
-          color: #1b1e21;
-          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
-        }
-
-        .FavSidebar_itme_2 {
-          background-color: #f5f7fd;
-          @apply m-1 cursor-pointer;
-          div {
-            @apply p-2;
-          }
-          .itme_1 {
-            @apply text-base;
-          }
-        }
-      }
-    }
+    display: none;
   }
-
-  @screen xp {
-    #FavSidebar {
-      display: none;
-    }
-  }
+}
 </style>

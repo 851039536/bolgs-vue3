@@ -20,9 +20,9 @@ const routes = [{
 
 },
 {
-  path: '/About',
-  name: 'About',
-  component: () => import('../views/About/About.vue'),
+  path: '/sAbout',
+  name: 'sAbout',
+  component: () => import('../views/sAbout/sAbout.vue'),
 
 },
 {
@@ -257,8 +257,6 @@ const routes = [{
 const router = createRouter({
   history: createWebHistory(), //HTML5模式
   routes,
-
-
 })
 
 export default router

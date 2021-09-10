@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-08-03 17:55:16
+ * @LastEditTime: 2021-09-10 11:21:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -12,8 +12,6 @@ const countUrl = "/api/SnArticle/GetCountAsync";
 //条件查询总数 (缓存)
 // const conutTypeUrl = "/api/SnArticle/ConutLabel";
 export class article {
-
-
 
   static async GetAll(state: number): Promise<any> {
     return request
