@@ -128,7 +128,7 @@
 </template>
 <script lang="ts">
 import { reactive, onMounted, defineComponent, onBeforeMount } from "vue";
-import { Routers } from "../../hooks/index";
+import { Routers } from "../../hooks/routers";
 import { user } from "../../api/user";
 import { toScss } from "../../hooks/dynamicScss";
 

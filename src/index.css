@@ -15,26 +15,10 @@
 @layer base {
 
   html {
-
-    /* font-family: "zt"; font-mono */
-    /* font-family: "Helvetica Neue",
-      Helvetica,
-      Arial,
-      "PingFang SC",
-      "Hiragino Sans GB",
-      "WenQuanYi Micro Hei",
-      "Microsoft Yahei",
-      sans-serif;
-      */
     @apply antialiased;
-
-
   }
 
-
-
   body {
-
 
     /* background-color: #bae8e8; */
     /* 条纹背景框 */
@@ -45,19 +29,6 @@
     background-size: 128px 128px;
   }
 
-
-
-  /* @font-face {
-    font-family: Proxima Nova;
-    font-weight: 400;
-    src: url(/fonts/proxima-nova/400-regular.woff) format("woff");
-  }
-
-  @font-face {
-    font-family: Proxima Nova;
-    font-weight: 500;
-    src: url(/fonts/proxima-nova/500-medium.woff) format("woff");
-  } */
 }
 
 @screen lg {

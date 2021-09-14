@@ -7,14 +7,14 @@
       <div
         class="grid blogcircles_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div class="BlogCircles-1" v-for="data in tt" :key="data.navId">
+        <div class="BlogCircles-1" v-for="data in state.Result" :key="data.navId">
           <div class="BlogCircles-1-1">
             <img :src="data.navImg" alt onerror="this.style.display='none'" />
             <!-- <img :src="data.navImg" onerror="this.src='../../assets/img/bb.jpg'" /> -->
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
-              <a @click="urltest(da.navUrl)">{{ data.navTitle }}</a>
+              <a @click="urltest(data.navUrl)">{{ data.navTitle }}</a>
             </div>
             <div class="BlogCircles-1-2-2">{{ data.navText }}</div>
           </div>
@@ -24,23 +24,34 @@
   </div>
 </template>
 
+
+
+
+
 <script lang="ts">
 import { navigation } from '../../api/navigation';
-import { reactive, toRefs, onMounted } from "vue";
+import { reactive, onMounted, defineComponent } from "vue";
 import BlogCirclesSidebar from './BlogCirclesSidebar.vue';
 import BlogSidebar from '../common/BlogSidebar.vue';
-export default {
-  components: { BlogCirclesSidebar, BlogSidebar },
-  name: "BlogCircles",
+
+export default defineComponent({
+
+  components: {
+    BlogCirclesSidebar
+  },
   setup() {
-    const state = reactive({
-      text: [],
+
+    interface State {
+      Result: any
+    }
+    const state: State = reactive({
+      Result: [],
     });
 
     const GetTypeOrderAsync = async () => {
 
       await navigation.GetTypeOrderAsync("博客圈").then((res: any) => {
-        state.text = res.data;
+        state.Result = res.data;
       })
 
     };
@@ -50,11 +61,14 @@ export default {
     onMounted(async () => {
       await GetTypeOrderAsync();
     });
-    return { ...toRefs(state), GetTypeOrderAsync, urltest };
+    return {
+      state,
+      BlogCirclesSidebar,
+      BlogSidebar,
+      urltest,
+    };
   },
-
-
-};
+});
 </script>
 
 <style lang="scss" scoped>

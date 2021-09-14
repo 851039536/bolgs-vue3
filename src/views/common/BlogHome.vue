@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Routers } from "../../hooks/index";
+import { Routers } from "../../hooks/routers";
 
 export default defineComponent({
   setup() {

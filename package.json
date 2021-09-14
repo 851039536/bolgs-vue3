@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
-    "ant-design-vue": "^2.0.0-rc.3",
+    "ant-design-vue": "^2.2.7",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "daisyui": "^1.11.1",
@@ -60,10 +60,11 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    
     "rules": {
-      "no-unused-vars" : "off" , 
-  "@typescript-eslint/no-unused-vars" : [ "error" ] 
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error"
+      ]
     }
   },
   "browserslist": [

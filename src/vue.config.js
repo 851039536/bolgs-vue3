@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:16:33
- * @LastEditTime: 2021-09-07 18:29:31
+ * @LastEditTime: 2021-09-14 14:51:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\vue.config.js
@@ -35,11 +35,12 @@ module.exports = {
     config.resolve.alias
       .set("@", resolve("src"))
       .set("vue$", "vue/dist/vue.esm.js")
-      .set("@assets", resolve("src/assets"))
-      .set("@components", resolve("src/components"))
-      .set("@views", resolve("src/views"))
-      .set("@router", resolve("src/router"))
-      .set("@store", resolve("src/store"));
+      .set("a", resolve("src/assets"))
+      .set("c", resolve("src/components"))
+      .set("v", resolve("src/views"))
+      .set("r", resolve("src/router"))
+      .set("api", resolve("src/api"))
+      .set("s", resolve("src/store"));
 
     // 字体文件自定义配置
     config.module

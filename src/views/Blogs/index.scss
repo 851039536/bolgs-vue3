@@ -5,9 +5,12 @@
 ----------------------------------------------------------------*/
  #blogs {
 
+   @include initialize(50%, 92%, 3.6%, null, 25%, null, null);
+   @apply shadow;
+
    .blogs_main {
 
-     @include initialize($w, 90%, 3.6%, null, $ml, null, #fafafa);
+     //  @include initialize($w, 90%, 3.6%, null, $ml, null, #fafafa);
      @apply shadow-sm rounded-sm overflow-auto;
 
      .blogs_content {
@@ -70,7 +73,6 @@
    }
  }
 
-
  /* blogssidebar
 ----------------------------------------------------------------*/
  #blogssidebar {
@@ -82,18 +84,7 @@
    .blogssidebar_main {
      @include w-h;
 
-     .blogssidebar_describe {
 
-       @apply mb-2 shadow rounded m-auto;
-       width: 97%;
-       color: #666;
-       @apply bg-white text-center;
-
-       div>p {
-         @apply px-1 py-2 m-1;
-         @apply bg-gray-50 text-sm;
-       }
-     }
 
      .blogssidebar_count {
 

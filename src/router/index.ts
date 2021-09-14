@@ -31,7 +31,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Blogs/Blogs.vue'),
+  component: () => import('../views/blogs/index.vue'),
 
 },
 {

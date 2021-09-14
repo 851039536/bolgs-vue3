@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-09-06 13:55:48
+ * @LastEditTime: 2021-09-14 08:42:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -11,7 +11,7 @@ import qs from "qs";
 import store from "../store/index";
 import router from '../router';
 axios.defaults.baseURL = process.env.VUE_APP_API_URL,
-  axios.defaults.timeout = 12000;
+  axios.defaults.timeout = 15000;
 // axios.defaults.headers.common['token'] =  AUTH_TOKEN
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 axios.defaults.headers.post["Access-Control-Allow-Origin-Type"] = "*"; // 允许跨域
@@ -47,6 +47,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (config) {
 
   if (config.status === 200 || config.status === 204) {
+
     return Promise.resolve(config);
   } else {
     return Promise.reject(config);

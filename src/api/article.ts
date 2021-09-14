@@ -1,16 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-09-10 11:21:41
+ * @LastEditTime: 2021-09-14 16:27:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
  */
 import request from './axios'
-//查询总数 (缓存)
-const countUrl = "/api/SnArticle/GetCountAsync";
-//条件查询总数 (缓存)
-// const conutTypeUrl = "/api/SnArticle/ConutLabel";
+
 export class article {
 
   static async GetAll(state: number): Promise<any> {
@@ -24,7 +21,7 @@ export class article {
   //查询总条数
   static async GetCountAsync(): Promise<any> {
     return await request({
-      url: countUrl,
+      url: "/api/SnArticle/GetCountAsync",
       method: 'get',
     })
   }
@@ -43,7 +40,6 @@ export class article {
       method: 'get',
     })
   }
-
 
   //主键查询
   static async GetByIdAsync(id: number, cache: boolean): Promise<any> {
