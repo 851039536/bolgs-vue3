@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-14 09:59:37
+ * @LastEditTime: 2021-09-15 16:31:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -26,8 +26,7 @@
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "vue-router";
-import SnBootom from './views/common/SnBootom.vue';
-import BlogSidebar from "./views/common/BlogSidebar.vue";
+import SnBootom from './components/bootom/Bootom.vue';
 import SAspin from "./components/aspin/sAspin.vue";
 export default {
   components: { SnBootom, SAspin },

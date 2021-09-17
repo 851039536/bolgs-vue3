@@ -71,8 +71,8 @@ import { useRouter } from "vue-router";
 import { article, usertalk } from '@/api/index';
 import { blogsSiList } from "../components/data";
 
-import BlogInformation from '../../common/SidebarModule/BlogInformation.vue';
-import BlogIco from "../../common/SidebarModule/BlogIco.vue";
+import BlogInformation from '../../../components/sidebarModule/sstatistics/sStatistics.vue';
+import BlogIco from "../../../components/sidebarModule/sico/sIco.vue";
 import SDescribe from "../../../components/describe/sDescribe.vue";
 
 export default defineComponent({

@@ -1,0 +1,68 @@
+ @import "@/design/com.scss";
+ @import "@/design/uitl";
+
+ /* blogHome 
+----------------------------------------------------------------*/
+ #blogHome {
+   @apply fixed z-20;
+   @include w-h;
+   @apply bg-white;
+
+   .home_main {
+
+     @apply absolute m-auto top-0 left-0 bottom-0 right-0;
+     @include w-h(90%, 100%);
+     @apply shadow-xl rounded-sm;
+
+     .home_name {
+       position: absolute;
+       width: 50%;
+       height: 50%;
+       overflow: auto;
+       margin: auto;
+       position: absolute;
+       top: 0;
+       left: 0;
+       bottom: 0;
+       right: 0;
+
+       .home_name_name {
+         position: absolute;
+         width: 70%;
+        //  height: 80%;
+         overflow: auto;
+         margin: auto;
+         position: absolute;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+
+         div{
+          //  background: rgb(196, 116, 116);
+            position: absolute;
+            width: 60%;
+            // height: 65%;
+            overflow: auto;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+             button {
+               @apply m-2 p-1 bg-gray-200 rounded;
+             }
+         }
+        
+       }
+     }
+
+   }
+ }
+
+ @screen xp {
+   #blogHome .home_main .home_name {
+     width: 100%;
+   }
+ }

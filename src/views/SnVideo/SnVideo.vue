@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-09-06 15:00:25
+ * @LastEditTime: 2021-09-16 15:01:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
@@ -95,4 +95,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "./scss/SnVideo.scss";
+
+
 </style>

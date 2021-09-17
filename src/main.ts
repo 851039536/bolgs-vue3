@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-08 08:21:38
+ * @LastEditTime: 2021-09-17 15:37:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -19,9 +19,9 @@ import './index.css'
 import './assets/icon/fonts/iconfont.js'
 import './assets/icon/icon.css'
 import LuckDraw from 'vue-luck-draw/vue3'
-import BlogHeader from "./views/common/BlogHeader.vue"
-import IndexSidebar from "./views/index/IndexSidebar.vue";
-import BlogSidebar from "./views/common/BlogSidebar.vue";
+import BlogHeader from "./components/header/Header.vue"
+import IndexSidebar from "./views/index/components/sidebar/IndexSidebar.vue";
+import BlogSidebar from "./components/raside/rAside.vue";
 import router from './router/index'
 import store from './store/index'
 import axios from './api/axios'

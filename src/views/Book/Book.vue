@@ -1,7 +1,7 @@
 <!--
  * @Author: 书单
  * @Date: 2020-12-26 14:05:13
- * @LastEditTime: 2021-09-10 14:22:06
+ * @LastEditTime: 2021-09-17 15:46:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Book\Index.vue
@@ -11,36 +11,17 @@
   <div class="book">
     <blog-sidebar></blog-sidebar>
     <index-sidebar></index-sidebar>
-    <div class="book_text">
-      <div class="book_title">
-        <p>
-          <a>观影</a> / 总计 501 本月 5 今年 20
-        </p>
-      </div>
-      <div class="book_film">
-        <span>
-          <a>全部</a>
-        </span>
-        <span>
-          <a>电影</a>
-        </span>
-        <span>
-          <a>纪录片</a>
-        </span>
-        <span>
-          <a>影视</a>
-        </span>
-        <span>
-          <a>综艺</a>
-        </span>
-        <span>
-          <a>美剧</a>
-        </span>
-      </div>
-      <div class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+    <div class="book_main">
+      <BookBar></BookBar>
+      <BookFilm></BookFilm>
+      <div
+        class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
+      >
         <div class="book_film_text">
           <div class="book_img">
-            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
+            <img
+              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
+            />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -53,7 +34,9 @@
 
         <div class="book_film_text">
           <div class="book_img">
-            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
+            <img
+              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
+            />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -66,7 +49,9 @@
 
         <div class="book_film_text">
           <div class="book_img">
-            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
+            <img
+              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
+            />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -79,7 +64,9 @@
 
         <div class="book_film_text">
           <div class="book_img">
-            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
+            <img
+              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
+            />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -92,7 +79,9 @@
 
         <div class="book_film_text">
           <div class="book_img">
-            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
+            <img
+              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
+            />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -104,10 +93,21 @@
         </div>
       </div>
     </div>
-
-    <!-- <a-empty /> -->
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import BookBar from './components/BookBar.vue'
+import BookFilm from './components/BookFilm.vue'
+
+export default defineComponent({
+  components: { BookBar, BookFilm },
+  setup() {
+    return {}
+  },
+})
+</script>
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 </style>

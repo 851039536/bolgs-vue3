@@ -1,15 +1,15 @@
- @import "../../design/com";
- @import "../../design/uitl";
+ @import "@/design/com";
+ @import "@/design/uitl";
 
  .book {
    @apply fixed;
    @include w-h(100%, 100%);
 
-   .book_text {
+   .book_main {
      @include initialize($w, 89%, 3.6%, null, $ml, null, #ffffff);
      @apply shadow-sm rounded-sm overflow-auto;
 
-     .book_title {
+     .book_bar {
        @include underline;
        @apply mb-2;
 

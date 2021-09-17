@@ -1,0 +1,20 @@
+ @import "@/design/com";
+ @import "@/design/uitl";
+
+ /* 分类内容框 */
+ .index_s_type {
+
+   width: 97%;
+   @apply p-1 mb-2 m-auto;
+   @apply bg-white shadow rounded cursor-pointer;
+
+   .index_s_type_name {
+     @apply p-1 m-1 text-base font-semibold;
+     @apply text-gray-900 bg-gray-200 cursor-pointer;
+   }
+
+   .index-si-type-text {
+     @apply flex-1 px-1 p-1 m-1 text-sm text-center;
+     @apply bg-gray-100 rounded;
+   }
+ }

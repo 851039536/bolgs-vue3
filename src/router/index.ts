@@ -3,7 +3,7 @@ import {
   createWebHistory,
   createWebHashHistory
 } from 'vue-router'
-import BlogHome from '../views/common/BlogHome.vue'
+import BlogHome from '@/components/home/Home.vue'
 
 const routes = [{
   path: '/',
@@ -16,13 +16,13 @@ const routes = [{
 {
   path: '/BlogHome',
   name: 'BlogHome',
-  component: () => import('../views/common/BlogHome.vue'),
+  component: () => import('@/components/home/Home.vue'),
 
 },
 {
   path: '/sAbout',
   name: 'sAbout',
-  component: () => import('../views/sAbout/sAbout.vue'),
+  component: () => import('@/views/sAbout/sAbout.vue'),
 
 },
 {
@@ -31,7 +31,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/blogs/index.vue'),
+  component: () => import('@/views/blogs/index.vue'),
 
 },
 {
@@ -41,7 +41,7 @@ const routes = [{
   meta: {
     keepAlive: true
   },
-  component: () => import('../views/index/Index.vue'),
+  component: () => import('@/views/index/Index.vue'),
 },
 {
   path: '/BlogHeader',
@@ -49,7 +49,7 @@ const routes = [{
   meta: {
     keepAlive: true
   },
-  component: () => import('../views/common/BlogHeader.vue')
+  component: () => import('@/components/header/Header.vue')
 },
 {
   path: '/IndexSidebar',
@@ -57,7 +57,7 @@ const routes = [{
   meta: {
     keepAlive: true
   },
-  component: () => import('../views/index/IndexSidebar.vue')
+  component: () => import('@/views/index/components/sidebar/IndexSidebar.vue')
 },
 {
   path: '/IndexTitle',
@@ -65,12 +65,12 @@ const routes = [{
   meta: {
     keepAlive: true
   },
-  component: () => import('../views/index/IndexTitle.vue')
+  component: () => import('@/views/index/components/column/IndexColumn.vue')
 },
 {
   path: '/IndexText',
   name: 'IndexText',
-  component: () => import('../views/index/IndexText.vue')
+  component: () => import('@/views/index/components/content/IndexText.vue')
 },
 
 {
@@ -79,15 +79,7 @@ const routes = [{
   meta: {
     keepAlive: true
   },
-  component: () => import('../views/common/BlogSidebar.vue')
-},
-{
-  path: '/Transfer',
-  name: 'Transfer',
-  meta: {
-    keepAlive: false
-  },
-  component: () => import('../views/common/Transfer.vue')
+  component: () => import('@/components/raside/rAside.vue')
 },
 {
   path: '/TimeLine',
@@ -95,7 +87,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/TimeLine/TimeLine.vue'),
+  component: () => import('@/views/TimeLine/TimeLine.vue'),
 
 },
 {
@@ -104,7 +96,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Tag/TagText.vue')
+  component: () => import('@/views/Tag/TagText.vue')
 },
 
 {
@@ -113,7 +105,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Photo/Photo.vue')
+  component: () => import('@/views/Photo/Photo.vue')
 },
 
 {
@@ -122,7 +114,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Navigation/Navigation.vue')
+  component: () => import('@/views/Navigation/Navigation.vue')
 },
 
 {
@@ -131,7 +123,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Navigation/BlogCircles.vue')
+  component: () => import('@/views/Navigation/BlogCircles.vue')
 },
 
 {
@@ -140,7 +132,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Navigation/Favorite.vue')
+  component: () => import('@/views/Navigation/Favorite.vue')
 },
 
 {
@@ -149,7 +141,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Talk/Talk.vue')
+  component: () => import('@/views/Talk/Talk.vue')
 },
 {
   path: '/TalkText',
@@ -157,7 +149,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Talk/TalkText.vue')
+  component: () => import('@/views/Talk/TalkText.vue')
 },
 
 {
@@ -166,7 +158,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/SnVideo/SnVideo.vue')
+  component: () => import('@/views/SnVideo/SnVideo.vue')
 },
 
 {
@@ -175,7 +167,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/SnVideo/SnVideoText.vue')
+  component: () => import('@/views/SnVideo/SnVideoText.vue')
 },
 {
   path: '/Leave',
@@ -183,7 +175,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Leave/Leave.vue')
+  component: () => import('@/views/Leave/Leave.vue')
 },
 {
   path: '/One',
@@ -191,7 +183,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/One/One.vue')
+  component: () => import('@/views/One/One.vue')
 },
 {
   path: '/Book',
@@ -199,7 +191,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Book/Book.vue')
+  component: () => import('@/views/book/Book.vue')
 },
 {
   path: '/test',
@@ -207,7 +199,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/test/test.vue')
+  component: () => import('@/views/test/test.vue')
 },
 
 {
@@ -216,7 +208,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/ListContent/ListContent.vue')
+  component: () => import('@/views/ListContent/ListContent.vue')
 },
 {
   path: '/Software',
@@ -224,7 +216,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Software/Software.vue')
+  component: () => import('@/views/Software/Software.vue')
 },
 {
   path: '/SoftwareContent',
@@ -232,7 +224,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/Software/SoftwareContent.vue')
+  component: () => import('@/views/Software/SoftwareContent.vue')
 },
 {
   path: '/Particulars',
@@ -240,7 +232,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('../views/common/Particulars.vue')
+  component: () => import('@/components/editorHtml/Particulars.vue')
 },
   // {
   //   path: '/BlogsSidebar',
@@ -248,7 +240,7 @@ const routes = [{
   //   meta: {
   //     keepAlive: false
   //   },
-  //   component: () => import('../views/Blogs/BlogsSidebar.vue')
+  //   component: () => import('@/views/Blogs/BlogsSidebar.vue')
   // },
 ]
 

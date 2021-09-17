@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-14 13:43:14
- * @LastEditTime: 2021-09-14 13:47:51
+ * @LastEditTime: 2021-09-17 15:14:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\describe\index.vue
@@ -18,17 +18,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: ['UserTalk'],
   setup() {
-    return {
-    };
+    return {}
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-@import "../index.scss";
+@import './index.scss';
 </style>

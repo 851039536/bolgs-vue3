@@ -32,7 +32,7 @@
 import { navigation } from '../../api/navigation';
 import { reactive, onMounted, defineComponent } from "vue";
 import BlogCirclesSidebar from './BlogCirclesSidebar.vue';
-import BlogSidebar from '../common/BlogSidebar.vue';
+import BlogSidebar from '../../components/raside/rAside.vue';
 
 export default defineComponent({
 

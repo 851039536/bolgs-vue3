@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2021-09-09 10:37:30
- * @LastEditTime: 2021-09-13 17:19:00
+ * @LastEditTime: 2021-09-17 15:17:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\hooks\index.ts
  */
-import router from '../router/index';
+import router from '@/router/index';
 
 const Routers = async (path: string) => {
   await router.push({

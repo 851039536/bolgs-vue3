@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-09-14 16:27:26
+ * @LastEditTime: 2021-09-15 15:47:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -77,13 +77,13 @@ export class article {
     })
   }
 
-  static async UpdatePortionAsync(datas: any, type: string): Promise<any> {
+  static async UpdatePortionAsync(resultData: any, type: string): Promise<any> {
     return await
       request({
         // 更新
         url: "/api/SnArticle/UpdatePortionAsync?type=" + type,
         method: "put",
-        data: datas,
+        data: resultData,
       })
   }
 

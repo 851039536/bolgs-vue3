@@ -1,7 +1,7 @@
 <!--
  * @Author: 站点信息模块
  * @Date: 2021-08-17 11:54:18
- * @LastEditTime: 2021-09-08 10:58:25
+ * @LastEditTime: 2021-09-17 14:53:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\SidebarModule\BlogInformation.vue
@@ -31,18 +31,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: ['ArticleCount', 'TextCount', 'ReadCount', 'Articledata'],
   setup() {
-
-    return {
-    };
+    return {}
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-@import "../index.scss";
+@import './index.scss';
 </style>

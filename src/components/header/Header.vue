@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-09-10 14:28:08
+ * @LastEditTime: 2021-09-17 15:14:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -16,7 +16,9 @@
         </div>
         <div class="header_text">
           <template v-for="(item, index) in state.ResultList" :key="index">
-            <a @click="skip(item.path)" v-if="item.identity">{{ item.title }}</a>
+            <a @click="skip(item.path)" v-if="item.identity">{{
+              item.title
+            }}</a>
           </template>
         </div>
       </div>
@@ -31,62 +33,39 @@
   </nav>
 </template>
 
-
-
 <script lang="ts">
-import { useRouter } from "vue-router";
-import { interfaces } from '../../api/interfaces';
-import {
-  reactive,
-  onMounted,
-  defineComponent,
-} from "vue";
+import { onMounted, defineComponent } from 'vue'
+import { state, header } from './index'
+import { Routers } from '@/hooks/routers'
+
 export default defineComponent({
-  name: "BlogHeader",
+  name: 'BlogHeader',
   setup() {
-
-    interface State {
-      ResultList: any;
-    }
-    const state: State = reactive({
-      ResultList: [],
-    });
-    const router = useRouter();
-
     const skip = async (num: any) => {
       switch (num) {
         case 13:
-          window.open("https://www.cnblogs.com/ouyangkai/");
-          break;
+          window.open('https://www.cnblogs.com/ouyangkai/')
+          break
         case 14:
-          window.open("https://gitee.com/kaiouyang-sn");
-          break;
+          window.open('https://gitee.com/kaiouyang-sn')
+          break
         default:
-          router.push({
-            path: num,
-            query: {
-              t: +new Date()
-            }
-          })
-          break;
+          await Routers(num)
+          break
       }
-    };
-    const GetType = async () => {
-      await interfaces.GetTypeAsync(4, 1).then((res: any) => {
-        state.ResultList = res.data;
-      })
-    };
+    }
+
     onMounted(async () => {
-      await GetType();
-    });
+      await header.GetType()
+    })
     return {
       state,
       skip,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 </style>

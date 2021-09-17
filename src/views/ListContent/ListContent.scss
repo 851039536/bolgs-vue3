@@ -1,5 +1,5 @@
- @import "../../design/com";
- @import "../../design/uitl";
+ @import "@/design/com";
+ @import "@/design/uitl";
 
  .ListContent {
    @include initialize(94%, null, 3.6%, null, 3%, null, #f9f9f9);

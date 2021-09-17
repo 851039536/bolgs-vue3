@@ -10,13 +10,15 @@
     <div class="indexText_title">
       <a-page-header :title="state.article_String.title" @back="() => $router.back()" />
     </div>
-    <!-- ---------------------------- -->
+    <!-- end 标题 -->
+
     <!--内容-->
     <div class="indextest_text">
       <a-skeleton :loading="state.spinning" :paragraph="{ rows: 15 }" active />
       <div id="content" class="blog" v-html="state.blog"></div>
     </div>
-    <!-- -------------------------------------------- -->
+    <!-- end 内容 -->
+
     <!--底部信息-->
     <div class="indextest_copyright">
       <div class="indextest_copyright_title">
@@ -50,16 +52,14 @@
       </div>
     </div>
   </div>
-  <!-- ------------------------------------------------- -->
+  <!-- end 底部信息 -->
 </template>
 
 
 
 <script lang="ts">
 import markdown from "@/utils/markdown.js";
-import { article } from '../../api/article';
-import { labels } from '../../api/labels';
-import { sort } from '../../api/sort';
+import { article, labels, sort } from '@/api/index';
 import {
   reactive,
   onMounted,
@@ -113,21 +113,18 @@ export default defineComponent({
     const GetByIdAsync = (id: number) => {
       labels.GetByIdAsync(id).then((result: any) => {
         state.Labels = result.data;
-
       })
     }
-    const GetSortById = (id: number) => {
 
+    const GetSortById = (id: number) => {
       sort.GetByIdAsync(id).then((result: any) => {
         state.Sort = result.data;
-
-
       })
     }
+
     // 阅读数
     const UpRead = async (info: any) => {
       if (info == null) {
-        // console.log(info);
         return;
       } else {
         info.read++;
@@ -138,11 +135,9 @@ export default defineComponent({
     const UpGive = async (info: any) => {
       var timebools = state.timebool;
       if (info == null || timebools == false) {
-        // console.log(info, state.timebool);
         return;
       } else {
         info.give++;
-        // console.log(info.give);
         await article.UpdatePortionAsync(info, "Give")
           .then((res: any) => {
             if (res.status === 200) {
