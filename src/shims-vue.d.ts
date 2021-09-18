@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:22:05
- * @LastEditTime: 2021-09-14 14:50:23
+ * @LastEditTime: 2021-09-18 09:11:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\shims-vue.d.ts
@@ -30,3 +30,9 @@ declare module 'vue-luck-draw/vue3';
 declare module '*.scss';
 
 
+declare module '@kangc/v-md-editor';
+declare module 'prismjs';
+
+declare module '@kangc/v-md-editor/lib/theme/hljs';
+declare module '@kangc/v-md-editor/lib/plugins/line-number/index';
+declare module '@kangc/v-md-editor/lib/preview';

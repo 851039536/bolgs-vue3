@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-15 16:31:01
+ * @LastEditTime: 2021-09-18 16:10:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -23,32 +23,30 @@
   </div>
 </template>
 <script lang="ts">
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-import { useRouter } from "vue-router";
-import SnBootom from './components/bootom/Bootom.vue';
-import SAspin from "./components/aspin/sAspin.vue";
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useRouter } from 'vue-router'
+import SnBootom from './components/bootom/Bootom.vue'
+import SAspin from './components/aspin/sAspin.vue'
 export default {
   components: { SnBootom, SAspin },
   setup() {
-    const router = useRouter();
+    const router = useRouter()
 
     router.beforeEach((to, from, next) => {
-      NProgress.start();
-      next();
-    });
+      NProgress.start()
+      next()
+    })
 
     router.afterEach(() => {
-      NProgress.done();
-    });
+      NProgress.done()
+    })
 
-    return {
-
-    };
+    return {}
   },
-};
+}
 </script>
 <style lang="scss">
-@import "./design/com.scss";
+@import './design/methodCss.scss';
 @include scroll; //滚动条美化 qweqw王企鹅群翁二位 王企鹅额re rrewqwewefdfd
 </style>

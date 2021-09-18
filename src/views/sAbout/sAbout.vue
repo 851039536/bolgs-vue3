@@ -129,7 +129,7 @@
 <script lang="ts">
 import { reactive, onMounted, defineComponent, onBeforeMount } from "vue";
 import { Routers } from "../../hooks/routers";
-import { user } from "../../api/user";
+import { user } from "../../api/http/user";
 import { toScss } from "../../hooks/dynamicScss";
 
 export default defineComponent({

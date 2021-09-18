@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { leave } from '@/api/leave'
+import { leave } from '@/api/http/leave'
 import { reactive, onMounted, defineComponent } from 'vue'
 
 export default defineComponent({

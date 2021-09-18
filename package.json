@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^2.3.10",
     "animate.css": "^4.1.1",
     "ant-design-vue": "^2.2.7",
     "axios": "^0.21.0",

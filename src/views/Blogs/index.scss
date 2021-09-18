@@ -1,5 +1,5 @@
- @import "../../design/com.scss";
- @import "../../design/uitl";
+ @import "@/design/methodCss.scss";
+ @import "@/design/uitl";
 
  /* blogs
 ----------------------------------------------------------------*/
@@ -36,7 +36,7 @@
 
            .blogs_content__frame-1 {
              @apply m-1 px-1 text-base font-semibold;
-             @include line-ome;
+             @include line-one;
            }
 
            .blogs_content__frame-2 {

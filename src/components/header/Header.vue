@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-09-17 15:14:23
+ * @LastEditTime: 2021-09-18 15:31:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -25,8 +25,8 @@
       <!--  -->
       <div class="header_text_1">
         <div class="header-text-r-1">
-          <a @click="skip(13)">博客园</a>
-          <a @click="skip(14)">Gitee</a>
+          <a @click="skip(13)" v-once>博客园</a>
+          <a @click="skip(14)" v-once>Gitee</a>
         </div>
       </div>
     </div>

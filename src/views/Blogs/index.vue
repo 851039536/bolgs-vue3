@@ -33,54 +33,50 @@
 </template>
 
 <script lang="ts">
-import { onMounted, defineComponent } from "vue";
-import SAspin from "@/components/aspin/sAspin.vue";
-import BlogsSidebar from "./components/BlogsSidebar.vue";
-import { blogsList } from "./components/data";
-import BlogsContent from "./components/BlogsContent.vue";
-import { blogs } from "./index";
-
+import { onMounted, defineComponent } from 'vue'
+import SAspin from '@/components/aspin/sAspin.vue'
+import BlogsSidebar from './components/BlogsSidebar.vue'
+import { blogsList } from './components/data'
+import BlogsContent from './components/BlogsContent.vue'
+import { blogs } from './index'
 
 export default defineComponent({
-
   components: { BlogsSidebar, SAspin, BlogsContent },
 
   setup() {
-
     async function currentchange(val: number): Promise<void> {
-      blogsList.page = val;
-      await blogs.GetFySortTitle();
-      await backtop();
+      blogsList.page = val
+      await blogs.GetFySortTitle()
+      await backtop()
     }
 
     const backtop = async () => {
       {
-        let timer = setInterval(function () {
+        let timer = setInterval(function() {
           let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
+            document.documentElement.scrollTop || document.body.scrollTop
+          let ispeed = Math.floor(-osTop / 5)
           document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
+            osTop + ispeed
           if (osTop === 0) {
-            clearInterval(timer);
+            clearInterval(timer)
           }
-        }, 30);
+        }, 30)
       }
-    };
-
+    }
 
     onMounted(async () => {
-      await blogs.ConutSort();
-      await blogs.GetFySortTitle();
-    });
+      await blogs.ConutSort()
+      await blogs.GetFySortTitle()
+    })
     return {
       blogsList,
       currentchange,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-@import "index.scss";
+@import 'index.scss';
 </style>

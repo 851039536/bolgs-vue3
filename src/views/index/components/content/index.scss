@@ -1,4 +1,4 @@
- @import "@/design/com";
+ @import "@/design/methodCss";
  @import "@/design/uitl";
 
  
@@ -62,6 +62,10 @@
 
    .blog {
      @include blogs;
+   }
+
+   .indextest_text{
+     @apply bg-white mt-6;
    }
  }
 

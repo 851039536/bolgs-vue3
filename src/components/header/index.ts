@@ -7,7 +7,7 @@
  * @FilePath: \blogs-s\src\components\header\index.ts
  */
 import { reactive } from 'vue'
-import { interfaces } from '@/api/interfaces'
+import { interfaces } from '@/api/http/interfaces'
 
 
 interface State {

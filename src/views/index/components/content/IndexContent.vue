@@ -8,17 +8,23 @@
   <div class="indextext">
     <!--标题-->
     <div class="indexText_title">
-      <a-page-header :title="state.article_String.title" @back="() => $router.back()" />
+      <a-page-header
+        :title="state.article_String.title"
+        @back="() => $router.back()"
+      />
     </div>
     <!-- end 标题 -->
 
     <!--内容-->
     <div class="indextest_text">
       <a-skeleton :loading="state.spinning" :paragraph="{ rows: 15 }" active />
-      <div id="content" class="blog" v-html="state.blog"></div>
-    </div>
-    <!-- end 内容 -->
+      <!-- <div id="content" class="blog" v-html="state.blog"></div> -->
+      <v-md-preview :text="state.blog"></v-md-preview>
 
+      <Vmdhtml></Vmdhtml>
+    </div>
+
+    <!-- end 内容 -->
     <!--底部信息-->
     <div class="indextest_copyright">
       <div class="indextest_copyright_title">
@@ -33,8 +39,10 @@
         <div class>
           <a @click="UpGive(state.article_String)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-qinggan
-" />
+              <use
+                xlink:href="#icon-qinggan
+"
+              />
             </svg>
             {{ state.article_String.give }}
           </a>
@@ -55,33 +63,29 @@
   <!-- end 底部信息 -->
 </template>
 
-
-
 <script lang="ts">
-import markdown from "@/utils/markdown.js";
-import { article, labels, sort } from '@/api/index';
-import {
-  reactive,
-  onMounted,
-  defineComponent,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
+// import markdown from '@/utils/markdown.js'
+import { article, labels, sort } from '@/api/index'
+import { reactive, onMounted, defineComponent } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import Vmdhtml from '@/components/editorHtml/vmdhtml.vue'
 
 export default defineComponent({
-  name: "IndexText",
+  name: 'IndexText',
+  components: { Vmdhtml },
   setup() {
-    const route = useRoute();
-    const router = useRouter();
+    const route = useRoute()
+    const router = useRouter()
 
     interface State {
-      article_String: any,
-      Labels: any,
-      Sort: any,
-      id: any,
-      timebool: boolean,
-      fullscreenLoading: boolean,
-      blog: string,
-      spinning: boolean,
+      article_String: any
+      Labels: any
+      Sort: any
+      id: any
+      timebool: boolean
+      fullscreenLoading: boolean
+      blog: string
+      spinning: boolean
     }
     const state: State = reactive({
       article_String: [],
@@ -90,98 +94,95 @@ export default defineComponent({
       id: route.query.id,
       timebool: true,
       fullscreenLoading: false,
-      blog: "",
+      blog: '',
       spinning: true,
-    });
+    })
 
     // 加载内容
     const GetAll = async () => {
-
       await article.GetByIdAsync(state.id, true).then((res: any) => {
-        state.article_String = res.data;
-        GetByIdAsync(state.article_String.labelId);
-        GetSortById(state.article_String.sortId);
-        UpRead(state.article_String);
-        const article = markdown.marked(state.article_String.text);
-        article.then((response: any) => {
-          state.blog = response.content;
-        });
-        state.spinning = false;
+        state.article_String = res.data
+        GetByIdAsync(state.article_String.labelId)
+        GetSortById(state.article_String.sortId)
+        UpRead(state.article_String)
+        // const article = markdown.marked(state.article_String.text)
+        // article.then((response: any) => {
+        state.blog = state.article_String.text
+        // })
+        state.spinning = false
       })
-
-    };
+    }
     const GetByIdAsync = (id: number) => {
       labels.GetByIdAsync(id).then((result: any) => {
-        state.Labels = result.data;
+        state.Labels = result.data
       })
     }
 
     const GetSortById = (id: number) => {
       sort.GetByIdAsync(id).then((result: any) => {
-        state.Sort = result.data;
+        state.Sort = result.data
       })
     }
 
     // 阅读数
-    const UpRead = async (info: any) => {
+    async function UpRead(info: any) {
       if (info == null) {
-        return;
+        return
       } else {
-        info.read++;
-        await article.UpdatePortionAsync(info, "Read");
+        info.read++
+        await article.UpdatePortionAsync(info, 'Read')
       }
-    };
+    }
     // 点击数
-    const UpGive = async (info: any) => {
-      var timebools = state.timebool;
+    async function UpGive(info: any) {
+      var timebools = state.timebool
       if (info == null || timebools == false) {
-        return;
+        return
       } else {
-        info.give++;
-        await article.UpdatePortionAsync(info, "Give")
-          .then((res: any) => {
-            if (res.status === 200) {
-              state.timebool = false;
-              var time = 10;
-              var timer = setInterval(function () {
-                time--;
-                if (time == 0) {
-                  state.timebool = true;
-                  clearInterval(timer);
-                }
-              }, 1000);
-            }
-          })
-      }
-    };
-
-    const backtop = () => {
-      {
-        var timer = setInterval(function () {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
-          if (osTop === 0) {
-            clearInterval(timer);
+        info.give++
+        await article.UpdatePortionAsync(info, 'Give').then((res: any) => {
+          if (res.status === 200) {
+            state.timebool = false
+            var time = 10
+            var timer = setInterval(function() {
+              time--
+              if (time == 0) {
+                state.timebool = true
+                clearInterval(timer)
+              }
+            }, 1000)
           }
-        }, 30);
+        })
       }
-    };
+    }
+
+    async function backtop() {
+      {
+        var timer = setInterval(function() {
+          let osTop =
+            document.documentElement.scrollTop || document.body.scrollTop
+          let ispeed = Math.floor(-osTop / 5)
+          document.documentElement.scrollTop = document.body.scrollTop =
+            osTop + ispeed
+          if (osTop === 0) {
+            clearInterval(timer)
+          }
+        }, 30)
+      }
+    }
 
     onMounted(async () => {
-      await GetAll();
-      await backtop();
-    });
+      await GetAll()
+      await backtop()
+    })
     return {
       state,
       UpGive,
-    };
+    }
   },
-});
+})
 </script>
 
-<style lang="scss" >
-@import "./index.scss";
+<style lang="scss">
+@import './index.scss';
 </style>

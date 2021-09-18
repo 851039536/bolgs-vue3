@@ -1,15 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-08-03 08:55:50
+ * @LastEditTime: 2021-09-18 15:40:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
  */
-import request from './axios'
+import request from '@/utils/http/axios'
 export class video {
-
-
 
 
   //视频总数

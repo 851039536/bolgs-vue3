@@ -14,7 +14,7 @@
     >
       <div class="indextitle_text_div">
         <div class="indextitle_title_div">
-          <div class="indextitle_title" v-on:click="jump(info.articleId)">
+          <div class="indextitle_title" v-on:click="skip(info.articleId)">
             <a>{{ info.title }}</a>
           </div>
           <div class="indextitle_title_text">摘要: {{ info.titleText }}</div>
@@ -23,7 +23,7 @@
             <div>随笔</div>
             <div>{{ info.timeCreate.substring(0, 10) }}</div>
 
-            <div @click="jump(info.article_id)">
+            <div @click="skip(info.article_id)">
               <a>{{ info.read }} ℃</a>
             </div>
             <div>
@@ -45,7 +45,7 @@
     <div class="indextitle_page">
       <a-pagination
         size="small"
-        @change="currentchange"
+        @change="column.CurrentChange"
         :total="state.count"
         :pageSize="state.pagesize"
         show-quick-jumper
@@ -56,46 +56,19 @@
 </template>
 
 <script lang="ts">
-import { reactive, onMounted, defineComponent } from 'vue'
+import { onMounted, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { article } from '@/api/article'
-import { setBlog } from '@/api/setBlog'
+import { setBlog } from '@/api/index'
+import { state, column } from './index'
 
 export default defineComponent({
   setup() {
     const router = useRouter()
     const stores = useStore()
-    interface State {
-      dataResult: any // 显示的数据
-      page: number //页码
-      readonly pagesize: number //每页条数
-      count: number //总数
-    }
-    const state: State = reactive({
-      dataResult: [],
-      page: 1,
-      pagesize: 8,
-      count: 0,
-    })
 
-    async function GetCountAsync(): Promise<void> {
-      await article.GetCountAsync().then((result: any) => {
-        state.count = result.data
-      })
-    }
-
-    async function GetFyTitleAsync(): Promise<void> {
-      await article
-        .GetFyTitleAsync(state.page, state.pagesize)
-        .then((result: any) => {
-          state.dataResult = result.data
-          // console.log(state.dataResult[0].titleText, state.page, state.pagesize);
-        })
-    }
-
-    async function jump(id: number): Promise<void> {
-      await setBlog.GetByIdAsync(1, false).then((res) => {
+    async function skip(id: number) {
+      await setBlog.GetByIdAsync(1, false).then((res: any) => {
         stores.state.SetPage = res.data.setIsopen
       })
       if (stores.state.SetPage) {
@@ -113,35 +86,14 @@ export default defineComponent({
         })
       }
     }
-
-    const currentchange = async (val: number) => {
-      state.page = val
-      await GetFyTitleAsync()
-      await backtop() //回到顶部
-    }
-
-    const backtop = async () => {
-      {
-        var timer = setInterval(function() {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop
-          let ispeed = Math.floor(-osTop / 5)
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed
-          if (osTop === 0) {
-            clearInterval(timer)
-          }
-        }, 30)
-      }
-    }
     onMounted(async () => {
-      await GetCountAsync()
-      await GetFyTitleAsync()
+      await column.GetCount()
+      await column.GetFyTitle()
     })
     return {
       state,
-      jump,
-      currentchange,
+      skip,
+      column,
     }
   },
 })

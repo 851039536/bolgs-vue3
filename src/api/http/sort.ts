@@ -1,29 +1,28 @@
 /*
  * @Author: your name
- * @Date: 2021-05-10 14:09:51
- * @LastEditTime: 2021-08-12 08:53:57
+ * @Date: 2021-05-10 15:51:19
+ * @LastEditTime: 2021-09-18 15:39:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\api\labels.ts
+ * @FilePath: \blogs-s\src\api\sort.ts
  */
-import request from './axios'
+import request from '@/utils/http/axios'
+//主键查询
 
-export class labels {
+export class sort {
 
-
+  //主键查询
   static async GetByIdAsync(id: number): Promise<any> {
     return await request({
-      url: "/api/SnLabels/GetByIdAsync?id=" + id + "&cache=true",
+      url: "/api/SnSort/GetByIdAsync?id=" + id + "&cache=true",
       method: 'get',
     })
   }
 
   static async GetAllAsync(cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnLabels/GetAllAsync?cache=" + cache,
+      url: "/api/SnSort/GetAllAsync?cache=" + cache,
       method: 'get',
     })
   }
-
-
 }

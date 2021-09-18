@@ -1,17 +1,17 @@
 /*
  * @Author: your name
  * @Date: 2021-05-12 09:56:40
- * @LastEditTime: 2021-09-09 16:34:44
+ * @LastEditTime: 2021-09-18 15:40:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\user.ts
  */
-import request from './axios'
-export class user {
+import request from '@/utils/http/axios'
+export class usertalk {
 
-  static async GetByIdAsync(id: number): Promise<any> {
+  static async GetUserTalkFirst(): Promise<any> {
     return await request({
-      url: "/api/SnUser/GetByIdAsync?id=" + id + "&cache=true",
+      url: "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true",
       method: 'get',
     })
   }

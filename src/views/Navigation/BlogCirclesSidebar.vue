@@ -7,7 +7,11 @@
       <!--内容框-->
       <div class="FavSidebar_itme">
         <div class="FavSidebar_itme_1">最近添加</div>
-        <div class="FavSidebar_itme_2" v-for="result in Navigation" :key="result.navId">
+        <div
+          class="FavSidebar_itme_2"
+          v-for="result in Navigation"
+          :key="result.navId"
+        >
           <div class="itme_1">
             {{ result.navTitle }}
             <span>{{ result.navType }}</span>
@@ -30,55 +34,52 @@
   </div>
 </template>
 
-
 <script lang="ts">
-
-import { navigation } from '../../api/navigation';
-import { reactive, toRefs, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { navigation } from '../../api/http/navigation'
+import { reactive, toRefs, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
-  name: "FavSidebar",
+  name: 'FavSidebar',
   components: {},
   setup() {
-    const router = useRouter();
+    const router = useRouter()
     // 加载路由
     // const route = useRoute();
     const state = reactive({
       Navigation: [],
       //当前默认页
       barFixed: false,
-      resultCount: "",
-    });
+      resultCount: '',
+    })
 
     const GetAll = async () => {
-
-      await navigation.GetFyAllAsync("all", 1, 10, true).then((res: any) => {
-        state.Navigation = res.data;
+      await navigation.GetFyAllAsync('all', 1, 10, true).then((res: any) => {
+        state.Navigation = res.data
       })
       await navigation.GetCountAsync().then((res: any) => {
-        state.resultCount = res.data;
+        state.resultCount = res.data
       })
-    };
+    }
 
     const AsyGetTestID = (id: number) => {
       //       // .带参数跳转
       router.push({
-        path: "/TalkText",
+        path: '/TalkText',
         query: {
           id: id,
         },
-      });
-    };
+      })
+    }
     onMounted(async () => {
-      await GetAll();
-    });
-    return { ...toRefs(state), GetAll, AsyGetTestID };
+      await GetAll()
+    })
+    return { ...toRefs(state), GetAll, AsyGetTestID }
   },
-};
+}
 </script>
 <style lang="scss" scoped>
-@import "../../design/com";
-@import "../../design/uitl";
+@import '../../design/methodCss';
+@import '../../design/uitl';
 #FavSidebar {
   position: fixed;
   @include excursion($Text_height, null, null, $sidebar_r_r);

@@ -49,7 +49,7 @@
 
 <script lang="ts">
 
-  import { video } from '../../api/video';
+  import { video } from '../../api/http/video';
   import { reactive, toRefs, onMounted } from "vue";
   import { useRouter } from "vue-router";
   export default {

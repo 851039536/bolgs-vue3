@@ -29,45 +29,45 @@
   </div>
 </template>
 
-  <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+<script lang="ts">
+import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
 export default {
-  name: "Navigation",
+  name: 'Navigation',
   components: {},
 
   // inject: ["count"],
   setup() {
-    const { proxy }: any = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
+    const { proxy }: any = getCurrentInstance() //获取上下文实例，ctx=vue2的this
     const state = reactive({
       text: [],
-    });
+    })
     const GetSnNavigation = async () => {
       //查询当前用户信息
       await proxy
         .$api({
-          url: "/api/SnNavigation/GetTypeOrderAsync?type=%E7%BD%91%E7%AB%99&order=true",
+          url:
+            '/api/SnNavigation/GetTypeOrderAsync?type=%E7%BD%91%E7%AB%99&order=true',
         })
         .then((res: any) => {
-          state.text = res.data;
+          state.text = res.data
         })
-
-    };
+    }
 
     const urltest = async (url: any) => {
-      window.open(url);
-    };
+      window.open(url)
+    }
 
     onMounted(async () => {
-      await GetSnNavigation();
-    });
-    return { ...toRefs(state), GetSnNavigation, urltest };
+      await GetSnNavigation()
+    })
+    return { ...toRefs(state), GetSnNavigation, urltest }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../../design/com";
-@import "../../design/uitl";
+@import '../../design/methodCss';
+@import '../../design/uitl';
 .n-nav {
   @include initialize($w, null, 3.6%, null, $ml, null, #ffffff);
   @apply shadow rounded-sm;

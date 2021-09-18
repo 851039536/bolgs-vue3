@@ -8,8 +8,8 @@
  */
 import axios from 'axios';
 import qs from "qs";
-import store from "../store/index";
-import router from '../router';
+import store from "@/store/index";
+import router from '@/router/index';
 axios.defaults.baseURL = process.env.VUE_APP_API_URL,
   axios.defaults.timeout = 15000;
 // axios.defaults.headers.common['token'] =  AUTH_TOKEN

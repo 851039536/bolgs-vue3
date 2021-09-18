@@ -18,7 +18,11 @@
 
       <!-- 网站内容 -->
       <div class="flex flex-wrap favorite_content">
-        <div class="favorite_content_text" v-for="info in text" :key="info.navId">
+        <div
+          class="favorite_content_text"
+          v-for="info in text"
+          :key="info.navId"
+        >
           <div class="favorite_content_text-1">
             <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
           </div>
@@ -43,42 +47,41 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, onMounted } from "vue";
-import FavSidebar from './FavSidebar.vue';
-import { navigation } from '../../api/navigation';
+import { reactive, toRefs, onMounted } from 'vue'
+import FavSidebar from './FavSidebar.vue'
+import { navigation } from '../../api/http/navigation'
 
 export default {
   components: { FavSidebar },
-  name: "Favorite",
+  name: 'Favorite',
   setup() {
     // 数据定义
     const state = reactive({
       text: [],
-      type: []
-    });
+      type: [],
+    })
     const GetSnNavigation = (name: string) => {
       navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
-        state.type = res.data;
+        state.type = res.data
       })
       navigation.GetTypeOrderAsync(name).then((res: any) => {
-        state.text = res.data;
+        state.text = res.data
       })
-
-    };
+    }
     const urltest = (url: string) => {
-      window.open(url);
-    };
+      window.open(url)
+    }
     onMounted(async () => {
-      await GetSnNavigation("收藏");
-    });
-    return { ...toRefs(state), GetSnNavigation, urltest };
+      await GetSnNavigation('收藏')
+    })
+    return { ...toRefs(state), GetSnNavigation, urltest }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../../design/com";
-@import "../../design/uitl";
+@import '../../design/methodCss';
+@import '../../design/uitl';
 
 #favorite {
   @apply w-full h-full;
@@ -103,7 +106,7 @@ export default {
         .favorite_content_text-1 {
           @apply px-1 text-base font-semibold;
           height: 25%;
-          @include line-ome;
+          @include line-one;
         }
 
         .favorite_content_text-2 {

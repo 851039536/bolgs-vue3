@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts">
-import { one } from '../../api/one';
+import { one } from '../../api/http/one';
 import { reactive, toRefs, onMounted, onBeforeMount } from "vue";
 import OneSidebar from "./OneSidebar.vue";
 import { message } from "ant-design-vue";

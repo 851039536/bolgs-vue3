@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 16:11:32
- * @LastEditTime: 2021-08-04 16:13:57
+ * @LastEditTime: 2021-09-18 15:39:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\interfaces.ts
  */
 
-import request from './axios'
+import request from '@/utils/http/axios'
 export class interfaces {
 
   //查询分类总条数

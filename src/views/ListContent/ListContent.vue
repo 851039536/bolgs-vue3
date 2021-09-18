@@ -98,7 +98,7 @@
 
 <script lang="ts">
 import { reactive, toRefs, onMounted } from 'vue'
-import { listContent } from '@/api/listContent'
+import { listContent } from '@/api/http/listContent'
 import { message } from 'ant-design-vue'
 export default {
   components: {},

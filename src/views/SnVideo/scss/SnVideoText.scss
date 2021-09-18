@@ -1,4 +1,4 @@
- @import "../../design/com";
+ @import "../../design/methodCss";
  @import "../../design/uitl";
 
  .snvideotext {
@@ -36,7 +36,7 @@
 
          .SnVideoText-2-1-2 {
            height: 18%;
-           @include line-ome;
+           @include line-one;
          }
 
          .SnVideoText-2-1-3 {

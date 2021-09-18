@@ -7,7 +7,11 @@
       <div
         class="grid blogcircles_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div class="BlogCircles-1" v-for="data in state.Result" :key="data.navId">
+        <div
+          class="BlogCircles-1"
+          v-for="data in state.Result"
+          :key="data.navId"
+        >
           <div class="BlogCircles-1-1">
             <img :src="data.navImg" alt onerror="this.style.display='none'" />
             <!-- <img :src="data.navImg" onerror="this.src='../../assets/img/bb.jpg'" /> -->
@@ -24,56 +28,48 @@
   </div>
 </template>
 
-
-
-
-
 <script lang="ts">
-import { navigation } from '../../api/navigation';
-import { reactive, onMounted, defineComponent } from "vue";
-import BlogCirclesSidebar from './BlogCirclesSidebar.vue';
-import BlogSidebar from '../../components/raside/rAside.vue';
+import { navigation } from '../../api/http/navigation'
+import { reactive, onMounted, defineComponent } from 'vue'
+import BlogCirclesSidebar from './BlogCirclesSidebar.vue'
+import BlogSidebar from '../../components/raside/rAside.vue'
 
 export default defineComponent({
-
   components: {
-    BlogCirclesSidebar
+    BlogCirclesSidebar,
   },
   setup() {
-
     interface State {
       Result: any
     }
     const state: State = reactive({
       Result: [],
-    });
+    })
 
     const GetTypeOrderAsync = async () => {
-
-      await navigation.GetTypeOrderAsync("博客圈").then((res: any) => {
-        state.Result = res.data;
+      await navigation.GetTypeOrderAsync('博客圈').then((res: any) => {
+        state.Result = res.data
       })
-
-    };
+    }
     const urltest = (url: string) => {
-      window.open(url);
-    };
+      window.open(url)
+    }
     onMounted(async () => {
-      await GetTypeOrderAsync();
-    });
+      await GetTypeOrderAsync()
+    })
     return {
       state,
       BlogCirclesSidebar,
       BlogSidebar,
       urltest,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-@import "../../design/com";
-@import "../../design/uitl";
+@import '../../design/methodCss';
+@import '../../design/uitl';
 
 .blogcircles {
   position: fixed;
@@ -102,7 +98,7 @@ export default defineComponent({
 
         .BlogCircles-1-2-1 {
           @apply text-base font-semibold p-1 pt-2;
-          @include line-ome;
+          @include line-one;
           /*动态下划线*/
           position: relative;
           text-decoration: none;
@@ -112,7 +108,7 @@ export default defineComponent({
           }
 
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: 2px;
@@ -133,7 +129,7 @@ export default defineComponent({
         .BlogCircles-1-2-2 {
           /*background-color: #00FFFF;*/
           @apply px-1 pt-3;
-          @include line-ome;
+          @include line-one;
         }
       }
     }

@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-07-22 09:59:50
+ * @LastEditTime: 2021-09-18 15:39:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
  */
 
-import request from './axios'
+import request from '@/utils/http/axios'
 
 export class navigation {
 

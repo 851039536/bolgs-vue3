@@ -37,8 +37,8 @@
 
 <script lang="ts">
   import markdown from "@/utils/markdown.js";
-  import { article } from '../../api/article';
-  import { labels } from '../../api/labels';
+  import { article } from '../../api/http/article';
+  import { labels } from '../../api/http/labels';
   // import $ from '../assets/js/jquery.js';//非必要
   import {
 

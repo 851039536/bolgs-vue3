@@ -86,7 +86,7 @@
 
 
 <script lang="ts">
-import { one } from '../../api/one';
+import { one } from '../../api/http/one';
 import { reactive, toRefs, onMounted } from "vue";
 import { useRouter } from "vue-router";
 export default {

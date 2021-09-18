@@ -1,72 +1,5 @@
-$boxshow1: 0 2px 1px -2px rgba(0, 0, 0, .2);
-$boxshow2: 0 2px 2px 0 rgba(0, 0, 0, .14);
-$boxshow3: 0 1px 5px 0 rgba(0, 0, 0, .12);
-
-/* 背景3d边框*/
-@mixin boxshow {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: hidden;
-  border-radius: 3px;
-  -webkit-box-shadow: $boxshow1, $boxshow2, $boxshow3;
-  box-shadow: $boxshow1, $boxshow2, $boxshow3;
-}
-
-$boxshow11: 0 1px 1px -2px rgba(0, 0, 0, .2);
-$boxshow22: 0 1px 2px 0 rgba(0, 0, 0, .14);
-$boxshow33: 0 1px 3px 0 rgba(0, 0, 0, .12);
-
 $w:50%;
 $ml:25%;
-
-/* 背景3d边框*/
-@mixin boxshow1 {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-radius: 1px;
-  -webkit-box-shadow: $boxshow11, $boxshow22, $boxshow33;
-  box-shadow: $boxshow11, $boxshow22, $boxshow33;
-}
-
-@mixin boxshow2 {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 1px 1px -2px rgba(0, 0, 0, .1), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 2px 0 rgba(0, 0, 0, .10);
-  box-shadow: 0 1px 1px -2px rgba(0, 0, 0, .1), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 2px 0 rgba(0, 0, 0, .10);
-}
-
-@mixin boxshow3 {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
-}
-
-
-//波浪线
-@mixin waveline($h, $color: #f66) {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    height: $h;
-    background: linear-gradient(135deg, transparent, transparent 45%, $color, transparent 55%, transparent 100%), linear-gradient(45deg, transparent, transparent 45%, $color, transparent 55%, transparent 100%);
-    background-size: $h * 2 $h * 2;
-    content: "";
-  }
-}
-
-.waveline-text {
-  height: 20px;
-  line-height: 20px;
-  letter-spacing: 10px;
-  @include waveline(10px);
-}
 
 
 // 渐变色文字
@@ -80,7 +13,6 @@ $ml:25%;
 @mixin underline {
   border-bottom: 1px dashed #f1f1f1;
 }
-
 
 // 页面初始化
 @mixin initialize($w, $h, $mt, $mb, $ml, $mr, $bg) {
@@ -122,22 +54,26 @@ $ml:25%;
 }
 
 // 背景图片
-@mixin bg-img($imgurl) {
-  background: no-repeat center/100% url($imgurl);
+@mixin bg-img($imgUrl) {
+  background: no-repeat center/100% url($imgUrl);
 }
 
 
-/*图片模糊*/
+/**
+ * @description: 图片模糊
+/**/
 @mixin img-dim {
   filter: blur(1px);
   -webkit-filter: blur(1px);
-  /* chrome, opera */
   -ms-filter: blur(1px);
   -moz-filter: blur(1px);
   transform: scale(1.1);
 }
 
-@mixin line-ome {
+/**
+ * @description: 显示省略号
+ */
+@mixin line-one {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -155,6 +91,9 @@ $ml:25%;
   word-break: break-all;
 }
 
+/**
+ * @description: m-居中
+ */
 @mixin m-center {
   margin: 0 auto;
 }
@@ -170,14 +109,15 @@ $ml:25%;
   word-break: break-all;
 }
 
+/**
+ * @description: 滚动条
+ */
 @mixin scroll {
-
   // 滚动条美化
   ::-webkit-scrollbar {
     width: 3px;
     height: 3px;
   }
-
   ::-webkit-scrollbar-track {
     width: 6px;
     background: rgba(#101f1c, 0.1);
@@ -185,7 +125,6 @@ $ml:25%;
     -moz-border-radius: 2em;
     border-radius: 2em;
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: rgba(#101f1c, 0.5);
     background-clip: padding-box;
@@ -194,7 +133,6 @@ $ml:25%;
     -moz-border-radius: 2em;
     border-radius: 2em;
   }
-
   ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(#101f1c, 1);
   }
@@ -206,15 +144,12 @@ $ml:25%;
   @if $t !=null {
     top: $t;
   }
-
   @if $b !=null {
     bottom: $b;
   }
-
   @if $l !=null {
     left: $l;
   }
-
   @if $r !=null {
     right: $r;
   }

@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-09-15 15:47:26
+ * @LastEditTime: 2021-09-18 15:39:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
  */
-import request from './axios'
+import request from '@/utils/http/axios'
 
 export class article {
 

@@ -70,7 +70,7 @@ const routes = [{
 {
   path: '/IndexText',
   name: 'IndexText',
-  component: () => import('@/views/index/components/content/IndexText.vue')
+  component: () => import('@/views/index/components/content/IndexContent.vue')
 },
 
 {

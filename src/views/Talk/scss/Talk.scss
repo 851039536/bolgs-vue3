@@ -1,4 +1,4 @@
- @import "../../design/com";
+ @import "../../design/methodCss";
  @import "../../design/uitl";
 
  .talk {
@@ -119,7 +119,7 @@
 
        .text-title-1 {
          @apply p-1 px-3 text-lg font-medium;
-         @include line-ome;
+         @include line-one;
 
          /* 边框下划线 */
          border-bottom: 1px solid #d5d9e0;

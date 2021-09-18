@@ -1,7 +1,7 @@
 <!--
  * @Author: 移动端导航栏
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-09-17 15:13:30
+ * @LastEditTime: 2021-09-18 16:10:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/design/com.scss';
+@import '@/design/methodCss.scss';
 @import '@/design/uitl';
 
 .SnBootom {
