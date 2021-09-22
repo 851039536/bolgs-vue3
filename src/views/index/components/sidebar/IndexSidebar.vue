@@ -52,12 +52,12 @@
 <script lang="ts">
 import { getCurrentInstance, onMounted, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import { article, labels, sort } from '@/api/index'
+import { labels, sort } from '@/api/index'
 import BlogIco from '@/components/sidebarModule/sico/sIco.vue'
 import BlogInformation from '@/components/sidebarModule/sstatistics/sStatistics.vue'
 import BlogTag from '@/components/sidebarModule/stag/sTag.vue'
 import SDescribe from '@/components/describe/sDescribe.vue'
-import SCategory from '../../../../components/sidebarModule/category/sCategory.vue'
+import SCategory from '@/components/sidebarModule/category/sCategory.vue'
 import { dataList } from './data'
 import { indexSidebar } from './index'
 
@@ -121,7 +121,6 @@ export default defineComponent({
               res9: any,
               res10: any
             ) => {
-              dataList.article = res3.data
               dataList.articledata = res3.data[0].timeCreate
               dataList.UserTalk = res4.data
               dataList.User = res5.data

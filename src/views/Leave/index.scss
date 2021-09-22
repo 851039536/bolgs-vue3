@@ -10,7 +10,7 @@
    .leave_main {
 
      @apply relative h-full;
-     background-image: linear-gradient(270deg, #e96dc4, #6990f6);
+     background-image: linear-gradient(270deg, #e96dc4, #3367eb);
 
      .bubble_bgwall {
        @apply overflow-hidden relative;
@@ -208,10 +208,7 @@
            animation-delay: 3.5s;
          }
 
-         &:nth-child(35) {
-           left: 99%;
-           animation-delay: 5.1s;
-         }
+        
        }
      }
 

@@ -60,13 +60,11 @@
      }
    }
 
-   .blog {
-     @include blogs;
-   }
+  //  .blog {
+  //    @include blogs;
+  //  }
 
-   .indextest_text{
-     @apply bg-white mt-6;
-   }
+  
  }
 
  @screen xp {

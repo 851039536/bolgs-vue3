@@ -9,27 +9,21 @@
     <!--标题-->
     <div class="indexText_title">
       <a-page-header
-        :title="state.article_String.title"
-        @back="() => $router.back()"
+        :title="state.resultData.title"
+        @back="() => router.back()"
       />
     </div>
     <!-- end 标题 -->
 
     <!--内容-->
-    <div class="indextest_text">
-      <a-skeleton :loading="state.spinning" :paragraph="{ rows: 15 }" active />
-      <!-- <div id="content" class="blog" v-html="state.blog"></div> -->
-      <v-md-preview :text="state.blog"></v-md-preview>
-
-      <Vmdhtml></Vmdhtml>
-    </div>
-
+    <VmdContent :loading="state.spinning" :result="state.blog"></VmdContent>
     <!-- end 内容 -->
+
     <!--底部信息-->
     <div class="indextest_copyright">
       <div class="indextest_copyright_title">
         <!-- <div>版权属于：少年</div> -->
-        <div>本文链接：原创文章转载请注明</div>
+        <div class="text">本文链接：原创文章转载请注明</div>
         <!-- <div>
           作品采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议
           进行许可
@@ -37,26 +31,20 @@
       </div>
       <div class="indextest_comment">
         <div class>
-          <a @click="UpGive(state.article_String)">
+          <a @click="UpGive">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-qinggan
 "
               />
             </svg>
-            {{ state.article_String.give }}
+            {{ state.resultData.give }}
           </a>
         </div>
-        <div>
-          <!-- <svg class="inline-block icon" aria-hidden="true">
-            <use xlink:href="#icon-liulan" />
-          </svg>-->
-          {{ state.article_String.read }} ℃
-        </div>
-
+        <div>{{ state.resultData.read }} ℃</div>
         <div class="indextest_comment_text">{{ state.Sort.sortName }}</div>
         <div class="indextest_comment_text">{{ state.Labels.labelName }}</div>
-        <div class>{{ state.article_String.timeCreate }}</div>
+        <div class>{{ state.resultData.timeCreate }}</div>
       </div>
     </div>
   </div>
@@ -64,51 +52,55 @@
 </template>
 
 <script lang="ts">
-// import markdown from '@/utils/markdown.js'
 import { article, labels, sort } from '@/api/index'
-import { reactive, onMounted, defineComponent } from 'vue'
+import {
+  reactive,
+  onMounted,
+  defineComponent,
+  defineAsyncComponent,
+  ref,
+} from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import Vmdhtml from '@/components/editorHtml/vmdhtml.vue'
+import { tool } from '@/utils/common/tool'
+import { throttle } from '@/utils/common/dethrottle'
+import { message } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'IndexText',
-  components: { Vmdhtml },
+  components: {
+    VmdContent: defineAsyncComponent(() =>
+      import('@/components/editor/VmdContent.vue')
+    ),
+  },
   setup() {
     const route = useRoute()
     const router = useRouter()
 
     interface State {
-      article_String: any
+      resultData: any
       Labels: any
       Sort: any
       id: any
-      timebool: boolean
-      fullscreenLoading: boolean
       blog: string
       spinning: boolean
     }
     const state: State = reactive({
-      article_String: [],
+      resultData: [],
       Labels: [],
       Sort: [],
       id: route.query.id,
-      timebool: true,
-      fullscreenLoading: false,
       blog: '',
       spinning: true,
     })
 
     // 加载内容
     const GetAll = async () => {
-      await article.GetByIdAsync(state.id, true).then((res: any) => {
-        state.article_String = res.data
-        GetByIdAsync(state.article_String.labelId)
-        GetSortById(state.article_String.sortId)
-        UpRead(state.article_String)
-        // const article = markdown.marked(state.article_String.text)
-        // article.then((response: any) => {
-        state.blog = state.article_String.text
-        // })
+      await article.GetByIdAsync(state.id, false).then((res: any) => {
+        state.resultData = res.data
+        GetByIdAsync(state.resultData.labelId)
+        GetSortById(state.resultData.sortId)
+        UpRead(state.resultData)
+        state.blog = state.resultData.text
         state.spinning = false
       })
     }
@@ -124,7 +116,6 @@ export default defineComponent({
       })
     }
 
-    // 阅读数
     async function UpRead(info: any) {
       if (info == null) {
         return
@@ -133,49 +124,19 @@ export default defineComponent({
         await article.UpdatePortionAsync(info, 'Read')
       }
     }
-    // 点击数
-    async function UpGive(info: any) {
-      var timebools = state.timebool
-      if (info == null || timebools == false) {
-        return
-      } else {
-        info.give++
-        await article.UpdatePortionAsync(info, 'Give').then((res: any) => {
-          if (res.status === 200) {
-            state.timebool = false
-            var time = 10
-            var timer = setInterval(function() {
-              time--
-              if (time == 0) {
-                state.timebool = true
-                clearInterval(timer)
-              }
-            }, 1000)
-          }
-        })
-      }
-    }
 
-    async function backtop() {
-      {
-        var timer = setInterval(function() {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop
-          let ispeed = Math.floor(-osTop / 5)
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed
-          if (osTop === 0) {
-            clearInterval(timer)
-          }
-        }, 30)
-      }
-    }
+    const UpGive = throttle(() => {
+      message.info('已点赞')
+      state.resultData.give++
+      article.UpdatePortionAsync(state.resultData, 'Give')
+    }, 1000)
 
     onMounted(async () => {
       await GetAll()
-      await backtop()
+      await tool.BackTop()
     })
     return {
+      router,
       state,
       UpGive,
     }

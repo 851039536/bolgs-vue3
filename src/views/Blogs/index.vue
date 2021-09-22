@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-19 10:04:36
- * @LastEditTime: 2021-09-14 18:10:43
+ * @LastEditTime: 2021-09-22 11:00:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\Blogs.vue
@@ -39,6 +39,7 @@ import BlogsSidebar from './components/BlogsSidebar.vue'
 import { blogsList } from './components/data'
 import BlogsContent from './components/BlogsContent.vue'
 import { blogs } from './index'
+import { tool } from '@/utils/common/tool'
 
 export default defineComponent({
   components: { BlogsSidebar, SAspin, BlogsContent },
@@ -47,22 +48,7 @@ export default defineComponent({
     async function currentchange(val: number): Promise<void> {
       blogsList.page = val
       await blogs.GetFySortTitle()
-      await backtop()
-    }
-
-    const backtop = async () => {
-      {
-        let timer = setInterval(function() {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop
-          let ispeed = Math.floor(-osTop / 5)
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed
-          if (osTop === 0) {
-            clearInterval(timer)
-          }
-        }, 30)
-      }
+      await tool.BackTop()
     }
 
     onMounted(async () => {

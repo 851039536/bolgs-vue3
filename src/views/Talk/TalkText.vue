@@ -26,8 +26,10 @@
         <div class>
           <a @click="UpGive(newinfo)">
             <svg class="inline-block icon" aria-hidden="true">
-              <use xlink:href="#icon-qinggan
-" />
+              <use
+                xlink:href="#icon-qinggan
+"
+              />
             </svg>
             {{ newinfo.give }}
           </a>
@@ -56,30 +58,25 @@
   </div>
 </template>
 
-
 <script lang="ts">
 // 组件导入
-import "highlight.js/styles/googlecode.css";
-import hljs from "highlight.js"; //导入代码高亮文件
-import marked from "marked"; //解析器
-import TalkSidebar from "./TalkSidebar.vue";
-import {
-  getCurrentInstance,
-  reactive,
-  toRefs,
-  onMounted,
-  onUpdated,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
+import 'highlight.js/styles/googlecode.css'
+import hljs from 'highlight.js' //导入代码高亮文件
+import marked from 'marked' //解析器
+import TalkSidebar from './TalkSidebar.vue'
+import { getCurrentInstance, reactive, toRefs, onMounted, onUpdated } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { tool } from '@/utils/common/tool'
+
 // import { useRoute } from "vue-router";
 export default {
-  name: "TalkText",
+  name: 'TalkText',
   components: { TalkSidebar },
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
-    const { proxy }: any = getCurrentInstance();
-    const route = useRoute();
-    const router = useRouter();
+    const { proxy }: any = getCurrentInstance()
+    const route = useRoute()
+    const router = useRouter()
     // 数据定义
     const state: any = reactive({
       newinfo: [],
@@ -87,77 +84,60 @@ export default {
       article: [],
       timebool: true,
       fullscreenLoading: false,
-      blog: "",
+      blog: '',
       spinning: true,
-    });
+    })
     // 加载内容
     const AsyGetTest = (): void => {
       // console.log(state.id);
       proxy.$api
         .all([
           // 读取详情页数据
-          proxy.$api.get("/api/SnTalk/GetAllAsyncID?id=" + state.id),
+          proxy.$api.get('/api/SnTalk/GetAllAsyncID?id=' + state.id),
         ])
         .then(
           proxy.$api.spread((res1: any) => {
-            state.newinfo = res1.data[0];
+            state.newinfo = res1.data[0]
             // UpRead(state.newinfo);
-            state.blog = marked(state.newinfo.talkText);
-            state.spinning = false;
+            state.blog = marked(state.newinfo.talkText)
+            state.spinning = false
             // alert(this.spinning);
           })
         )
-
-    };
+    }
 
     // 博客详情
     const AsyGetTestID = (id: number): void => {
       // .带参数跳转
       router.push({
-        path: "/Indextext2",
+        path: '/Indextext2',
         query: {
           id: id,
         },
-      });
+      })
 
-      location.reload();
-    };
+      location.reload()
+    }
 
     // 代码高亮
     const highlighthandle = async () => {
-      await hljs;
-      let highlight = document.querySelectorAll("code,pre");
+      await hljs
+      let highlight = document.querySelectorAll('code,pre')
       highlight.forEach((block: any) => {
-        hljs.highlightBlock(block);
-      });
-    };
+        hljs.highlightBlock(block)
+      })
+    }
     const houtui = async () => {
-      router.go(-1);
-    };
-
-    const backtop = async () => {
-      {
-        var timer = setInterval(function () {
-          let osTop =
-            document.documentElement.scrollTop || document.body.scrollTop;
-          let ispeed = Math.floor(-osTop / 5);
-          document.documentElement.scrollTop = document.body.scrollTop =
-            osTop + ispeed;
-          // this.isTop = true;
-          if (osTop === 0) {
-            clearInterval(timer);
-          }
-        }, 30);
-      }
-    };
+      router.go(-1)
+    }
 
     onMounted(async () => {
-      await AsyGetTest();
-      await backtop();
-    });
+      await AsyGetTest()
+      await tool.BackTop()
+    })
     onUpdated(async () => {
-      await highlighthandle();
-    });
+      await highlighthandle()
+    })
     return {
       ...toRefs(state),
       AsyGetTest,
@@ -166,12 +146,11 @@ export default {
       // UpRead,
       // UpGive,
       AsyGetTestID,
-      backtop,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
-@import "./scss/TalkText.scss";
+@import './scss/TalkText.scss';
 </style>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 10:22:02
- * @LastEditTime: 2021-09-17 15:25:56
+ * @LastEditTime: 2021-09-22 15:52:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Leave\Leave.vue
@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { leave } from '@/api/http/leave'
+import { leave } from '@/api/index'
 import { reactive, onMounted, defineComponent } from 'vue'
 
 export default defineComponent({

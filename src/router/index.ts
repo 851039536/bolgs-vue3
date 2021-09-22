@@ -175,7 +175,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/Leave/Leave.vue')
+  component: () => import('@/views/leave/Leave.vue')
 },
 {
   path: '/One',
@@ -232,7 +232,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/components/editorHtml/Particulars.vue')
+  component: () => import('@/components/editor/Particulars.vue')
 },
   // {
   //   path: '/BlogsSidebar',
