@@ -1,6 +1,8 @@
 <template>
   <div id="indexsidebar">
     <div class="index_s_main">
+      <STime></STime>
+
       <!-- qq 微信  知乎图标导航 -->
       <blog-ico></blog-ico>
       <!-- end qq 微信  知乎图标导航 -->
@@ -60,9 +62,17 @@ import SDescribe from '@/components/describe/sDescribe.vue'
 import SCategory from '@/components/sidebarModule/category/sCategory.vue'
 import { dataList } from './data'
 import { indexSidebar } from './index'
+import STime from '@/components/sidebarModule/stime/sTime.vue'
 
 export default defineComponent({
-  components: { BlogInformation, BlogTag, BlogIco, SDescribe, SCategory },
+  components: {
+    BlogInformation,
+    BlogTag,
+    BlogIco,
+    SDescribe,
+    SCategory,
+    STime,
+  },
   setup() {
     const { proxy }: any = getCurrentInstance() //获取上下文实例，ctx=vue2的this
     const router = useRouter()
