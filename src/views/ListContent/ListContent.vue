@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-09 10:55:56
- * @LastEditTime: 2021-09-22 15:57:39
+ * @LastEditTime: 2021-09-27 13:55:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\ListContent\ListContent.vue
@@ -103,7 +103,6 @@ import { message } from 'ant-design-vue'
 export default {
   components: {},
   name: 'ListContent',
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const state = reactive({
       listTitle: [] as any[],
@@ -139,5 +138,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './ListContent.scss';
+@import './index.scss';
 </style>

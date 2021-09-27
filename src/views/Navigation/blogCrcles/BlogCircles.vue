@@ -3,7 +3,6 @@
     <blog-sidebar></blog-sidebar>
     <blog-circles-sidebar></blog-circles-sidebar>
     <div class="blogcircles_main animate__animated animate__fadeIn">
-      <!-- <div class="BlogCircles-2">博客圈</div> -->
       <div
         class="grid blogcircles_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
@@ -18,59 +17,48 @@
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
-              <a @click="urltest(data.navUrl)">{{ data.navTitle }}</a>
+              <a @click="circles.urltest(data.navUrl)">{{ data.navTitle }}</a>
             </div>
             <div class="BlogCircles-1-2-2">{{ data.navText }}</div>
           </div>
         </div>
       </div>
+
+      <!-- 分页 -->
+      <div class="">
+        <a-pagination size="small" show-quick-jumper />
+      </div>
+      <!-- end 分页-->
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { navigation } from '../../api/http/navigation'
-import { reactive, onMounted, defineComponent } from 'vue'
-import BlogCirclesSidebar from './BlogCirclesSidebar.vue'
-import BlogSidebar from '../../components/raside/rAside.vue'
+import { onMounted, defineComponent } from 'vue'
+import BlogCirclesSidebar from './components/Sidebar.vue'
+import BlogSidebar from '@/components/raside/rAside.vue'
+import { circles, state } from './index'
 
 export default defineComponent({
   components: {
     BlogCirclesSidebar,
   },
   setup() {
-    interface State {
-      Result: any
-    }
-    const state: State = reactive({
-      Result: [],
-    })
-
-    const GetTypeOrderAsync = async () => {
-      await navigation.GetTypeOrderAsync('博客圈').then((res: any) => {
-        state.Result = res.data
-      })
-    }
-    const urltest = (url: string) => {
-      window.open(url)
-    }
     onMounted(async () => {
-      await GetTypeOrderAsync()
+      await circles.GetTypeOrder()
     })
     return {
+      circles,
       state,
       BlogCirclesSidebar,
-      BlogSidebar,
-      urltest,
     }
   },
 })
 </script>
 
 <style lang="scss" scoped>
-@import '../../design/methodCss';
-@import '../../design/uitl';
-
+@import '@/design/methodCss';
+@import '@/design/uitl';
 .blogcircles {
   position: fixed;
   @include w-h(100%, 100%);

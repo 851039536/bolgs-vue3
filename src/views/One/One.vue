@@ -45,7 +45,7 @@
       <!-- end list -->
 
       <!-- 分页 -->
-      <div class="IndexTitle-page">
+      <div class="">
         <a-pagination
           size="small"
           @change="currentchange"

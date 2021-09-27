@@ -9,7 +9,7 @@
         <div class="FavSidebar_itme_1">最近添加</div>
         <div
           class="FavSidebar_itme_2"
-          v-for="result in Navigation"
+          v-for="result in state.resultData"
           :key="result.navId"
         >
           <div class="itme_1">
@@ -24,8 +24,10 @@
         <div class="FavSidebar_f_title">站点信息</div>
         <div class="FavSidebar_f_content">
           <div class="flex">
-            <div class="FavSidebar_f_content_name">文章数量:</div>
-            <div class="FavSidebar_f_content_text">{{ resultCount }}篇</div>
+            <div class="FavSidebar_f_content_name">内容数量:</div>
+            <div class="FavSidebar_f_content_text">
+              {{ state.resultCount }}篇
+            </div>
           </div>
         </div>
       </div>
@@ -35,34 +37,35 @@
 </template>
 
 <script lang="ts">
-import { navigation } from '../../api/http/navigation'
-import { reactive, toRefs, onMounted } from 'vue'
+import { navigation } from '@/api/index'
+import { reactive, toRefs, onMounted, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-export default {
-  name: 'FavSidebar',
+export default defineComponent({
   components: {},
   setup() {
     const router = useRouter()
-    // 加载路由
-    // const route = useRoute();
-    const state = reactive({
-      Navigation: [],
-      //当前默认页
-      barFixed: false,
-      resultCount: '',
+
+    interface State {
+      resultData: any
+      resultCount: number
+    }
+    const state: State = reactive({
+      resultData: [],
+      resultCount: 0,
     })
 
     const GetAll = async () => {
-      await navigation.GetFyAllAsync('all', 1, 10, true).then((res: any) => {
-        state.Navigation = res.data
-      })
+      await navigation
+        .GetFyAllAsync('all', 1, 10, true, true)
+        .then((res: any) => {
+          state.resultData = res.data
+        })
       await navigation.GetCountAsync().then((res: any) => {
         state.resultCount = res.data
       })
     }
 
     const AsyGetTestID = (id: number) => {
-      //       // .带参数跳转
       router.push({
         path: '/TalkText',
         query: {
@@ -73,21 +76,20 @@ export default {
     onMounted(async () => {
       await GetAll()
     })
-    return { ...toRefs(state), GetAll, AsyGetTestID }
+    return { state }
   },
-}
+})
 </script>
 <style lang="scss" scoped>
-@import '../../design/methodCss';
-@import '../../design/uitl';
+@import '@/design/methodCss';
+@import '@/design/uitl';
 #FavSidebar {
   position: fixed;
   @include excursion($Text_height, null, null, $sidebar_r_r);
   @include w-h(20%, 90%);
   @apply ml-3;
   #FavSidebar_main {
-    @include w-h(100%, 100%);
-    overflow: auto;
+    @apply w-full h-full overflow-auto;
     .el-calendar-table .el-calendar-day {
       height: 44px !important;
     }
@@ -139,6 +141,12 @@ export default {
         }
       }
     }
+  }
+}
+
+@screen xp {
+  #FavSidebar {
+    display: none;
   }
 }
 </style>

@@ -16,9 +16,9 @@
             <p class="oftware_content__frame-1">
               <a>剧本谈</a>
             </p>
-            <p
-              class="oftware_content__frame-2"
-            >时隔30个小时，你终于发了信息给我，你说“宝贝，我想你了。”，我很开心，我终于以为我的舔狗日子到了，可没想到信息发出来两秒都没有，你就撤回了，你说发错了，当我说准备要回没关系的时候，我看见了红色的感叹号。</p>
+            <p class="oftware_content__frame-2">
+              时隔30个小时，你终于发了信息给我，你说“宝贝，我想你了。”，我很开心，我终于以为我的舔狗日子到了，可没想到信息发出来两秒都没有，你就撤回了，你说发错了，当我说准备要回没关系的时候，我看见了红色的感叹号。
+            </p>
 
             <p class="oftware_content__frame-3">
               <span>剧本</span>
@@ -41,9 +41,7 @@
           <div class="oftware_content__frame">
             <p class="oftware_content__frame-1">
               <a @click="skip(data.oneId)">
-                {{
-                  data.oneTitle
-                }}
+                {{ data.oneTitle }}
               </a>
             </p>
             <p class="oftware_content__frame-2">{{ data.oneText }}</p>
@@ -63,67 +61,68 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from "vue";
+import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
 // import OneSidebar from "./OneSidebar.vue";
-import { message } from "ant-design-vue";
-import FavSidebar from '../Navigation/FavSidebar.vue';
-import { useRouter } from "vue-router";
+import { message } from 'ant-design-vue'
+import FavSidebar from '../navigation/favorite/FavSidebar.vue'
+import { useRouter } from 'vue-router'
 export default {
-  name: "Software",
+  name: 'Software',
   components: { FavSidebar },
-  setup(): { getOne: () => void; skip: (id: number) => void; give: (id: number) => void; } {
-    const { proxy }: any = getCurrentInstance();
+  setup(): {
+    getOne: () => void
+    skip: (id: number) => void
+    give: (id: number) => void
+  } {
+    const { proxy }: any = getCurrentInstance()
     const state: any = reactive({
       dataTest: [],
       dataOne: [],
       text: [],
       modal2Visible: false,
-    });
+    })
 
-    const router = useRouter();
+    const router = useRouter()
     const skip = async (id: number) => {
-
       await router.push({
-        path: "/SoftwareContent",
+        path: '/SoftwareContent',
         query: {
           id: id,
         },
-      });
-
-    };
+      })
+    }
 
     const getOne = () => {
       proxy.$api
         .all([
           // 读取一条内容
           proxy.$api.get(
-            "/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true"
+            '/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true'
           ),
           //查询最新发布前十内容
           proxy.$api.get(
-            "/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true"
+            '/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true'
           ),
         ])
         .then(
           proxy.$api.spread((res1: any, res2: any) => {
-            state.dataOne = res1.data[0];
-            state.dataTest = res2.data;
+            state.dataOne = res1.data[0]
+            state.dataTest = res2.data
           })
         )
-
-    };
+    }
 
     const give = (id: number) => {
-      message.info(id + "功能未完成");
-    };
+      message.info(id + '功能未完成')
+    }
     onMounted(async () => {
-      await getOne();
-    });
-    return { ...toRefs(state), getOne, skip, give };
+      await getOne()
+    })
+    return { ...toRefs(state), getOne, skip, give }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "./scss/Software.scss";
+@import './scss/Software.scss';
 </style>

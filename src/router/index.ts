@@ -114,7 +114,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/Navigation/Navigation.vue')
+  component: () => import('@/views/navigation/website/Navigation.vue')
 },
 
 {
@@ -123,7 +123,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/Navigation/BlogCircles.vue')
+  component: () => import('@/views/navigation/blogCrcles/BlogCircles.vue')
 },
 
 {
@@ -132,7 +132,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/Navigation/Favorite.vue')
+  component: () => import('@/views/navigation/favorite/Favorite.vue')
 },
 
 {
@@ -208,7 +208,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/ListContent/ListContent.vue')
+  component: () => import('@/views/listContent/ListContent.vue')
 },
 {
   path: '/Software',

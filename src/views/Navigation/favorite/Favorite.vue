@@ -8,9 +8,9 @@
     <div id="favorite_main" class="animate__animated animate__fadeIn">
       <!-- 分类列表 -->
       <div class="flex flex-wrap">
-        <div class="favorite_type" v-for="text in type" :key="text.id">
+        <div class="favorite_type" v-for="text in state.type" :key="text.id">
           <div class="favorite_type_name">
-            <a @click="GetSnNavigation(text.title)">{{ text.title }}</a>
+            <a @click="GetAll(text.title)">{{ text.title }}</a>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
       <div class="flex flex-wrap favorite_content">
         <div
           class="favorite_content_text"
-          v-for="info in text"
+          v-for="info in state.text"
           :key="info.navId"
         >
           <div class="favorite_content_text-1">
@@ -36,8 +36,9 @@
         <a-pagination
           size="small"
           @change="currentchange"
-          :total="count"
-          :pageSize="pagesize"
+          :total="state.count"
+          :pageSize="state.pagesize"
+          :current="state.current"
           show-quick-jumper
         />
       </div>
@@ -47,41 +48,70 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, onMounted } from 'vue'
+import { reactive, onMounted, defineComponent } from 'vue'
 import FavSidebar from './FavSidebar.vue'
-import { navigation } from '../../api/http/navigation'
+import { navigation } from '@/api/index'
 
-export default {
+export default defineComponent({
   components: { FavSidebar },
-  name: 'Favorite',
   setup() {
-    // 数据定义
-    const state = reactive({
+    interface State {
+      text: any
+      type: any
+      page: number
+      pagesize: number
+      count: number
+      title: string
+      current: number
+    }
+    const state: State = reactive({
       text: [],
       type: [],
+      page: 1,
+      pagesize: 12,
+      count: 0,
+      title: '',
+      current: 1,
     })
-    const GetSnNavigation = (name: string) => {
-      navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
+    const GetAll = async (name: string) => {
+      state.title = name
+      state.current = 1
+      await navigation.CountType(state.title, true).then((res: any) => {
+        state.count = res.data
+      })
+
+      await navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
         state.type = res.data
       })
-      navigation.GetTypeOrderAsync(name).then((res: any) => {
-        state.text = res.data
-      })
+      await navigation
+        .GetFyAllAsync(name, state.page, state.pagesize, true, true)
+        .then((res: any) => {
+          state.text = res.data
+        })
+    }
+
+    const currentchange = async (val: number) => {
+      state.current = val
+      await navigation
+        .GetFyAllAsync(state.title, val, state.pagesize, true, true)
+        .then((res: any) => {
+          state.text = res.data
+        })
     }
     const urltest = (url: string) => {
       window.open(url)
     }
     onMounted(async () => {
-      await GetSnNavigation('收藏')
+      await GetAll('文档')
     })
-    return { ...toRefs(state), GetSnNavigation, urltest }
+    return { state, GetAll, urltest, currentchange }
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>
-@import '../../design/methodCss';
-@import '../../design/uitl';
+@import '@/design/methodCss';
+@import '@/design/uitl';
 
 #favorite {
   @apply w-full h-full;
@@ -102,7 +132,7 @@ export default {
         @include w-h(31%, 100px);
         @apply m-auto;
         background-color: #f5f7fd;
-        @apply mt-2 ml-2   rounded-sm;
+        @apply mt-2 ml-2 mb-2  rounded-sm;
         .favorite_content_text-1 {
           @apply px-1 text-base font-semibold;
           height: 25%;
