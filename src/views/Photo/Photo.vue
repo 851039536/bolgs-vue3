@@ -1,7 +1,7 @@
 <!--
  * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2021-09-10 11:56:20
+ * @LastEditTime: 2021-09-29 15:49:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
@@ -126,31 +126,40 @@ export default {
 
 .photo {
   @include initialize(94%, null, 3.6%, null, 3%, null, #ffffff);
+
   @apply shadow rounded-md;
+
   .photo_title {
     @include underline;
+
     margin-bottom: 6px;
+
     p {
       @apply px-1 py-2 m-2 text-lg font-medium;
     }
   }
+
   .photo_img {
     @apply relative m-3;
     @apply rounded-md shadow;
 
     img {
       @include w-h(100%, 300px);
+
+      padding: 5px;
       border: 1px solid #ddd;
       border-radius: 4px;
-      padding: 5px;
     }
 
     a {
       position: absolute;
+
       @include excursion(null, 3%, null, 3%);
     }
+
     .photo_text {
       color: #5f6c7b;
+
       @apply p-2 px-4 text-base cursor-pointer hover:text-red-300;
     }
   }

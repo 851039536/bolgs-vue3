@@ -2,27 +2,29 @@
 @import "@/design/uitl";
 
 /* indextitle
-----------------------------------------------------------------*/
+---------------------------------------------------------------- */
 .indextitle {
-
   @include initialize(50%, 92%, 3.6%, null, 25%, null, null);
-  @apply shadow;
 
+  @apply shadow;
 
   .indextitle_img {
     @include w-h(null, 160px);
+
     background: no-repeat center/100% url("../../../../assets/img/bg.jpg");
+
     @apply shadow;
   }
 
   .indextitle_content {
     @include w-h(99%, 155px);
+
     @apply mb-3 mt-2 m-auto;
     @apply bg-white shadow rounded-md;
 
     .indextitle_text_div {
-
       @apply flex;
+
       @include w-h(null, 79%);
 
       .indextitle_title_div {
@@ -30,16 +32,21 @@
 
         .indextitle_title {
           height: 25%;
+
           @apply px-3 pt-1 m-1;
           @apply text-base font-semibold cursor-pointer;
+
           @include line-one;
         }
 
         .indextitle_title_text {
           color: #666;
+
           @include w-h(null, 55%);
+
           @apply px-3 m-1 mt-2;
           @apply text-sm font-thin leading-relaxed;
+
           @include line-numbers(3);
         }
 
@@ -51,7 +58,6 @@
             @apply text-center;
           }
         }
-
       }
     }
   }

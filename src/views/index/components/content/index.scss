@@ -1,78 +1,78 @@
- @import "@/design/methodCss";
- @import "@/design/uitl";
+@import "@/design/methodCss";
+@import "@/design/uitl";
 
- 
- /* indextext
-----------------------------------------------------------------*/
- .indextext {
-   @include initialize($w, null, 1px, null, $ml, null, null);
 
-   /* 底部信息 */
-   .indextest_copyright {
-     @apply shadow rounded;
-     @apply cursor-pointer bg-white text-black;
+/* indextext
+---------------------------------------------------------------- */
+.indextext {
+  @include initialize($w, null, 1px, null, $ml, null, null);
 
-     .indextest_copyright_title {
-       @apply p-1;
+  /* 底部信息 */
+  .indextest_copyright {
+    @apply shadow rounded;
+    @apply cursor-pointer bg-white text-black;
 
-       div {
-         border-bottom: 1px dashed #f1f1f1;
-         @apply p-1 m-1 text-sm font-light;
-       }
-     }
+    .indextest_copyright_title {
+      @apply p-1;
 
-     .indextest_comment {
-       @apply flex;
+      div {
+        border-bottom: 1px dashed #f1f1f1;
 
-       .indextest_comment_text {
-         @apply bg-blue-200 shadow rounded-sm;
-       }
+        @apply p-1 m-1 text-sm font-light;
+      }
+    }
 
-       div {
-         @apply px-1 py-1 m-2 text-sm font-light text-center;
-       }
-     }
-   }
+    .indextest_comment {
+      @apply flex;
 
-   .icons {
-     @include w-h(1.5em, 1.5em);
-   }
+      .indextest_comment_text {
+        @apply bg-blue-200 shadow rounded-sm;
+      }
 
-   /*返回上一页*/
-   .indexText_title {
-     position: relative;
-     @include initialize(null, 40px, 6.5%, null, null, null, #ffffff);
-     @apply shadow rounded cursor-pointer;
+      div {
+        @apply px-1 py-1 m-2 text-sm font-light text-center;
+      }
+    }
+  }
 
-     .ant-page-header-heading-title {
-       @apply text-lg;
-       overflow: hidden;
-       text-overflow: ellipsis;
-       white-space: nowrap;
-     }
+  .icons {
+    @include w-h(1.5em, 1.5em);
+  }
 
-     .ant-page-header {
-       @apply shadow-sm rounded-sm;
-     }
+  /* 返回上一页 */
+  .indexText_title {
+    position: relative;
 
-     .ant-page-header-back {
-       @apply mt-0;
-     }
-   }
+    @include initialize(null, 40px, 6.5%, null, null, null, #ffffff);
+
+    @apply shadow rounded cursor-pointer;
+
+    .ant-page-header-heading-title {
+      @apply text-lg;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .ant-page-header {
+      @apply shadow-sm rounded-sm;
+    }
+
+    .ant-page-header-back {
+      @apply mt-0;
+    }
+  }
 
   //  .blog {
   //    @include blogs;
   //  }
+}
 
-  
- }
+@screen xp {
+  .indextext {
+    width: 100%;
 
- @screen xp {
-   .indextext {
-     width: 100%;
-     @apply ml-0;
-   }
- }
-
-
- 
+    @apply ml-0;
+  }
+}

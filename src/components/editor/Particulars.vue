@@ -9,7 +9,7 @@
 <!-- editor.vue -->
 <template>
   <div id="Particulars">
-    <div ref="editor" style="text-align:left"></div>
+    <div ref="editor" style="text-align: left;"></div>
   </div>
 </template>
 <script>
@@ -62,7 +62,9 @@ export default {
 
 #Particulars {
   @include initialize(95%, null, null, null, null, null, null);
+
   @apply bg-gray-500 m-auto;
+
   .w-e-text-container {
     height: 100% !important;
   }

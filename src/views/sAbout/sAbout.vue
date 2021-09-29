@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="about-1-2">
-          <a>{{ state.User["brief"] }}</a>
+          <a>{{ state.User['brief'] }}</a>
         </div>
         <div class="flex items-center about-1-3">
           <div class="flex-1 about-1-3-1">
@@ -45,15 +45,19 @@
         </div>
         <div class="w-1/5 p-2 about-2-1">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-dianzan
-" />
+            <use
+              xlink:href="#icon-dianzan
+"
+            />
           </svg>
           <a @click="Getid(2)">娱乐</a>
         </div>
         <div class="w-1/5 p-2 about-2-1">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-wenzhang
-" />
+            <use
+              xlink:href="#icon-wenzhang
+"
+            />
           </svg>
           <a @click="Getid(3)">日志</a>
         </div>
@@ -83,8 +87,10 @@
           <h2>
             <svg class="inline-block icon" aria-hidden="true">
               -->
-              <use xlink:href="#icon-guanyuqunfeng
-" />
+              <use
+                xlink:href="#icon-guanyuqunfeng
+"
+              />
             </svg>
             关于我：
           </h2>
@@ -96,8 +102,10 @@
           <h2>
             <svg class="inline-block icon" aria-hidden="true">
               -->
-              <use xlink:href="#icon-shujuku1
-" />
+              <use
+                xlink:href="#icon-shujuku1
+"
+              />
             </svg>
             关于本站：
           </h2>
@@ -112,9 +120,11 @@
           <h2>
             <svg class="inline-block icon" aria-hidden="true">
               -->
-              <use xlink:href="#icon-shudan
+              <use
+                xlink:href="#icon-shudan
 
-" />
+"
+              />
             </svg>
             建站缘由
           </h2>
@@ -127,73 +137,72 @@
   </div>
 </template>
 <script lang="ts">
-import { reactive, onMounted, defineComponent, onBeforeMount } from "vue";
-import { Routers } from "../../hooks/routers";
-import { user } from "../../api/http/user";
-import { toScss } from "../../hooks/dynamicScss";
+import { reactive, onMounted, defineComponent, onBeforeMount } from 'vue'
+import { Routers } from '../../hooks/routers'
+import { user } from '../../api/http/user'
+import { toScss } from '../../hooks/dynamicScss'
 
 export default defineComponent({
   setup() {
     interface State {
-      activeClass: string,
-      errorClass: string,
-      bounceIn: string,
-      backInDown: string,
-      fadeInTopRight: string,
-      fadeIn: string,
-      User: any,
+      activeClass: string
+      errorClass: string
+      bounceIn: string
+      backInDown: string
+      fadeInTopRight: string
+      fadeIn: string
+      User: any
     }
     const state: State = reactive({
-      activeClass: "animate__animated",
-      errorClass: "animate__fadeInRightBig",
-      bounceIn: "animate__bounceIn",
-      backInDown: "animate__backInDown",
-      fadeInTopRight: "animate__fadeInTopRight",
-      fadeIn: "animate__fadeIn",
+      activeClass: 'animate__animated',
+      errorClass: 'animate__fadeInRightBig',
+      bounceIn: 'animate__bounceIn',
+      backInDown: 'animate__backInDown',
+      fadeInTopRight: 'animate__fadeInTopRight',
+      fadeIn: 'animate__fadeIn',
       User: [],
-    });
+    })
 
     const Getid = async (id: number) => {
       switch (id) {
         case 1:
-          await Routers("/index");
-          break;
+          await Routers('/index')
+          break
         case 2:
-          await Routers("/SnVideo");
-          break;
+          await Routers('/SnVideo')
+          break
         case 3:
-          await Routers("/Talk");
-          break;
+          await Routers('/Talk')
+          break
         case 4:
-          await Routers("/favorite");
-          break;
+          await Routers('/favorite')
+          break
         case 5:
-          await Routers("/Leave");
-          break;
+          await Routers('/Leave')
+          break
       }
-    };
+    }
     // 挂载开始之前被调用
     onBeforeMount(() => {
-      console.log("about");
+      console.log('about')
     })
 
     onMounted(async () => {
-      await toScss("sAbout");
-      await user.GetByIdAsync(4)
-        .then((res: any) => {
-          state.User = res.data;
-        })
-      window.scrollTo(0, 0);
-
-    });
+      await toScss('sAbout')
+      await user.GetByIdAsync(4).then((res: any) => {
+        state.User = res.data
+      })
+      window.scrollTo(0, 0)
+    })
     // 页面使用必须
     return {
       state,
       Getid,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
+@import './index.scss';
 </style>

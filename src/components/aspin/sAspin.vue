@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-13 17:56:54
- * @LastEditTime: 2021-09-17 15:45:03
+ * @LastEditTime: 2021-09-29 16:14:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\aspin\Aspin.vue
@@ -50,11 +50,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .aspin_main {
   position: fixed;
-  z-index: 20;
   top: 0;
   left: 0;
-  @apply w-full h-full bg-white;
+  z-index: 20;
   opacity: 0.6;
+
+  @apply w-full h-full bg-white;
+
   .example {
     position: absolute;
     top: 50%;

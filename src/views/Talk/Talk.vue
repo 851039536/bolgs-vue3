@@ -9,12 +9,12 @@
         <div class="text-carousel">
           <a-carousel arrows>
             <template #prevArrow>
-              <div class="custom-slick-arrow" style="left: 10px; zindex: 1">
+              <div class="custom-slick-arrow" style="left: 10px; zindex: 1;">
                 <left-circle-outlined />
               </div>
             </template>
             <template #nextArrow>
-              <div class="custom-slick-arrow" style="right: 10px">
+              <div class="custom-slick-arrow" style="right: 10px;">
                 <right-circle-outlined />
               </div>
             </template>

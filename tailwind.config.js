@@ -1,13 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2020-12-08 09:43:09
- * @LastEditTime: 2021-09-15 11:04:16
+ * @LastEditTime: 2021-09-29 15:57:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\tailwind.config.js
  */
 module.exports = {
-  // purge: ['./src/**/*.{vue,js,ts,jsx,tsx}'], //删除未使用的CSS
   purge: {
     enabled: true,
     content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -15,7 +14,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-
       'cx': {
         'max': '575px'
       },

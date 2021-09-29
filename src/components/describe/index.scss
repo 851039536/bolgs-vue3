@@ -1,13 +1,15 @@
- /* sDescribe
-----------------------------------------------------------------*/
- .sDescribe {
-   @apply mb-2 shadow rounded m-auto;
-   width: 97%;
-   color: #666;
-   @apply bg-white text-center;
+/* sDescribe
+---------------------------------------------------------------- */
+.sDescribe {
+  @apply mb-2 shadow rounded m-auto;
 
-   div>p {
-     @apply px-1 py-2 m-1;
-     @apply bg-gray-50 text-sm;
-   }
- }
+  width: 97%;
+  color: #666;
+
+  @apply bg-white text-center;
+
+  div > p {
+    @apply px-1 py-2 m-1;
+    @apply bg-gray-50 text-sm;
+  }
+}

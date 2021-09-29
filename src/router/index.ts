@@ -183,7 +183,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/One/One.vue')
+  component: () => import('@/views/one/One.vue')
 },
 {
   path: '/Book',

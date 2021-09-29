@@ -65,21 +65,23 @@ export default defineComponent({
 <style lang="scss" scoped>
 #clock {
   width: 97%;
+  color: #fff;
+  color: #0d1e24;
+  font-family: 'Share Tech Mono', monospace;
+  text-align: center;
+
   @apply p-1 mb-2 mt-1 m-auto cursor-pointer;
   @apply bg-white shadow rounded;
 
-  font-family: 'Share Tech Mono', monospace;
-  color: #ffffff;
-  text-align: center;
-  color: #0d1e24;
   .time {
-    letter-spacing: 0.05em;
-    font-size: 30px;
     padding: 5px 0;
+    font-size: 30px;
+    letter-spacing: 0.05em;
   }
+
   .date {
-    letter-spacing: 0.1em;
     font-size: 24px;
+    letter-spacing: 0.1em;
   }
 }
 </style>

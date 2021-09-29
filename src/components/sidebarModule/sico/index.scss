@@ -1,15 +1,17 @@
- @import "@/design/methodCss.scss";
- @import "@/design/uitl";
+@import "@/design/methodCss.scss";
+@import "@/design/uitl";
 
-/* blogIco 
-----------------------------------------------------------------*/
+/* blogIco
+---------------------------------------------------------------- */
 .index_si_contact {
   @include w-h(97%, 80px);
+
   @apply mb-2 mt-1 m-auto shadow rounded;
   @apply bg-gray-50;
 
   .index-si-ioc {
     @include w-h(60%, 100%);
+
     @apply flex pl-3 rounded m-auto;
     @apply bg-white items-center;
 

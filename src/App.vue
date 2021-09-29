@@ -48,5 +48,6 @@ export default {
 </script>
 <style lang="scss">
 @import './design/methodCss.scss';
+
 @include scroll; //滚动条美化 qweqw王企鹅群翁二位 王企鹅额re rrewqwewefdfd
 </style>

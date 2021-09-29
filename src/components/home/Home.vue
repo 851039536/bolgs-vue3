@@ -71,13 +71,6 @@ export default defineComponent({
   flex-direction: column;
 
   /**
-   * Instead of pushing the children apart, as in
-   * previous examples, we will group them together
-   * in the center of their container.
-   */
-  justify-content: center;
-
-  /**
    * Align the children in the center, along
    * the main axis. Because the direction is
    * "column" this has a similar effect as setting
@@ -85,6 +78,12 @@ export default defineComponent({
    */
   align-items: center;
 
+  /**
+   * Instead of pushing the children apart, as in
+   * previous examples, we will group them together
+   * in the center of their container.
+   */
+  justify-content: center;
   min-height: 300px;
   padding: 10px;
 }
@@ -100,15 +99,15 @@ export default defineComponent({
 
 .centeredPromptLabel {
   color: #86969c;
-  font-size: 30px;
   font-weight: 700;
+  font-size: 30px;
   text-align: center;
 }
 
 .centeredPromptDetails {
+  margin-bottom: 10px;
   color: #86969c;
   font-size: 16px;
-  margin-bottom: 10px;
   text-align: center;
 }
 

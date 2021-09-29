@@ -96,5 +96,4 @@ export default {
 <style lang="scss" scoped>
 @import "./scss/SnVideo.scss";
 
-
 </style>

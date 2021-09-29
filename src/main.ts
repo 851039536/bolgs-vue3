@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-18 16:50:02
+ * @LastEditTime: 2021-09-29 16:58:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -14,7 +14,9 @@ import Antd from 'ant-design-vue';
 import App from './App.vue'
 import 'ant-design-vue/dist/antd.css';
 import animated from 'animate.css'
+// import 'virtual:windi.css'
 import './index.css'
+
 
 // v-md
 // import VueMarkdownEditor from '@kangc/v-md-editor';

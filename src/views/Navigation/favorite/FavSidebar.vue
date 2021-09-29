@@ -83,19 +83,27 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@/design/methodCss';
 @import '@/design/uitl';
+
 #FavSidebar {
   position: fixed;
+
   @include excursion($Text_height, null, null, $sidebar_r_r);
   @include w-h(20%, 90%);
+
   @apply ml-3;
+
   #FavSidebar_main {
     @apply w-full h-full overflow-auto;
+
     .el-calendar-table .el-calendar-day {
       height: 44px !important;
     }
+
     .FavSidebar_describe {
       @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
       @apply mb-2 shadow rounded text-center;
+
       p {
         @apply text-sm px-2 py-4 m-1 cursor-pointer;
       }
@@ -103,19 +111,25 @@ export default defineComponent({
 
     .FavSidebar_footer {
       @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
       @apply p-1 mb-2 cursor-pointer shadow rounded;
 
       .FavSidebar_f_title {
         @apply p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer;
       }
+
       .FavSidebar_f_content {
         @apply text-sm m-2;
+
         .FavSidebar_f_content_name {
           @apply p-1;
+
           width: 35%;
         }
+
         .FavSidebar_f_content_text {
           width: 40%;
+
           @apply p-1;
         }
       }
@@ -123,19 +137,24 @@ export default defineComponent({
 
     .FavSidebar_itme {
       @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
       @apply p-1 mb-2  shadow rounded;
 
       .FavSidebar_itme_1 {
         color: #1b1e21;
+
         @apply p-1 m-1 text-sm font-semibold bg-gray-200;
       }
 
       .FavSidebar_itme_2 {
         background-color: #f5f7fd;
+
         @apply m-1 cursor-pointer;
+
         div {
           @apply p-2;
         }
+
         .itme_1 {
           @apply text-base;
         }

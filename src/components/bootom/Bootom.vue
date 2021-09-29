@@ -73,6 +73,7 @@ export default {
 .SnBootom {
   @apply fixed bottom-0 w-full z-10;
   @apply bg-white shadow text-base;
+
   .SnBootom-1 {
     div {
       @apply px-2 py-3 m-2 text-center text-gray-700;

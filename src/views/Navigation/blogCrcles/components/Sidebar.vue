@@ -70,20 +70,29 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@/design/methodCss';
 @import '@/design/uitl';
+
 #sidebar {
   position: fixed;
+
   @include excursion($Text_height, null, null, $sidebar_r_r);
   @include w-h(20%, 90%);
+
   @apply ml-3;
+
   #sidebar_main {
     @include w-h(100%, 100%);
+
     overflow: auto;
+
     .el-calendar-table .el-calendar-day {
       height: 44px !important;
     }
+
     .sidebar_describe {
       @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
       @apply mb-2 shadow rounded text-center;
+
       p {
         @apply text-sm px-2 py-4 m-1 cursor-pointer;
       }
@@ -91,19 +100,25 @@ export default defineComponent({
 
     .sidebar_footer {
       @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
       @apply p-1 mb-2 cursor-pointer shadow rounded;
 
       .sidebar_f_title {
         @apply p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer;
       }
+
       .sidebar_f_content {
         @apply text-sm m-2;
+
         .sidebar_f_content_name {
           @apply p-1;
+
           width: 35%;
         }
+
         .sidebar_f_content_text {
           width: 40%;
+
           @apply p-1;
         }
       }
@@ -111,19 +126,24 @@ export default defineComponent({
 
     .sidebar_itme {
       @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
       @apply p-1 mb-2  shadow rounded;
 
       .sidebar_itme_1 {
         color: #1b1e21;
+
         @apply p-1 m-1 text-sm font-semibold bg-gray-200;
       }
 
       .sidebar_itme_2 {
         background-color: #f5f7fd;
+
         @apply m-1 cursor-pointer;
+
         div {
           @apply p-2;
         }
+
         .itme_1 {
           @apply text-base;
         }

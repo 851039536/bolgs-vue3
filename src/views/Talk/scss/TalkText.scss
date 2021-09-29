@@ -1,89 +1,97 @@
- @import "../../design/methodCss";
- @import "../../design/uitl";
+@import "../../design/methodCss";
+@import "../../design/uitl";
 
- .lo {
-   position: fixed;
-   top: 50%;
-   width: 100%;
- }
+.lo {
+  position: fixed;
+  top: 50%;
+  width: 100%;
+}
 
- /*底部*/
- .article-3 {
-   @include initialize($w, null, 1px, null, $ml, null, null);
-   @apply shadow rounded;
-   @apply cursor-pointer bg-white text-black;
+/* 底部 */
+.article-3 {
+  @include initialize($w, null, 1px, null, $ml, null, null);
 
-   .article-3-1 {
-     @apply p-1;
+  @apply shadow rounded;
+  @apply cursor-pointer bg-white text-black;
 
-     div {
-       border-bottom: 1px dashed #f1f1f1;
-       @apply p-1 m-1 text-sm font-light;
-     }
-   }
+  .article-3-1 {
+    @apply p-1;
 
-   .article-3-2 {
-     div {
-       @apply text-center px-1 py-2 m-2 text-sm font-light;
-     }
-   }
- }
+    div {
+      border-bottom: 1px dashed #f1f1f1;
 
- .icons {
-   @include w-h(1.5em, 1.5em);
- }
+      @apply p-1 m-1 text-sm font-light;
+    }
+  }
 
- /*编译器组件*/
- .editor {
-   @include w-h($w, null);
-   margin: 38px 0 0 $ml;
- }
+  .article-3-2 {
+    div {
+      @apply text-center px-1 py-2 m-2 text-sm font-light;
+    }
+  }
+}
 
- /*左侧边栏*/
- .article-text {
-   @apply fixed shadow rounded-sm;
-   @include excursion(61px, null, 1%, null);
-   @include w-h(17%, bull);
-   @apply font-sans bg-white;
+.icons {
+  @include w-h(1.5em, 1.5em);
+}
 
-   .article-text-1 {
-     @apply font-semibold bg-gray-200 cursor-pointer;
-   }
+/* 编译器组件 */
+.editor {
+  @include w-h($w, null);
 
-   .article-text-2 {
-     @apply m-1 cursor-pointer;
+  margin: 38px 0 0 $ml;
+}
 
-     div {
-       @apply m-1 p-1 px-3 text-base;
-       border-bottom: 1px dashed #f1f1f1;
-     }
-   }
- }
+/* 左侧边栏 */
+.article-text {
+  @apply fixed shadow rounded-sm;
 
- /*返回上一页*/
- .Talk-title {
-   @apply relative shadow rounded cursor-pointer;
-   @include initialize($w, 30px, 60px, null, $ml, null, #ffffff);
+  @include excursion(61px, null, 1%, null);
+  @include w-h(17%, bull);
 
-   p {
-     line-height: 30px;
-     font-weight: 800;
-   }
+  @apply font-sans bg-white;
 
-   a {
-     position: absolute;
-     @include excursion(1px, null, 8px, null);
-   }
+  .article-text-1 {
+    @apply font-semibold bg-gray-200 cursor-pointer;
+  }
 
-   .ant-page-header {
-     @apply shadow rounded-sm;
-   }
+  .article-text-2 {
+    @apply m-1 cursor-pointer;
 
-   .ant-page-header-back {
-     @apply mt-1;
-   }
- }
+    div {
+      @apply m-1 p-1 px-3 text-base;
 
- .Talkblog {
-   @include blogs;
- }
+      border-bottom: 1px dashed #f1f1f1;
+    }
+  }
+}
+
+/* 返回上一页 */
+.Talk-title {
+  @apply relative shadow rounded cursor-pointer;
+
+  @include initialize($w, 30px, 60px, null, $ml, null, #ffffff);
+
+  p {
+    font-weight: 800;
+    line-height: 30px;
+  }
+
+  a {
+    position: absolute;
+
+    @include excursion(1px, null, 8px, null);
+  }
+
+  .ant-page-header {
+    @apply shadow rounded-sm;
+  }
+
+  .ant-page-header-back {
+    @apply mt-1;
+  }
+}
+
+.Talkblog {
+  @include blogs;
+}

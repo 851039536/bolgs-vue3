@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:18:11
- * @LastEditTime: 2021-09-07 14:00:22
+ * @LastEditTime: 2021-09-29 10:07:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\.eslintrc.js
@@ -17,7 +17,6 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-unused-vars': 'off',
     // 允许非空断言
@@ -33,5 +32,9 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
 
 
+  },
+  globals: {
+    'defineProps': true
   }
+
 }

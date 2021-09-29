@@ -12,7 +12,7 @@
             show-search
             v-model:value="blogsSiList.sntitle"
             placeholder="input search text"
-            style="width: 200px"
+            style="width: 200px;"
             :show-arrow="false"
             :filter-option="false"
             @search="SearchTitle"

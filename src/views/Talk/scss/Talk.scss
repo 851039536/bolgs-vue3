@@ -1,160 +1,170 @@
- @import "../../design/methodCss";
- @import "../../design/uitl";
+@import "../../design/methodCss";
+@import "../../design/uitl";
 
- .talk {
-   @include initialize($w, 100%, $Text_height, null, $ml, null, null);
+.talk {
+  @include initialize($w, 100%, $Text_height, null, $ml, null, null);
 
-   .talk-text {
-     .text-carousel {
+  .talk-text {
+    .text-carousel {
+      /* For demo */
+      .ant-carousel ::v-deep(.slick-slide) {
+        height: 140px;
+        // background: #364d79;
+        overflow: hidden;
+        line-height: 160px;
+        text-align: center;
+      }
 
-       /* For demo */
-       .ant-carousel ::v-deep(.slick-slide) {
-         text-align: center;
-         height: 140px;
-         line-height: 160px;
-         // background: #364d79;
-         overflow: hidden;
-       }
+      .ant-carousel ::v-deep(.slick-arrow.custom-slick-arrow) {
+        width: 25px;
+        height: 25px;
+        color: #fff;
+        font-size: 25px;
+        background-color: rgba(31, 45, 61, 0.11);
+        opacity: 0.3;
+      }
 
-       .ant-carousel ::v-deep(.slick-arrow.custom-slick-arrow) {
-         width: 25px;
-         height: 25px;
-         font-size: 25px;
-         color: #fff;
-         background-color: rgba(31, 45, 61, 0.11);
-         opacity: 0.3;
-       }
+      .ant-carousel ::v-deep(.custom-slick-arrow::before) {
+        display: none;
+      }
 
-       .ant-carousel ::v-deep(.custom-slick-arrow:before) {
-         display: none;
-       }
+      .ant-carousel ::v-deep(.custom-slick-arrow:hover) {
+        opacity: 0.5;
+      }
 
-       .ant-carousel ::v-deep(.custom-slick-arrow:hover) {
-         opacity: 0.5;
-       }
+      .ant-carousel ::v-deep(.slick-slide h3) {
+        color: #fff;
+      }
 
-       .ant-carousel ::v-deep(.slick-slide h3) {
-         color: #fff;
-       }
+      div {
+        img {
+          @include w-h(100%, 100%);
+        }
+      }
 
-       div {
-         img {
-           @include w-h(100%, 100%);
-         }
-       }
+      /* 父元素 */
+      position: relative;
 
-       /*父元素*/
-       position: relative;
-       @apply shadow rounded-sm;
+      @apply shadow rounded-sm;
 
-       .text-carousel-1 {
-         /*绝对定位*/
-         position: absolute;
-         width: 100px;
-         left: 7%;
-         top: 36%;
+      .text-carousel-1 {
+        /* 绝对定位 */
+        position: absolute;
+        top: 36%;
+        left: 7%;
+        width: 100px;
 
-         h4 {
-           color: #ffffff;
-           @apply text-2xl;
-         }
-       }
-     }
+        h4 {
+          color: #fff;
 
-     .talk-text-2 {
-       @apply mt-3;
+          @apply text-2xl;
+        }
+      }
+    }
 
-       .talk-text-2-1 {
-         @include w-h(100%, 120px);
-         @apply mt-4 m-auto;
-         @apply shadow rounded bg-white;
+    .talk-text-2 {
+      @apply mt-3;
 
-         // 左边图片
-         .talk-text-2-1-1 {
-           @include w-h(25%, 100%);
-           @apply shadow-sm;
+      .talk-text-2-1 {
+        @include w-h(100%, 120px);
 
-           img {
-             @include w-h(100%, 100%);
-           }
-         }
+        @apply mt-4 m-auto;
+        @apply shadow rounded bg-white;
 
-         // 右边内容
-         .talk-text-2-1-2 {
-           @include w-h(100%, 100%);
-           @apply text-justify;
+        // 左边图片
+        .talk-text-2-1-1 {
+          @include w-h(25%, 100%);
 
-           // 标题 作者 日期
-           .talk-text-2-1-2-1 {
-             height: 30%;
+          @apply shadow-sm;
 
-             div {
-               @apply p-1 px-4 pt-2 text-xl cursor-pointer font-normal antialiased;
-             }
-           }
+          img {
+            @include w-h(100%, 100%);
+          }
+        }
 
-           // 内容
-           .talk-text-2-1-2-2 {
-             height: 40%;
-             @apply p-1 pt-2 px-4 text-sm font-light antialiased;
-             @include line-number;
-           }
+        // 右边内容
+        .talk-text-2-1-2 {
+          @include w-h(100%, 100%);
 
-           .talk-text-2-1-2-3 {
-             height: 30%;
-             @apply px-4 pt-2 text-sm cursor-pointer;
+          @apply text-justify;
 
-             div {
-               @include w-h(10%, 100%);
-               @apply p-1;
-             }
-           }
-         }
-       }
-     }
+          // 标题 作者 日期
+          .talk-text-2-1-2-1 {
+            height: 30%;
 
-     .text-title {
-       @apply mt-2 w-full;
-       @apply bg-white text-base shadow-sm rounded p-2;
+            div {
+              @apply p-1 px-4 pt-2 text-xl cursor-pointer font-normal antialiased;
+            }
+          }
 
-       .text-title-1 {
-         @apply p-1 px-3 text-lg font-medium;
-         @include line-one;
+          // 内容
+          .talk-text-2-1-2-2 {
+            height: 40%;
 
-         /* 边框下划线 */
-         border-bottom: 1px solid #d5d9e0;
-       }
+            @apply p-1 pt-2 px-4 text-sm font-light antialiased;
 
-       .text-title-2 {
-         @apply p-1 px-3 text-base text-gray-500 font-light;
-       }
-     }
+            @include line-number;
+          }
 
-     .text-page {
-       @apply p-1 m-1;
-     }
+          .talk-text-2-1-2-3 {
+            height: 30%;
 
-     .asas {
-       @apply bg-red-400;
-     }
-   }
- }
+            @apply px-4 pt-2 text-sm cursor-pointer;
 
- @screen xp {
-   .TalkSidebar {
-     @apply hidden;
-   }
+            div {
+              @include w-h(10%, 100%);
 
-   .talk {
-     width: 100%;
-     @apply ml-0;
+              @apply p-1;
+            }
+          }
+        }
+      }
+    }
 
-     .talk-text-1 {
-       @apply hidden;
-     }
+    .text-title {
+      @apply mt-2 w-full;
+      @apply bg-white text-base shadow-sm rounded p-2;
 
-     .text-page {
-       height: 110px;
-     }
-   }
- }
+      .text-title-1 {
+        @apply p-1 px-3 text-lg font-medium;
+
+        @include line-one;
+
+        /* 边框下划线 */
+        border-bottom: 1px solid #d5d9e0;
+      }
+
+      .text-title-2 {
+        @apply p-1 px-3 text-base text-gray-500 font-light;
+      }
+    }
+
+    .text-page {
+      @apply p-1 m-1;
+    }
+
+    .asas {
+      @apply bg-red-400;
+    }
+  }
+}
+
+@screen xp {
+  .TalkSidebar {
+    @apply hidden;
+  }
+
+  .talk {
+    width: 100%;
+
+    @apply ml-0;
+
+    .talk-text-1 {
+      @apply hidden;
+    }
+
+    .text-page {
+      height: 110px;
+    }
+  }
+}
