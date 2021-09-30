@@ -1,11 +1,13 @@
 <!--
  * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2021-09-29 15:49:23
+ * @LastEditTime: 2021-09-30 11:48:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
 -->
+
+<script setup lang="ts"></script>
 <template>
   <div>
     <div class="photo animate__animated animate__fadeIn">
@@ -113,16 +115,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  components: {},
-  name: 'Photo',
-}
-</script>
-
 <style lang="scss" scoped>
-@import '../../design/methodCss';
-@import '../../design/uitl';
+@import '@/design/methodCss';
+@import '@/design/uitl';
 
 .photo {
   @include initialize(94%, null, 3.6%, null, 3%, null, #ffffff);

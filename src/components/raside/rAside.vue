@@ -1,7 +1,7 @@
 <!--
  * @Author: 博客侧边栏
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-09-17 16:23:59
+ * @LastEditTime: 2021-09-30 15:58:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
@@ -23,11 +23,11 @@
       </div>
 
       <div class="si_website">
-        <a href="http://oykperson.xyz">http://oykperson.xyz</a>
+        <a href="http://oykperson.xyz">http://www.oykperson.xyz</a>
       </div>
       <div class="si_described">
         <p class="si_described_text">
-          SN © 2019. All Rights Reserved. 粤ICP备19130826号 2017 - 2020 Junior
+          SN © 2021.Rights Reserved. 备案:粤ICP备19130826号
         </p>
       </div>
     </div>

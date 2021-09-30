@@ -105,7 +105,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/Photo/Photo.vue')
+  component: () => import('@/views/photo/Photo.vue')
 },
 
 {
@@ -153,12 +153,12 @@ const routes = [{
 },
 
 {
-  path: '/SnVideo',
-  name: 'SnVideo',
+  path: '/Svideo',
+  name: 'Svideo',
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/SnVideo/SnVideo.vue')
+  component: () => import('@/views/svideo/Svideo.vue')
 },
 
 {
@@ -167,7 +167,7 @@ const routes = [{
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/SnVideo/SnVideoText.vue')
+  component: () => import('@/views/svideo/SnVideoText.vue')
 },
 {
   path: '/Leave',
@@ -233,6 +233,14 @@ const routes = [{
     keepAlive: false
   },
   component: () => import('@/components/editor/Particulars.vue')
+},
+// ------------------------------------------------------------------------------admin---------------------------------------------------
+// ------------------------------------------------------------------------------admin---------------------------------------------------
+// ------------------------------------------------------------------------------admin---------------------------------------------------
+{
+  path: '/Login',
+  name: 'Login',
+  component: () => import('@/views/admin/login/Login.vue')
 },
   // {
   //   path: '/BlogsSidebar',

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:49:57
- * @LastEditTime: 2021-09-03 13:39:30
+ * @LastEditTime: 2021-09-30 15:27:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideoText.vue
@@ -12,7 +12,11 @@
       <div
         class="col-gap-4 SnVideoText-2 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
       >
-        <div class="m-2 SnVideoText-2-1" v-for="info in newvideo" :key="info.vId">
+        <div
+          class="m-2 SnVideoText-2-1"
+          v-for="info in newvideo"
+          :key="info.vId"
+        >
           <div class="SnVideoText-2-1-1">
             <!-- <img :src="info.vImg" alt="" /> -->
             <img src="../../assets/img/sp.png" alt />
@@ -24,8 +28,8 @@
             {{
               info.vData
                 .toLocaleString()
-                .replace(/T/g, " ")
-                .replace(/\.[\d]{3}Z/, "")
+                .replace(/T/g, ' ')
+                .replace(/\.[\d]{3}Z/, '')
             }}
           </div>
         </div>
@@ -47,60 +51,49 @@
 </template>
 
 <script lang="ts">
-
-import { video } from '../../api/http/video';
-import {
-  reactive,
-  toRefs,
-  onMounted
-} from "vue";
-import {
-  useRoute
-} from "vue-router";
+import { video } from '../../api/http/video'
+import { reactive, toRefs, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 export default {
-  name: "SnVideoText",
+  name: 'SnVideoText',
   setup() {
     // 加载路由
-    const route = useRoute();
+    const route = useRoute()
     // 数据定义
     const state = reactive({
       id: route.query.id,
-      videourl: "",
+      videourl: '',
       type: null,
       newvideo: [] as any,
-    });
+    })
 
     const getvideo = async () => {
       await video.GetByIdAsync(state.id).then((res: any) => {
-        state.videourl = res.data.vUrl;
-        state.type = res.data.vTypeid;
+        state.videourl = res.data.vUrl
+        state.type = res.data.vTypeid
       })
       await video.GetTypeAllAsync(state.type).then((res: any) => {
-        state.newvideo = res.data;
+        state.newvideo = res.data
       })
-
-    };
+    }
 
     const videos = async (id: number) => {
-
       await video.GetByIdAsync(id).then((res: any) => {
-        state.videourl = res.data.vUrl;
+        state.videourl = res.data.vUrl
       })
-
-
-    };
+    }
     onMounted(async () => {
-      await getvideo();
-    });
+      await getvideo()
+    })
     return {
       ...toRefs(state),
       getvideo,
-      videos
-    };
+      videos,
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "./scss/SnVideoText.scss";
+@import './scss/SnVideoText.scss';
 </style>

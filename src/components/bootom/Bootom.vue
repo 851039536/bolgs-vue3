@@ -44,7 +44,7 @@ export default {
           router.push('./Book')
           break
         case 4:
-          router.push('./SnVideo')
+          router.push('./svideo')
           break
         case 5:
           router.push('./Photo')

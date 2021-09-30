@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-09-29 14:09:09
+ * @LastEditTime: 2021-09-30 11:44:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -11,6 +11,7 @@ import { one } from '@/api/index'
 import { reactive, onMounted } from 'vue'
 import SStatistics from '@/components/sidebarModule/sstatistics/sStatistics.vue'
 import OneCategory from './components/OneCategory.vue'
+import OneSidetype from './components/OneSidetype.vue'
 
 interface State {
   resultOneType: any
@@ -49,56 +50,28 @@ const getall = async () => {
     state.readCount = res.data
   })
 }
-const setModal1Visible = async (modal2Visible: boolean, id: number) => {
-  state.modal2Visible = modal2Visible
 
-  await one.GetByIdAsync(id).then((res: any) => {
-    state.text = res.data
-
-    if (res.data == null) {
-      return
-    } else {
-      res.data.oneRead++
-      one.UpdatePortionAsync(state.text, 'read')
-    }
-  })
-}
 onMounted(async () => {
   await getall()
 })
 </script>
 
 <template>
-  <div class="One-Sidebar">
-    <div class="One-Sidebar-div">
+  <div class="one-sidebar">
+    <div class="one-sidebar-div">
       <!-- 文章描述 -->
-      <div class="One-Sidebar-describe">
-        <div class="One-Sidebar-describe-text">
+      <div class="one-sidebar-describe">
+        <div class="one-sidebar-describe-text">
           <p class>内容来源于网络</p>
         </div>
       </div>
       <!-- end文章描述 -->
+
       <!--内容框-->
-      <div class="One-Sidebar-textlist">
-        <div class="One-Sidebar-textlist-title">舔狗最爱</div>
-        <div
-          class="TalkSidebar-text-4-2"
-          v-for="result in state.resultOne"
-          :key="result.oneId"
-        >
-          <div class="p-1 pl-2 text-base">
-            <svg class="inline-block icon" aria-hidden="true">
-              <use
-                xlink:href="#icon-liulan
-"
-              />
-            </svg>
-            <a @click="setModal1Visible(true, result.oneId)">{{
-              result.oneTitle
-            }}</a>
-          </div>
-        </div>
-      </div>
+      <OneSidetype
+        title="舔狗好评"
+        :result-data="state.resultOne"
+      ></OneSidetype>
       <!-- end内容框 -->
 
       <!-- 内容分类 -->
@@ -133,5 +106,53 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import './OneSidebar.scss';
+@import '../../design/methodCss';
+@import '../../design/uitl';
+
+.one-sidebar {
+  @apply fixed ml-3;
+
+  @include excursion($Text_height, null, null, $sidebar_r_r);
+  @include w-h(20%, 90%);
+
+  .one-sidebar-div {
+    @include w-h(100%, 100%);
+
+    overflow: auto;
+
+    .one-sidebar-describe {
+      width: 97%;
+
+      @apply mb-2 m-auto;
+      @apply shadow rounded bg-white text-center;
+
+      h4 {
+        height: 2rem;
+        color: #1b1e21;
+        font-size: 15px;
+        line-height: 2.5rem;
+      }
+
+      .one-sidebar-describe-text {
+        p {
+          @apply text-sm px-2 py-4 m-1 cursor-pointer;
+        }
+      }
+    }
+  }
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: -0.1em;
+  fill: currentColor;
+}
+
+@screen xp {
+  .one-Sidebar {
+    display: none;
+  }
+}
 </style>

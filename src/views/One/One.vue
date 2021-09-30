@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 18:04:43
- * @LastEditTime: 2021-09-29 14:08:46
+ * @LastEditTime: 2021-09-30 11:33:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\views\One\One.vue
+ * @FilePath: \blogs-s\src\views\one\one.vue
 -->
 <script setup lang="ts">
 import OneSidebar from './OneSidebar.vue'
@@ -16,10 +16,10 @@ method.getOne()
 </script>
 
 <template>
-  <div class="One">
+  <div class="one">
     <blog-sidebar></blog-sidebar>
     <OneSidebar></OneSidebar>
-    <div class="One-div animate__animated animate__fadeIn">
+    <div class="one-div animate__animated animate__fadeIn">
       <!-- 头部 -->
       <OneTop
         :title="state.dataOne.oneTitle"
@@ -29,15 +29,13 @@ method.getOne()
       <!-- end 头部 -->
 
       <!-- 推荐列表 -->
-      <div class="One-recommend">
-        <div class="One-recommend-l">往期推荐!</div>
-        <div class="One-recommend-r">更多推荐!</div>
+      <div class="one-recommend">
+        <div class="one-recommend-l">往期推荐!</div>
+        <div class="one-recommend-r">更多推荐!</div>
       </div>
       <!-- end 推荐列表 -->
 
-      <!-- list -->
       <OneContent :resultData="state.resultData"></OneContent>
-      <!-- end list -->
 
       <!-- 分页 -->
       <div class="">

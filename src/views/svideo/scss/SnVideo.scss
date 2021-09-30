@@ -1,35 +1,35 @@
-@import "../../design/methodCss";
-@import "../../design/uitl";
+@import "@/design/methodCss";
+@import "@/design/uitl";
 
-#snvideo {
+#svideo {
   @apply fixed w-full h-full;
 
-  .snvideo_main {
+  .svideo_main {
     @include initialize($w, 99%, 3.6%, null, $ml, null, #ffffff);
 
     @apply relative shadow rounded-sm;
 
-    .SnVideo-1 {
+    .svideo-1 {
       @include initialize(100%, null, 8px, null, 0%, null, null);
 
       @apply shadow-sm rounded-sm overflow-auto;
 
-      .snvideo_main_top {
+      .svideo_main_top {
         @apply py-1 m-2 text-base bg-gray-200 rounded text-center;
       }
     }
 
-    .snvideo_main_content {
-      @include w-h(100%, 88%);
+    .svideo_main_content {
+      @include w-h(100%, 85%);
 
       @apply overflow-auto absolute top-3;
 
-      .SnVideo-2-1 {
+      .svideo-2-1 {
         @include w-h(31%, 50%);
 
         @apply shadow m-auto mt-4;
 
-        .SnVideo-2-1-1 {
+        .svideo-2-1-1 {
           height: 65%;
 
           img {
@@ -37,7 +37,7 @@
           }
         }
 
-        .SnVideo-2-1-2 {
+        .svideo-2-1-2 {
           height: 18%;
 
           @apply text-sm p-1;
@@ -45,7 +45,7 @@
           @include line-one;
         }
 
-        .SnVideo-2-1-3 {
+        .svideo-2-1-3 {
           height: 17%;
 
           @apply p-1;
@@ -56,14 +56,14 @@
 }
 
 @screen xp {
-  #snvideo {
-    .snvideo_main {
+  #svideo {
+    .svideo_main {
       width: 100%;
 
       @apply m-0;
 
-      .snvideo_main_content {
-        .SnVideo-2-1 {
+      .svideo_main_content {
+        .svideo-2-1 {
           width: 97%;
           height: 65%;
         }

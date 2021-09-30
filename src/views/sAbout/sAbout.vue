@@ -169,7 +169,7 @@ export default defineComponent({
           await Routers('/index')
           break
         case 2:
-          await Routers('/SnVideo')
+          await Routers('/Svideo')
           break
         case 3:
           await Routers('/Talk')
@@ -182,11 +182,6 @@ export default defineComponent({
           break
       }
     }
-    // 挂载开始之前被调用
-    onBeforeMount(() => {
-      console.log('about')
-    })
-
     onMounted(async () => {
       await toScss('sAbout')
       await user.GetByIdAsync(4).then((res: any) => {
@@ -194,7 +189,7 @@ export default defineComponent({
       })
       window.scrollTo(0, 0)
     })
-    // 页面使用必须
+
     return {
       state,
       Getid,
@@ -202,7 +197,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>
