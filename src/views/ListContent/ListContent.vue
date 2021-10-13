@@ -1,12 +1,45 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-09 10:55:56
- * @LastEditTime: 2021-09-27 13:55:05
+ * @LastEditTime: 2021-10-13 15:15:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\ListContent\ListContent.vue
 -->
 
+<script lang="ts" setup>
+import { reactive, onMounted } from 'vue'
+import { listContent } from '@/api'
+import { message } from 'ant-design-vue'
+
+interface State {
+  listTitle: any
+  listHref: any
+}
+const state: State = reactive({
+  listTitle: [],
+  listHref: [],
+})
+const info = async () => {
+  message.info('功能进行中...')
+}
+const testall = async () => {
+  {
+    listContent.Cnblogs().then((res) => {
+      let str = res.data
+      for (let index = 0; index < str.length; index++) {
+        const element = str[index].split('-')
+        state.listTitle[index] = element[0]
+        state.listHref[index] = element[1]
+      }
+    })
+  }
+}
+onMounted(async () => {
+  await testall()
+  await info()
+})
+</script>
 <template>
   <div>
     <div class="ListContent animate__animated animate__fadeIn">
@@ -24,10 +57,10 @@
             </div>
             <div
               class="ListContent_t_content"
-              v-for="(res, index) in listTitle"
+              v-for="(res, index) in state.listTitle"
               :key="index"
             >
-              <a :href="listHref[index]" target="_blank">
+              <a :href="state.listHref[index]" target="_blank">
                 <span>{{ index }}</span>
                 {{ res }}
               </a>
@@ -43,10 +76,10 @@
             </div>
             <div
               class="ListContent_t_content"
-              v-for="(res, index) in listTitle"
+              v-for="(res, index) in state.listTitle"
               :key="index"
             >
-              <a :href="listHref[index]" target="_blank">
+              <a :href="state.listHref[index]" target="_blank">
                 <span>{{ index }}</span>
                 {{ res }}
               </a>
@@ -62,10 +95,10 @@
             </div>
             <div
               class="ListContent_t_content"
-              v-for="(res, index) in listTitle"
+              v-for="(res, index) in state.listTitle"
               :key="index"
             >
-              <a :href="listHref[index]" target="_blank">
+              <a :href="state.listHref[index]" target="_blank">
                 <span>{{ index }}</span>
                 {{ res }}
               </a>
@@ -81,10 +114,10 @@
             </div>
             <div
               class="ListContent_t_content"
-              v-for="(res, index) in listTitle"
+              v-for="(res, index) in state.listTitle"
               :key="index"
             >
-              <a :href="listHref[index]" target="_blank">
+              <a :href="state.listHref[index]" target="_blank">
                 <span>{{ index }}</span>
                 {{ res }}
               </a>
@@ -95,47 +128,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { reactive, toRefs, onMounted } from 'vue'
-import { listContent } from '@/api/http/listContent'
-import { message } from 'ant-design-vue'
-export default {
-  components: {},
-  name: 'ListContent',
-  setup() {
-    const state = reactive({
-      listTitle: [] as any[],
-      listHref: [] as any[],
-    })
-    const info = () => {
-      message.info('功能进行中...')
-    }
-    const testall = async () => {
-      {
-        listContent.Cnblogs().then((res) => {
-          let str = res.data
-          for (let index = 0; index < str.length; index++) {
-            const element = str[index].split('-')
-            state.listTitle[index] = element[0]
-            state.listHref[index] = element[1]
-          }
-        })
-      }
-    }
-    onMounted(async () => {
-      await testall()
-      info()
-    })
-
-    return {
-      ...toRefs(state),
-      testall,
-      info,
-    }
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 @import './index.scss';

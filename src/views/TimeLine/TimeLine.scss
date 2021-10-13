@@ -2,7 +2,7 @@
 @import "../../design/uitl";
 
 .timeline {
-  @include initialize($w, null, 3.6%, null, $ml, null, #ffffff);
+  @include initialize($w, null, 3.4%, null, $ml, null, #ffffff);
 
   @apply text-base;
   @apply shadow rounded;

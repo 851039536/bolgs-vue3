@@ -1,11 +1,30 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-18 16:10:12
+ * @LastEditTime: 2021-10-13 14:42:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
 -->
+<script lang="ts" setup>
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useRouter } from 'vue-router'
+import SnBootom from './components/bootom/Bootom.vue'
+import SAspin from './components/aspin/sAspin.vue'
+
+const router = useRouter()
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
+</script>
+
 <template>
   <div id="app">
     <SAspin></SAspin>
@@ -22,30 +41,7 @@
     <SnBootom></SnBootom>
   </div>
 </template>
-<script lang="ts">
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
-import { useRouter } from 'vue-router'
-import SnBootom from './components/bootom/Bootom.vue'
-import SAspin from './components/aspin/sAspin.vue'
-export default {
-  components: { SnBootom, SAspin },
-  setup() {
-    const router = useRouter()
 
-    router.beforeEach((to, from, next) => {
-      NProgress.start()
-      next()
-    })
-
-    router.afterEach(() => {
-      NProgress.done()
-    })
-
-    return {}
-  },
-}
-</script>
 <style lang="scss">
 @import './design/methodCss.scss';
 

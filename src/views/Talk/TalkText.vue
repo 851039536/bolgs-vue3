@@ -143,8 +143,6 @@ export default {
       AsyGetTest,
       highlighthandle,
       houtui,
-      // UpRead,
-      // UpGive,
       AsyGetTestID,
     }
   },

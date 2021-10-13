@@ -1,11 +1,48 @@
 <!--
  * @Author: 移动端导航栏
  * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-09-18 16:10:18
+ * @LastEditTime: 2021-10-13 14:47:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\bootom.vue
 -->
+
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
+
+// 加载路由
+const router = useRouter()
+
+const skip = (num: number) => {
+  switch (num) {
+    case 1:
+      router.push('/index')
+      break
+    case 2:
+      router.push('/One')
+      break
+    case 3:
+      router.push('./Book')
+      break
+    case 4:
+      router.push('./svideo')
+      break
+    case 5:
+      router.push('./Photo')
+      break
+    case 6:
+      router.push('./index')
+      break
+    case 7:
+      router.push('./index')
+      break
+
+    default:
+      router.push('./index')
+      break
+  }
+}
+</script>
 <template>
   <div class="SnBootom">
     <div class="flex justify-around SnBootom-1">
@@ -17,54 +54,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { reactive, toRefs } from 'vue'
-import { useRouter } from 'vue-router'
-export default {
-  name: 'SnBootom',
-
-  setup() {
-    // 加载路由
-    const router = useRouter()
-    // 数据定义
-    const state: any = reactive({
-      id: 0,
-    })
-    const skip = (num: number) => {
-      // console.log(num)
-      switch (num) {
-        case 1:
-          router.push('/index')
-          break
-        case 2:
-          router.push('/One')
-          break
-        case 3:
-          router.push('./Book')
-          break
-        case 4:
-          router.push('./svideo')
-          break
-        case 5:
-          router.push('./Photo')
-          break
-        case 6:
-          router.push('./index')
-          break
-        case 7:
-          router.push('./index')
-          break
-
-        default:
-          router.push('./index')
-          break
-      }
-    }
-    return { ...toRefs(state), skip }
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 @import '@/design/methodCss.scss';

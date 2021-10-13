@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-09-30 15:52:40
+ * @LastEditTime: 2021-10-12 15:11:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
@@ -10,7 +10,7 @@
 import { video } from '@/api'
 import { reactive, onMounted } from 'vue'
 import VideoSidebar from './VideoSidebar.vue'
-import { RouterId } from '@/hooks/routers'
+import SvideoContent from './components/SvideoContent.vue'
 
 interface State {
   resultData: any
@@ -30,42 +30,41 @@ onMounted(async () => {
   <div id="svideo">
     <blog-sidebar></blog-sidebar>
     <video-sidebar></video-sidebar>
-    <div class="svideo_main animate__animated animate__fadeIn">
-      <div class="flex flex-wrap svideo_main_content">
-        <div
-          class="svideo-2-1"
-          v-for="info in state.resultData"
-          :key="info['vId']"
-        >
-          <div class="svideo-2-1-1">
-            <img src="../../assets/img/hy.jpg" />
-          </div>
-          <div class="svideo-2-1-2">
-            <a @click="RouterId('/SnVideoText', info.vId)">{{
-              info['vTitle']
-            }}</a>
-          </div>
-          <div class="svideo-2-1-3">
-            {{ info['vData'] }}
-          </div>
-        </div>
+    <SvideoContent :resultData="state.resultData"></SvideoContent>
 
-        <!-- 分页 -->
-        <!-- <div class="IndexTitle-page">
-          <a-pagination
-            size="small"
-            @change="currentchange"
-            :total="count"
-            :pageSize="pagesize"
-            show-quick-jumper
-          />
-        </div> -->
-        <!-- end 分页 -->
-      </div>
+    <!-- 分页 -->
+    <div class="IndexTitle-page">
+      <a-pagination size="small" />
+      1111
     </div>
+    <!-- end 分页 -->
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import './scss/SnVideo.scss';
+@import '@/design/methodCss';
+@import '@/design/uitl';
+
+#svideo {
+  @apply fixed w-full;
+
+  height: 92%;
+}
+
+@screen xp {
+  #svideo {
+    .svideo_main {
+      width: 100%;
+
+      @apply m-0;
+
+      .svideo_main_content {
+        .svideo-2-1 {
+          width: 97%;
+          height: 65%;
+        }
+      }
+    }
+  }
+}
 </style>

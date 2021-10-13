@@ -62,7 +62,6 @@
 
 <script lang="ts">
 import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
-// import OneSidebar from "./OneSidebar.vue";
 import { message } from 'ant-design-vue'
 import FavSidebar from '../navigation/favorite/FavSidebar.vue'
 import { useRouter } from 'vue-router'

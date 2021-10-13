@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-15 10:01:43
- * @LastEditTime: 2021-09-29 13:53:05
+ * @LastEditTime: 2021-10-13 14:57:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\Category.vue
@@ -26,9 +26,8 @@ export default defineComponent({
 
   setup() {
     const TagSkip = async (id: any) => {
-      await RouterId('/TagText', id)
+      await RouterId('/Tag', id)
     }
-
     return {
       TagSkip,
     }

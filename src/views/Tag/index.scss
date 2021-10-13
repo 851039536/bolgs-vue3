@@ -1,10 +1,10 @@
-@import "../../design/methodCss";
-@import "../../design/uitl";
+@import "@/design/methodCss";
+@import "@/design/uitl";
 
-.SnTagText {
+.tag {
   @apply fixed w-full h-full bg-green-200;
 
-  .SnTagText-main {
+  .tag-main {
     @apply absolute shadow;
 
     top: 7%;
@@ -12,9 +12,11 @@
     width: 94%;
     height: 100%;
 
-    .text {
+    .tag_content {
+      @apply flex;
+
       position: absolute;
-      top: 16.2%;
+      top: 15.8%;
 
       @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
 
@@ -48,45 +50,6 @@
 
           @apply mt-1;
         }
-      }
-    }
-
-    // 头部
-    .SnTagText-top {
-      @apply absolute rounded-sm h-full shadow bg-white;
-
-      top: 5px;
-
-      @include initialize(94%, 15%, null, null, 3%, null, null);
-
-      .tag-text-1 {
-        height: 30px;
-
-        @apply m-1 bg-gray-200 text-base font-thin shadow-sm rounded-sm;
-
-        a {
-          @apply p-1;
-        }
-      }
-    }
-
-    .vertical-text {
-      position: absolute;
-      top: 12%;
-      right: 0;
-      border-radius: 2px;
-      writing-mode: vertical-rl;
-
-      h3 {
-        padding-left: 20px;
-        color: #f66;
-        font-weight: bold;
-        font-size: 18px;
-      }
-
-      p {
-        color: #66f;
-        line-height: 30px;
       }
     }
   }

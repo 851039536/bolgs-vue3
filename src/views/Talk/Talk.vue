@@ -19,16 +19,16 @@
               </div>
             </template>
             <div>
-              <img src="../../assets/img/bg.jpg" alt />
+              <img src="@/assets/img/bg.jpg" />
             </div>
             <div>
-              <img src="../../assets/img/bg.jpg" alt />
+              <img src="@/assets/img/bg.jpg" />
             </div>
             <div>
-              <img src="../../assets/img/bg.jpg" alt />
+              <img src="@/assets/img/bg.jpg" />
             </div>
             <div>
-              <img src="../../assets/img/bg.jpg" alt />
+              <img src="@/assets/img/bg.jpg" />
             </div>
           </a-carousel>
 
@@ -36,52 +36,6 @@
             <h4>Junior</h4>
           </div>
         </div>
-
-        <!-- <div class="talk-text-2" v-for="data in dataShow" :key="data.id">
-          <div class="flex talk-text-2-1">
-            <div class="talk-text-2-1-2">
-              <div class="flex talk-text-2-1-2-1">
-                <div>
-                  {{
-                    data.talkTime
-                      .toLocaleString()
-                      .replace(/T/g, " ")
-                      .replace(/\.[\d]{3}Z/, "")
-                  }}
-                </div>
-                <div>
-                  <a @click="GetTalkid(data.id)">《{{ data.talkTitle }}》</a>
-                </div>
-              </div>
-              <div class="talk-text-2-1-2-2">{{ data.talkBrief }}</div>
-
-              <div class="flex talk-text-2-1-2-3">
-                <div>
-                  <a>Junior@</a>
-                </div>
-                <div>
-                  <svg class="inline-block icon" aria-hidden="true">
-                    <use
-                      xlink:href="#icon-dianzan2
-"
-                    />
-                  </svg>
-                  {{ data.talkGive }}
-                </div>
-                <div>
-                  <svg class="inline-block icon" aria-hidden="true">
-                    <use xlink:href="#icon-liulan" />
-                  </svg>
-                  {{ data.talkRead }}
-                </div>
-                <div>
-                  分类:
-                  {{ data.talkTypeId }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
 
         <div class="text-title" v-for="data in dataShow" :key="data.id">
           <div class="text-title-1">

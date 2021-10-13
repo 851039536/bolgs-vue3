@@ -1,11 +1,18 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-30 15:22:12
- * @LastEditTime: 2021-09-17 14:41:02
+ * @LastEditTime: 2021-10-13 14:57:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\SidebarModule\BlogIco.vue
 -->
+
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+onMounted(async () => {
+  console.log('ico')
+})
+</script>
 <template>
   <div class="index_si_contact">
     <div class="index-si-ioc">
@@ -45,19 +52,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, onMounted } from 'vue'
-
-export default defineComponent({
-  setup() {
-    onMounted(async () => {
-      console.log('ico')
-    })
-    return {}
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @import './index.scss';

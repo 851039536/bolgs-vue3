@@ -91,12 +91,12 @@ const routes = [{
 
 },
 {
-  path: '/TagText',
-  name: 'TagText',
+  path: '/Tag',
+  name: 'Tag',
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/Tag/TagText.vue')
+  component: () => import('@/views/tag/Tag.vue')
 },
 
 {
@@ -162,12 +162,12 @@ const routes = [{
 },
 
 {
-  path: '/SnVideoText',
-  name: 'SnVideoText',
+  path: '/VideoPlay',
+  name: 'VideoPlay',
   meta: {
     keepAlive: false
   },
-  component: () => import('@/views/svideo/SnVideoText.vue')
+  component: () => import('@/views/svideo/VideoPlay.vue')
 },
 {
   path: '/Leave',
@@ -233,6 +233,14 @@ const routes = [{
     keepAlive: false
   },
   component: () => import('@/components/editor/Particulars.vue')
+},
+{
+  path: '/VmdHtml',
+  name: 'VmdHtml',
+  meta: {
+    keepAlive: false
+  },
+  component: () => import('@/components/editor/VmdHtml.vue')
 },
 // ------------------------------------------------------------------------------admin---------------------------------------------------
 // ------------------------------------------------------------------------------admin---------------------------------------------------

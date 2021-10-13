@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import BlogCirclesSidebar from './components/Sidebar.vue'
+import BlogSidebar from '@/components/raside/rAside.vue'
+import { circles, state } from './index'
+
+onMounted(async () => {
+  await circles.GetTypeOrder()
+})
+</script>
 <template>
   <div class="blogcircles">
     <blog-sidebar></blog-sidebar>
@@ -12,7 +22,7 @@
           :key="data.navId"
         >
           <div class="BlogCircles-1-1">
-            <img :src="data.navImg" alt onerror="this.style.display='none'" />
+            <img :src="data.navImg" onerror="this.style.display='none'" />
             <!-- <img :src="data.navImg" onerror="this.src='../../assets/img/bb.jpg'" /> -->
           </div>
           <div class="BlogCircles-1-2">
@@ -32,29 +42,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { onMounted, defineComponent } from 'vue'
-import BlogCirclesSidebar from './components/Sidebar.vue'
-import BlogSidebar from '@/components/raside/rAside.vue'
-import { circles, state } from './index'
-
-export default defineComponent({
-  components: {
-    BlogCirclesSidebar,
-  },
-  setup() {
-    onMounted(async () => {
-      await circles.GetTypeOrder()
-    })
-    return {
-      circles,
-      state,
-      BlogCirclesSidebar,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @import '@/design/methodCss';

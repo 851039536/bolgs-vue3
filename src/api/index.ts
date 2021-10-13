@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:41:22
- * @LastEditTime: 2021-09-30 15:17:41
+ * @LastEditTime: 2021-10-13 15:12:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -16,8 +16,10 @@ import { leave } from './http/leave';
 import { navigation } from './http/navigation';
 import { one } from './http/one';
 import { video } from './http/video';
+import { user } from './http/user';
+import { listContent } from './http/listContent';
 
 
 
 
-export { article, labels, sort, usertalk, setBlog, leave, navigation, one, video };
+export { article, labels, sort, usertalk, setBlog, leave, navigation, one, video, user, listContent };

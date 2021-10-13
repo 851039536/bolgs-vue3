@@ -1,3 +1,30 @@
+<script lang="ts" setup>
+import { navigation } from '@/api/index'
+import { reactive, onMounted } from 'vue'
+
+interface State {
+  resultData: any
+  resultCount: number
+}
+const state: State = reactive({
+  resultData: [],
+  resultCount: 0,
+})
+
+const GetAll = async () => {
+  await navigation.GetFyAllAsync('all', 1, 10, true, true).then((res: any) => {
+    state.resultData = res.data
+  })
+  await navigation.GetCountAsync().then((res: any) => {
+    state.resultCount = res.data
+  })
+}
+
+onMounted(async () => {
+  await GetAll()
+})
+</script>
+
 <template>
   <div id="FavSidebar">
     <div id="FavSidebar_main">
@@ -36,50 +63,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { navigation } from '@/api/index'
-import { reactive, toRefs, onMounted, defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
-export default defineComponent({
-  components: {},
-  setup() {
-    const router = useRouter()
-
-    interface State {
-      resultData: any
-      resultCount: number
-    }
-    const state: State = reactive({
-      resultData: [],
-      resultCount: 0,
-    })
-
-    const GetAll = async () => {
-      await navigation
-        .GetFyAllAsync('all', 1, 10, true, true)
-        .then((res: any) => {
-          state.resultData = res.data
-        })
-      await navigation.GetCountAsync().then((res: any) => {
-        state.resultCount = res.data
-      })
-    }
-
-    const AsyGetTestID = (id: number) => {
-      router.push({
-        path: '/TalkText',
-        query: {
-          id: id,
-        },
-      })
-    }
-    onMounted(async () => {
-      await GetAll()
-    })
-    return { state }
-  },
-})
-</script>
 <style lang="scss" scoped>
 @import '@/design/methodCss';
 @import '@/design/uitl';

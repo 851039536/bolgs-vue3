@@ -1,12 +1,15 @@
 <!--
  * @Author: 书单
  * @Date: 2020-12-26 14:05:13
- * @LastEditTime: 2021-09-17 15:46:03
+ * @LastEditTime: 2021-10-13 15:05:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Book\Index.vue
 -->
-
+<script lang="ts" setup>
+import BookBar from './components/BookBar.vue'
+import BookFilm from './components/BookFilm.vue'
+</script>
 <template>
   <div class="book">
     <blog-sidebar></blog-sidebar>
@@ -96,18 +99,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import BookBar from './components/BookBar.vue'
-import BookFilm from './components/BookFilm.vue'
-
-export default defineComponent({
-  components: { BookBar, BookFilm },
-  setup() {
-    return {}
-  },
-})
-</script>
 <style lang="scss" scoped>
 @import './index.scss';
 </style>

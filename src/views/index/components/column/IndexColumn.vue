@@ -1,3 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-08 11:17:02
+ * @LastEditTime: 2021-10-13 15:06:10
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
+-->
+
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { setBlog } from '@/api/index'
+import { state, column } from './index'
+
+const router = useRouter()
+const stores = useStore()
+
+async function skip(id: number) {
+  await setBlog.GetByIdAsync(1, false).then((res: any) => {
+    stores.state.SetPage = res.data.setIsopen
+  })
+  if (stores.state.SetPage) {
+    const { href } = await router.resolve({
+      path: '/Particulars',
+      query: { id: id },
+    })
+    window.open(href, '_blank')
+  } else {
+    await router.push({
+      path: '/IndexText',
+      query: {
+        id: id,
+      },
+    })
+  }
+}
+onMounted(async () => {
+  await column.GetCount()
+  await column.GetFyTitle()
+})
+</script>
+
 <template>
   <div class="indextitle animate__animated animate__fadeIn">
     <a-back-top />
@@ -54,50 +98,6 @@
     <!-- end 分页-->
   </div>
 </template>
-
-<script lang="ts">
-import { onMounted, defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { setBlog } from '@/api/index'
-import { state, column } from './index'
-
-export default defineComponent({
-  setup() {
-    const router = useRouter()
-    const stores = useStore()
-
-    async function skip(id: number) {
-      await setBlog.GetByIdAsync(1, false).then((res: any) => {
-        stores.state.SetPage = res.data.setIsopen
-      })
-      if (stores.state.SetPage) {
-        const { href } = await router.resolve({
-          path: '/Particulars',
-          query: { id: id },
-        })
-        window.open(href, '_blank')
-      } else {
-        await router.push({
-          path: '/IndexText',
-          query: {
-            id: id,
-          },
-        })
-      }
-    }
-    onMounted(async () => {
-      await column.GetCount()
-      await column.GetFyTitle()
-    })
-    return {
-      state,
-      skip,
-      column,
-    }
-  },
-})
-</script>
 
 <style lang="scss">
 @import './index.scss';

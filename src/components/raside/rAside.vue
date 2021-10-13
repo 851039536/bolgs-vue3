@@ -1,16 +1,24 @@
 <!--
  * @Author: 博客侧边栏
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-09-30 15:58:48
+ * @LastEditTime: 2021-10-13 14:56:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
 -->
+
+<script lang="ts" setup>
+import { state, raside } from './index'
+import { onMounted } from 'vue'
+onMounted(async () => {
+  await raside.GetType()
+})
+</script>
 <template>
   <div id="blogSidebar">
     <div class="si_scroll">
       <div class="si_img">
-        <img src="@/assets/img/si.jpg" alt />
+        <img src="@/assets/img/si.jpg" />
       </div>
       <div
         class="si_text"
@@ -27,30 +35,14 @@
       </div>
       <div class="si_described">
         <p class="si_described_text">
-          SN © 2021.Rights Reserved. 备案:粤ICP备19130826号
+          SN © 2021.Rights Reserved. 备案 :
+          <a href="https://beian.miit.gov.cn/">粤ICP备19130826号-1</a>
         </p>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { state, raside } from './index'
-import { onMounted, defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Raside',
-  setup() {
-    onMounted(async () => {
-      await raside.GetType()
-    })
-    return {
-      state,
-      raside,
-    }
-  },
-})
-</script>
 <style lang="scss">
 @import './index.scss';
 </style>

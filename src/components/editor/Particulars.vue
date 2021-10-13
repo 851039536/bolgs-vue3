@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-07 08:43:19
- * @LastEditTime: 2021-09-18 16:10:22
+ * @LastEditTime: 2021-10-13 17:27:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Particulars.vue
@@ -57,8 +57,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../design/methodCss';
-@import '../../design/uitl';
+@import '@/design/methodCss';
+@import '@/design/uitl';
 
 #Particulars {
   @include initialize(95%, null, null, null, null, null, null);

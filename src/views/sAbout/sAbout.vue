@@ -1,3 +1,56 @@
+<script lang="ts" setup>
+import { reactive, onMounted } from 'vue'
+import { Routers } from '@/hooks/routers'
+import { user } from '@/api/index'
+import { toScss } from '@/hooks/dynamicScss'
+
+interface State {
+  activeClass: string
+  errorClass: string
+  bounceIn: string
+  backInDown: string
+  fadeInTopRight: string
+  fadeIn: string
+  User: any
+}
+const state: State = reactive({
+  activeClass: 'animate__animated',
+  errorClass: 'animate__fadeInRightBig',
+  bounceIn: 'animate__bounceIn',
+  backInDown: 'animate__backInDown',
+  fadeInTopRight: 'animate__fadeInTopRight',
+  fadeIn: 'animate__fadeIn',
+  User: [],
+})
+
+const Getid = async (id: number) => {
+  switch (id) {
+    case 1:
+      await Routers('/index')
+      break
+    case 2:
+      await Routers('/Svideo')
+      break
+    case 3:
+      await Routers('/Talk')
+      break
+    case 4:
+      await Routers('/favorite')
+      break
+    case 5:
+      await Routers('/Leave')
+      break
+  }
+}
+onMounted(async () => {
+  await toScss('sAbout')
+  await user.GetByIdAsync(4).then((res: any) => {
+    state.User = res.data
+  })
+  window.scrollTo(0, 0)
+})
+</script>
+
 <template>
   <div class="about_main" :class="[state.activeClass, state.fadeIn]">
     <!-- 背景图+介绍 -->
@@ -80,6 +133,7 @@
       </div>
     </div>
     <!-- end 背景图+介绍 -->
+
     <!-- 关于我：  -->
     <div class="bg-2" :class="[state.activeClass, state.errorClass]">
       <div class="bg-2-1">
@@ -132,68 +186,6 @@
         <div class="bg-2-3-2">搭建一个属于自己的世界。</div>
       </div>
     </div>
-
     <!-- end 关于我：  -->
   </div>
 </template>
-<script lang="ts">
-import { reactive, onMounted, defineComponent, onBeforeMount } from 'vue'
-import { Routers } from '../../hooks/routers'
-import { user } from '../../api/http/user'
-import { toScss } from '../../hooks/dynamicScss'
-
-export default defineComponent({
-  setup() {
-    interface State {
-      activeClass: string
-      errorClass: string
-      bounceIn: string
-      backInDown: string
-      fadeInTopRight: string
-      fadeIn: string
-      User: any
-    }
-    const state: State = reactive({
-      activeClass: 'animate__animated',
-      errorClass: 'animate__fadeInRightBig',
-      bounceIn: 'animate__bounceIn',
-      backInDown: 'animate__backInDown',
-      fadeInTopRight: 'animate__fadeInTopRight',
-      fadeIn: 'animate__fadeIn',
-      User: [],
-    })
-
-    const Getid = async (id: number) => {
-      switch (id) {
-        case 1:
-          await Routers('/index')
-          break
-        case 2:
-          await Routers('/Svideo')
-          break
-        case 3:
-          await Routers('/Talk')
-          break
-        case 4:
-          await Routers('/favorite')
-          break
-        case 5:
-          await Routers('/Leave')
-          break
-      }
-    }
-    onMounted(async () => {
-      await toScss('sAbout')
-      await user.GetByIdAsync(4).then((res: any) => {
-        state.User = res.data
-      })
-      window.scrollTo(0, 0)
-    })
-
-    return {
-      state,
-      Getid,
-    }
-  },
-})
-</script>

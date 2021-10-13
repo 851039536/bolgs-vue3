@@ -1,11 +1,34 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-09-18 15:31:30
+ * @LastEditTime: 2021-10-13 14:50:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
 -->
+
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import { state, header } from './index'
+import { Routers } from '@/hooks/routers'
+
+const skip = async (num: any) => {
+  switch (num) {
+    case 13:
+      window.open('https://www.cnblogs.com/ouyangkai/')
+      break
+    case 14:
+      window.open('https://gitee.com/kaiouyang-sn')
+      break
+    default:
+      await Routers(num)
+      break
+  }
+}
+onMounted(async () => {
+  await header.GetType()
+})
+</script>
 <template>
   <nav class="header-sn">
     <div class="header-sn-1">
@@ -32,39 +55,6 @@
     </div>
   </nav>
 </template>
-
-<script lang="ts">
-import { onMounted, defineComponent } from 'vue'
-import { state, header } from './index'
-import { Routers } from '@/hooks/routers'
-
-export default defineComponent({
-  name: 'BlogHeader',
-  setup() {
-    const skip = async (num: any) => {
-      switch (num) {
-        case 13:
-          window.open('https://www.cnblogs.com/ouyangkai/')
-          break
-        case 14:
-          window.open('https://gitee.com/kaiouyang-sn')
-          break
-        default:
-          await Routers(num)
-          break
-      }
-    }
-
-    onMounted(async () => {
-      await header.GetType()
-    })
-    return {
-      state,
-      skip,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @import './index.scss';

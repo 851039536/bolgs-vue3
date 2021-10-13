@@ -1,11 +1,32 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 10:22:02
- * @LastEditTime: 2021-09-22 15:52:54
+ * @LastEditTime: 2021-10-13 15:09:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Leave\Leave.vue
 -->
+<script lang="ts" setup>
+import { leave } from '@/api/index'
+import { reactive, onMounted } from 'vue'
+
+interface State {
+  result: any
+}
+const state: State = reactive({
+  result: [],
+})
+
+const GetAllAsync = async () => {
+  leave.GetAllAsync().then((result) => {
+    state.result = result.data
+  })
+}
+onMounted(async () => {
+  await GetAllAsync()
+})
+</script>
+
 <template>
   <div class="leave">
     <div class="leave_main" data-title="气泡背景墙">
@@ -37,36 +58,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { leave } from '@/api/index'
-import { reactive, onMounted, defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'SnLeave',
-  setup() {
-    interface State {
-      result: any
-    }
-    const state: State = reactive({
-      result: [],
-    })
-
-    const GetAllAsync = async () => {
-      leave.GetAllAsync().then((result) => {
-        state.result = result.data
-      })
-    }
-
-    onMounted(async () => {
-      await GetAllAsync()
-    })
-    return {
-      state,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @import './index.scss';

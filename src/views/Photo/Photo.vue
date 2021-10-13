@@ -1,7 +1,7 @@
 <!--
  * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2021-09-30 11:48:42
+ * @LastEditTime: 2021-10-11 15:23:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
@@ -20,7 +20,6 @@
         <div class="photo_img">
           <img
             src="https://cdn.share-man.com/mailImage/e8f1120dfaca01d78bc90f0c71e3736e.jpeg"
-            alt
           />
           <a>
             <svg class="icon" aria-hidden="true">
@@ -34,7 +33,7 @@
           </div>
         </div>
         <div class="photo_img">
-          <img src="../../assets/img/bb/1.jpg" alt />
+          <img src="../../assets/img/bb/1.jpg" />
           <a>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fangwen" />
@@ -49,7 +48,6 @@
         <div class="photo_img">
           <img
             src="https://cdn.share-man.com/mailImage/751e475835955b416fc54978ca751bfb.jpeg"
-            alt
           />
           <a>
             <svg class="icon" aria-hidden="true">
@@ -65,7 +63,6 @@
         <div class="photo_img">
           <img
             src="https://cdn.share-man.com/mailImage/1fa79317d3ec1b08758e6318f8776c38.jpeg"
-            alt
           />
           <a>
             <svg class="icon" aria-hidden="true">
@@ -81,7 +78,6 @@
         <div class="photo_img">
           <img
             src="https://cdn.share-man.com/mailImage/73483879c650cc43d96038ce40938b0d.jpeg"
-            alt
           />
           <a>
             <svg class="icon" aria-hidden="true">
@@ -97,7 +93,6 @@
         <div class="photo_img">
           <img
             src="https://cdn.share-man.com/mailImage/d4646c86453cd634d067a784b1890f66.jpeg"
-            alt
           />
           <a>
             <svg class="icon" aria-hidden="true">

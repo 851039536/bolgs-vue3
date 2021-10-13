@@ -1,18 +1,16 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-09-28 15:09:10
+ * @LastEditTime: 2021-10-13 15:17:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
 -->
 <script setup lang="ts">
-import { reactive, onMounted, defineComponent } from 'vue'
+import { reactive, onMounted } from 'vue'
 import { navigation } from '@/api/index'
 import { winUrl } from '@/hooks/routers'
 
-// export default defineComponent({
-//   setup() {
 interface State {
   resultData: any
 }
@@ -24,9 +22,6 @@ onMounted(async () => {
     state.resultData = res.data
   })
 })
-// return { state, winUrl }
-//   },
-// })
 </script>
 <template>
   <div>

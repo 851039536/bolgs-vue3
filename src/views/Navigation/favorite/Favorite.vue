@@ -1,3 +1,59 @@
+<script lang="ts" setup>
+import { reactive, onMounted } from 'vue'
+import FavSidebar from './FavSidebar.vue'
+import { navigation } from '@/api/index'
+
+interface State {
+  text: any
+  type: any
+  page: number
+  pagesize: number
+  count: number
+  title: string
+  current: number
+}
+const state: State = reactive({
+  text: [],
+  type: [],
+  page: 1,
+  pagesize: 12,
+  count: 0,
+  title: '',
+  current: 1,
+})
+const GetAll = async (name: string) => {
+  state.title = name
+  state.current = 1
+  await navigation.CountType(state.title, true).then((res: any) => {
+    state.count = res.data
+  })
+
+  await navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
+    state.type = res.data
+  })
+  await navigation
+    .GetFyAllAsync(name, state.page, state.pagesize, true, true)
+    .then((res: any) => {
+      state.text = res.data
+    })
+}
+
+const currentchange = async (val: number) => {
+  state.current = val
+  await navigation
+    .GetFyAllAsync(state.title, val, state.pagesize, true, true)
+    .then((res: any) => {
+      state.text = res.data
+    })
+}
+const urltest = (url: string) => {
+  window.open(url)
+}
+onMounted(async () => {
+  await GetAll('文档')
+})
+</script>
+
 <template>
   <div id="favorite">
     <!-- 加载组件 -->
@@ -46,68 +102,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { reactive, onMounted, defineComponent } from 'vue'
-import FavSidebar from './FavSidebar.vue'
-import { navigation } from '@/api/index'
-
-export default defineComponent({
-  components: { FavSidebar },
-  setup() {
-    interface State {
-      text: any
-      type: any
-      page: number
-      pagesize: number
-      count: number
-      title: string
-      current: number
-    }
-    const state: State = reactive({
-      text: [],
-      type: [],
-      page: 1,
-      pagesize: 12,
-      count: 0,
-      title: '',
-      current: 1,
-    })
-    const GetAll = async (name: string) => {
-      state.title = name
-      state.current = 1
-      await navigation.CountType(state.title, true).then((res: any) => {
-        state.count = res.data
-      })
-
-      await navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
-        state.type = res.data
-      })
-      await navigation
-        .GetFyAllAsync(name, state.page, state.pagesize, true, true)
-        .then((res: any) => {
-          state.text = res.data
-        })
-    }
-
-    const currentchange = async (val: number) => {
-      state.current = val
-      await navigation
-        .GetFyAllAsync(state.title, val, state.pagesize, true, true)
-        .then((res: any) => {
-          state.text = res.data
-        })
-    }
-    const urltest = (url: string) => {
-      window.open(url)
-    }
-    onMounted(async () => {
-      await GetAll('文档')
-    })
-    return { state, GetAll, urltest, currentchange }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @import '@/design/methodCss';

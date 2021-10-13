@@ -1,11 +1,14 @@
 <!--
  * @Author: 自我介绍
  * @Date: 2021-07-14 15:00:34
- * @LastEditTime: 2021-09-17 17:10:51
+ * @LastEditTime: 2021-10-13 14:52:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Home.vue
 -->
+<script lang="ts" setup>
+import { Routers } from '@/hooks/routers'
+</script>
 
 <template>
   <div id="blogHome" class="animate__animated animate__fadeIn">
@@ -23,36 +26,17 @@
         <div class="centeredPrompt__item button">
           <button class="btn btn-link" @click="Routers('/Blogs')">Go</button>
         </div>
+        <div class="centeredPrompt__item button">
+          <p>
+            SN © 2021.Rights Reserved.
+            <a href="https://beian.miit.gov.cn/">粤ICP备19130826号-1</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import { Routers } from '@/hooks/routers'
-
-export default defineComponent({
-  setup() {
-    const obj: any = reactive({
-      show: true,
-    })
-
-    let warn = async (message: any, event: any) => {
-      // 现在可以访问到原生事件
-      if (event) {
-        event.preventDefault()
-      }
-      alert(message)
-    }
-    return {
-      obj,
-      Routers,
-      warn,
-    }
-  },
-})
-</script>
 <style lang="scss" scoped>
 @import './index.scss';
 
