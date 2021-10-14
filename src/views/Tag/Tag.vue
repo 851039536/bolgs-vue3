@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-10 11:40:02
- * @LastEditTime: 2021-10-13 12:29:11
+ * @LastEditTime: 2021-10-14 14:49:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
@@ -47,6 +47,16 @@ onMounted(async () => {
 <template>
   <div class="animate__animated" :class="[state.tag, state.fadeIn]">
     <div class="tag-main">
+      <div class="tag_search">
+        <div>
+          <a-input-search
+            v-model:value="value"
+            placeholder="input search text"
+            enter-button
+            @search="onSearch"
+          />
+        </div>
+      </div>
       <TagHead :result-data="state.labels"></TagHead>
       <TagContent></TagContent>
     </div>
@@ -55,4 +65,19 @@ onMounted(async () => {
 
 <style lang="scss">
 @import './index.scss';
+
+.tag_search {
+  @include initialize(94%, null, null, null, 3%, null, #ffffff);
+
+  @apply relative rounded-sm  shadow;
+
+  height: 50px;
+
+  div {
+    @apply absolute top-1/2 left-1/2;
+
+    width: 40%;
+    transform: translate(-50%, -50%);
+  }
+}
 </style>

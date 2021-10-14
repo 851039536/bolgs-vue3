@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 18:04:43
- * @LastEditTime: 2021-09-30 11:33:44
+ * @LastEditTime: 2021-10-14 16:48:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\one\one.vue
@@ -38,7 +38,7 @@ method.getOne()
       <OneContent :resultData="state.resultData"></OneContent>
 
       <!-- 分页 -->
-      <div class="">
+      <div class="one_div_paging">
         <a-pagination
           size="small"
           @change="method.currentchange"
@@ -65,7 +65,7 @@ method.getOne()
         <p>{{ state.text.oneText }}</p>
       </a-modal>
     </div>
-    <!-- end 点赞提示框 -->
+    end 点赞提示框
   </div>
 </template>
 

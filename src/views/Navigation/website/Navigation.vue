@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-10-13 15:17:57
+ * @LastEditTime: 2021-10-14 16:55:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -42,6 +42,11 @@ onMounted(async () => {
             <p>{{ info.navText }}</p>
           </div>
         </div>
+      </div>
+      <div class="n-nav_Paging">
+        <!-- 分页  @change="method.currentchange"  :total="state.count" :pageSize="state.pagesize" -->
+        <a-pagination size="small" show-quick-jumper />
+        <!-- end 分页-->
       </div>
     </div>
   </div>

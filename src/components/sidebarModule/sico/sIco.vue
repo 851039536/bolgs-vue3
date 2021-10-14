@@ -1,18 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-30 15:22:12
- * @LastEditTime: 2021-10-13 14:57:55
+ * @LastEditTime: 2021-10-14 12:24:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\SidebarModule\BlogIco.vue
 -->
 
-<script lang="ts" setup>
-import { onMounted } from 'vue'
-onMounted(async () => {
-  console.log('ico')
-})
-</script>
+<script lang="ts" setup></script>
 <template>
   <div class="index_si_contact">
     <div class="index-si-ioc">

@@ -13,16 +13,14 @@
     height: 100%;
 
     .tag_content {
-      @apply flex;
+      @apply flex flex-nowrap;
+      @apply mt-1;
 
-      position: absolute;
-      top: 15.8%;
-
-      @include initialize(94%, 75%, null, null, 3%, null, #ffffff);
+      @include initialize(94%, 71%, null, null, 3%, null, #ffffff);
 
       // 侧边框
       .text-sidebar {
-        @include w-h(28%, null);
+        @include w-h(25%, null);
 
         @apply overflow-auto shadow;
 
@@ -41,7 +39,7 @@
 
       // 内容
       .text-blog {
-        @include w-h(72%, null);
+        @include w-h(75%, null);
 
         @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
 

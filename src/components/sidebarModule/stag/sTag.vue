@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-30 15:38:59
- * @LastEditTime: 2021-10-13 12:26:09
+ * @LastEditTime: 2021-10-14 12:25:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\SidebarModule\BlogTag.vue
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import { RouterId } from '@/hooks/routers'
 export default defineComponent({
   props: ['result'],
@@ -33,9 +33,6 @@ export default defineComponent({
     const Skip = async (id: any) => {
       await RouterId('/Tag', id)
     }
-    onMounted(async () => {
-      console.log('ico')
-    })
     return {
       Skip,
     }

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-12 16:13:39
- * @LastEditTime: 2021-10-13 14:04:01
+ * @LastEditTime: 2021-10-14 14:28:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\components\TagHead.vue
@@ -48,10 +48,10 @@ async function AsyGetTag(id: any) {
 @import '@/design/uitl';
 //头部
 .tag_head {
-  @apply flex flex-wrap;
-  @apply absolute rounded-sm  shadow bg-white;
+  @apply flex flex-wrap mt-1;
+  @apply rounded-sm  shadow bg-white;
 
-  @include initialize(94%, 15%, null, null, 3%, null, null);
+  @include initialize(94%, null, null, null, 3%, null, null);
 
   .tag_head_content {
     height: 30px;

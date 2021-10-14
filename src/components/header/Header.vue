@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-10-13 14:50:35
+ * @LastEditTime: 2021-10-14 13:38:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -11,6 +11,7 @@
 import { onMounted } from 'vue'
 import { state, header } from './index'
 import { Routers } from '@/hooks/routers'
+import GithubCorners from '../github-corners/GithubCorners.vue'
 
 const skip = async (num: any) => {
   switch (num) {
@@ -30,6 +31,7 @@ onMounted(async () => {
 })
 </script>
 <template>
+  <GithubCorners></GithubCorners>
   <nav class="header-sn">
     <div class="header-sn-1">
       <!--  -->

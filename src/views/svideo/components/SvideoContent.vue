@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-11 15:46:19
- * @LastEditTime: 2021-10-12 14:07:30
+ * @LastEditTime: 2021-10-14 16:36:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\svideo\components\SvideoContent.vue
@@ -21,7 +21,7 @@ defineProps({
 
 <template>
   <div class="svideo_main animate__animated animate__fadeIn">
-    <div class="flex flex-wrap svideo_main_content">
+    <div class=" svideo_main_content">
       <div class="svideo-2-1" v-for="info in resultData" :key="info['vId']">
         <div class="svideo-2-1-1">
           <img src="@/assets/img/hy.jpg" />
@@ -34,6 +34,11 @@ defineProps({
         </div>
       </div>
     </div>
+    <div class="svideo_Paging">
+      <!-- 分页  @change="method.currentchange"  :total="state.count" :pageSize="state.pagesize" -->
+      <a-pagination size="small" show-quick-jumper />
+      <!-- end 分页-->
+    </div>
   </div>
 </template>
 
@@ -42,12 +47,14 @@ defineProps({
 @import '@/design/uitl';
 
 .svideo_main {
-  @include initialize($w, 99%, 3.6%, null, $ml, null, #ffffff);
+  @include initialize($w, 99%, 3.6%, null, $ml, null, #fcfcfc);
 
   @apply relative shadow rounded-sm;
 
   .svideo_main_content {
-    @include w-h(100%, 88%);
+    @apply flex flex-wrap;
+
+    @include w-h(100%, 92%);
 
     @apply overflow-auto absolute top-2;
 
@@ -78,6 +85,15 @@ defineProps({
         @apply p-1;
       }
     }
+  }
+
+  .svideo_Paging {
+    @include w-h(100%, 20%);
+
+    @apply absolute;
+
+    top: 95%;
+    left: 1%;
   }
 }
 </style>

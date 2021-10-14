@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-13 14:42:14
+ * @LastEditTime: 2021-10-14 09:23:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -45,5 +45,5 @@ router.afterEach(() => {
 <style lang="scss">
 @import './design/methodCss.scss';
 
-@include scroll; //滚动条美化 qweqw王企鹅群翁二位 王企鹅额re rrewqwewefdfd
+@include scroll; //滚动条美化
 </style>
