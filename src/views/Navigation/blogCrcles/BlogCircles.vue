@@ -2,10 +2,10 @@
 import { onMounted } from 'vue'
 import BlogCirclesSidebar from './components/Sidebar.vue'
 import BlogSidebar from '@/components/raside/rAside.vue'
-import { circles, state } from './index'
+import { method, state } from './index'
 
 onMounted(async () => {
-  await circles.GetTypeOrder()
+  await method.GetTypeOrder()
 })
 </script>
 <template>
@@ -18,7 +18,7 @@ onMounted(async () => {
       >
         <div
           class="BlogCircles-1"
-          v-for="data in state.Result"
+          v-for="data in state.resultData"
           :key="data.navId"
         >
           <div class="BlogCircles-1-1">
@@ -27,7 +27,7 @@ onMounted(async () => {
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
-              <a @click="circles.urltest(data.navUrl)">{{ data.navTitle }}</a>
+              <a @click="method.UrlSkip(data.navUrl)">{{ data.navTitle }}</a>
             </div>
             <div class="BlogCircles-1-2-2">{{ data.navText }}</div>
           </div>
@@ -35,8 +35,14 @@ onMounted(async () => {
       </div>
 
       <!-- 分页 -->
-      <div class="">
-        <a-pagination size="small" show-quick-jumper />
+      <div class="blogcircles_page">
+        <a-pagination
+          size="small"
+          @change="method.currentchange"
+          :total="state.count"
+          :pageSize="state.pagesize"
+          show-quick-jumper
+        />
       </div>
       <!-- end 分页-->
     </div>
@@ -53,13 +59,13 @@ onMounted(async () => {
   @include w-h(100%, 100%);
 
   .blogcircles_main {
-    @include initialize($w, 99%, 3.6%, null, $ml, null, #ffffff);
+    @include initialize($w, 86%, 3.6%, null, $ml, null, #ffffff);
 
     @apply rounded-sm shadow;
 
     // 导航窗体小
     .BlogCircles-1 {
-      @include w-h(210px, 100px);
+      @include w-h(210px, 110px);
 
       @apply m-2 mt-4 shadow rounded hover:bg-gray-200;
 
@@ -71,7 +77,7 @@ onMounted(async () => {
         img {
           @include w-h(100%, 100%);
 
-          @apply rounded-full shadow;
+          @apply rounded-full  bg-gray-300;
         }
       }
 
@@ -121,18 +127,18 @@ onMounted(async () => {
       }
     }
 
-    .BlogCircles-2 {
-      @apply text-lg font-normal pl-2 bg-gray-50 shadow-sm;
-    }
-
     .blogcircles_content {
-      @include w-h(100%, 90%);
+      @include w-h(100%, 100%);
 
       overflow: auto;
     }
 
     .blogcircles_content::-webkit-scrollbar {
       display: none;
+    }
+
+    .blogcircles_page {
+      @apply bg-white  p-1 shadow;
     }
   }
 }

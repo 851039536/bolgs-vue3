@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 import { navigation } from '@/api/index'
 import { reactive, onMounted } from 'vue'
+import { methods } from './index'
 
 interface State {
   resultData: any
+  resultData2: any
   resultCount: number
 }
 const state: State = reactive({
   resultData: [],
+  resultData2: [],
   resultCount: 0,
 })
 
@@ -17,6 +20,10 @@ const GetAll = async () => {
   })
   await navigation.GetCountAsync().then((res: any) => {
     state.resultCount = res.data
+  })
+
+  await navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
+    state.resultData2 = res.data
   })
 }
 
@@ -32,20 +39,24 @@ onMounted(async () => {
         <p class>各式各样网站收集分享</p>
       </div>
       <!--内容框-->
-      <div class="FavSidebar_itme">
-        <div class="FavSidebar_itme_1">最近添加</div>
+
+      <div class="onecategory">
+        <div class="onecategory_name">列表</div>
         <div
-          class="FavSidebar_itme_2"
-          v-for="result in state.resultData"
-          :key="result.navId"
+          class="inline-flex"
+          v-for="result in state.resultData2"
+          :key="result.id"
         >
-          <div class="itme_1">
-            {{ result.navTitle }}
-            <span>{{ result.navType }}</span>
+          <div
+            class="flex-1 px-1 m-1 text-base text-center transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
+          >
+            <a @click="methods.GetAll(result.title)">{{ result.title }}</a>
           </div>
         </div>
       </div>
-      <!-- ---- -->
+
+      <!-- end 内容框 -->
+
       <!-- 站点信息 -->
       <div class="FavSidebar_footer">
         <div class="FavSidebar_f_title">站点信息</div>
@@ -58,7 +69,7 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <!-- -------- -->
+      <!-- end 站点信息 -->
     </div>
   </div>
 </template>
@@ -130,17 +141,25 @@ onMounted(async () => {
       }
 
       .FavSidebar_itme_2 {
-        background-color: #f5f7fd;
-
-        @apply m-1 cursor-pointer;
-
-        div {
-          @apply p-2;
-        }
+        @apply bg-gray-100;
+        @apply m-2 cursor-pointer;
 
         .itme_1 {
-          @apply text-base;
+          @apply p-2 text-base;
         }
+      }
+    }
+
+    .onecategory {
+      width: 97%;
+
+      @apply p-1 mb-2 m-auto cursor-pointer;
+      @apply shadow rounded bg-white;
+
+      .onecategory_name {
+        color: #1b1e21;
+
+        @apply p-1 m-1 text-sm font-semibold bg-gray-200;
       }
     }
   }

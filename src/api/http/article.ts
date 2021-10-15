@@ -18,7 +18,9 @@ export class article {
       ])
 
   }
-  //查询总条数
+  /**
+   * @description: 查询总条数
+   */
   static async GetCountAsync(): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetCountAsync",

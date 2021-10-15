@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-11 15:46:19
- * @LastEditTime: 2021-10-14 16:36:40
+ * @LastEditTime: 2021-10-15 15:33:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\svideo\components\SvideoContent.vue
@@ -9,6 +9,8 @@
 <script setup lang="ts">
 import { RouterId } from '@/hooks/routers'
 import { IntVideo } from '@/api/data/interData'
+import { state } from '../data'
+import { method } from '../index'
 
 defineProps({
   resultData: {
@@ -36,7 +38,13 @@ defineProps({
     </div>
     <div class="svideo_Paging">
       <!-- 分页  @change="method.currentchange"  :total="state.count" :pageSize="state.pagesize" -->
-      <a-pagination size="small" show-quick-jumper />
+      <a-pagination
+        size="small"
+        @change="method.currentchange"
+        :total="state.count"
+        :pageSize="state.pagesize"
+        show-quick-jumper
+      />
       <!-- end 分页-->
     </div>
   </div>

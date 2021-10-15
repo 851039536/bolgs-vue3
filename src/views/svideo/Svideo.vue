@@ -1,28 +1,24 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:21:57
- * @LastEditTime: 2021-10-12 15:11:58
+ * @LastEditTime: 2021-10-15 15:36:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\SnVideo.vue
 -->
 <script lang="ts" setup>
 import { video } from '@/api'
-import { reactive, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import VideoSidebar from './VideoSidebar.vue'
 import SvideoContent from './components/SvideoContent.vue'
-
-interface State {
-  resultData: any
-}
-const state: State = reactive({
-  resultData: [],
-})
+import { state } from './data'
+import { method } from './index'
 
 onMounted(async () => {
-  await video.GetTypeAllAsync(2).then((res: any) => {
-    state.resultData = res.data
+  await video.GetCountAsync().then((res: any) => {
+    state.count = res.data
   })
+  await method.currentchange(1)
 })
 </script>
 
@@ -31,13 +27,6 @@ onMounted(async () => {
     <blog-sidebar></blog-sidebar>
     <video-sidebar></video-sidebar>
     <SvideoContent :resultData="state.resultData"></SvideoContent>
-
-    <!-- 分页 -->
-    <div class="IndexTitle-page">
-      <a-pagination size="small" />
-      1111
-    </div>
-    <!-- end 分页 -->
   </div>
 </template>
 

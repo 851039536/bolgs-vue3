@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-09-27 15:19:17
+ * @LastEditTime: 2021-10-15 11:35:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -33,13 +33,7 @@ export class navigation {
   }
 
 
-  //查询类别所有
-  static async GetSnNavigationTypeSAllAsync(): Promise<any> {
-    return await request({
-      url: "/api/SnNavigationType/GetAllAsync",
-      method: 'get',
-    })
-  }
+
   //条件查询
   static async GetTypeOrderAsync(name: string): Promise<any> {
     return await request({
@@ -48,7 +42,9 @@ export class navigation {
     })
   }
 
-  //分页查询
+  /**
+   * @description: 分页查询
+   */
   static async GetFyAllAsync(type: string, page: number, pagesize: number, isDesc: boolean, cache: boolean) {
     return await request({
       url: "/api/SnNavigation/GetFyAllAsync?type=" + type + "&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=" + isDesc + "&cache=" + cache,
@@ -57,6 +53,18 @@ export class navigation {
   }
 
 
+  // ==================分类===========================
+
+
+  /**
+   * @description: 查询分类内容
+   */
+  static async GetSnNavigationTypeSAllAsync() {
+    return await request({
+      url: "/api/SnNavigationType/GetAllAsync?cache=true",
+      method: 'get',
+    })
+  }
 }
 
 

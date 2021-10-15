@@ -1,26 +1,23 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-10-14 16:55:24
+ * @LastEditTime: 2021-10-15 15:52:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
 -->
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { navigation } from '@/api/index'
 import { winUrl } from '@/hooks/routers'
+import { state } from './data'
+import { method } from './index'
 
-interface State {
-  resultData: any
-}
-const state: State = reactive({
-  resultData: [],
-})
 onMounted(async () => {
-  await navigation.GetTypeOrderAsync('网站').then((res: any) => {
-    state.resultData = res.data
+  await navigation.CountType('网站', true).then((res: any) => {
+    state.count = res.data
   })
+  await method.currentchange(1)
 })
 </script>
 <template>
@@ -44,8 +41,13 @@ onMounted(async () => {
         </div>
       </div>
       <div class="n-nav_Paging">
-        <!-- 分页  @change="method.currentchange"  :total="state.count" :pageSize="state.pagesize" -->
-        <a-pagination size="small" show-quick-jumper />
+        <a-pagination
+          size="small"
+          @change="method.currentchange"
+          :total="state.count"
+          :pageSize="state.pagesize"
+          show-quick-jumper
+        />
         <!-- end 分页-->
       </div>
     </div>
@@ -86,6 +88,10 @@ onMounted(async () => {
         @include line-number;
       }
     }
+  }
+
+  .n-nav_Paging {
+    @apply bg-white p-1;
   }
 }
 </style>
