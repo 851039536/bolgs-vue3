@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-14 11:42:20
- * @LastEditTime: 2021-09-14 16:14:42
+ * @LastEditTime: 2021-10-16 11:03:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\components\BlogsContent.vue
@@ -32,22 +32,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { RouterId } from "@/hooks/routers";
+import { defineComponent } from 'vue'
+import { RouterId } from '@/hooks/routers'
 
 export default defineComponent({
   props: ['dataResult'],
   setup() {
     async function jump(id: number): Promise<void> {
-      await RouterId("/IndexText", id)
+      await RouterId('/IndexText', id)
     }
     return {
-      jump
-    };
+      jump,
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-@import "../index.scss";
+@import '../index.scss';
 </style>

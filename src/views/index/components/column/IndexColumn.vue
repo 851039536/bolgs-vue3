@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-08 11:17:02
- * @LastEditTime: 2021-10-14 12:27:42
+ * @LastEditTime: 2021-10-19 13:36:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
@@ -13,6 +13,7 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { setBlog } from '@/api/index'
 import { state, column } from './index'
+import { storage } from '@/utils/storage/storage'
 
 const router = useRouter()
 const stores = useStore()
@@ -20,11 +21,6 @@ const stores = useStore()
 async function skip(id: number) {
   await setBlog.GetByIdAsync(1, false).then((res: any) => {
     stores.state.SetPage = res.data.setIsopen
-    console.log(
-      '%c [ stores.state.SetPage ]',
-      'font-size:13px; background:pink; color:#bf2c9f;',
-      stores.state.SetPage
-    )
   })
   if (stores.state.SetPage) {
     const { href } = await router.resolve({

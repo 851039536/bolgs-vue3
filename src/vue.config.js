@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:16:33
- * @LastEditTime: 2021-09-14 14:51:51
+ * @LastEditTime: 2021-10-18 16:10:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\vue.config.js
@@ -57,10 +57,7 @@ module.exports = {
           }
         }
       });
-
-
   },
-
   // 基本路径
   publicPath: "./",
   // 相对于打包路径index.html的路径
@@ -159,7 +156,6 @@ module.exports = {
         data: `@import "./styles/uitl.scss";`,
       },
     },
-
   },
   // PWA插件相关配置
   pwa: {},

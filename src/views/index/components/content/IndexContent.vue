@@ -3,6 +3,7 @@
   <blog-sidebar></blog-sidebar>
   <IndexSidebar></IndexSidebar>
   <a-back-top />
+  <SAspin></SAspin>
   <!-- end 通用组件 -->
 
   <div class="indextext">
@@ -64,6 +65,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { tool } from '@/utils/common/tool'
 import { throttle } from '@/utils/common/dethrottle'
 import { message } from 'ant-design-vue'
+import SAspin from '@/components/aspin/sAspin.vue'
 
 export default defineComponent({
   name: 'IndexText',
@@ -71,6 +73,7 @@ export default defineComponent({
     VmdContent: defineAsyncComponent(() =>
       import('@/components/editor/VmdContent.vue')
     ),
+    SAspin,
   },
   setup() {
     const route = useRoute()

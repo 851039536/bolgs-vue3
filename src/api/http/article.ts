@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-09-18 15:39:14
+ * @LastEditTime: 2021-10-18 16:29:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -10,6 +10,10 @@ import request from '@/utils/http/axios'
 
 export class article {
 
+  /**
+   * @description: 读取详情页数据
+   * @param {number} state
+   */
   static async GetAll(state: number): Promise<any> {
     return request
       .all([
@@ -28,14 +32,20 @@ export class article {
     })
   }
 
-  //查询分类总条数
+  /**
+   * @description: 查询分类总条数
+   * @param {number} id
+   */
   static async ConutSort(id: number): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetConutSortAsync?type=" + id + "&cache=true",
       method: 'get',
     })
   }
-  //模糊查询
+  /**
+   * @description: 模糊查询
+   * @param {string} name
+   */
   static async GetContainsAsync(name: string): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetContainsAsync?name=" + name + "&cache=true",
@@ -43,22 +53,37 @@ export class article {
     })
   }
 
-  //主键查询
+  /**
+   * @description: 主键查询
+   * @param {number} id
+   * @param {boolean} cache
+   * @return {*}
+   */
   static async GetByIdAsync(id: number, cache: boolean): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetByIdAsync?id=" + id + "&cache=" + cache,
       method: 'get',
     })
   }
-  //按标签条件查询
+  /**
+   * @description: 按标签条件查询
+   * @param {number} id
+   * @param {boolean} cache
+   * @return {*}
+   */
   static async GetTagtextAsync(id: number, cache: boolean): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetTagAsync?labelId=" + id + "&isDesc=true&cache=" + cache,
       method: 'get',
     })
   }
-  //标签分页查询
-  static async GetFyTitleAsync(page: number, pagesize: number): Promise<any> {
+  /**
+   * @description: 标签分页查询
+   * @param {number} page
+   * @param {number} pagesize
+   * @return {*}
+   */
+  static async GetFyTitleAsync(page: number, pagesize: number, cache: boolean): Promise<any> {
     return await request({
       url:
         "/api/SnArticle/GetFyTitleAsync?" +
@@ -66,19 +91,28 @@ export class article {
         page +
         "&pageSize=" +
         pagesize +
-        "&isDesc=true",
+        "&isDesc=" + cache,
       method: 'get',
     })
   }
 
-  //分类分页查询
-  static async GetFySortTitleAsync(page: number, pagesize: number): Promise<any> {
+  /**
+   * @description: 分类分页查询
+   * @param {number} page
+   * @param {number} pagesize
+   */
+  static async GetFySortTitleAsync(page: number, pagesize: number, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetfySortTestAsync?type=7&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=true&cache=true",
+      url: "/api/SnArticle/GetfySortTestAsync?type=7&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=true&cache=" + cache,
       method: 'get',
     })
   }
 
+  /**
+   * @description: 更新
+   * @param {any} resultData
+   * @param {string} type
+   */
   static async UpdatePortionAsync(resultData: any, type: string): Promise<any> {
     return await
       request({

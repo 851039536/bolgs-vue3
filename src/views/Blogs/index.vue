@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-19 10:04:36
- * @LastEditTime: 2021-10-13 15:04:07
+ * @LastEditTime: 2021-10-16 11:00:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\Blogs.vue
 -->
 
 <script lang="ts" setup>
-import { onMounted, defineComponent } from 'vue'
+import { onMounted } from 'vue'
 import SAspin from '@/components/aspin/sAspin.vue'
 import BlogsSidebar from './components/BlogsSidebar.vue'
 import { blogsList } from './components/data'

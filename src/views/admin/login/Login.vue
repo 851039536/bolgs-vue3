@@ -1,26 +1,58 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-09-30 14:43:43
+ * @LastEditTime: 2021-10-19 15:40:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
 -->
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Routers } from '@/hooks/routers'
+import { user } from '@/api/index'
+import { onMounted, reactive } from 'vue'
+import { storage } from '@/utils/storage/storage'
+import { message } from 'ant-design-vue'
+const state = reactive({
+  user: 'kai',
+  pwd: 'kai',
+  result: [],
+})
+
+async function login() {
+  user.Login(state.user, state.pwd).then((res) => {
+    if (res.data === '用户或密码错误' || res.data === '用户密码不能为空') {
+      message.error(res.data)
+      return
+    }
+    state.result = res.data.split(',')
+    if (state.result[0] === '1') {
+      storage.remove('token')
+      storage.set('token', 'Bearer ' + state.result[1])
+      Routers('/Admin-index/ArticleTable')
+    }
+  })
+}
+onMounted(async () => {
+  if (storage.get('token')) {
+    await message.loading('已登录,跳转中')
+    await Routers('/Admin-index/ArticleTable')
+  }
+})
+</script>
 <template>
-  <div class="login-box">
+  <div class="login-box animate__animated animate__fadeIn">
     <h2>Login</h2>
     <form>
       <div class="user-box">
-        <input type="text" name="" />
-        <label>Username</label>
+        <input type="text" v-model="state.user" />
+        <label>User</label>
       </div>
       <div class="user-box">
-        <input type="password" name="" />
-        <label>Password</label>
+        <input type="password" v-model="state.pwd" />
+        <label>Pwd</label>
       </div>
-      <a href="#">
+      <a href="#" @click="login">
         <span></span>
         <span></span>
         <span></span>
@@ -32,7 +64,6 @@
 </template>
 
 <style lang="scss" scoped>
-//@import "./index.scss";
 .login-box {
   position: absolute;
   top: 50%;
@@ -104,96 +135,13 @@
 
 .login-box a:hover {
   color: #fff;
-  background: #03e9f4;
+  background: #c8dcdd;
   border-radius: 5px;
-  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4;
+  // box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4;
 }
 
 .login-box a span {
   position: absolute;
   display: block;
-}
-
-.login-box a span:nth-child(1) {
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #03e9f4);
-  animation: btn-anim1 1s linear infinite;
-}
-
-@keyframes btn-anim1 {
-  0% {
-    left: -100%;
-  }
-
-  50%,
-  100% {
-    left: 100%;
-  }
-}
-
-.login-box a span:nth-child(2) {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
-  animation: btn-anim2 1s linear infinite;
-  animation-delay: 0.25s;
-}
-
-@keyframes btn-anim2 {
-  0% {
-    top: -100%;
-  }
-
-  50%,
-  100% {
-    top: 100%;
-  }
-}
-
-.login-box a span:nth-child(3) {
-  right: -100%;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg, transparent, #03e9f4);
-  animation: btn-anim3 1s linear infinite;
-  animation-delay: 0.5s;
-}
-
-@keyframes btn-anim3 {
-  0% {
-    right: -100%;
-  }
-
-  50%,
-  100% {
-    right: 100%;
-  }
-}
-
-.login-box a span:nth-child(4) {
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg, transparent, #03e9f4);
-  animation: btn-anim4 1s linear infinite;
-  animation-delay: 0.75s;
-}
-
-@keyframes btn-anim4 {
-  0% {
-    bottom: -100%;
-  }
-
-  50%,
-  100% {
-    bottom: 100%;
-  }
 }
 </style>

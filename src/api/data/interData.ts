@@ -1,26 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-09-30 15:36:38
- * @LastEditTime: 2021-10-13 14:29:54
+ * @LastEditTime: 2021-10-18 13:58:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\data\video.ts
  */
 
-// interface intVideo {
-//   oneId: number
-//   oneTitle: string
-//   oneText: string
-//   oneImg: string
-//   oneTypeId: number
-//   oneAuthor: string
-//   oneData: string
-//   oneRead: number
-//   oneGive: number
-//   oneComment: number
-// }
-
-
+/**
+ * @description: 视频接口
+ */
 interface IntVideo {
   vId: number
   vTitle: string

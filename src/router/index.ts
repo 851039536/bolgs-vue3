@@ -4,6 +4,7 @@ import {
   createWebHashHistory
 } from 'vue-router'
 import BlogHome from '@/components/home/Home.vue'
+import { storage } from '@/utils/storage/storage';
 
 const routes = [{
   path: '/',
@@ -12,7 +13,6 @@ const routes = [{
   name: 'Home',
   component: BlogHome,
 },
-
 {
   path: '/BlogHome',
   name: 'BlogHome',
@@ -23,7 +23,6 @@ const routes = [{
   path: '/sAbout',
   name: 'sAbout',
   component: () => import('@/views/sAbout/sAbout.vue'),
-
 },
 {
   path: '/Blogs',
@@ -32,10 +31,8 @@ const routes = [{
     keepAlive: false
   },
   component: () => import('@/views/blogs/index.vue'),
-
 },
 {
-
   path: '/index',
   name: 'index',
   meta: {
@@ -72,7 +69,6 @@ const routes = [{
   name: 'IndexText',
   component: () => import('@/views/index/components/content/IndexContent.vue')
 },
-
 {
   path: '/BlogSidebar',
   name: 'BlogSidebar',
@@ -88,7 +84,6 @@ const routes = [{
     keepAlive: false
   },
   component: () => import('@/views/TimeLine/TimeLine.vue'),
-
 },
 {
   path: '/Tag',
@@ -98,7 +93,6 @@ const routes = [{
   },
   component: () => import('@/views/tag/Tag.vue')
 },
-
 {
   path: '/Photo',
   name: 'Photo',
@@ -107,7 +101,6 @@ const routes = [{
   },
   component: () => import('@/views/photo/Photo.vue')
 },
-
 {
   path: '/Navigation',
   name: 'Navigation',
@@ -116,7 +109,6 @@ const routes = [{
   },
   component: () => import('@/views/navigation/website/Navigation.vue')
 },
-
 {
   path: '/BlogCircles',
   name: 'BlogCircles',
@@ -125,7 +117,6 @@ const routes = [{
   },
   component: () => import('@/views/navigation/blogCrcles/BlogCircles.vue')
 },
-
 {
   path: '/Favorite',
   name: 'Favorite',
@@ -134,7 +125,6 @@ const routes = [{
   },
   component: () => import('@/views/navigation/favorite/Favorite.vue')
 },
-
 {
   path: '/Talk',
   name: 'Talk',
@@ -151,7 +141,6 @@ const routes = [{
   },
   component: () => import('@/views/Talk/TalkText.vue')
 },
-
 {
   path: '/Svideo',
   name: 'Svideo',
@@ -160,7 +149,6 @@ const routes = [{
   },
   component: () => import('@/views/svideo/Svideo.vue')
 },
-
 {
   path: '/VideoPlay',
   name: 'VideoPlay',
@@ -201,7 +189,6 @@ const routes = [{
   },
   component: () => import('@/views/test/test.vue')
 },
-
 {
   path: '/ListContent',
   name: 'ListContent',
@@ -244,27 +231,54 @@ const routes = [{
 },
 // ------------------------------------------------------------------------------admin---------------------------------------------------
 // ------------------------------------------------------------------------------admin---------------------------------------------------
-// ------------------------------------------------------------------------------admin---------------------------------------------------
 {
   path: '/Login',
   name: 'Login',
   component: () => import('@/views/admin/login/Login.vue')
 },
-  // {
-  //   path: '/BlogsSidebar',
-  //   name: 'BlogsSidebar',
-  //   meta: {
-  //     keepAlive: false
-  //   },
-  //   component: () => import('@/views/Blogs/BlogsSidebar.vue')
-  // },
+{
+  path: '/Admin-index',
+  name: 'Admin-index',
+  component: () => import('@/views/admin/index/index.vue'),
+  children: [   // 添加子路由
+    {
+      path: 'ArticleTable',
+      name: 'ArticleTable',
+      component: () => import('@/views/admin/article/ArticleTable.vue'),
+    },
+    {
+      path: 'ArticleForm',
+      name: 'ArticleForm',
+      component: () => import('@/views/admin/article/ArticleForm.vue'),
+    },
+    {
+      path: 'Logins',
+      name: 'Logins',
+      component: () => import('@/views/admin/login/Login.vue')
+    },
+  ]
+},
 ]
-
-
 //createWebHashHistory createWebHistory
 const router = createRouter({
   history: createWebHistory(), //HTML5模式
   routes,
 })
 
+// 导航守卫
+// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
+// router.beforeEach((to, from, next) => {
+//   if (to.path === "/Login") {
+//     next();
+//   } else {
+
+//     const token = storage.get('token')
+//     if (token === undefined || token === "") {
+//       console.log('%c [ token ]', 'font-size:13px; background:pink; color:#bf2c9f;', token, to.path)
+//       next("/Login");
+//     } else {
+//       next();
+//     }
+//   }
+// });
 export default router

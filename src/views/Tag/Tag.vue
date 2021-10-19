@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-10 11:40:02
- * @LastEditTime: 2021-10-14 14:49:22
+ * @LastEditTime: 2021-10-19 14:29:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
@@ -36,11 +36,6 @@ async function getAll() {
 
 onMounted(async () => {
   await AsyGetTag(id.id)
-  console.log(
-    '%c [ id.id ]',
-    'font-size:13px; background:pink; color:#bf2c9f;',
-    id.id
-  )
   await getAll()
 })
 </script>

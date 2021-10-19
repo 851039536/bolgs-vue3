@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:09:51
- * @LastEditTime: 2021-08-12 08:53:57
+ * @LastEditTime: 2021-10-16 08:46:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\labels.ts
  */
-import request from '../../utils/http/axios'
+import request from '@/utils/http/axios'
 
 export class labels {
 

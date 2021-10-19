@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-14 09:23:52
+ * @LastEditTime: 2021-10-16 11:40:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -11,7 +11,6 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useRouter } from 'vue-router'
 import SnBootom from './components/bootom/Bootom.vue'
-import SAspin from './components/aspin/sAspin.vue'
 
 const router = useRouter()
 
@@ -27,7 +26,6 @@ router.afterEach(() => {
 
 <template>
   <div id="app">
-    <SAspin></SAspin>
     <blog-header></blog-header>
     <!-- vue3.0配置 -->
     <router-view v-slot="{ Component }">

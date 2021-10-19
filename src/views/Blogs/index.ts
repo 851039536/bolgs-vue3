@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-14 17:21:23
- * @LastEditTime: 2021-09-14 17:48:28
+ * @LastEditTime: 2021-10-18 15:46:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\index.ts
@@ -11,7 +11,7 @@ import { blogsList } from "./components/data";
 export class blogs {
 
   static async GetFySortTitle() {
-    await article.GetFySortTitleAsync(blogsList.page, blogsList.pagesize).then((result: any) => {
+    await article.GetFySortTitleAsync(blogsList.page, blogsList.pagesize, true).then((result: any) => {
       blogsList.dataResult = result.data;
     });
   }

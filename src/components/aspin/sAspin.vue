@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-13 17:56:54
- * @LastEditTime: 2021-10-13 14:46:10
+ * @LastEditTime: 2021-10-18 14:02:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\aspin\Aspin.vue
@@ -11,11 +11,6 @@ import { h } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { dataList } from './data'
 
-dataList.show = true
-setTimeout(async () => {
-  dataList.show = false
-}, 1200)
-
 const indicator = h(LoadingOutlined, {
   style: {
     fontSize: '24px',
@@ -24,12 +19,13 @@ const indicator = h(LoadingOutlined, {
 })
 </script>
 <template>
-  <div class="aspin_main" v-show="dataList.show">
+  <!-- animate__animated animate__fadeOut -->
+  <div class="aspin_main " v-show="dataList.show">
     <div class="example">
       <a-spin
         :spinning="true"
         size="large"
-        tip="加载中..."
+        tip="......"
         :indicator="indicator"
       />
     </div>
@@ -39,17 +35,9 @@ const indicator = h(LoadingOutlined, {
 <style lang="scss" scoped>
 .aspin_main {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   z-index: 20;
-  opacity: 0.6;
-
-  @apply w-full h-full bg-white;
-
-  .example {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
+  width: 200px;
 }
 </style>
