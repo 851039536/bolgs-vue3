@@ -1,25 +1,31 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-16 11:40:21
+ * @LastEditTime: 2021-10-21 14:01:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
 -->
 <script lang="ts" setup>
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 import { useRouter } from 'vue-router'
 import SnBootom from './components/bootom/Bootom.vue'
-
+import { sessionStorage } from '@/utils/storage/storage'
+import { useStore } from 'vuex'
 const router = useRouter()
+const store = useStore()
+store.state.Roles = sessionStorage.get('state')
 
+// to：即将要进入的目标路由对象（这个对象包括name，params，meta等属性）
+// from：当前导航正要离开的路由对象（这个对象包括name，params，meta等属性）
+// next：Function，确保要调用next方法，这个当中还可以传一些参数。
 router.beforeEach((to, from, next) => {
+  // 开启进度条
   NProgress.start()
   next()
 })
-
 router.afterEach(() => {
+  // 关闭进度条
   NProgress.done()
 })
 </script>

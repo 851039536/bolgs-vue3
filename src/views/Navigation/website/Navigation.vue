@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-10-15 15:52:24
+ * @LastEditTime: 2021-10-21 10:01:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -30,7 +30,7 @@ onMounted(async () => {
       <div class="n-nav-text">
         <div v-for="info in state.resultData" :key="info.navId" class="n-nav-1">
           <div class="n-nav-1-1">
-            <img v-bind:src="info.navImg" align="left" />
+            <img v-lazy="info.navImg" align="left" />
           </div>
           <div class="text-base font-semibold n-nav-1-2">
             <a @click="winUrl(info.navUrl)">{{ info.navTitle }}</a>

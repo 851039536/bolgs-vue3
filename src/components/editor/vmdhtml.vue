@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-18 16:37:23
- * @LastEditTime: 2021-10-14 09:06:39
+ * @LastEditTime: 2021-10-21 11:19:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\editor\vmdhtml.vue
@@ -41,7 +41,8 @@ onMounted(async () => {
       style="border: 1px solid rgb(235, 237, 240);"
       :title="state.title"
     />
-    <v-md-preview :text="state.blog"></v-md-preview>
+    <!-- <v-md-preview :text="state.blog"></v-md-preview> -->
+    <v-md-editor v-model="state.blog" mode="preview"></v-md-editor>
   </div>
 </template>
 

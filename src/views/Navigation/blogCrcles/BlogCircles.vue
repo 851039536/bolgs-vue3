@@ -22,7 +22,7 @@ onMounted(async () => {
           :key="data.navId"
         >
           <div class="BlogCircles-1-1">
-            <img :src="data.navImg" onerror="this.style.display='none'" />
+            <img v-lazy="data.navImg" onerror="this.style.display='none'" />
             <!-- <img :src="data.navImg" onerror="this.src='../../assets/img/bb.jpg'" /> -->
           </div>
           <div class="BlogCircles-1-2">

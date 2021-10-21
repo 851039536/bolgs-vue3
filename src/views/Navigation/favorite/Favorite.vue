@@ -3,10 +3,8 @@ import { onMounted } from 'vue'
 import FavSidebar from './FavSidebar.vue'
 import { state } from './data'
 import { methods } from './index'
+import { winUrl } from '@/hooks/routers'
 
-const urltest = (url: string) => {
-  window.open(url)
-}
 onMounted(async () => {
   await methods.GetAll('文档')
 })
@@ -38,7 +36,7 @@ onMounted(async () => {
           :key="info.navId"
         >
           <div class="favorite_content_text-1">
-            <a @click="urltest(info.navUrl)">{{ info.navTitle }}</a>
+            <a @click="winUrl(info.navUrl)">{{ info.navTitle }}</a>
           </div>
           <div class="favorite_content_text-2">{{ info.navText }}</div>
         </div>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-10-19 17:06:11
+ * @LastEditTime: 2021-10-21 17:03:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\index.vue
@@ -13,8 +13,11 @@ import {
   LaptopOutlined,
   NotificationOutlined,
 } from '@ant-design/icons-vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, nextTick, provide, reactive, ref } from 'vue'
 import { Routers } from '@/hooks/routers'
+import { storage } from '@/utils/storage/storage'
+import { message } from 'ant-design-vue'
+import store from '@/store'
 
 export default defineComponent({
   components: {
@@ -22,12 +25,34 @@ export default defineComponent({
     LaptopOutlined,
     NotificationOutlined,
   },
+
   setup() {
+    async function zx() {
+      storage.remove(store.state.Roles)
+      if (!storage.get(store.state.Roles)) {
+        message.info('注销成功')
+        Routers('/Login')
+      }
+    }
+
+    const state = reactive({
+      showRouter: true,
+    })
+    function reload() {
+      state.showRouter = false
+      nextTick(() => {
+        state.showRouter = true
+      })
+    }
+    provide('reload', reload)
     return {
       selectedKeys1: ref<string[]>(['2']),
       selectedKeys2: ref<string[]>(['1']),
       openKeys: ref<string[]>(['sub1']),
       Routers,
+      storage,
+      zx,
+      state,
     }
   },
 })
@@ -37,14 +62,14 @@ export default defineComponent({
     <a-layout>
       <header class="header">
         <a href="" class="logo">控制台</a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"
           ><span class="navicon"></span
         ></label>
         <ul class="menu">
           <li><a href="#work">Our Work</a></li>
-          <li><a href="#about">About</a></li>
+
           <li><a href="#careers" @click="Routers('/')">主页</a></li>
+          <li><a href="#about" @click="zx()">注销</a></li>
           <li>
             <a href="#contact"><a-avatar>USER</a-avatar></a>
           </li>
@@ -88,19 +113,26 @@ export default defineComponent({
               <a-menu-item key="1" @click="Routers('/Admin-index/ArticleTable')"
                 >文章列表</a-menu-item
               >
-
               <a-menu-item key="2" @click="Routers('/Admin-index/Logins')"
-                >option2</a-menu-item
+                >类别</a-menu-item
+              >
+              <a-menu-item key="3" @click="Routers('/Admin-index/Logins')"
+                >标签</a-menu-item
+              >
+              <a-menu-item key="4" @click="Routers('/Admin-index/Logins')"
+                >Login</a-menu-item
               >
             </a-sub-menu>
             <a-sub-menu key="sub2">
               <template #title>
                 <span>
                   <laptop-outlined />
-                  subnav 2
+                  内容分享
                 </span>
               </template>
-              <a-menu-item key="5">option5</a-menu-item>
+              <a-menu-item key="5" @click="Routers('/Admin-index/NavTable')"
+                >导航列表</a-menu-item
+              >
               <a-menu-item key="6">option6</a-menu-item>
               <a-menu-item key="7">option7</a-menu-item>
               <a-menu-item key="8">option8</a-menu-item>
@@ -120,7 +152,10 @@ export default defineComponent({
           </a-menu>
         </a-layout-sider>
         <!-- 子路由 -->
-        <router-view></router-view>
+        <router-view
+          v-if="state.showRouter"
+          class="animate__animated animate__fadeIn"
+        ></router-view>
         <!-- end 子路由 -->
       </a-layout>
     </a-layout>
@@ -160,10 +195,6 @@ export default defineComponent({
   }
 
   .header li a:hover,
-  .header .menu-btn:hover {
-    background-color: #f4f4f4;
-  }
-
   .header .logo {
     display: block;
     float: left;
@@ -220,31 +251,6 @@ export default defineComponent({
   }
 
   /* menu btn */
-
-  .header .menu-btn {
-    display: none;
-  }
-
-  .header .menu-btn:checked ~ .menu {
-    max-height: 240px;
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon {
-    background: transparent;
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon::before {
-    transform: rotate(-45deg);
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon::after {
-    transform: rotate(45deg);
-  }
-
-  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::before,
-  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::after {
-    top: 0;
-  }
 
   /* 48em = 768px */
 

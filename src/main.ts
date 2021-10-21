@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-09-29 16:58:57
+ * @LastEditTime: 2021-10-21 09:27:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -14,16 +14,18 @@ import Antd from 'ant-design-vue';
 import App from './App.vue'
 import 'ant-design-vue/dist/antd.css';
 import animated from 'animate.css'
+import 'nprogress/nprogress.css'
 // import 'virtual:windi.css'
 import './index.css'
+import lazyPlugin from 'vue3-lazy'
 
 
 // v-md
-// import VueMarkdownEditor from '@kangc/v-md-editor';
-// import '@kangc/v-md-editor/lib/style/base-editor.css';
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
 
-import VMdPreview from '@kangc/v-md-editor/lib/preview';
-import '@kangc/v-md-editor/lib/style/preview.css';
+// import VMdPreview from '@kangc/v-md-editor/lib/preview';
+// import '@kangc/v-md-editor/lib/style/preview.css';
 // vuepress github 主题
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
@@ -33,7 +35,7 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import Prism from 'prismjs';
 //import hljs from 'highlight.js';
 
-VMdPreview.use(vuepressTheme, {
+VueMarkdownEditor.use(vuepressTheme, {
   Prism,
   //Hljs: hljs,
   // extend(md) {
@@ -64,7 +66,11 @@ app.component("BlogHeader", BlogHeader)
 app.component("IndexSidebar", IndexSidebar)
 app.component("BlogSidebar", BlogSidebar)
 
-app.use(VMdPreview);
+app.use(lazyPlugin, {
+  loading: require('@/assets/img/sp.png'), // 图片加载时默认图片
+  error: require('@/assets/img/sp.png')// 图片加载失败时默认图片
+})
+app.use(VueMarkdownEditor);
 app.use(store);
 app.use(Antd)
 app.use(animated)

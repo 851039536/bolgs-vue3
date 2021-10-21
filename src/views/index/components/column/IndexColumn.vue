@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-08 11:17:02
- * @LastEditTime: 2021-10-19 13:36:39
+ * @LastEditTime: 2021-10-21 15:12:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
@@ -9,32 +9,21 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { setBlog } from '@/api/index'
 import { state, column } from './index'
-import { storage } from '@/utils/storage/storage'
+import { resolve, RouterId } from '@/hooks/routers'
 
-const router = useRouter()
 const stores = useStore()
-
 async function skip(id: number) {
   await setBlog.GetByIdAsync(1, false).then((res: any) => {
     stores.state.SetPage = res.data.setIsopen
   })
   if (stores.state.SetPage) {
-    const { href } = await router.resolve({
-      path: '/VmdHtml',
-      query: { id: id },
-    })
+    const { href } = await resolve('/VmdHtml', id)
     window.open(href, '_blank')
   } else {
-    await router.push({
-      path: '/IndexText',
-      query: {
-        id: id,
-      },
-    })
+    await RouterId('/IndexText', id)
   }
 }
 onMounted(async () => {

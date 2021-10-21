@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-10-19 15:40:04
+ * @LastEditTime: 2021-10-21 15:54:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
@@ -11,11 +11,13 @@
 import { Routers } from '@/hooks/routers'
 import { user } from '@/api/index'
 import { onMounted, reactive } from 'vue'
-import { storage } from '@/utils/storage/storage'
+import { storage, sessionStorage } from '@/utils/storage/storage'
 import { message } from 'ant-design-vue'
+import { useStore } from 'vuex'
+const store = useStore()
 const state = reactive({
-  user: 'kai',
-  pwd: 'kai',
+  user: '',
+  pwd: '',
   result: [],
 })
 
@@ -27,14 +29,16 @@ async function login() {
     }
     state.result = res.data.split(',')
     if (state.result[0] === '1') {
-      storage.remove('token')
-      storage.set('token', 'Bearer ' + state.result[1])
+      store.state.Roles = state.user
+      sessionStorage.set('state', store.state.Roles)
+      storage.remove(store.state.Roles)
+      storage.set(store.state.Roles, 'Bearer ' + state.result[1])
       Routers('/Admin-index/ArticleTable')
     }
   })
 }
 onMounted(async () => {
-  if (storage.get('token')) {
+  if (storage.get(store.state.Roles)) {
     await message.loading('已登录,跳转中')
     await Routers('/Admin-index/ArticleTable')
   }

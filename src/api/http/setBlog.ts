@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 14:39:40
- * @LastEditTime: 2021-09-18 15:39:48
- * @LastEditors: your name
+ * @LastEditTime: 2021-10-21 12:00:18
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\http\setBlog.ts
  */
@@ -18,8 +18,5 @@ export class setBlog {
       method: 'get',
     })
   }
-
-
-
 
 }

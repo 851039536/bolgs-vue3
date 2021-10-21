@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-19 14:15:14
+ * @LastEditTime: 2021-10-20 15:55:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\store\index.ts
@@ -14,9 +14,10 @@ import {
 
 export default createStore({
   state: {
-
     //设置页面是否新窗口打开
     SetPage: false,
+    //角色Token
+    Roles: "Roles",
 
   },
 

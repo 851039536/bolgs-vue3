@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
+import { getCurrentInstance, onMounted } from 'vue'
 import { labels, sort } from '@/api/index'
 import BlogIco from '@/components/sidebarModule/sico/sIco.vue'
 import BlogInformation from '@/components/sidebarModule/sstatistics/sStatistics.vue'
@@ -10,17 +9,11 @@ import SCategory from '@/components/sidebarModule/category/sCategory.vue'
 import { dataList } from './data'
 import { indexSidebar } from './index'
 import STime from '@/components/sidebarModule/stime/sTime.vue'
+import { resolve } from '@/hooks/routers'
 
 const { proxy }: any = getCurrentInstance() //获取上下文实例，ctx=vue2的this
-const router = useRouter()
-const tiaozhuan = async (title: string) => {
-  const { href } = await router.resolve({
-    path: '/VmdHtml',
-    query: {
-      id: title,
-      t: +new Date(),
-    },
-  })
+const tiaozhuan = async (id: number) => {
+  const { href } = await resolve('/VmdHtml', id)
   window.open(href, '_blank')
 }
 

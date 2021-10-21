@@ -1,18 +1,32 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-14 11:42:20
- * @LastEditTime: 2021-10-16 11:03:25
+ * @LastEditTime: 2021-10-21 14:58:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\components\BlogsContent.vue
 -->
+<script lang="ts" setup>
+import { RouterId } from '@/hooks/routers'
+import { IntArticle } from '@/api/data/interData'
 
+defineProps({
+  dataResult: {
+    type: Array as () => Array<IntArticle>,
+    required: true,
+    default: () => [],
+  },
+})
+async function jump(id: number) {
+  await RouterId('/IndexText', id)
+}
+</script>
 <template>
   <!-- 内容框 -->
   <div class="blogs_content" v-for="info in dataResult" :key="info.articleId">
     <div class="blogs_content_div">
       <div class="blogs_content_img">
-        <img :src="info.urlImg" />
+        <img v-lazy="info.urlImg" />
       </div>
       <div class="blogs_content__frame">
         <p class="blogs_content__frame-1">
@@ -30,23 +44,6 @@
   </div>
   <!-- end 内容框  -->
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { RouterId } from '@/hooks/routers'
-
-export default defineComponent({
-  props: ['dataResult'],
-  setup() {
-    async function jump(id: number): Promise<void> {
-      await RouterId('/IndexText', id)
-    }
-    return {
-      jump,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @import '../index.scss';

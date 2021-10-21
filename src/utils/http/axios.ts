@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-10-19 15:38:45
+ * @LastEditTime: 2021-10-21 10:29:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -14,18 +14,19 @@ import { dataList } from '@/components/aspin/data';
 import { message } from 'ant-design-vue';
 import { storage } from '../storage/storage';
 
+//数据请求字符
 axios.defaults.baseURL = process.env.VUE_APP_API_URL,
   // 如果请求话费了超过 `timeout` 的时间，请求将被中断
-  axios.defaults.timeout = 15000;
-// `withCredentials` 表示跨域请求时是否需要使用凭证
+  axios.defaults.timeout = 5000;
+// 表示跨域请求时是否需要使用凭证
 axios.defaults.withCredentials = false;
 // axios.defaults.headers.common['token'] =  AUTH_TOKEN
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
-axios.defaults.headers.post["Access-Control-Allow-Origin-Type"] = "*"; // 允许跨域
+// 允许跨域
+axios.defaults.headers.post["Access-Control-Allow-Origin-Type"] = "*";
 
-// 添加请求拦截器
+// 请求拦截器
 axios.interceptors.request.use(function (config) {
-
   if (
     config.method === "post" ||
     config.method === "put" ||
@@ -35,16 +36,20 @@ axios.interceptors.request.use(function (config) {
     config.data = qs.parse(config.data);
   }
   // 若是有做鉴权token , 就给头部带上token
-  if (storage.get('token')) {
-    config.headers.Authorization = storage.get('token');
+  if (storage.get(store.state.Roles)) {
+    store.state.Roles
+    config.headers.Authorization = storage.get(store.state.Roles);
   }
   return config;
 }, error => {
   message.error(error.data.error.message);
   return Promise.reject(error.data.error.message);
 })
-// 添加响应拦截器
+
+// 响应拦截器
 axios.interceptors.response.use(function (config) {
+
+
   dataList.show = true
   if (config.status === 200 || config.status === 204) {
     setTimeout(() => {
@@ -63,9 +68,9 @@ axios.interceptors.response.use(function (config) {
         // 未登录则跳转登录页面，并携带当前页面的路径
         // 在登录成功后返回当前页面，这一步需要在登录页操作。                
         case 401: //重定向
-          message.error("token:登录失效" + error.response.status)
-          storage.remove('token')
-          storage.get('token')
+          message.error("token:登录失效" + error.response.status + store.state.Roles)
+          storage.remove(store.state.Roles)
+          storage.get(store.state.Roles)
           console.log('%c [  storage.get("token") 401]', 'font-size:13px; background:pink; color:#bf2c9f;', storage.get('token'))
           router.replace({
             path: '/Login',
@@ -76,7 +81,7 @@ axios.interceptors.response.use(function (config) {
         // 清除本地token和清空vuex中token对象
         // 跳转登录页面                
         case 403:
-          console.log('%c [ 403 ]', 'font-size:13px; background:pink; color:#bf2c9f;', 403)
+          message.error("token过期" + error.response.status)
           break;
 
         // 404请求不存在

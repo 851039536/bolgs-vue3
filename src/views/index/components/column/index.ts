@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-18 11:31:05
- * @LastEditTime: 2021-10-18 16:29:23
+ * @LastEditTime: 2021-10-20 10:56:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\index.ts
@@ -32,7 +32,7 @@ class column {
 
   static async GetFyTitle() {
     await article
-      .GetFyTitleAsync(state.page, state.pagesize, true)
+      .GetFyTitleAsync(state.page, state.pagesize, true, true)
       .then((result: any) => {
         state.dataResult = result.data
       })

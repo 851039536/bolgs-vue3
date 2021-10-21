@@ -1,44 +1,32 @@
 <script lang="ts" setup>
 import { getCurrentInstance, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { article, usertalk } from '@/api/index'
 import { blogsSiList } from '../components/data'
-
+import {} from '@/hooks/routers'
 import BlogInformation from '@/components/sidebarModule/sstatistics/sStatistics.vue'
 import BlogIco from '@/components/sidebarModule/sico/sIco.vue'
 import SDescribe from '@/components/describe/sDescribe.vue'
-
+import { resolve } from '@/hooks/routers'
 const { proxy }: any = getCurrentInstance()
-const router = useRouter()
 
 const SearchTitle = async (title: string) => {
   await article.GetContainsAsync(title).then((res) => {
     blogsSiList.article2 = res.data
   })
 }
-
-const tiaozhuan = async (title: any) => {
-  const { href } = await router.resolve({
-    path: '/Particulars',
-    query: {
-      id: title,
-      t: +new Date(),
-    },
-  })
+const tiaozhuan = async (id: any) => {
+  const { href } = await resolve('/VmdHtml', id)
   window.open(href, '_blank')
 }
-
 const GetAllasync = async () => {
   //查询最新发布前十文章
-  await article.GetFyTitleAsync(1, 1).then((res) => {
+  await article.GetFyTitleAsync(1, 1, true, true).then((res) => {
     blogsSiList.articledata = res.data[0].timeCreate
   })
-
   // 查询当前用户的说说
   await usertalk.GetUserTalkFirst().then((res) => {
     blogsSiList.UserTalk = res.data
   })
-
   proxy.$api
     .all([
       //查询文章总数

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-10 11:40:02
- * @LastEditTime: 2021-10-19 14:29:14
+ * @LastEditTime: 2021-10-21 12:18:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
@@ -34,6 +34,15 @@ async function getAll() {
   })
 }
 
+/**
+ * @description: 搜素框模糊查询
+ * @param {string} name 名称
+ */
+async function SearchTitle(name: string) {
+  await article.GetContainsAsync(name).then((res) => {
+    state.newinfo = res.data
+  })
+}
 onMounted(async () => {
   await AsyGetTag(id.id)
   await getAll()
@@ -44,12 +53,17 @@ onMounted(async () => {
     <div class="tag-main">
       <div class="tag_search">
         <div>
-          <a-input-search
-            v-model:value="value"
-            placeholder="input search text"
-            enter-button
-            @search="onSearch"
-          />
+          <a-select
+            show-search
+            placeholder="标题搜索"
+            style="width: 200px;"
+            :default-active-first-option="false"
+            :show-arrow="false"
+            :filter-option="false"
+            :not-found-content="null"
+            @search="SearchTitle"
+          >
+          </a-select>
         </div>
       </div>
       <TagHead :result-data="state.labels"></TagHead>
@@ -66,11 +80,12 @@ onMounted(async () => {
 
   @apply relative rounded-sm  shadow;
 
-  height: 50px;
+  height: 40px;
 
   div {
-    @apply absolute top-1/2 left-1/2;
+    @apply absolute left-1/2;
 
+    top: 90%;
     width: 40%;
     transform: translate(-50%, -50%);
   }

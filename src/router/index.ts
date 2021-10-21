@@ -247,15 +247,21 @@ const routes = [{
       component: () => import('@/views/admin/article/ArticleTable.vue'),
     },
     {
-      path: 'ArticleForm',
-      name: 'ArticleForm',
-      component: () => import('@/views/admin/article/ArticleForm.vue'),
+      path: 'ArticleAdd',
+      name: 'ArticleAdd',
+      component: () => import('@/views/admin/article/ArticleAdd.vue'),
     },
     {
-      path: 'Logins',
-      name: 'Logins',
-      component: () => import('@/views/admin/login/Login.vue')
+      path: 'ArticleEdit',
+      name: 'ArticleEdit',
+      component: () => import('@/views/admin/article/ArticleEdit.vue'),
     },
+    {
+      path: 'NavTable',
+      name: 'NavTable',
+      component: () => import('@/views/admin/navigation/NavTable.vue'),
+    },
+
   ]
 },
 ]

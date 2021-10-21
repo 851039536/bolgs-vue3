@@ -1,7 +1,7 @@
 <!--
  * @Author: 博客侧边栏
  * @Date: 2020-12-08 11:27:26
- * @LastEditTime: 2021-10-13 14:56:31
+ * @LastEditTime: 2021-10-21 09:59:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\Sidebarsn.vue
@@ -9,7 +9,8 @@
 
 <script lang="ts" setup>
 import { state, raside } from './index'
-import { onMounted } from 'vue'
+import { onMounted, reactive } from 'vue'
+
 onMounted(async () => {
   await raside.GetType()
 })

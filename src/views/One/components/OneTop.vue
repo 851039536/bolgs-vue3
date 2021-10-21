@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-28 17:50:44
- * @LastEditTime: 2021-09-29 15:21:58
+ * @LastEditTime: 2021-10-21 10:01:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\components\OneTop.vue
@@ -20,7 +20,7 @@ defineProps({
 <template>
   <div class="One-top">
     <div class="One-top-img">
-      <img src="@/assets/img/tg.jpg" alt />
+      <img src="@/assets/img/tg.jpg" />
     </div>
     <div class="One-top-text">
       <div class="One-top-text-title">
