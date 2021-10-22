@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-10-21 11:59:07
+ * @LastEditTime: 2021-10-22 10:36:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -38,6 +38,16 @@ export class article {
   static async GetContainsAsync(name: string) {
     return await request({
       url: "/api/SnArticle/GetContainsAsync?name=" + name + "&cache=true",
+      method: 'get',
+    })
+  }
+  /**
+   * @description: 按标签模糊查询
+   * @param {string} name
+   */
+  static async GetTypeContainsAsync(tag: string, name: string, chache: boolean) {
+    return await request({
+      url: "/api/SnArticle/GetTypeContainsAsync?type=" + tag + "&name=" + name + "&cache=" + chache,
       method: 'get',
     })
   }
@@ -136,6 +146,11 @@ export class article {
         data: resultData,
       })
   }
+  /**
+   * @description: 删除
+   * @param {number} id
+   * @return {*}
+   */
   static async DeleteAsync(id: number) {
     return await
       request({

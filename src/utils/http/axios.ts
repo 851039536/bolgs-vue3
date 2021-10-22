@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-10-21 10:29:54
+ * @LastEditTime: 2021-10-22 11:34:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -64,14 +64,17 @@ axios.interceptors.response.use(function (config) {
 
     if (error.response.status) {
       switch (error.response.status) {
+        case 400:
+          message.error("发出的请求有错误，服务器没有进行新建或修改数据的操作==>" + error.response.status)
+          break;
+
         // 401: 未登录
         // 未登录则跳转登录页面，并携带当前页面的路径
         // 在登录成功后返回当前页面，这一步需要在登录页操作。                
         case 401: //重定向
-          message.error("token:登录失效" + error.response.status + store.state.Roles)
+          message.error("token:登录失效==>" + error.response.status + ":" + store.state.Roles)
           storage.remove(store.state.Roles)
           storage.get(store.state.Roles)
-          console.log('%c [  storage.get("token") 401]', 'font-size:13px; background:pink; color:#bf2c9f;', storage.get('token'))
           router.replace({
             path: '/Login',
           });
@@ -81,16 +84,34 @@ axios.interceptors.response.use(function (config) {
         // 清除本地token和清空vuex中token对象
         // 跳转登录页面                
         case 403:
-          message.error("token过期" + error.response.status)
+          message.error("用户得到授权，但是访问是被禁止的==>" + error.response.status)
           break;
-
-        // 404请求不存在
         case 404:
-          message.error("网络请求不存在" + error.response.status)
+          message.error("网络请求不存在==>" + error.response.status)
           break;
-        // 其他错误，直接抛出错误提示
+        case 406:
+          message.error("请求的格式不可得==>" + error.response.status)
+          break;
+        case 410:
+          message.error("请求的资源被永久删除，且不会再得到的==>" + error.response.status)
+          break;
+        case 422:
+          message.error("当创建一个对象时，发生一个验证错误==>" + error.response.status)
+          break;
+        case 500:
+          message.error("服务器发生错误，请检查服务器==>" + error.response.status)
+          break;
+        case 502:
+          message.error("网关错误==>" + error.response.status)
+          break;
+        case 503:
+          message.error("服务不可用，服务器暂时过载或维护==>" + error.response.status)
+          break;
+        case 504:
+          message.error("网关超时==>" + error.response.status)
+          break;
         default:
-          message.error("错误" + error.response.status)
+          message.error("其他错误错误==>" + error.response.status)
       }
       return Promise.reject(error.response);
     } else {

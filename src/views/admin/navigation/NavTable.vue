@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-10-21 17:09:47
+ * @LastEditTime: 2021-10-22 15:13:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -13,13 +13,6 @@ import { inject, onMounted } from 'vue'
 import { message } from 'ant-design-vue'
 import { Routers, RouterId } from '@/hooks/routers'
 
-async function add() {
-  Routers('/Admin-index/ArticleAdd')
-}
-async function edit(data: any) {
-  message.info(data.articleId)
-  RouterId('/Admin-index/ArticleEdit', data.articleId)
-}
 async function GetFySortTitle() {
   await navigation
     .GetFyAllAsync('all', 1, 1000, true, false)
@@ -27,13 +20,12 @@ async function GetFySortTitle() {
       state.dataResult = result.data
     })
 }
-
 const reload: any = inject('reload')
 const confirm = async (data: any) => {
-  // await navigation.DeleteAsync(data.articleId).then((res) => {
-  //   message.success('删除成功')
-  //   reload()
-  // })
+  await navigation.DeleteAsync(data.navId).then(() => {
+    message.success('删除成功')
+    reload()
+  })
 }
 const cancel = () => {
   message.info('已取消')
@@ -68,54 +60,39 @@ onMounted(async () => {
       }"
     >
       <div class="table-operations">
-        <a-button @click="add()">添加</a-button>
-        <a-button @click="reload()">刷新</a-button>
+        <a-space>
+          <a-button @click="Routers('/Admin-index/NavAdd')">添加</a-button>
+          <a-button @click="reload()">刷新</a-button>
 
-        <a-select
-          ref="select"
-          v-model:value="value1"
-          style="width: 120px;"
-          @focus="focus"
-          @change="handleChange"
-        >
-          <a-select-option value="jack">全部</a-select-option>
-          <a-select-option value="lucy">Lucy</a-select-option>
-          <a-select-option value="Yiminghe">yiminghe</a-select-option>
-        </a-select>
-        <!-- 搜索  -->
-        <!-- <a-select
-          show-search
-          placeholder="标题搜索"
-          style="width: 200px;"
-          :show-arrow="false"
-          :filter-option="false"
-          @search="SearchTitle"
-        >
+          <a-select
+            ref="select"
+            v-model:value="value1"
+            style="width: 120px;"
+            @change="handleChange"
           >
-          <a-select-option v-for="d in state.dataResult" :key="d.articleId">{{
-            d.title
-          }}</a-select-option>
-        </a-select> -->
-
-        <a-select
-          show-search
-          placeholder="标题搜索"
-          style="width: 200px;"
-          :default-active-first-option="false"
-          :show-arrow="false"
-          :filter-option="false"
-          :not-found-content="null"
-          :options="state.dataResult.title"
-          @search="SearchTitle"
-        >
-        </a-select>
+            <a-select-option value="jack">全部</a-select-option>
+            <a-select-option value="lucy">Lucy</a-select-option>
+            <a-select-option value="Yiminghe">yiminghe</a-select-option>
+          </a-select>
+          <!-- 搜索  -->
+          <a-select
+            show-search
+            placeholder="标题搜索"
+            style="width: 200px;"
+            :default-active-first-option="false"
+            :show-arrow="false"
+            :not-found-content="null"
+            @search="SearchTitle"
+          >
+          </a-select>
+        </a-space>
         <!-- end 搜索 -->
       </div>
       <a-table
         size="small"
-        bordered="true"
+        :bordered="true"
         :columns="columns"
-        rowKey="articleId"
+        rowKey="navId"
         :data-source="state.dataResult"
         :pagination="{ pageSize: 7 }"
         :scroll="{
@@ -123,7 +100,12 @@ onMounted(async () => {
         }"
       >
         <template #ed="{ record }">
-          <a-button type="primary" ghost @click="edit(record)">编辑</a-button>
+          <a-button
+            type="primary"
+            ghost
+            @click="RouterId('/Admin-index/NavEdit', record.navId)"
+            >编辑</a-button
+          >
         </template>
         <template #de="{ record }">
           <a-popconfirm

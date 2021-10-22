@@ -261,6 +261,16 @@ const routes = [{
       name: 'NavTable',
       component: () => import('@/views/admin/navigation/NavTable.vue'),
     },
+    {
+      path: 'NavEdit',
+      name: 'NavEdit',
+      component: () => import('@/views/admin/navigation/NavEdit.vue'),
+    },
+    {
+      path: 'NavAdd',
+      name: 'NavAdd',
+      component: () => import('@/views/admin/navigation/NavAdd.vue'),
+    },
 
   ]
 },
@@ -271,20 +281,4 @@ const router = createRouter({
   routes,
 })
 
-// 导航守卫
-// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
-// router.beforeEach((to, from, next) => {
-//   if (to.path === "/Login") {
-//     next();
-//   } else {
-
-//     const token = storage.get('token')
-//     if (token === undefined || token === "") {
-//       console.log('%c [ token ]', 'font-size:13px; background:pink; color:#bf2c9f;', token, to.path)
-//       next("/Login");
-//     } else {
-//       next();
-//     }
-//   }
-// });
 export default router

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 09:37:45
- * @LastEditTime: 2021-10-15 09:44:44
+ * @LastEditTime: 2021-10-22 09:56:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\navigation\favorite\index.ts
@@ -27,7 +27,7 @@ class methods {
     await navigation.CountType(state.title, true).then((res: any) => {
       state.count = res.data
     })
-    await navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
+    await navigation.GetSnNavigationTypeSAllAsync(true).then((res: any) => {
       state.type = res.data
     })
     await navigation

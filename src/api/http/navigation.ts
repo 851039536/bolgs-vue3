@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-10-21 12:00:06
+ * @LastEditTime: 2021-10-22 10:36:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
  */
 
 import request from '@/utils/http/axios'
+import { IntNav } from "@/api/data/interData";
 
 export class navigation {
 
@@ -39,6 +40,14 @@ export class navigation {
     })
   }
 
+  static async GetByIdAsync(id: any, cache: boolean): Promise<any> {
+    return await request({
+      url: "/api/SnNavigation/GetByIdAsync?id=" + id + "&cache=" + cache,
+      method: 'get',
+    })
+  }
+
+
   /**
    * @description: 分页查询
    */
@@ -48,15 +57,53 @@ export class navigation {
       method: 'get',
     })
   }
+  /**
+   * @description: 新增数据
+   * @param {any} dataResult
+   */
+  static async AddAsync(dataResult: IntNav) {
+    return await
+      request({
+        url: "/api/SnNavigation/AddAsync",
+        method: "post",
+        data: dataResult,
+      })
+  }
+
+  /**
+ * @description: 更新数据
+ * @param {IntArticle} resultData
+ */
+  static async UpdateAsync(resultData: IntNav) {
+    return await
+      request({
+        url: "/api/SnNavigation/UpdateAsync",
+        method: "put",
+        data: resultData,
+      })
+  }
+
+  /**
+  * @description: 删除
+  * @param {number} id
+  * @return {*}
+  */
+  static async DeleteAsync(id: number) {
+    return await
+      request({
+        url: "/api/SnNavigation/DeleteAsync?id=" + id,
+        method: "delete",
+      })
+  }
 
   // ==================分类===========================
 
   /**
    * @description: 查询分类内容
    */
-  static async GetSnNavigationTypeSAllAsync() {
+  static async GetSnNavigationTypeSAllAsync(cache: boolean) {
     return await request({
-      url: "/api/SnNavigationType/GetAllAsync?cache=true",
+      url: "/api/SnNavigationType/GetAllAsync?cache=" + cache,
       method: 'get',
     })
   }

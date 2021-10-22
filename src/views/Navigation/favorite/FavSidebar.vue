@@ -22,7 +22,7 @@ const GetAll = async () => {
     state.resultCount = res.data
   })
 
-  await navigation.GetSnNavigationTypeSAllAsync().then((res: any) => {
+  await navigation.GetSnNavigationTypeSAllAsync(true).then((res: any) => {
     state.resultData2 = res.data
   })
 }

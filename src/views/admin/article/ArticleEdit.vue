@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-10-21 14:50:11
+ * @LastEditTime: 2021-10-22 14:24:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -13,11 +13,14 @@ import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { useRoute } from 'vue-router'
 import { Routers, go } from '@/hooks/routers'
+import { time } from './tool'
 const route = useRoute()
 const Rid = reactive({
   id: route.query.id,
 })
+
 const onSubmit = async () => {
+  formState.timeModified = time.timeModified
   await article.UpdateAsync(formState).then(() => {
     message.info('更新完成')
     Routers('/Admin-index/ArticleTable')
@@ -41,7 +44,7 @@ async function GetAll() {
     formState.sortId = res.data.sortId
     formState.text = res.data.text
     formState.timeCreate = res.data.timeCreate
-    formState.timeModified = res.data.timeModified
+    time.timeModified = res.data.timeModified
     formState.title = res.data.title
     formState.titleText = res.data.titleText
     formState.typeTitle = res.data.typeTitle
@@ -81,14 +84,9 @@ onMounted(async () => {
             <a-input v-model:value="formState.userId" />
           </a-form-item>
           <a-form-item label="更新时间" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-date-picker
-              v-model:value="formState.timeModified"
-              show-time
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%;"
-            />
+            <a-date-picker v-model:value="time.timeModified" />
           </a-form-item>
+
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select
               v-model:value="formState.labelId"

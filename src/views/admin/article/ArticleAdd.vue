@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-10-21 14:51:30
+ * @LastEditTime: 2021-10-22 14:26:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -12,14 +12,16 @@ import { labels, article, sort, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { Routers, go } from '@/hooks/routers'
+import { time } from './tool'
 
 const onSubmit = async () => {
-  console.log('submit!', formState)
+  formState.timeModified = formState.timeCreate = time.timeCreate
   await article.AddAsync(formState).then(() => {
     message.info('添加成功')
     Routers('/Admin-index/ArticleTable')
   })
 }
+
 async function GetAll() {
   labels.GetAllAsync(true).then((res) => {
     stateArray.labelResult = res.data
@@ -61,13 +63,7 @@ onMounted(async () => {
             <a-input v-model:value="formState.userId" />
           </a-form-item>
           <a-form-item label="创建时间" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-date-picker
-              v-model:value="formState.timeCreate"
-              show-time
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%;"
-            />
+            <a-date-picker v-model:value="time.timeCreate" />
           </a-form-item>
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select

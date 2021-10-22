@@ -1,61 +1,57 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-10-21 17:03:00
+ * @LastEditTime: 2021-10-22 12:24:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\index.vue
 -->
 
-<script lang="ts">
+<script lang="ts" setup>
 import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
 } from '@ant-design/icons-vue'
-import { defineComponent, nextTick, provide, reactive, ref } from 'vue'
+import { nextTick, provide, reactive } from 'vue'
 import { Routers } from '@/hooks/routers'
 import { storage } from '@/utils/storage/storage'
 import { message } from 'ant-design-vue'
 import store from '@/store'
 
-export default defineComponent({
-  components: {
-    UserOutlined,
-    LaptopOutlined,
-    NotificationOutlined,
-  },
+async function zx() {
+  storage.remove(store.state.Roles)
+  if (!storage.get(store.state.Roles)) {
+    message.info('注销成功')
+    Routers('/Login')
+  }
+}
 
-  setup() {
-    async function zx() {
-      storage.remove(store.state.Roles)
-      if (!storage.get(store.state.Roles)) {
-        message.info('注销成功')
-        Routers('/Login')
-      }
-    }
+const handleClick = (e: any) => {
+  message.info(e.key)
+  switch (e.key) {
+    case '1-1':
+      Routers('/Admin-index/ArticleTable')
+      break
+    case '2-1':
+      Routers('/Admin-index/NavTable')
+      break
+    default:
+      // Routers('/Admin-index/Login')
+      break
+  }
+}
 
-    const state = reactive({
-      showRouter: true,
-    })
-    function reload() {
-      state.showRouter = false
-      nextTick(() => {
-        state.showRouter = true
-      })
-    }
-    provide('reload', reload)
-    return {
-      selectedKeys1: ref<string[]>(['2']),
-      selectedKeys2: ref<string[]>(['1']),
-      openKeys: ref<string[]>(['sub1']),
-      Routers,
-      storage,
-      zx,
-      state,
-    }
-  },
+const state = reactive({
+  showRouter: true,
 })
+function reload() {
+  state.showRouter = false
+  nextTick(() => {
+    state.showRouter = true
+  })
+}
+provide('reload', reload)
 </script>
 <template>
   <div class="admin_index animate__animated animate__fadeIn">
@@ -66,7 +62,7 @@ export default defineComponent({
           ><span class="navicon"></span
         ></label>
         <ul class="menu">
-          <li><a href="#work">Our Work</a></li>
+          <li><a href="https://www.cnblogs.com/ouyangkai/">博客园</a></li>
 
           <li><a href="#careers" @click="Routers('/')">主页</a></li>
           <li><a href="#about" @click="zx()">注销</a></li>
@@ -75,21 +71,7 @@ export default defineComponent({
           </li>
         </ul>
       </header>
-      <!-- <a-layout-header class="header">
-        <div class="logo" />
-        <a-menu
-          theme="dark"
-          mode="horizontal"
-          v-model:selectedKeys="selectedKeys1"
-          :style="{ lineHeight: '64px' }"
-        >
-          <a-menu-item key="4" @click="Routers('/')">主页</a-menu-item>
 
-          <a-menu-item key="5" @click="Routers('/')" class="avatar"
-            ><a-avatar size="large">USER</a-avatar></a-menu-item
-          >
-        </a-menu>
-      </a-layout-header> -->
       <a-layout>
         <a-layout-sider
           breakpoint="lg"
@@ -99,29 +81,20 @@ export default defineComponent({
         >
           <a-menu
             mode="inline"
-            v-model:selectedKeys="selectedKeys2"
-            v-model:openKeys="openKeys"
+            @click="handleClick"
             :style="{ height: '100%', borderRight: 0 }"
           >
-            <a-sub-menu key="sub1">
+            <a-sub-menu key="article">
               <template #title>
                 <span>
                   <user-outlined />
                   文章展示
                 </span>
               </template>
-              <a-menu-item key="1" @click="Routers('/Admin-index/ArticleTable')"
-                >文章列表</a-menu-item
-              >
-              <a-menu-item key="2" @click="Routers('/Admin-index/Logins')"
-                >类别</a-menu-item
-              >
-              <a-menu-item key="3" @click="Routers('/Admin-index/Logins')"
-                >标签</a-menu-item
-              >
-              <a-menu-item key="4" @click="Routers('/Admin-index/Logins')"
-                >Login</a-menu-item
-              >
+              <a-menu-item key="1-1">文章列表</a-menu-item>
+              <a-menu-item key="1-2">类别</a-menu-item>
+              <a-menu-item key="1-3">标签</a-menu-item>
+              <a-menu-item key="1-4">Login</a-menu-item>
             </a-sub-menu>
             <a-sub-menu key="sub2">
               <template #title>
@@ -130,11 +103,9 @@ export default defineComponent({
                   内容分享
                 </span>
               </template>
-              <a-menu-item key="5" @click="Routers('/Admin-index/NavTable')"
-                >导航列表</a-menu-item
-              >
-              <a-menu-item key="6">option6</a-menu-item>
-              <a-menu-item key="7">option7</a-menu-item>
+              <a-menu-item key="2-1">导航列表</a-menu-item>
+              <a-menu-item key="2-2">option6</a-menu-item>
+              <a-menu-item key="2-3">option7</a-menu-item>
               <a-menu-item key="8">option8</a-menu-item>
             </a-sub-menu>
             <a-sub-menu key="sub3">

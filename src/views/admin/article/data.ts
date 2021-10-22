@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-10-20 16:48:23
+ * @LastEditTime: 2021-10-22 14:57:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -27,13 +27,14 @@ const columns = [
     dataIndex: 'title',
     width: 250,
   },
-  {
-    title: '点赞量',
-    dataIndex: 'give',
-  },
+
   {
     title: '创建时间',
     dataIndex: 'timeCreate',
+  },
+  {
+    title: '更新时间',
+    dataIndex: 'timeModified',
   },
   {
     title: '阅读量',
@@ -74,9 +75,13 @@ const stateArray: any = reactive({
   labelResult: [],
   sortResult: [],
 })
+const stateStr: any = reactive({
+  labelStr: "ALL"
+})
 export {
   columns,
   state,
   formState,
-  stateArray
+  stateArray,
+  stateStr
 }
