@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-21 09:27:10
+ * @LastEditTime: 2021-10-22 16:41:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -10,15 +10,14 @@ import {
   createApp
 } from 'vue'
 
-import Antd from 'ant-design-vue';
 import App from './App.vue'
-import 'ant-design-vue/dist/antd.css';
 import animated from 'animate.css'
 import 'nprogress/nprogress.css'
 // import 'virtual:windi.css'
 import './index.css'
 import lazyPlugin from 'vue3-lazy'
-
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
 // v-md
 import VueMarkdownEditor from '@kangc/v-md-editor';

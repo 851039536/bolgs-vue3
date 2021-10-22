@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-10-22 15:25:39
+ * @LastEditTime: 2021-10-22 16:55:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -91,9 +91,8 @@ onMounted(async () => {
           <a-button @click="Routers('/Admin-index/ArticleAdd')">添加</a-button>
           <a-button @click="reload()">刷新</a-button>
           <a-select
-            ref="select"
-            v-model:value="stateStr.labelStr"
             style="width: 120px;"
+            v-model:value="stateStr.labelStr"
             @change="selectTag"
           >
             <a-select-option value="ALL">ALL</a-select-option>
