@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:18:11
- * @LastEditTime: 2021-10-19 10:51:47
+ * @LastEditTime: 2021-10-23 11:00:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\.eslintrc.js
@@ -34,7 +34,8 @@ module.exports = {
 
   },
   globals: {
-    'defineProps': true
+    'defineProps': true,
+    'defineEmits': true
   }
 
 }

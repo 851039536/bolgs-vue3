@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-18 16:37:23
- * @LastEditTime: 2021-10-21 11:19:01
+ * @LastEditTime: 2021-10-23 09:18:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\editor\vmdhtml.vue
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { defineComponent, reactive, onMounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import { article } from '@/api/index'
 
 const route = useRoute()
