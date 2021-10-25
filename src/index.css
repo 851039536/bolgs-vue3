@@ -10,9 +10,8 @@
   }
 
   body {
-    /* background-color: #bae8e8; */
-
     /* 条纹背景框 */
+
     background:
       linear-gradient(45deg, #92baac 45px, transparent 45px) 64px 64px,
       linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px),

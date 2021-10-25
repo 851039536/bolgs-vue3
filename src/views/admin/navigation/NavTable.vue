@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-10-22 16:55:27
+ * @LastEditTime: 2021-10-25 16:45:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -31,18 +31,36 @@ const cancel = () => {
   message.info('已取消')
 }
 
+async function SelectNav() {
+  message.info(state.navStr)
+}
 /**
  * @description: 搜素框模糊查询
  * @param {string} name 名称
  */
 async function SearchTitle(name: string) {
-  // await article.GetContainsAsync(name).then((res) => {
-  //   state.dataResult = res.data
-  // })
+  if (name === '') {
+    return
+  }
+  if (state.navStr === 'ALL') {
+    await navigation.GetContainsAsync(name, false).then((res) => {
+      state.dataResult = res.data
+    })
+  } else {
+    await navigation
+      .GetTypeContainsAsync(state.navStr, name, false)
+      .then((res) => {
+        state.dataResult = res.data
+      })
+  }
 }
+
 onMounted(async () => {
-  await GetFySortTitle()
   await TOKEN()
+  await GetFySortTitle()
+  await navigation.GetSnNavigationTypeSAllAsync(false).then((res) => {
+    state.navTypeData = res.data
+  })
 })
 </script>
 <template>
@@ -63,16 +81,21 @@ onMounted(async () => {
         <a-space>
           <a-button @click="Routers('/Admin-index/NavAdd')">添加</a-button>
           <a-button @click="reload()">刷新</a-button>
-
+          <!--   v-model:value="stateStr.labelStr" -->
           <a-select
-            v-model:value="value1"
             style="width: 120px;"
-            @change="handleChange"
+            v-model:value="state.navStr"
+            @change="SelectNav"
           >
-            <a-select-option value="jack">全部</a-select-option>
-            <a-select-option value="lucy">Lucy</a-select-option>
-            <a-select-option value="Yiminghe">yiminghe</a-select-option>
+            <a-select-option value="ALL">ALL</a-select-option>
+            <a-select-option
+              :value="item.navType"
+              v-for="item in state.navTypeData"
+              :key="item.navType"
+              >{{ item.title }}</a-select-option
+            >
           </a-select>
+
           <!-- 搜索  -->
           <a-select
             show-search

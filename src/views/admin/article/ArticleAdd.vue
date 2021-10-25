@@ -1,18 +1,18 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-10-22 14:26:21
+ * @LastEditTime: 2021-10-25 16:48:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
 -->
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { inject, onBeforeUpdate, onMounted } from 'vue'
 import { labels, article, sort, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { Routers, go } from '@/hooks/routers'
-import { time } from './tool'
+import { time } from '../utils/tool'
 
 const onSubmit = async () => {
   formState.timeModified = formState.timeCreate = time.timeCreate
@@ -30,6 +30,7 @@ async function GetAll() {
     stateArray.sortResult = res.data
   })
 }
+
 onMounted(async () => {
   await GetAll()
   await TOKEN()

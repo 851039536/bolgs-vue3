@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-10-22 10:06:56
+ * @LastEditTime: 2021-10-25 14:51:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -10,10 +10,14 @@
 import { reactive } from "vue"
 import { IntNav } from '@/api/data/interData'
 interface State {
-  dataResult: any
+  dataResult: any,
+  navTypeData: any,
+  navStr: string
 }
 const state: State = reactive({
   dataResult: [],
+  navTypeData: [],
+  navStr: "ALL"
 })
 
 const columns = [

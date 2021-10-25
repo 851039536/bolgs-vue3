@@ -13,7 +13,7 @@ import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { useRoute } from 'vue-router'
 import { Routers, go } from '@/hooks/routers'
-import { time } from './tool'
+import { time } from '../utils/tool'
 const route = useRoute()
 const Rid = reactive({
   id: route.query.id,

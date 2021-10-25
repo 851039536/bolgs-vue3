@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-10-22 14:02:50
- * @LastEditTime: 2021-10-22 14:33:39
+ * @LastEditTime: 2021-10-25 16:45:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\tool.ts
  */
-import { reactive } from "vue";
-import { formState } from "./data";
+import { inject, reactive } from "vue";
+import { formState } from "../article/data";
 import moment from 'moment'
 
 
@@ -18,6 +18,7 @@ const time: any = reactive({
   timeCreate: moment(formState.timeCreate, 'YYYY-MM-DD'),
   timeModified: moment(formState.timeModified, 'YYYY-MM-DD'),
 })
+
 
 export {
   time,

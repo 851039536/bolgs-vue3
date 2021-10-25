@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-10-22 10:36:10
+ * @LastEditTime: 2021-10-25 15:09:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -28,6 +28,24 @@ export class navigation {
   static async CountType(type: string, chche: boolean) {
     return await request({
       url: "/api/SnNavigation/CountTypeAsync?type=" + type + "&cache=" + chche,
+      method: 'get',
+    })
+  }
+  /**
+   * @description: 模糊查询
+   * @param {string} name
+   * @param {boolean} chche
+   * @return {*}
+   */
+  static async GetContainsAsync(name: string, chche: boolean): Promise<any> {
+    return await request({
+      url: "/api/SnNavigation/GetContainsAsync?name=" + name + "&cache=" + chche,
+      method: 'get',
+    })
+  }
+  static async GetTypeContainsAsync(type: string, name: string, chche: boolean): Promise<any> {
+    return await request({
+      url: "/api/SnNavigation/GetTypeContainsAsync?type=" + type + "&name=" + name + "&cache=" + chche,
       method: 'get',
     })
   }

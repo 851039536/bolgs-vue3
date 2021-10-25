@@ -1,19 +1,21 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-10-22 11:36:57
+ * @LastEditTime: 2021-10-25 16:50:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
 -->
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { inject, onMounted } from 'vue'
 import { navigation, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { Routers, go } from '@/hooks/routers'
 
 const onSubmit = async () => {
+  // formState.navId = 0
+
   await navigation.AddAsync(formState).then(() => {
     message.info('添加成功')
     Routers('/Admin-index/NavTable')
@@ -24,6 +26,7 @@ async function GetAll() {
     stateArray.navResult = res.data
   })
 }
+
 onMounted(async () => {
   await GetAll()
   await TOKEN()
