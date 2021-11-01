@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-10-22 12:24:11
+ * @LastEditTime: 2021-11-01 15:30:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\index.vue
@@ -18,6 +18,7 @@ import { Routers } from '@/hooks/routers'
 import { storage } from '@/utils/storage/storage'
 import { message } from 'ant-design-vue'
 import store from '@/store'
+import { navname } from '../utils/data'
 
 async function zx() {
   storage.remove(store.state.Roles)
@@ -112,7 +113,7 @@ provide('reload', reload)
               <template #title>
                 <span>
                   <notification-outlined />
-                  subnav 3
+                  设置
                 </span>
               </template>
               <a-menu-item key="9">option9</a-menu-item>
@@ -122,12 +123,28 @@ provide('reload', reload)
             </a-sub-menu>
           </a-menu>
         </a-layout-sider>
-        <!-- 子路由 -->
-        <router-view
-          v-if="state.showRouter"
-          class="animate__animated animate__fadeIn"
-        ></router-view>
-        <!-- end 子路由 -->
+
+        <a-layout style="padding: 0 24px 24px;">
+          <a-breadcrumb style="margin: 16px 0;">
+            <a-breadcrumb-item>{{ navname.name }}</a-breadcrumb-item>
+            <a-breadcrumb-item>{{ navname.name2 }}</a-breadcrumb-item>
+          </a-breadcrumb>
+          <a-layout-content
+            :style="{
+              background: '#fff',
+              padding: '24px',
+              margin: 0,
+              minHeight: '95%',
+            }"
+          >
+            <!-- 子路由 -->
+            <router-view
+              v-if="state.showRouter"
+              class="animate__animated animate__fadeIn"
+            ></router-view>
+            <!-- end 子路由 -->
+          </a-layout-content>
+        </a-layout>
       </a-layout>
     </a-layout>
   </div>

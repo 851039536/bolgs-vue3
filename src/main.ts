@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-22 16:41:17
+ * @LastEditTime: 2021-10-30 11:21:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -56,8 +56,10 @@ import router from './router/index'
 import store from './store/index'
 import axios from './utils/http/axios'
 
+
 // use
 const app = createApp(App);
+
 
 // 全局ctx(this) 上挂载 $axios
 app.config.globalProperties.$api = axios

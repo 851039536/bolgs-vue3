@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-10-22 11:34:08
+ * @LastEditTime: 2021-10-30 11:14:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -21,6 +21,10 @@ axios.defaults.baseURL = process.env.VUE_APP_API_URL,
 // 表示跨域请求时是否需要使用凭证
 axios.defaults.withCredentials = false;
 // axios.defaults.headers.common['token'] =  AUTH_TOKEN
+//在POST请求中的 Content - Type 常见的有以下3种形式：
+// Content - Type: application / json Axios默认以这种形式工作
+// Content - Type: application / x - www - form - urlencoded
+// Content - Type: multipart / form - data
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 // 允许跨域
 axios.defaults.headers.post["Access-Control-Allow-Origin-Type"] = "*";
@@ -48,7 +52,6 @@ axios.interceptors.request.use(function (config) {
 
 // 响应拦截器
 axios.interceptors.response.use(function (config) {
-
 
   dataList.show = true
   if (config.status === 200 || config.status === 204) {

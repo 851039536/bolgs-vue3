@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-08 11:17:02
- * @LastEditTime: 2021-10-21 15:12:12
+ * @LastEditTime: 2021-11-01 16:18:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
@@ -13,6 +13,7 @@ import { useStore } from 'vuex'
 import { setBlog } from '@/api/index'
 import { state, column } from './index'
 import { resolve, RouterId } from '@/hooks/routers'
+import BlogsContent from '@/views/blogs/components/BlogsContent.vue'
 
 const stores = useStore()
 async function skip(id: number) {
@@ -41,14 +42,16 @@ onMounted(async () => {
     <!-- end 首页图 -->
 
     <!-- article表内容 -->
-    <div
+
+    <BlogsContent :data-result="state.dataResult"></BlogsContent>
+    <!-- <div
       class="indextitle_content"
       v-for="info in state.dataResult"
       :key="info.articleId"
     >
       <div class="indextitle_text_div">
         <div class="indextitle_title_div">
-          <div class="indextitle_title" v-on:click="skip(info.articleId)">
+          <div class="indextitle_title" @click="skip(info.articleId)">
             <a>{{ info.title }}</a>
           </div>
           <div class="indextitle_title_text">摘要: {{ info.titleText }}</div>
@@ -57,8 +60,8 @@ onMounted(async () => {
             <div>随笔</div>
             <div>{{ info.timeCreate.substring(0, 10) }}</div>
 
-            <div @click="skip(info.article_id)">
-              <a>{{ info.read }} ℃</a>
+            <div @click="skip(info.articleId)">
+              <span>{{ info.read }} ℃</span>
             </div>
             <div>
               <svg class="inline-block icon" aria-hidden="true">
@@ -72,7 +75,7 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- end article表内容  -->
 
     <!-- 分页 -->
@@ -91,4 +94,5 @@ onMounted(async () => {
 
 <style lang="scss">
 @import './index.scss';
+@import '../../../blogs/index.scss';
 </style>

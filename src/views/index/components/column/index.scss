@@ -34,9 +34,12 @@
           height: 25%;
 
           @apply px-3 pt-1 m-1;
-          @apply text-base font-semibold cursor-pointer;
-
+          @apply text-base font-semibold cursor-pointer ;
+       
           @include line-one;
+          a{
+            @apply text-gray-700
+          }
         }
 
         .indextitle_title_text {

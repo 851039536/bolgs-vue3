@@ -1,18 +1,19 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-10-25 16:48:20
+ * @LastEditTime: 2021-11-01 15:43:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
 -->
 <script lang="ts" setup>
-import { inject, onBeforeUpdate, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { labels, article, sort, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { Routers, go } from '@/hooks/routers'
 import { time } from '../utils/tool'
+import { navname } from '../utils/data'
 
 const onSubmit = async () => {
   formState.timeModified = formState.timeCreate = time.timeCreate
@@ -30,22 +31,20 @@ async function GetAll() {
     stateArray.sortResult = res.data
   })
 }
+async function reloads() {
+  location.reload()
+}
 
 onMounted(async () => {
   await GetAll()
   await TOKEN()
+  navname.name = '文章展示'
+  navname.name2 = '新增文章'
 })
 </script>
 
 <template>
-  <div class="form" style="padding: 0 24px 24px;">
-    <div class="form_title">
-      <a-breadcrumb style="margin: 16px 0;">
-        <a-breadcrumb-item>文章展示</a-breadcrumb-item>
-        <a-breadcrumb-item>新增文章</a-breadcrumb-item>
-      </a-breadcrumb>
-    </div>
-
+  <div class="form">
     <div class="form_content">
       <a-form
         :model="formState"
@@ -57,7 +56,7 @@ onMounted(async () => {
             <a-input v-model:value="formState.title" />
           </a-form-item>
           <a-form-item label="内容简述">
-            <a-input v-model:value="formState.titleText" />
+            <a-textarea v-model:value="formState.titleText" />
           </a-form-item>
 
           <a-form-item label="发表人" :wrapper-col="{ span: 6, offset: 0 }">
@@ -100,12 +99,17 @@ onMounted(async () => {
           <a-form-item label="内容">
             <v-md-editor v-model="formState.text"></v-md-editor>
           </a-form-item>
-          <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+          <!-- <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
             <a-button type="primary" @click="onSubmit">添加</a-button>
             <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
-          </a-form-item>
+          </a-form-item> -->
         </div>
       </a-form>
+    </div>
+    <div>
+      <a-button type="primary" @click="onSubmit">添加</a-button>
+      <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
+      <a-button style="margin-left: 10px;" @click="reloads">刷新</a-button>
     </div>
   </div>
 </template>

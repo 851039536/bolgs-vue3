@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-10-22 16:55:06
+ * @LastEditTime: 2021-11-01 15:51:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -13,6 +13,7 @@ import { inject, onMounted } from 'vue'
 import { message } from 'ant-design-vue'
 import { Routers, RouterId } from '@/hooks/routers'
 import moment from 'moment'
+import { navname } from '../utils/data'
 
 async function GetFySortTitle() {
   await article.GetFyTitleAsync(1, 1000, true, false).then((result: any) => {
@@ -70,93 +71,80 @@ onMounted(async () => {
   await labels.GetAllAsync(false).then((res) => {
     stateArray.labelResult = res.data
   })
+  navname.name = '文章展示'
+  navname.name2 = '文章列表'
 })
 </script>
 <template>
-  <a-layout style="padding: 0 24px 24px;">
-    <a-breadcrumb style="margin: 16px 0;">
-      <a-breadcrumb-item>文章展示</a-breadcrumb-item>
-      <a-breadcrumb-item>文章列表</a-breadcrumb-item>
-    </a-breadcrumb>
-    <a-layout-content
-      :style="{
-        background: '#fff',
-        padding: '24px',
-        margin: 0,
-        minHeight: '95%',
-      }"
-    >
-      <div class="table-operations">
-        <a-space>
-          <a-button @click="Routers('/Admin-index/ArticleAdd')">添加</a-button>
-          <a-button @click="reload()">刷新</a-button>
-          <a-select
-            style="width: 120px;"
-            v-model:value="stateStr.labelStr"
-            @change="selectTag"
-          >
-            <a-select-option value="ALL">ALL</a-select-option>
-            <a-select-option
-              :value="item.labelId"
-              v-for="item in stateArray.labelResult"
-              :key="item.labelId"
-              >{{ item.labelName }}</a-select-option
-            >
-          </a-select>
-          <!-- 搜索  -->
-          <a-select
-            show-search
-            placeholder="标题搜索"
-            style="width: 200px;"
-            :default-active-first-option="false"
-            :show-arrow="false"
-            :not-found-content="null"
-            @search="SearchTitle"
-          >
-          </a-select>
-        </a-space>
-        <!-- end 搜索 -->
-      </div>
-      <div class="">
-        <a-table
-          size="small"
-          :bordered="true"
-          :columns="columns"
-          rowKey="articleId"
-          :data-source="state.dataResult"
-          :pagination="{ pageSize: 5 }"
+  <div>
+    <div class="table-operations">
+      <a-space>
+        <a-button @click="Routers('/Admin-index/ArticleAdd')">添加</a-button>
+        <a-button @click="reload()">刷新</a-button>
+        <a-select
+          style="width: 120px;"
+          v-model:value="stateStr.labelStr"
+          @change="selectTag"
         >
-          <template #ed="{ record }">
-            <a-button
-              type="primary"
-              ghost
-              @click="RouterId('/Admin-index/ArticleEdit', record.articleId)"
-              >编辑</a-button
-            >
-          </template>
-          <template #de="{ record }">
-            <a-popconfirm
-              title="确认删除?"
-              ok-text="是"
-              cancel-text="否"
-              @confirm="confirm(record)"
-              @cancel="cancel"
-            >
-              <a href="#">Delete</a>
-            </a-popconfirm>
-          </template>
-        </a-table>
-      </div>
-      <div>
-        总计:
-        <a-badge count="109" :number-style="{ backgroundColor: '#52c41a' }" />
-      </div>
-    </a-layout-content>
-  </a-layout>
+          <a-select-option value="ALL">ALL</a-select-option>
+          <a-select-option
+            :value="item.labelId"
+            v-for="item in stateArray.labelResult"
+            :key="item.labelId"
+            >{{ item.labelName }}</a-select-option
+          >
+        </a-select>
+        <!-- 搜索  -->
+        <a-select
+          show-search
+          placeholder="标题搜索"
+          style="width: 200px;"
+          :default-active-first-option="false"
+          :show-arrow="false"
+          :not-found-content="null"
+          @search="SearchTitle"
+        >
+        </a-select>
+      </a-space>
+      <!-- end 搜索 -->
+    </div>
+    <div>
+      <a-table
+        size="small"
+        :bordered="true"
+        :columns="columns"
+        rowKey="articleId"
+        :data-source="state.dataResult"
+        :pagination="{ pageSize: 8 }"
+        :scroll="{
+          y: 380,
+        }"
+      >
+        <template #ed="{ record }">
+          <a-button
+            type="primary"
+            ghost
+            @click="RouterId('/Admin-index/ArticleEdit', record.articleId)"
+            >编辑</a-button
+          >
+        </template>
+        <template #de="{ record }">
+          <a-popconfirm
+            title="确认删除?"
+            ok-text="是"
+            cancel-text="否"
+            @confirm="confirm(record)"
+            @cancel="cancel"
+          >
+            <a href="#">Delete</a>
+          </a-popconfirm>
+        </template>
+      </a-table>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-//@import "./index.scss";
 .table-operations {
   @apply mb-2;
 }

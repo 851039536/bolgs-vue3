@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-10-14 13:38:21
+ * @LastEditTime: 2021-11-01 13:56:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -10,16 +10,15 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
 import { state, header } from './index'
-import { Routers } from '@/hooks/routers'
-import GithubCorners from '../github-corners/GithubCorners.vue'
+import { Routers, winUrl } from '@/hooks/routers'
 
 const skip = async (num: any) => {
   switch (num) {
     case 13:
-      window.open('https://www.cnblogs.com/ouyangkai/')
+      winUrl('https://www.cnblogs.com/ouyangkai/')
       break
     case 14:
-      window.open('https://gitee.com/kaiouyang-sn')
+      winUrl('https://gitee.com/kaiouyang-sn')
       break
     default:
       await Routers(num)
@@ -31,7 +30,6 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <GithubCorners></GithubCorners>
   <nav class="header-sn">
     <div class="header-sn-1">
       <!--  -->

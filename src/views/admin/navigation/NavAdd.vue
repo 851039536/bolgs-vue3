@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-10-25 16:50:59
+ * @LastEditTime: 2021-11-01 15:45:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -12,6 +12,7 @@ import { navigation, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
 import { Routers, go } from '@/hooks/routers'
+import { navname } from '../utils/data'
 
 const onSubmit = async () => {
   // formState.navId = 0
@@ -30,18 +31,13 @@ async function GetAll() {
 onMounted(async () => {
   await GetAll()
   await TOKEN()
+  navname.name = '内容分享'
+  navname.name2 = '新增内容'
 })
 </script>
 
 <template>
-  <div class="form" style="padding: 0 24px 24px;">
-    <div class="form_title">
-      <a-breadcrumb style="margin: 16px 0;">
-        <a-breadcrumb-item>内容分享</a-breadcrumb-item>
-        <a-breadcrumb-item>新增导航</a-breadcrumb-item>
-      </a-breadcrumb>
-    </div>
-
+  <div class="form">
     <div class="form_content">
       <a-form
         :model="formState"
@@ -78,13 +74,12 @@ onMounted(async () => {
           <a-form-item label="前往地址" :wrapper-col="{ span: 6, offset: 0 }">
             <a-input v-model:value="formState.navUrl" />
           </a-form-item>
-
-          <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-            <a-button type="primary" @click="onSubmit">添加</a-button>
-            <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
-          </a-form-item>
         </div>
       </a-form>
+    </div>
+    <div>
+      <a-button type="primary" @click="onSubmit">添加</a-button>
+      <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-10 11:40:02
- * @LastEditTime: 2021-10-21 12:18:45
+ * @LastEditTime: 2021-11-01 14:22:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
@@ -39,6 +39,9 @@ async function getAll() {
  * @param {string} name 名称
  */
 async function SearchTitle(name: string) {
+  if (name === '') {
+    return
+  }
   await article.GetContainsAsync(name).then((res) => {
     state.newinfo = res.data
   })
