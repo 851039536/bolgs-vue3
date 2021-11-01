@@ -271,6 +271,11 @@ const routes = [{
       name: 'NavAdd',
       component: () => import('@/views/admin/navigation/NavAdd.vue'),
     },
+    {
+      path: 'PageSet',
+      name: 'PageSet',
+      component: () => import('@/views/admin/set/PageSet.vue'),
+    },
 
   ]
 },

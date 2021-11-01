@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-11-01 15:30:34
+ * @LastEditTime: 2021-11-01 16:44:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\index.vue
@@ -36,6 +36,9 @@ const handleClick = (e: any) => {
       break
     case '2-1':
       Routers('/Admin-index/NavTable')
+      break
+    case '3-1':
+      Routers('/Admin-index/PageSet')
       break
     default:
       // Routers('/Admin-index/Login')
@@ -116,7 +119,7 @@ provide('reload', reload)
                   设置
                 </span>
               </template>
-              <a-menu-item key="9">option9</a-menu-item>
+              <a-menu-item key="3-1">页面设置</a-menu-item>
               <a-menu-item key="10">option10</a-menu-item>
               <a-menu-item key="11">option11</a-menu-item>
               <a-menu-item key="12">option12</a-menu-item>

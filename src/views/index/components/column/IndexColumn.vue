@@ -94,5 +94,5 @@ onMounted(async () => {
 
 <style lang="scss">
 @import './index.scss';
-@import '../../../blogs/index.scss';
+@import '@/views/blogs/index.scss';
 </style>
