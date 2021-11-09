@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-12 16:13:39
- * @LastEditTime: 2021-10-14 14:28:59
+ * @LastEditTime: 2021-11-09 14:04:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\components\TagHead.vue
@@ -23,7 +23,7 @@ async function AsyGetTag(id: any) {
   if (id == null) {
     id = 1
   }
-  await article.GetTagtextAsync(id, true).then((result: any) => {
+  await article.GetTypeAsync(2, id, true).then((result: any) => {
     state.newinfo = result.data
   })
 }
@@ -31,14 +31,8 @@ async function AsyGetTag(id: any) {
 
 <template>
   <div class="tag_head">
-    <div
-      class="tag_head_content"
-      v-for="labelss in resultData"
-      :key="labelss.labelId"
-    >
-      <a @click="AsyGetTag(labelss.labelId)" variant="light">{{
-        labelss.labelName
-      }}</a>
+    <div class="tag_head_content" v-for="result in resultData" :key="result.id">
+      <a @click="AsyGetTag(result.id)" variant="light">{{ result.name }}</a>
     </div>
   </div>
 </template>

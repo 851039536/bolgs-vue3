@@ -4,7 +4,6 @@ import {
   createWebHashHistory
 } from 'vue-router'
 import BlogHome from '@/components/home/Home.vue'
-import { storage } from '@/utils/storage/storage';
 
 const routes = [{
   path: '/',
@@ -213,14 +212,7 @@ const routes = [{
   },
   component: () => import('@/views/Software/SoftwareContent.vue')
 },
-{
-  path: '/Particulars',
-  name: 'Particulars',
-  meta: {
-    keepAlive: false
-  },
-  component: () => import('@/components/editor/Particulars.vue')
-},
+
 {
   path: '/VmdHtml',
   name: 'VmdHtml',

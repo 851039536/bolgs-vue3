@@ -10,7 +10,7 @@ import { resolve } from '@/hooks/routers'
 const { proxy }: any = getCurrentInstance()
 
 const SearchTitle = async (title: string) => {
-  await article.GetContainsAsync(title).then((res) => {
+  await article.GetContainsAsync(0, title, true).then((res) => {
     blogsSiList.article2 = res.data
   })
 }
@@ -19,8 +19,7 @@ const tiaozhuan = async (id: any) => {
   window.open(href, '_blank')
 }
 const GetAllasync = async () => {
-  //查询最新发布前十文章
-  await article.GetFyTitleAsync(1, 1, true, true).then((res) => {
+  await article.GetFyAsync(0, 0, 1, 1, 'data', true, true).then((res) => {
     blogsSiList.articledata = res.data[0].timeCreate
   })
   // 查询当前用户的说说

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-10-22 14:57:00
+ * @LastEditTime: 2021-11-04 08:25:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -19,7 +19,7 @@ const state: State = reactive({
 const columns = [
   {
     title: '主键',
-    dataIndex: 'articleId',
+    dataIndex: 'id',
     width: 100,
   },
   {
@@ -41,6 +41,14 @@ const columns = [
     dataIndex: 'read',
   },
   {
+    title: '标签',
+    dataIndex: 'label.name',
+  },
+  {
+    title: '分类',
+    dataIndex: 'sort.name',
+  },
+  {
     title: '操作',
     key: '编辑',
     width: 80,
@@ -55,21 +63,23 @@ const columns = [
 ]
 
 const formState: IntArticle = reactive({
-  articleId: 0,
-  comment: 0,
-  give: 0,
-  html: '1',
   labelId: 1,
-  read: 0,
   sortId: 1,
-  text: '内容',
-  timeCreate: '2090-10-01',
-  timeModified: '2090-10-01',
-  title: '标题',
-  titleText: '简述',
-  typeTitle: '别名',
   urlImg: 'img',
   userId: 1,
+  id: 0,
+  title: '标题',
+  sketch: '简述',
+  text: "",
+  read: 0,
+  img: "img",
+  commentId: 0,
+  give: 0,
+  timeCreate: '2090-10-01',
+  timeModified: '2090-10-01',
+  // label: [],
+  // sort: [],
+  // user: [],
 })
 const stateArray: any = reactive({
   labelResult: [],

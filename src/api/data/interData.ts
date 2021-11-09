@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-30 15:36:38
- * @LastEditTime: 2021-10-22 14:10:43
+ * @LastEditTime: 2021-11-09 16:38:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\data\video.ts
@@ -22,27 +22,28 @@ interface IntVideo {
 }
 
 interface IntLabels {
-  labelId: number
-  labelName: string
-  labelAlias: string
-  labelDescription: string
+  id: number
+  name: string
+  description: string
+  snArticles: any
 }
 interface IntArticle {
-  articleId: number
+  id: number
   title: string
-  titleText: string
+  sketch: string
   text: string
-  html: string
-  timeCreate: any
-  timeModified: any
   read: number
+  img: string
+  commentId: number
   give: number
-  comment: number
-  typeTitle: string
-  urlImg: string
   labelId: number
   sortId: number
   userId: number
+  timeCreate: string
+  timeModified: string
+  // label: any
+  // sort: any
+  // user: any
 }
 
 interface IntNav {

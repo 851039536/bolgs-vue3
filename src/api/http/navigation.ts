@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-10-25 15:09:04
+ * @LastEditTime: 2021-11-09 14:53:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -13,21 +13,17 @@ import { IntNav } from "@/api/data/interData";
 export class navigation {
 
 
-  //查询总条数
-  static async GetCountAsync(): Promise<any> {
-    return await request({
-      url: "/api/SnNavigation/GetCountAsync",
-      method: 'get',
-    })
-  }
+
   /**
-   * @description: 分类查询总数
-   * @param {string} type 分类
-   * @return {*}
+   * 查询总数
+   * @param identity 所有:0 || 分类:1 || 用户:2
+   * @param type  查询条件
+   * @param chche 缓存
+   * @returns 
    */
-  static async CountType(type: string, chche: boolean) {
+  static async GetCountAsync(identity: number, type: string, chche: boolean) {
     return await request({
-      url: "/api/SnNavigation/CountTypeAsync?type=" + type + "&cache=" + chche,
+      url: "/api/SnNavigation/GetCountAsync?identity=" + identity + "&type=" + type + "&cache=" + chche,
       method: 'get',
     })
   }

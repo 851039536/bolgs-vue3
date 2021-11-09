@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-14 11:42:20
- * @LastEditTime: 2021-11-01 16:17:47
+ * @LastEditTime: 2021-11-03 15:11:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\components\BlogsContent.vue
@@ -23,21 +23,21 @@ async function jump(id: number) {
 </script>
 <template>
   <!-- 内容框 -->
-  <div class="blogs_content" v-for="info in dataResult" :key="info.articleId">
+  <div class="blogs_content" v-for="data in dataResult" :key="data.id">
     <div class="blogs_content_div">
       <div class="blogs_content_img">
-        <img v-lazy="info.urlImg" />
+        <img v-lazy="data.img" />
       </div>
       <div class="blogs_content__frame">
         <p class="blogs_content__frame-1">
-          <a @click="jump(info.articleId)">{{ info.title }}</a>
+          <a @click="jump(data.id)">{{ data.title }}</a>
         </p>
-        <p class="blogs_content__frame-2">{{ info.titleText }}</p>
+        <p class="blogs_content__frame-2">{{ data.sketch }}</p>
         <p class="blogs_content__frame-3">
           <span>文章</span>
-          <span>{{ info.read }} ℃</span>
-          <span>赞 {{ info.give }}</span>
-          <span>{{ info.timeCreate.substring(0, 10) }}</span>
+          <span>{{ data.read }} ℃</span>
+          <span>赞 {{ data.give }}</span>
+          <span>{{ data.timeCreate.substring(0, 10) }}</span>
         </p>
       </div>
     </div>

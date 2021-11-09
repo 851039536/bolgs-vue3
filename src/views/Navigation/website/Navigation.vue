@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-10-21 10:01:36
+ * @LastEditTime: 2021-11-09 16:14:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -14,7 +14,7 @@ import { state } from './data'
 import { method } from './index'
 
 onMounted(async () => {
-  await navigation.CountType('网站', true).then((res: any) => {
+  await navigation.GetCountAsync(1, '网站', true).then((res: any) => {
     state.count = res.data
   })
   await method.currentchange(1)

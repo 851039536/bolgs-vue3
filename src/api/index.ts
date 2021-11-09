@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:41:22
- * @LastEditTime: 2021-10-21 10:08:12
+ * @LastEditTime: 2021-11-02 08:59:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -18,6 +18,7 @@ import { one } from './http/one';
 import { video } from './http/video';
 import { user } from './http/user';
 import { listContent } from './http/listContent';
+import { interfaces } from './http/interfaces';
 
 
 /**
@@ -33,4 +34,4 @@ async function TOKEN() {
     })
 }
 
-export { article, labels, sort, usertalk, setBlog, leave, navigation, one, video, user, listContent, TOKEN };
+export { article, labels, sort, usertalk, setBlog, leave, navigation, one, video, user, listContent, TOKEN, interfaces };

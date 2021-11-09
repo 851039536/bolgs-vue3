@@ -1,7 +1,7 @@
 /*
  * @Author: header类及data
  * @Date: 2021-09-17 12:09:00
- * @LastEditTime: 2021-09-17 15:14:56
+ * @LastEditTime: 2021-11-09 17:03:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\header\index.ts
@@ -23,7 +23,7 @@ export const state: State = reactive({
 export class header {
 
   static async GetType() {
-    await interfaces.GetTypeAsync(4, 1).then((res: any) => {
+    await interfaces.GetTypeAsync(0, "kai", "header", true).then((res: any) => {
       state.ResultList = res.data
     })
   }

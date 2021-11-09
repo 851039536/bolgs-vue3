@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-01 15:51:54
+ * @LastEditTime: 2021-11-09 17:07:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -15,16 +15,9 @@ import { Routers, RouterId } from '@/hooks/routers'
 import moment from 'moment'
 import { navname } from '../utils/data'
 
-async function GetFySortTitle() {
-  await article.GetFyTitleAsync(1, 1000, true, false).then((result: any) => {
-    momentData(result)
-    state.dataResult = result.data
-  })
-}
-
 const reload: any = inject('reload')
 const confirm = async (data: any) => {
-  await article.DeleteAsync(data.articleId).then(() => {
+  await article.DeleteAsync(data.id).then(() => {
     message.success('删除成功')
     reload()
   })
@@ -49,13 +42,13 @@ async function SearchTitle(name: string) {
     return
   }
   if (stateStr.labelStr === 'ALL') {
-    await article.GetContainsAsync(name).then((res) => {
+    await article.GetContainsAsync(0, 0, name, true).then((res) => {
       momentData(res)
       state.dataResult = res.data
     })
   } else {
     await article
-      .GetTypeContainsAsync(stateStr.labelStr, name, false)
+      .GetContainsAsync(2, stateStr.labelStr, name, true)
       .then((res) => {
         momentData(res)
         state.dataResult = res.data
@@ -67,7 +60,12 @@ async function selectTag() {
 }
 onMounted(async () => {
   await TOKEN()
-  await GetFySortTitle()
+  await article
+    .GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+    .then((result: any) => {
+      momentData(result)
+      state.dataResult = result.data
+    })
   await labels.GetAllAsync(false).then((res) => {
     stateArray.labelResult = res.data
   })
@@ -88,10 +86,10 @@ onMounted(async () => {
         >
           <a-select-option value="ALL">ALL</a-select-option>
           <a-select-option
-            :value="item.labelId"
+            :value="item.name"
             v-for="item in stateArray.labelResult"
-            :key="item.labelId"
-            >{{ item.labelName }}</a-select-option
+            :key="item.id"
+            >{{ item.name }}</a-select-option
           >
         </a-select>
         <!-- 搜索  -->
@@ -113,7 +111,7 @@ onMounted(async () => {
         size="small"
         :bordered="true"
         :columns="columns"
-        rowKey="articleId"
+        rowKey="id"
         :data-source="state.dataResult"
         :pagination="{ pageSize: 8 }"
         :scroll="{
@@ -124,7 +122,7 @@ onMounted(async () => {
           <a-button
             type="primary"
             ghost
-            @click="RouterId('/Admin-index/ArticleEdit', record.articleId)"
+            @click="RouterId('/Admin-index/ArticleEdit', record.id)"
             >编辑</a-button
           >
         </template>

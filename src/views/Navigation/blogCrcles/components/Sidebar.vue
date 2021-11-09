@@ -56,7 +56,7 @@ export default defineComponent({
         .then((res: any) => {
           state.resultData = res.data
         })
-      await navigation.CountType('博客圈', true).then((res: any) => {
+      await navigation.GetCountAsync(1, '博客圈', true).then((res: any) => {
         state.resultCount = res.data
       })
     }

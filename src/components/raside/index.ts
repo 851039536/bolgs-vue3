@@ -1,7 +1,7 @@
 /*
  * @Author: header类及data
  * @Date: 2021-09-17 12:09:00
- * @LastEditTime: 2021-09-17 15:16:02
+ * @LastEditTime: 2021-11-09 17:03:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\components\header\index.ts
@@ -26,7 +26,7 @@ export class raside {
    * @description: 读取侧边栏数据
    */
   static async GetType() {
-    await interfaces.GetTypeAsync(4, 2).then((res: any) => {
+    await interfaces.GetTypeAsync(0, "kai", "sidebar", true).then((res: any) => {
       state.resultList = res.data
     })
   }

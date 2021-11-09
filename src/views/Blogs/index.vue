@@ -19,7 +19,7 @@ import { api } from '../../utils/api/api'
 import { tool } from '@/utils/common/tool'
 async function currentchange(val: number) {
   blogsList.page = val
-  await methods.GetFySortTitle()
+  await methods.GetFyAsync()
   await tool.BackTop()
 }
 async function aa() {

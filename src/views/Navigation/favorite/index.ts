@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 09:37:45
- * @LastEditTime: 2021-10-22 09:56:09
+ * @LastEditTime: 2021-11-09 14:53:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\navigation\favorite\index.ts
@@ -24,7 +24,7 @@ class methods {
   static async GetAll(name: string) {
     state.title = name
     state.current = 1
-    await navigation.CountType(state.title, true).then((res: any) => {
+    await navigation.GetCountAsync(0, state.title, true).then((res: any) => {
       state.count = res.data
     })
     await navigation.GetSnNavigationTypeSAllAsync(true).then((res: any) => {

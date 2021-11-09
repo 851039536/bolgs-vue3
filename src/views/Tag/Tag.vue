@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-10 11:40:02
- * @LastEditTime: 2021-11-01 14:22:28
+ * @LastEditTime: 2021-11-09 14:24:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
@@ -19,14 +19,14 @@ const id: State = reactive({
   id: route.query.id,
 })
 
-async function AsyGetTag(id: any) {
-  if (id == null) {
-    id = 1
-  }
-  await article.GetTagtextAsync(id, true).then((result: any) => {
-    state.newinfo = result.data
-  })
-}
+// async function AsyGetTag(id: any) {
+//   if (id == null) {
+//     id = 1
+//   }
+//   await article.GetTagtextAsync(id, true).then((result: any) => {
+//     state.newinfo = result.data
+//   })
+// }
 
 async function getAll() {
   await labels.GetAllAsync(true).then((result: any) => {
@@ -42,12 +42,12 @@ async function SearchTitle(name: string) {
   if (name === '') {
     return
   }
-  await article.GetContainsAsync(name).then((res) => {
+  await article.GetContainsAsync(0, 0, name, true).then((res) => {
     state.newinfo = res.data
   })
 }
 onMounted(async () => {
-  await AsyGetTag(id.id)
+  // await AsyGetTag(id.id)
   await getAll()
 })
 </script>

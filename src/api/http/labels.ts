@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:09:51
- * @LastEditTime: 2021-10-21 11:59:41
+ * @LastEditTime: 2021-11-09 14:11:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\labels.ts
@@ -16,6 +16,8 @@ export class labels {
       method: 'get',
     })
   }
+
+
 
   static async GetAllAsync(cache: boolean) {
     return await request({

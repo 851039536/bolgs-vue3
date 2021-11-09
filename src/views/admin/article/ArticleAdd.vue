@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-01 15:43:20
+ * @LastEditTime: 2021-11-09 16:55:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -56,7 +56,7 @@ onMounted(async () => {
             <a-input v-model:value="formState.title" />
           </a-form-item>
           <a-form-item label="内容简述">
-            <a-textarea v-model:value="formState.titleText" />
+            <a-textarea v-model:value="formState.sketch" />
           </a-form-item>
 
           <a-form-item label="发表人" :wrapper-col="{ span: 6, offset: 0 }">
@@ -72,12 +72,11 @@ onMounted(async () => {
             >
               <a-select-option
                 v-for="item in stateArray.labelResult"
-                :key="item.labelId"
-                :label="item.labelName"
-                :value="item.labelId"
-                >{{ item.labelName }}</a-select-option
+                :key="item.id"
+                :label="item.id"
+                :value="item.id"
+                >{{ item.name }}</a-select-option
               >
-              <a-select-option value="beijing">Zone two</a-select-option>
             </a-select>
           </a-form-item>
 
@@ -88,10 +87,10 @@ onMounted(async () => {
             >
               <a-select-option
                 v-for="item in stateArray.sortResult"
-                :key="item.sortId"
-                :label="item.sortName"
-                :value="item.sortId"
-                >{{ item.sortName }}</a-select-option
+                :key="item.id"
+                :label="item.id"
+                :value="item.id"
+                >{{ item.name }}</a-select-option
               >
             </a-select>
           </a-form-item>

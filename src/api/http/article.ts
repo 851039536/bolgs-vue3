@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-10-22 10:36:05
+ * @LastEditTime: 2021-11-09 17:06:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -11,12 +11,17 @@ import { IntArticle } from "@/api/data/interData";
 
 export class article {
 
+
   /**
-   * @description: 查询总条数
+   * @description: 查询总数
+   * @param {number} identity 所有:0 || 分类:1 || 标签:2
+   * @param {number} type
+   * @param {boolean} cache
+   * @return {*}
    */
-  static async GetCountAsync() {
+  static async GetCountAsync(identity: number, type: number, cache: boolean) {
     return await request({
-      url: "/api/SnArticle/GetCountAsync",
+      url: "/api/SnArticle/GetCountAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
       method: 'get',
     })
   }
@@ -31,13 +36,17 @@ export class article {
       method: 'get',
     })
   }
+
   /**
-   * @description: 模糊查询
-   * @param {string} name
+   * 
+   * @param identity 无条件:0 || 分类:1 || 标签:2
+   * @param type 查询条件
+   * @param name 查询字段
+   * @param cache 缓存
    */
-  static async GetContainsAsync(name: string) {
+  static async GetContainsAsync(identity: number, type: number, name: string, cache: boolean) {
     return await request({
-      url: "/api/SnArticle/GetContainsAsync?name=" + name + "&cache=true",
+      url: "/api/SnArticle/GetContainsAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + cache,
       method: 'get',
     })
   }
@@ -64,15 +73,17 @@ export class article {
       method: 'get',
     })
   }
+
   /**
-   * @description: 按标签条件查询
-   * @param {number} id
-   * @param {boolean} cache
-   * @return {*}
+   * 条件查询 GetTypeAsync
+   * @param identity 分类:1 || 标签:2
+   * @param type 查询条件
+   * @param cache 缓存
+   * @returns 
    */
-  static async GetTagtextAsync(id: number, cache: boolean): Promise<any> {
+  static async GetTypeAsync(identity: number, type: number, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetTagAsync?labelId=" + id + "&isDesc=true&cache=" + cache,
+      url: "/api/SnArticle/GetTypeAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
       method: 'get',
     })
   }
@@ -95,6 +106,24 @@ export class article {
     })
   }
 
+  /**
+   * @description: 分页查询
+   * @param {number} identity 所有:0 || 分类:1 || 标签:2
+   * @param {number} type 类别参数, identity 0 可不填
+   * @param {number} pagesize 当前页码
+   * @param {number} pageIndex 每页记录条数
+   * @param {string} ordering 排序条件[data:时间 read:阅读 give:点赞 按id排序]
+   * @param {boolean} isDesc 升序/降序
+   * @param {boolean} cache 是否开启缓存
+   * @return {*}
+   */
+  static async GetFyAsync(identity: number, type: string, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean): Promise<any> {
+    return await request({
+      url:
+        "/api/SnArticle/GetFyAsync?identity=" + identity + "&type=" + type + "&pageIndex=" + pageIndex + "&pageSize=" + pagesize + "&ordering=" + ordering + "&isDesc=" + isDesc + "&cache=" + cache,
+      method: 'get',
+    })
+  }
   /**
    * @description: 分类分页查询
    * @param {number} page

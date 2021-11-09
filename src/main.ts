@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-30 11:21:48
+ * @LastEditTime: 2021-11-04 08:49:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -13,7 +13,6 @@ import {
 import App from './App.vue'
 import animated from 'animate.css'
 import 'nprogress/nprogress.css'
-// import 'virtual:windi.css'
 import './index.css'
 import lazyPlugin from 'vue3-lazy'
 import Antd from 'ant-design-vue';
