@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-30 15:36:38
- * @LastEditTime: 2021-11-09 16:38:56
+ * @LastEditTime: 2021-11-10 15:08:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\data\video.ts
@@ -39,20 +39,20 @@ interface IntArticle {
   labelId: number
   sortId: number
   userId: number
-  timeCreate: string
-  timeModified: string
-  // label: any
-  // sort: any
-  // user: any
+  timeCreate?: string
+  timeModified?: string
 }
 
 interface IntNav {
-  navId: number
-  navTitle: string
-  navText: string
-  navImg: string
-  navType: string
-  navUrl: string
+  id: number
+  title: string
+  describe: string
+  img: string
+  typeId: number
+  userId: number
+  url: string
+  // timeCreate: any
+  // timeModified: any
 }
 
 export {

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-10-21 15:54:27
+ * @LastEditTime: 2021-11-10 16:11:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
@@ -16,25 +16,24 @@ import { message } from 'ant-design-vue'
 import { useStore } from 'vuex'
 const store = useStore()
 const state = reactive({
-  user: '',
+  name: '',
   pwd: '',
   result: [],
 })
 
 async function login() {
-  user.Login(state.user, state.pwd).then((res) => {
+  user.Login(state.name, state.pwd).then((res) => {
+    console.log('[ 1 ]', res.data)
     if (res.data === '用户或密码错误' || res.data === '用户密码不能为空') {
       message.error(res.data)
       return
     }
     state.result = res.data.split(',')
-    if (state.result[0] === '1') {
-      store.state.Roles = state.user
-      sessionStorage.set('state', store.state.Roles)
-      storage.remove(store.state.Roles)
-      storage.set(store.state.Roles, 'Bearer ' + state.result[1])
-      Routers('/Admin-index/ArticleTable')
-    }
+    store.state.Roles = state.result[0]
+    sessionStorage.set('state', store.state.Roles)
+    storage.remove(store.state.Roles)
+    storage.set(store.state.Roles, 'Bearer ' + state.result[1])
+    Routers('/Admin-index/ArticleTable')
   })
 }
 onMounted(async () => {
@@ -49,7 +48,7 @@ onMounted(async () => {
     <h2>Login</h2>
     <form>
       <div class="user-box">
-        <input type="text" v-model="state.user" />
+        <input type="text" v-model="state.name" />
         <label>User</label>
       </div>
       <div class="user-box">

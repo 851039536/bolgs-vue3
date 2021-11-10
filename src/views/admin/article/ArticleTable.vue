@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-09 17:07:28
+ * @LastEditTime: 2021-11-10 18:07:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -28,8 +28,8 @@ const cancel = () => {
 
 function momentData(result: any) {
   result.data.forEach((res: any) => {
-    res.timeCreate = moment(res.timeCreate).format('YYYY-MM-DD')
-    res.timeModified = moment(res.timeModified).format('YYYY-MM-DD')
+    res.timeCreate = moment(res.timeCreate).format('YYYY-MM-DD- H:mm:ss')
+    res.timeModified = moment(res.timeModified).format('YYYY-MM-DD- H:mm:ss')
   })
 }
 
@@ -37,7 +37,7 @@ function momentData(result: any) {
  * @description: 搜素框模糊查询
  * @param {*} name
  */
-async function SearchTitle(name: string) {
+async function GetContains(name: string) {
   if (name === '') {
     return
   }
@@ -55,17 +55,38 @@ async function SearchTitle(name: string) {
       })
   }
 }
-async function selectTag() {
+async function GetTag() {
   message.info(stateStr.labelStr)
+  if (stateStr.labelStr === 'ALL') {
+    await GetFy(0, 'null', 1, 1000, 'id', true, false)
+  } else {
+    await GetFy(2, stateStr.labelStr, 1, 1000, 'id', true, false)
+  }
 }
-onMounted(async () => {
-  await TOKEN()
+
+async function Ordering() {
+  await GetFy(0, 'null', 1, 1000, 'id', false, false)
+}
+
+async function GetFy(
+  identity: number,
+  type: string,
+  pageIndex: number,
+  pagesize: number,
+  ordering: string,
+  isDesc: boolean,
+  cache: boolean
+) {
   await article
-    .GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+    .GetFyAsync(identity, type, pageIndex, pagesize, ordering, isDesc, cache)
     .then((result: any) => {
       momentData(result)
       state.dataResult = result.data
     })
+}
+onMounted(async () => {
+  await TOKEN()
+  await GetFy(0, 'null', 1, 1000, 'id', true, false)
   await labels.GetAllAsync(false).then((res) => {
     stateArray.labelResult = res.data
   })
@@ -80,9 +101,9 @@ onMounted(async () => {
         <a-button @click="Routers('/Admin-index/ArticleAdd')">添加</a-button>
         <a-button @click="reload()">刷新</a-button>
         <a-select
-          style="width: 120px;"
+          style="width: 100px;"
           v-model:value="stateStr.labelStr"
-          @change="selectTag"
+          @change="GetTag"
         >
           <a-select-option value="ALL">ALL</a-select-option>
           <a-select-option
@@ -96,15 +117,16 @@ onMounted(async () => {
         <a-select
           show-search
           placeholder="标题搜索"
-          style="width: 200px;"
+          style="width: 150px;"
           :default-active-first-option="false"
           :show-arrow="false"
           :not-found-content="null"
-          @search="SearchTitle"
+          @search="GetContains"
         >
         </a-select>
       </a-space>
       <!-- end 搜索 -->
+      <a-button style="margin-left: 10px;" @click="Ordering()">排序</a-button>
     </div>
     <div>
       <a-table
@@ -113,17 +135,15 @@ onMounted(async () => {
         :columns="columns"
         rowKey="id"
         :data-source="state.dataResult"
-        :pagination="{ pageSize: 8 }"
-        :scroll="{
-          y: 380,
-        }"
+        :pagination="{ pageSize: 15 }"
+        :scroll="{ x: 1500, y: 360 }"
       >
         <template #ed="{ record }">
-          <a-button
+          <a
             type="primary"
             ghost
             @click="RouterId('/Admin-index/ArticleEdit', record.id)"
-            >编辑</a-button
+            >Edit</a
           >
         </template>
         <template #de="{ record }">

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-01 15:45:36
+ * @LastEditTime: 2021-11-10 10:38:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -11,12 +11,10 @@ import { inject, onMounted } from 'vue'
 import { navigation, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
-import { Routers, go } from '@/hooks/routers'
+import { Routers, go, reloads } from '@/hooks/routers'
 import { navname } from '../utils/data'
 
 const onSubmit = async () => {
-  // formState.navId = 0
-
   await navigation.AddAsync(formState).then(() => {
     message.info('添加成功')
     Routers('/Admin-index/NavTable')
@@ -46,33 +44,33 @@ onMounted(async () => {
       >
         <div class="form_content_1">
           <a-form-item label="标题" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-input v-model:value="formState.navTitle" />
+            <a-input v-model:value="formState.title" />
           </a-form-item>
           <a-form-item label="内容简述">
-            <a-input v-model:value="formState.navText" />
+            <a-input v-model:value="formState.describe" />
           </a-form-item>
 
           <a-form-item label="图片链接" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-input v-model:value="formState.navImg" />
+            <a-input v-model:value="formState.img" />
           </a-form-item>
 
           <a-form-item label="类别" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select
-              v-model:value="formState.navType"
+              v-model:value="formState.typeId"
               placeholder="please select your zone"
             >
               <a-select-option
                 v-for="item in stateArray.navResult"
-                :key="item.title"
-                :label="item.title"
-                :value="item.title"
-                >{{ item.navType }}</a-select-option
+                :key="item.id"
+                :label="item.id"
+                :value="item.id"
+                >{{ item.title }}</a-select-option
               >
             </a-select>
           </a-form-item>
 
           <a-form-item label="前往地址" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-input v-model:value="formState.navUrl" />
+            <a-input v-model:value="formState.url" />
           </a-form-item>
         </div>
       </a-form>
@@ -80,6 +78,7 @@ onMounted(async () => {
     <div>
       <a-button type="primary" @click="onSubmit">添加</a-button>
       <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
+      <a-button style="margin-left: 10px;" @click="reloads">刷新</a-button>
     </div>
   </div>
 </template>

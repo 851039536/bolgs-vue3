@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-11-09 14:53:14
+ * @LastEditTime: 2021-11-10 14:53:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -27,15 +27,17 @@ export class navigation {
       method: 'get',
     })
   }
+
   /**
-   * @description: 模糊查询
-   * @param {string} name
-   * @param {boolean} chche
-   * @return {*}
+   * 模糊查询
+   * @param identity  无条件:0 || 分类:1 || 用户:2
+   * @param type 查询条件
+   * @param name 查询字段
+   * @param chche 缓存
    */
-  static async GetContainsAsync(name: string, chche: boolean): Promise<any> {
+  static async GetContainsAsync(identity: number, type: string, name: string, chche: boolean): Promise<any> {
     return await request({
-      url: "/api/SnNavigation/GetContainsAsync?name=" + name + "&cache=" + chche,
+      url: "/api/SnNavigation/GetContainsAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + chche,
       method: 'get',
     })
   }
@@ -61,13 +63,19 @@ export class navigation {
     })
   }
 
-
   /**
-   * @description: 分页查询
+   * 
+   * @param identity 所有:0 || 分类:1 || 用户:2
+   * @param type 查询条件
+   * @param page 当前页码
+   * @param pagesize 每页记录条数
+   * @param ordering 排序条件[data:时间 按id排序]
+   * @param isDesc 是否倒序[true/false]
+   * @param cache 缓存
    */
-  static async GetFyAllAsync(type: string, page: number, pagesize: number, isDesc: boolean, cache: boolean) {
+  static async GetFyAsync(identity: number, type: string, page: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean) {
     return await request({
-      url: "/api/SnNavigation/GetFyAllAsync?type=" + type + "&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=" + isDesc + "&cache=" + cache,
+      url: "/api/SnNavigation/GetFyAsync?identity=" + identity + "&type=" + type + "&pageIndex=" + page + "&pageSize=" + pagesize + "&ordering=" + ordering + "&isDesc=" + isDesc + "&cache=" + cache,
       method: 'get',
     })
   }

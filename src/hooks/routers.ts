@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-09 10:37:30
- * @LastEditTime: 2021-10-21 15:08:11
+ * @LastEditTime: 2021-11-10 10:32:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\hooks\index.ts
@@ -63,11 +63,19 @@ async function winUrl(url: string) {
   window.open(url)
 }
 
+/**
+ *页面刷新
+ */
+async function reloads() {
+  location.reload()
+}
+
 export {
   Routers,
   RouterId,
   winUrl,
   go,
-  resolve
+  resolve,
+  reloads
 }
 

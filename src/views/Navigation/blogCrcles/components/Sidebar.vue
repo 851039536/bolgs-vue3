@@ -52,7 +52,7 @@ export default defineComponent({
     })
     const GetAll = async () => {
       await navigation
-        .GetFyAllAsync('博客圈', 1, 10, true, true)
+        .GetFyAsync(1, '博客圈', 1, 10, 'id', true, true)
         .then((res: any) => {
           state.resultData = res.data
         })

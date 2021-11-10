@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-09-18 11:31:05
- * @LastEditTime: 2021-11-03 15:03:28
+ * @LastEditTime: 2021-11-10 18:18:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\index.ts
  */
 import { reactive } from 'vue'
 import { article } from '@/api/index'
+import { tool } from "@/utils/common/tool";
 
 interface State {
   dataResult: any
@@ -30,33 +31,18 @@ class column {
     })
   }
 
-  static async GetFyTitle() {
+  static async GetFy() {
     await article
-      .GetFyTitleAsync(state.page, state.pagesize, true, true)
+      .GetFyAsync(0, "NULL", state.page, state.pagesize, "id", true, true)
       .then((result: any) => {
         state.dataResult = result.data
       })
   }
 
-  static async BackTop() {
-    {
-      const timer = setInterval(function () {
-        const osTop =
-          document.documentElement.scrollTop || document.body.scrollTop
-        const isPeed = Math.floor(-osTop / 5)
-        document.documentElement.scrollTop = document.body.scrollTop =
-          osTop + isPeed
-        if (osTop === 0) {
-          clearInterval(timer)
-        }
-      }, 30)
-    }
-  }
-
   static async CurrentChange(val: number) {
     state.page = val
-    await column.GetFyTitle()
-    await column.BackTop() //回到顶部
+    await column.GetFy()
+    await tool.BackTop()
   }
 }
 

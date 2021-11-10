@@ -111,12 +111,12 @@ $ml:25%;
  * @description: 滚动条
  */
 @mixin scroll {
-  // 滚动条美化
+  // 整个滚动条.
   ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
+    width: 5px;
+    height: 5px;
   }
-
+//滚动条轨道.
   ::-webkit-scrollbar-track {
     width: 6px;
     background: rgba(#101f1c, 0.1);
@@ -124,7 +124,7 @@ $ml:25%;
     -moz-border-radius: 2em;
     border-radius: 2em;
   }
-
+//滚动条上的滚动滑块.
   ::-webkit-scrollbar-thumb {
     min-height: 28px;
     background-color: rgba(#101f1c, 0.5);

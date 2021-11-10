@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-11-10 17:58:18
+ * @LastEditTime: 2021-11-04 08:24:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -17,59 +17,46 @@ const state: State = reactive({
 })
 
 const columns = [
-  { title: '标题', width: 200, dataIndex: 'title', key: 'title', fixed: 'left', ellipsis: true, },
   {
     title: '主键',
     dataIndex: 'id',
-    width: 60,
-    align: "center"  //	设置列内容的对齐方式
-  },
-  {
-    title: '标签',
-    dataIndex: 'label.name',
     width: 100,
-    align: "center"
   },
   {
-    title: '分类',
-    dataIndex: 'sort.name',
-    width: 100,
-    align: "center"
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'timeCreate',
-    width: 150,
-    align: "center"
-
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'timeModified',
-    width: 150,
-    align: "center"
-  },
-  {
-    title: '阅读量',
-    dataIndex: 'read',
-    width: 60,
-    align: "center"
+    title: '标题',
+    dataIndex: 'title',
+    width: 250,
   },
 
+  {
+    title: '路径',
+    dataIndex: 'path',
+  },
+  {
+    title: 'typeId',
+    dataIndex: 'typeId',
+  },
+  {
+    title: 'userId',
+    dataIndex: 'userId',
+  },
+
+  {
+    title: '是否启用',
+    key: 'identity',
+    width: 100,
+    slots: { customRender: 'identity' },//绑定插槽
+  },
   {
     title: '操作',
     key: '编辑',
-    width: 60,
-    fixed: 'right',
-    align: "center",
+    width: 80,
     slots: { customRender: 'ed' },//绑定插槽
   },
   {
     title: '操作',
     key: '删除',
-    width: 60,
-    fixed: 'right',
-    align: "center",
+    width: 80,
     slots: { customRender: 'de' },//绑定插槽
   },
 ]
@@ -87,7 +74,11 @@ const formState: IntArticle = reactive({
   img: "img",
   commentId: 0,
   give: 0,
-
+  timeCreate: '2090-10-01',
+  timeModified: '2090-10-01',
+  label: [],
+  sort: [],
+  user: [],
 })
 const stateArray: any = reactive({
   labelResult: [],

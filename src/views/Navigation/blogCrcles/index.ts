@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-27 14:23:15
- * @LastEditTime: 2021-11-09 14:53:43
+ * @LastEditTime: 2021-11-10 08:59:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\navigation\blogCrcles\index.ts
@@ -27,7 +27,7 @@ const state: State = reactive({
 class method {
 
   static async GetTypeOrder() {
-    await navigation.GetFyAllAsync("博客圈", state.page, state.pagesize, true, true).then((res: any) => {
+    await navigation.GetFyAsync(1, "博客圈", state.page, state.pagesize, "id", true, true).then((res: any) => {
       state.resultData = res.data
     })
     await navigation.GetCountAsync(0, "博客圈", true).then((res: any) => {
@@ -42,7 +42,7 @@ class method {
   static async currentchange(val: number) {
     state.current = val
     await navigation
-      .GetFyAllAsync("博客圈", val, state.pagesize, true, true)
+      .GetFyAsync(1, "博客圈", val, state.pagesize, "id", true, true)
       .then((res: any) => {
         state.resultData = res.data
       })

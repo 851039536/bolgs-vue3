@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-11-01 16:44:30
+ * @LastEditTime: 2021-11-10 16:20:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\index.vue
@@ -15,7 +15,7 @@ import {
 } from '@ant-design/icons-vue'
 import { nextTick, provide, reactive } from 'vue'
 import { Routers } from '@/hooks/routers'
-import { storage } from '@/utils/storage/storage'
+import { storage, sessionStorage } from '@/utils/storage/storage'
 import { message } from 'ant-design-vue'
 import store from '@/store'
 import { navname } from '../utils/data'
@@ -71,7 +71,9 @@ provide('reload', reload)
           <li><a href="#careers" @click="Routers('/')">主页</a></li>
           <li><a href="#about" @click="zx()">注销</a></li>
           <li>
-            <a href="#contact"><a-avatar>USER</a-avatar></a>
+            <a href="#contact"
+              ><a-avatar>{{ store.state.Roles }}</a-avatar></a
+            >
           </li>
         </ul>
       </header>
@@ -185,7 +187,6 @@ provide('reload', reload)
     border-right: 1px solid #f4f4f4;
   }
 
-  .header li a:hover,
   .header .logo {
     display: block;
     float: left;

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-09 16:55:11
+ * @LastEditTime: 2021-11-10 15:01:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -11,7 +11,7 @@ import { onMounted } from 'vue'
 import { labels, article, sort, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
 import { formState, stateArray } from './data'
-import { Routers, go } from '@/hooks/routers'
+import { Routers, go, reloads } from '@/hooks/routers'
 import { time } from '../utils/tool'
 import { navname } from '../utils/data'
 
@@ -30,9 +30,6 @@ async function GetAll() {
   sort.GetAllAsync(true).then((res) => {
     stateArray.sortResult = res.data
   })
-}
-async function reloads() {
-  location.reload()
 }
 
 onMounted(async () => {
@@ -62,9 +59,9 @@ onMounted(async () => {
           <a-form-item label="发表人" :wrapper-col="{ span: 6, offset: 0 }">
             <a-input v-model:value="formState.userId" />
           </a-form-item>
-          <a-form-item label="创建时间" :wrapper-col="{ span: 6, offset: 0 }">
+          <!-- <a-form-item label="创建时间" :wrapper-col="{ span: 6, offset: 0 }">
             <a-date-picker v-model:value="time.timeCreate" />
-          </a-form-item>
+          </a-form-item> -->
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select
               v-model:value="formState.labelId"
@@ -98,10 +95,6 @@ onMounted(async () => {
           <a-form-item label="内容">
             <v-md-editor v-model="formState.text"></v-md-editor>
           </a-form-item>
-          <!-- <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-            <a-button type="primary" @click="onSubmit">添加</a-button>
-            <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
-          </a-form-item> -->
         </div>
       </a-form>
     </div>

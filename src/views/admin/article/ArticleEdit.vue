@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-09 16:57:29
+ * @LastEditTime: 2021-11-10 15:09:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -43,8 +43,6 @@ async function GetAll() {
     formState.read = res.data.read
     formState.sortId = res.data.sortId
     formState.text = res.data.text
-    formState.timeCreate = res.data.timeCreate
-    time.timeModified = res.data.timeModified
     formState.title = res.data.title
     formState.sketch = res.data.sketch
     formState.img = res.data.img
@@ -78,9 +76,9 @@ onMounted(async () => {
           <a-form-item label="发表人" :wrapper-col="{ span: 6, offset: 0 }">
             <a-input v-model:value="formState.userId" />
           </a-form-item>
-          <a-form-item label="更新时间" :wrapper-col="{ span: 6, offset: 0 }">
+          <!-- <a-form-item label="更新时间" :wrapper-col="{ span: 6, offset: 0 }">
             <a-date-picker v-model:value="time.timeModified" />
-          </a-form-item>
+          </a-form-item> -->
 
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select

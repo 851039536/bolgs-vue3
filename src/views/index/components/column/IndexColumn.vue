@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-08 11:17:02
- * @LastEditTime: 2021-11-01 16:18:57
+ * @LastEditTime: 2021-11-10 18:13:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
@@ -29,7 +29,7 @@ async function skip(id: number) {
 }
 onMounted(async () => {
   await column.GetCount()
-  await column.GetFyTitle()
+  await column.GetFy()
 })
 </script>
 

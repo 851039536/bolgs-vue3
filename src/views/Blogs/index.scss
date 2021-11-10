@@ -73,9 +73,11 @@
     }
   }
 
-  .blogssidebar_main::-webkit-scrollbar {
-    display: none;
-  }
+  
+}
+// 隐藏滚动条
+#blogssidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .icon {

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-10-25 14:51:08
+ * @LastEditTime: 2021-11-10 17:45:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -21,47 +21,73 @@ const state: State = reactive({
 })
 
 const columns = [
+  { title: '标题', width: 200, dataIndex: 'title', key: 'title', fixed: 'left' },
   {
     title: '主键',
-    dataIndex: 'navId',
-    width: 100,
-  },
-  {
-    title: '标题',
-    dataIndex: 'navTitle',
-    width: 250,
+    dataIndex: 'id',
+    width: 60,
+    align: "center"
   },
 
   {
-    title: '链接',
-    dataIndex: 'navUrl',
+    title: '描述',
+    dataIndex: 'describe',
+    width: 320,
+    ellipsis: true //超过宽度将自动省略
+  },
+
+  {
+    title: '创建',
+    dataIndex: 'timeCreate',
+    width: 150,
+    align: "center"
+  },
+  {
+    title: '更新',
+    dataIndex: 'timeModified',
+    width: 150,
+    align: "center"
   },
   {
     title: '类别',
-    dataIndex: 'navType',
-    width: 120,
+    dataIndex: 'type.title',
+    width: 80,
+    align: "center"
   },
+  {
+    title: '发表人',
+    dataIndex: 'user.name',
+    width: 80,
+    align: "center"
+  },
+
   {
     title: '操作',
     key: '编辑',
-    width: 80,
+    width: 60,
+    fixed: 'right',
+    align: "center",
     slots: { customRender: 'ed' },//绑定插槽
   },
   {
     title: '操作',
     key: '删除',
-    width: 80,
+    fixed: 'right',
+    width: 60,
+    align: "center",
     slots: { customRender: 'de' },//绑定插槽
   },
 ]
 
 const formState: IntNav = reactive({
-  navId: 0,
-  navTitle: "导航标题",
-  navText: "导航简述",
-  navImg: "图片链接",
-  navType: "网站",
-  navUrl: "www.xxx.com"
+  id: 0,
+  title: "",
+  describe: "",
+  img: "",
+  typeId: 1,
+  userId: 1,
+  url: "www.xxx.com",
+
 })
 const stateArray: any = reactive({
   navResult: [],

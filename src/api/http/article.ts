@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-09 17:06:16
+ * @LastEditTime: 2021-11-10 18:13:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -65,7 +65,6 @@ export class article {
    * @description: 主键查询
    * @param {number} id
    * @param {boolean} cache
-   * @return {*}
    */
   static async GetByIdAsync(id: any, cache: boolean): Promise<any> {
     return await request({
@@ -87,24 +86,7 @@ export class article {
       method: 'get',
     })
   }
-  /**
-   * @description: 标签分页查询
-   * @param {number} page
-   * @param {number} pagesize
-   * @return {*}
-   */
-  static async GetFyTitleAsync(page: number, pagesize: number, isDesc: boolean, cache: boolean): Promise<any> {
-    return await request({
-      url:
-        "/api/SnArticle/GetFyTitleAsync?" +
-        "&pageIndex=" +
-        page +
-        "&pageSize=" +
-        pagesize +
-        "&isDesc=" + isDesc + "&cache=" + cache,
-      method: 'get',
-    })
-  }
+
 
   /**
    * @description: 分页查询

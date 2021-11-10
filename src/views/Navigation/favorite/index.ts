@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 09:37:45
- * @LastEditTime: 2021-11-09 14:53:32
+ * @LastEditTime: 2021-11-10 08:58:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\navigation\favorite\index.ts
@@ -15,7 +15,7 @@ class methods {
   static async currentchange(val: number) {
     state.current = val
     await navigation
-      .GetFyAllAsync(state.title, val, state.pagesize, true, true)
+      .GetFyAsync(1, state.title, val, state.pagesize, "id", true, true)
       .then((res: any) => {
         state.text = res.data
       })
@@ -31,7 +31,7 @@ class methods {
       state.type = res.data
     })
     await navigation
-      .GetFyAllAsync(name, state.page, state.pagesize, true, true)
+      .GetFyAsync(1, name, state.page, state.pagesize, "id", true, true)
       .then((res: any) => {
         state.text = res.data
       })
