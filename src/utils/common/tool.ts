@@ -1,11 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-09-22 10:47:16
- * @LastEditTime: 2021-11-10 18:19:48
+ * @LastEditTime: 2021-11-11 16:54:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\common\tool.ts
  */
+
+import moment from "moment"
+import { reactive } from "vue"
 
 /**
  * 常用工具类
@@ -29,6 +32,21 @@ class tool {
       }, 30)
     }
   }
+
+
+  static MomentTime(time: any) {
+    time = moment(time).format('YYYY-MM-DD- H:mm:ss')
+  }
+
+  static MomentTimeList(time: any) {
+    time.data.forEach((res: any) => {
+      res.timeCreate = moment(res.timeCreate).format('YYYY-MM-DD- H:mm:ss')
+      res.timeModified = moment(res.timeModified).format('YYYY-MM-DD- H:mm:ss')
+    })
+  }
+
+
+
 }
 
 export {

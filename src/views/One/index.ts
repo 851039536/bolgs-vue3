@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-28 17:28:24
- * @LastEditTime: 2021-09-30 11:22:33
+ * @LastEditTime: 2021-11-11 15:44:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\index.ts
@@ -35,7 +35,7 @@ class method {
 
   static async setModal1Visible(modal2Visible: boolean, id: number) {
     state.modal2Visible = modal2Visible
-    await one.GetByIdAsync(id).then((res: any) => {
+    await one.GetByIdAsync(id, true).then((res: any) => {
       state.text = res.data
       if (res.data == null) {
         return
@@ -53,7 +53,7 @@ class method {
   }
 
   static async Count() {
-    await one.CountAsync().then((result: any) => {
+    await one.CountAsync(0, "", true).then((result: any) => {
       state.count = result.data
     })
   }
@@ -69,7 +69,7 @@ class method {
 
   static async give(id: any) {
     message.info('已点赞')
-    await one.GetByIdAsync(id).then((res: any) => {
+    await one.GetByIdAsync(id, true).then((res: any) => {
       if (res.data == null) {
         return
       } else {

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { getCurrentInstance, onMounted } from 'vue'
-import { labels, sort } from '@/api/index'
+import { labels, sort, article } from '@/api/index'
 import BlogIco from '@/components/sidebarModule/sico/sIco.vue'
 import BlogInformation from '@/components/sidebarModule/sstatistics/sStatistics.vue'
-import BlogTag from '@/components/sidebarModule/stag/sTag.vue'
+import Stag from '@/components/sidebarModule/stag/sTag.vue'
 import SDescribe from '@/components/describe/sDescribe.vue'
 import SCategory from '@/components/sidebarModule/category/sCategory.vue'
 import { dataList } from './data'
@@ -18,24 +18,20 @@ const tiaozhuan = async (id: number) => {
 }
 
 const GetAllasync = async () => {
-  //查询标签
   await labels.GetAllAsync(true).then((res) => {
-    dataList.Labels = res.data
+    dataList.labels = res.data
   })
-  //查询分类
   await sort.GetAllAsync(true).then((res) => {
-    dataList.Sort = res.data
+    dataList.sort = res.data
+  })
+  await article.GetFyAsync(0, 'null', 1, 1, 'id', true, true).then((res) => {
+    dataList.articledata = res.data[0].timeCreate
   })
   proxy.$api
     .all([
-      //查询最新发布前十文章
-      proxy.$api.get(
-        '/api/SnArticle/GetFyTitleAsync?pageIndex=1&pageSize=10&isDesc=true&cache=true'
-      ),
       // 查询当前用户的说说
       proxy.$api.get('/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true'),
-      //查询当前用户信息
-      proxy.$api.get('/api/SnUser/GetByIdAsync?id=4&cache=true'),
+
       //查询文章总数
       proxy.$api.get('/api/SnArticle/GetCountAsync'),
       //查询标签
@@ -49,19 +45,8 @@ const GetAllasync = async () => {
     ])
     .then(
       proxy.$api.spread(
-        (
-          res3: any,
-          res4: any,
-          res5: any,
-          res6: any,
-          res7: any,
-          res8: any,
-          res9: any,
-          res10: any
-        ) => {
-          dataList.articledata = res3.data[0].timeCreate
+        (res4: any, res6: any, res7: any, res8: any, res9: any, res10: any) => {
           dataList.UserTalk = res4.data
-          dataList.User = res5.data
           dataList.ArticleCount = res6.data
           dataList.SortCount = res7.data
           dataList.LabelsCount = res8.data
@@ -101,24 +86,16 @@ onMounted(async () => {
           @select="tiaozhuan"
         >
           >
-          <a-select-option v-for="d in dataList.article1" :key="d.articleId">{{
-            d.title
+          <a-select-option v-for="res in dataList.article1" :key="res.id">{{
+            res.title
           }}</a-select-option>
         </a-select>
       </div>
       <!-- end 搜索 -->
 
-      <!-- 描述内容 -->
       <s-describe :UserTalk="dataList.UserTalk"></s-describe>
-      <!-- end 描述内容 -->
-
-      <!-- 标签框内容 -->
-      <blog-tag :result="dataList.Labels"></blog-tag>
-      <!-- end 标签框内容 -->
-
-      <!-- 分类内容框 -->
-      <SCategory :result="dataList.Sort"></SCategory>
-      <!-- end 分类内容框  -->
+      <Stag :result="dataList.labels"></Stag>
+      <SCategory :result="dataList.sort"></SCategory>
 
       <!-- 站点统计框 -->
       <BlogInformation

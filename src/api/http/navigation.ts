@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-11-10 14:53:47
+ * @LastEditTime: 2021-11-11 15:50:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -41,21 +41,26 @@ export class navigation {
       method: 'get',
     })
   }
-  static async GetTypeContainsAsync(type: string, name: string, chche: boolean): Promise<any> {
+
+
+  /**
+   * 条件查询
+   * @param identity 分类:1 || 用户:2
+   * @param type 查询条件
+   * @param cache 缓存
+   */
+  static async GetTypeAsync(identity: number, type: string, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnNavigation/GetTypeContainsAsync?type=" + type + "&name=" + name + "&cache=" + chche,
+      url: "/api/SnNavigation/GetTypeAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
       method: 'get',
     })
   }
 
-  //条件查询
-  static async GetTypeOrderAsync(name: string): Promise<any> {
-    return await request({
-      url: "api/SnNavigation/GetTypeOrderAsync?type=" + name + "&order=true",
-      method: 'get',
-    })
-  }
-
+  /**
+   * 主键查询
+   * @param id 主键
+   * @param cache 缓存
+   */
   static async GetByIdAsync(id: any, cache: boolean): Promise<any> {
     return await request({
       url: "/api/SnNavigation/GetByIdAsync?id=" + id + "&cache=" + cache,

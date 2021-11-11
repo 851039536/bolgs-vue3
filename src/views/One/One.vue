@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 18:04:43
- * @LastEditTime: 2021-10-14 16:48:08
+ * @LastEditTime: 2021-11-11 15:40:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\one\one.vue
@@ -18,13 +18,13 @@ method.getOne()
 <template>
   <div class="one">
     <blog-sidebar></blog-sidebar>
-    <OneSidebar></OneSidebar>
+    <!-- <OneSidebar></OneSidebar> -->
     <div class="one-div animate__animated animate__fadeIn">
       <!-- 头部 -->
       <OneTop
-        :title="state.dataOne.oneTitle"
-        :oneText="state.dataOne.oneText"
-        :oneRead="state.dataOne.oneRead"
+        :title="state.dataOne.title"
+        :oneText="state.dataOne.text"
+        :oneRead="state.dataOne.read"
       ></OneTop>
       <!-- end 头部 -->
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-10 15:09:52
+ * @LastEditTime: 2021-11-11 18:08:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -10,14 +10,14 @@
 import { onMounted, reactive } from 'vue'
 import { labels, article, sort, TOKEN } from '@/api'
 import { message } from 'ant-design-vue'
-import { formState, stateArray } from './data'
+import { formState, state } from './data'
 import { useRoute } from 'vue-router'
 import { Routers, go } from '@/hooks/routers'
 import { time } from '../utils/tool'
 import { navname } from '../utils/data'
 const route = useRoute()
 const Rid = reactive({
-  id: route.query.id,
+  id: route.query.id
 })
 
 const onSubmit = async () => {
@@ -28,25 +28,25 @@ const onSubmit = async () => {
   })
 }
 async function GetAll() {
-  labels.GetAllAsync(true).then((res) => {
-    stateArray.labelResult = res.data
+  labels.GetAllAsync(true).then(res => {
+    state.labelResult = res.data
   })
-  sort.GetAllAsync(true).then((res) => {
-    stateArray.sortResult = res.data
+  sort.GetAllAsync(true).then(res => {
+    state.sortResult = res.data
   })
 
-  article.GetByIdAsync(Rid.id, false).then((res) => {
-    formState.id = res.data.id
-    formState.commentId = res.data.commentId
-    formState.give = res.data.give
-    formState.labelId = res.data.labelId
-    formState.read = res.data.read
-    formState.sortId = res.data.sortId
-    formState.text = res.data.text
-    formState.title = res.data.title
-    formState.sketch = res.data.sketch
-    formState.img = res.data.img
-    formState.userId = res.data.userId
+  article.GetByIdAsync(Rid.id, false).then(res => {
+    formState.id = res.data[0].id
+    formState.commentId = res.data[0].commentId
+    formState.give = res.data[0].give
+    formState.labelId = res.data[0].labelId
+    formState.read = res.data[0].read
+    formState.sortId = res.data[0].sortId
+    formState.text = res.data[0].text
+    formState.title = res.data[0].title
+    formState.sketch = res.data[0].sketch
+    formState.img = res.data[0].img
+    formState.userId = res.data[0].userId
   })
 }
 onMounted(async () => {
@@ -60,11 +60,7 @@ onMounted(async () => {
 <template>
   <div class="form">
     <div class="form_content">
-      <a-form
-        :model="formState"
-        :label-col="{ span: 2 }"
-        :wrapper-col="{ span: 21 }"
-      >
+      <a-form :model="formState" :label-col="{ span: 2 }" :wrapper-col="{ span: 21 }">
         <div class="form_content_1">
           <a-form-item label="标题" :wrapper-col="{ span: 6, offset: 0 }">
             <a-input v-model:value="formState.title" />
@@ -76,37 +72,20 @@ onMounted(async () => {
           <a-form-item label="发表人" :wrapper-col="{ span: 6, offset: 0 }">
             <a-input v-model:value="formState.userId" />
           </a-form-item>
-          <!-- <a-form-item label="更新时间" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-date-picker v-model:value="time.timeModified" />
-          </a-form-item> -->
 
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-select
-              v-model:value="formState.labelId"
-              placeholder="please select your zone"
-            >
-              <a-select-option
-                v-for="item in stateArray.labelResult"
-                :key="item.id"
-                :label="item.id"
-                :value="item.id"
-                >{{ item.name }}</a-select-option
-              >
+            <a-select v-model:value="formState.labelId" placeholder="please select your zone">
+              <a-select-option v-for="item in state.labelResult" :key="item.id" :label="item.id" :value="item.id">{{
+                item.name
+              }}</a-select-option>
             </a-select>
           </a-form-item>
 
           <a-form-item label="类别" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-select
-              v-model:value="formState.sortId"
-              placeholder="please select your zone"
-            >
-              <a-select-option
-                v-for="item in stateArray.sortResult"
-                :key="item.id"
-                :label="item.id"
-                :value="item.id"
-                >{{ item.name }}</a-select-option
-              >
+            <a-select v-model:value="formState.sortId" placeholder="please select your zone">
+              <a-select-option v-for="item in state.sortResult" :key="item.id" :label="item.id" :value="item.id">{{
+                item.name
+              }}</a-select-option>
             </a-select>
           </a-form-item>
 

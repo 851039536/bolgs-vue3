@@ -1,19 +1,19 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-10 18:07:41
+ * @LastEditTime: 2021-11-11 18:18:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
 -->
 <script lang="ts" setup>
-import { columns, state, stateArray, stateStr } from './data'
-import { article, TOKEN, labels } from '@/api'
+import { columns, state } from './data'
+import { article, TOKEN, labelsApi, articleApi } from '@/api'
 import { inject, onMounted } from 'vue'
 import { message } from 'ant-design-vue'
 import { Routers, RouterId } from '@/hooks/routers'
-import moment from 'moment'
 import { navname } from '../utils/data'
+import { tool } from '@/utils/common/tool'
 
 const reload: any = inject('reload')
 const confirm = async (data: any) => {
@@ -26,70 +26,38 @@ const cancel = () => {
   message.info('已取消')
 }
 
-function momentData(result: any) {
-  result.data.forEach((res: any) => {
-    res.timeCreate = moment(res.timeCreate).format('YYYY-MM-DD- H:mm:ss')
-    res.timeModified = moment(res.timeModified).format('YYYY-MM-DD- H:mm:ss')
-  })
-}
-
-/**
- * @description: 搜素框模糊查询
- * @param {*} name
- */
 async function GetContains(name: string) {
   if (name === '') {
     return
   }
-  if (stateStr.labelStr === 'ALL') {
-    await article.GetContainsAsync(0, 0, name, true).then((res) => {
-      momentData(res)
+  if (state.labelStr === 'ALL') {
+    await article.GetContainsAsync(0, 0, name, true).then(res => {
+      tool.MomentTimeList(res)
       state.dataResult = res.data
     })
   } else {
-    await article
-      .GetContainsAsync(2, stateStr.labelStr, name, true)
-      .then((res) => {
-        momentData(res)
-        state.dataResult = res.data
-      })
+    await article.GetContainsAsync(2, state.labelStr, name, true).then(res => {
+      tool.MomentTimeList(res)
+      state.dataResult = res.data
+    })
   }
 }
 async function GetTag() {
-  message.info(stateStr.labelStr)
-  if (stateStr.labelStr === 'ALL') {
-    await GetFy(0, 'null', 1, 1000, 'id', true, false)
+  message.info(state.labelStr)
+  if (state.labelStr === 'ALL') {
+    state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', true, false)
   } else {
-    await GetFy(2, stateStr.labelStr, 1, 1000, 'id', true, false)
+    state.dataResult = await articleApi.GetFy(2, state.labelStr, 1, 1000, 'id', true, false)
   }
 }
-
 async function Ordering() {
-  await GetFy(0, 'null', 1, 1000, 'id', false, false)
+  state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', false, false)
 }
 
-async function GetFy(
-  identity: number,
-  type: string,
-  pageIndex: number,
-  pagesize: number,
-  ordering: string,
-  isDesc: boolean,
-  cache: boolean
-) {
-  await article
-    .GetFyAsync(identity, type, pageIndex, pagesize, ordering, isDesc, cache)
-    .then((result: any) => {
-      momentData(result)
-      state.dataResult = result.data
-    })
-}
 onMounted(async () => {
   await TOKEN()
-  await GetFy(0, 'null', 1, 1000, 'id', true, false)
-  await labels.GetAllAsync(false).then((res) => {
-    stateArray.labelResult = res.data
-  })
+  state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', true, false)
+  state.labelResult = await labelsApi.GetAll(false)
   navname.name = '文章展示'
   navname.name2 = '文章列表'
 })
@@ -100,18 +68,9 @@ onMounted(async () => {
       <a-space>
         <a-button @click="Routers('/Admin-index/ArticleAdd')">添加</a-button>
         <a-button @click="reload()">刷新</a-button>
-        <a-select
-          style="width: 100px;"
-          v-model:value="stateStr.labelStr"
-          @change="GetTag"
-        >
+        <a-select style="width: 100px;" v-model:value="state.labelStr" @change="GetTag">
           <a-select-option value="ALL">ALL</a-select-option>
-          <a-select-option
-            :value="item.name"
-            v-for="item in stateArray.labelResult"
-            :key="item.id"
-            >{{ item.name }}</a-select-option
-          >
+          <a-select-option :value="res.name" v-for="res in state.labelResult.data" :key="res.id">{{ res.name }}</a-select-option>
         </a-select>
         <!-- 搜索  -->
         <a-select
@@ -134,26 +93,15 @@ onMounted(async () => {
         :bordered="true"
         :columns="columns"
         rowKey="id"
-        :data-source="state.dataResult"
+        :data-source="state.dataResult.data"
         :pagination="{ pageSize: 15 }"
         :scroll="{ x: 1500, y: 360 }"
       >
         <template #ed="{ record }">
-          <a
-            type="primary"
-            ghost
-            @click="RouterId('/Admin-index/ArticleEdit', record.id)"
-            >Edit</a
-          >
+          <a type="primary" ghost @click="RouterId('/Admin-index/ArticleEdit', record.id)">Edit</a>
         </template>
         <template #de="{ record }">
-          <a-popconfirm
-            title="确认删除?"
-            ok-text="是"
-            cancel-text="否"
-            @confirm="confirm(record)"
-            @cancel="cancel"
-          >
+          <a-popconfirm title="确认删除?" ok-text="是" cancel-text="否" @confirm="confirm(record)" @cancel="cancel">
             <a href="#">Delete</a>
           </a-popconfirm>
         </template>

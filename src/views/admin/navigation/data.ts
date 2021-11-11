@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-11-10 17:45:02
+ * @LastEditTime: 2021-11-11 16:58:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -35,31 +35,32 @@ const columns = [
     width: 320,
     ellipsis: true //超过宽度将自动省略
   },
-
-  {
-    title: '创建',
-    dataIndex: 'timeCreate',
-    width: 150,
-    align: "center"
-  },
-  {
-    title: '更新',
-    dataIndex: 'timeModified',
-    width: 150,
-    align: "center"
-  },
   {
     title: '类别',
     dataIndex: 'type.title',
-    width: 80,
+    width: 70,
     align: "center"
   },
   {
     title: '发表人',
     dataIndex: 'user.name',
-    width: 80,
+    width: 70,
     align: "center"
   },
+
+  {
+    title: '创建',
+    dataIndex: 'timeCreate',
+    width: 100,
+    align: "center"
+  },
+  {
+    title: '更新',
+    dataIndex: 'timeModified',
+    width: 100,
+    align: "center"
+  },
+
 
   {
     title: '操作',

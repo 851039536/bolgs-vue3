@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-10 18:13:22
+ * @LastEditTime: 2021-11-11 17:34:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -87,7 +87,6 @@ export class article {
     })
   }
 
-
   /**
    * @description: 分页查询
    * @param {number} identity 所有:0 || 分类:1 || 标签:2
@@ -97,7 +96,6 @@ export class article {
    * @param {string} ordering 排序条件[data:时间 read:阅读 give:点赞 按id排序]
    * @param {boolean} isDesc 升序/降序
    * @param {boolean} cache 是否开启缓存
-   * @return {*}
    */
   static async GetFyAsync(identity: number, type: string, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean): Promise<any> {
     return await request({

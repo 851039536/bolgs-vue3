@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-11-10 17:58:18
+ * @LastEditTime: 2021-11-11 18:06:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -11,9 +11,15 @@ import { reactive } from "vue"
 import { IntArticle } from '@/api/data/interData'
 interface State {
   dataResult: any
+  labelResult: any
+  sortResult: any
+  labelStr: any
 }
 const state: State = reactive({
   dataResult: [],
+  labelResult: [],
+  sortResult: [],
+  labelStr: "ALL"
 })
 
 const columns = [
@@ -21,34 +27,34 @@ const columns = [
   {
     title: '主键',
     dataIndex: 'id',
-    width: 60,
+    width: 55,
     align: "center"  //	设置列内容的对齐方式
   },
   {
     title: '标签',
     dataIndex: 'label.name',
-    width: 100,
+    width: 90,
     align: "center"
   },
   {
     title: '分类',
     dataIndex: 'sort.name',
+    width: 80,
+    align: "center"
+  },
+  {
+    title: '更新时间',
+    dataIndex: 'timeModified',
     width: 100,
     align: "center"
   },
   {
     title: '创建时间',
     dataIndex: 'timeCreate',
-    width: 150,
+    width: 100,
     align: "center"
+  },
 
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'timeModified',
-    width: 150,
-    align: "center"
-  },
   {
     title: '阅读量',
     dataIndex: 'read',
@@ -89,17 +95,10 @@ const formState: IntArticle = reactive({
   give: 0,
 
 })
-const stateArray: any = reactive({
-  labelResult: [],
-  sortResult: [],
-})
-const stateStr: any = reactive({
-  labelStr: "ALL"
-})
+
+
 export {
   columns,
   state,
   formState,
-  stateArray,
-  stateStr
 }

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-10 17:50:33
+ * @LastEditTime: 2021-11-11 16:54:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -13,15 +13,24 @@ import { inject, onMounted } from 'vue'
 import { message } from 'ant-design-vue'
 import { Routers, RouterId } from '@/hooks/routers'
 import { navname } from '../utils/data'
-import moment from 'moment'
+import { tool } from '@/utils/common/tool'
 
 async function GetFy() {
-  await navigation
-    .GetFyAsync(0, '0', 1, 1000, 'id', true, false)
-    .then((result: any) => {
-      momentData(result)
-      state.dataResult = result.data
-    })
+  if (state.navStr === 'ALL') {
+    navigation
+      .GetFyAsync(0, state.navStr, 1, 1000, 'id', true, false)
+      .then((res) => {
+        tool.MomentTimeList(res)
+        state.dataResult = res.data
+      })
+  } else {
+    navigation
+      .GetFyAsync(1, state.navStr, 1, 1000, 'id', true, false)
+      .then((res) => {
+        tool.MomentTimeList(res)
+        state.dataResult = res.data
+      })
+  }
 }
 const reload: any = inject('reload')
 const confirm = async (data: any) => {
@@ -36,6 +45,21 @@ const cancel = () => {
 
 async function SelectNav() {
   message.info(state.navStr)
+  if (state.navStr === 'ALL') {
+    navigation
+      .GetFyAsync(0, state.navStr, 1, 1000, 'id', true, false)
+      .then((res) => {
+        tool.MomentTimeList(res)
+        state.dataResult = res.data
+      })
+  } else {
+    navigation
+      .GetFyAsync(1, state.navStr, 1, 1000, 'id', true, false)
+      .then((res) => {
+        tool.MomentTimeList(res)
+        state.dataResult = res.data
+      })
+  }
 }
 /**
  * @description: 搜素框模糊查询
@@ -50,25 +74,12 @@ async function SearchTitle(name: string) {
       state.dataResult = res.data
     })
   } else {
-    console.log(
-      '%c [ state.navStr ]',
-      'font-size:13px; background:pink; color:#bf2c9f;',
-      state.navStr
-    )
     await navigation
       .GetContainsAsync(1, state.navStr, name, false)
-
       .then((res) => {
         state.dataResult = res.data
       })
   }
-}
-function momentData(result: any) {
-  moment.locale()
-  result.data.forEach((res: any) => {
-    res.timeCreate = moment(res.timeCreate).format('YYYY-MM-DD- H:mm:ss')
-    res.timeModified = moment(res.timeModified).format('YYYY-MM-DD- H:mm:ss')
-  })
 }
 
 onMounted(async () => {
@@ -87,7 +98,6 @@ onMounted(async () => {
       <a-space>
         <a-button @click="Routers('/Admin-index/NavAdd')">添加</a-button>
         <a-button @click="reload()">刷新</a-button>
-        <!--   v-model:value="stateStr.labelStr" -->
         <a-select
           style="width: 100px;"
           v-model:value="state.navStr"

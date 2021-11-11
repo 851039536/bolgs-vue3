@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-10-21 12:10:13
+ * @LastEditTime: 2021-11-11 15:43:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -10,11 +10,17 @@ import request from '@/utils/http/axios'
 export class one {
 
 
-  //查询文章总条数
-  static async CountAsync(): Promise<any> {
+  /**
+   * 查询总数
+   * @param identity 所有:0 || 分类:1 || 用户2
+   * @param type 查询条件
+   * @param cache 缓存
+   * @returns 
+   */
+  static async CountAsync(identity: number, type: string, cache: boolean): Promise<any> {
     return await request({
       url:
-        "/api/SnOne/CountAsync",
+        "/api/SnOne/GetCountAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
       method: 'get',
     })
   }
@@ -61,11 +67,15 @@ export class one {
     })
   }
 
-  //主键查询  
-  static async GetByIdAsync(id: number): Promise<any> {
+  /**
+   *  主键查询
+   * @param id 主键
+   * @param cache 缓存
+   */
+  static async GetByIdAsync(id: number, cache: boolean): Promise<any> {
     return await request({
       url:
-        "/api/SnOne/GetByIdAsync?id=" + id,
+        "/api/SnOne/GetByIdAsync?id=" + id + "&cache=" + cache,
       method: 'get',
     })
   }

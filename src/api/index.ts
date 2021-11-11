@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-10 14:41:22
- * @LastEditTime: 2021-11-02 08:59:06
+ * @LastEditTime: 2021-11-11 17:35:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -9,6 +9,8 @@
 import request from '@/utils/http/axios'
 import { article } from './http/article'
 import { labels } from './http/labels';
+import { labelsApi } from './http/packapi/labelsApi';
+import { articleApi } from './http/packapi/articleApi';
 import { sort } from './http/sort';
 import { usertalk } from './http/usertalk';
 import { setBlog } from './http/setBlog';
@@ -34,4 +36,4 @@ async function TOKEN() {
     })
 }
 
-export { article, labels, sort, usertalk, setBlog, leave, navigation, one, video, user, listContent, TOKEN, interfaces };
+export { labelsApi, articleApi, article, labels, sort, usertalk, setBlog, leave, navigation, one, video, user, listContent, TOKEN, interfaces };

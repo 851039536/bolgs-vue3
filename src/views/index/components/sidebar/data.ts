@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-15 10:39:08
- * @LastEditTime: 2021-09-15 11:12:58
+ * @LastEditTime: 2021-11-11 15:14:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\data.ts
@@ -9,8 +9,8 @@
 import { reactive } from 'vue'
 
 interface DataList {
-  Labels: any,
-  Sort: any,
+  labels: any,
+  sort: any,
   article: any,
   article1: any,
   UserTalk: string,
@@ -25,8 +25,8 @@ interface DataList {
 
 }
 const dataList: DataList = reactive({
-  Labels: [],
-  Sort: [],
+  labels: [],
+  sort: [],
   article: [],
   article1: [],
   UserTalk: "",

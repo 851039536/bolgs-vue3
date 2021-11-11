@@ -17,7 +17,10 @@
     <!-- end 标题 -->
 
     <!--内容-->
-    <VmdContent :loading="state.spinning" :result="state.blog"></VmdContent>
+    <VmdContent
+      :loading="state.spinning"
+      :result="state.resultData.text"
+    ></VmdContent>
     <!-- end 内容 -->
 
     <!--底部信息-->
@@ -43,9 +46,11 @@
           </a>
         </div>
         <div>{{ state.resultData.read }} ℃</div>
-        <div class="indextest_comment_text">{{ state.Sort.sortName }}</div>
-        <div class="indextest_comment_text">{{ state.Labels.labelName }}</div>
-        <div class>{{ state.resultData.timeCreate }}</div>
+        <div class="indextest_comment_text">{{ state.sortName }}</div>
+        <div class="indextest_comment_text">
+          {{ state.labelName }}
+        </div>
+        <div class>{{ state.time }}</div>
       </div>
     </div>
   </div>
@@ -53,14 +58,8 @@
 </template>
 
 <script lang="ts">
-import { article, labels, sort } from '@/api/index'
-import {
-  reactive,
-  onMounted,
-  defineComponent,
-  defineAsyncComponent,
-  ref,
-} from 'vue'
+import { article } from '@/api/index'
+import { reactive, onMounted, defineComponent, defineAsyncComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { tool } from '@/utils/common/tool'
 import { throttle } from '@/utils/common/dethrottle'
@@ -81,50 +80,40 @@ export default defineComponent({
 
     interface State {
       resultData: any
-      Labels: any
-      Sort: any
+      labelName: string
+      sortName: string
+      time: any
       id: any
-      blog: string
       spinning: boolean
     }
     const state: State = reactive({
       resultData: [],
-      Labels: [],
+      labelName: '',
+      sortName: '',
+      time: '',
       Sort: [],
       id: route.query.id,
-      blog: '',
       spinning: true,
     })
 
     // 加载内容
     const GetAll = async () => {
-      await article.GetByIdAsync(state.id, false).then((res: any) => {
-        state.resultData = res.data
-        GetByIdAsync(state.resultData.labelId)
-        GetSortById(state.resultData.sortId)
+      await article.GetByIdAsync(state.id, true).then((res: any) => {
+        state.time = tool.MomentTime(res.data[0].timeCreate)
+        state.resultData = res.data[0]
+        state.labelName = res.data[0].label.name
+        state.sortName = res.data[0].sort.name
         UpRead(state.resultData)
-        state.blog = state.resultData.text
         state.spinning = false
       })
     }
-    const GetByIdAsync = (id: number) => {
-      labels.GetByIdAsync(id).then((result: any) => {
-        state.Labels = result.data
-      })
-    }
 
-    const GetSortById = (id: number) => {
-      sort.GetByIdAsync(id).then((result: any) => {
-        state.Sort = result.data
-      })
-    }
-
-    async function UpRead(info: any) {
-      if (info == null) {
+    async function UpRead(res: any) {
+      if (res == null) {
         return
       } else {
-        info.read++
-        await article.UpdatePortionAsync(info, 'Read')
+        res.read++
+        await article.UpdatePortionAsync(res, 'Read')
       }
     }
 
