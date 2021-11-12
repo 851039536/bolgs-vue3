@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:22:05
- * @LastEditTime: 2021-10-18 16:07:38
+ * @LastEditTime: 2021-11-12 13:47:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\shims-vue.d.ts
@@ -31,3 +31,10 @@ declare module 'prismjs';
 declare module '@kangc/v-md-editor/lib/theme/hljs';
 declare module '@kangc/v-md-editor/lib/plugins/line-number/index';
 declare module '@kangc/v-md-editor/lib/preview';
+declare module '@kangc/v-md-editor/lib/plugins/copy-code/index';
+declare module 'highlight.js/lib/core';
+declare module 'highlight.js/lib/languages/csharp';
+declare module 'highlight.js/lib/languages/css';
+declare module '@kangc/v-md-editor/lib/plugins/highlight-lines/index';
+declare module 'highlight.js/lib/languages/javascript';
+declare module 'highlight.js/lib/languages/typescript';

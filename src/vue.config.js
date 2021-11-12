@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:16:33
- * @LastEditTime: 2021-11-02 08:44:04
+ * @LastEditTime: 2021-11-12 09:06:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\vue.config.js
@@ -30,33 +30,7 @@ module.exports = {
 
     // eslint-disable-next-line no-undef
     config.plugin('cache').use(HardSourceWebpackPlugin);
-    // 文件引入时，自定义别名
-    // eslint-disable-next-line no-undef
-    // config.resolve.alias
-    //   .set("@", resolve("src"))
-    //   .set("vue$", "vue/dist/vue.esm.js")
-    //   .set("a", resolve("src/assets"))
-    //   .set("c", resolve("src/components"))
-    //   .set("v", resolve("src/views"))
-    //   .set("r", resolve("src/router"))
-    //   .set("api", resolve("src/api"))
-    //   .set("s", resolve("src/store"));
 
-    // 字体文件自定义配置
-    // config.module
-    //   .rule("fonts")
-    //   .test(/\.(woff2?|eot|ttf|otf)(\?.*)?$/i)
-    //   .use("url-loader")
-    //   .loader("url-loader")
-    //   .options({
-    //     limit: 4096,
-    //     fallback: {
-    //       loader: "file-loader",
-    //       options: {
-    //         name: `/static/fonts/[name].[ext]`
-    //       }
-    //     }
-    //   });
   },
   // 基本路径
   publicPath: "./",

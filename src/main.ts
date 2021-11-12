@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-04 08:49:42
+ * @LastEditTime: 2021-11-12 15:44:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -22,25 +22,52 @@ import 'ant-design-vue/dist/antd.css';
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 
-// import VMdPreview from '@kangc/v-md-editor/lib/preview';
-// import '@kangc/v-md-editor/lib/style/preview.css';
+import VMdPreview from '@kangc/v-md-editor/lib/preview';
+import '@kangc/v-md-editor/lib/style/preview.css';
 // vuepress github 主题
-import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
-import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
-// import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
-// import '@kangc/v-md-editor/lib/theme/style/github.css';
+//import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+//import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+import '@kangc/v-md-editor/lib/theme/style/github.css';
 
-import Prism from 'prismjs';
+//import Prism from 'prismjs';
 //import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+// 按需引入语言包
+import csharp from 'highlight.js/lib/languages/csharp';
+import css from 'highlight.js/lib/languages/css';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
+hljs.registerLanguage('csharp', csharp);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('typescript', typescript);
 
-VueMarkdownEditor.use(vuepressTheme, {
-  Prism,
-  //Hljs: hljs,
+
+// 显示代码行数
+import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
+// 快速复制代码
+import createCopyCodePlugin from '@kangc/v-md-editor/lib/plugins/copy-code/index';
+import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css';
+
+
+VueMarkdownEditor.use(githubTheme, {
+  //Prism,
+  Hljs: hljs,
   // extend(md) {
   //   // md为 markdown-it 实例，可以在此处进行修改配置,并使用 plugin 进行语法扩展
   //   // md.set(option).use(plugin);
   // },
 });
+VueMarkdownEditor.use(createLineNumbertPlugin());
+VueMarkdownEditor.use(createCopyCodePlugin());
+
+
+VMdPreview.use(githubTheme, {
+  Hljs: hljs,
+});
+VMdPreview.use(createLineNumbertPlugin());
+VMdPreview.use(createCopyCodePlugin());
 //  end v-md
 
 
@@ -71,6 +98,7 @@ app.use(lazyPlugin, {
   error: require('@/assets/img/sp.png')// 图片加载失败时默认图片
 })
 app.use(VueMarkdownEditor);
+app.use(VMdPreview);
 app.use(store);
 app.use(Antd)
 app.use(animated)

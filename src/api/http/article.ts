@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-11 17:34:48
+ * @LastEditTime: 2021-11-12 10:50:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -44,7 +44,7 @@ export class article {
    * @param name 查询字段
    * @param cache 缓存
    */
-  static async GetContainsAsync(identity: number, type: number, name: string, cache: boolean) {
+  static async GetContainsAsync(identity: number, type: string, name: string, cache: boolean) {
     return await request({
       url: "/api/SnArticle/GetContainsAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + cache,
       method: 'get',

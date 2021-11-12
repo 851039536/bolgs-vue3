@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-11 18:18:02
+ * @LastEditTime: 2021-11-12 11:10:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -31,7 +31,7 @@ async function GetContains(name: string) {
     return
   }
   if (state.labelStr === 'ALL') {
-    await article.GetContainsAsync(0, 0, name, true).then(res => {
+    await article.GetContainsAsync(0, '0', name, true).then(res => {
       tool.MomentTimeList(res)
       state.dataResult = res.data
     })
@@ -46,17 +46,28 @@ async function GetTag() {
   message.info(state.labelStr)
   if (state.labelStr === 'ALL') {
     state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', true, false)
+    await tool.MomentTimeList(state.dataResult)
   } else {
     state.dataResult = await articleApi.GetFy(2, state.labelStr, 1, 1000, 'id', true, false)
+    await tool.MomentTimeList(state.dataResult)
   }
 }
 async function Ordering() {
-  state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', false, false)
+  if (state.order) {
+    state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', state.order, false)
+    await tool.MomentTimeList(state.dataResult)
+    state.order = false
+  } else {
+    state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', state.order, false)
+    await tool.MomentTimeList(state.dataResult)
+    state.order = true
+  }
 }
 
 onMounted(async () => {
   await TOKEN()
   state.dataResult = await articleApi.GetFy(0, 'null', 1, 1000, 'id', true, false)
+  await tool.MomentTimeList(state.dataResult)
   state.labelResult = await labelsApi.GetAll(false)
   navname.name = '文章展示'
   navname.name2 = '文章列表'

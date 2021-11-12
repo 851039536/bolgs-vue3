@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-17 16:34:12
- * @LastEditTime: 2021-11-09 14:25:04
+ * @LastEditTime: 2021-11-12 10:51:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\sidebar\index.ts
@@ -16,7 +16,7 @@ export class indexSidebar {
    * @param {string} name 名称
    */
   static async SearchTitle(name: string) {
-    await article.GetContainsAsync(0, 0, name, false).then((res) => {
+    await article.GetContainsAsync(0, "null", name, false).then((res) => {
       dataList.article1 = res.data
     })
   }

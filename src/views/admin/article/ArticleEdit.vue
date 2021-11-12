@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-11 18:08:47
+ * @LastEditTime: 2021-11-12 11:12:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -13,27 +13,23 @@ import { message } from 'ant-design-vue'
 import { formState, state } from './data'
 import { useRoute } from 'vue-router'
 import { Routers, go } from '@/hooks/routers'
-import { time } from '../utils/tool'
 import { navname } from '../utils/data'
+
 const route = useRoute()
 const Rid = reactive({
   id: route.query.id
 })
 
 const onSubmit = async () => {
-  formState.timeModified = time.timeModified
   await article.UpdateAsync(formState).then(() => {
     message.info('更新完成')
     Routers('/Admin-index/ArticleTable')
   })
 }
-async function GetAll() {
-  labels.GetAllAsync(true).then(res => {
-    state.labelResult = res.data
-  })
-  sort.GetAllAsync(true).then(res => {
-    state.sortResult = res.data
-  })
+
+async function GetApi() {
+  state.labelResult = await labels.GetAllAsync(true)
+  state.sortResult = await sort.GetAllAsync(true)
 
   article.GetByIdAsync(Rid.id, false).then(res => {
     formState.id = res.data[0].id
@@ -50,7 +46,7 @@ async function GetAll() {
   })
 }
 onMounted(async () => {
-  await GetAll()
+  await GetApi()
   await TOKEN()
   navname.name = '文章展示'
   navname.name2 = '文章编辑'
@@ -75,7 +71,7 @@ onMounted(async () => {
 
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select v-model:value="formState.labelId" placeholder="please select your zone">
-              <a-select-option v-for="item in state.labelResult" :key="item.id" :label="item.id" :value="item.id">{{
+              <a-select-option v-for="item in state.labelResult.data" :key="item.id" :label="item.id" :value="item.id">{{
                 item.name
               }}</a-select-option>
             </a-select>
@@ -83,7 +79,7 @@ onMounted(async () => {
 
           <a-form-item label="类别" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select v-model:value="formState.sortId" placeholder="please select your zone">
-              <a-select-option v-for="item in state.sortResult" :key="item.id" :label="item.id" :value="item.id">{{
+              <a-select-option v-for="item in state.sortResult.data" :key="item.id" :label="item.id" :value="item.id">{{
                 item.name
               }}</a-select-option>
             </a-select>

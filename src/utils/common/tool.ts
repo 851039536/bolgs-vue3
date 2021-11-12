@@ -1,14 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-09-22 10:47:16
- * @LastEditTime: 2021-11-11 16:54:06
+ * @LastEditTime: 2021-11-12 15:06:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\common\tool.ts
  */
 
 import moment from "moment"
-import { reactive } from "vue"
 
 /**
  * 常用工具类
@@ -38,12 +37,13 @@ class tool {
     time = moment(time).format('YYYY-MM-DD- H:mm:ss')
   }
 
-  static MomentTimeList(time: any) {
-    time.data.forEach((res: any) => {
+  static async MomentTimeList(time: any) {
+    await time.data.forEach((res: any) => {
       res.timeCreate = moment(res.timeCreate).format('YYYY-MM-DD- H:mm:ss')
       res.timeModified = moment(res.timeModified).format('YYYY-MM-DD- H:mm:ss')
     })
   }
+
 
 
 

@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-10-30 11:14:21
+ * @LastEditTime: 2021-11-12 16:21:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -54,10 +54,13 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (config) {
 
   dataList.show = true
+  console.log('%c [ dataList.show ]', 'font-size:13px; background:pink; color:#bf2c9f;', dataList.show)
+
   if (config.status === 200 || config.status === 204) {
     setTimeout(() => {
       dataList.show = false
-    }, 400)
+      console.log('%c [ dataList.show ]', 'font-size:13px; background:pink; color:#bf2c9f;', dataList.show)
+    }, 1000)
     return Promise.resolve(config);
   } else {
     return Promise.reject(config);

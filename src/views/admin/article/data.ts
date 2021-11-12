@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-11-11 18:06:49
+ * @LastEditTime: 2021-11-12 11:02:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -13,13 +13,15 @@ interface State {
   dataResult: any
   labelResult: any
   sortResult: any
-  labelStr: any
+  labelStr: string
+  order: boolean
 }
 const state: State = reactive({
   dataResult: [],
   labelResult: [],
   sortResult: [],
-  labelStr: "ALL"
+  labelStr: "ALL",
+  order: true
 })
 
 const columns = [

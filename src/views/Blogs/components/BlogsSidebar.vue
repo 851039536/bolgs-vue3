@@ -10,20 +10,22 @@ import { resolve } from '@/hooks/routers'
 const { proxy }: any = getCurrentInstance()
 
 const SearchTitle = async (title: string) => {
-  await article.GetContainsAsync(0, title, true).then((res) => {
+  await article.GetContainsAsync(1, '转载', title, true).then(res => {
     blogsSiList.article2 = res.data
   })
 }
 const tiaozhuan = async (id: any) => {
+  console.log('%c [ id ]', 'font-size:13px; background:pink; color:#bf2c9f;', id)
+
   const { href } = await resolve('/VmdHtml', id)
   window.open(href, '_blank')
 }
 const GetAllasync = async () => {
-  await article.GetFyAsync(0, 0, 1, 1, 'data', true, true).then((res) => {
+  await article.GetFyAsync(0, 'null', 1, 1, 'data', true, true).then(res => {
     blogsSiList.articledata = res.data[0].timeCreate
   })
   // 查询当前用户的说说
-  await usertalk.GetUserTalkFirst().then((res) => {
+  await usertalk.GetUserTalkFirst().then(res => {
     blogsSiList.UserTalk = res.data
   })
   proxy.$api
@@ -37,18 +39,16 @@ const GetAllasync = async () => {
       // 内容字段数
       proxy.$api.get('/api/SnArticle/GetSumAsync?type=text'),
       // 阅读量
-      proxy.$api.get('/api/SnArticle/GetSumAsync?type=read'),
+      proxy.$api.get('/api/SnArticle/GetSumAsync?type=read')
     ])
     .then(
-      proxy.$api.spread(
-        (res6: any, res7: any, res8: any, res9: any, res10: any) => {
-          blogsSiList.ArticleCount = res6.data
-          blogsSiList.SortCount = res7.data
-          blogsSiList.LabelsCount = res8.data
-          blogsSiList.textCount = res9.data
-          blogsSiList.readCount = res10.data
-        }
-      )
+      proxy.$api.spread((res6: any, res7: any, res8: any, res9: any, res10: any) => {
+        blogsSiList.ArticleCount = res6.data
+        blogsSiList.SortCount = res7.data
+        blogsSiList.LabelsCount = res8.data
+        blogsSiList.textCount = res9.data
+        blogsSiList.readCount = res10.data
+      })
     )
     .catch((err: any) => {
       console.log(err)
@@ -81,11 +81,7 @@ onMounted(async () => {
             @select="tiaozhuan"
           >
             >
-            <a-select-option
-              v-for="d in blogsSiList.article2"
-              :key="d.articleId"
-              >{{ d.title }}</a-select-option
-            >
+            <a-select-option v-for="d in blogsSiList.article2" :key="d.id">{{ d.title }}</a-select-option>
           </a-select>
         </div>
       </div>
