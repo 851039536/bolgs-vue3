@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-11-12 16:21:01
+ * @LastEditTime: 2021-11-13 09:40:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -13,6 +13,7 @@ import router from '@/router/index';
 import { dataList } from '@/components/aspin/data';
 import { message } from 'ant-design-vue';
 import { storage } from '../storage/storage';
+import { removePending, addPending } from "./pending";
 
 //数据请求字符
 axios.defaults.baseURL = process.env.VUE_APP_API_URL,
@@ -20,17 +21,15 @@ axios.defaults.baseURL = process.env.VUE_APP_API_URL,
   axios.defaults.timeout = 5000;
 // 表示跨域请求时是否需要使用凭证
 axios.defaults.withCredentials = false;
-// axios.defaults.headers.common['token'] =  AUTH_TOKEN
-//在POST请求中的 Content - Type 常见的有以下3种形式：
-// Content - Type: application / json Axios默认以这种形式工作
-// Content - Type: application / x - www - form - urlencoded
-// Content - Type: multipart / form - data
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 // 允许跨域
 axios.defaults.headers.post["Access-Control-Allow-Origin-Type"] = "*";
 
 // 请求拦截器
 axios.interceptors.request.use(function (config) {
+
+  removePending(config) // 在请求开始前，对之前的请求做检查取消操作
+  addPending(config) // 将当前请求添加到 pending 中
   if (
     config.method === "post" ||
     config.method === "put" ||
@@ -54,13 +53,12 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (config) {
 
   dataList.show = true
-  console.log('%c [ dataList.show ]', 'font-size:13px; background:pink; color:#bf2c9f;', dataList.show)
-
+  removePending(config) // 在请求结束后，移除本次请求
   if (config.status === 200 || config.status === 204) {
     setTimeout(() => {
       dataList.show = false
-      console.log('%c [ dataList.show ]', 'font-size:13px; background:pink; color:#bf2c9f;', dataList.show)
     }, 1000)
+
     return Promise.resolve(config);
   } else {
     return Promise.reject(config);

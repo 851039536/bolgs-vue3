@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-12 10:50:54
+ * @LastEditTime: 2021-11-13 08:46:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -15,11 +15,11 @@ export class article {
   /**
    * @description: 查询总数
    * @param {number} identity 所有:0 || 分类:1 || 标签:2
-   * @param {number} type
+   * @param {string} type
    * @param {boolean} cache
    * @return {*}
    */
-  static async GetCountAsync(identity: number, type: number, cache: boolean) {
+  static async GetCountAsync(identity: number, type: string, cache: boolean) {
     return await request({
       url: "/api/SnArticle/GetCountAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
       method: 'get',

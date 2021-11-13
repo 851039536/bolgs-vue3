@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-14 11:42:20
- * @LastEditTime: 2021-11-03 15:11:07
+ * @LastEditTime: 2021-11-13 10:36:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\components\BlogsContent.vue
@@ -14,8 +14,8 @@ defineProps({
   dataResult: {
     type: Array as () => Array<IntArticle>,
     required: true,
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 async function jump(id: number) {
   await RouterId('/IndexText', id)
@@ -26,7 +26,8 @@ async function jump(id: number) {
   <div class="blogs_content" v-for="data in dataResult" :key="data.id">
     <div class="blogs_content_div">
       <div class="blogs_content_img">
-        <img v-lazy="data.img" />
+        <!-- <img v-lazy="require(data.img)" /> -->
+        <img v-lazy="require('/src/assets/img/' + data.img)" />
       </div>
       <div class="blogs_content__frame">
         <p class="blogs_content__frame-1">

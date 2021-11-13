@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-18 11:31:05
- * @LastEditTime: 2021-11-10 18:18:59
+ * @LastEditTime: 2021-11-13 08:47:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\index.ts
@@ -26,7 +26,7 @@ const state: State = reactive({
 class column {
 
   static async GetCount() {
-    await article.GetCountAsync(0, 0, true).then((result: any) => {
+    await article.GetCountAsync(0, "da", true).then((result: any) => {
       state.count = result.data
     })
   }

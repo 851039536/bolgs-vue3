@@ -39,8 +39,8 @@ interface IntArticle {
   labelId: number
   sortId: number
   userId: number
-  timeCreate?: string
-  timeModified?: string
+  timeCreate: any
+  timeModified: any
 }
 
 interface IntNav {

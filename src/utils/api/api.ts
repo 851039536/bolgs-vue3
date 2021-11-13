@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-30 11:18:29
- * @LastEditTime: 2021-10-30 16:43:01
+ * @LastEditTime: 2021-11-12 17:36:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\api\api.ts
@@ -17,8 +17,8 @@ class api {
 
   /* api接口模块 */
   public static article = {
-    genre: () => Request.get('/api/SnArticle/GetCountAsync'),
-    genres: () => Request.get(`${Base.env}/api/SnArticle/GetCountAsync`),
+    genre: async () => await Request.get('/api/SnArticle/GetCountAsync'),
+    genres: async () => await Request.get(`${Base.env}/api/SnArticle/GetCountAsync`),
   }
 }
 export {

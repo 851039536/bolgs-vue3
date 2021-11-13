@@ -4,6 +4,7 @@ import {
   createWebHashHistory
 } from 'vue-router'
 import BlogHome from '@/components/home/Home.vue'
+import { clearPending } from '@/utils/http/pending'
 
 const routes = [{
   path: '/',
@@ -39,14 +40,14 @@ const routes = [{
   },
   component: () => import('@/views/index/Index.vue'),
 },
-{
-  path: '/BlogHeader',
-  name: 'BlogHeader',
-  meta: {
-    keepAlive: true
-  },
-  component: () => import('@/components/header/Header.vue')
-},
+// {
+//   path: '/BlogHeader',
+//   name: 'BlogHeader',
+//   meta: {
+//     keepAlive: true
+//   },
+//   component: () => import('@/components/header/Header.vue')
+// },
 {
   path: '/IndexSidebar',
   name: 'IndexSidebar',
@@ -271,11 +272,21 @@ const routes = [{
 
   ]
 },
+
 ]
+
 //createWebHashHistory createWebHistory
 const router = createRouter({
   history: createWebHistory(), //HTML5模式
   routes,
+})
+//页面切换之前取消上一个路由中未完成的请求
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/Login') {
+    console.log(to.path, '[ router=>clearPending ]')
+    clearPending()
+  }
+  next()
 })
 
 export default router

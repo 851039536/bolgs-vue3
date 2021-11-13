@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-11-10 16:11:52
+ * @LastEditTime: 2021-11-13 09:08:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
@@ -18,12 +18,11 @@ const store = useStore()
 const state = reactive({
   name: '',
   pwd: '',
-  result: [],
+  result: []
 })
 
 async function login() {
-  user.Login(state.name, state.pwd).then((res) => {
-    console.log('[ 1 ]', res.data)
+  user.Login(state.name, state.pwd).then(res => {
     if (res.data === '用户或密码错误' || res.data === '用户密码不能为空') {
       message.error(res.data)
       return

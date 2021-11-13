@@ -1,7 +1,7 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-11-01 13:56:24
+ * @LastEditTime: 2021-11-13 09:43:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
@@ -38,10 +38,8 @@ onMounted(async () => {
           <span class="text-2xl font-medium tracking-tight">少年</span>
         </div>
         <div class="header_text">
-          <template v-for="(item, index) in state.ResultList" :key="index">
-            <a @click="skip(item.path)" v-if="item.identity">{{
-              item.title
-            }}</a>
+          <template v-for="res in state.resultData" :key="res.id">
+            <a @click="skip(res.path)" v-if="res.identity">{{ res.title }}</a>
           </template>
         </div>
       </div>

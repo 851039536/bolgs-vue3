@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-10-21 14:01:56
+ * @LastEditTime: 2021-11-13 09:50:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -12,6 +12,7 @@ import { useRouter } from 'vue-router'
 import SnBootom from './components/bootom/Bootom.vue'
 import { sessionStorage } from '@/utils/storage/storage'
 import { useStore } from 'vuex'
+import Header from './components/header/Header.vue'
 const router = useRouter()
 const store = useStore()
 store.state.Roles = sessionStorage.get('state')
@@ -32,7 +33,7 @@ router.afterEach(() => {
 
 <template>
   <div id="app">
-    <blog-header></blog-header>
+    <Header></Header>
     <!-- vue3.0配置 -->
     <router-view v-slot="{ Component }">
       <!-- 需要缓存的视图组件 -->

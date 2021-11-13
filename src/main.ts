@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-12 15:44:54
+ * @LastEditTime: 2021-11-13 10:38:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -75,7 +75,7 @@ VMdPreview.use(createCopyCodePlugin());
 import './assets/icon/fonts/iconfont.js'
 import './assets/icon/icon.css'
 import LuckDraw from 'vue-luck-draw/vue3'
-import BlogHeader from "./components/header/Header.vue"
+
 import IndexSidebar from "./views/index/components/sidebar/IndexSidebar.vue";
 import BlogSidebar from "./components/raside/rAside.vue";
 import router from './router/index'
@@ -89,13 +89,12 @@ const app = createApp(App);
 
 // 全局ctx(this) 上挂载 $axios
 app.config.globalProperties.$api = axios
-app.component("BlogHeader", BlogHeader)
 app.component("IndexSidebar", IndexSidebar)
 app.component("BlogSidebar", BlogSidebar)
 
 app.use(lazyPlugin, {
-  loading: require('@/assets/img/sp.png'), // 图片加载时默认图片
-  error: require('@/assets/img/sp.png')// 图片加载失败时默认图片
+  loading: require('@/assets/img/blog/2.jpg'), // 图片加载时默认图片
+  error: require('@/assets/img/blog/1.jpg')// 图片加载失败时默认图片
 })
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);

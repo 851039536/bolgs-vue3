@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-30 10:55:06
- * @LastEditTime: 2021-11-01 10:36:23
+ * @LastEditTime: 2021-11-12 17:31:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\api\index.ts
@@ -13,8 +13,6 @@ import store from "@/store";
 import { message } from 'ant-design-vue'
 import { storage } from "../storage/storage";
 import { dataList } from "@/components/aspin/data";
-
-
 
 
 /** 
@@ -160,7 +158,7 @@ instance.interceptors.response.use(function (config) {
   if (config.status === 200 || config.status === 204) {
     setTimeout(() => {
       dataList.show = false
-    }, 400)
+    }, 1000)
     return Promise.resolve(config);
   } else {
     return Promise.reject(config);
@@ -186,6 +184,7 @@ instance.interceptors.response.use(function (config) {
       }
       // 增加重试计数
       config.__retryCount++;
+      console.log('%c [ config.__retryCount ]', 'font-size:13px; background:pink; color:#bf2c9f;', config.__retryCount)
       // 创造新的Promise来处理指数后退
       const backoff = new Promise<void>((resolve) => {
         setTimeout(() => {

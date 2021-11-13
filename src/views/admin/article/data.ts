@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-11-12 11:02:45
+ * @LastEditTime: 2021-11-13 11:18:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -85,7 +85,6 @@ const columns = [
 const formState: IntArticle = reactive({
   labelId: 1,
   sortId: 1,
-  urlImg: 'img',
   userId: 1,
   id: 0,
   title: '标题',
@@ -95,6 +94,8 @@ const formState: IntArticle = reactive({
   img: "img",
   commentId: 0,
   give: 0,
+  timeCreate: "2021-11-13T03:18:19.821Z",
+  timeModified: "2021-11-13T03:18:19.821Z"
 
 })
 

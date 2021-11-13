@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-12 11:10:10
+ * @LastEditTime: 2021-11-13 11:43:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -13,13 +13,16 @@ import { message } from 'ant-design-vue'
 import { formState, state } from './data'
 import { Routers, go, reloads } from '@/hooks/routers'
 import { navname } from '../utils/data'
+import { tool } from '@/utils/common/tool'
 
 const onSubmit = async () => {
+  formState.img = 'blog/' + (await tool.Random(1, 5, 1)) + '.jpg'
   await article.AddAsync(formState).then(() => {
     message.info('添加成功')
     Routers('/Admin-index/ArticleTable')
   })
 }
+
 async function GetApi() {
   state.labelResult = await labels.GetAllAsync(true)
   state.sortResult = await sort.GetAllAsync(true)
