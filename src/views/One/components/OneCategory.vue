@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-29 13:56:12
- * @LastEditTime: 2021-10-15 10:15:57
+ * @LastEditTime: 2021-11-15 15:08:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\components\OneCategory.vue
@@ -12,18 +12,18 @@ import { oneType } from '../data'
 defineProps({
   result: {
     type: Array as () => Array<oneType>, //(string也可以是其他你自定义的接口)
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 </script>
 <template>
   <div class="onecategory">
-    <div class="onecategory_name">日记</div>
+    <div class="onecategory_name">分类</div>
     <div class="inline-flex" v-for="res in result" :key="res.id">
       <div
         class="flex-1 px-1 m-1 text-xs text-center text-gray-700 transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
       >
-        {{ res.soTypeTitle }}
+        {{ res.title }}
       </div>
     </div>
   </div>

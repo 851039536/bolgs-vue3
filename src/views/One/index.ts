@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-28 17:28:24
- * @LastEditTime: 2021-11-11 15:44:36
+ * @LastEditTime: 2021-11-15 15:00:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\index.ts
@@ -47,7 +47,7 @@ class method {
   }
   static async currentchange(val: number) {
     state.page = val
-    await one.GetFyAllAsync(state.page, state.pagesize).then((res: any) => {
+    await one.GetFyAsync(0, "0", state.page, state.pagesize, "id", true, true).then((res: any) => {
       state.resultData = res.data
     })
   }
@@ -59,11 +59,11 @@ class method {
   }
 
   static async getOne() {
-    await one.GetFyAllAsync(state.page, state.pagesize).then((res: any) => {
+    await one.GetFyAsync(0, "0", state.page, state.pagesize, "id", true, true).then((res: any) => {
       state.resultData = res.data
     })
-    await one.GetFyAllAsync(1, 1).then((res2: any) => {
-      state.dataOne = res2.data[0]
+    await one.GetFyAsync(0, "0", 1, 1, "id", true, true).then((res: any) => {
+      state.dataOne = res.data[0]
     })
   }
 

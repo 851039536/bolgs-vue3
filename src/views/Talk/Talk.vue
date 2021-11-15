@@ -19,16 +19,16 @@
               </div>
             </template>
             <div>
-              <img src="@/assets/img/bg.jpg" />
+              <!-- <img src="@/assets/img/bg.jpg" /> -->
             </div>
             <div>
-              <img src="@/assets/img/bg.jpg" />
+              <!-- <img src="@/assets/img/bg.jpg" /> -->
             </div>
             <div>
-              <img src="@/assets/img/bg.jpg" />
+              <!-- <img src="@/assets/img/bg.jpg" /> -->
             </div>
             <div>
-              <img src="@/assets/img/bg.jpg" />
+              <!-- <img src="@/assets/img/bg.jpg" /> -->
             </div>
           </a-carousel>
 
@@ -45,27 +45,15 @@
                 .replace(/T/g, ' ')
                 .replace(/\.[\d]{3}Z/, '')
             }}
-            <a @click="GetTalkid(data.id, data.userId)"
-              >《{{ data.talkTitle }}》</a
-            >
+            <a @click="GetTalkid(data.id, data.userId)">《{{ data.talkTitle }}》</a>
           </div>
-          <div
-            class="text-title-2"
-            v-if="data.userId != 0"
-            v-html="data.talkText"
-          ></div>
+          <div class="text-title-2" v-if="data.userId != 0" v-html="data.talkText"></div>
         </div>
 
         <!--分页-->
         <div class="text-page">
           <div>
-            <a-pagination
-              size="small"
-              @change="currentchange"
-              :total="count"
-              :pageSize="pagesize"
-              show-quick-jumper
-            />
+            <a-pagination size="small" @change="currentchange" :total="count" :pageSize="pagesize" show-quick-jumper />
           </div>
         </div>
       </div>
@@ -96,13 +84,13 @@ export default {
       page: 1, //当前页码
       pagesize: 8, //每页的数据条数
       count: 0, //默认数据总数
-      blog: [],
+      blog: []
     })
 
     const getCount = async () => {
       proxy
         .$api({
-          url: '/api/SnTalk/CountAsync',
+          url: '/api/SnTalk/CountAsync'
         })
         .then((res: any) => {
           state.count = res.data
@@ -111,12 +99,7 @@ export default {
     const AsyGetTest = async () => {
       proxy
         .$api({
-          url:
-            '/api/SnTalk/GetFyAllAsync?pageIndex=' +
-            state.page +
-            '&pageSize=' +
-            state.pagesize +
-            '&isDesc=true',
+          url: '/api/SnTalk/GetFyAllAsync?pageIndex=' + state.page + '&pageSize=' + state.pagesize + '&isDesc=true'
         })
         .then((res: any) => {
           state.dataShow = res.data
@@ -137,8 +120,8 @@ export default {
         await router.push({
           path: '/TalkText',
           query: {
-            id: id,
-          },
+            id: id
+          }
         })
       } else {
         message.info('无权限!')
@@ -164,9 +147,9 @@ export default {
       AsyGetTest,
       GetTalkid,
       currentchange,
-      highlighthandle,
+      highlighthandle
     }
-  },
+  }
 }
 </script>
 

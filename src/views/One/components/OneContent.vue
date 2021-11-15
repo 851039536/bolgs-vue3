@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-29 10:55:14
- * @LastEditTime: 2021-09-29 15:43:19
+ * @LastEditTime: 2021-11-15 14:58:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\components\OneContent.vue
@@ -15,21 +15,21 @@ defineProps({
   resultData: {
     type: Array as () => Array<one>, //(string也可以是其他你自定义的接口)
     required: true,
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 </script>
 
 <template>
   <div class="onecontent">
-    <div class="onecontent-div" v-for="data in resultData" :key="data.oneId">
+    <div class="onecontent-div" v-for="res in resultData" :key="res.id">
       <div class="onecontent-div-frame">
         <p class="onecontent_div_frame_title">
-          <a @click="method.setModal1Visible(true, data.oneId)">
-            {{ data.oneTitle }}
+          <a @click="method.setModal1Visible(true, res.id)">
+            {{ res.title }}
           </a>
         </p>
-        <p class="onecontent-div-frame-text">{{ data.oneText }}</p>
+        <p class="onecontent-div-frame-text">{{ res.text }}</p>
         <div></div>
       </div>
     </div>

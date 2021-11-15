@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-11-13 09:08:55
+ * @LastEditTime: 2021-11-15 09:38:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
@@ -29,9 +29,10 @@ async function login() {
     }
     state.result = res.data.split(',')
     store.state.Roles = state.result[0]
-    sessionStorage.set('state', store.state.Roles)
+    sessionStorage.set('user', store.state.Roles) //存用户名
+    sessionStorage.set('userId', state.result[2]) // 用于全局用户主键
     storage.remove(store.state.Roles)
-    storage.set(store.state.Roles, 'Bearer ' + state.result[1])
+    storage.set(store.state.Roles, 'Bearer ' + state.result[1]) //token
     Routers('/Admin-index/ArticleTable')
   })
 }

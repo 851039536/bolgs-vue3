@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 08:49:57
- * @LastEditTime: 2021-10-12 14:34:59
+ * @LastEditTime: 2021-11-15 15:40:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\videoplay.vue
@@ -15,31 +15,33 @@ const route = useRoute()
 
 interface State {
   videourl: string
-  type: number
+  type: string
   newvideo: any
 }
 const state: State = reactive({
   videourl: '',
-  type: 0,
-  newvideo: [],
+  type: '',
+  newvideo: []
 })
 
 const id = reactive({
-  id: route.query.id,
+  id: route.query.id
 })
 
 const getvideo = async () => {
-  await video.GetByIdAsync(id.id).then((res: any) => {
-    state.videourl = res.data.vUrl
-    state.type = res.data.vTypeid
+  await video.GetByIdAsync(id.id, true).then((res: any) => {
+    state.videourl = res.data.url
+    console.log('%c [  res ]', 'font-size:13px; background:pink; color:#bf2c9f;', res)
+    state.type = res.data.type.name
   })
-  await video.GetTypeAllAsync(state.type).then((res: any) => {
+  await video.GetTypeAsync(1, state.type, true).then((res: any) => {
     state.newvideo = res.data
+    console.log('%c [ res.data ]', 'font-size:13px; background:pink; color:#bf2c9f;', res.data)
   })
 }
 
 const videos = async (id: number) => {
-  await video.GetByIdAsync(id).then((res: any) => {
+  await video.GetByIdAsync(id, true).then((res: any) => {
     state.videourl = res.data.vUrl
   })
 }
@@ -51,23 +53,17 @@ onMounted(async () => {
 <template>
   <div class="videoplay">
     <div class="videoplay_main animate__animated animate__fadeIn">
-      <div
-        class="col-gap-4 videoplay-2 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
-      >
-        <div
-          class="videoplay-2-1"
-          v-for="info in state.newvideo"
-          :key="info.vId"
-        >
+      <div class="col-gap-4 videoplay-2 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+        <div class="videoplay-2-1" v-for="res in state.newvideo" :key="res.id">
           <div class="videoplay-2-1-1">
             <img src="@/assets/img/sp.png" />
           </div>
           <div class="videoplay-2-1-2">
-            <a @click="videos(info.vId)">{{ info.vTitle }}</a>
+            <a @click="videos(res.id)">{{ res.title }}</a>
           </div>
           <div class="videoplay-2-1-3">
             {{
-              info.vData
+              res.timeModified
                 .toLocaleString()
                 .replace(/T/g, ' ')
                 .replace(/\.[\d]{3}Z/, '')

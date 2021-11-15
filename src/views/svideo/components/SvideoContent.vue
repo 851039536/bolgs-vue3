@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-11 15:46:19
- * @LastEditTime: 2021-10-15 15:33:12
+ * @LastEditTime: 2021-11-15 15:28:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\svideo\components\SvideoContent.vue
@@ -16,23 +16,23 @@ defineProps({
   resultData: {
     type: Array as () => Array<IntVideo>,
     required: true,
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 </script>
 
 <template>
   <div class="svideo_main animate__animated animate__fadeIn">
     <div class=" svideo_main_content">
-      <div class="svideo-2-1" v-for="info in resultData" :key="info['vId']">
+      <div class="svideo-2-1" v-for="res in resultData" :key="res['id']">
         <div class="svideo-2-1-1">
           <img src="@/assets/img/hy.jpg" />
         </div>
         <div class="svideo-2-1-2">
-          <a @click="RouterId('/VideoPlay', info.vId)">{{ info.vTitle }}</a>
+          <a @click="RouterId('/VideoPlay', res.id)">{{ res.title }}</a>
         </div>
         <div class="svideo-2-1-3">
-          {{ info.vData }}
+          {{ res.timeCreate }}
         </div>
       </div>
     </div>

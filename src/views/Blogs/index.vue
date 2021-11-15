@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-19 10:04:36
- * @LastEditTime: 2021-11-13 08:47:55
+ * @LastEditTime: 2021-11-15 16:38:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\Blogs.vue
@@ -15,7 +15,6 @@ import { blogsList } from './components/data'
 import BlogsContent from './components/BlogsContent.vue'
 import { methods, QueryAll } from './index'
 
-import { api } from '../../utils/api/api'
 import { tool } from '@/utils/common/tool'
 async function currentchange(val: number) {
   blogsList.page = val
@@ -24,9 +23,6 @@ async function currentchange(val: number) {
 }
 async function aa() {
   await methods.ConutSort()
-
-  // var d = await api.article.genre()
-  // console.log('%c [ await api.article.genre() ]', 'font-size:13px; background:pink; color:#bf2c9f;', d)
 }
 onMounted(async () => {
   await QueryAll()

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 11:07:58
- * @LastEditTime: 2021-09-30 11:18:26
+ * @LastEditTime: 2021-11-15 15:03:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\one\components\OneSidetype.vue
@@ -15,22 +15,18 @@ defineProps({
   resultData: {
     type: Array as () => Array<one>, //(string也可以是其他你自定义的接口)
     required: true,
-    default: () => [],
+    default: () => []
   },
   title: {
     type: String,
-    default: () => '标题',
-  },
+    default: () => '标题'
+  }
 })
 </script>
 <template>
   <div class="One-Sidebar-textlist">
     <div class="One-Sidebar-textlist-title">{{ title }}</div>
-    <div
-      class="TalkSidebar-text-4-2"
-      v-for="result in resultData"
-      :key="result.oneId"
-    >
+    <div class="TalkSidebar-text-4-2" v-for="result in resultData" :key="result.id">
       <div class="p-1 pl-2 text-base">
         <svg class="inline-block icon" aria-hidden="true">
           <use
@@ -38,9 +34,7 @@ defineProps({
 "
           />
         </svg>
-        <a @click="method.setModal1Visible(true, result.oneId)">{{
-          result.oneTitle
-        }}</a>
+        <a @click="method.setModal1Visible(true, result.id)">{{ result.title }}</a>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-28 17:50:44
- * @LastEditTime: 2021-10-21 10:01:51
+ * @LastEditTime: 2021-11-15 15:01:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\components\OneTop.vue
@@ -10,10 +10,10 @@
 defineProps({
   title: {
     type: String,
-    default: () => 'title',
+    default: () => 'title'
   },
-  oneText: String,
-  oneRead: Number,
+  text: String,
+  read: Number
 })
 </script>
 
@@ -24,13 +24,13 @@ defineProps({
     </div>
     <div class="One-top-text">
       <div class="One-top-text-title">
-        <a class="text-lg">{{ title }}</a>
+        <a class="text-lg">舔王:{{ title }}</a>
       </div>
-      <div class="One-top-give">{{ oneText }}</div>
+      <div class="One-top-give">{{ text }}</div>
 
       <div class="flex flex-row-reverse One-top-give-div">
         <div>转载</div>
-        <div>点赞({{ oneRead }})</div>
+        <div>点赞({{ read }})</div>
       </div>
     </div>
   </div>

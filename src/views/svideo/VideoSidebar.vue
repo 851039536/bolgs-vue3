@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-28 09:49:17
- * @LastEditTime: 2021-10-12 15:10:25
+ * @LastEditTime: 2021-11-15 15:29:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\SnVideo\VideoSidebar.vue
@@ -15,9 +15,9 @@ interface State {
 }
 
 const state: State = reactive({
-  count: 0,
+  count: 0
 })
-video.GetCountAsync().then((res: any) => {
+video.GetCountAsync(0, '0', true).then((res: any) => {
   state.count = res.data
 })
 </script>

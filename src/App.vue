@@ -1,7 +1,7 @@
 <!--
  * @Author: App.vue
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-13 09:50:39
+ * @LastEditTime: 2021-11-15 09:36:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\App.vue
@@ -15,7 +15,7 @@ import { useStore } from 'vuex'
 import Header from './components/header/Header.vue'
 const router = useRouter()
 const store = useStore()
-store.state.Roles = sessionStorage.get('state')
+store.state.Roles = sessionStorage.get('user')
 
 // to：即将要进入的目标路由对象（这个对象包括name，params，meta等属性）
 // from：当前导航正要离开的路由对象（这个对象包括name，params，meta等属性）

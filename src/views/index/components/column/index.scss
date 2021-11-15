@@ -8,14 +8,6 @@
 
   @apply shadow;
 
-  .indextitle_img {
-    @include w-h(null, 160px);
-
-    background: no-repeat center/100% url("../../../../assets/img/bg.jpg");
-
-    @apply shadow;
-  }
-
   .indextitle_content {
     @include w-h(99%, 155px);
 
@@ -81,10 +73,6 @@
 
   .indextitle {
     @apply w-full ml-0;
-
-    .indextitle_img {
-      @apply hidden;
-    }
   }
 
   .indextitle_page {

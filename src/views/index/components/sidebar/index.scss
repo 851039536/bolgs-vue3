@@ -63,6 +63,10 @@
   }
 }
 
+#indexsidebar::-webkit-scrollbar{
+  display: none;
+}
+
 .icon {
   @include w-h(1.5em, 1.5em);
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-09-30 11:44:41
+ * @LastEditTime: 2021-11-15 15:12:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
@@ -21,6 +21,7 @@ interface State {
   Count: number
   textNum: number
   readCount: number
+  timeCreate: any
 }
 
 const state: State = reactive({
@@ -31,16 +32,20 @@ const state: State = reactive({
   Count: 0,
   textNum: 0,
   readCount: 0,
+  timeCreate: ''
 })
 
 const getall = async () => {
   await one.GetOneTypeAllAsync().then((res: any) => {
     state.resultOneType = res.data
   })
-  await one.GetFyTypeAsync(999, 1, 10, 'read').then((res: any) => {
+  await one.GetFyAsync(0, '0', 1, 10, 'read', true, true).then((res: any) => {
     state.resultOne = res.data
   })
-  await one.CountAsync().then((res: any) => {
+  await one.GetFyAsync(0, '0', 1, 1, 'id', true, true).then((res: any) => {
+    state.timeCreate = res.data[0].timeCreate
+  })
+  await one.CountAsync(0, '0', true).then((res: any) => {
     state.Count = res.data
   })
   await one.GetSumAsync('text').then((res: any) => {
@@ -48,6 +53,7 @@ const getall = async () => {
   })
   await one.GetSumAsync('read').then((res: any) => {
     state.readCount = res.data
+    console.log('%c [ state.readCount ]', 'font-size:13px; background:pink; color:#bf2c9f;', state.readCount)
   })
 }
 
@@ -68,10 +74,7 @@ onMounted(async () => {
       <!-- end文章描述 -->
 
       <!--内容框-->
-      <OneSidetype
-        title="舔狗好评"
-        :result-data="state.resultOne"
-      ></OneSidetype>
+      <OneSidetype title="舔狗好评" :result-data="state.resultOne"></OneSidetype>
       <!-- end内容框 -->
 
       <!-- 内容分类 -->
@@ -82,7 +85,8 @@ onMounted(async () => {
       <SStatistics
         :ArticleCount="state.Count"
         :TextCount="state.textNum"
-        :reReadCount="state.readCount"
+        :ReadCount="state.readCount"
+        :Articledata="state.timeCreate"
       ></SStatistics>
       <!-- end 站点统计 -->
     </div>

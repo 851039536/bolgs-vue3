@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-11 15:43:40
+ * @LastEditTime: 2021-11-15 14:52:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -45,27 +45,26 @@ export class one {
       })
   }
 
-  //标签分页查询
-  static async GetFyAllAsync(page: number, pagesize: number): Promise<any> {
+  /**
+   * 分页查询
+   * @param identity 所有:0 || 分类:1 || 用户:2
+   * @param type 查询参数
+   * @param page 当前页码
+   * @param pagesize 每页记录条数
+   * @param ordering 排序条件[data:时间 read:阅读 give:点赞 按id排序]
+   * @param isDesc 是否倒序[true/false]
+   * @param cache 缓存
+   * @returns 
+   */
+  static async GetFyAsync(identity: number, type: string, page: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean): Promise<any> {
     return await request({
       url:
-        "/api/SnOne/GetFyAllAsync?" +
-        "&pageIndex=" +
-        page +
-        "&pageSize=" +
-        pagesize +
-        "&isDesc=true",
+        "/api/SnOne/GetFyAsync?identity=" + identity + "&type=" + type + "&pageIndex="
+        + page + "&pageSize=" + pagesize + "&ordering=" + ordering + "&isDesc=" + isDesc + "&cache=" + cache,
       method: 'get',
     })
   }
-  //分类条件分页查询
-  static async GetFyTypeAsync(type: number, page: number, pagesize: number, read: string): Promise<any> {
-    return await request({
-      url:
-        "/api/SnOne/GetFyTypeAsync?type=" + type + "&pageIndex=" + page + "&pageSize=" + pagesize + "&name=" + read + "&isDesc=true",
-      method: 'get',
-    })
-  }
+
 
   /**
    *  主键查询

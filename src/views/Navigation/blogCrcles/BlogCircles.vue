@@ -13,23 +13,16 @@ onMounted(async () => {
     <blog-sidebar></blog-sidebar>
     <blog-circles-sidebar></blog-circles-sidebar>
     <div class="blogcircles_main animate__animated animate__fadeIn">
-      <div
-        class="grid blogcircles_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
-      >
-        <div
-          class="BlogCircles-1"
-          v-for="data in state.resultData"
-          :key="data.navId"
-        >
+      <div class="grid blogcircles_content 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+        <div class="BlogCircles-1" v-for="res in state.resultData" :key="res.id">
           <div class="BlogCircles-1-1">
-            <img v-lazy="data.navImg" onerror="this.style.display='none'" />
-            <!-- <img :src="data.navImg" onerror="this.src='../../assets/img/bb.jpg'" /> -->
+            <img v-lazy="res.img" onerror="this.style.display='none'" />
           </div>
           <div class="BlogCircles-1-2">
             <div class="BlogCircles-1-2-1">
-              <a @click="method.UrlSkip(data.navUrl)">{{ data.navTitle }}</a>
+              <a @click="method.UrlSkip(res.url)">{{ res.title }}</a>
             </div>
-            <div class="BlogCircles-1-2-2">{{ data.navText }}</div>
+            <div class="BlogCircles-1-2-2">{{ res.describe }}</div>
           </div>
         </div>
       </div>

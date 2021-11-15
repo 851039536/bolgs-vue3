@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-04 16:07:50
- * @LastEditTime: 2021-05-10 10:35:59
+ * @LastEditTime: 2021-11-15 16:33:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\utils\markdown.js
@@ -22,14 +22,7 @@ const tocObj = {
     });
     return anchor;
   },
-  // 使用堆栈的方式处理嵌套的ul,li，level即ul的嵌套层次，1是最外层
-  // <ul>
-  //   <li></li>
-  //   <ul>
-  //     <li></li>
-  //   </ul>
-  //   <li></li>
-  // </ul>
+
   toHTML: function () {
     let levelStack = [];
     let result = "";

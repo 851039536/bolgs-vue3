@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-13 11:43:51
+ * @LastEditTime: 2021-11-15 09:57:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
@@ -14,8 +14,10 @@ import { formState, state } from './data'
 import { Routers, go, reloads } from '@/hooks/routers'
 import { navname } from '../utils/data'
 import { tool } from '@/utils/common/tool'
+import { sessionStorage } from '@/utils/storage/storage'
 
 const onSubmit = async () => {
+  formState.userId = sessionStorage.get('userId')
   formState.img = 'blog/' + (await tool.Random(1, 5, 1)) + '.jpg'
   await article.AddAsync(formState).then(() => {
     message.info('添加成功')
@@ -48,12 +50,8 @@ onMounted(async () => {
             <a-textarea v-model:value="formState.sketch" />
           </a-form-item>
 
-          <a-form-item label="发表人" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-input v-model:value="formState.userId" />
-          </a-form-item>
-
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-select v-model:value="formState.labelId" placeholder="please select your zone">
+            <a-select v-model:value="formState.labelId" placeholder="请选择">
               <a-select-option v-for="item in state.labelResult.data" :key="item.id" :label="item.id" :value="item.id">{{
                 item.name
               }}</a-select-option>
@@ -61,7 +59,7 @@ onMounted(async () => {
           </a-form-item>
 
           <a-form-item label="类别" :wrapper-col="{ span: 6, offset: 0 }">
-            <a-select v-model:value="formState.sortId" placeholder="please select your zone">
+            <a-select v-model:value="formState.sortId" placeholder="请选择">
               <a-select-option v-for="item in state.sortResult.data" :key="item.id" :label="item.id" :value="item.id">{{
                 item.name
               }}</a-select-option>

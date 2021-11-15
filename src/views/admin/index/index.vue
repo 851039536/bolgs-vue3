@@ -1,18 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-11-10 16:20:00
+ * @LastEditTime: 2021-11-15 09:16:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\index.vue
 -->
 
 <script lang="ts" setup>
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons-vue'
+import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue'
 import { nextTick, provide, reactive } from 'vue'
 import { Routers } from '@/hooks/routers'
 import { storage, sessionStorage } from '@/utils/storage/storage'
@@ -40,14 +36,11 @@ const handleClick = (e: any) => {
     case '3-1':
       Routers('/Admin-index/PageSet')
       break
-    default:
-      // Routers('/Admin-index/Login')
-      break
   }
 }
 
 const state = reactive({
-  showRouter: true,
+  showRouter: true
 })
 function reload() {
   state.showRouter = false
@@ -62,9 +55,7 @@ provide('reload', reload)
     <a-layout>
       <header class="header">
         <a href="" class="logo">控制台</a>
-        <label class="menu-icon" for="menu-btn"
-          ><span class="navicon"></span
-        ></label>
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
           <li><a href="https://www.cnblogs.com/ouyangkai/">博客园</a></li>
 
@@ -79,17 +70,8 @@ provide('reload', reload)
       </header>
 
       <a-layout>
-        <a-layout-sider
-          breakpoint="lg"
-          collapsed-width="0"
-          width="200"
-          style="background: #fff;"
-        >
-          <a-menu
-            mode="inline"
-            @click="handleClick"
-            :style="{ height: '100%', borderRight: 0 }"
-          >
+        <a-layout-sider breakpoint="lg" collapsed-width="0" width="200" style="background: #fff;">
+          <a-menu mode="inline" @click="handleClick" :style="{ height: '100%', borderRight: 0 }">
             <a-sub-menu key="article">
               <template #title>
                 <span>
@@ -139,14 +121,11 @@ provide('reload', reload)
               background: '#fff',
               padding: '24px',
               margin: 0,
-              minHeight: '95%',
+              minHeight: '95%'
             }"
           >
             <!-- 子路由 -->
-            <router-view
-              v-if="state.showRouter"
-              class="animate__animated animate__fadeIn"
-            ></router-view>
+            <router-view v-if="state.showRouter" class="animate__animated animate__fadeIn"></router-view>
             <!-- end 子路由 -->
           </a-layout-content>
         </a-layout>
