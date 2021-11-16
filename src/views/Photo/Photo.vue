@@ -1,7 +1,7 @@
 <!--
  * @Author: 图册
  * @Date: 2020-12-11 12:16:33
- * @LastEditTime: 2021-10-11 15:23:12
+ * @LastEditTime: 2021-11-16 15:38:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Photo\Photo.vue
@@ -14,13 +14,9 @@
       <div class="photo_title">
         <p>原来是你呀 / 总计 20</p>
       </div>
-      <div
-        class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
-      >
+      <div class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
         <div class="photo_img">
-          <img
-            src="https://cdn.share-man.com/mailImage/e8f1120dfaca01d78bc90f0c71e3736e.jpeg"
-          />
+          <img src="https://cdn.share-man.com/mailImage/e8f1120dfaca01d78bc90f0c71e3736e.jpeg" />
           <a>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fangwen" />
@@ -46,9 +42,7 @@
           </div>
         </div>
         <div class="photo_img">
-          <img
-            src="https://cdn.share-man.com/mailImage/751e475835955b416fc54978ca751bfb.jpeg"
-          />
+          <img src="https://cdn.share-man.com/mailImage/751e475835955b416fc54978ca751bfb.jpeg" />
           <a>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fangwen" />
@@ -61,9 +55,7 @@
           </div>
         </div>
         <div class="photo_img">
-          <img
-            src="https://cdn.share-man.com/mailImage/1fa79317d3ec1b08758e6318f8776c38.jpeg"
-          />
+          <img src="https://cdn.share-man.com/mailImage/1fa79317d3ec1b08758e6318f8776c38.jpeg" />
           <a>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fangwen" />
@@ -76,9 +68,7 @@
           </div>
         </div>
         <div class="photo_img">
-          <img
-            src="https://cdn.share-man.com/mailImage/73483879c650cc43d96038ce40938b0d.jpeg"
-          />
+          <img src="https://cdn.share-man.com/mailImage/73483879c650cc43d96038ce40938b0d.jpeg" />
           <a>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fangwen" />
@@ -91,9 +81,7 @@
           </div>
         </div>
         <div class="photo_img">
-          <img
-            src="https://cdn.share-man.com/mailImage/d4646c86453cd634d067a784b1890f66.jpeg"
-          />
+          <img src="https://cdn.share-man.com/mailImage/d4646c86453cd634d067a784b1890f66.jpeg" />
           <a>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-fangwen" />
@@ -115,7 +103,7 @@
 @import '@/design/uitl';
 
 .photo {
-  @include initialize(94%, null, 3.6%, null, 3%, null, #ffffff);
+  @include initialize(94%, null, 4.5%, null, 3%, null, #ffffff);
 
   @apply shadow rounded-md;
 

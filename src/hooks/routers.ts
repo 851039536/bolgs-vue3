@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-09 10:37:30
- * @LastEditTime: 2021-11-10 10:32:48
+ * @LastEditTime: 2021-11-16 15:28:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\hooks\index.ts
@@ -22,11 +22,11 @@ async function Routers(path: string) {
 }
 
 /**
- * @description: 路由跳转
+ * @description: 路由跳转{id}
  * @param {string} path
  * @param {number} id
  */
-const RouterId = async (path: string, id: number) => {
+const RouterId = async (path: string, id: number | string) => {
   await router.push({
     path: path,
     query: {
@@ -57,7 +57,6 @@ async function go(n: number) {
 /**
  * @description: 跳转新页面
  * @param {string} url
- * @return {*}
  */
 async function winUrl(url: string) {
   window.open(url)

@@ -269,10 +269,8 @@ const routes = [{
       name: 'PageSet',
       component: () => import('@/views/admin/set/PageSet.vue'),
     },
-
   ]
 },
-
 ]
 
 //createWebHashHistory createWebHistory

@@ -6,67 +6,34 @@ import {} from '@/hooks/routers'
 import BlogInformation from '@/components/sidebarModule/sstatistics/sStatistics.vue'
 import BlogIco from '@/components/sidebarModule/sico/sIco.vue'
 import SDescribe from '@/components/describe/sDescribe.vue'
-import { resolve } from '@/hooks/routers'
-const { proxy }: any = getCurrentInstance()
+import { resolve, winUrl } from '@/hooks/routers'
 
-const SearchTitle = async (title: string) => {
-  await article.GetContainsAsync(1, '转载', title, true).then(res => {
-    blogsSiList.article2 = res.data
-  })
+const SearchTitle = async (name: string) => {
+  blogsSiList.searchData = await article.GetContainsAsync(1, '转载', name, true)
 }
-const tiaozhuan = async (id: any) => {
-  console.log('%c [ id ]', 'font-size:13px; background:pink; color:#bf2c9f;', id)
-
+const skip = async (id: any) => {
   const { href } = await resolve('/VmdHtml', id)
-  window.open(href, '_blank')
+  await winUrl(href)
 }
-const GetAllasync = async () => {
+const GetApi = async () => {
   await article.GetFyAsync(0, 'null', 1, 1, 'data', true, true).then(res => {
     blogsSiList.articledata = res.data[0].timeCreate
   })
-  // 查询当前用户的说说
-  await usertalk.GetUserTalkFirst().then(res => {
-    blogsSiList.UserTalk = res.data
-  })
-  proxy.$api
-    .all([
-      //查询文章总数
-      proxy.$api.get('/api/SnArticle/GetCountAsync'),
-      //查询标签
-      proxy.$api.get('/api/SnSort/GetCountAsync'),
-      //查询分类
-      proxy.$api.get('/api/SnLabels/GetCountAsync'),
-      // 内容字段数
-      proxy.$api.get('/api/SnArticle/GetSumAsync?type=text'),
-      // 阅读量
-      proxy.$api.get('/api/SnArticle/GetSumAsync?type=read')
-    ])
-    .then(
-      proxy.$api.spread((res6: any, res7: any, res8: any, res9: any, res10: any) => {
-        blogsSiList.ArticleCount = res6.data
-        blogsSiList.SortCount = res7.data
-        blogsSiList.LabelsCount = res8.data
-        blogsSiList.textCount = res9.data
-        blogsSiList.readCount = res10.data
-      })
-    )
-    .catch((err: any) => {
-      console.log(err)
-    })
+  blogsSiList.talk = await (await usertalk.GetUserTalkFirst()).data
+  blogsSiList.ArticleCount = await (await article.GetCountAsync(1, '转载', true)).data
+  blogsSiList.textCount = await (await article.GetSumAsync(1, 1, '转载', true)).data
+  blogsSiList.readCount = await (await article.GetSumAsync(1, 2, '转载', true)).data
 }
 
 onMounted(async () => {
-  await GetAllasync()
+  await GetApi()
 })
 </script>
 
 <template>
   <div id="blogssidebar">
     <div class="blogssidebar_main">
-      <!-- qq 微信  知乎图标导航 -->
       <blog-ico></blog-ico>
-      <!-- end qq 微信  知乎图标导航  -->
-
       <!-- 内容搜索 -->
       <div class="blogssidebar_input">
         <div>
@@ -78,18 +45,16 @@ onMounted(async () => {
             :show-arrow="false"
             :filter-option="false"
             @search="SearchTitle"
-            @select="tiaozhuan"
+            @select="skip"
           >
             >
-            <a-select-option v-for="d in blogsSiList.article2" :key="d.id">{{ d.title }}</a-select-option>
+            <a-select-option v-for="res in blogsSiList.searchData.data" :key="res.id">{{ res.title }}</a-select-option>
           </a-select>
         </div>
       </div>
       <!-- end 内容搜索 -->
 
-      <!-- 描述内容 -->
-      <s-describe :UserTalk="blogsSiList.UserTalk"></s-describe>
-      <!-- end  描述内容-->
+      <s-describe :UserTalk="blogsSiList.talk"></s-describe>
 
       <!-- 站点统计 -->
       <blog-information

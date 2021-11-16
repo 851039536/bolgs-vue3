@@ -52,7 +52,7 @@ onMounted(async () => {
   @include w-h(100%, 100%);
 
   .blogcircles_main {
-    @include initialize($w, 86%, 3.6%, null, $ml, null, #ffffff);
+    @include initialize($w, 86%, 4.5%, null, $ml, null, #ffffff);
 
     @apply rounded-sm shadow;
 

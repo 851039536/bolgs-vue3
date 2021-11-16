@@ -2,12 +2,12 @@
 @import "@/design/uitl";
 
 .tag {
-  @apply fixed w-full h-full bg-green-200;
+  @apply fixed w-full h-full ;
 
   .tag-main {
     @apply absolute shadow;
 
-    top: 7%;
+    top: 9%;
     left: 0%;
     width: 100%;
     height: 100%;
@@ -41,7 +41,7 @@
       .text-blog {
         @include w-h(75%, null);
 
-        @apply px-1 bg-gray-100 shadow rounded-sm overflow-auto;
+        @apply px-1 bg-white shadow rounded-sm overflow-auto;
 
         .blog {
           @include blogs;

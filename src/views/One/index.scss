@@ -7,7 +7,7 @@
   @include w-h(100%, 100%);
 
   .one-div {
-    @include initialize($w, 90%, 3.6%, null, $ml, null, #ffffff);
+    @include initialize($w, 90%, 4.5%, null, $ml, null, #ffffff);
 
     @apply shadow-sm rounded-sm overflow-auto;
 

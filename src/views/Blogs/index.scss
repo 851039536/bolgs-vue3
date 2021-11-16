@@ -4,17 +4,11 @@
 /* blogs
 ---------------------------------------------------------------- */
 #blogs {
-  @include initialize(50%, 92%, 3.6%, null, 25%, null, null);
-
+  @include initialize(50%, 92%, 4.5%, null, 25%, null, #ffffff);
   @apply shadow;
 
   .blogs_main {
-
-    //  @include initialize($w, 90%, 3.6%, null, $ml, null, #fafafa);
     @apply shadow-sm rounded-sm overflow-auto;
-
-  
-
     .blogs-page {
       @apply w-full py-5 bg-white shadow rounded;
     }
@@ -38,7 +32,6 @@
 
   @include excursion($Text_height, null, null, $sidebar_r_r);
   @include w-h(20.4%, 93%);
-
   @apply ml-3 overflow-auto;
 
   .blogssidebar_main {

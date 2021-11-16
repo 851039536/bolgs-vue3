@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-19 10:04:36
- * @LastEditTime: 2021-11-15 16:38:13
+ * @LastEditTime: 2021-11-16 14:23:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\Blogs.vue
@@ -13,19 +13,16 @@ import SAspin from '@/components/aspin/sAspin.vue'
 import BlogsSidebar from './components/BlogsSidebar.vue'
 import { blogsList } from './components/data'
 import BlogsContent from './components/BlogsContent.vue'
-import { methods, QueryAll } from './index'
+import { method, GetApi } from './index'
 
 import { tool } from '@/utils/common/tool'
 async function currentchange(val: number) {
   blogsList.page = val
-  await methods.GetFyAsync()
+  await method.GetFyAsync()
   await tool.BackTop()
 }
-async function aa() {
-  await methods.ConutSort()
-}
 onMounted(async () => {
-  await QueryAll()
+  await GetApi()
 })
 </script>
 
@@ -39,7 +36,6 @@ onMounted(async () => {
       <!-- 内容框 -->
       <blogs-content :dataResult="blogsList.dataResult"></blogs-content>
       <!-- end 内容框  -->
-      <button @click="aa">测试</button>
       <!-- 分页 -->
       <div class="blogs-page">
         <a-pagination

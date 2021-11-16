@@ -1,17 +1,8 @@
-<!--
- * @Author: your name
- * @Date: 2021-10-18 14:22:33
- * @LastEditTime: 2021-11-15 09:16:43
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\views\admin\index\index.vue
--->
-
 <script lang="ts" setup>
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue'
 import { nextTick, provide, reactive } from 'vue'
 import { Routers } from '@/hooks/routers'
-import { storage, sessionStorage } from '@/utils/storage/storage'
+import { storage } from '@/utils/storage/storage'
 import { message } from 'ant-design-vue'
 import store from '@/store'
 import { navname } from '../utils/data'

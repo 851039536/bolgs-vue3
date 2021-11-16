@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-11 15:46:19
- * @LastEditTime: 2021-11-15 15:28:57
+ * @LastEditTime: 2021-11-16 15:40:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\svideo\components\SvideoContent.vue
@@ -55,7 +55,7 @@ defineProps({
 @import '@/design/uitl';
 
 .svideo_main {
-  @include initialize($w, 99%, 3.6%, null, $ml, null, #fcfcfc);
+  @include initialize($w, 99%, 4.5%, null, $ml, null, #fcfcfc);
 
   @apply relative shadow rounded-sm;
 

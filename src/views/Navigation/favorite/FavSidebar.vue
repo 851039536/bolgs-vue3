@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { navigation } from '@/api/index'
 import { reactive, onMounted } from 'vue'
-import { methods } from './index'
+import { method } from './index'
 
 interface State {
   resultData: any
@@ -11,14 +11,14 @@ interface State {
 const state: State = reactive({
   resultData: [],
   resultData2: [],
-  resultCount: 0,
+  resultCount: 0
 })
 
 const GetAll = async () => {
-  await navigation.GetFyAllAsync('all', 1, 10, true, true).then((res: any) => {
+  await navigation.GetFyAsync(0, 'null', 1, 10, 'id', true, true).then((res: any) => {
     state.resultData = res.data
   })
-  await navigation.GetCountAsync().then((res: any) => {
+  await navigation.GetCountAsync(0, 'null', true).then((res: any) => {
     state.resultCount = res.data
   })
 
@@ -42,15 +42,11 @@ onMounted(async () => {
 
       <div class="onecategory">
         <div class="onecategory_name">列表</div>
-        <div
-          class="inline-flex"
-          v-for="result in state.resultData2"
-          :key="result.id"
-        >
+        <div class="inline-flex" v-for="result in state.resultData2" :key="result.id">
           <div
             class="flex-1 px-1 m-1 text-base text-center transition duration-500 ease-in-out transform hover: hover:scale-110 hover:text-red-600"
           >
-            <a @click="methods.GetAll(result.title)">{{ result.title }}</a>
+            <a @click="method.GetApi(result.title)">{{ result.title }}</a>
           </div>
         </div>
       </div>
@@ -63,9 +59,7 @@ onMounted(async () => {
         <div class="FavSidebar_f_content">
           <div class="flex">
             <div class="FavSidebar_f_content_name">内容数量:</div>
-            <div class="FavSidebar_f_content_text">
-              {{ state.resultCount }}篇
-            </div>
+            <div class="FavSidebar_f_content_text">{{ state.resultCount }}篇</div>
           </div>
         </div>
       </div>

@@ -5,8 +5,7 @@
 /* indextext
 ---------------------------------------------------------------- */
 .indextext {
-  @include initialize($w, null, 1px, null, $ml, null, null);
-
+  @include initialize(50%, 92%, 4.5%, null, 25%, null, #ffffff);
   /* 底部信息 */
   .indextest_copyright {
     @apply shadow rounded;

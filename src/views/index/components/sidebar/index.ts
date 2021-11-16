@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-09-17 16:34:12
- * @LastEditTime: 2021-11-12 10:51:10
+ * @LastEditTime: 2021-11-16 11:06:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\sidebar\index.ts
  */
 import { dataList } from "./data";
-import { article, labels, sort } from '@/api/index'
+import { article } from '@/api/index'
 
 export class indexSidebar {
 

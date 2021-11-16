@@ -4,10 +4,8 @@
 /* indextitle
 ---------------------------------------------------------------- */
 .indextitle {
-  @include initialize(50%, 92%, 3.6%, null, 25%, null, null);
-
+ @include initialize(50%, 92%, 4.5%, null, 25%, null, #ffffff);
   @apply shadow;
-
   .indextitle_content {
     @include w-h(99%, 155px);
 

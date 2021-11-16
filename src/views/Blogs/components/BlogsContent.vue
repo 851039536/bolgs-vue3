@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-14 11:42:20
- * @LastEditTime: 2021-11-13 10:36:27
+ * @LastEditTime: 2021-11-16 10:44:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\components\BlogsContent.vue
@@ -17,28 +17,28 @@ defineProps({
     default: () => []
   }
 })
-async function jump(id: number) {
+async function skip(id: number) {
   await RouterId('/IndexText', id)
 }
 </script>
 <template>
   <!-- 内容框 -->
-  <div class="blogs_content" v-for="data in dataResult" :key="data.id">
+  <div class="blogs_content" v-for="res in dataResult" :key="res.id">
     <div class="blogs_content_div">
       <div class="blogs_content_img">
         <!-- <img v-lazy="require(data.img)" /> -->
-        <img v-lazy="require('/src/assets/img/' + data.img)" />
+        <img v-lazy="require('/src/assets/img/' + res.img)" />
       </div>
       <div class="blogs_content__frame">
         <p class="blogs_content__frame-1">
-          <a @click="jump(data.id)">{{ data.title }}</a>
+          <a @click="skip(res.id)">{{ res.title }}</a>
         </p>
-        <p class="blogs_content__frame-2">{{ data.sketch }}</p>
+        <p class="blogs_content__frame-2">{{ res.sketch }}</p>
         <p class="blogs_content__frame-3">
           <span>文章</span>
-          <span>{{ data.read }} ℃</span>
-          <span>赞 {{ data.give }}</span>
-          <span>{{ data.timeCreate.substring(0, 10) }}</span>
+          <span>{{ res.read }} ℃</span>
+          <span>赞 {{ res.give }}</span>
+          <span>{{ res.timeCreate.substring(0, 10) }}</span>
         </p>
       </div>
     </div>

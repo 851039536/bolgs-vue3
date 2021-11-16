@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-13 08:46:43
+ * @LastEditTime: 2021-11-16 15:23:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
@@ -11,13 +11,11 @@ import { IntArticle } from "@/api/data/interData";
 
 export class article {
 
-
   /**
    * @description: 查询总数
    * @param {number} identity 所有:0 || 分类:1 || 标签:2
    * @param {string} type
    * @param {boolean} cache
-   * @return {*}
    */
   static async GetCountAsync(identity: number, type: string, cache: boolean) {
     return await request({
@@ -27,18 +25,7 @@ export class article {
   }
 
   /**
-   * @description: 查询分类总条数
-   * @param {number} id
-   */
-  static async ConutSort(id: number) {
-    return await request({
-      url: "/api/SnArticle/GetConutSortAsync?type=" + id + "&cache=true",
-      method: 'get',
-    })
-  }
-
-  /**
-   * 
+   * 模糊查询
    * @param identity 无条件:0 || 分类:1 || 标签:2
    * @param type 查询条件
    * @param name 查询字段
@@ -50,23 +37,14 @@ export class article {
       method: 'get',
     })
   }
-  /**
-   * @description: 按标签模糊查询
-   * @param {string} name
-   */
-  static async GetTypeContainsAsync(tag: string, name: string, chache: boolean) {
-    return await request({
-      url: "/api/SnArticle/GetTypeContainsAsync?type=" + tag + "&name=" + name + "&cache=" + chache,
-      method: 'get',
-    })
-  }
+
 
   /**
    * @description: 主键查询
    * @param {number} id
    * @param {boolean} cache
    */
-  static async GetByIdAsync(id: any, cache: boolean): Promise<any> {
+  static async GetByIdAsync(id: number, cache: boolean): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetByIdAsync?id=" + id + "&cache=" + cache,
       method: 'get',
@@ -80,9 +58,23 @@ export class article {
    * @param cache 缓存
    * @returns 
    */
-  static async GetTypeAsync(identity: number, type: number, cache: boolean): Promise<any> {
+  static async GetTypeAsync(identity: number, type: string, cache: boolean): Promise<any> {
     return await request({
       url: "/api/SnArticle/GetTypeAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
+      method: 'get',
+    })
+  }
+
+  /**
+   * 读取字段
+   * @param identity 0:所有: 分类:1 || 标签:2 || 用户:3
+   * @param type 1-内容-2:阅读-3:点赞
+   * @param name 查询参数 
+   * @param cache 缓存
+   */
+  static async GetSumAsync(identity: number, type: number, name: string, cache: boolean): Promise<any> {
+    return await request({
+      url: "/api/SnArticle/GetSumAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + cache,
       method: 'get',
     })
   }
@@ -97,24 +89,14 @@ export class article {
    * @param {boolean} isDesc 升序/降序
    * @param {boolean} cache 是否开启缓存
    */
-  static async GetFyAsync(identity: number, type: string, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean): Promise<any> {
+  static async GetFyAsync(identity: number, type: string, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean) {
     return await request({
       url:
         "/api/SnArticle/GetFyAsync?identity=" + identity + "&type=" + type + "&pageIndex=" + pageIndex + "&pageSize=" + pagesize + "&ordering=" + ordering + "&isDesc=" + isDesc + "&cache=" + cache,
       method: 'get',
     })
   }
-  /**
-   * @description: 分类分页查询
-   * @param {number} page
-   * @param {number} pagesize
-   */
-  static async GetFySortTitleAsync(page: number, pagesize: number, cache: boolean): Promise<any> {
-    return await request({
-      url: "/api/SnArticle/GetfySortTestAsync?type=7&pageIndex=" + page + "&pageSize=" + pagesize + "&isDesc=true&cache=" + cache,
-      method: 'get',
-    })
-  }
+
 
   /**
    * @description: 更新

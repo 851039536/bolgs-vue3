@@ -2,11 +2,11 @@
 import { onMounted } from 'vue'
 import FavSidebar from './FavSidebar.vue'
 import { state } from './data'
-import { methods } from './index'
+import { method } from './index'
 import { winUrl } from '@/hooks/routers'
 
 onMounted(async () => {
-  await methods.GetAll('文档')
+  await method.GetApi('文档')
 })
 </script>
 
@@ -18,27 +18,13 @@ onMounted(async () => {
     <a-back-top />
     <!-- end 加载组件 -->
     <div id="favorite_main" class="animate__animated animate__fadeIn">
-      <!-- 分类列表 -->
-      <!-- <div class="flex flex-wrap">
-        <div class="favorite_type" v-for="text in state.type" :key="text.id">
-          <div class="favorite_type_name">
-            <a @click="methods.GetAll(text.title)">{{ text.title }}</a>
-          </div>
-        </div>
-      </div> -->
-      <!-- end 分类列表 -->
-
       <!-- 网站内容 -->
       <div class="flex flex-wrap favorite_content">
-        <div
-          class="favorite_content_text"
-          v-for="info in state.text"
-          :key="info.navId"
-        >
+        <div class="favorite_content_text" v-for="res in state.text" :key="res.id">
           <div class="favorite_content_text-1">
-            <a @click="winUrl(info.navUrl)">{{ info.navTitle }}</a>
+            <a @click="winUrl(res.url)">{{ res.title }}</a>
           </div>
-          <div class="favorite_content_text-2">{{ info.navText }}</div>
+          <div class="favorite_content_text-2">{{ res.describe }}</div>
         </div>
       </div>
       <!-- end 网站内容 -->
@@ -47,7 +33,7 @@ onMounted(async () => {
       <div class="favorite_page">
         <a-pagination
           size="small"
-          @change="methods.currentchange"
+          @change="method.currentchange"
           :total="state.count"
           :pageSize="state.pagesize"
           :current="state.current"
@@ -69,7 +55,7 @@ onMounted(async () => {
   #favorite_main {
     @apply fixed;
 
-    @include initialize($w, 85%, 3.6%, null, $ml, null, #ffffff);
+    @include initialize($w, 85%, 4.5%, null, $ml, null, #ffffff);
 
     @apply rounded shadow;
 

@@ -8,14 +8,16 @@
 
   @include w-h;
 
+
+
   @apply bg-white;
 
   .home_main {
     @apply absolute m-auto top-0 left-0 bottom-0 right-0;
 
-    @include w-h(90%, 100%);
+    @include w-h(90%, 70%);
 
-    @apply shadow-xl rounded-sm;
+    @apply shadow-2xl rounded-3xl;
 
     .home_name {
       position: absolute;

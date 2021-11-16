@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-10 11:40:02
- * @LastEditTime: 2021-11-09 14:24:27
+ * @LastEditTime: 2021-11-16 15:36:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
@@ -15,40 +15,26 @@ import TagHead from './components/TagHead.vue'
 import TagContent from './components/TagContent.vue'
 const route = useRoute()
 
-const id: State = reactive({
-  id: route.query.id,
+const name: any = reactive({
+  name: route.query.id
 })
 
-// async function AsyGetTag(id: any) {
-//   if (id == null) {
-//     id = 1
-//   }
-//   await article.GetTagtextAsync(id, true).then((result: any) => {
-//     state.newinfo = result.data
-//   })
-// }
-
-async function getAll() {
-  await labels.GetAllAsync(true).then((result: any) => {
-    state.labels = result.data
-  })
+async function GetApi() {
+  state.labels = await (await labels.GetAllAsync(true)).data
+  if (name.id == '') {
+    name.id = 'vue'
+  }
+  state.newinfo = await (await article.GetTypeAsync(2, name.id, true)).data
 }
 
-/**
- * @description: 搜素框模糊查询
- * @param {string} name 名称
- */
-async function SearchTitle(name: string) {
+async function Search(name: string) {
   if (name === '') {
     return
   }
-  await article.GetContainsAsync(0, 0, name, true).then((res) => {
-    state.newinfo = res.data
-  })
+  state.newinfo = await (await article.GetContainsAsync(0, 'null', name, true)).data
 }
 onMounted(async () => {
-  // await AsyGetTag(id.id)
-  await getAll()
+  await GetApi()
 })
 </script>
 <template>
@@ -64,7 +50,7 @@ onMounted(async () => {
             :show-arrow="false"
             :filter-option="false"
             :not-found-content="null"
-            @search="SearchTitle"
+            @search="Search"
           >
           </a-select>
         </div>
@@ -79,15 +65,13 @@ onMounted(async () => {
 @import './index.scss';
 
 .tag_search {
-  @include initialize(94%, null, null, null, 3%, null, #ffffff);
-
+  @include initialize(94%, 92%, null, null, 3%, null, #ffffff);
   @apply relative rounded-sm  shadow;
 
-  height: 40px;
+  height: 45px;
 
   div {
     @apply absolute left-1/2;
-
     top: 90%;
     width: 40%;
     transform: translate(-50%, -50%);

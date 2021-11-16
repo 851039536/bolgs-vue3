@@ -16,8 +16,6 @@ async function toScss(nameCss: string) {
         import('../views/sAbout/index.scss').then(() => {
           console.log("import css 1")
         })
-      } else {
-        console.log("import css 2")
       }
       break;
 
@@ -26,13 +24,8 @@ async function toScss(nameCss: string) {
         import('../views/sAbout/index.scss').then(() => {
           console.log("import css 1")
         })
-      } else {
-        console.log("import css 2")
       }
       break;
-
-    // default:
-    //   break;
   }
 
 }

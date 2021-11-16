@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-12 16:13:39
- * @LastEditTime: 2021-11-09 14:04:27
+ * @LastEditTime: 2021-11-16 14:38:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\tag\components\TagHead.vue
@@ -15,24 +15,19 @@ defineProps({
   resultData: {
     type: Array as () => Array<IntLabels>,
     required: true,
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 
-async function AsyGetTag(id: any) {
-  if (id == null) {
-    id = 1
-  }
-  await article.GetTypeAsync(2, id, true).then((result: any) => {
-    state.newinfo = result.data
-  })
+async function GetTag(name: string) {
+  state.newinfo = await (await article.GetTypeAsync(2, name, true)).data
 }
 </script>
 
 <template>
   <div class="tag_head">
-    <div class="tag_head_content" v-for="result in resultData" :key="result.id">
-      <a @click="AsyGetTag(result.id)" variant="light">{{ result.name }}</a>
+    <div class="tag_head_content" v-for="res in resultData" :key="res.id">
+      <a @click="GetTag(res.name)" variant="light">{{ res.name }}</a>
     </div>
   </div>
 </template>
@@ -46,9 +41,8 @@ async function AsyGetTag(id: any) {
   @apply rounded-sm  shadow bg-white;
 
   @include initialize(94%, null, null, null, 3%, null, null);
-
   .tag_head_content {
-    height: 30px;
+    height: 32px;
 
     @apply m-1 p-1;
     @apply bg-gray-100 text-base rounded-sm;

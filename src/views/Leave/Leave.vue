@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-17 10:22:02
- * @LastEditTime: 2021-10-13 15:09:33
+ * @LastEditTime: 2021-11-16 11:08:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Leave\Leave.vue
@@ -10,20 +10,15 @@
 import { leave } from '@/api/index'
 import { reactive, onMounted } from 'vue'
 
-interface State {
-  result: any
-}
-const state: State = reactive({
-  result: [],
+const state: any = reactive({
+  result: []
 })
 
-const GetAllAsync = async () => {
-  leave.GetAllAsync().then((result) => {
-    state.result = result.data
-  })
+const GetApi = async () => {
+  state.result = await (await leave.GetAllAsync()).data
 }
 onMounted(async () => {
-  await GetAllAsync()
+  await GetApi()
 })
 </script>
 

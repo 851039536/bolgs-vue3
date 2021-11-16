@@ -1,7 +1,7 @@
 <!--
  * @Author: 导航站
  * @Date: 2020-12-14 14:35:41
- * @LastEditTime: 2021-11-15 15:16:35
+ * @LastEditTime: 2021-11-16 15:38:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Navigation\Navigation.vue
@@ -59,7 +59,7 @@ onMounted(async () => {
 @import '@/design/uitl';
 
 .n-nav {
-  @include initialize($w, null, 3.6%, null, $ml, null, #ffffff);
+  @include initialize($w, null, 4.5%, null, $ml, null, #ffffff);
 
   @apply shadow rounded-sm;
 

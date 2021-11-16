@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-15 09:34:24
- * @LastEditTime: 2021-10-15 09:34:25
+ * @LastEditTime: 2021-11-16 15:50:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\navigation\favorite\data.ts
@@ -15,7 +15,7 @@ interface State {
   page: number
   pagesize: number
   count: number
-  title: string
+  name: string
   current: number
 }
 const state: State = reactive({
@@ -24,7 +24,7 @@ const state: State = reactive({
   page: 1,
   pagesize: 12,
   count: 0,
-  title: '',
+  name: '',
   current: 1,
 })
 

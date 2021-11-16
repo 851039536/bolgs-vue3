@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-13 16:33:41
- * @LastEditTime: 2021-09-14 17:52:37
+ * @LastEditTime: 2021-11-16 09:58:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\Blogs\blogs.ts
@@ -15,8 +15,8 @@ interface BlogsList {
 }
 interface BlogsSiList {
   article: any,
-  article2: any,
-  UserTalk: string,
+  searchData: any,
+  talk: string,
   User: any,
   ArticleCount: number,
   SortCount: number,
@@ -35,8 +35,8 @@ const blogsList: BlogsList = reactive({
 
 const blogsSiList: BlogsSiList = reactive({
   article: [],
-  article2: [],
-  UserTalk: "",
+  searchData: [],
+  talk: "",
   User: [],
   ArticleCount: 0,
   SortCount: 0,

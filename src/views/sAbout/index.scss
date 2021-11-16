@@ -8,7 +8,7 @@
 .about_main {
   @apply fixed w-full h-full bg-white;
 
-  @include initialize(94%, 92%, 3.6%, null,3%, null, null);
+  @include initialize(94%, 92%, 4.5%, null,3%, null, null);
 
   @apply bg-white overflow-auto;
 
@@ -143,7 +143,7 @@
 }
 
 .about_main::-webkit-scrollbar{
-  display: none;
+  display: none
 }
 .icon {
   @include w-h(1.5em, 1.5em);

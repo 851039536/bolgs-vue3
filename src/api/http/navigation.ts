@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:07:20
- * @LastEditTime: 2021-11-11 15:50:39
+ * @LastEditTime: 2021-11-16 16:16:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\navigation.ts
@@ -11,7 +11,6 @@ import request from '@/utils/http/axios'
 import { IntNav } from "@/api/data/interData";
 
 export class navigation {
-
 
 
   /**
