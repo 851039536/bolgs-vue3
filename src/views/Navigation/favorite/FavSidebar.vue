@@ -1,35 +1,35 @@
 <script lang="ts" setup>
-import { navigation } from '@/api/index'
-import { reactive, onMounted } from 'vue'
-import { method } from './index'
+  import { navigation } from '@/api/index'
+  import { reactive, onMounted } from 'vue'
+  import { method } from './index'
 
-interface State {
-  resultData: any
-  resultData2: any
-  resultCount: number
-}
-const state: State = reactive({
-  resultData: [],
-  resultData2: [],
-  resultCount: 0
-})
-
-const GetAll = async () => {
-  await navigation.GetFyAsync(0, 'null', 1, 10, 'id', true, true).then((res: any) => {
-    state.resultData = res.data
-  })
-  await navigation.GetCountAsync(0, 'null', true).then((res: any) => {
-    state.resultCount = res.data
+  interface State {
+    resultData: any
+    resultData2: any
+    resultCount: number
+  }
+  const state: State = reactive({
+    resultData: [],
+    resultData2: [],
+    resultCount: 0
   })
 
-  await navigation.GetSnNavigationTypeSAllAsync(true).then((res: any) => {
-    state.resultData2 = res.data
-  })
-}
+  const GetAll = async () => {
+    await navigation.GetFyAsync(0, 'null', 1, 10, 'id', true, true).then((res: any) => {
+      state.resultData = res.data
+    })
+    await navigation.GetCountAsync(0, 'null', true).then((res: any) => {
+      state.resultCount = res.data
+    })
 
-onMounted(async () => {
-  await GetAll()
-})
+    await navigation.GetSnNavigationTypeSAllAsync(true).then((res: any) => {
+      state.resultData2 = res.data
+    })
+  }
+
+  onMounted(async () => {
+    await GetAll()
+  })
 </script>
 
 <template>
@@ -69,99 +69,99 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import '@/design/methodCss';
-@import '@/design/uitl';
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
 
-#FavSidebar {
-  position: fixed;
-
-  @include excursion($Text_height, null, null, $sidebar_r_r);
-  @include w-h(20%, 90%);
-
-  @apply ml-3;
-
-  #FavSidebar_main {
-    @apply w-full h-full overflow-auto;
-
-    .el-calendar-table .el-calendar-day {
-      height: 44px !important;
-    }
-
-    .FavSidebar_describe {
-      @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
-
-      @apply mb-2 shadow rounded text-center;
-
-      p {
-        @apply text-sm px-2 py-4 m-1 cursor-pointer;
-      }
-    }
-
-    .FavSidebar_footer {
-      @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
-
-      @apply p-1 mb-2 cursor-pointer shadow rounded;
-
-      .FavSidebar_f_title {
-        @apply p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer;
-      }
-
-      .FavSidebar_f_content {
-        @apply text-sm m-2;
-
-        .FavSidebar_f_content_name {
-          @apply p-1;
-
-          width: 35%;
-        }
-
-        .FavSidebar_f_content_text {
-          width: 40%;
-
-          @apply p-1;
-        }
-      }
-    }
-
-    .FavSidebar_itme {
-      @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
-
-      @apply p-1 mb-2  shadow rounded;
-
-      .FavSidebar_itme_1 {
-        color: #1b1e21;
-
-        @apply p-1 m-1 text-sm font-semibold bg-gray-200;
-      }
-
-      .FavSidebar_itme_2 {
-        @apply bg-gray-100;
-        @apply m-2 cursor-pointer;
-
-        .itme_1 {
-          @apply p-2 text-base;
-        }
-      }
-    }
-
-    .onecategory {
-      width: 97%;
-
-      @apply p-1 mb-2 m-auto cursor-pointer;
-      @apply shadow rounded bg-white;
-
-      .onecategory_name {
-        color: #1b1e21;
-
-        @apply p-1 m-1 text-sm font-semibold bg-gray-200;
-      }
-    }
-  }
-}
-
-@screen xp {
   #FavSidebar {
-    display: none;
+    position: fixed;
+
+    @include excursion($Text_height, null, null, $sidebar_r_r);
+    @include w-h(20%, 90%);
+
+    @apply ml-3;
+
+    #FavSidebar_main {
+      @apply w-full h-full overflow-auto;
+
+      .el-calendar-table .el-calendar-day {
+        height: 44px !important;
+      }
+
+      .FavSidebar_describe {
+        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
+        @apply mb-2 shadow rounded text-center;
+
+        p {
+          @apply text-sm px-2 py-4 m-1 cursor-pointer;
+        }
+      }
+
+      .FavSidebar_footer {
+        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
+        @apply p-1 mb-2 cursor-pointer shadow rounded;
+
+        .FavSidebar_f_title {
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200 cursor-pointer;
+        }
+
+        .FavSidebar_f_content {
+          @apply text-sm m-2;
+
+          .FavSidebar_f_content_name {
+            @apply p-1;
+
+            width: 35%;
+          }
+
+          .FavSidebar_f_content_text {
+            width: 40%;
+
+            @apply p-1;
+          }
+        }
+      }
+
+      .FavSidebar_itme {
+        @include initialize(97%, null, auto, auto, auto, auto, #ffffff);
+
+        @apply p-1 mb-2  shadow rounded;
+
+        .FavSidebar_itme_1 {
+          color: #1b1e21;
+
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+        }
+
+        .FavSidebar_itme_2 {
+          @apply bg-gray-100;
+          @apply m-2 cursor-pointer;
+
+          .itme_1 {
+            @apply p-2 text-base;
+          }
+        }
+      }
+
+      .onecategory {
+        width: 97%;
+
+        @apply p-1 mb-2 m-auto cursor-pointer;
+        @apply shadow rounded bg-white;
+
+        .onecategory_name {
+          color: #1b1e21;
+
+          @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+        }
+      }
+    }
   }
-}
+
+  @screen xp {
+    #FavSidebar {
+      display: none;
+    }
+  }
 </style>

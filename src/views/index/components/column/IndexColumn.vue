@@ -1,21 +1,21 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-08 11:17:02
- * @LastEditTime: 2021-11-15 09:06:38
+ * @LastEditTime: 2021-11-17 12:10:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
 -->
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { state, column } from './index'
-import BlogsContent from '@/views/blogs/components/BlogsContent.vue'
+  import { onMounted } from 'vue'
+  import { state, column } from './index'
+  import BlogsContent from '@/views/blogs/components/BlogsContent.vue'
 
-onMounted(async () => {
-  await column.GetCount()
-  await column.GetFy()
-})
+  onMounted(async () => {
+    await column.GetCount()
+    await column.GetFy()
+  })
 </script>
 
 <template>
@@ -24,7 +24,7 @@ onMounted(async () => {
     <!-- article表内容 -->
     <BlogsContent :data-result="state.dataResult"></BlogsContent>
     <!-- end article表内容 -->
-
+    <a-button type="primary">Primary Button</a-button>
     <!-- 分页 -->
     <div class="indextitle_page">
       <a-pagination
@@ -40,6 +40,6 @@ onMounted(async () => {
 </template>
 
 <style lang="scss">
-@import './index.scss';
-@import '@/views/blogs/index.scss';
+  @import './index.scss';
+  @import '@/views/blogs/index.scss';
 </style>

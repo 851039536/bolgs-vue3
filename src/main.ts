@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-13 10:38:38
+ * @LastEditTime: 2021-11-17 16:34:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -15,8 +15,6 @@ import animated from 'animate.css'
 import 'nprogress/nprogress.css'
 import './index.css'
 import lazyPlugin from 'vue3-lazy'
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
 
 // v-md
 import VueMarkdownEditor from '@kangc/v-md-editor';
@@ -70,27 +68,54 @@ VMdPreview.use(createLineNumbertPlugin());
 VMdPreview.use(createCopyCodePlugin());
 //  end v-md
 
-
 //字体图标
 import './assets/icon/fonts/iconfont.js'
 import './assets/icon/icon.css'
 import LuckDraw from 'vue-luck-draw/vue3'
-
 import IndexSidebar from "./views/index/components/sidebar/IndexSidebar.vue";
 import BlogSidebar from "./components/raside/rAside.vue";
 import router from './router/index'
 import store from './store/index'
 import axios from './utils/http/axios'
 
-
 // use
 const app = createApp(App);
 
-
-// 全局ctx(this) 上挂载 $axios
 app.config.globalProperties.$api = axios
 app.component("IndexSidebar", IndexSidebar)
 app.component("BlogSidebar", BlogSidebar)
+
+import {
+  Button, Pagination, PageHeader, Select, Table, Layout, Menu, Form, Input, Spin,
+  BackTop, Modal, message,
+} from 'ant-design-vue';
+import 'ant-design-vue/lib/pagination/style';
+import 'ant-design-vue/lib/button/style';
+import 'ant-design-vue/lib/notification/style';
+import 'ant-design-vue/lib/page-header/style';
+import 'ant-design-vue/lib/select/style';
+import 'ant-design-vue/lib/table/style';
+import 'ant-design-vue/lib/layout/style';
+import 'ant-design-vue/lib/form/style';
+import 'ant-design-vue/lib/input/style';
+import 'ant-design-vue/lib/spin/style';
+import 'ant-design-vue/lib/back-top/style';
+import 'ant-design-vue/lib/modal/style';
+import 'ant-design-vue/lib/message/style';
+
+app.config.globalProperties.$mes = message
+app.use(Pagination);
+app.use(Modal);
+app.use(BackTop);
+app.use(Input);
+app.use(Spin);
+app.use(Form);
+app.use(Menu);
+app.use(Layout);
+app.use(Table);
+app.use(Button);
+app.use(PageHeader);
+app.use(Select);
 
 app.use(lazyPlugin, {
   loading: require('@/assets/img/blog/2.jpg'), // 图片加载时默认图片
@@ -99,7 +124,6 @@ app.use(lazyPlugin, {
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);
 app.use(store);
-app.use(Antd)
 app.use(animated)
 app.use(LuckDraw)
 app.use(router)
