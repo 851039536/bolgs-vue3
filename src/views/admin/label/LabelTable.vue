@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-18 17:00:55
+ * @LastEditTime: 2021-11-18 16:15:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -13,7 +13,7 @@
   import { message } from 'ant-design-vue'
   import { Routers, RouterId } from '@/hooks/routers'
   import { navname } from '../utils/data'
-  import { storage } from '@/utils/storage/storage'
+  import { tool } from '@/utils/common/tool'
 
   const reload: any = inject('reload')
   const confirm = async (data: any) => {
@@ -29,37 +29,45 @@
   async function GetContains(name: string) {
     if (name === '' && state.labelStr === 'ALL') {
       state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+      await tool.MomentTimeList(state.dataResult)
       return
     } else if (state.labelStr === 'ALL') {
       state.dataResult = await article.GetContainsAsync(0, '0', name, true)
+      tool.MomentTimeList(state.dataResult)
     } else {
       state.dataResult = await article.GetContainsAsync(2, state.labelStr, name, true)
+      tool.MomentTimeList(state.dataResult)
     }
   }
   async function GetTag() {
     message.info(state.labelStr)
     if (state.labelStr === 'ALL') {
       state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+      await tool.MomentTimeList(state.dataResult)
     } else {
       state.dataResult = await article.GetFyAsync(2, state.labelStr, 1, 1000, 'id', true, false)
+      await tool.MomentTimeList(state.dataResult)
     }
   }
   async function Ordering() {
     if (state.order) {
       state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', state.order, false)
+      await tool.MomentTimeList(state.dataResult)
       state.order = false
     } else {
       state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', state.order, false)
+      await tool.MomentTimeList(state.dataResult)
       state.order = true
     }
   }
 
   onMounted(async () => {
     await TOKEN()
-    state.dataResult = await article.GetFyAsync(3, storage.get('user'), 1, 1000, 'id', true, false)
+    state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+    await tool.MomentTimeList(state.dataResult)
     state.labelResult = await labels.GetAllAsync(false)
-    navname.name = '文章展示'
-    navname.name2 = '文章列表'
+    navname.name = '标签'
+    navname.name2 = '标签列表'
   })
 </script>
 <template>

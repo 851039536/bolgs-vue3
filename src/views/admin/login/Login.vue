@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-11-17 16:10:02
+ * @LastEditTime: 2021-11-18 17:13:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
@@ -29,10 +29,14 @@
         return
       }
       state.result = res.data.split(',')
-      store.state.Roles = state.result[0]
-      sessionStorage.set('user', store.state.Roles) //存用户名
-      sessionStorage.set('userId', state.result[2]) // 用于全局用户主键
-      storage.remove(store.state.Roles)
+      storage.remove('rolres')
+      storage.remove('userId')
+      storage.remove('user')
+
+      storage.set('rolres', state.result[0]) //存角色名
+      store.state.Roles = storage.get('rolres')
+      storage.set('userId', state.result[2]) // 用于全局用户主键
+      storage.set('user', state.result[3]) //村用户名
       storage.set(store.state.Roles, 'Bearer ' + state.result[1]) //token
       Routers('/Admin-index/ArticleTable')
     })

@@ -1,49 +1,50 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-16 11:24:45
+ * @LastEditTime: 2021-11-18 12:27:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
 -->
 <script lang="ts" setup>
-import { onMounted, reactive } from 'vue'
-import { navigation, TOKEN } from '@/api'
-import { message } from 'ant-design-vue'
-import { formState, stateArray } from './data'
-import { useRoute } from 'vue-router'
-import { Routers, go, winUrl } from '@/hooks/routers'
-import { navname } from '../utils/data'
-const route = useRoute()
-const Rid = reactive({
-  id: route.query.id
-})
-const onSubmit = async () => {
-  await navigation.UpdateAsync(formState).then(() => {
-    message.info('更新完成')
-    Routers('/Admin-index/NavTable')
+  import { onMounted, reactive } from 'vue'
+  import { navigation, TOKEN } from '@/api'
+  import { message } from 'ant-design-vue'
+  import { formState, stateArray } from './data'
+  import { useRoute } from 'vue-router'
+  import { Routers, go, winUrl } from '@/hooks/routers'
+  import { navname } from '../utils/data'
+  const route = useRoute()
+  const Rid = reactive({
+    id: route.query.id
   })
-}
-async function GetAll() {
-  navigation.GetSnNavigationTypeSAllAsync(false).then(res => {
-    stateArray.navResult = res.data
-  })
+  const onSubmit = async () => {
+    await navigation.UpdateAsync(formState).then(() => {
+      message.info('更新完成')
+      Routers('/Admin-index/NavTable')
+    })
+  }
+  async function GetAll() {
+    navigation.GetSnNavigationTypeSAllAsync(false).then((res) => {
+      stateArray.navResult = res.data
+    })
 
-  navigation.GetByIdAsync(Rid.id, false).then(res => {
-    formState.id = res.data.id
-    formState.title = res.data.title
-    formState.describe = res.data.describe
-    formState.img = res.data.img
-    formState.typeId = res.data.typeId
-    formState.url = res.data.url
+    navigation.GetByIdAsync(Rid.id, false).then((res) => {
+      formState.id = res.data.id
+      formState.title = res.data.title
+      formState.describe = res.data.describe
+      formState.img = res.data.img
+      formState.typeId = res.data.typeId
+      formState.userId = res.data.userId
+      formState.url = res.data.url
+    })
+  }
+  onMounted(async () => {
+    await GetAll()
+    await TOKEN()
+    navname.name = '内容分享'
+    navname.name2 = '编辑内容'
   })
-}
-onMounted(async () => {
-  await GetAll()
-  await TOKEN()
-  navname.name = '内容分享'
-  navname.name2 = '编辑内容'
-})
 </script>
 
 <template>
@@ -85,17 +86,17 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-.form {
-  @apply w-full h-full;
+  .form {
+    @apply w-full h-full;
 
-  .form_content {
-    height: 480px;
+    .form_content {
+      height: 480px;
 
-    @apply bg-white overflow-auto;
+      @apply bg-white overflow-auto;
 
-    .form_content_1 {
-      @apply mt-3;
+      .form_content_1 {
+        @apply mt-3;
+      }
     }
   }
-}
 </style>

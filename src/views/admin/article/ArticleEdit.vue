@@ -1,56 +1,56 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-15 09:53:59
+ * @LastEditTime: 2021-11-18 16:31:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
 -->
 <script lang="ts" setup>
-import { onMounted, reactive } from 'vue'
-import { labels, article, sort, TOKEN } from '@/api'
-import { message } from 'ant-design-vue'
-import { formState, state } from './data'
-import { useRoute } from 'vue-router'
-import { Routers, go } from '@/hooks/routers'
-import { navname } from '../utils/data'
+  import { onMounted, reactive } from 'vue'
+  import { labels, article, sort, TOKEN } from '@/api'
+  import { message } from 'ant-design-vue'
+  import { formState, state } from './data'
+  import { useRoute } from 'vue-router'
+  import { Routers, go } from '@/hooks/routers'
+  import { navname } from '../utils/data'
 
-const route = useRoute()
-const Rid = reactive({
-  id: route.query.id
-})
-
-const onSubmit = async () => {
-  await article.UpdateAsync(formState).then(() => {
-    message.info('更新完成')
-    Routers('/Admin-index/ArticleTable')
+  const route = useRoute()
+  const Rid: any = reactive({
+    id: route.query.id
   })
-}
 
-async function GetApi() {
-  state.labelResult = await labels.GetAllAsync(true)
-  state.sortResult = await sort.GetAllAsync(true)
+  const onSubmit = async () => {
+    await article.UpdateAsync(formState).then(() => {
+      message.info('更新完成')
+      Routers('/Admin-index/ArticleTable')
+    })
+  }
 
-  article.GetByIdAsync(Rid.id, false).then(res => {
-    formState.id = res.data[0].id
-    formState.commentId = res.data[0].commentId
-    formState.give = res.data[0].give
-    formState.labelId = res.data[0].labelId
-    formState.read = res.data[0].read
-    formState.sortId = res.data[0].sortId
-    formState.text = res.data[0].text
-    formState.title = res.data[0].title
-    formState.sketch = res.data[0].sketch
-    formState.img = res.data[0].img
-    formState.userId = res.data[0].userId
+  async function GetApi() {
+    state.labelResult = await labels.GetAllAsync(true)
+    state.sortResult = await sort.GetAllAsync(true)
+
+    article.GetByIdAsync(Rid.id, false).then((res) => {
+      formState.id = res.data[0].id
+      formState.commentId = res.data[0].commentId
+      formState.give = res.data[0].give
+      formState.labelId = res.data[0].labelId
+      formState.read = res.data[0].read
+      formState.sortId = res.data[0].sortId
+      formState.text = res.data[0].text
+      formState.title = res.data[0].title
+      formState.sketch = res.data[0].sketch
+      formState.img = res.data[0].img
+      formState.userId = res.data[0].userId
+    })
+  }
+  onMounted(async () => {
+    await GetApi()
+    await TOKEN()
+    navname.name = '文章展示'
+    navname.name2 = '文章编辑'
   })
-}
-onMounted(async () => {
-  await GetApi()
-  await TOKEN()
-  navname.name = '文章展示'
-  navname.name2 = '文章编辑'
-})
 </script>
 
 <template>
@@ -67,9 +67,13 @@ onMounted(async () => {
 
           <a-form-item label="标签" :wrapper-col="{ span: 6, offset: 0 }">
             <a-select v-model:value="formState.labelId" placeholder="请选择">
-              <a-select-option v-for="item in state.labelResult.data" :key="item.id" :label="item.id" :value="item.id">{{
-                item.name
-              }}</a-select-option>
+              <a-select-option
+                v-for="item in state.labelResult.data"
+                :key="item.id"
+                :label="item.id"
+                :value="item.id"
+                >{{ item.name }}</a-select-option
+              >
             </a-select>
           </a-form-item>
 
@@ -95,17 +99,17 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-.form {
-  @apply w-full h-full;
+  .form {
+    @apply w-full h-full;
 
-  .form_content {
-    height: 480px;
+    .form_content {
+      height: 480px;
 
-    @apply bg-white overflow-auto;
+      @apply bg-white overflow-auto;
 
-    .form_content_1 {
-      @apply mt-3;
+      .form_content_1 {
+        @apply mt-3;
+      }
     }
   }
-}
 </style>

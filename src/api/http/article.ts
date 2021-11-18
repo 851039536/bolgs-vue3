@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-05-08 11:33:56
- * @LastEditTime: 2021-11-16 15:23:50
+ * @LastEditTime: 2021-11-18 16:54:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\article.js
  */
 import request from '@/utils/http/axios'
 import { IntArticle } from "@/api/data/interData";
+import { tool } from '@/utils/common/tool';
 
 export class article {
 
@@ -32,10 +33,12 @@ export class article {
    * @param cache 缓存
    */
   static async GetContainsAsync(identity: number, type: string, name: string, cache: boolean) {
-    return await request({
+    const res = await request({
       url: "/api/SnArticle/GetContainsAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + cache,
       method: 'get',
     })
+    tool.MomentTimeList(res)
+    return res;
   }
 
 
@@ -89,12 +92,14 @@ export class article {
    * @param {boolean} isDesc 升序/降序
    * @param {boolean} cache 是否开启缓存
    */
-  static async GetFyAsync(identity: number, type: string, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean) {
-    return await request({
+  static async GetFyAsync(identity: number, type: string | undefined, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean) {
+    const res = await request({
       url:
         "/api/SnArticle/GetFyAsync?identity=" + identity + "&type=" + type + "&pageIndex=" + pageIndex + "&pageSize=" + pagesize + "&ordering=" + ordering + "&isDesc=" + isDesc + "&cache=" + cache,
       method: 'get',
     })
+    await tool.MomentTimeList(res)
+    return res;
   }
 
 

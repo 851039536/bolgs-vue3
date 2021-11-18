@@ -269,6 +269,11 @@ const routes = [{
       name: 'PageSet',
       component: () => import('@/views/admin/set/PageSet.vue'),
     },
+    {
+      path: 'LabelTable',
+      name: 'LabelTable',
+      component: () => import('@/views/admin/label/LabelTable.vue'),
+    },
   ]
 },
 ]

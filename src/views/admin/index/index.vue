@@ -1,45 +1,48 @@
 <script lang="ts" setup>
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue'
-import { nextTick, provide, reactive } from 'vue'
-import { Routers } from '@/hooks/routers'
-import { storage } from '@/utils/storage/storage'
-import { message } from 'ant-design-vue'
-import store from '@/store'
-import { navname } from '../utils/data'
+  import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue'
+  import { nextTick, provide, reactive } from 'vue'
+  import { Routers } from '@/hooks/routers'
+  import { storage } from '@/utils/storage/storage'
+  import { message } from 'ant-design-vue'
+  import store from '@/store'
+  import { navname } from '../utils/data'
 
-async function zx() {
-  storage.remove(store.state.Roles)
-  if (!storage.get(store.state.Roles)) {
-    message.info('注销成功')
-    Routers('/Login')
+  async function zx() {
+    storage.remove(store.state.Roles)
+    if (!storage.get(store.state.Roles)) {
+      message.info('注销成功')
+      Routers('/Login')
+    }
   }
-}
 
-const handleClick = (e: any) => {
-  message.info(e.key)
-  switch (e.key) {
-    case '1-1':
-      Routers('/Admin-index/ArticleTable')
-      break
-    case '2-1':
-      Routers('/Admin-index/NavTable')
-      break
-    case '3-1':
-      Routers('/Admin-index/PageSet')
-      break
+  const handleClick = (e: any) => {
+    message.info(e.key)
+    switch (e.key) {
+      case '1-1':
+        Routers('/Admin-index/ArticleTable')
+        break
+      case '1-2':
+        Routers('/Admin-index/LabelTable')
+        break
+      case '2-1':
+        Routers('/Admin-index/NavTable')
+        break
+      case '3-1':
+        Routers('/Admin-index/PageSet')
+        break
+    }
   }
-}
 
-const state = reactive({
-  showRouter: true
-})
-function reload() {
-  state.showRouter = false
-  nextTick(() => {
-    state.showRouter = true
+  const state = reactive({
+    showRouter: true
   })
-}
-provide('reload', reload)
+  function reload() {
+    state.showRouter = false
+    nextTick(() => {
+      state.showRouter = true
+    })
+  }
+  provide('reload', reload)
 </script>
 <template>
   <div class="admin_index animate__animated animate__fadeIn">
@@ -71,8 +74,8 @@ provide('reload', reload)
                 </span>
               </template>
               <a-menu-item key="1-1">文章列表</a-menu-item>
-              <a-menu-item key="1-2">类别</a-menu-item>
-              <a-menu-item key="1-3">标签</a-menu-item>
+              <a-menu-item key="1-2">标签</a-menu-item>
+              <a-menu-item key="1-3">类别</a-menu-item>
               <a-menu-item key="1-4">Login</a-menu-item>
             </a-sub-menu>
             <a-sub-menu key="sub2">
@@ -83,7 +86,7 @@ provide('reload', reload)
                 </span>
               </template>
               <a-menu-item key="2-1">导航列表</a-menu-item>
-              <a-menu-item key="2-2">option6</a-menu-item>
+              <a-menu-item key="2-2">标签</a-menu-item>
               <a-menu-item key="2-3">option7</a-menu-item>
               <a-menu-item key="8">option8</a-menu-item>
             </a-sub-menu>
@@ -126,114 +129,114 @@ provide('reload', reload)
 </template>
 
 <style lang="scss" scoped>
-.admin_index {
-  @apply fixed w-full h-full;
+  .admin_index {
+    @apply fixed w-full h-full;
 
-  z-index: 10;
+    z-index: 10;
 
-  @apply bg-gray-100;
+    @apply bg-gray-100;
 
-  /* header */
+    /* header */
 
-  .header {
-    // position: fixed;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-  }
+    .header {
+      // position: fixed;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+    }
 
-  .header ul {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    list-style: none;
-    background-color: #fff;
-  }
-
-  .header li a {
-    display: block;
-    padding: 20px 20px;
-    text-decoration: none;
-    border-right: 1px solid #f4f4f4;
-  }
-
-  .header .logo {
-    display: block;
-    float: left;
-    padding: 10px 20px;
-    font-size: 2em;
-    text-decoration: none;
-  }
-
-  /* menu */
-
-  .header .menu {
-    clear: both;
-    max-height: 0;
-    transition: max-height 0.2s ease-out;
-  }
-
-  /* menu icon */
-
-  .header .menu-icon {
-    position: relative;
-    display: inline-block;
-    float: right;
-    padding: 28px 20px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .header .menu-icon .navicon {
-    position: relative;
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: #333;
-    transition: background 0.2s ease-out;
-  }
-
-  .header .menu-icon .navicon::before,
-  .header .menu-icon .navicon::after {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: #333;
-    transition: all 0.2s ease-out;
-    content: '';
-  }
-
-  .header .menu-icon .navicon::before {
-    top: 5px;
-  }
-
-  .header .menu-icon .navicon::after {
-    top: -5px;
-  }
-
-  /* menu btn */
-
-  /* 48em = 768px */
-
-  @media (min-width: 48em) {
-    .header li {
-      float: left;
+    .header ul {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      list-style: none;
+      background-color: #fff;
     }
 
     .header li a {
-      padding: 20px 30px;
+      display: block;
+      padding: 20px 20px;
+      text-decoration: none;
+      border-right: 1px solid #f4f4f4;
     }
+
+    .header .logo {
+      display: block;
+      float: left;
+      padding: 10px 20px;
+      font-size: 2em;
+      text-decoration: none;
+    }
+
+    /* menu */
 
     .header .menu {
-      float: right;
-      clear: none;
-      max-height: none;
+      clear: both;
+      max-height: 0;
+      transition: max-height 0.2s ease-out;
     }
 
+    /* menu icon */
+
     .header .menu-icon {
-      display: none;
+      position: relative;
+      display: inline-block;
+      float: right;
+      padding: 28px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .header .menu-icon .navicon {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #333;
+      transition: background 0.2s ease-out;
+    }
+
+    .header .menu-icon .navicon::before,
+    .header .menu-icon .navicon::after {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #333;
+      transition: all 0.2s ease-out;
+      content: '';
+    }
+
+    .header .menu-icon .navicon::before {
+      top: 5px;
+    }
+
+    .header .menu-icon .navicon::after {
+      top: -5px;
+    }
+
+    /* menu btn */
+
+    /* 48em = 768px */
+
+    @media (min-width: 48em) {
+      .header li {
+        float: left;
+      }
+
+      .header li a {
+        padding: 20px 30px;
+      }
+
+      .header .menu {
+        float: right;
+        clear: none;
+        max-height: none;
+      }
+
+      .header .menu-icon {
+        display: none;
+      }
     }
   }
-}
 </style>

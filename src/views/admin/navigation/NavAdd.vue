@@ -1,37 +1,39 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-19 16:42:48
- * @LastEditTime: 2021-11-16 11:21:12
+ * @LastEditTime: 2021-11-18 16:47:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleForm.vue
 -->
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { navigation, TOKEN } from '@/api'
-import { message } from 'ant-design-vue'
-import { formState, stateArray } from './data'
-import { Routers, go, reloads } from '@/hooks/routers'
-import { navname } from '../utils/data'
+  import { onMounted } from 'vue'
+  import { navigation, TOKEN } from '@/api'
+  import { message } from 'ant-design-vue'
+  import { formState, stateArray } from './data'
+  import { Routers, go, reloads } from '@/hooks/routers'
+  import { navname } from '../utils/data'
+  import { storage } from '@/utils/storage/storage'
 
-const onSubmit = async () => {
-  await navigation.AddAsync(formState).then(() => {
-    message.info('添加成功')
-    Routers('/Admin-index/NavTable')
-  })
-}
-async function GetAll() {
-  navigation.GetSnNavigationTypeSAllAsync(false).then(res => {
-    stateArray.navResult = res.data
-  })
-}
+  const onSubmit = async () => {
+    formState.userId = storage.get('userId')
+    await navigation.AddAsync(formState).then(() => {
+      message.info('添加成功')
+      Routers('/Admin-index/NavTable')
+    })
+  }
+  async function GetAll() {
+    navigation.GetSnNavigationTypeSAllAsync(false).then((res) => {
+      stateArray.navResult = res.data
+    })
+  }
 
-onMounted(async () => {
-  await GetAll()
-  await TOKEN()
-  navname.name = '内容分享'
-  navname.name2 = '新增内容'
-})
+  onMounted(async () => {
+    await GetAll()
+    await TOKEN()
+    navname.name = '内容分享'
+    navname.name2 = '新增内容'
+  })
 </script>
 
 <template>
@@ -73,17 +75,17 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-.form {
-  @apply w-full h-full;
+  .form {
+    @apply w-full h-full;
 
-  .form_content {
-    height: 480px;
+    .form_content {
+      height: 480px;
 
-    @apply bg-white overflow-auto;
+      @apply bg-white overflow-auto;
 
-    .form_content_1 {
-      @apply mt-3;
+      .form_content_1 {
+        @apply mt-3;
+      }
     }
   }
-}
 </style>

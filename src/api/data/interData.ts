@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-30 15:36:38
- * @LastEditTime: 2021-11-15 15:28:37
+ * @LastEditTime: 2021-11-18 16:51:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\data\video.ts
@@ -40,7 +40,7 @@ interface IntArticle {
   give: number
   labelId: number
   sortId: number
-  userId: number
+  userId: number | undefined
   timeCreate: any
   timeModified: any
 }
@@ -51,7 +51,7 @@ interface IntNav {
   describe: string
   img: string
   typeId: number
-  userId: number
+  userId: number | undefined
   url: string
   // timeCreate: any
   // timeModified: any

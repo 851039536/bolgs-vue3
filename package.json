@@ -16,6 +16,7 @@
     "ant-design-vue": "^2.2.7",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "default-passive-events": "^2.0.0",
     "highlight.js": "^10.4.1",
     "less": "^2.7.3",
     "less-loader": "^7.0.2",

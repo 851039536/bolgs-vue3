@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-18 16:19:58
- * @LastEditTime: 2021-11-15 10:07:46
+ * @LastEditTime: 2021-11-18 11:18:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
@@ -24,8 +24,8 @@ const columns = [
   { title: '标题', width: 100, dataIndex: 'title', key: 'title', fixed: 'left' },
 
   {
-    title: '发布人',
-    dataIndex: 'user.nickname',
+    title: '用户',
+    dataIndex: 'user.name',
     width: 55,
     align: "center"
   },
@@ -86,8 +86,8 @@ const formState: IntNav = reactive({
   title: "",
   describe: "",
   img: "",
-  typeId: 1,
-  userId: 1,
+  typeId: 0,
+  userId: 0,
   url: "www.xxx.com",
 
 })

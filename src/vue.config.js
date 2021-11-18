@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:16:33
- * @LastEditTime: 2021-11-17 16:25:18
+ * @LastEditTime: 2021-11-18 14:04:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\vue.config.js
@@ -13,13 +13,7 @@ const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
 
-  // devServer: {
-  //   host: '10.175.112.61', // ip
-  //   port: 8082, // 设置端口号
-  //   https: false, // https:{type:Boolean}
-  //   open: false, //配置自动启动浏览器
-  //   proxy: null //设置代理
-  // },
+
   chainWebpack: config => {
     config.resolve.extensions
       .add('ts')
