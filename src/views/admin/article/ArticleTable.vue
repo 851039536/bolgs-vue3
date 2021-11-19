@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-18 17:30:43
- * @LastEditTime: 2021-11-18 17:00:55
+ * @LastEditTime: 2021-11-19 14:27:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\article\ArticleTable.vue
@@ -28,7 +28,7 @@
 
   async function GetContains(name: string) {
     if (name === '' && state.labelStr === 'ALL') {
-      state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+      state.dataResult = await article.GetFyAsync(3, storage.get('user'), 1, 1000, 'id', true, false)
       return
     } else if (state.labelStr === 'ALL') {
       state.dataResult = await article.GetContainsAsync(0, '0', name, true)
@@ -39,17 +39,25 @@
   async function GetTag() {
     message.info(state.labelStr)
     if (state.labelStr === 'ALL') {
-      state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', true, false)
+      state.dataResult = await article.GetFyAsync(3, storage.get('user'), 1, 1000, 'id', true, false)
     } else {
-      state.dataResult = await article.GetFyAsync(2, state.labelStr, 1, 1000, 'id', true, false)
+      state.dataResult = await article.GetFyAsync(
+        4,
+        state.labelStr + ',' + storage.get('user'),
+        1,
+        1000,
+        'id',
+        true,
+        false
+      )
     }
   }
   async function Ordering() {
     if (state.order) {
-      state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', state.order, false)
+      state.dataResult = await article.GetFyAsync(3, storage.get('user'), 1, 1000, 'id', state.order, false)
       state.order = false
     } else {
-      state.dataResult = await article.GetFyAsync(0, 'null', 1, 1000, 'id', state.order, false)
+      state.dataResult = await article.GetFyAsync(3, storage.get('user'), 1, 1000, 'id', state.order, false)
       state.order = true
     }
   }

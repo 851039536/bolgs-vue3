@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 14:42:38
- * @LastEditTime: 2021-11-18 17:13:17
+ * @LastEditTime: 2021-11-19 14:41:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\login\Login.vue
@@ -11,8 +11,7 @@
   import { Routers } from '@/hooks/routers'
   import { user } from '@/api/index'
   import { onMounted, reactive } from 'vue'
-  import { storage, sessionStorage } from '@/utils/storage/storage'
-  // import { message } from 'ant-design-vue'
+  import { storage } from '@/utils/storage/storage'
   import { useStore } from 'vuex'
   import useCurrentInstance from '@/utils/common/useCurrentInstance'
   const store = useStore()
@@ -28,6 +27,7 @@
         proxy.$mes.error(res.data)
         return
       }
+
       state.result = res.data.split(',')
       storage.remove('rolres')
       storage.remove('userId')
@@ -38,6 +38,8 @@
       storage.set('userId', state.result[2]) // 用于全局用户主键
       storage.set('user', state.result[3]) //村用户名
       storage.set(store.state.Roles, 'Bearer ' + state.result[1]) //token
+
+      proxy.$mes.success('成功!')
       Routers('/Admin-index/ArticleTable')
     })
   }
