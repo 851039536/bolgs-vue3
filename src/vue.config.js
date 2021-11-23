@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-14 17:16:33
- * @LastEditTime: 2021-11-18 14:04:49
+ * @LastEditTime: 2021-11-23 11:13:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\vue.config.js
@@ -24,6 +24,11 @@ module.exports = {
 
     // eslint-disable-next-line no-undef
     config.plugin('cache').use(HardSourceWebpackPlugin);
+
+    config
+      .plugin('ContextReplacementPlugin')
+      // eslint-disable-next-line no-undef
+      .use(webpack.ContextReplacementPlugin, [/moment[/\\]locale$/, /zh-cn/]);
 
   },
   // 基本路径

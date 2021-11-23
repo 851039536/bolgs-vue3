@@ -5,7 +5,7 @@ import {
 } from 'vue-router'
 import BlogHome from '@/components/home/Home.vue'
 import { clearPending } from '@/utils/http/pending'
-
+import NProgress from 'nprogress'
 const routes = [{
   path: '/',
   //重定向，当前路径'/'没有对应的组件，需要重定向到其他路由页面
@@ -285,11 +285,16 @@ const router = createRouter({
 })
 //页面切换之前取消上一个路由中未完成的请求
 router.beforeEach((to, from, next) => {
+  NProgress.start()
   if (to.path !== '/Login') {
     console.log(to.path, '[ router=>clearPending ]')
     clearPending()
   }
   next()
 })
+router.afterEach((to) => {
+  // 进度条
+  NProgress.done();
+});
 
 export default router

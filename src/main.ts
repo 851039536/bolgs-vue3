@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-18 14:43:17
+ * @LastEditTime: 2021-11-23 10:55:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -11,10 +11,11 @@ import {
 } from 'vue'
 
 import App from './App.vue'
-// import 'default-passive-events'
+import 'normalize.css/normalize.css'
 import animated from 'animate.css'
 import 'nprogress/nprogress.css'
 import './index.css'
+
 import lazyPlugin from 'vue3-lazy'
 
 // v-md
