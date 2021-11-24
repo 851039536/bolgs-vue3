@@ -1,51 +1,35 @@
-<!--
- * @Author: 移动端导航栏
- * @Date: 2020-12-24 15:55:30
- * @LastEditTime: 2021-10-13 14:47:36
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\views\common\bootom.vue
--->
-
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+  import { Routers } from '@/hooks/routers'
 
-// 加载路由
-const router = useRouter()
-
-const skip = (num: number) => {
-  switch (num) {
-    case 1:
-      router.push('/index')
-      break
-    case 2:
-      router.push('/One')
-      break
-    case 3:
-      router.push('./Book')
-      break
-    case 4:
-      router.push('./svideo')
-      break
-    case 5:
-      router.push('./Photo')
-      break
-    case 6:
-      router.push('./index')
-      break
-    case 7:
-      router.push('./index')
-      break
-
-    default:
-      router.push('./index')
-      break
+  const skip = (num: number) => {
+    switch (num) {
+      case 1:
+        Routers('/index')
+        break
+      case 2:
+        Routers('/One')
+        break
+      case 3:
+        Routers('./Book')
+        break
+      case 4:
+        Routers('./svideo')
+        break
+      case 5:
+        Routers('./Photo')
+        break
+      case 6:
+        Routers('./index')
+        break
+      case 7:
+        Routers('./index')
+        break
+    }
   }
-}
 </script>
 <template>
-  <div class="SnBootom">
-    <div class="flex justify-around SnBootom-1">
+  <div class="sbootom">
+    <div class="flex justify-around bootom-main">
       <div class @click="skip(1)">首页</div>
       <div class @click="skip(2)">TG</div>
       <div class @click="skip(3)">One</div>
@@ -56,17 +40,14 @@ const skip = (num: number) => {
 </template>
 
 <style lang="scss" scoped>
-@import '@/design/methodCss.scss';
-@import '@/design/uitl';
+  .sbootom {
+    @apply fixed bottom-0 w-full z-10;
+    @apply bg-white shadow text-base;
 
-.SnBootom {
-  @apply fixed bottom-0 w-full z-10;
-  @apply bg-white shadow text-base;
-
-  .SnBootom-1 {
-    div {
-      @apply px-2 py-3 m-2 text-center text-gray-700;
+    .bootom-main {
+      div {
+        @apply px-2 py-3 m-2 text-center text-gray-700;
+      }
     }
   }
-}
 </style>

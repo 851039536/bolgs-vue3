@@ -40,7 +40,7 @@
           show-search
           v-model:value="dataList.sntitle"
           placeholder="input search text"
-          style="width: 200px;"
+          style="width: 200px"
           :show-arrow="false"
           :filter-option="false"
           @search="indexSidebar.SearchTitle"
@@ -54,7 +54,7 @@
       </div>
       <!-- end 搜索 -->
 
-      <s-describe :UserTalk="dataList.UserTalk"></s-describe>
+      <s-describe :userTalk="dataList.UserTalk"></s-describe>
       <Stag :result="dataList.labels"></Stag>
       <SCategory :result="dataList.sort"></SCategory>
 

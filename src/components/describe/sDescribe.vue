@@ -1,33 +1,30 @@
-<!--
- * @Author: your name
- * @Date: 2021-09-14 13:43:14
- * @LastEditTime: 2021-09-17 15:14:03
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\components\describe\index.vue
--->
-
+<script lang="ts" setup>
+  defineProps({
+    userTalk: {
+      type: String
+    }
+  })
+</script>
 <template>
   <!-- 描述内容 -->
-  <div class="sDescribe">
+  <section class="sDescribe">
     <div>
-      <p>{{ UserTalk }}</p>
+      <p>{{ userTalk }}</p>
     </div>
-  </div>
+  </section>
   <!-- end  描述内容-->
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  props: ['UserTalk'],
-  setup() {
-    return {}
-  },
-})
-</script>
-
 <style lang="scss" scoped>
-@import './index.scss';
+  .sDescribe {
+    @apply mb-2 shadow rounded m-auto;
+    width: 97%;
+
+    @apply bg-white text-center;
+
+    div > p {
+      @apply px-1 py-2 m-1;
+      @apply bg-gray-50 text-sm;
+    }
+  }
 </style>

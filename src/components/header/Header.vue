@@ -1,53 +1,36 @@
 <!--
  * @Author: 顶部导航栏
  * @Date: 2020-12-08 09:59:05
- * @LastEditTime: 2021-11-13 09:43:27
+ * @LastEditTime: 2021-11-24 13:59:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\BlogHeader.vue
 -->
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { state, header } from './index'
-import { Routers, winUrl } from '@/hooks/routers'
-
-const skip = async (num: any) => {
-  switch (num) {
-    case 13:
-      winUrl('https://www.cnblogs.com/ouyangkai/')
-      break
-    case 14:
-      winUrl('https://gitee.com/kaiouyang-sn')
-      break
-    default:
-      await Routers(num)
-      break
-  }
-}
-onMounted(async () => {
-  await header.GetType()
-})
+  import { method } from './index'
+  import { resData } from './data/header'
+  method.GetType()
 </script>
 <template>
-  <nav class="header-sn">
-    <div class="header-sn-1">
+  <nav class="headers">
+    <div class="headers-1">
       <!--  -->
       <div class="header_main">
         <div class="header-title">
           <span class="text-2xl font-medium tracking-tight">少年</span>
         </div>
         <div class="header_text">
-          <template v-for="res in state.resultData" :key="res.id">
-            <a @click="skip(res.path)" v-if="res.identity">{{ res.title }}</a>
+          <template v-for="res in resData.resultData" :key="res.id">
+            <a @click="method.skip(res.path)" v-if="res.identity">{{ res.title }}</a>
           </template>
         </div>
       </div>
       <!--  -->
       <div class="header_text_1">
         <div class="header-text-r-1">
-          <a @click="skip(13)" v-once>博客园</a>
-          <a @click="skip(14)" v-once>Gitee</a>
+          <a @click="method.skip(13)" v-once>博客园</a>
+          <a @click="method.skip(14)" v-once>Login</a>
         </div>
       </div>
     </div>
@@ -55,5 +38,60 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+  @import '@/design/methodCss.scss';
+  @import '@/design/uitl';
+
+  .headers {
+    @apply flex fixed z-10 p-1;
+    @include excursion(0, null, 3%, null);
+    @include w-h(94%, 53px);
+    @apply shadow-sm rounded-sm bg-white;
+    .headers-1 {
+      @apply flex flex-wrap w-full;
+    }
+
+    .header_main {
+      width: 90%;
+
+      @apply flex h-full text-lg;
+
+      .header-title {
+        @apply flex items-center flex-shrink-0 h-full;
+      }
+
+      .header_text {
+        @apply w-full flex items-center flex-shrink-0;
+
+        a {
+          @apply ml-3 text-gray-800;
+        }
+      }
+    }
+
+    .header_text_1 {
+      width: 10%;
+
+      @apply flex text-lg h-full;
+
+      .header-text-r-1 {
+        @apply flex items-center flex-shrink-0;
+
+        a {
+          @apply m-1 text-gray-800;
+        }
+      }
+    }
+  }
+
+  @screen xp {
+    .headers {
+      width: 100%;
+
+      @include excursion(0, null, 0, null);
+
+      .headers-1 {
+        @apply hidden;
+      }
+    }
+  }
 </style>

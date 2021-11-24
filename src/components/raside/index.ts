@@ -10,24 +10,24 @@ import { reactive } from 'vue'
 import { interfaces } from '@/api/http/interfaces'
 import { Routers } from "@/hooks/routers";
 
-interface State {
-  resultList: any
+interface ResData {
+  resultData: any
 }
-export const state: State = reactive({
-  resultList: [],
+export const resData: ResData = reactive({
+  resultData: [],
 })
 
 /**
  * @description: 导出raside类
  */
-export class raside {
+export class method {
 
   /**
    * @description: 读取侧边栏数据
    */
   static async GetType() {
     await interfaces.GetTypeAsync(0, "kai", "sidebar", true).then((res: any) => {
-      state.resultList = res.data
+      resData.resultData = res.data
     })
   }
   /**

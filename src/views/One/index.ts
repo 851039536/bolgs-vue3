@@ -2,13 +2,13 @@
 /*
  * @Author: your name
  * @Date: 2021-09-28 17:28:24
- * @LastEditTime: 2021-11-15 15:00:22
+ * @LastEditTime: 2021-11-24 10:59:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\index.ts
  */
 
-import { one } from "@/api"
+import { one } from "@/api/index"
 import { message } from "ant-design-vue"
 import { reactive } from "vue"
 interface State {

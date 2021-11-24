@@ -22,7 +22,7 @@
 }
 
 @screen lg {
-  .SnBootom {
+  .sbootom {
     @apply hidden;
   }
 }
@@ -34,19 +34,19 @@
 }
 
 @screen md {
-  .SnBootom {
+  .sbootom {
     @apply hidden;
   }
 }
 
 @screen 2xl {
-  .SnBootom {
+  .sbootom {
     @apply hidden;
   }
 }
 
 @screen xl {
-  .SnBootom {
+  .sbootom {
     @apply hidden;
   }
 }

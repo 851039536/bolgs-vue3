@@ -1,7 +1,7 @@
 /*
  * @Author: Axios封装
  * @Date: 2020-12-08 10:39:03
- * @LastEditTime: 2021-11-13 09:40:24
+ * @LastEditTime: 2021-11-23 17:23:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\api\index.ts
@@ -16,7 +16,8 @@ import { storage } from '../storage/storage';
 import { removePending, addPending } from "./pending";
 
 //数据请求字符
-axios.defaults.baseURL = process.env.VUE_APP_API_URL,
+// axios.defaults.baseURL = process.env.VUE_APP_API_URL,
+axios.defaults.baseURL = import.meta.env.VITE_API_DOMAIN,
   // 如果请求话费了超过 `timeout` 的时间，请求将被中断
   axios.defaults.timeout = 5000;
 // 表示跨域请求时是否需要使用凭证

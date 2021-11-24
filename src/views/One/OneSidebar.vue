@@ -1,65 +1,65 @@
 <!--
  * @Author: One侧边栏
  * @Date: 2020-12-21 16:14:58
- * @LastEditTime: 2021-11-15 15:12:45
+ * @LastEditTime: 2021-11-24 08:26:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\One\OneSidebar.vue
 -->
 <script setup lang="ts">
-import { one } from '@/api/index'
-import { reactive, onMounted } from 'vue'
-import SStatistics from '@/components/sidebarModule/sstatistics/sStatistics.vue'
-import OneCategory from './components/OneCategory.vue'
-import OneSidetype from './components/OneSidetype.vue'
+  import { one } from '@/api/index'
+  import { reactive, onMounted } from 'vue'
+  import SStatistics from '@/components/sidebarModule/sstatistics/sStatistics.vue'
+  import OneCategory from './components/OneCategory.vue'
+  import OneSidetype from './components/OneSidetype.vue'
 
-interface State {
-  resultOneType: any
-  resultOne: any
-  modal2Visible: boolean
-  text: any
-  Count: number
-  textNum: number
-  readCount: number
-  timeCreate: any
-}
+  interface State {
+    resultOneType: any
+    resultOne: any
+    modal2Visible: boolean
+    text: any
+    Count: number
+    textNum: number
+    readCount: number
+    timeCreate: any
+  }
 
-const state: State = reactive({
-  resultOneType: [],
-  resultOne: [],
-  modal2Visible: false,
-  text: [],
-  Count: 0,
-  textNum: 0,
-  readCount: 0,
-  timeCreate: ''
-})
+  const state: State = reactive({
+    resultOneType: [],
+    resultOne: [],
+    modal2Visible: false,
+    text: [],
+    Count: 0,
+    textNum: 0,
+    readCount: 0,
+    timeCreate: ''
+  })
 
-const getall = async () => {
-  await one.GetOneTypeAllAsync().then((res: any) => {
-    state.resultOneType = res.data
-  })
-  await one.GetFyAsync(0, '0', 1, 10, 'read', true, true).then((res: any) => {
-    state.resultOne = res.data
-  })
-  await one.GetFyAsync(0, '0', 1, 1, 'id', true, true).then((res: any) => {
-    state.timeCreate = res.data[0].timeCreate
-  })
-  await one.CountAsync(0, '0', true).then((res: any) => {
-    state.Count = res.data
-  })
-  await one.GetSumAsync('text').then((res: any) => {
-    state.textNum = res.data
-  })
-  await one.GetSumAsync('read').then((res: any) => {
-    state.readCount = res.data
-    console.log('%c [ state.readCount ]', 'font-size:13px; background:pink; color:#bf2c9f;', state.readCount)
-  })
-}
+  const getall = async () => {
+    await one.GetOneTypeAllAsync().then((res: any) => {
+      state.resultOneType = res.data
+    })
+    await one.GetFyAsync(0, '0', 1, 10, 'read', true, true).then((res: any) => {
+      state.resultOne = res.data
+    })
+    await one.GetFyAsync(0, '0', 1, 1, 'id', true, true).then((res: any) => {
+      state.timeCreate = res.data[0].timeCreate
+    })
+    await one.CountAsync(0, '0', true).then((res: any) => {
+      state.Count = res.data
+    })
+    await one.GetSumAsync('text').then((res: any) => {
+      state.textNum = res.data
+    })
+    await one.GetSumAsync('read').then((res: any) => {
+      state.readCount = res.data
+      console.log('%c [ state.readCount ]', 'font-size:13px; background:pink; color:#bf2c9f;', state.readCount)
+    })
+  }
 
-onMounted(async () => {
-  await getall()
-})
+  onMounted(async () => {
+    await getall()
+  })
 </script>
 
 <template>
@@ -110,53 +110,53 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import '../../design/methodCss';
-@import '../../design/uitl';
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
 
-.one-sidebar {
-  @apply fixed ml-3;
+  .one-sidebar {
+    @apply fixed ml-3;
 
-  @include excursion($Text_height, null, null, $sidebar_r_r);
-  @include w-h(20%, 90%);
+    @include excursion($Text_height, null, null, $sidebar_r_r);
+    @include w-h(20%, 90%);
 
-  .one-sidebar-div {
-    @include w-h(100%, 100%);
+    .one-sidebar-div {
+      @include w-h(100%, 100%);
 
-    overflow: auto;
+      overflow: auto;
 
-    .one-sidebar-describe {
-      width: 97%;
+      .one-sidebar-describe {
+        width: 97%;
 
-      @apply mb-2 m-auto;
-      @apply shadow rounded bg-white text-center;
+        @apply mb-2 m-auto;
+        @apply shadow rounded bg-white text-center;
 
-      h4 {
-        height: 2rem;
-        color: #1b1e21;
-        font-size: 15px;
-        line-height: 2.5rem;
-      }
+        h4 {
+          height: 2rem;
+          color: #1b1e21;
+          font-size: 15px;
+          line-height: 2.5rem;
+        }
 
-      .one-sidebar-describe-text {
-        p {
-          @apply text-sm px-2 py-4 m-1 cursor-pointer;
+        .one-sidebar-describe-text {
+          p {
+            @apply text-sm px-2 py-4 m-1 cursor-pointer;
+          }
         }
       }
     }
   }
-}
 
-.icon {
-  width: 1em;
-  height: 1em;
-  overflow: hidden;
-  vertical-align: -0.1em;
-  fill: currentColor;
-}
-
-@screen xp {
-  .one-Sidebar {
-    display: none;
+  .icon {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: -0.1em;
+    fill: currentColor;
   }
-}
+
+  @screen xp {
+    .one-Sidebar {
+      display: none;
+    }
+  }
 </style>

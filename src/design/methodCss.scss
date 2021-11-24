@@ -52,7 +52,7 @@ $ml:25%;
 
 // 背景图片
 @mixin bg-img($imgUrl) {
-  background: no-repeat center/100% url($imgUrl);
+ // background: no-repeat center/100% url($imgUrl);
 }
 
 /**
@@ -139,20 +139,17 @@ $ml:25%;
   }
 }
 
-// 偏移
+/*上 下 左 右边 偏移*/
 @mixin excursion($t, $b, $l, $r) {
   @if $t !=null {
     top: $t;
   }
-
   @if $b !=null {
     bottom: $b;
   }
-
   @if $l !=null {
     left: $l;
   }
-
   @if $r !=null {
     right: $r;
   }

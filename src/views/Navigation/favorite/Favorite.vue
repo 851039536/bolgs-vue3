@@ -1,9 +1,9 @@
 <script lang="ts" setup>
   import { onMounted } from 'vue'
-  import FavSidebar from './FavSidebar.vue'
   import { state } from './data'
   import { method } from './index'
   import { winUrl } from '@/hooks/routers'
+  import FavSidebar from './FavSidebar.vue'
 
   onMounted(async () => {
     await method.GetApi('文档')

@@ -1,7 +1,7 @@
 /*
  * @Author: 程序入口
  * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-23 10:55:50
+ * @LastEditTime: 2021-11-24 10:55:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\main.ts
@@ -9,7 +9,7 @@
 import {
   createApp
 } from 'vue'
-
+import { setupAntd } from '../src/components/antd/antd-ui'
 import App from './App.vue'
 import 'normalize.css/normalize.css'
 import animated from 'animate.css'
@@ -78,64 +78,27 @@ import IndexSidebar from "./views/index/components/sidebar/IndexSidebar.vue";
 import BlogSidebar from "./components/raside/rAside.vue";
 import router from './router/index'
 import store from './store/index'
-// import axios from './utils/http/axios'
 
 // use
 const app = createApp(App);
-// app.config.globalProperties.$api = axios
 app.component("IndexSidebar", IndexSidebar)
 app.component("BlogSidebar", BlogSidebar)
 
-import {
-  Button, Pagination, PageHeader, Select, Table, Layout, Menu, Form, Input, Spin,
-  BackTop, Modal, message, Space, Breadcrumb, Popconfirm, Avatar, Skeleton
-} from 'ant-design-vue';
-import 'ant-design-vue/lib/pagination/style';
-import 'ant-design-vue/lib/button/style';
-import 'ant-design-vue/lib/notification/style';
-import 'ant-design-vue/lib/page-header/style';
-import 'ant-design-vue/lib/space/style';
-import 'ant-design-vue/lib/select/style';
-import 'ant-design-vue/lib/table/style';
-import 'ant-design-vue/lib/layout/style';
-import 'ant-design-vue/lib/form/style';
-import 'ant-design-vue/lib/input/style';
-import 'ant-design-vue/lib/spin/style';
-import 'ant-design-vue/lib/back-top/style';
-import 'ant-design-vue/lib/modal/style';
-import 'ant-design-vue/lib/message/style';
-import 'ant-design-vue/lib/breadcrumb/style';
-import 'ant-design-vue/lib/popconfirm/style';
-import 'ant-design-vue/lib/avatar/style';
-import 'ant-design-vue/lib/skeleton/style';
-
-app.config.globalProperties.$mes = message
-app.use(Pagination);
-app.use(Avatar);
-app.use(Skeleton);
-app.use(Popconfirm);
-app.use(Breadcrumb);
-app.use(Modal);
-app.use(Space);
-app.use(BackTop);
-app.use(Input);
-app.use(Spin);
-app.use(Form);
-app.use(Menu);
-app.use(Layout);
-app.use(Table);
-app.use(Button);
-app.use(PageHeader);
-app.use(Select);
-
+function getImageUrl(name) {
+  return new URL(`/src/assets/img/blog/${name}`, import.meta.url).href
+}
 app.use(lazyPlugin, {
-  loading: require('@/assets/img/blog/2.jpg'), // 图片加载时默认图片
-  error: require('@/assets/img/blog/1.jpg')// 图片加载失败时默认图片
+
+  loading: getImageUrl('2.jpg'),
+  error: getImageUrl('1.jpg')
 })
+
+
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);
 app.use(store);
 app.use(animated)
 app.use(LuckDraw)
 app.use(router)
+setupAntd(app)
 app.mount("#app");

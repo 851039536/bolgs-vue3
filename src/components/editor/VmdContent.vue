@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2021-09-22 13:52:06
- * @LastEditTime: 2021-11-18 14:44:31
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\components\editor\VmdContent.vue
--->
 <script setup lang="ts">
   import { onBeforeUpdate, reactive } from 'vue'
 
