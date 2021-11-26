@@ -7,17 +7,17 @@
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
  */
 
-import { reactive } from "vue"
+import { reactive } from 'vue'
 import { IntNav } from '@/api/data/interData'
 interface State {
-  dataResult: any,
-  navTypeData: any,
+  dataResult: any
+  navTypeData: any
   navStr: string
 }
 const state: State = reactive({
   dataResult: [],
   navTypeData: [],
-  navStr: "ALL"
+  navStr: 'ALL'
 })
 
 const columns = [
@@ -27,7 +27,7 @@ const columns = [
     title: '用户',
     dataIndex: 'user.name',
     width: 55,
-    align: "center"
+    align: 'center'
   },
   {
     title: 'img',
@@ -45,58 +45,50 @@ const columns = [
     title: '类别',
     dataIndex: 'type.title',
     width: 60,
-    align: "center"
+    align: 'center'
   },
-
 
   {
     title: '创建',
     dataIndex: 'timeCreate',
     width: 80,
-    align: "center"
+    align: 'center'
   },
   {
     title: '更新',
     dataIndex: 'timeModified',
     width: 80,
-    align: "center"
+    align: 'center'
   },
-
 
   {
     title: '操作',
     key: '编辑',
     width: 40,
     fixed: 'right',
-    align: "center",
-    slots: { customRender: 'ed' },//绑定插槽
+    align: 'center',
+    slots: { customRender: 'ed' } //绑定插槽
   },
   {
     title: '操作',
     key: '删除',
     fixed: 'right',
     width: 40,
-    align: "center",
-    slots: { customRender: 'de' },//绑定插槽
-  },
+    align: 'center',
+    slots: { customRender: 'de' } //绑定插槽
+  }
 ]
 
 const formState: IntNav = reactive({
   id: 0,
-  title: "",
-  describe: "",
-  img: "",
+  title: '',
+  describe: '',
+  img: '',
   typeId: 0,
   userId: 0,
-  url: "www.xxx.com",
-
+  url: 'www.xxx.com'
 })
 const stateArray: any = reactive({
-  navResult: [],
+  navResult: []
 })
-export {
-  columns,
-  state,
-  formState,
-  stateArray
-}
+export { columns, state, formState, stateArray }

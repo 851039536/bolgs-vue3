@@ -7,12 +7,12 @@
  * @FilePath: \blogs-s\src\views\one\one.vue
 -->
 <script setup lang="ts">
-import OneSidebar from './OneSidebar.vue'
-import { method, state } from './index'
-import OneTop from './components/OneTop.vue'
-import OneContent from './components/OneContent.vue'
-method.Count()
-method.getOne()
+  import OneSidebar from './OneSidebar.vue'
+  import { method, state } from './index'
+  import OneTop from './components/OneTop.vue'
+  import OneContent from './components/OneContent.vue'
+  method.Count()
+  method.getOne()
 </script>
 
 <template>
@@ -66,5 +66,5 @@ method.getOne()
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+  @import './index.scss';
 </style>

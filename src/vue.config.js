@@ -8,70 +8,64 @@
  */
 // const CompressionWebpackPlugin = require("compression-webpack-plugin");
 
-const path = require("path");
-const resolve = dir => path.join(__dirname, dir);
+const path = require('path')
+const resolve = (dir) => path.join(__dirname, dir)
 
 module.exports = {
-
-
-  chainWebpack: config => {
-    config.resolve.extensions
-      .add('ts')
-      .add('tsx');
+  chainWebpack: (config) => {
+    config.resolve.extensions.add('ts').add('tsx')
     // 修复热更新失效
-    config.resolve.symlinks(true);
+    config.resolve.symlinks(true)
     //  如果使用多页打包，使用vue inspect --plugins 查看html是都在结果数组中
 
     // eslint-disable-next-line no-undef
-    config.plugin('cache').use(HardSourceWebpackPlugin);
+    config.plugin('cache').use(HardSourceWebpackPlugin)
 
     config
       .plugin('ContextReplacementPlugin')
       // eslint-disable-next-line no-undef
-      .use(webpack.ContextReplacementPlugin, [/moment[/\\]locale$/, /zh-cn/]);
-
+      .use(webpack.ContextReplacementPlugin, [/moment[/\\]locale$/, /zh-cn/])
   },
   // 基本路径
-  publicPath: "./",
+  publicPath: './',
   // 相对于打包路径index.html的路径
-  indexPath: "index.html",
+  indexPath: 'index.html',
   // 文件输出目录
-  outputDir: "dist",
+  outputDir: 'dist',
   // eslint-loader 是否在保存的时候检查
   lintOnSave: false,
   // 生成的静态资源存放的目录
-  assetsDir: "static",
+  assetsDir: 'static',
   // 以多页模式构建应用程序
   pages: undefined,
   // 是否使用包含运行时编译器的vue构建版本
   runtimeCompiler: false,
   // 是否为babel或typescript使用thread-loader，在系统的CPU有多于一个内核时自动启用，仅作用于生产环境，在适当的时候开启多线程去并发的执行压缩
-  parallel: require("os").cpus().length > 1,
+  parallel: require('os').cpus().length > 1,
   // 生产环境是否生成sourceMap 文件，一般不建议打开
   productionSourceMap: false,
   // 调整webpack配置
   configureWebpack: (config) => {
-
     // 取消webpack警告性能的提示
-    config.performance = {};
+    config.performance = {}
     // 打包分离js
     config.optimization = {
       splitChunks: {
-        chunks: "async",
+        chunks: 'async',
         minChunks: 2,
         minSize: 100000,
         cacheGroups: {
           base: {
-            name: "base",
+            name: 'base',
             minChunks: 1,
             test: /[\\/]node_modules[\\/]vue[\\/]|[\\/]node_modules[\\/]vue-router[\\/]|[\\/]node_modules[\\/]vuex[\\/]|[\\/]node_modules[\\/]axios[\\/]/,
-            chunks: "initial",
+            chunks: 'initial',
             priority: -3
           },
           antd: {
-            name: "ant-design",
+            name: 'ant-design',
             test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/,
-            chunks: "initial",
+            chunks: 'initial',
             minChunks: 1,
             priority: -4,
             reuseExistingChunk: true,
@@ -79,10 +73,10 @@ module.exports = {
           }
         }
       }
-    };
+    }
     config.optimization.runtimeChunk = {
-      name: "manifest"
-    };
+      name: 'manifest'
+    }
   },
   css: {
     loaderOptions: {

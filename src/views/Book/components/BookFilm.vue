@@ -33,5 +33,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../index.scss';
+  @import '../index.scss';
 </style>

@@ -8,16 +8,16 @@
 -->
 
 <script lang="ts" setup>
-import { one } from '../data'
-import { method } from '../index'
+  import { one } from '../data'
+  import { method } from '../index'
 
-defineProps({
-  resultData: {
-    type: Array as () => Array<one>, //(string也可以是其他你自定义的接口)
-    required: true,
-    default: () => []
-  }
-})
+  defineProps({
+    resultData: {
+      type: Array as () => Array<one>, //(string也可以是其他你自定义的接口)
+      required: true,
+      default: () => []
+    }
+  })
 </script>
 
 <template>
@@ -37,38 +37,38 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@import '@/design/methodCss';
-@import '@/design/uitl';
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
 
-.onecontent {
-  @apply flex flex-wrap;
+  .onecontent {
+    @apply flex flex-wrap;
 
-  .onecontent-div {
-    width: 31%;
-    height: 150px;
+    .onecontent-div {
+      width: 31%;
+      height: 150px;
 
-    @apply mt-1 m-auto;
-    @apply relative shadow rounded-sm cursor-pointer;
+      @apply mt-1 m-auto;
+      @apply relative shadow rounded-sm cursor-pointer;
 
-    .onecontent-div-frame {
-      @apply w-full h-full;
+      .onecontent-div-frame {
+        @apply w-full h-full;
 
-      .onecontent_div_frame_title {
-        height: 23%;
+        .onecontent_div_frame_title {
+          height: 23%;
 
-        @apply m-1 px-1 text-base font-semibold bg-gray-100;
+          @apply m-1 px-1 text-base font-semibold bg-gray-100;
 
-        @include line-one;
-      }
+          @include line-one;
+        }
 
-      .onecontent-div-frame-text {
-        @apply px-2 m-1 p-1 text-sm font-thin;
+        .onecontent-div-frame-text {
+          @apply px-2 m-1 p-1 text-sm font-thin;
 
-        height: 55%;
+          height: 55%;
 
-        @include line-numbers(4);
+          @include line-numbers(4);
+        }
       }
     }
   }
-}
 </style>

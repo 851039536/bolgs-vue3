@@ -25,7 +25,4 @@ interface oneType {
   title: number
 }
 
-export {
-  one,
-  oneType
-}
+export { one, oneType }

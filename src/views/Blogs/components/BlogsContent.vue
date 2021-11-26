@@ -11,35 +11,29 @@
   import { IntArticle } from '@/api/data/interData'
 
   defineProps({
-    dataResult: {
+    resultData: {
       type: Array as () => Array<IntArticle>,
       required: true,
       default: () => []
     }
   })
-  async function skip(id: number) {
-    await RouterId('/IndexText', id)
-  }
   function getImageUrl(name) {
     return new URL(`/src/assets/img/${name}`, import.meta.url).href
   }
 </script>
 <template>
   <!-- 内容框 -->
-  <div class="blogs_content" v-for="res in dataResult" :key="res.id">
-    <div class="blogs_content_div">
-      <div class="blogs_content_img">
-        <!-- <img v-lazy="require(data.img)" /> -->
-        <!-- <img v-lazy="require('/src/assets/img/' + res.img)" /> -->
-        <!-- <img v-lazy="'/src/assets/img/' + res.img" /> -->
+  <div class="blogs-content" v-for="res in resultData" :key="res.id">
+    <div class="blogs-content_div">
+      <div class="blogs-content_img">
         <img v-lazy="getImageUrl(res.img)" />
       </div>
-      <div class="blogs_content__frame">
-        <p class="blogs_content__frame-1">
-          <a @click="skip(res.id)">{{ res.title }}</a>
+      <div class="blogs-content__frame">
+        <p class="blogs-content__frame-1">
+          <a @click="RouterId('/index/content', res.id)">{{ res.title }}</a>
         </p>
-        <p class="blogs_content__frame-2">{{ res.sketch }}</p>
-        <p class="blogs_content__frame-3">
+        <p class="blogs-content__frame-2">{{ res.sketch }}</p>
+        <p class="blogs-content__frame-3">
           <span>文章</span>
           <span>{{ res.read }} ℃</span>
           <span>赞 {{ res.give }}</span>
@@ -54,17 +48,17 @@
 <style lang="scss" scoped>
   @import '@/design/methodCss.scss';
   @import '@/design/uitl';
-  .blogs_content {
+  .blogs-content {
     @apply m-2;
 
-    .blogs_content_div {
+    .blogs-content_div {
       @apply flex;
 
       @include initialize(100%, 155px, 10px, null, null, null, #ffffff);
 
       @apply shadow rounded-sm cursor-pointer;
 
-      .blogs_content_img {
+      .blogs-content_img {
         @include w-h(25%, 100%);
 
         @apply p-2;
@@ -74,16 +68,16 @@
         }
       }
 
-      .blogs_content__frame {
+      .blogs-content__frame {
         @include w-h(75%, 100%);
 
-        .blogs_content__frame-1 {
+        .blogs-content__frame-1 {
           @apply m-1 px-1 text-base font-semibold;
 
           @include line-one;
         }
 
-        .blogs_content__frame-2 {
+        .blogs-content__frame-2 {
           @apply px-2 m-1 p-1;
 
           height: 52%;
@@ -93,7 +87,7 @@
           @include line-numbers(4);
         }
 
-        .blogs_content__frame-3 {
+        .blogs-content__frame-3 {
           @apply m-1 px-1 font-semibold;
 
           span {

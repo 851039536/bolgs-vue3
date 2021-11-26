@@ -7,8 +7,8 @@
  * @FilePath: \blogs-s\src\utils\api\request.ts
  */
 // request.ts
-import axios from "./index";
-import qs from "qs";
+import axios from './index'
+import qs from 'qs'
 
 export class Request {
   /**
@@ -18,23 +18,27 @@ export class Request {
    */
   static get = async (url: string, params?: any) => {
     return await new Promise((resolve, reject) => {
-      axios.get(url, { params: params }).then(res => {
-        resolve(res);
-      }).catch(err => {
-        reject(err);
-      })
+      axios
+        .get(url, { params: params })
+        .then((res) => {
+          resolve(res)
+        })
+        .catch((err) => {
+          reject(err)
+        })
     })
   }
 
   static post = async (url: string, params?: any) => {
     return await new Promise((resolve, reject) => {
-      axios.post(url, qs.stringify(params)).then(res => {
-        resolve(res);
-      }).catch(err => {
-        reject(err);
-      })
+      axios
+        .post(url, qs.stringify(params))
+        .then((res) => {
+          resolve(res)
+        })
+        .catch((err) => {
+          reject(err)
+        })
     })
   }
-
 }
-

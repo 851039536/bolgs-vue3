@@ -1,39 +1,37 @@
-/*
- * @Author: your name
- * @Date: 2021-11-23 16:49:35
- * @LastEditTime: 2021-11-24 12:16:46
- * @LastEditors: your name
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \blogs-s\vite.config.js
- */
-import {
-  defineConfig,
-} from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
-import {
-  resolve
-} from 'path'
-// https://vitejs.dev/config/
+import ViteRestart from 'vite-plugin-restart' //通过监听文件修改，自动重启 vite 服务
+import { resolve } from 'path'
 export default defineConfig({
-  plugins: [vue(),
-    styleImport({
-      libs: [{
-        libraryName: 'ant-design-vue',
-        esModule: true,
-        resolveStyle: (name) => {
-          return `ant-design-vue/es/${name}/style/index`
-        }
-      }]
+  plugins: [
+    vue(),
+    ViteRestart({
+      restart: ['my.config.[jt]s']
     }),
+    styleImport({
+      libs: [
+        {
+          libraryName: 'ant-design-vue',
+          esModule: true,
+          resolveStyle: (name) => {
+            return `ant-design-vue/es/${name}/style/index`
+          }
+        }
+      ]
+    })
   ],
   resolve: {
+    extensions: ['.vue', '.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.node', '.scss'],
     alias: {
       '@': resolve('./src'),
+      '@vi': resolve('./src/views')
+      // 'vue': "vue/dist/vue.esm-bundler.js"
     }
   },
   build: {
-    // 去除console
+    //outDir: 'dist', // 产出目录
+    //去除console
     terserOptions: {
       compress: {
         drop_console: true,
@@ -45,7 +43,8 @@ export default defineConfig({
     // 🔥此处添加全局css🔥
     preprocessorOptions: {
       less: {
-        modifyVars: { // 更改主题在这里
+        modifyVars: {
+          // 更改主题在这里
           'primary-color': '#52c41a',
           'link-color': '#1DA57A',
           'border-radius-base': '2px'
@@ -53,26 +52,26 @@ export default defineConfig({
         javascriptEnabled: true
       },
       scss: {
+        //charset: false,
         //additionalData: '@import "./src/assets/common.scss";'
+        javascriptEnabled: true
       }
     }
   },
-  base: './', // 打包路径
+  base: '/', // 打包路径
   server: {
     host: '0.0.0.0',
-    port: 4000, // 服务端口号
+    port: 3000, // 服务端口号
     open: false, // 服务启动时是否自动打开浏览器
     https: false,
     cors: true, // 允许跨域
     // 设置代理，根据我们项目实际情况配置
     proxy: {
       // '/api': {
-      //   target: 'http://xxx.xxx.xxx.xxx:8000',
+      //   target: 'http://www.baidu.com',
       //   changeOrigin: true,
-      //   secure: false,
-      //   rewrite: (path) => path.replace('/api/', '/')
-      // }
+      //   rewrite: (path) => path.replace(/^\/api/, ''),
+      // },
     }
-  },
-  extensions: [".js", ".ts", ".tsx", ".jsx"],
+  }
 })

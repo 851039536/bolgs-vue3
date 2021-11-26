@@ -4,11 +4,11 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        'useBuiltIns': 'usage', // entry，usage
-        'corejs': 3
+        useBuiltIns: 'usage', // entry，usage
+        corejs: 3
       }
     ]
-  ],
+  ]
   // 按需引入Ant Design of Vue组件样式
   // plugins: [
   //   [

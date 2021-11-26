@@ -8,17 +8,16 @@
  */
 import request from '@/utils/http/axios'
 export class user {
-
   static async GetByIdAsync(id: number) {
     return await request({
-      url: "/api/SnUser/GetByIdAsync?id=" + id + "&cache=true",
-      method: 'get',
+      url: '/api/SnUser/GetByIdAsync?id=' + id + '&cache=true',
+      method: 'get'
     })
   }
   static async Login(user: string, pwd: string) {
     return await request({
-      url: "/api/SnUser/Login?users=" + user + "&pwd=" + pwd,
-      method: 'get',
+      url: '/api/SnUser/Login?users=' + user + '&pwd=' + pwd,
+      method: 'get'
     })
   }
 }

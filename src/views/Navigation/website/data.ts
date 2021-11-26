@@ -7,7 +7,7 @@
  * @FilePath: \blogs-s\src\views\svideo\data.ts
  */
 
-import { reactive } from "vue";
+import { reactive } from 'vue'
 
 interface State {
   resultData: any
@@ -21,9 +21,7 @@ const state: State = reactive({
   page: 1,
   pagesize: 9,
   count: 0,
-  current: 1,
+  current: 1
 })
 
-export {
-  state
-}
+export { state }

@@ -7,28 +7,28 @@
  * @FilePath: \blogs-s\src\views\TimeLine\TimeLine.vue
 -->
 <script lang="ts" setup>
-import { reactive, onMounted } from 'vue'
-import { article } from '@/api'
-import { RouterId } from '@/hooks/routers'
+  import { reactive, onMounted } from 'vue'
+  import { article } from '@/api'
+  import { RouterId } from '@/hooks/routers'
 
-interface States {
-  reverse: boolean
-  spinning: boolean
-  items: any
-}
+  interface States {
+    reverse: boolean
+    spinning: boolean
+    items: any
+  }
 
-const state: States = reactive({
-  reverse: true,
-  spinning: true,
-  items: [],
-})
-
-onMounted(async () => {
-  article.GetFyTitleAsync(1, 10).then((res: any) => {
-    state.items = res.data
-    state.spinning = false
+  const state: States = reactive({
+    reverse: true,
+    spinning: true,
+    items: []
   })
-})
+
+  onMounted(async () => {
+    article.GetFyTitleAsync(1, 10).then((res: any) => {
+      state.items = res.data
+      state.spinning = false
+    })
+  })
 </script>
 
 <template>
@@ -42,18 +42,12 @@ onMounted(async () => {
     <div class="timeline-time">
       <div class="block">
         <!-- 骨架 -->
-        <a-skeleton
-          :loading="state.spinning"
-          :paragraph="{ rows: 15 }"
-          active
-        />
+        <a-skeleton :loading="state.spinning" :paragraph="{ rows: 15 }" active />
         <a-timeline v-for="activity in state.items" :key="activity.article_id">
           <div class="block-1">
             <a-timeline-item>
               <h4>
-                <a @click="RouterId('/IndexText', activity.articleId)">{{
-                  activity.title
-                }}</a>
+                <a @click="RouterId('/IndexText', activity.articleId)">{{ activity.title }}</a>
               </h4>
             </a-timeline-item>
             <a-timeline-item color="green">
@@ -70,5 +64,5 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import './TimeLine.scss';
+  @import './TimeLine.scss';
 </style>

@@ -68,8 +68,8 @@
     </div>
     <div>
       <a-button type="primary" @click="onSubmit">添加</a-button>
-      <a-button style="margin-left: 10px;" @click="go(-1)">返回</a-button>
-      <a-button style="margin-left: 10px;" @click="reloads">刷新</a-button>
+      <a-button style="margin-left: 10px" @click="go(-1)">返回</a-button>
+      <a-button style="margin-left: 10px" @click="reloads">刷新</a-button>
     </div>
   </div>
 </template>

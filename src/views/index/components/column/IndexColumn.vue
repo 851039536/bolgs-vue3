@@ -1,45 +1,56 @@
-<!--
- * @Author: your name
- * @Date: 2020-12-08 11:17:02
- * @LastEditTime: 2021-11-17 12:10:26
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\views\index\components\column\IndexColumn.vue
--->
-
 <script lang="ts" setup>
-  import { onMounted } from 'vue'
-  import { state, column } from './index'
-  import BlogsContent from '@/views/blogs/components/BlogsContent.vue'
+  import { state, method } from '../../data/column'
+  import BlogsContent from '@vi/Blogs/components/BlogsContent.vue'
 
-  onMounted(async () => {
-    await column.GetCount()
-    await column.GetFy()
-  })
+  method.GetCount()
+  method.GetFy()
 </script>
 
 <template>
-  <div class="indextitle animate__animated animate__fadeIn">
-    <a-back-top />
-    <!-- article表内容 -->
-    <BlogsContent :data-result="state.dataResult"></BlogsContent>
-    <!-- end article表内容 -->
-    <a-button type="primary">Primary Button</a-button>
-    <!-- 分页 -->
-    <div class="indextitle_page">
-      <a-pagination
-        size="small"
-        @change="column.CurrentChange"
-        :total="state.count"
-        :pageSize="state.pagesize"
-        show-quick-jumper
-      />
+  <div id="blogs" class="animate__animated animate__fadeIn">
+    <div class="blogs_main">
+      <!-- 内容框 -->
+      <blogs-content :result-data="state.resultData"></blogs-content>
+      <!-- end 内容框  -->
+      <!-- 分页 -->
+      <div class="indextitle_page">
+        <a-pagination
+          size="small"
+          @change="method.CurrentChange"
+          :total="state.count"
+          :pageSize="state.pagesize"
+          show-quick-jumper
+        />
+      </div>
+      <!-- end 分页-->
     </div>
-    <!-- end 分页-->
   </div>
 </template>
 
 <style lang="scss">
-  @import './index.scss';
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
   @import '@/views/blogs/index.scss';
+
+  #blogs {
+    @include initialize(50%, 92%, 4.5%, null, 25%, null, #ffffff);
+    @apply shadow;
+
+    .blogs_main {
+      @apply shadow-sm rounded-sm overflow-auto;
+      .blogs-page {
+        @apply w-full py-5 bg-white shadow rounded;
+      }
+    }
+  }
+
+  @screen xp {
+    #blogs {
+      .blogs_main {
+        @apply m-0 mt-14;
+
+        width: 100%;
+      }
+    }
+  }
 </style>

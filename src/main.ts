@@ -1,11 +1,4 @@
-/*
- * @Author: 程序入口
- * @Date: 2020-12-07 18:59:37
- * @LastEditTime: 2021-11-24 10:55:20
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\main.ts
- */
+
 import {
   createApp
 } from 'vue'

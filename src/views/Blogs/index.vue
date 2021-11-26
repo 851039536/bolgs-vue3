@@ -8,22 +8,21 @@
 -->
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import SAspin from '@/components/aspin/sAspin.vue'
-import BlogsSidebar from './components/BlogsSidebar.vue'
-import { blogsList } from './components/data'
-import BlogsContent from './components/BlogsContent.vue'
-import { method, GetApi } from './index'
+  import SAspin from '@/components/aspin/sAspin.vue'
+  import { onMounted } from 'vue'
+  import { fyData, method } from '@vi/Blogs/data/index'
+  import { tool } from '@/utils/common/tool'
+  import BlogsContent from '@vi/Blogs/components/BlogsContent.vue'
+  import BlogsSidebar from '@vi/Blogs/components/BlogsSidebar.vue'
+  async function currentchange(val: number) {
+    fyData.page = val
+    await method.GetFy()
+    await tool.BackTop()
+  }
 
-import { tool } from '@/utils/common/tool'
-async function currentchange(val: number) {
-  blogsList.page = val
-  await method.GetFyAsync()
-  await tool.BackTop()
-}
-onMounted(async () => {
-  await GetApi()
-})
+  onMounted(async () => {
+    await method.GetApi()
+  })
 </script>
 
 <template>
@@ -34,15 +33,15 @@ onMounted(async () => {
   <div id="blogs" class="animate__animated animate__fadeIn">
     <div class="blogs_main">
       <!-- 内容框 -->
-      <blogs-content :dataResult="blogsList.dataResult"></blogs-content>
+      <blogs-content :result-data="fyData.resultData"></blogs-content>
       <!-- end 内容框  -->
       <!-- 分页 -->
       <div class="blogs-page">
         <a-pagination
           size="small"
           @change="currentchange"
-          :total="blogsList.count"
-          :pageSize="blogsList.pagesize"
+          :total="fyData.count"
+          :pageSize="fyData.pagesize"
           show-quick-jumper
         ></a-pagination>
       </div>
@@ -52,5 +51,5 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import 'index.scss';
+  @import 'index.scss';
 </style>

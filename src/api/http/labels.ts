@@ -9,18 +9,17 @@
 import request from '@/utils/http/axios'
 
 export class labels {
-
   static async GetByIdAsync(id: number) {
     return await request({
-      url: "/api/SnLabels/GetByIdAsync?id=" + id + "&cache=true",
-      method: 'get',
+      url: '/api/SnLabels/GetByIdAsync?id=' + id + '&cache=true',
+      method: 'get'
     })
   }
 
   static async GetAllAsync(cache: boolean) {
     return await request({
-      url: "/api/SnLabels/GetAllAsync?cache=" + cache,
-      method: 'get',
+      url: '/api/SnLabels/GetAllAsync?cache=' + cache,
+      method: 'get'
     })
   }
 }

@@ -1,4 +1,3 @@
-
 /*
  * @Author: your name
  * @Date: 2021-11-01 15:24:14
@@ -7,12 +6,10 @@
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\admin\utils\data.ts
  */
-import { reactive } from "vue";
+import { reactive } from 'vue'
 const navname = reactive({
-  name: "",
-  name2: ""
+  name: '',
+  name2: ''
 })
 
-export {
-  navname
-}
+export { navname }

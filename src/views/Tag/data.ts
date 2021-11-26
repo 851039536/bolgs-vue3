@@ -7,7 +7,7 @@
  * @FilePath: \blogs-s\src\views\tag\index.ts
  */
 
-import { reactive } from "vue"
+import { reactive } from 'vue'
 
 interface State {
   newinfo?: any
@@ -21,10 +21,7 @@ const state: State = reactive({
   labels: [],
   blog: '',
   fadeIn: 'animate__fadeIn',
-  tag: 'tag',
+  tag: 'tag'
 })
 
-export {
-  state,
-  State
-}
+export { state, State }

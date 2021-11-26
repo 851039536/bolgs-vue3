@@ -1,54 +1,54 @@
 <script lang="ts" setup>
-import { reactive, onMounted } from 'vue'
-import { Routers } from '@/hooks/routers'
-import { user } from '@/api/index'
-import { toScss } from '@/hooks/dynamicScss'
+  import { reactive, onMounted } from 'vue'
+  import { Routers } from '@/hooks/routers'
+  import { user } from '@/api/index'
+  import { toScss } from '@/hooks/dynamicScss'
 
-interface State {
-  activeClass: string
-  errorClass: string
-  bounceIn: string
-  backInDown: string
-  fadeInTopRight: string
-  fadeIn: string
-  User: any
-}
-const state: State = reactive({
-  activeClass: 'animate__animated',
-  errorClass: 'animate__fadeInRightBig',
-  bounceIn: 'animate__bounceIn',
-  backInDown: 'animate__backInDown',
-  fadeInTopRight: 'animate__fadeInTopRight',
-  fadeIn: 'animate__fadeIn',
-  User: [],
-})
-
-const Getid = async (id: number) => {
-  switch (id) {
-    case 1:
-      await Routers('/index')
-      break
-    case 2:
-      await Routers('/Svideo')
-      break
-    case 3:
-      await Routers('/Talk')
-      break
-    case 4:
-      await Routers('/favorite')
-      break
-    case 5:
-      await Routers('/Leave')
-      break
+  interface State {
+    activeClass: string
+    errorClass: string
+    bounceIn: string
+    backInDown: string
+    fadeInTopRight: string
+    fadeIn: string
+    User: any
   }
-}
-onMounted(async () => {
-  await toScss('sAbout')
-  await user.GetByIdAsync(4).then((res: any) => {
-    state.User = res.data
+  const state: State = reactive({
+    activeClass: 'animate__animated',
+    errorClass: 'animate__fadeInRightBig',
+    bounceIn: 'animate__bounceIn',
+    backInDown: 'animate__backInDown',
+    fadeInTopRight: 'animate__fadeInTopRight',
+    fadeIn: 'animate__fadeIn',
+    User: []
   })
-  window.scrollTo(0, 0)
-})
+
+  const Getid = async (id: number) => {
+    switch (id) {
+      case 1:
+        await Routers('/index')
+        break
+      case 2:
+        await Routers('/Svideo')
+        break
+      case 3:
+        await Routers('/Talk')
+        break
+      case 4:
+        await Routers('/favorite')
+        break
+      case 5:
+        await Routers('/Leave')
+        break
+    }
+  }
+  onMounted(async () => {
+    await toScss('sAbout')
+    await user.GetByIdAsync(4).then((res: any) => {
+      state.User = res.data
+    })
+    window.scrollTo(0, 0)
+  })
 </script>
 
 <template>

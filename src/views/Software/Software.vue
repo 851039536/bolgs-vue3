@@ -34,9 +34,7 @@
       <div class="software_content" v-for="data in dataTest" :key="data.oneId">
         <div class="flex software_content_div">
           <div class="software_content_img">
-            <img
-              src="https://media.creatorsdaily.com/QmQPDaRDWY6hJQKPA4T47xE6cXzHrdzWXwjtjWMDBCBNAo-160-160-contain"
-            />
+            <img src="https://media.creatorsdaily.com/QmQPDaRDWY6hJQKPA4T47xE6cXzHrdzWXwjtjWMDBCBNAo-160-160-contain" />
           </div>
           <div class="oftware_content__frame">
             <p class="oftware_content__frame-1">
@@ -61,67 +59,63 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
-import { message } from 'ant-design-vue'
-import FavSidebar from '../navigation/favorite/FavSidebar.vue'
-import { useRouter } from 'vue-router'
-export default {
-  name: 'Software',
-  components: { FavSidebar },
-  setup(): {
-    getOne: () => void
-    skip: (id: number) => void
-    give: (id: number) => void
-  } {
-    const { proxy }: any = getCurrentInstance()
-    const state: any = reactive({
-      dataTest: [],
-      dataOne: [],
-      text: [],
-      modal2Visible: false,
-    })
-
-    const router = useRouter()
-    const skip = async (id: number) => {
-      await router.push({
-        path: '/SoftwareContent',
-        query: {
-          id: id,
-        },
+  import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
+  import { message } from 'ant-design-vue'
+  import FavSidebar from '../navigation/favorite/FavSidebar.vue'
+  import { useRouter } from 'vue-router'
+  export default {
+    name: 'Software',
+    components: { FavSidebar },
+    setup(): {
+      getOne: () => void
+      skip: (id: number) => void
+      give: (id: number) => void
+    } {
+      const { proxy }: any = getCurrentInstance()
+      const state: any = reactive({
+        dataTest: [],
+        dataOne: [],
+        text: [],
+        modal2Visible: false
       })
-    }
 
-    const getOne = () => {
-      proxy.$api
-        .all([
-          // 读取一条内容
-          proxy.$api.get(
-            '/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true'
-          ),
-          //查询最新发布前十内容
-          proxy.$api.get(
-            '/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true'
-          ),
-        ])
-        .then(
-          proxy.$api.spread((res1: any, res2: any) => {
-            state.dataOne = res1.data[0]
-            state.dataTest = res2.data
-          })
-        )
-    }
+      const router = useRouter()
+      const skip = async (id: number) => {
+        await router.push({
+          path: '/SoftwareContent',
+          query: {
+            id: id
+          }
+        })
+      }
 
-    const give = (id: number) => {
-      message.info(id + '功能未完成')
+      const getOne = () => {
+        proxy.$api
+          .all([
+            // 读取一条内容
+            proxy.$api.get('/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true'),
+            //查询最新发布前十内容
+            proxy.$api.get('/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true')
+          ])
+          .then(
+            proxy.$api.spread((res1: any, res2: any) => {
+              state.dataOne = res1.data[0]
+              state.dataTest = res2.data
+            })
+          )
+      }
+
+      const give = (id: number) => {
+        message.info(id + '功能未完成')
+      }
+      onMounted(async () => {
+        await getOne()
+      })
+      return { ...toRefs(state), getOne, skip, give }
     }
-    onMounted(async () => {
-      await getOne()
-    })
-    return { ...toRefs(state), getOne, skip, give }
-  },
-}
+  }
 </script>
 
 <style lang="scss" scoped>
-@import './scss/Software.scss';
+  @import './scss/Software.scss';
 </style>

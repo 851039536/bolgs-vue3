@@ -7,5 +7,5 @@
  * @FilePath: \blogs-s\src\env.d.ts
  */
 interface ImportMetaEnv {
-  VITE_API_DOMAIN: string,
+  VITE_API_DOMAIN: string
 }

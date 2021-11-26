@@ -76,7 +76,7 @@
       <a-space>
         <a-button @click="Routers('/Admin-index/ArticleAdd')">添加</a-button>
         <a-button @click="reload()">刷新</a-button>
-        <a-select style="width: 100px;" v-model:value="state.labelStr" @change="GetTag">
+        <a-select style="width: 100px" v-model:value="state.labelStr" @change="GetTag">
           <a-select-option value="ALL">ALL</a-select-option>
           <a-select-option :value="res.name" v-for="res in state.labelResult.data" :key="res.id">{{
             res.name
@@ -86,7 +86,7 @@
         <a-select
           show-search
           placeholder="标题搜索"
-          style="width: 150px;"
+          style="width: 150px"
           :default-active-first-option="false"
           :show-arrow="false"
           :not-found-content="null"
@@ -95,7 +95,7 @@
         </a-select>
       </a-space>
       <!-- end 搜索 -->
-      <a-button style="margin-left: 10px;" @click="Ordering()">排序</a-button>
+      <a-button style="margin-left: 10px" @click="Ordering()">排序</a-button>
     </div>
     <div>
       <a-table

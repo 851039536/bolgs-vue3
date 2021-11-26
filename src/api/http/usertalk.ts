@@ -8,11 +8,10 @@
  */
 import request from '@/utils/http/axios'
 export class usertalk {
-
   static async GetUserTalkFirst() {
     return await request({
-      url: "/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true",
-      method: 'get',
+      url: '/api/SnUserTalk/GetUserTalkFirst?UserId=4&isdesc=true',
+      method: 'get'
     })
   }
 }

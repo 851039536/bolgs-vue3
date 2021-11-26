@@ -8,12 +8,10 @@
  */
 import request from '@/utils/http/axios'
 export class leave {
-
   static async GetAllAsync(): Promise<any> {
     return await request({
-      url: "/api/Snleave/GetAllAsync",
-      method: 'get',
+      url: '/api/Snleave/GetAllAsync',
+      method: 'get'
     })
   }
-
 }

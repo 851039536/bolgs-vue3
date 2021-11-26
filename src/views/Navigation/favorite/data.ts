@@ -7,7 +7,7 @@
  * @FilePath: \blogs-s\src\views\navigation\favorite\data.ts
  */
 
-import { reactive } from "vue"
+import { reactive } from 'vue'
 
 interface State {
   text: any
@@ -25,9 +25,7 @@ const state: State = reactive({
   pagesize: 12,
   count: 0,
   name: '',
-  current: 1,
+  current: 1
 })
 
-export {
-  state
-}
+export { state }

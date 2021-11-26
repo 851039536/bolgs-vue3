@@ -17,7 +17,7 @@ export const storage = {
   //取出数据
   get<T>(key: string) {
     const value = localStorage.getItem(key)
-    if (value && value != "undefined" && value != "null") {
+    if (value && value != 'undefined' && value != 'null') {
       return <T>JSON.parse(value)
     }
   },
@@ -25,7 +25,7 @@ export const storage = {
   remove(key: string) {
     localStorage.removeItem(key)
   }
-};
+}
 
 /**
  * 封装操作sessionStorage本地存储的方法
@@ -38,7 +38,7 @@ export const sessionStorage = {
   //取出数据
   get<T>(key: string) {
     const value = window.sessionStorage.getItem(key)
-    if (value && value != "undefined" && value != "null") {
+    if (value && value != 'undefined' && value != 'null') {
       return JSON.parse(value)
     }
     return null

@@ -9,8 +9,6 @@
 
 import request from '@/utils/http/axios'
 export class interfaces {
-
-
   /**
    * @description: 条件查询
    * @param {number} identity 分类和用户:0 || 用户:1 || 分类:2
@@ -20,14 +18,15 @@ export class interfaces {
    */
   static async GetTypeAsync(identity: number, users: string, type: string, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnInterface/GetTypeAsync?identity=" + identity + "&users=" + users + "&type=" + type + "&cache=" + cache,
-      method: 'get',
+      url:
+        '/api/SnInterface/GetTypeAsync?identity=' + identity + '&users=' + users + '&type=' + type + '&cache=' + cache,
+      method: 'get'
     })
   }
   static async GetAllAsync(cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnInterface/GetAllAsync?cache=" + cache,
-      method: 'get',
+      url: '/api/SnInterface/GetAllAsync?cache=' + cache,
+      method: 'get'
     })
   }
 }

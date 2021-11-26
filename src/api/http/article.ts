@@ -7,11 +7,10 @@
  * @FilePath: \blogs-s\src\api\article.js
  */
 import request from '@/utils/http/axios'
-import { IntArticle } from "@/api/data/interData";
-import { tool } from '@/utils/common/tool';
+import { IntArticle } from '@/api/data/interData'
+import { tool } from '@/utils/common/tool'
 
 export class article {
-
   /**
    * @description: 查询总数
    * @param {number} identity 所有:0 || 分类:1 || 标签:2
@@ -20,8 +19,8 @@ export class article {
    */
   static async GetCountAsync(identity: number, type: string, cache: boolean) {
     return await request({
-      url: "/api/SnArticle/GetCountAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
-      method: 'get',
+      url: '/api/SnArticle/GetCountAsync?identity=' + identity + '&type=' + type + '&cache=' + cache,
+      method: 'get'
     })
   }
 
@@ -34,13 +33,13 @@ export class article {
    */
   static async GetContainsAsync(identity: number, type: string, name: string, cache: boolean) {
     const res = await request({
-      url: "/api/SnArticle/GetContainsAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + cache,
-      method: 'get',
+      url:
+        '/api/SnArticle/GetContainsAsync?identity=' + identity + '&type=' + type + '&name=' + name + '&cache=' + cache,
+      method: 'get'
     })
     tool.MomentTimeList(res)
-    return res;
+    return res
   }
-
 
   /**
    * @description: 主键查询
@@ -49,8 +48,8 @@ export class article {
    */
   static async GetByIdAsync(id: number, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetByIdAsync?id=" + id + "&cache=" + cache,
-      method: 'get',
+      url: '/api/SnArticle/GetByIdAsync?id=' + id + '&cache=' + cache,
+      method: 'get'
     })
   }
 
@@ -59,12 +58,12 @@ export class article {
    * @param identity 分类:1 || 标签:2
    * @param type 查询条件
    * @param cache 缓存
-   * @returns 
+   * @returns
    */
   static async GetTypeAsync(identity: number, type: string, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetTypeAsync?identity=" + identity + "&type=" + type + "&cache=" + cache,
-      method: 'get',
+      url: '/api/SnArticle/GetTypeAsync?identity=' + identity + '&type=' + type + '&cache=' + cache,
+      method: 'get'
     })
   }
 
@@ -72,13 +71,13 @@ export class article {
    * 读取字段
    * @param identity 0:所有: 分类:1 || 标签:2 || 用户:3
    * @param type 1-内容-2:阅读-3:点赞
-   * @param name 查询参数 
+   * @param name 查询参数
    * @param cache 缓存
    */
   static async GetSumAsync(identity: number, type: number, name: string, cache: boolean): Promise<any> {
     return await request({
-      url: "/api/SnArticle/GetSumAsync?identity=" + identity + "&type=" + type + "&name=" + name + "&cache=" + cache,
-      method: 'get',
+      url: '/api/SnArticle/GetSumAsync?identity=' + identity + '&type=' + type + '&name=' + name + '&cache=' + cache,
+      method: 'get'
     })
   }
 
@@ -92,16 +91,36 @@ export class article {
    * @param {boolean} isDesc 升序/降序
    * @param {boolean} cache 是否开启缓存
    */
-  static async GetFyAsync(identity: number, type: string | undefined, pageIndex: number, pagesize: number, ordering: string, isDesc: boolean, cache: boolean) {
+  static async GetFyAsync(
+    identity: number,
+    type: string | undefined,
+    pageIndex: number,
+    pagesize: number,
+    ordering: string,
+    isDesc: boolean,
+    cache: boolean
+  ) {
     const res = await request({
       url:
-        "/api/SnArticle/GetFyAsync?identity=" + identity + "&type=" + type + "&pageIndex=" + pageIndex + "&pageSize=" + pagesize + "&ordering=" + ordering + "&isDesc=" + isDesc + "&cache=" + cache,
-      method: 'get',
+        '/api/SnArticle/GetFyAsync?identity=' +
+        identity +
+        '&type=' +
+        type +
+        '&pageIndex=' +
+        pageIndex +
+        '&pageSize=' +
+        pagesize +
+        '&ordering=' +
+        ordering +
+        '&isDesc=' +
+        isDesc +
+        '&cache=' +
+        cache,
+      method: 'get'
     })
     await tool.MomentTimeList(res)
-    return res;
+    return res
   }
-
 
   /**
    * @description: 更新
@@ -109,13 +128,12 @@ export class article {
    * @param {string} type
    */
   static async UpdatePortionAsync(resultData: any, type: string): Promise<any> {
-    return await
-      request({
-        // 更新
-        url: "/api/SnArticle/UpdatePortionAsync?type=" + type,
-        method: "put",
-        data: resultData,
-      })
+    return await request({
+      // 更新
+      url: '/api/SnArticle/UpdatePortionAsync?type=' + type,
+      method: 'put',
+      data: resultData
+    })
   }
 
   /**
@@ -123,24 +141,22 @@ export class article {
    * @param {any} resultData
    */
   static async AddAsync(resultData: IntArticle) {
-    return await
-      request({
-        url: "/api/SnArticle/AddAsync",
-        method: "post",
-        data: resultData,
-      })
+    return await request({
+      url: '/api/SnArticle/AddAsync',
+      method: 'post',
+      data: resultData
+    })
   }
   /**
    * @description: 更新数据
    * @param {IntArticle} resultData
    */
   static async UpdateAsync(resultData: IntArticle) {
-    return await
-      request({
-        url: "/api/SnArticle/UpdateAsync",
-        method: "put",
-        data: resultData,
-      })
+    return await request({
+      url: '/api/SnArticle/UpdateAsync',
+      method: 'put',
+      data: resultData
+    })
   }
   /**
    * @description: 删除
@@ -148,10 +164,9 @@ export class article {
    * @return {*}
    */
   static async DeleteAsync(id: number) {
-    return await
-      request({
-        url: "/api/SnArticle/DeleteAsync?id=" + id,
-        method: "delete",
-      })
+    return await request({
+      url: '/api/SnArticle/DeleteAsync?id=' + id,
+      method: 'delete'
+    })
   }
 }

@@ -1,5 +1,5 @@
-@import "@/design/methodCss.scss";
-@import "@/design/uitl";
+@import '@/design/methodCss.scss';
+@import '@/design/uitl';
 
 /* blogHome
 ---------------------------------------------------------------- */
@@ -7,8 +7,6 @@
   @apply fixed z-20;
 
   @include w-h;
-
-
 
   @apply bg-white;
 

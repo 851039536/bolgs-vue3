@@ -7,14 +7,14 @@
  * @FilePath: \blogs-s\src\views\One\components\OneCategory.vue
 -->
 <script setup lang="ts">
-import { oneType } from '../data'
+  import { oneType } from '../data'
 
-defineProps({
-  result: {
-    type: Array as () => Array<oneType>, //(string也可以是其他你自定义的接口)
-    default: () => []
-  }
-})
+  defineProps({
+    result: {
+      type: Array as () => Array<oneType>, //(string也可以是其他你自定义的接口)
+      default: () => []
+    }
+  })
 </script>
 <template>
   <div class="onecategory">
@@ -30,16 +30,16 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-.onecategory {
-  width: 97%;
+  .onecategory {
+    width: 97%;
 
-  @apply p-1 mb-2 m-auto cursor-pointer;
-  @apply shadow rounded bg-white;
+    @apply p-1 mb-2 m-auto cursor-pointer;
+    @apply shadow rounded bg-white;
 
-  .onecategory_name {
-    color: #1b1e21;
+    .onecategory_name {
+      color: #1b1e21;
 
-    @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+      @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+    }
   }
-}
 </style>

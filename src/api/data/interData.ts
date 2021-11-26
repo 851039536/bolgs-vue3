@@ -7,8 +7,6 @@
  * @FilePath: \blogs-s\src\api\data\video.ts
  */
 
-import { Data } from "ant-design-vue/lib/_util/type";
-
 /**
  * @description: 视频接口
  */
@@ -57,9 +55,14 @@ interface IntNav {
   // timeModified: any
 }
 
-export {
-  IntVideo,
-  IntLabels,
-  IntArticle,
-  IntNav
+export interface IntSort {
+  id: number
+  name: string
+  description: string
 }
+export interface IntTag {
+  id: number
+  name: string
+  description: string
+}
+export { IntVideo, IntLabels, IntArticle, IntNav }

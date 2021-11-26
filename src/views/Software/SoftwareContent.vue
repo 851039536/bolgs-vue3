@@ -32,8 +32,7 @@
       <!-- ------ -->
       <div class="software_content-3">
         <div class="software_content-3_content">
-          少年 发表于2017-10-23 20:43:47 | 热度：198749℃ | 懒得勤快
-          最后修改于2021-07-22 09:16:16
+          少年 发表于2017-10-23 20:43:47 | 热度：198749℃ | 懒得勤快 最后修改于2021-07-22 09:16:16
         </div>
       </div>
       <div class="software_content-2">
@@ -50,68 +49,64 @@
 </template>
 
 <script lang="ts">
-import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
-import { message } from 'ant-design-vue'
-import FavSidebar from '../navigation/favorite/FavSidebar.vue'
-export default {
-  name: 'SoftwareContent',
-  components: { FavSidebar },
-  setup(): {
-    getOne: () => void
-    setModal1Visible: (modal2Visible: boolean, id: number) => void
-    give: (id: number) => void
-  } {
-    const { proxy }: any = getCurrentInstance()
-    const state: any = reactive({
-      dataTest: [],
-      dataOne: [],
-      text: [],
-      listResult: [],
+  import { getCurrentInstance, reactive, toRefs, onMounted } from 'vue'
+  import { message } from 'ant-design-vue'
+  import FavSidebar from '../navigation/favorite/FavSidebar.vue'
+  export default {
+    name: 'SoftwareContent',
+    components: { FavSidebar },
+    setup(): {
+      getOne: () => void
+      setModal1Visible: (modal2Visible: boolean, id: number) => void
+      give: (id: number) => void
+    } {
+      const { proxy }: any = getCurrentInstance()
+      const state: any = reactive({
+        dataTest: [],
+        dataOne: [],
+        text: [],
+        listResult: [],
 
-      modal2Visible: false,
-    })
-    const setModal1Visible = (modal2Visible: boolean, id: number) => {
-      state.modal2Visible = modal2Visible
-      proxy
-        .$api({
-          url: '/api/SnOne/GetByIdAsync?id=' + id,
-        })
-        .then((res: any) => {
-          state.text = res.data
-        })
-    }
-
-    const getOne = () => {
-      proxy.$api
-        .all([
-          // 读取一条内容
-          proxy.$api.get(
-            '/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true'
-          ),
-          //查询最新发布前十内容
-          proxy.$api.get(
-            '/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true'
-          ),
-        ])
-        .then(
-          proxy.$api.spread((res1: any, res2: any) => {
-            state.dataOne = res1.data[0]
-            state.dataTest = res2.data
+        modal2Visible: false
+      })
+      const setModal1Visible = (modal2Visible: boolean, id: number) => {
+        state.modal2Visible = modal2Visible
+        proxy
+          .$api({
+            url: '/api/SnOne/GetByIdAsync?id=' + id
           })
-        )
-    }
+          .then((res: any) => {
+            state.text = res.data
+          })
+      }
 
-    const give = (id: number) => {
-      message.info(id + '功能未完成')
+      const getOne = () => {
+        proxy.$api
+          .all([
+            // 读取一条内容
+            proxy.$api.get('/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=1&isDesc=true'),
+            //查询最新发布前十内容
+            proxy.$api.get('/api/SnOne/GetFyAllAsync?pageIndex=1&pageSize=6&isDesc=true')
+          ])
+          .then(
+            proxy.$api.spread((res1: any, res2: any) => {
+              state.dataOne = res1.data[0]
+              state.dataTest = res2.data
+            })
+          )
+      }
+
+      const give = (id: number) => {
+        message.info(id + '功能未完成')
+      }
+      onMounted(async () => {
+        await getOne()
+      })
+      return { ...toRefs(state), getOne, setModal1Visible, give }
     }
-    onMounted(async () => {
-      await getOne()
-    })
-    return { ...toRefs(state), getOne, setModal1Visible, give }
-  },
-}
+  }
 </script>
 
 <style lang="scss" scoped>
-@import './scss/SoftwareContent.scss';
+  @import './scss/SoftwareContent.scss';
 </style>

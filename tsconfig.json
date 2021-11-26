@@ -24,7 +24,9 @@
     "paths": {
       "@/*": ["src/*"],
       "/#/*": ["types/*"],
-      "@api/*": ["src/api/*"]
+      "@comp/*": ["src/components/*"],
+      "@api/*": ["src/api/*"],
+      "@vi/*": ["src/views/*"]
     }
   },
   "include": [
@@ -38,7 +40,9 @@
     "build/**/*.ts",
     "build/**/*.d.ts",
     "mock/**/*.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"]
 }

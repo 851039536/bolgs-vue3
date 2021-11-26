@@ -7,28 +7,24 @@
  * @FilePath: \blogs-s\src\hooks\dynamicScss.ts
  */
 
-const SCSS: number = 1;
+const SCSS: number = 1
 async function toScss(nameCss: string) {
-
   switch (nameCss) {
-    case "sAbout":
+    case 'sAbout':
       if (SCSS === 1) {
         import('../views/sAbout/index.scss').then(() => {
-          console.log("import css 1")
+          console.log('import css 1')
         })
       }
-      break;
+      break
 
-    case "index":
+    case 'index':
       if (SCSS === 1) {
         import('../views/sAbout/index.scss').then(() => {
-          console.log("import css 1")
+          console.log('import css 1')
         })
       }
-      break;
+      break
   }
-
 }
-export {
-  toScss
-}
+export { toScss }

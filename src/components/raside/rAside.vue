@@ -13,7 +13,7 @@
 </script>
 <template>
   <div id="raside">
-    <div class="raside_main">
+    <div class="raside-main">
       <div class="raside-img">
         <img src="@/assets/img/si.jpg" />
       </div>
@@ -57,7 +57,7 @@
       }
 
       .raside-list {
-        @include initialize(40%, 6%, 5px, auto, auto, auto, null);
+        @include initialize(40%, 6%, 4px, auto, auto, auto, null);
 
         @apply text-center cursor-pointer;
 

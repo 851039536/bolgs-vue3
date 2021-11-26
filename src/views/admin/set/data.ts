@@ -7,58 +7,58 @@
  * @FilePath: \blogs-s\src\views\admin\index\data.ts
  */
 
-import { reactive } from "vue"
+import { reactive } from 'vue'
 import { IntArticle } from '@/api/data/interData'
 interface State {
   dataResult: any
 }
 const state: State = reactive({
-  dataResult: [],
+  dataResult: []
 })
 
 const columns = [
   {
     title: '主键',
     dataIndex: 'id',
-    width: 100,
+    width: 100
   },
   {
     title: '标题',
     dataIndex: 'title',
-    width: 250,
+    width: 250
   },
 
   {
     title: '路径',
-    dataIndex: 'path',
+    dataIndex: 'path'
   },
   {
     title: 'typeId',
-    dataIndex: 'typeId',
+    dataIndex: 'typeId'
   },
   {
     title: 'userId',
-    dataIndex: 'userId',
+    dataIndex: 'userId'
   },
 
   {
     title: '是否启用',
     key: 'identity',
     width: 100,
-    slots: { customRender: 'identity' },//绑定插槽
+    slots: { customRender: 'identity' } //绑定插槽
   },
   {
     title: '操作',
     key: '编辑',
     width: 80,
-    slots: { customRender: 'ed' },//绑定插槽
+    slots: { customRender: 'ed' } //绑定插槽
   },
   {
     title: '操作',
     key: '删除',
     width: 80,
-    slots: { customRender: 'de' },//绑定插槽
-  },
+    slots: { customRender: 'de' } //绑定插槽
+  }
 ]
 
 const formState: IntArticle = reactive({
@@ -69,28 +69,22 @@ const formState: IntArticle = reactive({
   id: 0,
   title: '标题',
   sketch: '简述',
-  text: "",
+  text: '',
   read: 0,
-  img: "img",
+  img: 'img',
   commentId: 0,
   give: 0,
   timeCreate: '2090-10-01',
   timeModified: '2090-10-01',
   label: [],
   sort: [],
-  user: [],
+  user: []
 })
 const stateArray: any = reactive({
   labelResult: [],
-  sortResult: [],
+  sortResult: []
 })
 const stateStr: any = reactive({
-  labelStr: "ALL"
+  labelStr: 'ALL'
 })
-export {
-  columns,
-  state,
-  formState,
-  stateArray,
-  stateStr
-}
+export { columns, state, formState, stateArray, stateStr }

@@ -7,14 +7,14 @@
  * @FilePath: \blogs-s\src\views\One\components\OneTop.vue
 -->
 <script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    default: () => 'title'
-  },
-  text: String,
-  read: Number
-})
+  defineProps({
+    title: {
+      type: String,
+      default: () => 'title'
+    },
+    text: String,
+    read: Number
+  })
 </script>
 
 <template>
@@ -37,50 +37,50 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@import '@/design/methodCss';
-@import '@/design/uitl';
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
 
-.One-top {
-  @include w-h(100%, 55%);
+  .One-top {
+    @include w-h(100%, 55%);
 
-  .One-top-img {
-    @include w-h(45%, 76.5%);
+    .One-top-img {
+      @include w-h(45%, 76.5%);
 
-    @apply float-left;
+      @apply float-left;
 
-    img {
-      @include w-h(100%, 100%);
-    }
-  }
-
-  .One-top-text {
-    @include w-h(55%, 100%);
-
-    @apply float-right;
-
-    .One-top-text-title {
-      @apply text-center m-1 pt-2;
-
-      height: 19%;
+      img {
+        @include w-h(100%, 100%);
+      }
     }
 
-    .One-top-give {
-      height: 55%;
+    .One-top-text {
+      @include w-h(55%, 100%);
 
-      @include line-numbers(5);
+      @apply float-right;
 
-      @apply m-1  px-4 py-4 font-thin leading-loose tracking-wide text-center shadow-2xl;
-    }
+      .One-top-text-title {
+        @apply text-center m-1 pt-2;
 
-    .One-top-give-div {
-      @apply m-1 cursor-pointer;
+        height: 19%;
+      }
 
-      height: 17%;
+      .One-top-give {
+        height: 55%;
 
-      div {
-        @apply px-2 py-2 m-1 text-center text-gray-700;
+        @include line-numbers(5);
+
+        @apply m-1  px-4 py-4 font-thin leading-loose tracking-wide text-center shadow-2xl;
+      }
+
+      .One-top-give-div {
+        @apply m-1 cursor-pointer;
+
+        height: 17%;
+
+        div {
+          @apply px-2 py-2 m-1 text-center text-gray-700;
+        }
       }
     }
   }
-}
 </style>

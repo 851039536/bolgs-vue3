@@ -1,5 +1,5 @@
-$w:50%;
-$ml:25%;
+$w: 50%;
+$ml: 25%;
 
 // 渐变色文字
 @mixin gradient-text() {
@@ -45,14 +45,14 @@ $ml:25%;
 }
 
 // 宽高
-@mixin w-h($w:100%, $h:100%) {
+@mixin w-h($w: 100%, $h: 100%) {
   width: $w;
   height: $h;
 }
 
 // 背景图片
 @mixin bg-img($imgUrl) {
- // background: no-repeat center/100% url($imgUrl);
+  // background: no-repeat center/100% url($imgUrl);
 }
 
 /**
@@ -116,7 +116,7 @@ $ml:25%;
     width: 5px;
     height: 5px;
   }
-//滚动条轨道.
+  //滚动条轨道.
   ::-webkit-scrollbar-track {
     width: 6px;
     background: rgba(#101f1c, 0.1);
@@ -124,7 +124,7 @@ $ml:25%;
     -moz-border-radius: 2em;
     border-radius: 2em;
   }
-//滚动条上的滚动滑块.
+  //滚动条上的滚动滑块.
   ::-webkit-scrollbar-thumb {
     min-height: 28px;
     background-color: rgba(#101f1c, 0.5);

@@ -7,17 +7,15 @@
  * @FilePath: \blogs-s\src\components\header\index.ts
  */
 import { interfaces } from '@/api/index'
-import { Routers, winUrl } from '@/hooks/routers';
-import { resData } from './data/header';
-
+import { Routers, winUrl } from '@/hooks/routers'
+import { resData } from './data/header'
 
 /**
- * @description: 导出header类 
+ * @description: 导出header类
  */
 export class method {
-
   static async GetType() {
-    await interfaces.GetTypeAsync(0, "kai", "header", true).then((res: any) => {
+    await interfaces.GetTypeAsync(0, 'kai', 'header', true).then((res: any) => {
       resData.resultData = res.data
     })
   }

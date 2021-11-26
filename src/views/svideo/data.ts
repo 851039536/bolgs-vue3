@@ -1,13 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2021-10-15 14:57:28
- * @LastEditTime: 2021-10-15 15:29:14
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \blogs-s\src\views\svideo\data.ts
- */
-
-import { reactive } from "vue";
+import { reactive } from 'vue'
 
 interface State {
   resultData: any
@@ -21,9 +12,7 @@ const state: State = reactive({
   page: 1,
   pagesize: 6,
   count: 0,
-  current: 1,
+  current: 1
 })
 
-export {
-  state
-}
+export { state }

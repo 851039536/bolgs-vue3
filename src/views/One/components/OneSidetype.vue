@@ -8,20 +8,20 @@
 -->
 
 <script setup lang="ts">
-import { one } from '../data'
-import { method } from '../index'
+  import { one } from '../data'
+  import { method } from '../index'
 
-defineProps({
-  resultData: {
-    type: Array as () => Array<one>, //(string也可以是其他你自定义的接口)
-    required: true,
-    default: () => []
-  },
-  title: {
-    type: String,
-    default: () => '标题'
-  }
-})
+  defineProps({
+    resultData: {
+      type: Array as () => Array<one>, //(string也可以是其他你自定义的接口)
+      required: true,
+      default: () => []
+    },
+    title: {
+      type: String,
+      default: () => '标题'
+    }
+  })
 </script>
 <template>
   <div class="One-Sidebar-textlist">
@@ -41,21 +41,21 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-//@import "./index.scss";
-.One-Sidebar-textlist {
-  width: 97%;
+  //@import "./index.scss";
+  .One-Sidebar-textlist {
+    width: 97%;
 
-  @apply p-1 mb-2 m-auto cursor-pointer;
-  @apply shadow rounded bg-white;
+    @apply p-1 mb-2 m-auto cursor-pointer;
+    @apply shadow rounded bg-white;
 
-  .One-Sidebar-textlist-title {
-    color: #1b1e21;
+    .One-Sidebar-textlist-title {
+      color: #1b1e21;
 
-    @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+      @apply p-1 m-1 text-sm font-semibold bg-gray-200;
+    }
+
+    .TalkSidebar-text-4-2 {
+      border-bottom: 1px dashed #f1f1f1;
+    }
   }
-
-  .TalkSidebar-text-4-2 {
-    border-bottom: 1px dashed #f1f1f1;
-  }
-}
 </style>

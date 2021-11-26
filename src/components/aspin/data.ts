@@ -7,10 +7,9 @@
  * @FilePath: \blogs-s\src\components\data.ts
  */
 
-import { reactive } from "vue";
+import { reactive } from 'vue'
 interface dataList {
-
-  spinning: boolean,
+  spinning: boolean
   show: boolean
 }
 
@@ -19,6 +18,4 @@ const dataList: dataList = reactive({
   show: true
 })
 
-export {
-  dataList
-}
+export { dataList }

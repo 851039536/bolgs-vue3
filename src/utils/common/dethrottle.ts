@@ -7,7 +7,7 @@
  * @FilePath: \blogs-s\src\utils\dethrottle.ts
  */
 
-import { ref } from "vue"
+import { ref } from 'vue'
 
 /**
  * @description: 防抖
@@ -45,8 +45,4 @@ function throttle(fn: any, delay: number) {
   }
 }
 
-
-export {
-  debounce,
-  throttle
-}
+export { debounce, throttle }

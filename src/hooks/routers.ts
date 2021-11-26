@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: \blogs-s\src\views\common\hooks\index.ts
  */
-import router from '@/router/index';
+import router from '@/router/index'
 
 /**
  * @description: 路由跳转
@@ -34,15 +34,15 @@ const RouterId = async (path: string, id: number | string) => {
       t: +new Date()
     }
   })
-};
+}
 
 async function resolve(path: string, id: number) {
   return router.resolve({
     path: path,
     query: {
       id: id,
-      t: +new Date(),
-    },
+      t: +new Date()
+    }
   })
 }
 
@@ -69,12 +69,4 @@ async function reloads() {
   location.reload()
 }
 
-export {
-  Routers,
-  RouterId,
-  winUrl,
-  go,
-  resolve,
-  reloads
-}
-
+export { Routers, RouterId, winUrl, go, resolve, reloads }

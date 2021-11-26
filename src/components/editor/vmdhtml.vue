@@ -69,7 +69,7 @@
     </div>
   </div>
   <div class="vmd">
-    <a-page-header style="border: 1px solid rgb(235, 237, 240);" :title="state.blog.title" />
+    <a-page-header style="border: 1px solid rgb(235, 237, 240)" :title="state.blog.title" />
     <v-md-preview :text="state.blog.text" ref="preview" />
   </div>
 </template>

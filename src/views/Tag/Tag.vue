@@ -7,35 +7,35 @@
  * @FilePath: \blogs-s\src\views\tag\Tag.vue
 -->
 <script lang="ts" setup>
-import { article, labels } from '@/api'
-import { reactive, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { state, State } from './data'
-import TagHead from './components/TagHead.vue'
-import TagContent from './components/TagContent.vue'
-const route = useRoute()
+  import { article, labels } from '@/api'
+  import { reactive, onMounted } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { state } from './data'
+  import TagHead from './components/TagHead.vue'
+  import TagContent from './components/TagContent.vue'
+  const route = useRoute()
 
-const name: any = reactive({
-  name: route.query.id
-})
+  const name: any = reactive({
+    name: route.query.id
+  })
 
-async function GetApi() {
-  state.labels = await (await labels.GetAllAsync(true)).data
-  if (name.id == '') {
-    name.id = 'vue'
+  async function GetApi() {
+    state.labels = await (await labels.GetAllAsync(true)).data
+    if (name.id == '') {
+      name.id = 'vue'
+    }
+    state.newinfo = await (await article.GetTypeAsync(2, name.id, true)).data
   }
-  state.newinfo = await (await article.GetTypeAsync(2, name.id, true)).data
-}
 
-async function Search(name: string) {
-  if (name === '') {
-    return
+  async function Search(name: string) {
+    if (name === '') {
+      return
+    }
+    state.newinfo = await (await article.GetContainsAsync(0, 'null', name, true)).data
   }
-  state.newinfo = await (await article.GetContainsAsync(0, 'null', name, true)).data
-}
-onMounted(async () => {
-  await GetApi()
-})
+  onMounted(async () => {
+    await GetApi()
+  })
 </script>
 <template>
   <div class="animate__animated" :class="[state.tag, state.fadeIn]">
@@ -45,7 +45,7 @@ onMounted(async () => {
           <a-select
             show-search
             placeholder="标题搜索"
-            style="width: 200px;"
+            style="width: 200px"
             :default-active-first-option="false"
             :show-arrow="false"
             :filter-option="false"
@@ -62,19 +62,19 @@ onMounted(async () => {
 </template>
 
 <style lang="scss">
-@import './index.scss';
+  @import './index.scss';
 
-.tag_search {
-  @include initialize(94%, 92%, null, null, 3%, null, #ffffff);
-  @apply relative rounded-sm  shadow;
+  .tag_search {
+    @include initialize(94%, 92%, null, null, 3%, null, #ffffff);
+    @apply relative rounded-sm  shadow;
 
-  height: 45px;
+    height: 45px;
 
-  div {
-    @apply absolute left-1/2;
-    top: 90%;
-    width: 40%;
-    transform: translate(-50%, -50%);
+    div {
+      @apply absolute left-1/2;
+      top: 90%;
+      width: 40%;
+      transform: translate(-50%, -50%);
+    }
   }
-}
 </style>

@@ -7,8 +7,8 @@
  * @FilePath: \blogs-s\src\views\common\Book\Index.vue
 -->
 <script lang="ts" setup>
-import BookBar from './components/BookBar.vue'
-import BookFilm from './components/BookFilm.vue'
+  import BookBar from './components/BookBar.vue'
+  import BookFilm from './components/BookFilm.vue'
 </script>
 <template>
   <div class="book">
@@ -17,14 +17,10 @@ import BookFilm from './components/BookFilm.vue'
     <div class="book_main">
       <BookBar></BookBar>
       <BookFilm></BookFilm>
-      <div
-        class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
-      >
+      <div class="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
         <div class="book_film_text">
           <div class="book_img">
-            <img
-              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
-            />
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -37,9 +33,7 @@ import BookFilm from './components/BookFilm.vue'
 
         <div class="book_film_text">
           <div class="book_img">
-            <img
-              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
-            />
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -52,9 +46,7 @@ import BookFilm from './components/BookFilm.vue'
 
         <div class="book_film_text">
           <div class="book_img">
-            <img
-              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
-            />
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -67,9 +59,7 @@ import BookFilm from './components/BookFilm.vue'
 
         <div class="book_film_text">
           <div class="book_img">
-            <img
-              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
-            />
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -82,9 +72,7 @@ import BookFilm from './components/BookFilm.vue'
 
         <div class="book_film_text">
           <div class="book_img">
-            <img
-              src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp"
-            />
+            <img src="https://cdn.share-man.com/image/movie/141ab7d2481a9985cac80b5a299ae4df.webp" />
           </div>
           <div class="book_film_title">小说家</div>
           <div class="book_film_type">
@@ -100,5 +88,5 @@ import BookFilm from './components/BookFilm.vue'
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+  @import './index.scss';
 </style>

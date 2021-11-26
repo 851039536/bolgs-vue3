@@ -8,33 +8,33 @@
 -->
 
 <script lang="ts" setup>
-import { reactive, onMounted } from 'vue'
-import { listContent } from '@/api'
-import { message } from 'ant-design-vue'
+  import { reactive, onMounted } from 'vue'
+  import { listContent } from '@/api'
+  import { message } from 'ant-design-vue'
 
-const state: any = reactive({
-  listTitle: [],
-  listHref: []
-})
-const info = async () => {
-  message.info('功能进行中...')
-}
-const testall = async () => {
-  {
-    listContent.Cnblogs().then(res => {
-      let str = res.data
-      for (let index = 0; index < str.length; index++) {
-        const element = str[index].split('-')
-        state.listTitle[index] = element[0]
-        state.listHref[index] = element[1]
-      }
-    })
+  const state: any = reactive({
+    listTitle: [],
+    listHref: []
+  })
+  const info = async () => {
+    message.info('功能进行中...')
   }
-}
-onMounted(async () => {
-  await testall()
-  await info()
-})
+  const testall = async () => {
+    {
+      listContent.Cnblogs().then((res) => {
+        let str = res.data
+        for (let index = 0; index < str.length; index++) {
+          const element = str[index].split('-')
+          state.listTitle[index] = element[0]
+          state.listHref[index] = element[1]
+        }
+      })
+    }
+  }
+  onMounted(async () => {
+    await testall()
+    await info()
+  })
 </script>
 <template>
   <div>
@@ -108,5 +108,5 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+  @import './index.scss';
 </style>

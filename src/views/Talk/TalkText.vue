@@ -17,10 +17,7 @@
       <div class="article-3-1">
         <div>版权属于：少年</div>
         <div>本文链接：原创文章转载请注明</div>
-        <div>
-          作品采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议
-          进行许可
-        </div>
+        <div> 作品采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议 进行许可 </div>
       </div>
       <div class="flex article-3-2">
         <div class>
@@ -59,96 +56,96 @@
 </template>
 
 <script lang="ts">
-// 组件导入
-import 'highlight.js/styles/googlecode.css'
-import hljs from 'highlight.js' //导入代码高亮文件
-import marked from 'marked' //解析器
-import TalkSidebar from './TalkSidebar.vue'
-import { getCurrentInstance, reactive, toRefs, onMounted, onUpdated } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { tool } from '@/utils/common/tool'
+  // 组件导入
+  import 'highlight.js/styles/googlecode.css'
+  import hljs from 'highlight.js' //导入代码高亮文件
+  import marked from 'marked' //解析器
+  import TalkSidebar from './TalkSidebar.vue'
+  import { getCurrentInstance, reactive, toRefs, onMounted, onUpdated } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { tool } from '@/utils/common/tool'
 
-// import { useRoute } from "vue-router";
-export default {
-  name: 'TalkText',
-  components: { TalkSidebar },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { proxy }: any = getCurrentInstance()
-    const route = useRoute()
-    const router = useRouter()
-    // 数据定义
-    const state: any = reactive({
-      newinfo: [],
-      id: route.query.id,
-      article: [],
-      timebool: true,
-      fullscreenLoading: false,
-      blog: '',
-      spinning: true,
-    })
-    // 加载内容
-    const AsyGetTest = (): void => {
-      // console.log(state.id);
-      proxy.$api
-        .all([
-          // 读取详情页数据
-          proxy.$api.get('/api/SnTalk/GetAllAsyncID?id=' + state.id),
-        ])
-        .then(
-          proxy.$api.spread((res1: any) => {
-            state.newinfo = res1.data[0]
-            // UpRead(state.newinfo);
-            state.blog = marked(state.newinfo.talkText)
-            state.spinning = false
-            // alert(this.spinning);
-          })
-        )
-    }
-
-    // 博客详情
-    const AsyGetTestID = (id: number): void => {
-      // .带参数跳转
-      router.push({
-        path: '/Indextext2',
-        query: {
-          id: id,
-        },
+  // import { useRoute } from "vue-router";
+  export default {
+    name: 'TalkText',
+    components: { TalkSidebar },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    setup() {
+      const { proxy }: any = getCurrentInstance()
+      const route = useRoute()
+      const router = useRouter()
+      // 数据定义
+      const state: any = reactive({
+        newinfo: [],
+        id: route.query.id,
+        article: [],
+        timebool: true,
+        fullscreenLoading: false,
+        blog: '',
+        spinning: true
       })
+      // 加载内容
+      const AsyGetTest = (): void => {
+        // console.log(state.id);
+        proxy.$api
+          .all([
+            // 读取详情页数据
+            proxy.$api.get('/api/SnTalk/GetAllAsyncID?id=' + state.id)
+          ])
+          .then(
+            proxy.$api.spread((res1: any) => {
+              state.newinfo = res1.data[0]
+              // UpRead(state.newinfo);
+              state.blog = marked(state.newinfo.talkText)
+              state.spinning = false
+              // alert(this.spinning);
+            })
+          )
+      }
 
-      location.reload()
-    }
+      // 博客详情
+      const AsyGetTestID = (id: number): void => {
+        // .带参数跳转
+        router.push({
+          path: '/Indextext2',
+          query: {
+            id: id
+          }
+        })
 
-    // 代码高亮
-    const highlighthandle = async () => {
-      await hljs
-      let highlight = document.querySelectorAll('code,pre')
-      highlight.forEach((block: any) => {
-        hljs.highlightBlock(block)
+        location.reload()
+      }
+
+      // 代码高亮
+      const highlighthandle = async () => {
+        await hljs
+        let highlight = document.querySelectorAll('code,pre')
+        highlight.forEach((block: any) => {
+          hljs.highlightBlock(block)
+        })
+      }
+      const houtui = async () => {
+        router.go(-1)
+      }
+
+      onMounted(async () => {
+        await AsyGetTest()
+        await tool.BackTop()
       })
+      onUpdated(async () => {
+        await highlighthandle()
+      })
+      return {
+        ...toRefs(state),
+        AsyGetTest,
+        highlighthandle,
+        houtui,
+        AsyGetTestID
+      }
     }
-    const houtui = async () => {
-      router.go(-1)
-    }
-
-    onMounted(async () => {
-      await AsyGetTest()
-      await tool.BackTop()
-    })
-    onUpdated(async () => {
-      await highlighthandle()
-    })
-    return {
-      ...toRefs(state),
-      AsyGetTest,
-      highlighthandle,
-      houtui,
-      AsyGetTestID,
-    }
-  },
-}
+  }
 </script>
 
 <style lang="scss">
-@import './scss/TalkText.scss';
+  @import './scss/TalkText.scss';
 </style>

@@ -23,7 +23,6 @@
 //     //Missing return type on function
 //     "@typescript-eslint/explicit-module-boundary-types": "off",
 
-
 //   },
 //   globals: {
 //     'defineProps': true,
@@ -82,7 +81,7 @@ module.exports = {
       }
     ],
     'space-before-function-paren': 'off',
-    'quotes': ['error', 'single'],
+    quotes: ['error', 'single'],
     'comma-dangle': ['error', 'never'],
     'vue/require-default-prop': 'off',
     'vue/custom-event-name-casing': 'off',

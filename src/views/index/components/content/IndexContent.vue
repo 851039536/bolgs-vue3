@@ -1,26 +1,47 @@
+<script lang="ts" setup>
+  import { article } from '@/api/index'
+  import { reactive, defineAsyncComponent } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { tool } from '@/utils/common/tool'
+  import SAspin from '@/components/aspin/sAspin.vue'
+  import { state, method } from '../../data/content'
+  const VmdContent = defineAsyncComponent(() => import('@/components/editor/VmdContent.vue'))
+  const route = useRoute()
+  const router = useRouter()
+
+  const roId: any = reactive({
+    id: route.query.id
+  })
+
+  const GetApi = async () => {
+    await article.GetByIdAsync(roId.id, true).then((res: any) => {
+      state.time = tool.MomentTime(res.data[0].timeCreate)
+      state.resultData = res.data[0]
+      state.labelName = res.data[0].label.name
+      state.sortName = res.data[0].sort.name
+      method.UpRead(state.resultData)
+      state.spinning = false
+    })
+  }
+  GetApi()
+  tool.BackTop()
+</script>
+
 <template>
   <!-- 通用组件 -->
-  <blog-sidebar></blog-sidebar>
-  <IndexSidebar></IndexSidebar>
-  <a-back-top />
+
   <SAspin></SAspin>
   <!-- end 通用组件 -->
 
   <div class="indextext">
     <!--标题-->
     <div class="indexText_title">
-      <a-page-header
-        :title="state.resultData.title"
-        @back="() => router.back()"
-      />
+      <a-page-header :title="state.resultData.title" @back="() => router.back()" />
     </div>
     <!-- end 标题 -->
 
     <!--内容-->
-    <VmdContent
-      :loading="state.spinning"
-      :result="state.resultData.text"
-    ></VmdContent>
+    <VmdContent :loading="state.spinning" :result="state.resultData.text"></VmdContent>
     <!-- end 内容 -->
 
     <!--底部信息-->
@@ -28,14 +49,10 @@
       <div class="indextest_copyright_title">
         <!-- <div>版权属于：少年</div> -->
         <div class="text">本文链接：原创文章转载请注明</div>
-        <!-- <div>
-          作品采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议
-          进行许可
-        </div>-->
       </div>
       <div class="indextest_comment">
         <div class>
-          <a @click="UpGive">
+          <a @click="method.UpGive">
             <svg class="inline-block icon" aria-hidden="true">
               <use
                 xlink:href="#icon-qinggan
@@ -57,85 +74,80 @@
   <!-- end 底部信息 -->
 </template>
 
-<script lang="ts">
-import { article } from '@/api/index'
-import { reactive, onMounted, defineComponent, defineAsyncComponent } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { tool } from '@/utils/common/tool'
-import { throttle } from '@/utils/common/dethrottle'
-import { message } from 'ant-design-vue'
-import SAspin from '@/components/aspin/sAspin.vue'
+<style lang="scss">
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
 
-export default defineComponent({
-  name: 'IndexText',
-  components: {
-    VmdContent: defineAsyncComponent(() =>
-      import('@/components/editor/VmdContent.vue')
-    ),
-    SAspin,
-  },
-  setup() {
-    const route = useRoute()
-    const router = useRouter()
+  .indextext {
+    @include initialize(50%, 92%, 4.5%, null, 25%, null, #ffffff);
+    @apply bg-red-100;
+    /* 底部信息 */
+    .indextest_copyright {
+      @apply shadow rounded;
+      @apply cursor-pointer bg-white text-black;
 
-    interface State {
-      resultData: any
-      labelName: string
-      sortName: string
-      time: any
-      id: any
-      spinning: boolean
-    }
-    const state: State = reactive({
-      resultData: [],
-      labelName: '',
-      sortName: '',
-      time: '',
-      Sort: [],
-      id: route.query.id,
-      spinning: true,
-    })
+      .indextest_copyright_title {
+        @apply p-1;
 
-    // 加载内容
-    const GetAll = async () => {
-      await article.GetByIdAsync(state.id, true).then((res: any) => {
-        state.time = tool.MomentTime(res.data[0].timeCreate)
-        state.resultData = res.data[0]
-        state.labelName = res.data[0].label.name
-        state.sortName = res.data[0].sort.name
-        UpRead(state.resultData)
-        state.spinning = false
-      })
-    }
+        div {
+          border-bottom: 1px dashed #f1f1f1;
 
-    async function UpRead(res: any) {
-      if (res == null) {
-        return
-      } else {
-        res.read++
-        await article.UpdatePortionAsync(res, 'Read')
+          @apply p-1 m-1 text-sm font-light;
+        }
+      }
+
+      .indextest_comment {
+        @apply flex;
+
+        .indextest_comment_text {
+          @apply bg-blue-200 shadow rounded-sm;
+        }
+
+        div {
+          @apply px-1 py-1 m-2 text-sm font-light text-center;
+        }
       }
     }
 
-    const UpGive = throttle(() => {
-      message.info('已点赞')
-      state.resultData.give++
-      article.UpdatePortionAsync(state.resultData, 'Give')
-    }, 1000)
-
-    onMounted(async () => {
-      await GetAll()
-      await tool.BackTop()
-    })
-    return {
-      router,
-      state,
-      UpGive,
+    .icons {
+      @include w-h(1.5em, 1.5em);
     }
-  },
-})
-</script>
 
-<style lang="scss">
-@import './index.scss';
+    /* 返回上一页 */
+    .indexText_title {
+      position: relative;
+
+      @include initialize(null, 40px, 6.5%, null, null, null, #ffffff);
+
+      @apply shadow rounded cursor-pointer;
+
+      .ant-page-header-heading-title {
+        @apply text-lg;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .ant-page-header {
+        @apply shadow-sm rounded-sm;
+      }
+
+      .ant-page-header-back {
+        @apply mt-0;
+      }
+    }
+
+    //  .blog {
+    //    @include blogs;
+    //  }
+  }
+
+  @screen xp {
+    .indextext {
+      width: 100%;
+
+      @apply ml-0;
+    }
+  }
 </style>

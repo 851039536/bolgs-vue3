@@ -62,9 +62,7 @@
         <input type="password" v-model="state.pwd" />
         <label>Pwd</label>
       </div>
-      <a href="#" @click="login">
-        Submit
-      </a>
+      <a href="#" @click="login"> Submit </a>
     </form>
   </div>
 </template>

@@ -99,47 +99,47 @@
 </template>
 
 <style lang="scss" scoped>
-@import '@/design/methodCss';
-@import '@/design/uitl';
+  @import '@/design/methodCss';
+  @import '@/design/uitl';
 
-.photo {
-  @include initialize(94%, null, 4.5%, null, 3%, null, #ffffff);
+  .photo {
+    @include initialize(94%, null, 4.5%, null, 3%, null, #ffffff);
 
-  @apply shadow rounded-md;
+    @apply shadow rounded-md;
 
-  .photo_title {
-    @include underline;
+    .photo_title {
+      @include underline;
 
-    margin-bottom: 6px;
+      margin-bottom: 6px;
 
-    p {
-      @apply px-1 py-2 m-2 text-lg font-medium;
+      p {
+        @apply px-1 py-2 m-2 text-lg font-medium;
+      }
+    }
+
+    .photo_img {
+      @apply relative m-3;
+      @apply rounded-md shadow;
+
+      img {
+        @include w-h(100%, 300px);
+
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      a {
+        position: absolute;
+
+        @include excursion(null, 3%, null, 3%);
+      }
+
+      .photo_text {
+        color: #5f6c7b;
+
+        @apply p-2 px-4 text-base cursor-pointer hover:text-red-300;
+      }
     }
   }
-
-  .photo_img {
-    @apply relative m-3;
-    @apply rounded-md shadow;
-
-    img {
-      @include w-h(100%, 300px);
-
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    a {
-      position: absolute;
-
-      @include excursion(null, 3%, null, 3%);
-    }
-
-    .photo_text {
-      color: #5f6c7b;
-
-      @apply p-2 px-4 text-base cursor-pointer hover:text-red-300;
-    }
-  }
-}
 </style>

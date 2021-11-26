@@ -7,24 +7,21 @@
  * @FilePath: \blogs-s\src\utils\common\tool.ts
  */
 
-import moment from "moment"
+import moment from 'moment'
 
 /**
  * 常用工具类
  */
 class tool {
-
   /**
    * 回到顶部
    */
   static async BackTop() {
     {
       const timer = setInterval(function () {
-        const osTop =
-          document.documentElement.scrollTop || document.body.scrollTop
+        const osTop = document.documentElement.scrollTop || document.body.scrollTop
         const isPeed = Math.floor(-osTop / 5)
-        document.documentElement.scrollTop = document.body.scrollTop =
-          osTop + isPeed
+        document.documentElement.scrollTop = document.body.scrollTop = osTop + isPeed
         if (osTop === 0) {
           clearInterval(timer)
         }
@@ -32,10 +29,9 @@ class tool {
     }
   }
 
-
   /**
    * 日期格式化
-   * @param time 
+   * @param time
    */
   static MomentTime(time: any) {
     time = moment(time).format('YYYY-MM-DD- H:mm:ss')
@@ -57,23 +53,18 @@ class tool {
    * @param minNum 最小值
    * @param maxNum 最大值
    * @param counts 循环次数
-   * @returns 
+   * @returns
    */
   static async Random(minNum: number, maxNum: number, counts: number): Promise<number> {
     let i = 0
-    let count;
+    let count
     do {
       i++
       const value_a = Math.random() * (maxNum - minNum + 1) + minNum + ''
       count = parseInt(value_a)
-
     } while (i < counts)
     return count
   }
-
-
 }
 
-export {
-  tool
-}
+export { tool }

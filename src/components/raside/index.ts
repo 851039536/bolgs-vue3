@@ -8,25 +8,24 @@
  */
 import { reactive } from 'vue'
 import { interfaces } from '@/api/http/interfaces'
-import { Routers } from "@/hooks/routers";
+import { Routers } from '@/hooks/routers'
 
 interface ResData {
   resultData: any
 }
 export const resData: ResData = reactive({
-  resultData: [],
+  resultData: []
 })
 
 /**
  * @description: 导出raside类
  */
 export class method {
-
   /**
    * @description: 读取侧边栏数据
    */
   static async GetType() {
-    await interfaces.GetTypeAsync(0, "kai", "sidebar", true).then((res: any) => {
+    await interfaces.GetTypeAsync(0, 'kai', 'sidebar', true).then((res: any) => {
       resData.resultData = res.data
     })
   }
@@ -35,7 +34,6 @@ export class method {
    * @param {string} path 路径
    */
   static async skip(path: string) {
-    await Routers(path);
+    await Routers(path)
   }
-
 }

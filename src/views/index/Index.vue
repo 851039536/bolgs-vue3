@@ -7,30 +7,17 @@
  * @FilePath: \blogs-s\src\views\Index.vue
 -->
 <script lang="ts" setup>
-  import IndexTitle from './components/column/IndexColumn.vue'
   import { notification } from 'ant-design-vue'
-  import { onMounted } from 'vue'
-
-  const openNotification = async () => {
-    notification.open({
-      message: 'Title',
-      description:
-        '基于TailWindcss,Vue3+TypeScript, Net5,AntDesignVue组件库 开发搭建 项目地址: https://gitee.com/kaiouyang-sn',
-      onClick: () => {
-        console.log(
-          '基于TailWindcss,Vue3+TypeScript, Net5,AntDesignVue组件库 开发搭建 项目地址: https://gitee.com/kaiouyang-sn'
-        )
-      }
-    })
-  }
-  onMounted(async () => {
-    await openNotification()
+  notification.open({
+    message: 'Title',
+    description: '基于TailWindcss,Vue3+TypeScript, Net5,AntDesignVue 开发搭建 地址: https://gitee.com/kaiouyang-sn'
   })
 </script>
 <template>
   <div>
+    <a-back-top />
     <blog-sidebar></blog-sidebar>
     <IndexSidebar></IndexSidebar>
-    <IndexTitle></IndexTitle>
+    <router-view></router-view>
   </div>
 </template>

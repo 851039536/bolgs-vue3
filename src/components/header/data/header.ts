@@ -1,9 +1,7 @@
-
-
-import { reactive } from "vue";
+import { reactive } from 'vue'
 interface ResData {
   resultData: any
 }
 export const resData: ResData = reactive({
-  resultData: [],
+  resultData: []
 })

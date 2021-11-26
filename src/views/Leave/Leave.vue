@@ -7,19 +7,19 @@
  * @FilePath: \blogs-s\src\views\Leave\Leave.vue
 -->
 <script lang="ts" setup>
-import { leave } from '@/api/index'
-import { reactive, onMounted } from 'vue'
+  import { leave } from '@/api/index'
+  import { reactive, onMounted } from 'vue'
 
-const state: any = reactive({
-  result: []
-})
+  const state: any = reactive({
+    result: []
+  })
 
-const GetApi = async () => {
-  state.result = await (await leave.GetAllAsync()).data
-}
-onMounted(async () => {
-  await GetApi()
-})
+  const GetApi = async () => {
+    state.result = await (await leave.GetAllAsync()).data
+  }
+  onMounted(async () => {
+    await GetApi()
+  })
 </script>
 
 <template>
@@ -55,5 +55,5 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+  @import './index.scss';
 </style>

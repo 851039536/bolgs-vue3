@@ -64,7 +64,7 @@
       </header>
 
       <a-layout>
-        <a-layout-sider breakpoint="lg" collapsed-width="0" width="200" style="background: #fff;">
+        <a-layout-sider breakpoint="lg" collapsed-width="0" width="200" style="background: #fff">
           <a-menu mode="inline" @click="handleClick" :style="{ height: '100%', borderRight: 0 }">
             <a-sub-menu key="article">
               <template #title>
@@ -105,8 +105,8 @@
           </a-menu>
         </a-layout-sider>
 
-        <a-layout style="padding: 0 24px 24px;">
-          <a-breadcrumb style="margin: 16px 0;">
+        <a-layout style="padding: 0 24px 24px">
+          <a-breadcrumb style="margin: 16px 0">
             <a-breadcrumb-item>{{ navname.name }}</a-breadcrumb-item>
             <a-breadcrumb-item>{{ navname.name2 }}</a-breadcrumb-item>
           </a-breadcrumb>

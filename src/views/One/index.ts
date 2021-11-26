@@ -1,4 +1,3 @@
-
 /*
  * @Author: your name
  * @Date: 2021-09-28 17:28:24
@@ -8,9 +7,9 @@
  * @FilePath: \blogs-s\src\views\One\index.ts
  */
 
-import { one } from "@/api/index"
-import { message } from "ant-design-vue"
-import { reactive } from "vue"
+import { one } from '@/api/index'
+import { message } from 'ant-design-vue'
+import { reactive } from 'vue'
 interface State {
   resultData: any
   dataOne: any
@@ -28,11 +27,10 @@ const state: State = reactive({
   modal2Visible: false,
   page: 1,
   pagesize: 6,
-  count: 0,
+  count: 0
 })
 
 class method {
-
   static async setModal1Visible(modal2Visible: boolean, id: number) {
     state.modal2Visible = modal2Visible
     await one.GetByIdAsync(id, true).then((res: any) => {
@@ -47,22 +45,22 @@ class method {
   }
   static async currentchange(val: number) {
     state.page = val
-    await one.GetFyAsync(0, "0", state.page, state.pagesize, "id", true, true).then((res: any) => {
+    await one.GetFyAsync(0, '0', state.page, state.pagesize, 'id', true, true).then((res: any) => {
       state.resultData = res.data
     })
   }
 
   static async Count() {
-    await one.CountAsync(0, "", true).then((result: any) => {
+    await one.CountAsync(0, '', true).then((result: any) => {
       state.count = result.data
     })
   }
 
   static async getOne() {
-    await one.GetFyAsync(0, "0", state.page, state.pagesize, "id", true, true).then((res: any) => {
+    await one.GetFyAsync(0, '0', state.page, state.pagesize, 'id', true, true).then((res: any) => {
       state.resultData = res.data
     })
-    await one.GetFyAsync(0, "0", 1, 1, "id", true, true).then((res: any) => {
+    await one.GetFyAsync(0, '0', 1, 1, 'id', true, true).then((res: any) => {
       state.dataOne = res.data[0]
     })
   }
@@ -78,11 +76,6 @@ class method {
       }
     })
   }
-
-
 }
 
-export {
-  state,
-  method
-}
+export { state, method }

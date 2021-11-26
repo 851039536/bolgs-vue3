@@ -12,9 +12,7 @@
   <div class="index_si_contact">
     <div class="index-si-ioc">
       <div class="index-si-ioc-2">
-        <a
-          href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes"
-        >
+        <a href="tencent://message/?uin=851039536&Site=http://77ya.com/&Menu=yes">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-QQ11" />
           </svg>
@@ -49,5 +47,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import './index.scss';
+  @import './index.scss';
 </style>

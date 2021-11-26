@@ -7,12 +7,12 @@
  * @FilePath: \blogs-s\src\views\tag\components\TagContent.vue
 -->
 <script lang="ts" setup>
-import { article } from '@/api'
-import { state } from '../data'
+  import { article } from '@/api'
+  import { state } from '../data'
 
-async function GetApi(id: number) {
-  state.blog = await (await article.GetByIdAsync(id, true)).data[0].text
-}
+  async function GetApi(id: number) {
+    state.blog = await (await article.GetByIdAsync(id, true)).data[0].text
+  }
 </script>
 <template>
   <div class="tag_content">
@@ -32,5 +32,5 @@ async function GetApi(id: number) {
 </template>
 
 <style lang="scss" scoped>
-@import '../index.scss';
+  @import '../index.scss';
 </style>
